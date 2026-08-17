@@ -10,7 +10,7 @@ from google import genai
 # 設定
 # =========================================
 
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-3.6-flash"
 
 SITE_NAME = "AI Trend Blog"
 
