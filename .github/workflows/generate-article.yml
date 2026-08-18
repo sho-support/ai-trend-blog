@@ -32,7 +32,7 @@ jobs:
           git config user.name "AI Article Bot"
           git config user.email "actions@github.com"
 
-          git add articles/
+          git add articles/ index.html article_history.json
 
           if git diff --cached --quiet; then
             echo "No new article generated."
