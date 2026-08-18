@@ -52,7 +52,13 @@ SOURCES = [
         "name": "Google",
         "feed": "https://blog.google/feed/",
         "domain": "blog.google",
-        "priority": 95,
+        "priority": 98,
+    },
+    {
+        "name": "GitHub",
+        "feed": "https://github.com/blog.atom",
+        "domain": "github.blog",
+        "priority": 90,
     },
 ]
 
