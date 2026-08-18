@@ -1,8 +1,10 @@
 import os
 import re
 import time
+import html
 from datetime import datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 from google import genai
 from google.genai import types
@@ -23,8 +25,9 @@ client = genai.Client(api_key=api_key)
 prompt = """
 あなたは日本のAI・テクノロジー系Webメディアの編集長です。
 
-Google検索を使って、現在ネット上で注目する価値がある
-AI・生成AI・動画生成AI・Webサービス関連の情報を調査してください。
+Google検索を使い、
+AI・生成AI・動画生成AI・Webサービス関連の
+現在注目する価値が高い情報を調査してください。
 
 対象例：
 - ChatGPT / OpenAI
@@ -39,68 +42,56 @@ AI・生成AI・動画生成AI・Webサービス関連の情報を調査して�
 - セール・キャンペーン
 - 初心者向けAI活用法
 
-最初に複数の候補を調査し、
-その中から「日本の一般ユーザーに今もっとも役立つテーマ」を1つ選んでください。
+まず複数候補を調査し、
+日本の一般ユーザーに現在もっとも役立つテーマを1つ選んでください。
 
-記事作成ルール：
+重要ルール：
 
-1. 最新情報の場合は必ずWeb検索結果に基づく
-2. 可能な限り公式サイト・公式発表を優先する
-3. 確認できない事実や数字を作らない
-4. ニュースの単純な言い換えは禁止
-5. 「何が変わったのか」を説明する
-6. 「誰に関係するのか」を説明する
-7. 「実際にどう役立つのか」を説明する
-8. 初心者でも理解できる日本語
+1. 最新情報はGoogle検索結果に基づく
+2. 公式発表・公式ヘルプ・公式ドキュメントを最優先する
+3. 確認できない数字・名称・仕様を作らない
+4. ニュースの言い換えだけの記事は禁止
+5. 何が変わったのかを書く
+6. 誰に影響するのかを書く
+7. 実際にどう役立つのかを書く
+8. 初心者にも理解できる日本語
 9. 誇張・煽りは禁止
-10. 1500～2500文字程度
-11. 情報源を記事末尾に記載する
-12. URLは実際に検索で確認したものだけ使用する
-13. HTML形式
-14. <html>、<head>、<body>タグは出力しない
-15. Markdownの ``` は使用しない
+10. 1500〜2500文字程度
+11. 情報源URLを本文に生成しない
+12. URLを勝手に推測しない
+13. 情報源一覧も生成しない
+14. HTML形式
+15. <html>、<head>、<body>タグは不要
+16. Markdownのコードフェンスは使わない
 
-以下の構成を基本にしてください。
+構成：
 
 <h1>タイトル</h1>
 
 <p>導入文</p>
 
 <h2>今回わかったこと</h2>
-
 <p>本文</p>
 
 <h2>何が変わったのか</h2>
-
 <p>本文</p>
 
 <h2>誰に影響するのか</h2>
-
 <p>本文</p>
 
 <h2>実際にどう使える？</h2>
-
 <p>本文</p>
 
 <h2>注意点</h2>
-
 <p>本文</p>
 
 <h2>まとめ</h2>
-
 <p>本文</p>
-
-<h2>情報源</h2>
-
-<ul>
-<li><a href="実際のURL">情報源名</a></li>
-</ul>
 """
 
 
 def generate_with_retry():
     waits = [0, 10, 30, 60, 120]
-
     last_error = None
 
     for attempt, wait_seconds in enumerate(waits, start=1):
@@ -125,7 +116,7 @@ def generate_with_retry():
             )
 
             if response.text and response.text.strip():
-                return response.text.strip()
+                return response
 
         except Exception as e:
             last_error = e
@@ -136,13 +127,114 @@ def generate_with_retry():
     )
 
 
-article_html = generate_with_retry()
+response = generate_with_retry()
 
+article_html = response.text.strip()
 
-# Markdownコードフェンス対策
 article_html = article_html.replace("```html", "")
 article_html = article_html.replace("```", "").strip()
 
+
+# =========================================
+# Groundingされた実在ソースを取得
+# =========================================
+
+sources = []
+seen_urls = set()
+
+try:
+    candidate = response.candidates[0]
+    metadata = candidate.grounding_metadata
+
+    if metadata and metadata.grounding_chunks:
+
+        for chunk in metadata.grounding_chunks:
+
+            web = getattr(chunk, "web", None)
+
+            if not web:
+                continue
+
+            url = getattr(web, "uri", None)
+            title = getattr(web, "title", None)
+
+            if not url:
+                continue
+
+            if url in seen_urls:
+                continue
+
+            parsed = urlparse(url)
+
+            if parsed.scheme not in ("http", "https"):
+                continue
+
+            seen_urls.add(url)
+
+            sources.append({
+                "title": title or parsed.netloc,
+                "url": url
+            })
+
+except Exception as e:
+    print("Grounding source取得時の警告:", e)
+
+
+# 最大8件
+sources = sources[:8]
+
+
+# =========================================
+# 情報源HTML生成
+# =========================================
+
+if sources:
+
+    source_items = []
+
+    for source in sources:
+
+        safe_source_title = html.escape(
+            source["title"]
+        )
+
+        safe_source_url = html.escape(
+            source["url"],
+            quote=True
+        )
+
+        source_items.append(
+            f'<li><a href="{safe_source_url}" '
+            f'target="_blank" rel="noopener noreferrer">'
+            f'{safe_source_title}</a></li>'
+        )
+
+    sources_html = """
+<h2>情報源</h2>
+<p>
+この記事の作成時にGoogle検索を通じて参照された情報源です。
+重要な情報は必ずリンク先の一次情報もご確認ください。
+</p>
+<ul>
+""" + "\n".join(source_items) + """
+</ul>
+"""
+
+else:
+
+    sources_html = """
+<h2>情報源</h2>
+<p>
+今回の生成では検証可能な情報源URLを取得できませんでした。
+そのため、このページの内容は参考情報として扱い、
+重要事項は公式サイト等で必ずご確認ください。
+</p>
+"""
+
+
+# =========================================
+# タイトル
+# =========================================
 
 title_match = re.search(
     r"<h1[^>]*>(.*?)</h1>",
@@ -161,18 +253,20 @@ else:
 
 
 now = datetime.now()
-filename = now.strftime("%Y-%m-%d_%H%M%S") + ".html"
+
+filename = (
+    now.strftime("%Y-%m-%d_%H%M%S")
+    + ".html"
+)
 
 ARTICLE_DIR.mkdir(exist_ok=True)
 
 filepath = ARTICLE_DIR / filename
 
 
-safe_title = (
-    title.replace("&", "&amp;")
-         .replace('"', "&quot;")
-         .replace("<", "&lt;")
-         .replace(">", "&gt;")
+safe_title = html.escape(
+    title,
+    quote=True
 )
 
 
@@ -199,6 +293,7 @@ page_html = f"""<!DOCTYPE html>
 
 body {{
   margin: 0;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -207,7 +302,9 @@ body {{
     sans-serif;
 
   background: #f5f7fb;
+
   color: #1d2433;
+
   line-height: 1.9;
 }}
 
@@ -253,6 +350,10 @@ p {{
 
 ul {{
   padding-left: 24px;
+}}
+
+li {{
+  margin-bottom: 10px;
 }}
 
 a {{
@@ -312,9 +413,13 @@ footer {{
 
 {article_html}
 
+{sources_html}
+
 <div class="notice">
-この記事はAIを利用して情報整理・作成しています。
-重要な情報はリンク先の公式情報もあわせてご確認ください。
+この記事はAIとGoogle検索を利用して情報整理・作成しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
 </div>
 
 </article>
@@ -336,9 +441,15 @@ filepath.write_text(
     encoding="utf-8"
 )
 
+
 print("")
 print("================================")
 print("記事生成成功")
 print("タイトル:", title)
 print("保存先:", filepath)
+print("取得した情報源数:", len(sources))
+
+for source in sources:
+    print("-", source["title"], source["url"])
+
 print("================================")
