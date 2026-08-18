@@ -3,7 +3,6 @@ import re
 import json
 import time
 import html
-import hashlib
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
@@ -23,18 +22,17 @@ MODEL_NAME = "gemini-3.6-flash"
 SITE_NAME = "AI Trend Blog"
 
 ARTICLE_DIR = Path("articles")
-
 INDEX_FILE = Path("index.html")
-
 HISTORY_FILE = Path("article_history.json")
 
 JST = timezone(timedelta(hours=9))
 
 MAX_SOURCE_AGE_DAYS = 10
-
 MAX_CANDIDATES = 12
+REQUEST_TIMEOUT = 20
 
-REQUEST_TIMEOUT = 15
+MIN_PAGE_TEXT_LENGTH = 500
+MAX_SOURCE_TEXT_LENGTH = 16000
 
 
 # =========================================================
@@ -84,8 +82,13 @@ client = genai.Client(
 # =========================================================
 
 HEADERS = {
-    "User-Agent":
-        "Mozilla/5.0 AI-Trend-Blog/1.0"
+    "User-Agent": (
+        "Mozilla/5.0 "
+        "(Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 "
+        "Chrome/151.0 Safari/537.36 "
+        "AI-Trend-Blog/1.0"
+    )
 }
 
 
@@ -136,13 +139,20 @@ def load_history():
         return []
 
     try:
+
         return json.loads(
             HISTORY_FILE.read_text(
                 encoding="utf-8"
             )
         )
 
-    except Exception:
+    except Exception as e:
+
+        print(
+            "履歴読込エラー:",
+            e
+        )
+
         return []
 
 
@@ -177,43 +187,60 @@ def normalize_title(title):
 
 def is_duplicate(title, url, history):
 
-    nt = normalize_title(title)
+    normalized_new = normalize_title(
+        title
+    )
 
     for item in history:
 
+        # URL完全一致
         if item.get("url") == url:
             return True
 
         old_title = normalize_title(
-            item.get("title", "")
+            item.get(
+                "source_title",
+                item.get("title", "")
+            )
         )
 
-        if nt and old_title:
+        if not normalized_new or not old_title:
+            continue
 
-            if nt == old_title:
-                return True
+        # タイトル完全一致
+        if normalized_new == old_title:
+            return True
+
+        # かなり近いタイトル
+        if (
+            len(normalized_new) >= 15
+            and len(old_title) >= 15
+        ):
 
             shorter = min(
-                len(nt),
+                len(normalized_new),
                 len(old_title)
             )
 
-            if shorter >= 15:
+            common_prefix = 0
 
-                common = sum(
-                    1
-                    for a, b
-                    in zip(nt, old_title)
-                    if a == b
-                )
+            for a, b in zip(
+                normalized_new,
+                old_title
+            ):
 
-                similarity = (
-                    common /
-                    max(len(nt), len(old_title))
-                )
+                if a == b:
+                    common_prefix += 1
+                else:
+                    break
 
-                if similarity > 0.82:
-                    return True
+            similarity = (
+                common_prefix /
+                shorter
+            )
+
+            if similarity >= 0.80:
+                return True
 
     return False
 
@@ -224,7 +251,9 @@ def is_duplicate(title, url, history):
 
 def collect_candidates():
 
-    now = datetime.now(timezone.utc)
+    now = datetime.now(
+        timezone.utc
+    )
 
     candidates = []
 
@@ -234,19 +263,39 @@ def collect_candidates():
             f"RSS取得: {source['name']}"
         )
 
-        feed = feedparser.parse(
-            source["feed"]
-        )
+        try:
+
+            feed = feedparser.parse(
+                source["feed"]
+            )
+
+        except Exception as e:
+
+            print(
+                "RSS取得失敗:",
+                source["name"],
+                e
+            )
+
+            continue
 
         for entry in feed.entries:
 
             title = (
-                getattr(entry, "title", "")
+                getattr(
+                    entry,
+                    "title",
+                    ""
+                )
                 .strip()
             )
 
             url = (
-                getattr(entry, "link", "")
+                getattr(
+                    entry,
+                    "link",
+                    ""
+                )
                 .strip()
             )
 
@@ -259,21 +308,42 @@ def collect_candidates():
 
             if published:
 
-                age = (
+                age_days = (
                     now - published
                 ).days
 
-                if age > MAX_SOURCE_AGE_DAYS:
+                if (
+                    age_days
+                    > MAX_SOURCE_AGE_DAYS
+                ):
                     continue
 
             summary = (
-                getattr(entry, "summary", "")
+                getattr(
+                    entry,
+                    "summary",
+                    ""
+                )
                 or ""
+            )
+
+            summary_text = (
+                BeautifulSoup(
+                    summary,
+                    "html.parser"
+                )
+                .get_text(
+                    " ",
+                    strip=True
+                )
             )
 
             candidates.append({
                 "source_name":
                     source["name"],
+
+                "source_domain":
+                    source["domain"],
 
                 "priority":
                     source["priority"],
@@ -292,13 +362,7 @@ def collect_candidates():
                     ),
 
                 "summary":
-                    BeautifulSoup(
-                        summary,
-                        "html.parser"
-                    ).get_text(
-                        " ",
-                        strip=True
-                    ),
+                    summary_text,
             })
 
     candidates.sort(
@@ -315,7 +379,7 @@ def collect_candidates():
 
 
 # =========================================================
-# URL検証
+# URL・実ページ検証
 # =========================================================
 
 def validate_candidate(candidate):
@@ -336,12 +400,76 @@ def validate_candidate(candidate):
             "http",
             "https",
         ):
+
+            print(
+                "無効URL:",
+                final_url
+            )
+
             return None
 
-        candidate["url"] = final_url
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser"
+        )
+
+        # 実ページタイトル
+        page_title = ""
+
+        if soup.title:
+
+            page_title = (
+                soup.title
+                .get_text(
+                    " ",
+                    strip=True
+                )
+            )
+
+        # 実ページ本文量
+        page_text = soup.get_text(
+            " ",
+            strip=True
+        )
+
+        if (
+            len(page_text)
+            < MIN_PAGE_TEXT_LENGTH
+        ):
+
+            print(
+                "本文が短すぎるため除外:",
+                final_url,
+                "文字数:",
+                len(page_text)
+            )
+
+            return None
+
+        candidate["url"] = (
+            final_url
+        )
+
+        candidate["page_title"] = (
+            page_title
+            or candidate["title"]
+        )
 
         candidate["status_code"] = (
             response.status_code
+        )
+
+        print(
+            "URL検証OK:",
+            response.status_code,
+            final_url
+        )
+
+        print(
+            "実ページタイトル:",
+            candidate[
+                "page_title"
+            ]
         )
 
         return candidate
@@ -349,8 +477,11 @@ def validate_candidate(candidate):
     except Exception as e:
 
         print(
-            "URL取得失敗:",
-            candidate["url"],
+            "URL検証失敗:",
+            candidate.get(
+                "url",
+                ""
+            ),
             e,
         )
 
@@ -363,13 +494,16 @@ def validate_candidate(candidate):
 
 def extract_page_text(url):
 
-    response = fetch_url(url)
+    response = fetch_url(
+        url
+    )
 
     soup = BeautifulSoup(
         response.text,
         "html.parser",
     )
 
+    # 不要部分除去
     for tag in soup(
         [
             "script",
@@ -378,11 +512,21 @@ def extract_page_text(url):
             "footer",
             "header",
             "aside",
+            "form",
+            "noscript",
         ]
     ):
+
         tag.decompose()
 
-    text = soup.get_text(
+    # article / main があれば優先
+    target = (
+        soup.find("article")
+        or soup.find("main")
+        or soup
+    )
+
+    text = target.get_text(
         "\n",
         strip=True,
     )
@@ -393,19 +537,21 @@ def extract_page_text(url):
         text
     )
 
-    return text[:14000]
+    return text[
+        :MAX_SOURCE_TEXT_LENGTH
+    ]
 
 
 # =========================================================
-# 候補選定
+# 未使用候補だけ残す
 # =========================================================
 
-def choose_topic(
+def filter_unused_candidates(
     candidates,
     history
 ):
 
-    available = []
+    unused = []
 
     for candidate in candidates:
 
@@ -414,22 +560,36 @@ def choose_topic(
             candidate["url"],
             history,
         ):
+
+            print(
+                "重複候補を除外:",
+                candidate["title"]
+            )
+
             continue
 
-        available.append(
+        unused.append(
             candidate
         )
 
-    if not available:
+    return unused
 
-        raise RuntimeError(
-            "新規記事候補がありません。"
-        )
+
+# =========================================================
+# 候補選定
+# =========================================================
+
+def choose_topic(
+    candidates
+):
+
+    if not candidates:
+        return None
 
     packet = []
 
     for index, item in enumerate(
-        available,
+        candidates,
         start=1,
     ):
 
@@ -440,8 +600,11 @@ def choose_topic(
 媒体:
 {item['source_name']}
 
-タイトル:
+RSSタイトル:
 {item['title']}
+
+実ページタイトル:
+{item.get('page_title', item['title'])}
 
 公開日時:
 {item['published']}
@@ -457,7 +620,9 @@ URL:
     prompt = f"""
 あなたは日本向けAI・テクノロジー情報サイトの編集長です。
 
-次の公式情報候補から、
+以下は実在する公式サイトの記事候補です。
+
+この中から、
 「今、日本の一般ユーザーに記事として最も価値があるもの」
 を1つだけ選んでください。
 
@@ -467,13 +632,20 @@ URL:
 ・日本の一般ユーザーへの影響
 ・実用性
 ・検索される可能性
-・単なる企業ニュースではなく読者に役立つか
-・記事として1500文字以上説明する価値があるか
+・話題性
+・読者が「知ってよかった」と思えるか
+・1500文字以上で有益に解説する価値があるか
 
-広告的な話題や会社人事など、
-一般ユーザーにほぼ関係のないものは優先しないでください。
+優先順位：
 
-回答は候補番号だけ。
+一般ユーザー向け 約70%
+開発者・専門ユーザー向け 約30%
+
+会社人事、企業PRだけの話題、
+一般ユーザーにほぼ影響しない記事は優先しないでください。
+
+回答は候補番号の数字だけにしてください。
+
 例：
 3
 
@@ -482,20 +654,40 @@ URL:
 {''.join(packet)}
 """
 
-    for attempt in range(3):
+    waits = [
+        0,
+        10,
+        30,
+    ]
+
+    for attempt, wait_seconds in enumerate(
+        waits,
+        start=1,
+    ):
+
+        if wait_seconds:
+            time.sleep(
+                wait_seconds
+            )
 
         try:
 
             response = (
-                client.models.generate_content(
+                client.models
+                .generate_content(
                     model=MODEL_NAME,
                     contents=prompt,
                 )
             )
 
+            text = (
+                response.text
+                or ""
+            )
+
             match = re.search(
                 r"\d+",
-                response.text
+                text
             )
 
             if match:
@@ -507,26 +699,24 @@ URL:
                 if (
                     1
                     <= number
-                    <= len(available)
+                    <= len(candidates)
                 ):
-                    return available[
+
+                    return candidates[
                         number - 1
                     ]
 
         except Exception as e:
 
             print(
-                "候補選定エラー:",
+                f"候補選定エラー "
+                f"{attempt}/{len(waits)}:",
                 e
             )
 
-            time.sleep(
-                10 * (
-                    attempt + 1
-                )
-            )
-
-    return available[0]
+    # Gemini選定不能時は
+    # 最優先候補を使う
+    return candidates[0]
 
 
 # =========================================================
@@ -541,34 +731,56 @@ def generate_article(
     prompt = f"""
 あなたは日本のAI・テクノロジー系Webメディアの編集者です。
 
-以下の「公式情報」だけを根拠として、
-日本の一般ユーザー向けの記事を書いてください。
+以下に渡す「公式記事本文」だけを事実の根拠として、
+日本の読者向けの記事を書いてください。
 
-【最重要】
+【絶対ルール】
 
-この公式情報に書かれていない
-数字・機能・名称・対象ユーザー・料金・利用条件を
-推測してはいけません。
+・公式記事に書かれていない数字を作らない
+・公式記事に書かれていない機能を作らない
+・公式記事に書かれていない料金を作らない
+・対象ユーザーを勝手に拡張しない
+・対応国や提供時期を推測しない
+・因果関係を補完しない
+・「〜のため」「〜に充てられる」など、
+  公式情報から直接確認できない目的を断定しない
+・ベンチマーク数値は公式本文にあるものだけ使う
+・旧モデルとの比較を推測しない
+・情報源URLを生成しない
+・不明な点は無理に説明しない
 
-分からないことは書かないでください。
+ニュース本文の単純な言い換えにはせず、
 
-ニュース内容を単に日本語で言い換えるだけではなく、
-
-・何が起きたか
-・以前と何が違うか
-・誰に関係するか
-・日本のユーザーにどう役立つか
+・何が起きたのか
+・従来と何が違うのか
+・誰に関係するのか
+・日本のユーザーにどう役立つのか
 ・注意点
 
-まで解説してください。
+を整理してください。
 
-情報源URLを本文には書かないでください。
-情報源はPython側で追加します。
+読みやすさは、
 
-1500〜2500文字程度。
+一般ユーザー向け 約70%
+開発者向け 約30%
+
+程度を意識してください。
+
+専門用語は、
+必要なら短く意味を説明してください。
+
+文字量はおおむね
+1500〜2500文字。
 
 HTML断片だけを出力してください。
-<html>、<body>、Markdownコードフェンスは禁止。
+
+禁止：
+<html>
+<head>
+<body>
+Markdownコードフェンス
+情報源一覧
+架空URL
 
 構成：
 
@@ -594,9 +806,14 @@ HTML断片だけを出力してください。
 {candidate['source_name']}
 
 
-【公式記事タイトル】
+【RSSタイトル】
 
 {candidate['title']}
+
+
+【実ページタイトル】
+
+{candidate.get('page_title', candidate['title'])}
 
 
 【公式記事本文】
@@ -631,11 +848,13 @@ HTML断片だけを出力してください。
         try:
 
             print(
-                f"本文生成 {attempt}/{len(waits)}"
+                f"本文生成 "
+                f"{attempt}/{len(waits)}"
             )
 
             response = (
-                client.models.generate_content(
+                client.models
+                .generate_content(
                     model=MODEL_NAME,
                     contents=prompt,
                 )
@@ -656,11 +875,32 @@ HTML断片だけを出力してください。
                 ""
             )
 
+            # 最低品質チェック
+            required_headings = [
+                "今回のポイント",
+                "何が変わった",
+                "誰に関係する",
+                "注意点",
+                "まとめ",
+            ]
+
+            headings_ok = all(
+                keyword in text
+                for keyword
+                in required_headings
+            )
+
             if (
                 "<h1" in text
                 and len(text) > 1200
+                and headings_ok
             ):
+
                 return text
+
+            print(
+                "本文品質条件を満たさないため再試行"
+            )
 
         except Exception as e:
 
@@ -672,7 +912,8 @@ HTML断片だけを出力してください。
             )
 
     raise RuntimeError(
-        f"記事生成失敗: {last_error}"
+        f"記事生成失敗: "
+        f"{last_error}"
     )
 
 
@@ -711,15 +952,18 @@ def build_page(
     candidate,
 ):
 
-    now = datetime.now(JST)
+    now = datetime.now(
+        JST
+    )
 
     safe_title = html.escape(
         title,
         quote=True,
     )
 
-    safe_source_title = (
-        html.escape(
+    safe_source_title = html.escape(
+        candidate.get(
+            "page_title",
             candidate["title"]
         )
     )
@@ -727,6 +971,10 @@ def build_page(
     safe_url = html.escape(
         candidate["url"],
         quote=True,
+    )
+
+    safe_source_name = html.escape(
+        candidate["source_name"]
     )
 
     return f"""<!DOCTYPE html>
@@ -747,94 +995,111 @@ content="{safe_title}について公式情報をもとにわかりやすく解�
 <style>
 
 * {{
-box-sizing: border-box;
+  box-sizing: border-box;
 }}
 
 body {{
-margin: 0;
-font-family:
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-"Noto Sans JP",
-sans-serif;
-background: #f5f7fb;
-color: #1d2433;
-line-height: 1.9;
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
 }}
 
 header {{
-background: #111827;
-padding: 20px;
+  background: #111827;
+  padding: 20px;
 }}
 
 header a {{
-color: white;
-text-decoration: none;
-font-size: 22px;
-font-weight: 800;
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
 }}
 
 main {{
-max-width: 850px;
-margin: 35px auto;
-padding: 0 20px;
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
 }}
 
 article {{
-background: white;
-padding: 35px;
-border-radius: 18px;
-box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
 }}
 
 h1 {{
-font-size: 32px;
-line-height: 1.4;
-margin-top: 0;
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
 }}
 
 h2 {{
-margin-top: 38px;
-font-size: 23px;
+  margin-top: 38px;
+  font-size: 23px;
+}}
+
+h3 {{
+  margin-top: 28px;
+  font-size: 19px;
 }}
 
 p {{
-font-size: 16px;
+  font-size: 16px;
+}}
+
+li {{
+  margin-bottom: 8px;
+}}
+
+code {{
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
 }}
 
 .source-box {{
-margin-top: 40px;
-padding: 20px;
-background: #f1f5f9;
-border-radius: 12px;
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
 }}
 
 .source-box a {{
-word-break: break-all;
+  word-break: break-all;
 }}
 
 .notice {{
-margin-top: 20px;
-font-size: 13px;
-color: #64748b;
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
 }}
 
 footer {{
-text-align: center;
-color: #94a3b8;
-padding: 30px 20px;
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
 }}
 
 @media (max-width: 700px) {{
 
-article {{
-padding: 24px;
-}}
+  article {{
+    padding: 24px;
+  }}
 
-h1 {{
-font-size: 26px;
-}}
+  h1 {{
+    font-size: 26px;
+  }}
 
 }}
 
@@ -873,13 +1138,13 @@ margin-bottom:20px;
 <h2>情報源</h2>
 
 <p>
-この記事は以下の公式情報をもとに作成しています。
+この記事は以下の公式ページを確認したうえで作成しています。
 </p>
 
 <p>
 
 <strong>
-{candidate['source_name']}
+{safe_source_name}
 </strong>
 
 <br>
@@ -900,8 +1165,9 @@ rel="noopener noreferrer"
 
 <div class="notice">
 
-この記事はAIを利用して情報を整理しています。
-重要な仕様・料金・利用条件は、
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
 必ずリンク先の公式情報をご確認ください。
 
 </div>
@@ -933,9 +1199,12 @@ def update_index(
 ):
 
     if not INDEX_FILE.exists():
+
         print(
-            "index.html がないため一覧更新をスキップ"
+            "index.html がないため"
+            "一覧更新をスキップ"
         )
+
         return
 
     index_html = (
@@ -951,12 +1220,16 @@ def update_index(
     if marker not in index_html:
 
         print(
-            "article-list が見つからないため一覧更新をスキップ"
+            "article-list が"
+            "見つからないため"
+            "一覧更新をスキップ"
         )
 
         return
 
-    now = datetime.now(JST)
+    now = datetime.now(
+        JST
+    )
 
     safe_title = html.escape(
         title
@@ -968,6 +1241,7 @@ def update_index(
 
     card = f"""
       <article class="article-card">
+
         <div class="meta">
           {now.strftime("%Y.%m.%d")}
           ｜ {safe_source}
@@ -981,8 +1255,9 @@ def update_index(
 
         <p>
           最新の公式情報をもとに、
-          初心者向けにわかりやすく解説しています。
+          初心者にもわかりやすく解説しています。
         </p>
+
       </article>
 """
 
@@ -1005,10 +1280,10 @@ def update_index(
 def main():
 
     print("")
-    print("==========")
+    print("========================")
     print("AI Trend Blog")
     print("記事生成開始")
-    print("==========")
+    print("========================")
     print("")
 
     history = load_history()
@@ -1016,10 +1291,19 @@ def main():
     candidates = collect_candidates()
 
     print(
-        "候補数:",
+        "RSS候補数:",
         len(candidates)
     )
 
+    if not candidates:
+
+        print(
+            "RSSから候補を取得できませんでした。"
+        )
+
+        return
+
+    # URL実在確認
     valid_candidates = []
 
     for candidate in candidates:
@@ -1031,6 +1315,7 @@ def main():
         )
 
         if validated:
+
             valid_candidates.append(
                 validated
             )
@@ -1040,37 +1325,121 @@ def main():
         len(valid_candidates)
     )
 
+    if not valid_candidates:
+
+        print(
+            "有効な公式記事候補がありません。"
+        )
+
+        return
+
+    # 過去記事との重複除外
+    unused_candidates = (
+        filter_unused_candidates(
+            valid_candidates,
+            history,
+        )
+    )
+
+    print(
+        "未使用候補:",
+        len(unused_candidates)
+    )
+
+    if not unused_candidates:
+
+        print(
+            "新規記事候補がありません。"
+        )
+
+        print(
+            "今回は投稿せず正常終了します。"
+        )
+
+        return
+
+    # Geminiが候補選定
     candidate = choose_topic(
-        valid_candidates,
-        history,
+        unused_candidates
+    )
+
+    if not candidate:
+
+        print(
+            "採用可能なテーマが"
+            "ありませんでした。"
+        )
+
+        return
+
+    print("")
+    print("========================")
+    print("採用テーマ")
+    print("========================")
+
+    print(
+        "媒体:",
+        candidate["source_name"]
+    )
+
+    print(
+        "RSSタイトル:",
+        candidate["title"]
+    )
+
+    print(
+        "実ページタイトル:",
+        candidate.get(
+            "page_title",
+            candidate["title"]
+        )
+    )
+
+    print(
+        "URL:",
+        candidate["url"]
     )
 
     print("")
-    print("採用テーマ")
-    print(candidate["title"])
-    print(candidate["url"])
-    print("")
 
+    # 実ページ本文取得
     source_text = extract_page_text(
         candidate["url"]
     )
 
-    if len(source_text) < 500:
+    print(
+        "取得本文文字数:",
+        len(source_text)
+    )
 
-        raise RuntimeError(
-            "公式記事本文を十分取得できませんでした。"
+    if (
+        len(source_text)
+        < MIN_PAGE_TEXT_LENGTH
+    ):
+
+        print(
+            "公式記事本文を"
+            "十分取得できないため"
+            "投稿しません。"
         )
 
-    article_html = generate_article(
-        candidate,
-        source_text,
+        return
+
+    # Gemini本文生成
+    article_html = (
+        generate_article(
+            candidate,
+            source_text,
+        )
     )
 
     title = extract_title(
         article_html
     )
 
-    now = datetime.now(JST)
+    now = datetime.now(
+        JST
+    )
 
     filename = (
         now.strftime(
@@ -1088,6 +1457,7 @@ def main():
         filename
     )
 
+    # 完成HTML
     page_html = build_page(
         title,
         article_html,
@@ -1099,18 +1469,29 @@ def main():
         encoding="utf-8",
     )
 
+    # トップページ更新
     update_index(
         title,
         filename,
         candidate,
     )
 
+    # 履歴更新
     history.append({
         "title":
             title,
 
         "source_title":
             candidate["title"],
+
+        "page_title":
+            candidate.get(
+                "page_title",
+                candidate["title"]
+            ),
+
+        "source_name":
+            candidate["source_name"],
 
         "url":
             candidate["url"],
@@ -1122,6 +1503,10 @@ def main():
             now.isoformat(),
     })
 
+    # 履歴は増え続けるので
+    # 最大1000件まで保存
+    history = history[-1000:]
+
     save_history(
         history
     )
@@ -1130,12 +1515,30 @@ def main():
     print("========================")
     print("記事生成成功")
     print("========================")
-    print("タイトル:", title)
-    print("保存先:", filepath)
+
+    print(
+        "記事タイトル:",
+        title
+    )
+
+    print(
+        "保存先:",
+        filepath
+    )
+
     print(
         "情報源:",
         candidate["url"]
     )
+
+    print(
+        "実ページタイトル:",
+        candidate.get(
+            "page_title",
+            candidate["title"]
+        )
+    )
+
     print("========================")
 
 
