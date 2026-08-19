@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sho-support.github.io/ai-trend-blog/sitemap.xml
