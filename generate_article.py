@@ -107,15 +107,11 @@ def ensure_ga_tags():
     files = []
 
     if INDEX_FILE.exists():
-        files.append(
-            INDEX_FILE
-        )
+        files.append(INDEX_FILE)
 
     if ARTICLE_DIR.exists():
         files.extend(
-            ARTICLE_DIR.glob(
-                "*.html"
-            )
+            ARTICLE_DIR.glob("*.html")
         )
 
     ga_tag = get_ga_tag()
@@ -168,159 +164,6 @@ def ensure_ga_tags():
     print(
         "GA4更新ファイル数:",
         updated_count
-    )
-
-
-# =========================================================
-# sitemap.xml
-# =========================================================
-
-def file_lastmod_iso(filepath):
-
-    try:
-        timestamp = filepath.stat().st_mtime
-
-        dt = datetime.fromtimestamp(
-            timestamp,
-            tz=timezone.utc
-        )
-
-        return dt.date().isoformat()
-
-    except Exception:
-        return datetime.now(
-            timezone.utc
-        ).date().isoformat()
-
-
-def generate_sitemap():
-
-    print("")
-    print("sitemap.xml 生成開始")
-
-    urlset = Element(
-        "urlset",
-        {
-            "xmlns":
-                "http://www.sitemaps.org/schemas/sitemap/0.9"
-        }
-    )
-
-    # -------------------------
-    # トップページ
-    # -------------------------
-
-    if INDEX_FILE.exists():
-
-        url = SubElement(
-            urlset,
-            "url"
-        )
-
-        loc = SubElement(
-            url,
-            "loc"
-        )
-
-        loc.text = (
-            SITE_BASE_URL
-            + "/"
-        )
-
-        lastmod = SubElement(
-            url,
-            "lastmod"
-        )
-
-        lastmod.text = (
-            file_lastmod_iso(
-                INDEX_FILE
-            )
-        )
-
-        changefreq = SubElement(
-            url,
-            "changefreq"
-        )
-
-        changefreq.text = "daily"
-
-        priority = SubElement(
-            url,
-            "priority"
-        )
-
-        priority.text = "1.0"
-
-    # -------------------------
-    # 記事
-    # -------------------------
-
-    if ARTICLE_DIR.exists():
-
-        article_files = sorted(
-            ARTICLE_DIR.glob("*.html")
-        )
-
-        for filepath in article_files:
-
-            url = SubElement(
-                urlset,
-                "url"
-            )
-
-            loc = SubElement(
-                url,
-                "loc"
-            )
-
-            loc.text = (
-                f"{SITE_BASE_URL}/"
-                f"articles/"
-                f"{filepath.name}"
-            )
-
-            lastmod = SubElement(
-                url,
-                "lastmod"
-            )
-
-            lastmod.text = (
-                file_lastmod_iso(
-                    filepath
-                )
-            )
-
-            changefreq = SubElement(
-                url,
-                "changefreq"
-            )
-
-            changefreq.text = "weekly"
-
-            priority = SubElement(
-                url,
-                "priority"
-            )
-
-            priority.text = "0.8"
-
-    tree = ElementTree(
-        urlset
-    )
-
-    tree.write(
-        SITEMAP_FILE,
-        encoding="utf-8",
-        xml_declaration=True
-    )
-
-    print(
-        "sitemap.xml 生成完了:"
-    )
-
-    print(
-        SITEMAP_FILE
     )
 
 
@@ -446,10 +289,8 @@ def is_duplicate(
     history
 ):
 
-    normalized_new = (
-        normalize_title(
-            title
-        )
+    normalized_new = normalize_title(
+        title
     )
 
     for item in history:
@@ -457,14 +298,12 @@ def is_duplicate(
         if item.get("url") == url:
             return True
 
-        old_title = (
-            normalize_title(
+        old_title = normalize_title(
+            item.get(
+                "source_title",
                 item.get(
-                    "source_title",
-                    item.get(
-                        "title",
-                        ""
-                    )
+                    "title",
+                    ""
                 )
             )
         )
@@ -512,6 +351,187 @@ def is_duplicate(
 
 
 # =========================================================
+# sitemap.xml 用の日付
+# =========================================================
+
+def history_date_map(history):
+
+    date_map = {}
+
+    for item in history:
+
+        filename = item.get(
+            "filename"
+        )
+
+        created_at = item.get(
+            "created_at"
+        )
+
+        if not filename or not created_at:
+            continue
+
+        try:
+
+            dt = datetime.fromisoformat(
+                created_at
+            )
+
+            date_map[filename] = (
+                dt.date().isoformat()
+            )
+
+        except Exception:
+            continue
+
+    return date_map
+
+
+# =========================================================
+# sitemap.xml 生成
+# =========================================================
+
+def generate_sitemap(history=None):
+
+    print("")
+    print("sitemap.xml 生成開始")
+
+    if history is None:
+        history = load_history()
+
+    article_dates = (
+        history_date_map(
+            history
+        )
+    )
+
+    urlset = Element(
+        "urlset",
+        {
+            "xmlns":
+                "http://www.sitemaps.org/schemas/sitemap/0.9"
+        }
+    )
+
+    # -------------------------
+    # トップページ
+    # -------------------------
+
+    if INDEX_FILE.exists():
+
+        url = SubElement(
+            urlset,
+            "url"
+        )
+
+        loc = SubElement(
+            url,
+            "loc"
+        )
+
+        loc.text = (
+            SITE_BASE_URL
+            + "/"
+        )
+
+        lastmod = SubElement(
+            url,
+            "lastmod"
+        )
+
+        lastmod.text = (
+            datetime.now(
+                JST
+            ).date().isoformat()
+        )
+
+    # -------------------------
+    # 記事
+    # -------------------------
+
+    if ARTICLE_DIR.exists():
+
+        article_files = sorted(
+            ARTICLE_DIR.glob(
+                "*.html"
+            )
+        )
+
+        for filepath in article_files:
+
+            url = SubElement(
+                urlset,
+                "url"
+            )
+
+            loc = SubElement(
+                url,
+                "loc"
+            )
+
+            loc.text = (
+                f"{SITE_BASE_URL}/"
+                f"articles/"
+                f"{filepath.name}"
+            )
+
+            lastmod = SubElement(
+                url,
+                "lastmod"
+            )
+
+            history_date = (
+                article_dates.get(
+                    filepath.name
+                )
+            )
+
+            if history_date:
+
+                lastmod.text = (
+                    history_date
+                )
+
+            else:
+
+                match = re.match(
+                    r"(\d{4})-(\d{2})-(\d{2})_",
+                    filepath.name
+                )
+
+                if match:
+
+                    lastmod.text = (
+                        f"{match.group(1)}-"
+                        f"{match.group(2)}-"
+                        f"{match.group(3)}"
+                    )
+
+                else:
+
+                    lastmod.text = (
+                        datetime.now(
+                            JST
+                        ).date().isoformat()
+                    )
+
+    tree = ElementTree(
+        urlset
+    )
+
+    tree.write(
+        SITEMAP_FILE,
+        encoding="utf-8",
+        xml_declaration=True
+    )
+
+    print(
+        "sitemap.xml 生成完了:",
+        SITEMAP_FILE
+    )
+
+
+# =========================================================
 # RSS取得
 # =========================================================
 
@@ -526,8 +546,7 @@ def collect_candidates():
     for source in SOURCES:
 
         print(
-            f"RSS取得: "
-            f"{source['name']}"
+            f"RSS取得: {source['name']}"
         )
 
         try:
@@ -594,8 +613,7 @@ def collect_candidates():
             if published:
 
                 age_days = (
-                    now
-                    - published
+                    now - published
                 ).days
 
                 if (
@@ -1067,8 +1085,7 @@ def generate_article(
     prompt = f"""
 あなたは日本のAI・テクノロジー系Webメディアの編集者です。
 
-以下に渡す「公式記事本文」だけを
-事実の根拠として、
+以下に渡す「公式記事本文」だけを事実の根拠として、
 日本の読者向けの記事を書いてください。
 
 【絶対ルール】
@@ -1683,7 +1700,9 @@ def main():
             "取得できませんでした。"
         )
 
-        generate_sitemap()
+        generate_sitemap(
+            history
+        )
 
         return
 
@@ -1719,7 +1738,9 @@ def main():
             "ありません。"
         )
 
-        generate_sitemap()
+        generate_sitemap(
+            history
+        )
 
         return
 
@@ -1753,7 +1774,9 @@ def main():
             "正常終了します。"
         )
 
-        generate_sitemap()
+        generate_sitemap(
+            history
+        )
 
         return
 
@@ -1774,7 +1797,9 @@ def main():
             "ありませんでした。"
         )
 
-        generate_sitemap()
+        generate_sitemap(
+            history
+        )
 
         return
 
@@ -1842,7 +1867,9 @@ def main():
             "投稿しません。"
         )
 
-        generate_sitemap()
+        generate_sitemap(
+            history
+        )
 
         return
 
@@ -1956,7 +1983,9 @@ def main():
     # sitemap更新
     # -------------------------------------
 
-    generate_sitemap()
+    generate_sitemap(
+        history
+    )
 
     # -------------------------------------
     # 完了
