@@ -21,6 +21,8 @@ MODEL_NAME = "gemini-3.6-flash"
 
 SITE_NAME = "AI Trend Blog"
 
+GA_MEASUREMENT_ID = "G-J5ZDLF30CS"
+
 ARTICLE_DIR = Path("articles")
 INDEX_FILE = Path("index.html")
 HISTORY_FILE = Path("article_history.json")
@@ -78,6 +80,102 @@ client = genai.Client(
 
 
 # =========================================================
+# Google Analytics
+# =========================================================
+
+def get_ga_tag():
+
+    return f"""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+
+  gtag('config', '{GA_MEASUREMENT_ID}');
+</script>
+"""
+
+
+def ensure_ga_tags():
+
+    files = []
+
+    if INDEX_FILE.exists():
+        files.append(
+            INDEX_FILE
+        )
+
+    if ARTICLE_DIR.exists():
+
+        files.extend(
+            ARTICLE_DIR.glob(
+                "*.html"
+            )
+        )
+
+    ga_tag = get_ga_tag()
+
+    updated_count = 0
+
+    for filepath in files:
+
+        try:
+
+            text = filepath.read_text(
+                encoding="utf-8"
+            )
+
+        except Exception as e:
+
+            print(
+                "HTML読込失敗:",
+                filepath,
+                e
+            )
+
+            continue
+
+        # すでにGA4が入っている場合は何もしない
+        if GA_MEASUREMENT_ID in text:
+            continue
+
+        if "<head>" not in text:
+
+            print(
+                "headタグがないためGA4追加をスキップ:",
+                filepath
+            )
+
+            continue
+
+        text = text.replace(
+            "<head>",
+            "<head>\n"
+            + ga_tag,
+            1,
+        )
+
+        filepath.write_text(
+            text,
+            encoding="utf-8"
+        )
+
+        updated_count += 1
+
+        print(
+            "GA4タグ追加:",
+            filepath
+        )
+
+    print(
+        "GA4更新ファイル数:",
+        updated_count
+    )
+
+
+# =========================================================
 # HTTP
 # =========================================================
 
@@ -113,8 +211,16 @@ def fetch_url(url):
 def entry_datetime(entry):
 
     structs = [
-        getattr(entry, "published_parsed", None),
-        getattr(entry, "updated_parsed", None),
+        getattr(
+            entry,
+            "published_parsed",
+            None
+        ),
+        getattr(
+            entry,
+            "updated_parsed",
+            None
+        ),
     ]
 
     for value in structs:
@@ -185,10 +291,16 @@ def normalize_title(title):
     return text
 
 
-def is_duplicate(title, url, history):
+def is_duplicate(
+    title,
+    url,
+    history
+):
 
-    normalized_new = normalize_title(
-        title
+    normalized_new = (
+        normalize_title(
+            title
+        )
     )
 
     for item in history:
@@ -197,21 +309,29 @@ def is_duplicate(title, url, history):
         if item.get("url") == url:
             return True
 
-        old_title = normalize_title(
-            item.get(
-                "source_title",
-                item.get("title", "")
+        old_title = (
+            normalize_title(
+                item.get(
+                    "source_title",
+                    item.get(
+                        "title",
+                        ""
+                    )
+                )
             )
         )
 
-        if not normalized_new or not old_title:
+        if (
+            not normalized_new
+            or not old_title
+        ):
             continue
 
         # タイトル完全一致
         if normalized_new == old_title:
             return True
 
-        # かなり近いタイトル
+        # 冒頭部分が非常に似ている
         if (
             len(normalized_new) >= 15
             and len(old_title) >= 15
@@ -231,12 +351,13 @@ def is_duplicate(title, url, history):
 
                 if a == b:
                     common_prefix += 1
+
                 else:
                     break
 
             similarity = (
-                common_prefix /
-                shorter
+                common_prefix
+                / shorter
             )
 
             if similarity >= 0.80:
@@ -260,7 +381,8 @@ def collect_candidates():
     for source in SOURCES:
 
         print(
-            f"RSS取得: {source['name']}"
+            f"RSS取得: "
+            f"{source['name']}"
         )
 
         try:
@@ -278,6 +400,22 @@ def collect_candidates():
             )
 
             continue
+
+        if getattr(
+            feed,
+            "bozo",
+            False
+        ):
+
+            print(
+                "RSS警告:",
+                source["name"],
+                getattr(
+                    feed,
+                    "bozo_exception",
+                    ""
+                )
+            )
 
         for entry in feed.entries:
 
@@ -302,14 +440,17 @@ def collect_candidates():
             if not title or not url:
                 continue
 
-            published = entry_datetime(
-                entry
+            published = (
+                entry_datetime(
+                    entry
+                )
             )
 
             if published:
 
                 age_days = (
-                    now - published
+                    now
+                    - published
                 ).days
 
                 if (
@@ -379,6 +520,40 @@ def collect_candidates():
 
 
 # =========================================================
+# ドメイン確認
+# =========================================================
+
+def domain_is_allowed(
+    hostname,
+    allowed_domain
+):
+
+    if not hostname:
+        return False
+
+    hostname = (
+        hostname
+        .lower()
+        .strip(".")
+    )
+
+    allowed_domain = (
+        allowed_domain
+        .lower()
+        .strip(".")
+    )
+
+    return (
+        hostname
+        == allowed_domain
+        or hostname.endswith(
+            "."
+            + allowed_domain
+        )
+    )
+
+
+# =========================================================
 # URL・実ページ検証
 # =========================================================
 
@@ -408,6 +583,23 @@ def validate_candidate(candidate):
 
             return None
 
+        # RSS元の公式ドメインと
+        # 最終アクセス先が一致するか確認
+        if not domain_is_allowed(
+            parsed.hostname,
+            candidate[
+                "source_domain"
+            ]
+        ):
+
+            print(
+                "公式ドメイン外への"
+                "リダイレクトを除外:",
+                final_url
+            )
+
+            return None
+
         soup = BeautifulSoup(
             response.text,
             "html.parser"
@@ -426,7 +618,7 @@ def validate_candidate(candidate):
                 )
             )
 
-        # 実ページ本文量
+        # ページ全体文字数
         page_text = soup.get_text(
             " ",
             strip=True
@@ -519,7 +711,7 @@ def extract_page_text(url):
 
         tag.decompose()
 
-    # article / main があれば優先
+    # article があれば最優先
     target = (
         soup.find("article")
         or soup.find("main")
@@ -579,9 +771,7 @@ def filter_unused_candidates(
 # 候補選定
 # =========================================================
 
-def choose_topic(
-    candidates
-):
+def choose_topic(candidates):
 
     if not candidates:
         return None
@@ -633,7 +823,7 @@ URL:
 ・実用性
 ・検索される可能性
 ・話題性
-・読者が「知ってよかった」と思えるか
+・読者が知ってよかったと思えるか
 ・1500文字以上で有益に解説する価値があるか
 
 優先順位：
@@ -641,8 +831,10 @@ URL:
 一般ユーザー向け 約70%
 開発者・専門ユーザー向け 約30%
 
-会社人事、企業PRだけの話題、
-一般ユーザーにほぼ影響しない記事は優先しないでください。
+会社人事、
+企業PRだけの話題、
+一般ユーザーにほぼ影響しない記事は
+優先しないでください。
 
 回答は候補番号の数字だけにしてください。
 
@@ -666,6 +858,12 @@ URL:
     ):
 
         if wait_seconds:
+
+            print(
+                f"{wait_seconds}秒待って"
+                "候補選定を再試行..."
+            )
+
             time.sleep(
                 wait_seconds
             )
@@ -710,12 +908,13 @@ URL:
 
             print(
                 f"候補選定エラー "
-                f"{attempt}/{len(waits)}:",
+                f"{attempt}/"
+                f"{len(waits)}:",
                 e
             )
 
-    # Gemini選定不能時は
-    # 最優先候補を使う
+    # Geminiが選択できなかった場合
+    # 優先順位が最も高い候補
     return candidates[0]
 
 
@@ -731,7 +930,8 @@ def generate_article(
     prompt = f"""
 あなたは日本のAI・テクノロジー系Webメディアの編集者です。
 
-以下に渡す「公式記事本文」だけを事実の根拠として、
+以下に渡す「公式記事本文」だけを
+事実の根拠として、
 日本の読者向けの記事を書いてください。
 
 【絶対ルール】
@@ -742,8 +942,7 @@ def generate_article(
 ・対象ユーザーを勝手に拡張しない
 ・対応国や提供時期を推測しない
 ・因果関係を補完しない
-・「〜のため」「〜に充てられる」など、
-  公式情報から直接確認できない目的を断定しない
+・公式情報から直接確認できない目的を断定しない
 ・ベンチマーク数値は公式本文にあるものだけ使う
 ・旧モデルとの比較を推測しない
 ・情報源URLを生成しない
@@ -766,8 +965,8 @@ def generate_article(
 
 程度を意識してください。
 
-専門用語は、
-必要なら短く意味を説明してください。
+専門用語には、
+必要であれば短い説明を加えてください。
 
 文字量はおおむね
 1500〜2500文字。
@@ -775,6 +974,7 @@ def generate_article(
 HTML断片だけを出力してください。
 
 禁止：
+
 <html>
 <head>
 <body>
@@ -838,7 +1038,8 @@ Markdownコードフェンス
         if wait_seconds:
 
             print(
-                f"{wait_seconds}秒待って再試行..."
+                f"{wait_seconds}秒待って"
+                "本文生成を再試行..."
             )
 
             time.sleep(
@@ -849,7 +1050,8 @@ Markdownコードフェンス
 
             print(
                 f"本文生成 "
-                f"{attempt}/{len(waits)}"
+                f"{attempt}/"
+                f"{len(waits)}"
             )
 
             response = (
@@ -875,11 +1077,11 @@ Markdownコードフェンス
                 ""
             )
 
-            # 最低品質チェック
             required_headings = [
                 "今回のポイント",
                 "何が変わった",
                 "誰に関係する",
+                "どう活用できる",
                 "注意点",
                 "まとめ",
             ]
@@ -899,7 +1101,8 @@ Markdownコードフェンス
                 return text
 
             print(
-                "本文品質条件を満たさないため再試行"
+                "本文品質条件を"
+                "満たさないため再試行"
             )
 
         except Exception as e:
@@ -961,10 +1164,12 @@ def build_page(
         quote=True,
     )
 
-    safe_source_title = html.escape(
-        candidate.get(
-            "page_title",
-            candidate["title"]
+    safe_source_title = (
+        html.escape(
+            candidate.get(
+                "page_title",
+                candidate["title"]
+            )
         )
     )
 
@@ -973,14 +1178,26 @@ def build_page(
         quote=True,
     )
 
-    safe_source_name = html.escape(
-        candidate["source_name"]
+    safe_source_name = (
+        html.escape(
+            candidate[
+                "source_name"
+            ]
+        )
+    )
+
+    ga_tag = get_ga_tag()
+
+    current_year = (
+        now.strftime("%Y")
     )
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
 
 <head>
+
+{ga_tag}
 
 <meta charset="UTF-8">
 
@@ -1178,7 +1395,7 @@ rel="noopener noreferrer"
 
 <footer>
 
-© 2026 {SITE_NAME}
+© {current_year} {SITE_NAME}
 
 </footer>
 
@@ -1236,7 +1453,9 @@ def update_index(
     )
 
     safe_source = html.escape(
-        candidate["source_name"]
+        candidate[
+            "source_name"
+        ]
     )
 
     card = f"""
@@ -1261,10 +1480,14 @@ def update_index(
       </article>
 """
 
-    index_html = index_html.replace(
-        marker,
-        marker + "\n" + card,
-        1,
+    index_html = (
+        index_html.replace(
+            marker,
+            marker
+            + "\n"
+            + card,
+            1,
+        )
     )
 
     INDEX_FILE.write_text(
@@ -1286,9 +1509,36 @@ def main():
     print("========================")
     print("")
 
+    # -------------------------------------
+    # GA4を既存ページへ追加
+    # -------------------------------------
+
+    print("")
+    print("GA4タグ確認開始")
+    print("")
+
+    ensure_ga_tags()
+
+    print("")
+    print(
+        "GA4 Measurement ID:",
+        GA_MEASUREMENT_ID
+    )
+    print("")
+
+    # -------------------------------------
+    # 履歴
+    # -------------------------------------
+
     history = load_history()
 
-    candidates = collect_candidates()
+    # -------------------------------------
+    # RSS取得
+    # -------------------------------------
+
+    candidates = (
+        collect_candidates()
+    )
 
     print(
         "RSS候補数:",
@@ -1298,12 +1548,16 @@ def main():
     if not candidates:
 
         print(
-            "RSSから候補を取得できませんでした。"
+            "RSSから候補を"
+            "取得できませんでした。"
         )
 
         return
 
+    # -------------------------------------
     # URL実在確認
+    # -------------------------------------
+
     valid_candidates = []
 
     for candidate in candidates:
@@ -1328,12 +1582,16 @@ def main():
     if not valid_candidates:
 
         print(
-            "有効な公式記事候補がありません。"
+            "有効な公式記事候補が"
+            "ありません。"
         )
 
         return
 
+    # -------------------------------------
     # 過去記事との重複除外
+    # -------------------------------------
+
     unused_candidates = (
         filter_unused_candidates(
             valid_candidates,
@@ -1343,24 +1601,33 @@ def main():
 
     print(
         "未使用候補:",
-        len(unused_candidates)
+        len(
+            unused_candidates
+        )
     )
 
     if not unused_candidates:
 
         print(
-            "新規記事候補がありません。"
+            "新規記事候補が"
+            "ありません。"
         )
 
         print(
-            "今回は投稿せず正常終了します。"
+            "今回は投稿せず"
+            "正常終了します。"
         )
 
         return
 
+    # -------------------------------------
     # Geminiが候補選定
-    candidate = choose_topic(
-        unused_candidates
+    # -------------------------------------
+
+    candidate = (
+        choose_topic(
+            unused_candidates
+        )
     )
 
     if not candidate:
@@ -1379,32 +1646,47 @@ def main():
 
     print(
         "媒体:",
-        candidate["source_name"]
+        candidate[
+            "source_name"
+        ]
     )
 
     print(
         "RSSタイトル:",
-        candidate["title"]
+        candidate[
+            "title"
+        ]
     )
 
     print(
         "実ページタイトル:",
         candidate.get(
             "page_title",
-            candidate["title"]
+            candidate[
+                "title"
+            ]
         )
     )
 
     print(
         "URL:",
-        candidate["url"]
+        candidate[
+            "url"
+        ]
     )
 
     print("")
 
+    # -------------------------------------
     # 実ページ本文取得
-    source_text = extract_page_text(
-        candidate["url"]
+    # -------------------------------------
+
+    source_text = (
+        extract_page_text(
+            candidate[
+                "url"
+            ]
+        )
     )
 
     print(
@@ -1425,7 +1707,10 @@ def main():
 
         return
 
+    # -------------------------------------
     # Gemini本文生成
+    # -------------------------------------
+
     article_html = (
         generate_article(
             candidate,
@@ -1433,8 +1718,10 @@ def main():
         )
     )
 
-    title = extract_title(
-        article_html
+    title = (
+        extract_title(
+            article_html
+        )
     )
 
     now = datetime.now(
@@ -1453,15 +1740,20 @@ def main():
     )
 
     filepath = (
-        ARTICLE_DIR /
-        filename
+        ARTICLE_DIR
+        / filename
     )
 
+    # -------------------------------------
     # 完成HTML
-    page_html = build_page(
-        title,
-        article_html,
-        candidate,
+    # -------------------------------------
+
+    page_html = (
+        build_page(
+            title,
+            article_html,
+            candidate,
+        )
     )
 
     filepath.write_text(
@@ -1469,32 +1761,46 @@ def main():
         encoding="utf-8",
     )
 
+    # -------------------------------------
     # トップページ更新
+    # -------------------------------------
+
     update_index(
         title,
         filename,
         candidate,
     )
 
+    # -------------------------------------
     # 履歴更新
+    # -------------------------------------
+
     history.append({
         "title":
             title,
 
         "source_title":
-            candidate["title"],
+            candidate[
+                "title"
+            ],
 
         "page_title":
             candidate.get(
                 "page_title",
-                candidate["title"]
+                candidate[
+                    "title"
+                ]
             ),
 
         "source_name":
-            candidate["source_name"],
+            candidate[
+                "source_name"
+            ],
 
         "url":
-            candidate["url"],
+            candidate[
+                "url"
+            ],
 
         "filename":
             filename,
@@ -1503,13 +1809,18 @@ def main():
             now.isoformat(),
     })
 
-    # 履歴は増え続けるので
-    # 最大1000件まで保存
-    history = history[-1000:]
+    # 最大1000件
+    history = history[
+        -1000:
+    ]
 
     save_history(
         history
     )
+
+    # -------------------------------------
+    # 完了
+    # -------------------------------------
 
     print("")
     print("========================")
@@ -1528,15 +1839,24 @@ def main():
 
     print(
         "情報源:",
-        candidate["url"]
+        candidate[
+            "url"
+        ]
     )
 
     print(
         "実ページタイトル:",
         candidate.get(
             "page_title",
-            candidate["title"]
+            candidate[
+                "title"
+            ]
         )
+    )
+
+    print(
+        "GA4:",
+        GA_MEASUREMENT_ID
     )
 
     print("========================")
