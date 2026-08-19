@@ -6,6 +6,7 @@ import html
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
+from xml.etree.ElementTree import Element, SubElement, ElementTree
 
 import feedparser
 import requests
@@ -21,11 +22,14 @@ MODEL_NAME = "gemini-3.6-flash"
 
 SITE_NAME = "AI Trend Blog"
 
+SITE_BASE_URL = "https://sho-support.github.io/ai-trend-blog"
+
 GA_MEASUREMENT_ID = "G-J5ZDLF30CS"
 
 ARTICLE_DIR = Path("articles")
 INDEX_FILE = Path("index.html")
 HISTORY_FILE = Path("article_history.json")
+SITEMAP_FILE = Path("sitemap.xml")
 
 JST = timezone(timedelta(hours=9))
 
@@ -108,7 +112,6 @@ def ensure_ga_tags():
         )
 
     if ARTICLE_DIR.exists():
-
         files.extend(
             ARTICLE_DIR.glob(
                 "*.html"
@@ -122,38 +125,31 @@ def ensure_ga_tags():
     for filepath in files:
 
         try:
-
             text = filepath.read_text(
                 encoding="utf-8"
             )
 
         except Exception as e:
-
             print(
                 "HTML読込失敗:",
                 filepath,
                 e
             )
-
             continue
 
-        # すでにGA4が入っている場合は何もしない
         if GA_MEASUREMENT_ID in text:
             continue
 
         if "<head>" not in text:
-
             print(
                 "headタグがないためGA4追加をスキップ:",
                 filepath
             )
-
             continue
 
         text = text.replace(
             "<head>",
-            "<head>\n"
-            + ga_tag,
+            "<head>\n" + ga_tag,
             1,
         )
 
@@ -172,6 +168,159 @@ def ensure_ga_tags():
     print(
         "GA4更新ファイル数:",
         updated_count
+    )
+
+
+# =========================================================
+# sitemap.xml
+# =========================================================
+
+def file_lastmod_iso(filepath):
+
+    try:
+        timestamp = filepath.stat().st_mtime
+
+        dt = datetime.fromtimestamp(
+            timestamp,
+            tz=timezone.utc
+        )
+
+        return dt.date().isoformat()
+
+    except Exception:
+        return datetime.now(
+            timezone.utc
+        ).date().isoformat()
+
+
+def generate_sitemap():
+
+    print("")
+    print("sitemap.xml 生成開始")
+
+    urlset = Element(
+        "urlset",
+        {
+            "xmlns":
+                "http://www.sitemaps.org/schemas/sitemap/0.9"
+        }
+    )
+
+    # -------------------------
+    # トップページ
+    # -------------------------
+
+    if INDEX_FILE.exists():
+
+        url = SubElement(
+            urlset,
+            "url"
+        )
+
+        loc = SubElement(
+            url,
+            "loc"
+        )
+
+        loc.text = (
+            SITE_BASE_URL
+            + "/"
+        )
+
+        lastmod = SubElement(
+            url,
+            "lastmod"
+        )
+
+        lastmod.text = (
+            file_lastmod_iso(
+                INDEX_FILE
+            )
+        )
+
+        changefreq = SubElement(
+            url,
+            "changefreq"
+        )
+
+        changefreq.text = "daily"
+
+        priority = SubElement(
+            url,
+            "priority"
+        )
+
+        priority.text = "1.0"
+
+    # -------------------------
+    # 記事
+    # -------------------------
+
+    if ARTICLE_DIR.exists():
+
+        article_files = sorted(
+            ARTICLE_DIR.glob("*.html")
+        )
+
+        for filepath in article_files:
+
+            url = SubElement(
+                urlset,
+                "url"
+            )
+
+            loc = SubElement(
+                url,
+                "loc"
+            )
+
+            loc.text = (
+                f"{SITE_BASE_URL}/"
+                f"articles/"
+                f"{filepath.name}"
+            )
+
+            lastmod = SubElement(
+                url,
+                "lastmod"
+            )
+
+            lastmod.text = (
+                file_lastmod_iso(
+                    filepath
+                )
+            )
+
+            changefreq = SubElement(
+                url,
+                "changefreq"
+            )
+
+            changefreq.text = "weekly"
+
+            priority = SubElement(
+                url,
+                "priority"
+            )
+
+            priority.text = "0.8"
+
+    tree = ElementTree(
+        urlset
+    )
+
+    tree.write(
+        SITEMAP_FILE,
+        encoding="utf-8",
+        xml_declaration=True
+    )
+
+    print(
+        "sitemap.xml 生成完了:"
+    )
+
+    print(
+        SITEMAP_FILE
     )
 
 
@@ -305,7 +454,6 @@ def is_duplicate(
 
     for item in history:
 
-        # URL完全一致
         if item.get("url") == url:
             return True
 
@@ -327,11 +475,9 @@ def is_duplicate(
         ):
             continue
 
-        # タイトル完全一致
         if normalized_new == old_title:
             return True
 
-        # 冒頭部分が非常に似ている
         if (
             len(normalized_new) >= 15
             and len(old_title) >= 15
@@ -351,7 +497,6 @@ def is_duplicate(
 
                 if a == b:
                     common_prefix += 1
-
                 else:
                     break
 
@@ -583,8 +728,6 @@ def validate_candidate(candidate):
 
             return None
 
-        # RSS元の公式ドメインと
-        # 最終アクセス先が一致するか確認
         if not domain_is_allowed(
             parsed.hostname,
             candidate[
@@ -605,7 +748,6 @@ def validate_candidate(candidate):
             "html.parser"
         )
 
-        # 実ページタイトル
         page_title = ""
 
         if soup.title:
@@ -618,7 +760,6 @@ def validate_candidate(candidate):
                 )
             )
 
-        # ページ全体文字数
         page_text = soup.get_text(
             " ",
             strip=True
@@ -695,7 +836,6 @@ def extract_page_text(url):
         "html.parser",
     )
 
-    # 不要部分除去
     for tag in soup(
         [
             "script",
@@ -711,7 +851,6 @@ def extract_page_text(url):
 
         tag.decompose()
 
-    # article があれば最優先
     target = (
         soup.find("article")
         or soup.find("main")
@@ -913,8 +1052,6 @@ URL:
                 e
             )
 
-    # Geminiが選択できなかった場合
-    # 優先順位が最も高い候補
     return candidates[0]
 
 
@@ -1510,21 +1647,15 @@ def main():
     print("")
 
     # -------------------------------------
-    # GA4を既存ページへ追加
+    # GA4
     # -------------------------------------
-
-    print("")
-    print("GA4タグ確認開始")
-    print("")
 
     ensure_ga_tags()
 
-    print("")
     print(
         "GA4 Measurement ID:",
         GA_MEASUREMENT_ID
     )
-    print("")
 
     # -------------------------------------
     # 履歴
@@ -1551,6 +1682,8 @@ def main():
             "RSSから候補を"
             "取得できませんでした。"
         )
+
+        generate_sitemap()
 
         return
 
@@ -1586,10 +1719,12 @@ def main():
             "ありません。"
         )
 
+        generate_sitemap()
+
         return
 
     # -------------------------------------
-    # 過去記事との重複除外
+    # 重複除外
     # -------------------------------------
 
     unused_candidates = (
@@ -1618,10 +1753,12 @@ def main():
             "正常終了します。"
         )
 
+        generate_sitemap()
+
         return
 
     # -------------------------------------
-    # Geminiが候補選定
+    # 候補選定
     # -------------------------------------
 
     candidate = (
@@ -1636,6 +1773,8 @@ def main():
             "採用可能なテーマが"
             "ありませんでした。"
         )
+
+        generate_sitemap()
 
         return
 
@@ -1675,10 +1814,8 @@ def main():
         ]
     )
 
-    print("")
-
     # -------------------------------------
-    # 実ページ本文取得
+    # 実ページ本文
     # -------------------------------------
 
     source_text = (
@@ -1705,10 +1842,12 @@ def main():
             "投稿しません。"
         )
 
+        generate_sitemap()
+
         return
 
     # -------------------------------------
-    # Gemini本文生成
+    # Gemini記事生成
     # -------------------------------------
 
     article_html = (
@@ -1744,10 +1883,6 @@ def main():
         / filename
     )
 
-    # -------------------------------------
-    # 完成HTML
-    # -------------------------------------
-
     page_html = (
         build_page(
             title,
@@ -1762,7 +1897,7 @@ def main():
     )
 
     # -------------------------------------
-    # トップページ更新
+    # index更新
     # -------------------------------------
 
     update_index(
@@ -1809,7 +1944,6 @@ def main():
             now.isoformat(),
     })
 
-    # 最大1000件
     history = history[
         -1000:
     ]
@@ -1817,6 +1951,12 @@ def main():
     save_history(
         history
     )
+
+    # -------------------------------------
+    # sitemap更新
+    # -------------------------------------
+
+    generate_sitemap()
 
     # -------------------------------------
     # 完了
@@ -1857,6 +1997,11 @@ def main():
     print(
         "GA4:",
         GA_MEASUREMENT_ID
+    )
+
+    print(
+        "Sitemap:",
+        SITEMAP_FILE
     )
 
     print("========================")
