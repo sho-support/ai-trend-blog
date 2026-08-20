@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>OpenAI、データ保持ゼロ（ZDR）を維持しながら安全性を高める「Private Safety Processing」を発表 | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAI、データ保持ゼロ（ZDR）を維持しながら安全性を高める「Private Safety Processing」を発表について公式情報をもとにわかりやすく解説します。">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.08.20
+
+</div>
+
+<h1>OpenAI、データ保持ゼロ（ZDR）を維持しながら安全性を高める「Private Safety Processing」を発表</h1>
+
+<p>OpenAIは2026年8月19日、最先端のフロンティアモデルを利用する企業向けに、データプライバシーの保護と安全対策を両立させる新たな仕組み「Private Safety Processing（プライベート・セーフティ・プロセッシング）」のプレビューを公開しました。</p>
+
+<p>AIモデルがより長く複雑なタスクを実行するようになるにつれ、1回限りの指示や応答だけでは見抜きにくい安全上のリスクが存在感を増しています。一方で、厳格なセキュリティ基準を持つ企業にとって、AIプロバイダーへのデータ保持を許可することは容易ではありません。今回発表された取り組みは、従来の「データ保持ゼロ」という約束を守りつつ、複数回のやり取りを分析してリスクを検知する新しい安全管理のアプローチです。</p>
+
+<h2>今回のポイント</h2>
+
+<ul>
+  <li><strong>データ保持ゼロ（ZDR）の継続：</strong>処理後にプロンプト（AIへの入力文）やモデルの応答を保持しないZDRの仕組みを守りつつ、安全対策を強化。</li>
+  <li><strong>複数回のやり取りを横断してリスク検知：</strong>OpenAIの担当者が生のコンテンツを閲覧することなく、自動システムが関連する一連のやり取りから不正利用のパターンを識別。</li>
+  <li><strong>暗号化と顧客による鍵管理：</strong>顧客自身のインフラ上のデータに加え、顧客が鍵を管理・暗号化するOpenAIストレージの選択肢も開発中。</li>
+  <li><strong>限定的なシグナル通知：</strong>リスクが特定された際も、OpenAIが受け取るのは違反の種類を示す限られたシグナルのみで、元のコンテンツは非公開。</li>
+  <li><strong>2026年9月にロールアウト予定：</strong>現在は初期顧客とテスト中で、9月に技術白書の公開と順次ロールアウトを予定。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+
+<p>これまでOpenAIが提供してきた「Zero Data Retention（ZDR：ゼロ・データ・リテンション）」は、適格なAPI（システム連携窓口）顧客に対し、リクエスト処理後に顧客のコンテンツを一切保持しないという明確な約束に基づく機能です。データはOpenAIのスタッフによって閲覧されることはなく、エンタープライズ顧客が明示的に許可（オプトイン）しない限りモデルの学習に使用されることもありません。</p>
+
+<p>しかし、従来のZDRに対応したセーフティシステムは、ユーザーとAIのやり取りを「1回ごと（個別）」に評価する仕組みでした。AIモデルが長時間の作業や自律的な処理（エージェント型タスク）を担うようになると、以下のようなリスクが1回のやり取りだけでは見えにくくなります。</p>
+
+<ul>
+  <li>複数回のやり取りを通じて徐々に有害な目的を実行しようとする行為</li>
+  <li>安全フィルターの突破を狙って繰り返し試行する行為</li>
+  <li>複数のアカウントを使って連動・連携して行われる不正操作</li>
+  <li>AIエージェントが指示に反して動作を継続し、本来の目的から逸脱する現象</li>
+</ul>
+
+<p>近年、一部の高度なAIモデルの展開では、安全監視のためにAIプロバイダー側へのデータ保持を義務付けるケースが見られました。しかしこれは、多くの企業が抱えるセキュリティ上の義務や顧客への約束とバッティングしてしまいます。</p>
+
+<p>今回プレビューされた「Private Safety Processing」は、顧客のコンテンツをOpenAIのスタッフに見せることなく、自動化されたシステムが関連する複数のやり取り全体を解析して不正のパターンを検知します。データの保管場所が顧客コントロール下のインフラ（ZDR展開）であっても、OpenAIが提供するストレージであっても機能します。OpenAI提供ストレージを利用する場合でも、データは顧客が管理する鍵で暗号化され、OpenAI側はその復号鍵を保持しません。</p>
+
+<p>不審なアクティビティが検出された場合、システムは活動の種類を示す限定された「シグナル」のみをOpenAIに通知します。フラグが立った場合であっても、OpenAIの担当者が顧客の元のコンテンツにアクセスすることはできません。</p>
+
+<h2>誰に関係する？</h2>
+
+<p>この発表は、主にAPIを利用してOpenAIの最先端モデルを組み込んでいる<strong>適格なAPI顧客（eligible API customers）およびエンタープライズ顧客（enterprise customers）</strong>に直接関係します。</p>
+
+<p>特に、以下のような極めて機密性の高い情報を扱う業界や組織にとって重要な意味を持ちます。</p>
+
+<ul>
+  <li>金融機関（取引記録、財務データ）</li>
+  <li>医療機関・ヘルスケア分野（患者データ、診療記録）</li>
+  <li>企業の戦略部門（機密の事業計画、未公開情報）</li>
+  <li>研究開発機関（独自の技術研究、知的財産）</li>
+</ul>
+
+<p>エンタープライズ向けAI検索・共有プラットフォームを提供するGlean社の最高情報セキュリティ責任者（CISO）であるSunil Agrawal氏は、「企業のAI導入は、選択したサービス以外で直接的・派生的な利用をされないというデータ管理権限にかかっている。OpenAIの学習不使用の確約とZDRは信頼の基盤であり、今回の取り組みはプライバシーと制御を損なうことなく安全性を進化させられることを示している」と評価しています。</p>
+
+<h2>どう活用できる？</h2>
+
+<p>日本の事業者や開発者が本機能を活用する際、実務面でどのようなメリットや運用変化があるかを整理します。</p>
+
+<h3>1. 高いプライバシー水準を保った高度なAI活用</h3>
+
+<p>個人情報や機密データを扱う日本の企業であっても、ガバナンス（社内規程やコンプライアンス）の要件を満たしながら、自律的に動く複雑なAIエージェントや高度な分析機能を導入しやすくなります。</p>
+
+<h3>2. 柔軟なデータ保管モデルの選択</h3>
+
+<p>自社がコントロールするインフラ上でデータを保持する運用（従来のZDR展開）に加えて、顧客自身が暗号化鍵を保持した上でOpenAIのストレージを利用する選択肢も準備されています。自社のセキュリティ要件に合わせたシステム設計が可能です。</p>
+
+<h3>3. 自社主導のアラート調査と不服申し立て</h3>
+
+<p>万が一、システムによってリスクのシグナルが検知されて対応措置が取られた場合でも、顧客は自社システム内に残っている情報をもとに独自で調査を行うことができます。もし誤検知の正当性を証明したい場合や不服申し立てを行う場合は、顧客側の判断で関連情報をOpenAIと共有して確認を依頼する運用を選択できます。</p>
+
+<h2>注意点</h2>
+
+<p>「Private Safety Processing」の検討にあたっては、公式に明記されている以下の制限・ルールに注意が必要です。</p>
+
+<ul>
+  <li><strong>CSAM（児童性的虐待素材）に関する例外規定：</strong>法律上の義務に基づき、CSAMの疑いがあると判定された画像コンテンツについては、従来のZDR運用と同様に、手動レビューおよび関係機関への報告目的で保持されます。これはZDRの例外として例外なく適用されます。</li>
+  <li><strong>現在はテスト段階：</strong>本機能は現在、初期顧客を対象としたテストおよびプレビューの段階です。一般への順次ロールアウトおよび詳細な「技術白書（technical white paper）」の公開は、2026年9月以降に予定されています。</li>
+</ul>
+
+<h2>まとめ</h2>
+
+<p>OpenAIの「Private Safety Processing」は、AIモデルの高度化に伴う安全上のリスク対応と、企業の強固なデータプライバシー保護要求を同時に満たすために設計された技術です。</p>
+
+<p>単一のリクエスト評価にとどまらず、暗号化やデータ非保持（ZDR）の原則を守ったまま、複数回のやり取りから自動システムで不正パターンを検知するアプローチをとっています。企業が安心して高度なフロンティアモデルを自社ビジネスに組み込むための基盤として、2026年9月に予定されている技術白書の公開とロールアウトが注目されます。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/offering-zero-data-retention-for-frontier-models/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+Offering Zero Data Retention for frontier models | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
