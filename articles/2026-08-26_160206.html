@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>OpenAIが独自推論チップ「Jalapeño」の成果を公表！圧倒的な電力効率と応答速度を両立する新世代ハードウェアの全貌 | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAIが独自推論チップ「Jalapeño」の成果を公表！圧倒的な電力効率と応答速度を両立する新世代ハードウェアの全貌について公式情報をもとにわかりやすく解説します。">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.08.26
+
+</div>
+
+<h1>OpenAIが独自推論チップ「Jalapeño」の成果を公表！圧倒的な電力効率と応答速度を両立する新世代ハードウェアの全貌</h1>
+
+<p>OpenAIは、同社初となる独自のAI推論用カスタムチップ「Jalapeño（ハラペーニョ）」の実測パフォーマンス結果を発表しました。AIモデルを動かす処理（推論）において、従来はトレードオフの関係にあった「処理量の多さ（スループット）」と「応答の速さ（レイテンシ）」を、単一のアーキテクチャで同時に達成しています。実際の運用負荷を想定したテストでは、他社の主要システムと比較して電力あたりの処理能力が大幅に向上しており、今後のAIサービスの高速化や低コスト化に向けた重要な足がかりとなります。</p>
+
+<h2>今回のポイント</h2>
+
+<ul>
+  <li><strong>電力あたりの処理量が最大1.9倍：</strong>ピーク時のスループットにおいて、消費電力1ワットあたり1.5倍〜1.9倍のAI処理能力を実現。</li>
+  <li><strong>応答速度（レイテンシ）が最大3.6倍高速化：</strong>エンドツーエンドの処理遅延を1.7分之1〜3.6分之1（1.7倍〜3.6倍低減）に縮小。</li>
+  <li><strong>インタラクティブな用途で最大4.1倍の性能：</strong>応答生成中のトークン出力間隔を大幅に短縮し、対話型AIやAIエージェントの体感速度向上に貢献。</li>
+  <li><strong>外部モデルでも高い性能を実証：</strong>OpenAI内部モデルだけでなく、DeepSeek R1やKimi K2.5といった外部のオープンウェイトモデルでも性能向上を確認。</li>
+  <li><strong>AI自身が開発を加速：</strong>AIを活用した設計により、設計開始からテープアウト（製造引き渡し）まで9ヶ月で完了。AI生成コードが人間の専門家より高速に動作する事例も報告。</li>
+  <li><strong>年内に自社基盤へ配備開始：</strong>年内（by the end of the year）にOpenAIの計算基盤へ配備を開始する計画。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+
+<p>AIの「推論（Inference：学習済みモデルを使って質問に回答する処理）」を行う従来のハードウェアでは、一度に大量の処理を行う「高スループット」を目指すと応答速度（レイテンシ）が遅くなり、逆に速度を最優先（低レイテンシ）にすると電力あたりの処理量が落ちるというトレードオフが存在していました。</p>
+
+<p>Jalapeñoはこの課題に対し、チップ単体だけでなく、メモリ、ネットワーク、ソフトウェア、ラック（サーバー設置棚）全体を一体で最適化する「フルスタック設計」でアプローチしています。</p>
+
+<p>文章生成AIの処理は、プロンプト（指示文）を読み込む「Prefill（プリフィル）フェーズ」と、回答を1文字ずつ生成する「Decode（デコード）フェーズ」に分かれます。Prefillは高い計算能力が必要であり、Decodeはメモリの通信速度（帯域幅）がボトルネックになります。Jalapeñoは、生成処理中に使用する「KVキャッシュ（過去の文脈記憶）」などのデータ移動を最小限に抑え、処理基盤全体でデータをローカルに維持できる設計を採用しました。</p>
+
+<p>公開ベンチマークである「InferenceX（SemiAnalysis提供）」を用いた評価では、以下のオープンウェイトモデルにおいて競合システム（GB200やGB300など）を上回るパフォーマンス（Pareto frontier：パレード限界線上の最高水準）を示しました。</p>
+
+<ul>
+  <li><strong>GPT-OSS 120B：</strong>ピーク時の電力あたりスループットが約1.9倍、レイテンシが約1.7倍低減（1.03秒 vs 1.80秒）、トークン生成間隔（TBT）が約2.7倍向上。</li>
+  <li><strong>DeepSeek R1（670B）：</strong>ピーク時の電力あたりスループットが約1.7倍、レイテンシが約3.6倍低減（1.65秒 vs 5.99秒）、TBTが約4.1倍向上。</li>
+  <li><strong>Kimi K2.5（1T）：</strong>ピーク時の電力あたりスループットが約1.5倍、レイテンシが約3.4倍低減（1.56秒 vs 5.31秒）、TBTが約3.8倍向上。</li>
+</ul>
+
+<p>なお、Jalapeñoの公称チップ電力（定格電力）は700ワットですが、実際のテストにおける持続消費電力は550ワット以下に収まっています。</p>
+
+<h2>誰に関係する？</h2>
+
+<p>この発表は、AIサービスを利用するエンドユーザーから、AIを活用したシステムを構築する開発者まで、幅広い層に影響を与えます。</p>
+
+<h3>一般ユーザー・企業利用ユーザー</h3>
+<p>ChatGPTなどのAIサービスを利用する際、より素早い応答が得られるようになります。特に複雑な指示を出した際の待ち時間が減少し、スムーズな対話が可能になります。</p>
+
+<h3>AIエージェントの開発者・エンジニア</h3>
+<p>「AIエージェント（ユーザーの目標に向けて自律的に複数の手順を実行するシステム）」の開発に関わる人にとって、応答速度の向上は不可欠です。AIエージェントは複数の処理ステップを連続して実行するため、各ステップのわずかな遅延が全体の大幅なタイムロスに繋がります。Jalapeñoの低レイテンシ特性は、エージェント型システムの信頼性と応答性を直接的に改善します。</p>
+
+<h2>どう活用できる？</h2>
+
+<p>Jalapeñoの導入によって期待される具体的なメリットは以下の通りです。</p>
+
+<p>1つ目は、<strong>複雑なマルチステップ処理の高速化</strong>です。タスクを完了するまでに何度も推論を繰り返すAIエージェントにおいて、1ステップあたりの生成速度（TBT）が数倍速くなることで、タスク全体の完了時間が劇的に短縮されます。</p>
+
+<p>2つ目は、<strong>動作モードの効率向上</strong>です。従来のインフラでは困難だった処理モードの切り替えが効率的に行えるようになります。</p>
+
+<ul>
+  <li>過去の「ファストモード」と同等の効率で「ウルトラファストモード」の推論を提供</li>
+  <li>過去の「バッチモード（一括処理）」と同等の効率で「ファストモード」を提供</li>
+  <li>「バッチモード」自体のさらなる高効率化</li>
+</ul>
+
+<p>3つ目は、<strong>AI開発におけるプログラミングの効率化</strong>です。Jalapeñoは人間だけでなくAI自身にとっても構造が予測しやすい設計になっています。OpenAIでは「Codex」と「GPT-Astra」を活用することで、当初の計画に含まれていなかった3つのモデルに対する最適化をわずか2ヶ月で達成しました。一部の処理ブロック（注目機構やMixture-of-Experts構成部）では、AIが自動生成した実装コードが、人間の専門家が書いたコードよりも1.5倍〜1.8倍高速に動作したと報告されています。</p>
+
+<h2>注意点</h2>
+
+<p>今回の発表内容に関して、以下の点に留意する必要があります。</p>
+
+<ul>
+  <li><strong>一般向けの単体販売ではない：</strong>JalapeñoはOpenAIの内部インフラ向けカスタムチップであり、チップ自体の一般販売や個別提供についての発表はありません。</li>
+  <li><strong>提供時期は段階的：</strong>OpenAIの計算基盤への導入は「年内（by the end of the year）」から開始される予定であり、すぐにすべての処理が置き換わるわけではありません。</li>
+  <li><strong>他社製ハードウェアも継続利用：</strong>OpenAIは、トレーニング（学習）および推論の双方において、今後もNVIDIAなどのパートナー企業によるアクセラレータを幅広く運用し続けると表明しています。</li>
+  <li><strong>新モデルへの適応には最適化が必要：</strong>新しいモデルファミリーに対応させるためには、専用の処理カーネルや個別の最適化作業が引き続き必要とされます。</li>
+</ul>
+
+<h2>まとめ</h2>
+
+<p>OpenAIの初となる独自推論チップ「Jalapeño」は、チップ単体だけでなくシステム全体を統合設計することにより、AIの処理スピードと電力効率の両立という課題を克服しました。ピーク時のワットあたり処理量は1.5〜1.9倍、レイテンシは1.7〜3.6倍低減し、特に高速なレスポンスが求められるAIエージェント用途で大きな威力を発揮します。</p>
+
+<p>すでに第2世代（Gen 2）の開発が進んでおり、第3世代（Gen 3）の構想も始まっています。年内からの自社インフラへの配備開始にともない、ユーザーが利用するAIサービスの応答速度向上や安定的なアクセス環境の構築に貢献することが期待されます。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/jalapeno-first-results/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+Jalapeño’s first results show industry-leading speed and efficiency in AI inference | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
