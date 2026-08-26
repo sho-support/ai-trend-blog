@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>OpenAIが明かすAI基盤戦略の全貌——初の自社推論チップ「Jalapeño」の性能と全体最適化の取り組み | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAIが明かすAI基盤戦略の全貌——初の自社推論チップ「Jalapeño」の性能と全体最適化の取り組みについて公式情報をもとにわかりやすく解説します。">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.08.26
+
+</div>
+
+<h1>OpenAIが明かすAI基盤戦略の全貌——初の自社推論チップ「Jalapeño」の性能と全体最適化の取り組み</h1>
+
+<p>OpenAIは、データセンター、半導体チップ、フロンティアモデル、開発者向けプラットフォーム、消費者・企業向け製品、そしてAIネイティブデバイスに至るすべての層を統合して改善するコンピュート戦略を公開しました。今回の発表では、同社初の自社開発推論チップ「Jalapeño（ハラペーニョ）」の実測パフォーマンスをはじめ、外部パートナーとの多角的なコンピュート・ポートフォリオ、環境に配慮したデータセンター設計「Project Camellia」など、システム全体で処理効率と経済性を高める取り組みの全容が示されています。</p>
+
+<h2>今回のポイント</h2>
+
+<ul>
+  <li><strong>自社開発推論チップ「Jalapeño」の初成果：</strong>公開ベンチマーク「InferenceX」においてGPT-OSS 120Bを実行した際、比較対象となった商用システムよりも高い1キロワットあたりのピークスループットと、低いトークンレイテンシを記録しました。DeepSeek R1やKimi K2といった他のモデルファミリーでも強いパフォーマンスを示しています。</li>
+  <li><strong>広範なパートナーシップによるポートフォリオ運用：</strong>MicrosoftやNVIDIAを基礎としつつ、AWS、AMD、Broadcom、Cerebras、CoreWeave、Oracle、SB Energy、SoftBankなどの多様な基盤を組み合わせて管理・運用しています。</li>
+  <li><strong>モデル効率化によるトークン削減：</strong>「Artificial Analysis Coding Agent Index」において、「GPT-5.6 Sol with max reasoning」が他の主要モデルと比較して出力トークン数を54%削減しつつ、新たな最高記録を達成しました。</li>
+  <li><strong>環境負荷と地域に配慮したデータセンター：</strong>ジョージア州の「Project Camellia」では、クローズドループシステムによる節水や、年次の独立した公的監査を伴う形で施設設計が行われています。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+
+<p>従来のAI開発では、ハードウェア、ソフトウェア、モデル開発が個別に進化することが一般的でした。しかしOpenAIは、これらを一体となった単一のシステムとして捉え、各層の進化が相互に強化し合うサイクルを提示しています。優れたソフトウェアはハードウェアの生産性を高め、用途に合わせたハードウェアは処理速度と効率を向上させます。</p>
+
+<p>（※専門用語の解説：<strong>推論チップ</strong>＝学習済みのAIモデルを使って回答や予測を出力する処理「推論」に特化した半導体。<strong>スループット</strong>＝単位時間あたりに処理できるデータ量。<strong>トークンレイテンシ</strong>＝文章の最小単位である「トークン」が出力されるまでの待ち時間。<strong>サービング</strong>＝開発されたAIモデルをユーザーが利用できる状態にして提供・運用すること。）</p>
+
+<p>自社製シリコン「Jalapeño」の導入により、OpenAIはモデルの実行方法やサービングの経済性を自らコントロールできるようになりました。モデル、サービングソフトウェア、チップ、メモリ、ネットワークを同時に共同設計（Co-design）することで、スループット、遅延、エネルギー効率、コストを一括して最適化できます。</p>
+
+<p>一方で、自社チップのみに依存するのではなく、サードパーティのアクセラレータや多様なクラウド事業者との関係も維持されています。大規模なフロンティア学習、大量の推論処理、常時稼働するエージェントなど、要件の異なるワークロード（作業負荷）に応じて、最も費用対効果が高いシステムを選択する戦略をとっています。</p>
+
+<h2>誰に関係する？</h2>
+
+<p>このシステム全体の進化は、OpenAIの技術やサービスを利用する幅広い層に関係します。</p>
+
+<ul>
+  <li><strong>開発者・エンジニア：</strong>APIやプラットフォームを通じてモデルやAIエージェントを構築するユーザー。処理速度の向上やトークン効率の改善が、システム開発や運用に直接影響します。</li>
+  <li><strong>企業・法人ユーザー：</strong>社内業務や自社プロダクトにAIを組み込む組織。大規模な契約書レビュー、リアルタイムの財務シミュレーション、個別の顧客分析などを実行する際のコスト効率に関わります。</li>
+  <li><strong>一般ユーザー：</strong>OpenAIの消費者向け製品や将来的なAIネイティブデバイスを利用するエンドユーザー。回答までの待ち時間の短縮や、より複雑な指示をこなすプロダクトの恩恵を受けます。</li>
+</ul>
+
+<h2>どう活用できる？</h2>
+
+<p>OpenAIが掲げる「1ドルあたりの有用な知能（useful intelligence per dollar）」の向上は、ユーザーにとって実用上の多様なメリットにつながります。</p>
+
+<p>第一に、<strong>「試行回数とトークン消費の削減」</strong>です。モデルの精度向上とソフトウェアの最適化により、求める回答に到達するまでの不要なやり直し（リトライ）が減ります。例えば「GPT-5.6 Sol with max reasoning」では、他の主要モデルより54%少ない出力トークン数で高いタスク成果を収めており、ユーザーにとっては処理待ち時間の短縮や全体のコスト削減をもたらします。</p>
+
+<p>第二に、<strong>「より高度で長い作業の自動化」</strong>です。処理の遅延が減りエネルギー効率が高まることで、AIエージェントがより長時間のワークフローや複雑なプロセスを完了できるようになります。</p>
+
+<p>第三に、<strong>「新しい経済的ユースケースの実現」</strong>です。処理コストが下がることで、従来は費用対効果の観点から見合わなかった業務へのAI適用が実用化されます。公式記事では、以下のような活用例が挙げられています。</p>
+
+<ul>
+  <li>すべての顧客に対するパーソナライズされた分析の提供</li>
+  <li>組織内における全契約書の詳細なレビュー</li>
+  <li>リアルタイムでの財務シナリオの実行</li>
+  <li>エンジニアによる多数のアイデアやコードのテスト実施</li>
+</ul>
+
+<h2>注意点</h2>
+
+<p>今回の公式発表を確認するうえで、以下の点に留意する必要があります。</p>
+
+<ul>
+  <li><strong>Jalapeñoは他社製チップを完全に代替するものではない：</strong>「Jalapeño」は動作する第1世代シリコンが確認され、次世代モデルの開発も進められていますが、OpenAIはNVIDIAやMicrosoft、AWS、AMDなどのパートナー企業との協力関係を継続しており、状況に応じて使い分けるアプローチをとっています。</li>
+  <li><strong>ベンチマーク数値の適用範囲：</strong>Jalapeñoの性能データは、公開ベンチマーク「InferenceX」においてGPT-OSS 120B、DeepSeek R1、Kimi K2といったモデルを用いて測定された数値です。すべてのワークロードや環境で同一の性能差が出ることを保証するものではありません。</li>
+  <li><strong>データセンターの取り組みは特定の事例に基づく：</strong>クローズドループによる水の節約や年次の独立公的監査といった環境・地域配慮策は、ジョージア州の「Project Camellia」に関する記述であり、世界中すべての拠点で同一の運用方針が適用されていると決まったわけではありません。</li>
+</ul>
+
+<h2>まとめ</h2>
+
+<p>OpenAIが発表したフルスキャン戦略は、自社開発推論チップ「Jalapeño」をはじめとするハードウェア、ソフトウェア、データセンター、モデル開発を統合し、AI処理の速度・効率・コストを包括的に向上させる取り組みです。トークン消費を抑えながら高いパフォーマンスを発揮するモデルや、多角的なインフラ管理を通じて、より高度なAI処理を低コストかつ信頼性の高い形で提供することを目指しています。動作可能な自社シリコンの誕生と今後の次世代開発により、AIシステム基盤の進化はさらに加速していくと考えられます。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/the-full-stack-behind-abundant-intelligence/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+The full stack behind abundant intelligence | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
