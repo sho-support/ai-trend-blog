@@ -1,3 +1,133 @@
+木曜日 14:53
+まだ
+木曜日 20:13
+ほぼ一日たったけどまだだ。本当に待つだけでいいの？
+日曜日 12:54
+昨日 20:27
+今日 14:54
+
+OK、リクエストは正常に通った。
+画面の「インデックス登録をリクエスト済み」「URLを優先クロールキューに追加しました」で確認できる。
+
+ここから大事なのは、この1記事だけ手動申請して終わりにしないこと。今の状況だと、
+
+sitemap.xml も sitemap-1.xml も Search Console では取得失敗
+でも公開URLテストは通る
+個別記事も技術的にはインデックス可能
+手動リクエストは受理される
+
+なので、次はサイト全体の発見経路を強くする修正を入れるべき。
+
+優先順はこれ。
+
+トップページから全記事へ確実に内部リンク
+各記事へ canonical
+各記事に robots meta が index,follow
+トップページにも canonical
+sitemap.xml はそのまま維持
+既存の古い記事も indexable か一括確認しやすい構造にする
+
+今の generate_article.py をまた中途半端に継ぎ足すより、SEO対応まで含めた完全版に一回作り直すのがいい段階。
+
+特にcanonicalは今の記事HTMLを見る限り入ってなかったから、これは次に入れたい。
+
+今日はこのリクエストが通った時点で、Googleに拾わせる経路自体は生きてることが確認できた。次は「毎回手動でリクエストしなくても拾われる設計」にする。
+
+なにすればい？
+
+次は generate_article.py をSEO対応の完全版に置き換える。これが一番先。
+
+今の問題は「記事は公開できているけど、Googleが自動で見つける力がまだ弱い」こと。だから次の完全版では、今までの機能を残したまま、
+
+各記事に canonical
+robots を index,follow
+OGP
+Article構造化データ
+トップページから記事への内部リンク
+sitemap.xml 自動更新
+GA4
+重複防止
+公式ソース限定の記事生成
+
+までまとめる。
+
+今やることは1つだけ
+
+GitHubの
+
+ai-trend-blog
+
+を開いて、
+
+generate_article.py
+
+をクリック。
+
+→ 鉛筆マークで編集画面を開く。
+
+まだ何も消さなくていい。
+
+編集画面まで行ったらスクショを送って。
+次に俺が 「全部消してこれを貼る」用の最新版を丸ごと出す。
+
+今回は部分修正を何回も重ねない。SEO・Google登録対策込みの完成版へ一発で置き換える。
+
+貼り付けられたテキスト（1 点）(20260827-065634).txt
+ドキュメント
+
+確認した。今の generate_article.py は、GA4・RSS取得・記事生成・履歴・sitemap.xml 自動生成までかなり揃ってる。
+ただし記事HTMLには canonical / robots / OGP / Article構造化データ がまだ入っていない。今の build_page() はタイトル・description・CSS中心の構成。
+
+なので、全部置き換え用の最新版を作った。
+
+generate_article.py SEO完全版
+
+この版では、今までの機能を残したまま、
+
+新規記事に canonical
+index,follow
+Googlebot指定
+OGP
+Twitter Card
+Article構造化データ(JSON-LD)
+sitemap.xml
+robots.txt
+GA4
+既存記事にもSEOタグを自動追加
+トップページにもcanonical/OGP
+記事重複防止
+公式情報限定の記事生成
+
+まで入れてある。
+
+今やること
+
+GitHubの generate_article.py を開いて、
+
+Ctrl+A → 全削除 → 上の完全版ファイルの中身を全部貼る → Commit changes
+
+でOK。
+
+ただし1点だけ。今のGitHub Actionsは robots.txt をコミット対象に入れていない可能性がある。以前の構成では articles/ index.html article_history.json sitemap.xml をaddしていたので、今回の完全版を入れたあとYAMLの
+
+git add articles/ index.html article_history.json sitemap.xml
+
+を、
+
+git add articles/ index.html article_history.json sitemap.xml robots.txt
+
+にする。
+
+そのあとActionsを1回手動実行。成功したら、既存記事にもSEOタグが一括で入る。
+
+なお、これはGoogleに記事を見つけやすくする改善であって、Search Consoleの「サイトマップを取得できませんでした」を直接必ず直すものではない。そこは別問題として切り分け済み。今回の目的は、サイトマップが不調でも記事をGoogleが発見・評価しやすいサイト構造にすること。 
+
+generate_article_SEO_COMPLETE.py
+コード
+
+ライブラリ
+/
+generate_article_SEO_COMPLETE.py
 import os
 import re
 import json
@@ -6,7 +136,7 @@ import html
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
-from xml.etree.ElementTree import Element, SubElement, ElementTree
+from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
 
 import feedparser
 import requests
@@ -21,7 +151,6 @@ from google import genai
 MODEL_NAME = "gemini-3.6-flash"
 
 SITE_NAME = "AI Trend Blog"
-
 SITE_BASE_URL = "https://sho-support.github.io/ai-trend-blog"
 
 GA_MEASUREMENT_ID = "G-J5ZDLF30CS"
@@ -30,6 +159,7 @@ ARTICLE_DIR = Path("articles")
 INDEX_FILE = Path("index.html")
 HISTORY_FILE = Path("article_history.json")
 SITEMAP_FILE = Path("sitemap.xml")
+ROBOTS_FILE = Path("robots.txt")
 
 JST = timezone(timedelta(hours=9))
 
@@ -74,21 +204,20 @@ SOURCES = [
 api_key = os.environ.get("GEMINI_API_KEY")
 
 if not api_key:
-    raise RuntimeError(
-        "GEMINI_API_KEY が設定されていません。"
-    )
+    raise RuntimeError("GEMINI_API_KEY が設定されていません。")
 
-client = genai.Client(
-    api_key=api_key
-)
+client = genai.Client(api_key=api_key)
 
 
 # =========================================================
-# Google Analytics
+# 共通HTML / SEO
 # =========================================================
+
+SEO_START = "<!-- AI_TREND_SEO_START -->"
+SEO_END = "<!-- AI_TREND_SEO_END -->"
+
 
 def get_ga_tag():
-
     return f"""
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}"></script>
@@ -96,51 +225,166 @@ def get_ga_tag():
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
-
   gtag('config', '{GA_MEASUREMENT_ID}');
 </script>
-"""
+""".strip()
+
+
+def strip_tags(value):
+    return BeautifulSoup(value or "", "html.parser").get_text(" ", strip=True)
+
+
+def truncate_description(value, limit=155):
+    text = re.sub(r"\s+", " ", strip_tags(value)).strip()
+
+    if len(text) <= limit:
+        return text
+
+    return text[: limit - 1].rstrip() + "…"
+
+
+def filename_date(filename):
+    match = re.match(r"(\d{4})-(\d{2})-(\d{2})_", filename or "")
+
+    if not match:
+        return None
+
+    return f"{match.group(1)}-{match.group(2)}-{match.group(3)}"
+
+
+def find_meta_description(document):
+    soup = BeautifulSoup(document, "html.parser")
+    tag = soup.find("meta", attrs={"name": "description"})
+
+    if tag and tag.get("content"):
+        return str(tag.get("content")).strip()
+
+    return ""
+
+
+def find_h1(document):
+    soup = BeautifulSoup(document, "html.parser")
+    h1 = soup.find("h1")
+
+    if not h1:
+        return ""
+
+    return h1.get_text(" ", strip=True)
+
+
+def build_seo_block(
+    title,
+    description,
+    canonical_url,
+    page_type="article",
+    published_date=None,
+    modified_date=None,
+):
+    safe_title = html.escape(title, quote=True)
+    safe_description = html.escape(description, quote=True)
+    safe_canonical = html.escape(canonical_url, quote=True)
+
+    lines = [
+        SEO_START,
+        '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">',
+        '<meta name="googlebot" content="index,follow">',
+        f'<link rel="canonical" href="{safe_canonical}">',
+        f'<link rel="sitemap" type="application/xml" href="{SITE_BASE_URL}/sitemap.xml">',
+        f'<meta property="og:site_name" content="{html.escape(SITE_NAME, quote=True)}">',
+        f'<meta property="og:title" content="{safe_title}">',
+        f'<meta property="og:description" content="{safe_description}">',
+        f'<meta property="og:url" content="{safe_canonical}">',
+        f'<meta property="og:type" content="{"article" if page_type == "article" else "website"}">',
+        '<meta name="twitter:card" content="summary">',
+        f'<meta name="twitter:title" content="{safe_title}">',
+        f'<meta name="twitter:description" content="{safe_description}">',
+    ]
+
+    if page_type == "article":
+        published_date = published_date or datetime.now(JST).date().isoformat()
+        modified_date = modified_date or published_date
+
+        structured_data = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": title,
+            "description": description,
+            "datePublished": published_date,
+            "dateModified": modified_date,
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": canonical_url,
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": SITE_NAME,
+                "url": SITE_BASE_URL + "/",
+            },
+            "author": {
+                "@type": "Organization",
+                "name": SITE_NAME,
+                "url": SITE_BASE_URL + "/",
+            },
+        }
+
+        lines.extend(
+            [
+                '<script type="application/ld+json">',
+                json.dumps(
+                    structured_data,
+                    ensure_ascii=False,
+                    separators=(",", ":"),
+                ).replace("</", "<\\/"),
+                "</script>",
+            ]
+        )
+
+    lines.append(SEO_END)
+    return "\n".join(lines)
+
+
+def replace_managed_seo(document, seo_block):
+    pattern = re.compile(
+        re.escape(SEO_START) + r".*?" + re.escape(SEO_END),
+        re.DOTALL,
+    )
+
+    document = pattern.sub("", document)
+
+    if "<head>" not in document:
+        return document
+
+    return document.replace(
+        "<head>",
+        "<head>\n\n" + seo_block,
+        1,
+    )
 
 
 def ensure_ga_tags():
-
     files = []
 
     if INDEX_FILE.exists():
         files.append(INDEX_FILE)
 
     if ARTICLE_DIR.exists():
-        files.extend(
-            ARTICLE_DIR.glob("*.html")
-        )
+        files.extend(ARTICLE_DIR.glob("*.html"))
 
     ga_tag = get_ga_tag()
-
     updated_count = 0
 
     for filepath in files:
-
         try:
-            text = filepath.read_text(
-                encoding="utf-8"
-            )
-
+            text = filepath.read_text(encoding="utf-8")
         except Exception as e:
-            print(
-                "HTML読込失敗:",
-                filepath,
-                e
-            )
+            print("HTML読込失敗:", filepath, e)
             continue
 
         if GA_MEASUREMENT_ID in text:
             continue
 
         if "<head>" not in text:
-            print(
-                "headタグがないためGA4追加をスキップ:",
-                filepath
-            )
+            print("headタグがないためGA4追加をスキップ:", filepath)
             continue
 
         text = text.replace(
@@ -149,22 +393,109 @@ def ensure_ga_tags():
             1,
         )
 
-        filepath.write_text(
-            text,
-            encoding="utf-8"
-        )
-
+        filepath.write_text(text, encoding="utf-8")
         updated_count += 1
+        print("GA4タグ追加:", filepath)
 
-        print(
-            "GA4タグ追加:",
-            filepath
+    print("GA4更新ファイル数:", updated_count)
+
+
+def ensure_existing_seo_tags(history):
+    print("")
+    print("既存ページSEO更新開始")
+
+    history_by_filename = {
+        item.get("filename"): item
+        for item in history
+        if item.get("filename")
+    }
+
+    updated_count = 0
+
+    if INDEX_FILE.exists():
+        text = INDEX_FILE.read_text(encoding="utf-8")
+        title = "AI・生成AIの最新情報をわかりやすく解説"
+        description = (
+            "OpenAI、Google、GitHubなどの公式情報をもとに、"
+            "AI・生成AI・Webサービスの最新情報をわかりやすく解説するAI Trend Blogです。"
         )
 
-    print(
-        "GA4更新ファイル数:",
-        updated_count
-    )
+        seo_block = build_seo_block(
+            title=title,
+            description=description,
+            canonical_url=SITE_BASE_URL + "/",
+            page_type="website",
+        )
+
+        new_text = replace_managed_seo(text, seo_block)
+
+        if new_text != text:
+            INDEX_FILE.write_text(new_text, encoding="utf-8")
+            updated_count += 1
+            print("SEO更新:", INDEX_FILE)
+
+    if ARTICLE_DIR.exists():
+        for filepath in sorted(ARTICLE_DIR.glob("*.html")):
+            try:
+                text = filepath.read_text(encoding="utf-8")
+            except Exception as e:
+                print("既存記事読込失敗:", filepath, e)
+                continue
+
+            title = find_h1(text)
+
+            if not title:
+                print("h1がないためSEO更新をスキップ:", filepath)
+                continue
+
+            description = find_meta_description(text)
+
+            if not description:
+                soup = BeautifulSoup(text, "html.parser")
+                first_p = soup.find("p")
+                description = truncate_description(
+                    first_p.get_text(" ", strip=True) if first_p else title
+                )
+            else:
+                description = truncate_description(description)
+
+            canonical_url = f"{SITE_BASE_URL}/articles/{filepath.name}"
+
+            history_item = history_by_filename.get(filepath.name, {})
+            created_at = history_item.get("created_at")
+
+            published_date = filename_date(filepath.name)
+
+            if created_at:
+                try:
+                    published_date = datetime.fromisoformat(
+                        created_at
+                    ).date().isoformat()
+                except Exception:
+                    pass
+
+            published_date = (
+                published_date
+                or datetime.now(JST).date().isoformat()
+            )
+
+            seo_block = build_seo_block(
+                title=title,
+                description=description,
+                canonical_url=canonical_url,
+                page_type="article",
+                published_date=published_date,
+                modified_date=published_date,
+            )
+
+            new_text = replace_managed_seo(text, seo_block)
+
+            if new_text != text:
+                filepath.write_text(new_text, encoding="utf-8")
+                updated_count += 1
+                print("SEO更新:", filepath)
+
+    print("SEO更新ファイル数:", updated_count)
 
 
 # =========================================================
@@ -183,16 +514,13 @@ HEADERS = {
 
 
 def fetch_url(url):
-
     response = requests.get(
         url,
         headers=HEADERS,
         timeout=REQUEST_TIMEOUT,
         allow_redirects=True,
     )
-
     response.raise_for_status()
-
     return response
 
 
@@ -201,24 +529,13 @@ def fetch_url(url):
 # =========================================================
 
 def entry_datetime(entry):
-
     structs = [
-        getattr(
-            entry,
-            "published_parsed",
-            None
-        ),
-        getattr(
-            entry,
-            "updated_parsed",
-            None
-        ),
+        getattr(entry, "published_parsed", None),
+        getattr(entry, "updated_parsed", None),
     ]
 
     for value in structs:
-
         if value:
-
             return datetime(
                 *value[:6],
                 tzinfo=timezone.utc,
@@ -232,30 +549,24 @@ def entry_datetime(entry):
 # =========================================================
 
 def load_history():
-
     if not HISTORY_FILE.exists():
         return []
 
     try:
+        value = json.loads(HISTORY_FILE.read_text(encoding="utf-8"))
 
-        return json.loads(
-            HISTORY_FILE.read_text(
-                encoding="utf-8"
-            )
-        )
+        if isinstance(value, list):
+            return value
+
+        print("履歴JSONが配列ではないため空として扱います。")
+        return []
 
     except Exception as e:
-
-        print(
-            "履歴読込エラー:",
-            e
-        )
-
+        print("履歴読込エラー:", e)
         return []
 
 
 def save_history(history):
-
     HISTORY_FILE.write_text(
         json.dumps(
             history,
@@ -267,82 +578,42 @@ def save_history(history):
 
 
 def normalize_title(title):
-
-    text = re.sub(
-        r"\s+",
-        "",
-        title.lower()
-    )
-
-    text = re.sub(
-        r"[^\wぁ-んァ-ヶ一-龠]",
-        "",
-        text
-    )
-
-    return text
+    text = re.sub(r"\s+", "", (title or "").lower())
+    return re.sub(r"[^\wぁ-んァ-ヶ一-龠]", "", text)
 
 
-def is_duplicate(
-    title,
-    url,
-    history
-):
-
-    normalized_new = normalize_title(
-        title
-    )
+def is_duplicate(title, url, history):
+    normalized_new = normalize_title(title)
 
     for item in history:
-
         if item.get("url") == url:
             return True
 
         old_title = normalize_title(
             item.get(
                 "source_title",
-                item.get(
-                    "title",
-                    ""
-                )
+                item.get("title", ""),
             )
         )
 
-        if (
-            not normalized_new
-            or not old_title
-        ):
+        if not normalized_new or not old_title:
             continue
 
         if normalized_new == old_title:
             return True
 
-        if (
-            len(normalized_new) >= 15
-            and len(old_title) >= 15
-        ):
-
-            shorter = min(
-                len(normalized_new),
-                len(old_title)
-            )
-
+        # 同一テーマのタイトル違いをある程度弾く。
+        if len(normalized_new) >= 15 and len(old_title) >= 15:
+            shorter = min(len(normalized_new), len(old_title))
             common_prefix = 0
 
-            for a, b in zip(
-                normalized_new,
-                old_title
-            ):
-
+            for a, b in zip(normalized_new, old_title):
                 if a == b:
                     common_prefix += 1
                 else:
                     break
 
-            similarity = (
-                common_prefix
-                / shorter
-            )
+            similarity = common_prefix / shorter
 
             if similarity >= 0.80:
                 return True
@@ -351,184 +622,94 @@ def is_duplicate(
 
 
 # =========================================================
-# sitemap.xml 用の日付
+# sitemap.xml / robots.txt
 # =========================================================
 
 def history_date_map(history):
-
     date_map = {}
 
     for item in history:
-
-        filename = item.get(
-            "filename"
-        )
-
-        created_at = item.get(
-            "created_at"
-        )
+        filename = item.get("filename")
+        created_at = item.get("created_at")
 
         if not filename or not created_at:
             continue
 
         try:
-
-            dt = datetime.fromisoformat(
-                created_at
-            )
-
-            date_map[filename] = (
-                dt.date().isoformat()
-            )
-
+            dt = datetime.fromisoformat(created_at)
+            date_map[filename] = dt.date().isoformat()
         except Exception:
             continue
 
     return date_map
 
 
-# =========================================================
-# sitemap.xml 生成
-# =========================================================
-
 def generate_sitemap(history=None):
-
     print("")
     print("sitemap.xml 生成開始")
 
     if history is None:
         history = load_history()
 
-    article_dates = (
-        history_date_map(
-            history
-        )
-    )
+    article_dates = history_date_map(history)
 
     urlset = Element(
         "urlset",
-        {
-            "xmlns":
-                "http://www.sitemaps.org/schemas/sitemap/0.9"
-        }
+        {"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9"},
     )
-
-    # -------------------------
-    # トップページ
-    # -------------------------
 
     if INDEX_FILE.exists():
-
-        url = SubElement(
-            urlset,
-            "url"
-        )
-
-        loc = SubElement(
-            url,
-            "loc"
-        )
-
-        loc.text = (
-            SITE_BASE_URL
-            + "/"
-        )
-
-        lastmod = SubElement(
-            url,
-            "lastmod"
-        )
-
-        lastmod.text = (
-            datetime.now(
-                JST
-            ).date().isoformat()
-        )
-
-    # -------------------------
-    # 記事
-    # -------------------------
+        url = SubElement(urlset, "url")
+        SubElement(url, "loc").text = SITE_BASE_URL + "/"
+        SubElement(url, "lastmod").text = datetime.now(
+            JST
+        ).date().isoformat()
 
     if ARTICLE_DIR.exists():
+        for filepath in sorted(ARTICLE_DIR.glob("*.html")):
+            url = SubElement(urlset, "url")
 
-        article_files = sorted(
-            ARTICLE_DIR.glob(
-                "*.html"
-            )
-        )
-
-        for filepath in article_files:
-
-            url = SubElement(
-                urlset,
-                "url"
+            SubElement(url, "loc").text = (
+                f"{SITE_BASE_URL}/articles/{filepath.name}"
             )
 
-            loc = SubElement(
-                url,
-                "loc"
-            )
+            history_date = article_dates.get(filepath.name)
+            lastmod_value = history_date or filename_date(filepath.name)
 
-            loc.text = (
-                f"{SITE_BASE_URL}/"
-                f"articles/"
-                f"{filepath.name}"
-            )
+            if not lastmod_value:
+                lastmod_value = datetime.now(JST).date().isoformat()
 
-            lastmod = SubElement(
-                url,
-                "lastmod"
-            )
+            SubElement(url, "lastmod").text = lastmod_value
 
-            history_date = (
-                article_dates.get(
-                    filepath.name
-                )
-            )
+    tree = ElementTree(urlset)
 
-            if history_date:
-
-                lastmod.text = (
-                    history_date
-                )
-
-            else:
-
-                match = re.match(
-                    r"(\d{4})-(\d{2})-(\d{2})_",
-                    filepath.name
-                )
-
-                if match:
-
-                    lastmod.text = (
-                        f"{match.group(1)}-"
-                        f"{match.group(2)}-"
-                        f"{match.group(3)}"
-                    )
-
-                else:
-
-                    lastmod.text = (
-                        datetime.now(
-                            JST
-                        ).date().isoformat()
-                    )
-
-    tree = ElementTree(
-        urlset
-    )
+    try:
+        indent(tree, space="  ")
+    except Exception:
+        pass
 
     tree.write(
         SITEMAP_FILE,
         encoding="utf-8",
-        xml_declaration=True
+        xml_declaration=True,
     )
 
-    print(
-        "sitemap.xml 生成完了:",
-        SITEMAP_FILE
+    print("sitemap.xml 生成完了:", SITEMAP_FILE)
+
+
+def generate_robots():
+    content = (
+        "User-agent: *\n"
+        "Allow: /\n\n"
+        f"Sitemap: {SITE_BASE_URL}/sitemap.xml\n"
     )
+
+    ROBOTS_FILE.write_text(
+        content,
+        encoding="utf-8",
+    )
+
+    print("robots.txt 更新:", ROBOTS_FILE)
 
 
 # =========================================================
@@ -536,138 +717,62 @@ def generate_sitemap(history=None):
 # =========================================================
 
 def collect_candidates():
-
-    now = datetime.now(
-        timezone.utc
-    )
-
+    now = datetime.now(timezone.utc)
     candidates = []
 
     for source in SOURCES:
-
-        print(
-            f"RSS取得: {source['name']}"
-        )
+        print(f"RSS取得: {source['name']}")
 
         try:
-
-            feed = feedparser.parse(
-                source["feed"]
-            )
-
+            feed = feedparser.parse(source["feed"])
         except Exception as e:
-
-            print(
-                "RSS取得失敗:",
-                source["name"],
-                e
-            )
-
+            print("RSS取得失敗:", source["name"], e)
             continue
 
-        if getattr(
-            feed,
-            "bozo",
-            False
-        ):
-
+        if getattr(feed, "bozo", False):
             print(
                 "RSS警告:",
                 source["name"],
-                getattr(
-                    feed,
-                    "bozo_exception",
-                    ""
-                )
+                getattr(feed, "bozo_exception", ""),
             )
 
         for entry in feed.entries:
-
-            title = (
-                getattr(
-                    entry,
-                    "title",
-                    ""
-                )
-                .strip()
-            )
-
-            url = (
-                getattr(
-                    entry,
-                    "link",
-                    ""
-                )
-                .strip()
-            )
+            title = getattr(entry, "title", "").strip()
+            url = getattr(entry, "link", "").strip()
 
             if not title or not url:
                 continue
 
-            published = (
-                entry_datetime(
-                    entry
-                )
-            )
+            published = entry_datetime(entry)
 
             if published:
+                age_days = (now - published).days
 
-                age_days = (
-                    now - published
-                ).days
-
-                if (
-                    age_days
-                    > MAX_SOURCE_AGE_DAYS
-                ):
+                if age_days > MAX_SOURCE_AGE_DAYS:
                     continue
 
-            summary = (
-                getattr(
-                    entry,
-                    "summary",
-                    ""
-                )
-                or ""
-            )
+            summary = getattr(entry, "summary", "") or ""
 
-            summary_text = (
-                BeautifulSoup(
-                    summary,
-                    "html.parser"
-                )
-                .get_text(
-                    " ",
-                    strip=True
-                )
-            )
+            summary_text = BeautifulSoup(
+                summary,
+                "html.parser",
+            ).get_text(" ", strip=True)
 
-            candidates.append({
-                "source_name":
-                    source["name"],
-
-                "source_domain":
-                    source["domain"],
-
-                "priority":
-                    source["priority"],
-
-                "title":
-                    title,
-
-                "url":
-                    url,
-
-                "published":
-                    (
+            candidates.append(
+                {
+                    "source_name": source["name"],
+                    "source_domain": source["domain"],
+                    "priority": source["priority"],
+                    "title": title,
+                    "url": url,
+                    "published": (
                         published.isoformat()
                         if published
                         else ""
                     ),
-
-                "summary":
-                    summary_text,
-            })
+                    "summary": summary_text,
+                }
+            )
 
     candidates.sort(
         key=lambda x: (
@@ -677,42 +782,23 @@ def collect_candidates():
         reverse=True,
     )
 
-    return candidates[
-        :MAX_CANDIDATES
-    ]
+    return candidates[:MAX_CANDIDATES]
 
 
 # =========================================================
 # ドメイン確認
 # =========================================================
 
-def domain_is_allowed(
-    hostname,
-    allowed_domain
-):
-
+def domain_is_allowed(hostname, allowed_domain):
     if not hostname:
         return False
 
-    hostname = (
-        hostname
-        .lower()
-        .strip(".")
-    )
-
-    allowed_domain = (
-        allowed_domain
-        .lower()
-        .strip(".")
-    )
+    hostname = hostname.lower().strip(".")
+    allowed_domain = allowed_domain.lower().strip(".")
 
     return (
-        hostname
-        == allowed_domain
-        or hostname.endswith(
-            "."
-            + allowed_domain
-        )
+        hostname == allowed_domain
+        or hostname.endswith("." + allowed_domain)
     )
 
 
@@ -721,121 +807,72 @@ def domain_is_allowed(
 # =========================================================
 
 def validate_candidate(candidate):
-
     try:
-
-        response = fetch_url(
-            candidate["url"]
-        )
-
+        response = fetch_url(candidate["url"])
         final_url = response.url
+        parsed = urlparse(final_url)
 
-        parsed = urlparse(
-            final_url
-        )
-
-        if parsed.scheme not in (
-            "http",
-            "https",
-        ):
-
-            print(
-                "無効URL:",
-                final_url
-            )
-
+        if parsed.scheme not in ("http", "https"):
+            print("無効URL:", final_url)
             return None
 
         if not domain_is_allowed(
             parsed.hostname,
-            candidate[
-                "source_domain"
-            ]
+            candidate["source_domain"],
         ):
-
             print(
-                "公式ドメイン外への"
-                "リダイレクトを除外:",
-                final_url
+                "公式ドメイン外へのリダイレクトを除外:",
+                final_url,
             )
-
             return None
 
         soup = BeautifulSoup(
             response.text,
-            "html.parser"
+            "html.parser",
         )
 
         page_title = ""
 
         if soup.title:
-
-            page_title = (
-                soup.title
-                .get_text(
-                    " ",
-                    strip=True
-                )
+            page_title = soup.title.get_text(
+                " ",
+                strip=True,
             )
 
         page_text = soup.get_text(
             " ",
-            strip=True
+            strip=True,
         )
 
-        if (
-            len(page_text)
-            < MIN_PAGE_TEXT_LENGTH
-        ):
-
+        if len(page_text) < MIN_PAGE_TEXT_LENGTH:
             print(
                 "本文が短すぎるため除外:",
                 final_url,
                 "文字数:",
-                len(page_text)
+                len(page_text),
             )
-
             return None
 
-        candidate["url"] = (
-            final_url
-        )
-
-        candidate["page_title"] = (
-            page_title
-            or candidate["title"]
-        )
-
-        candidate["status_code"] = (
-            response.status_code
-        )
+        validated = dict(candidate)
+        validated["url"] = final_url
+        validated["page_title"] = page_title or candidate["title"]
+        validated["status_code"] = response.status_code
 
         print(
             "URL検証OK:",
             response.status_code,
-            final_url
+            final_url,
         )
+        print("実ページタイトル:", validated["page_title"])
 
-        print(
-            "実ページタイトル:",
-            candidate[
-                "page_title"
-            ]
-        )
-
-        return candidate
+        return validated
 
     except Exception as e:
-
         print(
             "URL検証失敗:",
-            candidate.get(
-                "url",
-                ""
-            ),
+            candidate.get("url", ""),
             e,
         )
-
         return None
 
 
@@ -844,10 +881,7 @@ def validate_candidate(candidate):
 # =========================================================
 
 def extract_page_text(url):
-
-    response = fetch_url(
-        url
-    )
+    response = fetch_url(url)
 
     soup = BeautifulSoup(
         response.text,
@@ -866,7 +900,6 @@ def extract_page_text(url):
             "noscript",
         ]
     ):
-
         tag.decompose()
 
     target = (
@@ -883,43 +916,32 @@ def extract_page_text(url):
     text = re.sub(
         r"\n{3,}",
         "\n\n",
-        text
+        text,
     )
 
-    return text[
-        :MAX_SOURCE_TEXT_LENGTH
-    ]
+    return text[:MAX_SOURCE_TEXT_LENGTH]
 
 
 # =========================================================
-# 未使用候補だけ残す
+# 未使用候補
 # =========================================================
 
-def filter_unused_candidates(
-    candidates,
-    history
-):
-
+def filter_unused_candidates(candidates, history):
     unused = []
 
     for candidate in candidates:
-
         if is_duplicate(
             candidate["title"],
             candidate["url"],
             history,
         ):
-
             print(
                 "重複候補を除外:",
-                candidate["title"]
+                candidate["title"],
             )
-
             continue
 
-        unused.append(
-            candidate
-        )
+        unused.append(candidate)
 
     return unused
 
@@ -929,17 +951,12 @@ def filter_unused_candidates(
 # =========================================================
 
 def choose_topic(candidates):
-
     if not candidates:
         return None
 
     packet = []
 
-    for index, item in enumerate(
-        candidates,
-        start=1,
-    ):
-
+    for index, item in enumerate(candidates, start=1):
         packet.append(
             f"""
 候補{index}
@@ -967,14 +984,13 @@ URL:
     prompt = f"""
 あなたは日本向けAI・テクノロジー情報サイトの編集長です。
 
-以下は実在する公式サイトの記事候補です。
+以下は、Python側で実在確認済みの公式サイトの記事候補です。
 
 この中から、
 「今、日本の一般ユーザーに記事として最も価値があるもの」
 を1つだけ選んでください。
 
 判断基準：
-
 ・新しさ
 ・日本の一般ユーザーへの影響
 ・実用性
@@ -984,17 +1000,13 @@ URL:
 ・1500文字以上で有益に解説する価値があるか
 
 優先順位：
-
 一般ユーザー向け 約70%
 開発者・専門ユーザー向け 約30%
 
-会社人事、
-企業PRだけの話題、
-一般ユーザーにほぼ影響しない記事は
-優先しないでください。
+会社人事、企業PRだけの話題、
+一般ユーザーにほぼ影響しない記事は優先しないでください。
 
 回答は候補番号の数字だけにしてください。
-
 例：
 3
 
@@ -1003,71 +1015,34 @@ URL:
 {''.join(packet)}
 """
 
-    waits = [
-        0,
-        10,
-        30,
-    ]
+    waits = [0, 10, 30]
 
-    for attempt, wait_seconds in enumerate(
-        waits,
-        start=1,
-    ):
-
+    for attempt, wait_seconds in enumerate(waits, start=1):
         if wait_seconds:
-
             print(
-                f"{wait_seconds}秒待って"
-                "候補選定を再試行..."
+                f"{wait_seconds}秒待って候補選定を再試行..."
             )
-
-            time.sleep(
-                wait_seconds
-            )
+            time.sleep(wait_seconds)
 
         try:
-
-            response = (
-                client.models
-                .generate_content(
-                    model=MODEL_NAME,
-                    contents=prompt,
-                )
+            response = client.models.generate_content(
+                model=MODEL_NAME,
+                contents=prompt,
             )
 
-            text = (
-                response.text
-                or ""
-            )
-
-            match = re.search(
-                r"\d+",
-                text
-            )
+            text = response.text or ""
+            match = re.search(r"\d+", text)
 
             if match:
+                number = int(match.group())
 
-                number = int(
-                    match.group()
-                )
-
-                if (
-                    1
-                    <= number
-                    <= len(candidates)
-                ):
-
-                    return candidates[
-                        number - 1
-                    ]
+                if 1 <= number <= len(candidates):
+                    return candidates[number - 1]
 
         except Exception as e:
-
             print(
-                f"候補選定エラー "
-                f"{attempt}/"
-                f"{len(waits)}:",
-                e
+                f"候補選定エラー {attempt}/{len(waits)}:",
+                e,
             )
 
     return candidates[0]
@@ -1077,11 +1052,7 @@ URL:
 # 記事生成
 # =========================================================
 
-def generate_article(
-    candidate,
-    source_text
-):
-
+def generate_article(candidate, source_text):
     prompt = f"""
 あなたは日本のAI・テクノロジー系Webメディアの編集者です。
 
@@ -1101,6 +1072,8 @@ def generate_article(
 ・旧モデルとの比較を推測しない
 ・情報源URLを生成しない
 ・不明な点は無理に説明しない
+・煽りタイトルにしない
+・公式情報が専門家向けの場合、「一般ユーザーがすぐ使える」と誤解させない
 
 ニュース本文の単純な言い換えにはせず、
 
@@ -1113,22 +1086,17 @@ def generate_article(
 を整理してください。
 
 読みやすさは、
-
 一般ユーザー向け 約70%
 開発者向け 約30%
-
 程度を意識してください。
 
-専門用語には、
-必要であれば短い説明を加えてください。
+専門用語には必要であれば短い説明を加えてください。
 
-文字量はおおむね
-1500〜2500文字。
+文字量はおおむね1500〜2500文字。
 
 HTML断片だけを出力してください。
 
 禁止：
-
 <html>
 <head>
 <body>
@@ -1154,82 +1122,42 @@ Markdownコードフェンス
 
 <h2>まとめ</h2>
 
-
 【公式媒体】
-
 {candidate['source_name']}
 
-
 【RSSタイトル】
-
 {candidate['title']}
 
-
 【実ページタイトル】
-
 {candidate.get('page_title', candidate['title'])}
 
-
 【公式記事本文】
-
 {source_text}
 """
 
-    waits = [
-        0,
-        10,
-        30,
-        60,
-    ]
-
+    waits = [0, 10, 30, 60]
     last_error = None
 
-    for attempt, wait_seconds in enumerate(
-        waits,
-        start=1,
-    ):
-
+    for attempt, wait_seconds in enumerate(waits, start=1):
         if wait_seconds:
-
             print(
-                f"{wait_seconds}秒待って"
-                "本文生成を再試行..."
+                f"{wait_seconds}秒待って本文生成を再試行..."
             )
-
-            time.sleep(
-                wait_seconds
-            )
+            time.sleep(wait_seconds)
 
         try:
-
             print(
-                f"本文生成 "
-                f"{attempt}/"
-                f"{len(waits)}"
+                f"本文生成 {attempt}/{len(waits)}"
             )
 
-            response = (
-                client.models
-                .generate_content(
-                    model=MODEL_NAME,
-                    contents=prompt,
-                )
+            response = client.models.generate_content(
+                model=MODEL_NAME,
+                contents=prompt,
             )
 
-            text = (
-                response.text
-                or ""
-            ).strip()
-
-            text = text.replace(
-                "```html",
-                ""
-            )
-
-            text = text.replace(
-                "```",
-                ""
-            )
+            text = (response.text or "").strip()
+            text = text.replace("```html", "")
+            text = text.replace("```", "")
 
             required_headings = [
                 "今回のポイント",
@@ -1242,8 +1170,7 @@ Markdownコードフェンス
 
             headings_ok = all(
                 keyword in text
-                for keyword
-                in required_headings
+                for keyword in required_headings
             )
 
             if (
@@ -1251,37 +1178,26 @@ Markdownコードフェンス
                 and len(text) > 1200
                 and headings_ok
             ):
-
                 return text
 
             print(
-                "本文品質条件を"
-                "満たさないため再試行"
+                "本文品質条件を満たさないため再試行"
             )
 
         except Exception as e:
-
             last_error = e
-
-            print(
-                "記事生成エラー:",
-                e
-            )
+            print("記事生成エラー:", e)
 
     raise RuntimeError(
-        f"記事生成失敗: "
-        f"{last_error}"
+        f"記事生成失敗: {last_error}"
     )
 
 
 # =========================================================
-# タイトル取得
+# タイトル / 説明文
 # =========================================================
 
-def extract_title(
-    article_html
-):
-
+def extract_title(article_html):
     match = re.search(
         r"<h1[^>]*>(.*?)</h1>",
         article_html,
@@ -1289,7 +1205,6 @@ def extract_title(
     )
 
     if match:
-
         return re.sub(
             r"<.*?>",
             "",
@@ -1299,31 +1214,50 @@ def extract_title(
     return "AI最新情報"
 
 
+def extract_description(article_html, title):
+    soup = BeautifulSoup(
+        article_html,
+        "html.parser",
+    )
+
+    first_p = soup.find("p")
+
+    if first_p:
+        return truncate_description(
+            first_p.get_text(" ", strip=True)
+        )
+
+    return truncate_description(
+        f"{title}について公式情報をもとにわかりやすく解説します。"
+    )
+
+
 # =========================================================
 # HTMLページ作成
 # =========================================================
 
 def build_page(
     title,
+    description,
     article_html,
     candidate,
+    filename,
+    now,
 ):
-
-    now = datetime.now(
-        JST
-    )
-
     safe_title = html.escape(
         title,
         quote=True,
     )
 
-    safe_source_title = (
-        html.escape(
-            candidate.get(
-                "page_title",
-                candidate["title"]
-            )
+    safe_description = html.escape(
+        description,
+        quote=True,
+    )
+
+    safe_source_title = html.escape(
+        candidate.get(
+            "page_title",
+            candidate["title"],
         )
     )
 
@@ -1332,26 +1266,35 @@ def build_page(
         quote=True,
     )
 
-    safe_source_name = (
-        html.escape(
-            candidate[
-                "source_name"
-            ]
-        )
+    safe_source_name = html.escape(
+        candidate["source_name"]
     )
 
-    ga_tag = get_ga_tag()
-
-    current_year = (
-        now.strftime("%Y")
+    article_url = (
+        f"{SITE_BASE_URL}/articles/{filename}"
     )
+
+    published_date = now.date().isoformat()
+
+    seo_block = build_seo_block(
+        title=title,
+        description=description,
+        canonical_url=article_url,
+        page_type="article",
+        published_date=published_date,
+        modified_date=published_date,
+    )
+
+    current_year = now.strftime("%Y")
 
     return f"""<!DOCTYPE html>
 <html lang="ja">
 
 <head>
 
-{ga_tag}
+{get_ga_tag()}
+
+{seo_block}
 
 <meta charset="UTF-8">
 
@@ -1361,7 +1304,7 @@ content="width=device-width, initial-scale=1.0">
 <title>{safe_title} | {SITE_NAME}</title>
 
 <meta name="description"
-content="{safe_title}について公式情報をもとにわかりやすく解説します。">
+content="{safe_description}">
 
 <style>
 
@@ -1568,48 +1511,38 @@ def update_index(
     filename,
     candidate,
 ):
-
     if not INDEX_FILE.exists():
-
         print(
-            "index.html がないため"
-            "一覧更新をスキップ"
+            "index.html がないため一覧更新をスキップ"
         )
-
         return
 
-    index_html = (
-        INDEX_FILE.read_text(
-            encoding="utf-8"
-        )
+    index_html = INDEX_FILE.read_text(
+        encoding="utf-8"
     )
 
-    marker = (
-        '<div class="article-list">'
-    )
+    marker = '<div class="article-list">'
 
     if marker not in index_html:
-
         print(
-            "article-list が"
-            "見つからないため"
-            "一覧更新をスキップ"
+            "article-list が見つからないため一覧更新をスキップ"
         )
-
         return
 
-    now = datetime.now(
-        JST
-    )
+    # 同じ記事リンクの二重挿入防止
+    article_href = f"articles/{filename}"
 
-    safe_title = html.escape(
-        title
-    )
+    if article_href in index_html:
+        print(
+            "index.html に同じ記事が既に存在するためスキップ:",
+            article_href,
+        )
+        return
 
+    now = datetime.now(JST)
+    safe_title = html.escape(title)
     safe_source = html.escape(
-        candidate[
-            "source_name"
-        ]
+        candidate["source_name"]
     )
 
     card = f"""
@@ -1621,7 +1554,7 @@ def update_index(
         </div>
 
         <h2>
-          <a href="articles/{filename}">
+          <a href="{article_href}">
             {safe_title}
           </a>
         </h2>
@@ -1634,14 +1567,10 @@ def update_index(
       </article>
 """
 
-    index_html = (
-        index_html.replace(
-            marker,
-            marker
-            + "\n"
-            + card,
-            1,
-        )
+    index_html = index_html.replace(
+        marker,
+        marker + "\n" + card,
+        1,
     )
 
     INDEX_FILE.write_text(
@@ -1654,8 +1583,14 @@ def update_index(
 # MAIN
 # =========================================================
 
-def main():
+def refresh_static_files(history):
+    ensure_ga_tags()
+    ensure_existing_seo_tags(history)
+    generate_sitemap(history)
+    generate_robots()
 
+
+def main():
     print("")
     print("========================")
     print("AI Trend Blog")
@@ -1663,241 +1598,141 @@ def main():
     print("========================")
     print("")
 
-    # -------------------------------------
-    # GA4
-    # -------------------------------------
+    history = load_history()
 
+    # 既存ページにもGA4 / SEOを反映。
     ensure_ga_tags()
+    ensure_existing_seo_tags(history)
+    generate_robots()
 
     print(
         "GA4 Measurement ID:",
-        GA_MEASUREMENT_ID
+        GA_MEASUREMENT_ID,
     )
 
-    # -------------------------------------
-    # 履歴
-    # -------------------------------------
-
-    history = load_history()
-
-    # -------------------------------------
-    # RSS取得
-    # -------------------------------------
-
-    candidates = (
-        collect_candidates()
-    )
+    candidates = collect_candidates()
 
     print(
         "RSS候補数:",
-        len(candidates)
+        len(candidates),
     )
 
     if not candidates:
-
         print(
-            "RSSから候補を"
-            "取得できませんでした。"
+            "RSSから候補を取得できませんでした。"
         )
-
-        generate_sitemap(
-            history
-        )
-
+        generate_sitemap(history)
         return
-
-    # -------------------------------------
-    # URL実在確認
-    # -------------------------------------
 
     valid_candidates = []
 
     for candidate in candidates:
-
-        validated = (
-            validate_candidate(
-                candidate
-            )
-        )
+        validated = validate_candidate(candidate)
 
         if validated:
-
-            valid_candidates.append(
-                validated
-            )
+            valid_candidates.append(validated)
 
     print(
         "URL確認済み候補:",
-        len(valid_candidates)
+        len(valid_candidates),
     )
 
     if not valid_candidates:
-
         print(
-            "有効な公式記事候補が"
-            "ありません。"
+            "有効な公式記事候補がありません。"
         )
-
-        generate_sitemap(
-            history
-        )
-
+        generate_sitemap(history)
         return
 
-    # -------------------------------------
-    # 重複除外
-    # -------------------------------------
-
-    unused_candidates = (
-        filter_unused_candidates(
-            valid_candidates,
-            history,
-        )
+    unused_candidates = filter_unused_candidates(
+        valid_candidates,
+        history,
     )
 
     print(
         "未使用候補:",
-        len(
-            unused_candidates
-        )
+        len(unused_candidates),
     )
 
     if not unused_candidates:
-
         print(
-            "新規記事候補が"
-            "ありません。"
+            "新規記事候補がありません。"
         )
-
         print(
-            "今回は投稿せず"
-            "正常終了します。"
+            "今回は投稿せず正常終了します。"
         )
-
-        generate_sitemap(
-            history
-        )
-
+        generate_sitemap(history)
         return
 
-    # -------------------------------------
-    # 候補選定
-    # -------------------------------------
-
-    candidate = (
-        choose_topic(
-            unused_candidates
-        )
+    candidate = choose_topic(
+        unused_candidates
     )
 
     if not candidate:
-
         print(
-            "採用可能なテーマが"
-            "ありませんでした。"
+            "採用可能なテーマがありませんでした。"
         )
-
-        generate_sitemap(
-            history
-        )
-
+        generate_sitemap(history)
         return
 
     print("")
     print("========================")
     print("採用テーマ")
     print("========================")
-
     print(
         "媒体:",
-        candidate[
-            "source_name"
-        ]
+        candidate["source_name"],
     )
-
     print(
         "RSSタイトル:",
-        candidate[
-            "title"
-        ]
+        candidate["title"],
     )
-
     print(
         "実ページタイトル:",
         candidate.get(
             "page_title",
-            candidate[
-                "title"
-            ]
-        )
+            candidate["title"],
+        ),
     )
-
     print(
         "URL:",
-        candidate[
-            "url"
-        ]
+        candidate["url"],
     )
 
-    # -------------------------------------
-    # 実ページ本文
-    # -------------------------------------
-
-    source_text = (
-        extract_page_text(
-            candidate[
-                "url"
-            ]
-        )
+    source_text = extract_page_text(
+        candidate["url"]
     )
 
     print(
         "取得本文文字数:",
-        len(source_text)
+        len(source_text),
     )
 
-    if (
-        len(source_text)
-        < MIN_PAGE_TEXT_LENGTH
-    ):
-
+    if len(source_text) < MIN_PAGE_TEXT_LENGTH:
         print(
-            "公式記事本文を"
-            "十分取得できないため"
-            "投稿しません。"
+            "公式記事本文を十分取得できないため投稿しません。"
         )
-
-        generate_sitemap(
-            history
-        )
-
+        generate_sitemap(history)
         return
 
-    # -------------------------------------
-    # Gemini記事生成
-    # -------------------------------------
-
-    article_html = (
-        generate_article(
-            candidate,
-            source_text,
-        )
+    article_html = generate_article(
+        candidate,
+        source_text,
     )
 
-    title = (
-        extract_title(
-            article_html
-        )
+    title = extract_title(
+        article_html
     )
 
-    now = datetime.now(
-        JST
+    description = extract_description(
+        article_html,
+        title,
     )
+
+    now = datetime.now(JST)
 
     filename = (
-        now.strftime(
-            "%Y-%m-%d_%H%M%S"
-        )
+        now.strftime("%Y-%m-%d_%H%M%S")
         + ".html"
     )
 
@@ -1905,17 +1740,15 @@ def main():
         exist_ok=True
     )
 
-    filepath = (
-        ARTICLE_DIR
-        / filename
-    )
+    filepath = ARTICLE_DIR / filename
 
-    page_html = (
-        build_page(
-            title,
-            article_html,
-            candidate,
-        )
+    page_html = build_page(
+        title=title,
+        description=description,
+        article_html=article_html,
+        candidate=candidate,
+        filename=filename,
+        now=now,
     )
 
     filepath.write_text(
@@ -1923,116 +1756,57 @@ def main():
         encoding="utf-8",
     )
 
-    # -------------------------------------
-    # index更新
-    # -------------------------------------
-
     update_index(
         title,
         filename,
         candidate,
     )
 
-    # -------------------------------------
-    # 履歴更新
-    # -------------------------------------
-
-    history.append({
-        "title":
-            title,
-
-        "source_title":
-            candidate[
-                "title"
-            ],
-
-        "page_title":
-            candidate.get(
+    history.append(
+        {
+            "title": title,
+            "source_title": candidate["title"],
+            "page_title": candidate.get(
                 "page_title",
-                candidate[
-                    "title"
-                ]
+                candidate["title"],
             ),
-
-        "source_name":
-            candidate[
-                "source_name"
-            ],
-
-        "url":
-            candidate[
-                "url"
-            ],
-
-        "filename":
-            filename,
-
-        "created_at":
-            now.isoformat(),
-    })
-
-    history = history[
-        -1000:
-    ]
-
-    save_history(
-        history
+            "source_name": candidate["source_name"],
+            "url": candidate["url"],
+            "filename": filename,
+            "created_at": now.isoformat(),
+        }
     )
 
-    # -------------------------------------
-    # sitemap更新
-    # -------------------------------------
+    history = history[-1000:]
+    save_history(history)
 
-    generate_sitemap(
-        history
-    )
+    # indexを更新した後、トップページSEOも最終更新。
+    ensure_existing_seo_tags(history)
 
-    # -------------------------------------
-    # 完了
-    # -------------------------------------
+    generate_sitemap(history)
+    generate_robots()
 
     print("")
     print("========================")
     print("記事生成成功")
     print("========================")
-
-    print(
-        "記事タイトル:",
-        title
-    )
-
-    print(
-        "保存先:",
-        filepath
-    )
-
-    print(
-        "情報源:",
-        candidate[
-            "url"
-        ]
-    )
-
+    print("記事タイトル:", title)
+    print("保存先:", filepath)
+    print("情報源:", candidate["url"])
     print(
         "実ページタイトル:",
         candidate.get(
             "page_title",
-            candidate[
-                "title"
-            ]
-        )
+            candidate["title"],
+        ),
     )
-
+    print("GA4:", GA_MEASUREMENT_ID)
+    print("Sitemap:", SITEMAP_FILE)
+    print("Robots:", ROBOTS_FILE)
     print(
-        "GA4:",
-        GA_MEASUREMENT_ID
+        "Canonical:",
+        f"{SITE_BASE_URL}/articles/{filename}",
     )
-
-    print(
-        "Sitemap:",
-        SITEMAP_FILE
-    )
-
     print("========================")
 
 
