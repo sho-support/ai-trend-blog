@@ -38,6 +38,11 @@ MAX_CANDIDATES = 12
 REQUEST_TIMEOUT = 20
 
 MIN_PAGE_TEXT_LENGTH = 500
+
+# AI記事を生成するための「公式記事本文」の最低文字数。
+# これ未満なら、短い情報から無理に長文を作らず次の候補へ回す。
+MIN_ARTICLE_SOURCE_TEXT_LENGTH = 1000
+
 MAX_SOURCE_TEXT_LENGTH = 16000
 
 
@@ -2205,8 +2210,97 @@ def main():
         generate_sitemap(history)
         return
 
+    # -------------------------------------
+    # 記事生成に十分な「公式本文」がある候補だけ残す
+    # -------------------------------------
+
+    source_ready_candidates = []
+
+    print("")
+    print(
+        "公式本文の品質チェック開始 "
+        f"(最低 {MIN_ARTICLE_SOURCE_TEXT_LENGTH} 文字)"
+    )
+
+    for validated_candidate in valid_candidates:
+        try:
+            source_text = extract_page_text(
+                validated_candidate["url"]
+            )
+
+        except Exception as e:
+            print(
+                "公式本文取得失敗:",
+                validated_candidate.get(
+                    "url",
+                    ""
+                ),
+                e,
+            )
+            continue
+
+        source_length = len(
+            source_text
+        )
+
+        print(
+            "公式本文:",
+            validated_candidate[
+                "source_name"
+            ],
+            source_length,
+            "文字 |",
+            validated_candidate[
+                "title"
+            ],
+        )
+
+        if (
+            source_length
+            < MIN_ARTICLE_SOURCE_TEXT_LENGTH
+        ):
+            print(
+                "短すぎるため候補から除外:",
+                validated_candidate[
+                    "url"
+                ],
+            )
+            continue
+
+        ready_candidate = dict(
+            validated_candidate
+        )
+
+        ready_candidate[
+            "source_text"
+        ] = source_text
+
+        ready_candidate[
+            "source_text_length"
+        ] = source_length
+
+        source_ready_candidates.append(
+            ready_candidate
+        )
+
+    print(
+        "本文品質OK候補:",
+        len(source_ready_candidates),
+    )
+
+    if not source_ready_candidates:
+        print(
+            "1000文字以上の公式本文を持つ候補がありません。"
+        )
+        print(
+            "短い情報から無理に記事を作らず、今回は投稿せず正常終了します。"
+        )
+        generate_sitemap(history)
+        return
+
+    # 十分な根拠本文がある候補の中からGeminiが最終選定
     candidate = choose_topic(
-        valid_candidates
+        source_ready_candidates
     )
 
     if not candidate:
@@ -2240,21 +2334,15 @@ def main():
         candidate["url"],
     )
 
-    source_text = extract_page_text(
-        candidate["url"]
-    )
+    # 品質チェック時に取得済みの本文を再利用
+    source_text = candidate[
+        "source_text"
+    ]
 
     print(
         "取得本文文字数:",
         len(source_text),
     )
-
-    if len(source_text) < MIN_PAGE_TEXT_LENGTH:
-        print(
-            "公式記事本文を十分取得できないため投稿しません。"
-        )
-        generate_sitemap(history)
-        return
 
     article_html = generate_article(
         candidate,
