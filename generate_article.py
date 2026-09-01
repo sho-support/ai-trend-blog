@@ -219,7 +219,18 @@ def replace_managed_seo(document, seo_block):
         re.DOTALL,
     )
 
-    document = pattern.sub("", document)
+    match = pattern.search(document)
+
+    if match:
+        # 既存ブロックが同一なら何も書き換えない。
+        if match.group(0).strip() == seo_block.strip():
+            return document
+
+        return (
+            document[:match.start()]
+            + seo_block
+            + document[match.end():]
+        )
 
     if "<head>" not in document:
         return document
@@ -229,7 +240,6 @@ def replace_managed_seo(document, seo_block):
         "<head>\n\n" + seo_block,
         1,
     )
-
 
 def ensure_ga_tags():
     files = []
@@ -587,34 +597,78 @@ def generate_robots():
 # =========================================================
 
 def collect_candidates():
-
     now = datetime.now(timezone.utc)
-
     candidates = []
 
+    def add_candidate(
+        source_name,
+        source_domain,
+        priority,
+        title,
+        url,
+        published="",
+        summary="",
+        discovery="rss",
+    ):
+        title = re.sub(r"\s+", " ", (title or "")).strip()
+        url = (url or "").strip()
 
-    # =====================================================
-    # RSS取得用
-    # =====================================================
+        if not title or not url:
+            return False
 
-    def collect_from_rss(source):
+        parsed = urlparse(url)
 
-        added = 0
+        if parsed.scheme not in ("http", "https"):
+            return False
 
-        print("")
-        print(
-            f"RSS取得: {source['name']}"
+        if not domain_is_allowed(parsed.hostname, source_domain):
+            return False
+
+        normalized_url = url.split("#")[0].split("?")[0].rstrip("/") + "/"
+
+        if any(
+            item["url"].rstrip("/") == normalized_url.rstrip("/")
+            for item in candidates
+        ):
+            return False
+
+        candidates.append(
+            {
+                "source_name": source_name,
+                "source_domain": source_domain,
+                "priority": priority,
+                "title": title,
+                "url": normalized_url,
+                "published": published or "",
+                "summary": summary or "",
+                "discovery": discovery,
+            }
+        )
+        return True
+
+    def collect_openai_rss():
+        source = next(
+            (
+                item
+                for item in SOURCES
+                if item["name"] == "OpenAI"
+            ),
+            None,
         )
 
-        try:
+        if not source:
+            return 0
 
+        print("")
+        print("RSS取得: OpenAI")
+
+        try:
             response = requests.get(
                 source["feed"],
                 headers=HEADERS,
                 timeout=REQUEST_TIMEOUT,
                 allow_redirects=True,
             )
-
             response.raise_for_status()
 
             print(
@@ -622,618 +676,482 @@ def collect_candidates():
                 response.status_code,
                 response.url,
             )
-
             print(
                 "Content-Type:",
-                response.headers.get(
-                    "Content-Type",
-                    ""
-                ),
+                response.headers.get("Content-Type", ""),
             )
 
-            feed = feedparser.parse(
-                response.content
-            )
+            feed = feedparser.parse(response.content)
 
-            if getattr(
-                feed,
-                "bozo",
-                False
-            ):
-
+            if getattr(feed, "bozo", False):
                 print(
                     "RSS警告:",
-                    source["name"],
-                    getattr(
-                        feed,
-                        "bozo_exception",
-                        ""
-                    ),
+                    "OpenAI",
+                    getattr(feed, "bozo_exception", ""),
                 )
-
-
-            entry_count = len(
-                getattr(
-                    feed,
-                    "entries",
-                    []
-                )
-            )
 
             print(
                 "RSSエントリー数:",
-                entry_count
+                len(getattr(feed, "entries", [])),
             )
 
+            added = 0
 
             for entry in feed.entries:
-
                 title = (
-                    getattr(
-                        entry,
-                        "title",
-                        ""
-                    )
+                    getattr(entry, "title", "")
                     or ""
                 ).strip()
 
                 url = (
-                    getattr(
-                        entry,
-                        "link",
-                        ""
-                    )
+                    getattr(entry, "link", "")
                     or ""
                 ).strip()
-
 
                 if not title or not url:
                     continue
 
-
-                parsed_url = urlparse(
-                    url
-                )
-
-                if parsed_url.scheme not in (
-                    "http",
-                    "https",
-                ):
-                    continue
-
-
-                published = entry_datetime(
-                    entry
-                )
-
+                published = entry_datetime(entry)
 
                 if published:
-
-                    age_days = (
-                        now
-                        - published
-                    ).days
+                    age_days = (now - published).days
 
                     if age_days > MAX_SOURCE_AGE_DAYS:
                         continue
 
-
                 summary = (
-                    getattr(
-                        entry,
-                        "summary",
-                        ""
-                    )
-                    or getattr(
-                        entry,
-                        "description",
-                        ""
-                    )
+                    getattr(entry, "summary", "")
+                    or getattr(entry, "description", "")
                     or ""
                 )
 
+                summary_text = BeautifulSoup(
+                    summary,
+                    "html.parser",
+                ).get_text(" ", strip=True)
 
-                summary_text = (
-                    BeautifulSoup(
-                        summary,
-                        "html.parser"
-                    )
-                    .get_text(
-                        " ",
-                        strip=True
-                    )
-                )
+                if add_candidate(
+                    source_name="OpenAI",
+                    source_domain="openai.com",
+                    priority=100,
+                    title=title,
+                    url=url,
+                    published=(
+                        published.isoformat()
+                        if published
+                        else ""
+                    ),
+                    summary=summary_text,
+                    discovery="rss",
+                ):
+                    added += 1
 
-
-                candidates.append(
-                    {
-                        "source_name":
-                            source["name"],
-
-                        "source_domain":
-                            source["domain"],
-
-                        "priority":
-                            source["priority"],
-
-                        "title":
-                            title,
-
-                        "url":
-                            url,
-
-                        "published":
-                            (
-                                published.isoformat()
-                                if published
-                                else ""
-                            ),
-
-                        "summary":
-                            summary_text,
-                    }
-                )
-
-                added += 1
-
+                if added >= 20:
+                    break
 
             print(
-                "RSS候補追加数:",
-                source["name"],
+                "OpenAI候補数:",
                 added,
             )
 
+            return added
 
         except Exception as e:
-
             print(
-                "RSS取得失敗:",
-                source["name"],
+                "OpenAI RSS取得失敗:",
                 e,
             )
+            return 0
 
+    def parse_time_from_container(container):
+        if not container:
+            return ""
 
-        return added
+        time_tag = container.find("time")
 
+        if not time_tag:
+            return ""
 
-    # =====================================================
-    # Google公式AIページ フォールバック
-    # =====================================================
+        raw = (
+            time_tag.get("datetime")
+            or time_tag.get_text(" ", strip=True)
+            or ""
+        ).strip()
 
-    def collect_google_fallback():
+        if not raw:
+            return ""
 
+        try:
+            value = raw.replace("Z", "+00:00")
+            dt = datetime.fromisoformat(value)
+
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+
+            return dt.astimezone(timezone.utc).isoformat()
+
+        except Exception:
+            return ""
+
+    def collect_html_listing(
+        source_name,
+        source_domain,
+        priority,
+        listing_url,
+        max_items=20,
+    ):
         print("")
         print(
-            "Google公式AIページから取得"
+            f"{source_name}公式記事一覧から取得"
         )
 
-        added = 0
+        try:
+            response = requests.get(
+                listing_url,
+                headers=HEADERS,
+                timeout=REQUEST_TIMEOUT,
+                allow_redirects=True,
+            )
+            response.raise_for_status()
 
-        url = (
+            print(
+                f"{source_name} HTTP:",
+                response.status_code,
+                response.url,
+            )
+
+            soup = BeautifulSoup(
+                response.text,
+                "html.parser",
+            )
+
+            root = (
+                soup.find("main")
+                or soup
+            )
+
+            article_containers = root.find_all("article")
+            link_items = []
+
+            if article_containers:
+                for container in article_containers:
+                    for a in container.find_all(
+                        "a",
+                        href=True,
+                    ):
+                        link_items.append(
+                            (a, container)
+                        )
+            else:
+                for a in root.find_all(
+                    "a",
+                    href=True,
+                ):
+                    container = (
+                        a.find_parent("li")
+                        or a.find_parent("section")
+                        or a.parent
+                    )
+                    link_items.append(
+                        (a, container)
+                    )
+
+            added = 0
+            seen_local = set()
+
+            skip_words = (
+                "view more",
+                "see all",
+                "learn more",
+                "read more",
+                "more from",
+                "rss",
+                "feed",
+                "privacy",
+                "terms",
+                "help",
+                "images",
+            )
+
+            for a, container in link_items:
+                href = (
+                    a.get("href")
+                    or ""
+                ).strip()
+
+                title = (
+                    a.get_text(
+                        " ",
+                        strip=True,
+                    )
+                    or ""
+                ).strip()
+
+                if len(title) < 12:
+                    continue
+
+                title_lower = title.lower()
+
+                if any(
+                    word in title_lower
+                    for word in skip_words
+                ):
+                    continue
+
+                if href.startswith("/"):
+                    article_url = (
+                        f"https://{source_domain}"
+                        + href
+                    )
+                elif href.startswith(
+                    f"https://{source_domain}/"
+                ):
+                    article_url = href
+                else:
+                    continue
+
+                article_url = (
+                    article_url
+                    .split("#")[0]
+                    .split("?")[0]
+                    .rstrip("/")
+                    + "/"
+                )
+
+                if (
+                    article_url.rstrip("/")
+                    == listing_url.rstrip("/")
+                ):
+                    continue
+
+                parsed = urlparse(article_url)
+                path_parts = [
+                    part
+                    for part in parsed.path.split("/")
+                    if part
+                ]
+
+                if source_name == "Google":
+                    if len(path_parts) < 2:
+                        continue
+
+                if source_name == "GitHub":
+                    if len(path_parts) < 2:
+                        continue
+
+                    blocked_github_top = {
+                        "latest",
+                        "ai-and-ml",
+                        "developer-skills",
+                        "engineering",
+                        "enterprise-software",
+                        "news-insights",
+                        "open-source",
+                    }
+
+                    if (
+                        len(path_parts) == 1
+                        and path_parts[0]
+                        in blocked_github_top
+                    ):
+                        continue
+
+                if article_url in seen_local:
+                    continue
+
+                seen_local.add(article_url)
+
+                published = parse_time_from_container(
+                    container
+                )
+
+                if published:
+                    try:
+                        published_dt = datetime.fromisoformat(
+                            published
+                        )
+
+                        if (
+                            now - published_dt
+                        ).days > MAX_SOURCE_AGE_DAYS:
+                            continue
+
+                    except Exception:
+                        pass
+
+                summary = ""
+
+                if container:
+                    paragraph = container.find("p")
+
+                    if paragraph:
+                        summary = paragraph.get_text(
+                            " ",
+                            strip=True,
+                        )
+
+                if add_candidate(
+                    source_name=source_name,
+                    source_domain=source_domain,
+                    priority=priority,
+                    title=title,
+                    url=article_url,
+                    published=published,
+                    summary=summary,
+                    discovery="html",
+                ):
+                    added += 1
+
+                if added >= max_items:
+                    break
+
+            print(
+                f"{source_name}候補数:",
+                added,
+            )
+
+            return added
+
+        except Exception as e:
+            print(
+                f"{source_name}記事一覧取得失敗:",
+                e,
+            )
+            return 0
+
+    collect_openai_rss()
+
+    collect_html_listing(
+        source_name="Google",
+        source_domain="blog.google",
+        priority=98,
+        listing_url=(
             "https://blog.google/"
             "innovation-and-ai/"
             "technology/ai/"
-        )
-
-        try:
-
-            response = requests.get(
-                url,
-                headers=HEADERS,
-                timeout=REQUEST_TIMEOUT,
-            )
-
-            response.raise_for_status()
-
-            soup = BeautifulSoup(
-                response.text,
-                "html.parser"
-            )
-
-
-            seen = set()
-
-
-            for a in soup.find_all(
-                "a",
-                href=True
-            ):
-
-                href = (
-                    a.get("href")
-                    or ""
-                ).strip()
-
-                title = (
-                    a.get_text(
-                        " ",
-                        strip=True
-                    )
-                    or ""
-                ).strip()
-
-
-                if len(title) < 12:
-                    continue
-
-
-                if href.startswith("/"):
-                    article_url = (
-                        "https://blog.google"
-                        + href
-                    )
-
-                elif href.startswith(
-                    "https://blog.google/"
-                ):
-                    article_url = href
-
-                else:
-                    continue
-
-
-                parsed = urlparse(
-                    article_url
-                )
-
-
-                if not domain_is_allowed(
-                    parsed.hostname,
-                    "blog.google"
-                ):
-                    continue
-
-
-                if article_url in seen:
-                    continue
-
-
-                # カテゴリ・トップページ等を除外
-                if article_url.rstrip("/") in [
-                    url.rstrip("/"),
-                    "https://blog.google",
-                ]:
-                    continue
-
-
-                seen.add(
-                    article_url
-                )
-
-
-                candidates.append(
-                    {
-                        "source_name":
-                            "Google",
-
-                        "source_domain":
-                            "blog.google",
-
-                        "priority":
-                            98,
-
-                        "title":
-                            title,
-
-                        "url":
-                            article_url,
-
-                        "published":
-                            "",
-
-                        "summary":
-                            "",
-                    }
-                )
-
-                added += 1
-
-
-                if added >= 20:
-                    break
-
-
-            print(
-                "Googleフォールバック候補数:",
-                added
-            )
-
-
-        except Exception as e:
-
-            print(
-                "Googleフォールバック失敗:",
-                e,
-            )
-
-
-        return added
-
-
-    # =====================================================
-    # GitHub Latestページ
-    # =====================================================
-
-    def collect_github_latest():
-
-        print("")
-        print(
-            "GitHub Latestページから取得"
-        )
-
-        added = 0
-
-        url = (
-            "https://github.blog/latest/"
-        )
-
-        try:
-
-            response = requests.get(
-                url,
-                headers=HEADERS,
-                timeout=REQUEST_TIMEOUT,
-            )
-
-            response.raise_for_status()
-
-            soup = BeautifulSoup(
-                response.text,
-                "html.parser"
-            )
-
-
-            seen = set()
-
-
-            for a in soup.find_all(
-                "a",
-                href=True
-            ):
-
-                href = (
-                    a.get("href")
-                    or ""
-                ).strip()
-
-                title = (
-                    a.get_text(
-                        " ",
-                        strip=True
-                    )
-                    or ""
-                ).strip()
-
-
-                if len(title) < 12:
-                    continue
-
-
-                if href.startswith("/"):
-                    article_url = (
-                        "https://github.blog"
-                        + href
-                    )
-
-                elif href.startswith(
-                    "https://github.blog/"
-                ):
-                    article_url = href
-
-                else:
-                    continue
-
-
-                parsed = urlparse(
-                    article_url
-                )
-
-
-                if not domain_is_allowed(
-                    parsed.hostname,
-                    "github.blog"
-                ):
-                    continue
-
-
-                if article_url in seen:
-                    continue
-
-
-                # Latestやカテゴリページ除外
-                if article_url.rstrip("/") in [
-                    url.rstrip("/"),
-                    "https://github.blog",
-                ]:
-                    continue
-
-
-                seen.add(
-                    article_url
-                )
-
-
-                candidates.append(
-                    {
-                        "source_name":
-                            "GitHub",
-
-                        "source_domain":
-                            "github.blog",
-
-                        "priority":
-                            90,
-
-                        "title":
-                            title,
-
-                        "url":
-                            article_url,
-
-                        "published":
-                            "",
-
-                        "summary":
-                            "",
-                    }
-                )
-
-                added += 1
-
-
-                if added >= 20:
-                    break
-
-
-            print(
-                "GitHub Latest候補数:",
-                added
-            )
-
-
-        except Exception as e:
-
-            print(
-                "GitHub Latest取得失敗:",
-                e,
-            )
-
-
-        return added
-
-
-    # =====================================================
-    # OpenAI
-    # =====================================================
-
-    openai_source = next(
-        (
-            source
-            for source in SOURCES
-            if source["name"]
-            == "OpenAI"
         ),
-        None
+        max_items=20,
     )
 
-    if openai_source:
-
-        collect_from_rss(
-            openai_source
-        )
-
-
-    # =====================================================
-    # Google
-    # =====================================================
-
-    google_source = next(
-        (
-            source
-            for source in SOURCES
-            if source["name"]
-            == "Google"
-        ),
-        None
+    collect_html_listing(
+        source_name="GitHub",
+        source_domain="github.blog",
+        priority=90,
+        listing_url="https://github.blog/latest/",
+        max_items=20,
     )
 
-    google_added = 0
-
-    if google_source:
-
-        google_added = (
-            collect_from_rss(
-                google_source
-            )
-        )
-
-
-    if google_added == 0:
-
-        print(
-            "Google RSSが0件のため"
-            "公式AIページへフォールバック"
-        )
-
-        collect_google_fallback()
-
-
-    # =====================================================
-    # GitHub
-    # =====================================================
-
+    print("")
     print(
-        ""
+        "全取得候補数:",
+        len(candidates),
     )
 
-    print(
-        "GitHubは公式Latestページを使用"
-    )
-
-    collect_github_latest()
+    return candidates
 
 
-    # =====================================================
-    # URL重複除去
-    # =====================================================
+def select_balanced_candidates(
+    candidates,
+    max_total=MAX_CANDIDATES,
+):
+    source_order = [
+        "OpenAI",
+        "Google",
+        "GitHub",
+    ]
 
-    unique_candidates = []
-
-    seen_urls = set()
-
+    grouped = {
+        name: []
+        for name in source_order
+    }
 
     for candidate in candidates:
-
-        url = (
-            candidate["url"]
-            .split("#")[0]
-            .rstrip("/")
+        source_name = candidate.get(
+            "source_name",
+            ""
         )
 
+        if source_name in grouped:
+            grouped[source_name].append(
+                candidate
+            )
 
-        if url in seen_urls:
-            continue
-
-
-        seen_urls.add(
-            url
+    for source_name in source_order:
+        grouped[source_name].sort(
+            key=lambda item: item.get(
+                "published",
+                ""
+            ),
+            reverse=True,
         )
 
+    selected = []
+    selected_urls = set()
 
-        candidate["url"] = (
-            url + "/"
-        )
+    per_source = max(
+        1,
+        max_total // len(source_order),
+    )
 
+    for source_name in source_order:
+        for item in grouped[source_name][
+            :per_source
+        ]:
+            normalized = item["url"].rstrip("/")
 
-        unique_candidates.append(
-            candidate
-        )
+            if normalized in selected_urls:
+                continue
 
+            selected.append(item)
+            selected_urls.add(normalized)
 
-    # =====================================================
-    # 優先度順
-    # =====================================================
-
-    unique_candidates.sort(
-        key=lambda x: (
-            x["priority"],
-            x["published"],
+    leftovers = sorted(
+        [
+            item
+            for item in candidates
+            if item["url"].rstrip("/")
+            not in selected_urls
+        ],
+        key=lambda item: (
+            item.get("priority", 0),
+            item.get("published", ""),
         ),
         reverse=True,
     )
 
+    for item in leftovers:
+        if len(selected) >= max_total:
+            break
+
+        normalized = item["url"].rstrip("/")
+
+        if normalized in selected_urls:
+            continue
+
+        selected.append(item)
+        selected_urls.add(normalized)
+
+    counts = {
+        name: sum(
+            1
+            for item in selected
+            if item.get("source_name")
+            == name
+        )
+        for name in source_order
+    }
 
     print("")
     print(
-        "RSS・公式ページ候補合計:",
-        len(unique_candidates)
+        "最終候補内訳:",
+        counts,
+    )
+    print(
+        "最終候補数:",
+        len(selected),
     )
 
-
-    return unique_candidates[
-        :MAX_CANDIDATES
-    ]
-
+    return selected[:max_total]
 
 # =========================================================
 # ドメイン確認
@@ -1293,6 +1211,30 @@ def validate_candidate(candidate):
             " ",
             strip=True,
         )
+
+        if candidate.get("discovery") == "html":
+            og_type = soup.find(
+                "meta",
+                attrs={"property": "og:type"},
+            )
+
+            og_type_value = (
+                og_type.get("content", "").lower()
+                if og_type
+                else ""
+            )
+
+            has_article_signal = (
+                soup.find("article") is not None
+                or og_type_value == "article"
+            )
+
+            if not has_article_signal:
+                print(
+                    "記事ページ判定できないため除外:",
+                    final_url,
+                )
+                return None
 
         if len(page_text) < MIN_PAGE_TEXT_LENGTH:
             print(
@@ -2063,39 +2005,19 @@ def main():
     candidates = collect_candidates()
 
     print(
-        "RSS候補数:",
+        "取得候補数:",
         len(candidates),
     )
 
     if not candidates:
         print(
-            "RSSから候補を取得できませんでした。"
-        )
-        generate_sitemap(history)
-        return
-
-    valid_candidates = []
-
-    for candidate in candidates:
-        validated = validate_candidate(candidate)
-
-        if validated:
-            valid_candidates.append(validated)
-
-    print(
-        "URL確認済み候補:",
-        len(valid_candidates),
-    )
-
-    if not valid_candidates:
-        print(
-            "有効な公式記事候補がありません。"
+            "公式情報源から候補を取得できませんでした。"
         )
         generate_sitemap(history)
         return
 
     unused_candidates = filter_unused_candidates(
-        valid_candidates,
+        candidates,
         history,
     )
 
@@ -2114,8 +2036,37 @@ def main():
         generate_sitemap(history)
         return
 
+    selected_candidates = select_balanced_candidates(
+        unused_candidates,
+        MAX_CANDIDATES,
+    )
+
+    valid_candidates = []
+
+    for selected_candidate in selected_candidates:
+        validated = validate_candidate(
+            selected_candidate
+        )
+
+        if validated:
+            valid_candidates.append(
+                validated
+            )
+
+    print(
+        "URL確認済み候補:",
+        len(valid_candidates),
+    )
+
+    if not valid_candidates:
+        print(
+            "有効な公式記事候補がありません。"
+        )
+        generate_sitemap(history)
+        return
+
     candidate = choose_topic(
-        unused_candidates
+        valid_candidates
     )
 
     if not candidate:
