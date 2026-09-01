@@ -600,6 +600,107 @@ def collect_candidates():
     now = datetime.now(timezone.utc)
     candidates = []
 
+    def is_probable_article_url(source_name, url):
+        """
+        一覧・著者・タグ・カテゴリ等を候補から除外し、
+        実記事らしいURLだけを通す。
+        """
+        parsed = urlparse(url)
+        path = parsed.path or "/"
+
+        path_parts = [
+            part.lower()
+            for part in path.split("/")
+            if part
+        ]
+
+        if not path_parts:
+            return False
+
+        # 共通で除外する一覧・分類・著者系パス
+        blocked_anywhere = {
+            "author",
+            "authors",
+            "tag",
+            "tags",
+            "category",
+            "categories",
+            "search",
+            "feed",
+            "rss",
+            "page",
+        }
+
+        if any(part in blocked_anywhere for part in path_parts):
+            return False
+
+        if source_name == "OpenAI":
+            # OpenAI記事は通常 /index/<slug>/ など。
+            if len(path_parts) < 2:
+                return False
+
+        elif source_name == "Google":
+            # 今回は Google AI 公式一覧から取得するため、
+            # innovation-and-ai 配下の「記事URL」だけを許可。
+            if path_parts[0] != "innovation-and-ai":
+                return False
+
+            # カテゴリ階層だけではなく、末尾に記事slugが必要。
+            if len(path_parts) < 4:
+                return False
+
+            google_listing_endings = {
+                "ai",
+                "technology",
+                "products",
+                "models-and-research",
+                "developers-tools",
+                "research",
+                "gemini-app",
+                "google-research",
+            }
+
+            if path_parts[-1] in google_listing_endings:
+                return False
+
+        elif source_name == "GitHub":
+            # GitHub Blogの実記事は基本
+            # /<大カテゴリ>/<小カテゴリ>/<記事slug>/ の形。
+            github_article_roots = {
+                "ai-and-ml",
+                "developer-skills",
+                "engineering",
+                "enterprise-software",
+                "news-insights",
+                "open-source",
+                "company-news",
+                "product",
+                "security",
+            }
+
+            if path_parts[0] not in github_article_roots:
+                return False
+
+            # /open-source/ などのカテゴリ一覧や
+            # /author/<name>/ を通さない。
+            if len(path_parts) < 3:
+                return False
+
+            github_non_article_segments = {
+                "latest",
+                "topics",
+                "collections",
+            }
+
+            if any(
+                part in github_non_article_segments
+                for part in path_parts
+            ):
+                return False
+
+        return True
+
+
     def add_candidate(
         source_name,
         source_domain,
@@ -622,6 +723,9 @@ def collect_candidates():
             return False
 
         if not domain_is_allowed(parsed.hostname, source_domain):
+            return False
+
+        if not is_probable_article_url(source_name, url):
             return False
 
         normalized_url = url.split("#")[0].split("?")[0].rstrip("/") + "/"
@@ -924,37 +1028,11 @@ def collect_candidates():
                 ):
                     continue
 
-                parsed = urlparse(article_url)
-                path_parts = [
-                    part
-                    for part in parsed.path.split("/")
-                    if part
-                ]
-
-                if source_name == "Google":
-                    if len(path_parts) < 2:
-                        continue
-
-                if source_name == "GitHub":
-                    if len(path_parts) < 2:
-                        continue
-
-                    blocked_github_top = {
-                        "latest",
-                        "ai-and-ml",
-                        "developer-skills",
-                        "engineering",
-                        "enterprise-software",
-                        "news-insights",
-                        "open-source",
-                    }
-
-                    if (
-                        len(path_parts) == 1
-                        and path_parts[0]
-                        in blocked_github_top
-                    ):
-                        continue
+                if not is_probable_article_url(
+                    source_name,
+                    article_url,
+                ):
+                    continue
 
                 if article_url in seen_local:
                     continue
@@ -1193,6 +1271,68 @@ def validate_candidate(candidate):
                 final_url,
             )
             return None
+
+        # リダイレクト後の最終URLでも、
+        # 著者・タグ・カテゴリ・一覧ページを再度除外。
+        path_parts = [
+            part.lower()
+            for part in (parsed.path or "/").split("/")
+            if part
+        ]
+
+        blocked_anywhere = {
+            "author",
+            "authors",
+            "tag",
+            "tags",
+            "category",
+            "categories",
+            "search",
+            "feed",
+            "rss",
+            "page",
+        }
+
+        if any(part in blocked_anywhere for part in path_parts):
+            print(
+                "記事ではないURLを除外:",
+                final_url,
+            )
+            return None
+
+        if candidate.get("source_name") == "GitHub":
+            github_article_roots = {
+                "ai-and-ml",
+                "developer-skills",
+                "engineering",
+                "enterprise-software",
+                "news-insights",
+                "open-source",
+                "company-news",
+                "product",
+                "security",
+            }
+
+            if (
+                len(path_parts) < 3
+                or path_parts[0] not in github_article_roots
+            ):
+                print(
+                    "GitHub記事URLではないため除外:",
+                    final_url,
+                )
+                return None
+
+        if candidate.get("source_name") == "Google":
+            if (
+                len(path_parts) < 4
+                or path_parts[0] != "innovation-and-ai"
+            ):
+                print(
+                    "Google記事URLではないため除外:",
+                    final_url,
+                )
+                return None
 
         soup = BeautifulSoup(
             response.text,
