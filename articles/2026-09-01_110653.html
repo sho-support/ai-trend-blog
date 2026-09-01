@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-09-01_110653.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="日本の自治体業務を支えるAI基盤「QommonsAI」— OpenAI技術とCodex活用で約1,050自治体・55万人への導入と開発加速を実現">
+<meta property="og:description" content="日本の行政現場において、労働力不足や業務負担の増大は大きな課題となっています。こうした中、株式会社Polimill（ポリミル）はOpenAIの技術を活用し、自治体業務に向けた生成AIプラットフォーム「QommonsAI（コモンズAI）」を構築・提供しています。現在、日本全国で約1,050の自治体、約55万人…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-09-01_110653.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="日本の自治体業務を支えるAI基盤「QommonsAI」— OpenAI技術とCodex活用で約1,050自治体・55万人への導入と開発加速を実現">
+<meta name="twitter:description" content="日本の行政現場において、労働力不足や業務負担の増大は大きな課題となっています。こうした中、株式会社Polimill（ポリミル）はOpenAIの技術を活用し、自治体業務に向けた生成AIプラットフォーム「QommonsAI（コモンズAI）」を構築・提供しています。現在、日本全国で約1,050の自治体、約55万人…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"日本の自治体業務を支えるAI基盤「QommonsAI」— OpenAI技術とCodex活用で約1,050自治体・55万人への導入と開発加速を実現","description":"日本の行政現場において、労働力不足や業務負担の増大は大きな課題となっています。こうした中、株式会社Polimill（ポリミル）はOpenAIの技術を活用し、自治体業務に向けた生成AIプラットフォーム「QommonsAI（コモンズAI）」を構築・提供しています。現在、日本全国で約1,050の自治体、約55万人…","datePublished":"2026-09-01","dateModified":"2026-09-01","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-09-01_110653.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>日本の自治体業務を支えるAI基盤「QommonsAI」— OpenAI技術とCodex活用で約1,050自治体・55万人への導入と開発加速を実現 | AI Trend Blog</title>
+
+<meta name="description"
+content="日本の行政現場において、労働力不足や業務負担の増大は大きな課題となっています。こうした中、株式会社Polimill（ポリミル）はOpenAIの技術を活用し、自治体業務に向けた生成AIプラットフォーム「QommonsAI（コモンズAI）」を構築・提供しています。現在、日本全国で約1,050の自治体、約55万人…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.09.01
+
+</div>
+
+<h1>日本の自治体業務を支えるAI基盤「QommonsAI」— OpenAI技術とCodex活用で約1,050自治体・55万人への導入と開発加速を実現</h1>
+
+<p>日本の行政現場において、労働力不足や業務負担の増大は大きな課題となっています。こうした中、株式会社Polimill（ポリミル）はOpenAIの技術を活用し、自治体業務に向けた生成AIプラットフォーム「QommonsAI（コモンズAI）」を構築・提供しています。現在、日本全国で約1,050の自治体、約55万人の自治体職員に利用されており、自治体の業務効率化と行政サービスの向上を支援しています。</p>
+
+<p>本記事では、OpenAIが発表した事例に基づき、PolimillがどのようにGPTモデルやCodexを活用して開発を推進し、全国規模の行政データを一元的な知見へと変えているのか、その詳細と今後の展望を整理して解説します。</p>
+
+<h2>今回のポイント</h2>
+<ul>
+  <li><strong>全国約1,050の自治体、約55万人の職員が利用：</strong>2024年10月にリリースされた「QommonsAI」は、議会答弁作成、福祉、法務検索など多岐にわたる行政分野で活用されています。</li>
+  <li><strong>Codex導入で開発スピードが3〜5倍に向上：</strong>要件定義からGitHub上の既存コードとの整合性チェック、実装、テストにCodexを採用し、プロトタイプの検証サイクルを大幅に加速させました。</li>
+  <li><strong>断片化していた行政データを高精度検索基盤化：</strong>全国の議事録などを収集・標準化し、AIでメタデータを付与することで、自治体や年代を横断した高度な情報検索を共通インターフェースで実現しています。</li>
+  <li><strong>ベテラン職員の暗黙知を組織の知見へ：</strong>若手職員でも高品質な政策提案のドラフトを作成できる一方、ベテラン職員の判断プロセスや指示内容を記録・蓄積することで、ノウハウの継承を目指しています。</li>
+  <li><strong>2026年秋に向けた「Qommons ONE」構想：</strong>外部企業がアプリを提供できるストア構想とともに、複数の専門AIや民間アプリを連携させる「スーパーエージェント」の開発が進められています。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+<p>行政現場において生成AIを導入する際、最大の壁となっていたのが「データの断片化」です。自治体ごとに業務手順や書類の形式が異なり、過去の記録が分散しているため、例えば議会答弁の作成では数年分の議事録を手作業で確認・照合する必要がありました。データが整理されていない状態では、どんなに優れたAIモデルであっても実践的な出力を得ることは困難です。</p>
+
+<p>Polimillはこの課題に対し、全国の議事録を収集・標準化した上で、AIを用いてメタデータを付与する取り組みを行いました。これにより、自治体や時期を跨いで検索できる高精度な検索基盤を構築することに成功しました。この仕組みは議会だけでなく、福祉や法務など多様な行政領域へと拡張され、共通のインターフェースを通じて日々の業務で活用できる「ナレッジ基盤」へと進化しています。</p>
+
+<p>また、開発プロセス自体にも大きな変化がありました。Polimillは要件定義から既存のGitHubコードとの整合性確認、実装、テストに至るまで、開発ワークフロー全体にOpenAIのCodexを導入しました。エンジニアはAIが生成した計画のレビューや高度な意思決定に集中し、実装作業の多くをAIが自動で担うことで、開発スピードは従来の3〜5倍に向上しました。これにより、自治体現場からのフィードバックを素早く機能へ反映させる検証サイクルが実現しています。</p>
+
+<h2>誰に関係する？</h2>
+<p>この取り組みは、主に以下の対象に関係しています。</p>
+<ul>
+  <li><strong>全国の自治体職員（約55万人）：</strong>日々の問い合わせ対応や議会答弁の準備、各種行政サービスの提供、法務リサーチなどの業務において、日常的にGPTモデルベースのAIを活用できます。</li>
+  <li><strong>行政サービスの利用者である住民：</strong>自治体職員の日常業務が効率化されることで、職員が住民の声に耳を傾け、政策に反映させる時間を確保できるようになります。</li>
+  <li><strong>自治体向けにソリューションを提供する開発者・事業者：</strong>2026年秋に展開が予定されている「Qommons ONE」を通じて、外部企業が自社のアプリケーションを自治体向けに提供できるエコシステムへの参加が可能になります。</li>
+</ul>
+
+<h2>どう活用できる？</h2>
+<p>「QommonsAI」は、行政のさまざまな現場で具体的に活用されています。</p>
+
+<h3>1. 日常業務における対話と文書処理</h3>
+<p>QommonsAIの一般対話機能では、OpenAIのGPTモデルが最も頻繁に選択されています。ファイルの読み込みから日常的な対話サポートまで、多種多様な業務リクエストに対して1つのモデルで安定した応答が得られます。すでに広く認知されているChatGPTと同じ技術をベースにしていることが、技術用語に詳しくない職員にとっても導入時のハードルを下げる要因となっています。</p>
+
+<h3>2. 政策提案の作成とナレッジの継承</h3>
+<p>Polimillの検証によると、経験の浅い若手職員がAIと蓄積された行政情報を活用して政策提案のドラフトを作成した際、ベテラン職員が作成したものに近い品質評価を得られることが確認されました。</p>
+<p>一方で、最高評価を得たのはベテラン職員の提案であり、そこにはマニュアルに書かれていない手順や住民の懸念事項といった「暗黙知」が反映されていました。Polimillでは、ベテラン職員がAIに対してどのような調査指示を行い、出力された回答をどう修正したかというプロセス自体を記録・データ化する取り組みを進めています。これにより、AIが熟練職員の代わりになるのではなく、その能力を増幅させ、次の世代へノウハウを継承する基盤として機能させています。</p>
+
+<h3>3. 将来的な「スーパーエージェント」による連携</h3>
+<p>2026年秋に向けて準備が進められているストア構想「Qommons ONE」では、中心となる「スーパーエージェント（複数のAIやアプリを連携して自律的に処理を行う仕組み）」が複数の専門AIや民間アプリを統合します。利用者が達成したい目的を入力すると、システムが必要なAIやアプリを呼び出し、リサーチからプレゼンテーション資料の作成まで、業務に必要な成果物を一貫して生成できるようになります。</p>
+
+<h2>注意点</h2>
+<p>QommonsAIを導入・運用するにあたっては、以下の点に配慮されています。</p>
+<ul>
+  <li><strong>セキュリティと管理機能の確保：</strong>公共セクターでは情報管理と監査対応が不可欠です。QommonsAIには、管理者が機能の利用履歴を確認したり、組織の方針に応じて利用可能なモデルを制限したりできる運用コントロール機能が組み込まれています。</li>
+  <li><strong>AI依存ではなく人間の判断の重要性：</strong>AIを利用した政策提案においても、ベテラン職員が持つ実践的な判断力や地域への配慮（暗黙知）が成果物の質を左右します。AIが出力した結果をそのまま採用するのではなく、人間の目によるレビューと最終的な責任が求められます。</li>
+  <li><strong>開発プロセスの継続的な見直し：</strong>AI技術やモデルの進化に伴い、AIによる開発手法自体も変化し続けます。OpenAIによるサポートや最新の技術情報を継続的に取り入れ、人間が責任を持つ範囲とAIが担う範囲を適宜設計し直す必要があります。</li>
+</ul>
+
+<h2>まとめ</h2>
+<p>Polimillの「QommonsAI」は、OpenAIのGPTモデルやCodex、およびハンズオン支援を活用することで、全国約1,050の自治体で利用される行政AI基盤へと成長しています。開発スピードの3〜5倍への加速、分散した議事録などの行政情報のナレッジ化、さらにはベテラン職員の暗黙知の共有に至るまで、単なる業務効率化を超えた取り組みが進められています。</p>
+
+<p>2026年秋に予定されている「Qommons ONE」の本格展開に向け、自治体、民間企業、市民がAIを介してつながる次世代の公共インフラを目指す同社の試みは、今後の行政DXのあり方を示す重要な事例と言えます。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/polimill/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+Polimill builds Japan&#x27;s next-generation public AI infrastructure | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
