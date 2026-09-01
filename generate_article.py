@@ -593,7 +593,13 @@ def collect_candidates():
     candidates = []
 
 
-    for source in SOURCES:
+    # =====================================================
+    # RSS取得用
+    # =====================================================
+
+    def collect_from_rss(source):
+
+        added = 0
 
         print("")
         print(
@@ -617,32 +623,17 @@ def collect_candidates():
                 response.url,
             )
 
-            content_type = (
+            print(
+                "Content-Type:",
                 response.headers.get(
                     "Content-Type",
                     ""
-                )
-                or ""
+                ),
             )
-
-            print(
-                "Content-Type:",
-                content_type
-            )
-
-
-            # ---------------------------------------------
-            # feedparserへHTTP取得済みデータを渡す
-            # ---------------------------------------------
 
             feed = feedparser.parse(
                 response.content
             )
-
-
-            # ---------------------------------------------
-            # パース警告
-            # ---------------------------------------------
 
             if getattr(
                 feed,
@@ -661,10 +652,6 @@ def collect_candidates():
                 )
 
 
-            # ---------------------------------------------
-            # エントリー0件ならスキップ
-            # ---------------------------------------------
-
             entry_count = len(
                 getattr(
                     feed,
@@ -678,21 +665,6 @@ def collect_candidates():
                 entry_count
             )
 
-            if entry_count == 0:
-
-                print(
-                    "RSSエントリーを取得できません:",
-                    source["name"]
-                )
-
-                continue
-
-
-            # ---------------------------------------------
-            # RSS記事処理
-            # ---------------------------------------------
-
-            source_added = 0
 
             for entry in feed.entries:
 
@@ -715,16 +687,9 @@ def collect_candidates():
                 ).strip()
 
 
-                if (
-                    not title
-                    or not url
-                ):
+                if not title or not url:
                     continue
 
-
-                # -----------------------------------------
-                # URL形式確認
-                # -----------------------------------------
 
                 parsed_url = urlparse(
                     url
@@ -736,10 +701,6 @@ def collect_candidates():
                 ):
                     continue
 
-
-                # -----------------------------------------
-                # 日付取得
-                # -----------------------------------------
 
                 published = entry_datetime(
                     entry
@@ -756,10 +717,6 @@ def collect_candidates():
                     if age_days > MAX_SOURCE_AGE_DAYS:
                         continue
 
-
-                # -----------------------------------------
-                # 概要取得
-                # -----------------------------------------
 
                 summary = (
                     getattr(
@@ -787,10 +744,6 @@ def collect_candidates():
                     )
                 )
 
-
-                # -----------------------------------------
-                # 候補追加
-                # -----------------------------------------
 
                 candidates.append(
                     {
@@ -821,40 +774,407 @@ def collect_candidates():
                     }
                 )
 
-                source_added += 1
+                added += 1
 
 
             print(
-                "候補追加数:",
+                "RSS候補追加数:",
                 source["name"],
-                source_added,
+                added,
             )
-
-
-        except requests.RequestException as e:
-
-            print(
-                "RSS HTTP取得失敗:",
-                source["name"],
-                e,
-            )
-
-            continue
 
 
         except Exception as e:
 
             print(
-                "RSS処理失敗:",
+                "RSS取得失敗:",
                 source["name"],
                 e,
             )
 
-            continue
+
+        return added
 
 
     # =====================================================
-    # 重複URL除去
+    # Google公式AIページ フォールバック
+    # =====================================================
+
+    def collect_google_fallback():
+
+        print("")
+        print(
+            "Google公式AIページから取得"
+        )
+
+        added = 0
+
+        url = (
+            "https://blog.google/"
+            "innovation-and-ai/"
+            "technology/ai/"
+        )
+
+        try:
+
+            response = requests.get(
+                url,
+                headers=HEADERS,
+                timeout=REQUEST_TIMEOUT,
+            )
+
+            response.raise_for_status()
+
+            soup = BeautifulSoup(
+                response.text,
+                "html.parser"
+            )
+
+
+            seen = set()
+
+
+            for a in soup.find_all(
+                "a",
+                href=True
+            ):
+
+                href = (
+                    a.get("href")
+                    or ""
+                ).strip()
+
+                title = (
+                    a.get_text(
+                        " ",
+                        strip=True
+                    )
+                    or ""
+                ).strip()
+
+
+                if len(title) < 12:
+                    continue
+
+
+                if href.startswith("/"):
+                    article_url = (
+                        "https://blog.google"
+                        + href
+                    )
+
+                elif href.startswith(
+                    "https://blog.google/"
+                ):
+                    article_url = href
+
+                else:
+                    continue
+
+
+                parsed = urlparse(
+                    article_url
+                )
+
+
+                if not domain_is_allowed(
+                    parsed.hostname,
+                    "blog.google"
+                ):
+                    continue
+
+
+                if article_url in seen:
+                    continue
+
+
+                # カテゴリ・トップページ等を除外
+                if article_url.rstrip("/") in [
+                    url.rstrip("/"),
+                    "https://blog.google",
+                ]:
+                    continue
+
+
+                seen.add(
+                    article_url
+                )
+
+
+                candidates.append(
+                    {
+                        "source_name":
+                            "Google",
+
+                        "source_domain":
+                            "blog.google",
+
+                        "priority":
+                            98,
+
+                        "title":
+                            title,
+
+                        "url":
+                            article_url,
+
+                        "published":
+                            "",
+
+                        "summary":
+                            "",
+                    }
+                )
+
+                added += 1
+
+
+                if added >= 20:
+                    break
+
+
+            print(
+                "Googleフォールバック候補数:",
+                added
+            )
+
+
+        except Exception as e:
+
+            print(
+                "Googleフォールバック失敗:",
+                e,
+            )
+
+
+        return added
+
+
+    # =====================================================
+    # GitHub Latestページ
+    # =====================================================
+
+    def collect_github_latest():
+
+        print("")
+        print(
+            "GitHub Latestページから取得"
+        )
+
+        added = 0
+
+        url = (
+            "https://github.blog/latest/"
+        )
+
+        try:
+
+            response = requests.get(
+                url,
+                headers=HEADERS,
+                timeout=REQUEST_TIMEOUT,
+            )
+
+            response.raise_for_status()
+
+            soup = BeautifulSoup(
+                response.text,
+                "html.parser"
+            )
+
+
+            seen = set()
+
+
+            for a in soup.find_all(
+                "a",
+                href=True
+            ):
+
+                href = (
+                    a.get("href")
+                    or ""
+                ).strip()
+
+                title = (
+                    a.get_text(
+                        " ",
+                        strip=True
+                    )
+                    or ""
+                ).strip()
+
+
+                if len(title) < 12:
+                    continue
+
+
+                if href.startswith("/"):
+                    article_url = (
+                        "https://github.blog"
+                        + href
+                    )
+
+                elif href.startswith(
+                    "https://github.blog/"
+                ):
+                    article_url = href
+
+                else:
+                    continue
+
+
+                parsed = urlparse(
+                    article_url
+                )
+
+
+                if not domain_is_allowed(
+                    parsed.hostname,
+                    "github.blog"
+                ):
+                    continue
+
+
+                if article_url in seen:
+                    continue
+
+
+                # Latestやカテゴリページ除外
+                if article_url.rstrip("/") in [
+                    url.rstrip("/"),
+                    "https://github.blog",
+                ]:
+                    continue
+
+
+                seen.add(
+                    article_url
+                )
+
+
+                candidates.append(
+                    {
+                        "source_name":
+                            "GitHub",
+
+                        "source_domain":
+                            "github.blog",
+
+                        "priority":
+                            90,
+
+                        "title":
+                            title,
+
+                        "url":
+                            article_url,
+
+                        "published":
+                            "",
+
+                        "summary":
+                            "",
+                    }
+                )
+
+                added += 1
+
+
+                if added >= 20:
+                    break
+
+
+            print(
+                "GitHub Latest候補数:",
+                added
+            )
+
+
+        except Exception as e:
+
+            print(
+                "GitHub Latest取得失敗:",
+                e,
+            )
+
+
+        return added
+
+
+    # =====================================================
+    # OpenAI
+    # =====================================================
+
+    openai_source = next(
+        (
+            source
+            for source in SOURCES
+            if source["name"]
+            == "OpenAI"
+        ),
+        None
+    )
+
+    if openai_source:
+
+        collect_from_rss(
+            openai_source
+        )
+
+
+    # =====================================================
+    # Google
+    # =====================================================
+
+    google_source = next(
+        (
+            source
+            for source in SOURCES
+            if source["name"]
+            == "Google"
+        ),
+        None
+    )
+
+    google_added = 0
+
+    if google_source:
+
+        google_added = (
+            collect_from_rss(
+                google_source
+            )
+        )
+
+
+    if google_added == 0:
+
+        print(
+            "Google RSSが0件のため"
+            "公式AIページへフォールバック"
+        )
+
+        collect_google_fallback()
+
+
+    # =====================================================
+    # GitHub
+    # =====================================================
+
+    print(
+        ""
+    )
+
+    print(
+        "GitHubは公式Latestページを使用"
+    )
+
+    collect_github_latest()
+
+
+    # =====================================================
+    # URL重複除去
     # =====================================================
 
     unique_candidates = []
@@ -864,16 +1184,26 @@ def collect_candidates():
 
     for candidate in candidates:
 
-        url = candidate[
-            "url"
-        ]
+        url = (
+            candidate["url"]
+            .split("#")[0]
+            .rstrip("/")
+        )
+
 
         if url in seen_urls:
             continue
 
+
         seen_urls.add(
             url
         )
+
+
+        candidate["url"] = (
+            url + "/"
+        )
+
 
         unique_candidates.append(
             candidate
@@ -881,7 +1211,7 @@ def collect_candidates():
 
 
     # =====================================================
-    # 優先度・公開日時順
+    # 優先度順
     # =====================================================
 
     unique_candidates.sort(
@@ -895,7 +1225,7 @@ def collect_candidates():
 
     print("")
     print(
-        "RSS候補合計:",
+        "RSS・公式ページ候補合計:",
         len(unique_candidates)
     )
 
