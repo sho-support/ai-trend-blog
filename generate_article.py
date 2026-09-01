@@ -587,64 +587,304 @@ def generate_robots():
 # =========================================================
 
 def collect_candidates():
+
     now = datetime.now(timezone.utc)
+
     candidates = []
 
+
     for source in SOURCES:
-        print(f"RSS取得: {source['name']}")
+
+        print("")
+        print(
+            f"RSS取得: {source['name']}"
+        )
 
         try:
-            feed = feedparser.parse(source["feed"])
-        except Exception as e:
-            print("RSS取得失敗:", source["name"], e)
-            continue
 
-        if getattr(feed, "bozo", False):
-            print(
-                "RSS警告:",
-                source["name"],
-                getattr(feed, "bozo_exception", ""),
+            response = requests.get(
+                source["feed"],
+                headers=HEADERS,
+                timeout=REQUEST_TIMEOUT,
+                allow_redirects=True,
             )
 
-        for entry in feed.entries:
-            title = getattr(entry, "title", "").strip()
-            url = getattr(entry, "link", "").strip()
+            response.raise_for_status()
 
-            if not title or not url:
+            print(
+                "RSS HTTP:",
+                response.status_code,
+                response.url,
+            )
+
+            content_type = (
+                response.headers.get(
+                    "Content-Type",
+                    ""
+                )
+                or ""
+            )
+
+            print(
+                "Content-Type:",
+                content_type
+            )
+
+
+            # ---------------------------------------------
+            # feedparserへHTTP取得済みデータを渡す
+            # ---------------------------------------------
+
+            feed = feedparser.parse(
+                response.content
+            )
+
+
+            # ---------------------------------------------
+            # パース警告
+            # ---------------------------------------------
+
+            if getattr(
+                feed,
+                "bozo",
+                False
+            ):
+
+                print(
+                    "RSS警告:",
+                    source["name"],
+                    getattr(
+                        feed,
+                        "bozo_exception",
+                        ""
+                    ),
+                )
+
+
+            # ---------------------------------------------
+            # エントリー0件ならスキップ
+            # ---------------------------------------------
+
+            entry_count = len(
+                getattr(
+                    feed,
+                    "entries",
+                    []
+                )
+            )
+
+            print(
+                "RSSエントリー数:",
+                entry_count
+            )
+
+            if entry_count == 0:
+
+                print(
+                    "RSSエントリーを取得できません:",
+                    source["name"]
+                )
+
                 continue
 
-            published = entry_datetime(entry)
 
-            if published:
-                age_days = (now - published).days
+            # ---------------------------------------------
+            # RSS記事処理
+            # ---------------------------------------------
 
-                if age_days > MAX_SOURCE_AGE_DAYS:
+            source_added = 0
+
+            for entry in feed.entries:
+
+                title = (
+                    getattr(
+                        entry,
+                        "title",
+                        ""
+                    )
+                    or ""
+                ).strip()
+
+                url = (
+                    getattr(
+                        entry,
+                        "link",
+                        ""
+                    )
+                    or ""
+                ).strip()
+
+
+                if (
+                    not title
+                    or not url
+                ):
                     continue
 
-            summary = getattr(entry, "summary", "") or ""
 
-            summary_text = BeautifulSoup(
-                summary,
-                "html.parser",
-            ).get_text(" ", strip=True)
+                # -----------------------------------------
+                # URL形式確認
+                # -----------------------------------------
 
-            candidates.append(
-                {
-                    "source_name": source["name"],
-                    "source_domain": source["domain"],
-                    "priority": source["priority"],
-                    "title": title,
-                    "url": url,
-                    "published": (
-                        published.isoformat()
-                        if published
-                        else ""
-                    ),
-                    "summary": summary_text,
-                }
+                parsed_url = urlparse(
+                    url
+                )
+
+                if parsed_url.scheme not in (
+                    "http",
+                    "https",
+                ):
+                    continue
+
+
+                # -----------------------------------------
+                # 日付取得
+                # -----------------------------------------
+
+                published = entry_datetime(
+                    entry
+                )
+
+
+                if published:
+
+                    age_days = (
+                        now
+                        - published
+                    ).days
+
+                    if age_days > MAX_SOURCE_AGE_DAYS:
+                        continue
+
+
+                # -----------------------------------------
+                # 概要取得
+                # -----------------------------------------
+
+                summary = (
+                    getattr(
+                        entry,
+                        "summary",
+                        ""
+                    )
+                    or getattr(
+                        entry,
+                        "description",
+                        ""
+                    )
+                    or ""
+                )
+
+
+                summary_text = (
+                    BeautifulSoup(
+                        summary,
+                        "html.parser"
+                    )
+                    .get_text(
+                        " ",
+                        strip=True
+                    )
+                )
+
+
+                # -----------------------------------------
+                # 候補追加
+                # -----------------------------------------
+
+                candidates.append(
+                    {
+                        "source_name":
+                            source["name"],
+
+                        "source_domain":
+                            source["domain"],
+
+                        "priority":
+                            source["priority"],
+
+                        "title":
+                            title,
+
+                        "url":
+                            url,
+
+                        "published":
+                            (
+                                published.isoformat()
+                                if published
+                                else ""
+                            ),
+
+                        "summary":
+                            summary_text,
+                    }
+                )
+
+                source_added += 1
+
+
+            print(
+                "候補追加数:",
+                source["name"],
+                source_added,
             )
 
-    candidates.sort(
+
+        except requests.RequestException as e:
+
+            print(
+                "RSS HTTP取得失敗:",
+                source["name"],
+                e,
+            )
+
+            continue
+
+
+        except Exception as e:
+
+            print(
+                "RSS処理失敗:",
+                source["name"],
+                e,
+            )
+
+            continue
+
+
+    # =====================================================
+    # 重複URL除去
+    # =====================================================
+
+    unique_candidates = []
+
+    seen_urls = set()
+
+
+    for candidate in candidates:
+
+        url = candidate[
+            "url"
+        ]
+
+        if url in seen_urls:
+            continue
+
+        seen_urls.add(
+            url
+        )
+
+        unique_candidates.append(
+            candidate
+        )
+
+
+    # =====================================================
+    # 優先度・公開日時順
+    # =====================================================
+
+    unique_candidates.sort(
         key=lambda x: (
             x["priority"],
             x["published"],
@@ -652,7 +892,17 @@ def collect_candidates():
         reverse=True,
     )
 
-    return candidates[:MAX_CANDIDATES]
+
+    print("")
+    print(
+        "RSS候補合計:",
+        len(unique_candidates)
+    )
+
+
+    return unique_candidates[
+        :MAX_CANDIDATES
+    ]
 
 
 # =========================================================
