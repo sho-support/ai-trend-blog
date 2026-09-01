@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-09-01_203413.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="GoogleがAIを活用した洪水予測技術「Groundsource」を解説　Geminiによる過去ニュース解析でデータ不足を克服">
+<meta property="og:description" content="Googleは、人工知能（AI）を活用して河川の増水や都市部における鉄砲水（急激な発生を伴う洪水）を予測し、世界150カ国、20億人以上の人々に早期警戒情報を届ける取り組みを進めています。2026年3月には新たなAI手法「Groundsource」を発表し、これまでデータ収集が困難だった都市部の鉄砲水予測へ…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-09-01_203413.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GoogleがAIを活用した洪水予測技術「Groundsource」を解説　Geminiによる過去ニュース解析でデータ不足を克服">
+<meta name="twitter:description" content="Googleは、人工知能（AI）を活用して河川の増水や都市部における鉄砲水（急激な発生を伴う洪水）を予測し、世界150カ国、20億人以上の人々に早期警戒情報を届ける取り組みを進めています。2026年3月には新たなAI手法「Groundsource」を発表し、これまでデータ収集が困難だった都市部の鉄砲水予測へ…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"GoogleがAIを活用した洪水予測技術「Groundsource」を解説　Geminiによる過去ニュース解析でデータ不足を克服","description":"Googleは、人工知能（AI）を活用して河川の増水や都市部における鉄砲水（急激な発生を伴う洪水）を予測し、世界150カ国、20億人以上の人々に早期警戒情報を届ける取り組みを進めています。2026年3月には新たなAI手法「Groundsource」を発表し、これまでデータ収集が困難だった都市部の鉄砲水予測へ…","datePublished":"2026-09-01","dateModified":"2026-09-01","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-09-01_203413.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>GoogleがAIを活用した洪水予測技術「Groundsource」を解説　Geminiによる過去ニュース解析でデータ不足を克服 | AI Trend Blog</title>
+
+<meta name="description"
+content="Googleは、人工知能（AI）を活用して河川の増水や都市部における鉄砲水（急激な発生を伴う洪水）を予測し、世界150カ国、20億人以上の人々に早期警戒情報を届ける取り組みを進めています。2026年3月には新たなAI手法「Groundsource」を発表し、これまでデータ収集が困難だった都市部の鉄砲水予測へ…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.09.01
+
+</div>
+
+<h1>GoogleがAIを活用した洪水予測技術「Groundsource」を解説　Geminiによる過去ニュース解析でデータ不足を克服</h1>
+
+<p>Googleは、人工知能（AI）を活用して河川の増水や都市部における鉄砲水（急激な発生を伴う洪水）を予測し、世界150カ国、20億人以上の人々に早期警戒情報を届ける取り組みを進めています。2026年3月には新たなAI手法「Groundsource」を発表し、これまでデータ収集が困難だった都市部の鉄砲水予測への対応を拡大しました。本記事では、Google Researchのシニアスタッフリサーチサイエンティストであるデボラ・コーエン（Deborah Cohen）氏への取材内容をもとに、GoogleがどのようにAIを活用して洪水予測を行っているのか、その仕組みや実際の活用成果、今後の課題について整理して解説します。</p>
+
+<h2>今回のポイント</h2>
+
+<ul>
+  <li>150カ国・20億人以上を対象に、最大7日前の河川洪水予測および最大24時間前の都市部鉄砲水予測を提供。</li>
+  <li>AI「Gemini」を活用して20年間・500万件以上のニュース記事を解析し、260万件の過去の洪水イベントデータを抽出する新手法「Groundsource」を開発。</li>
+  <li>物理的な水位センサーが乏しい都市部やデータ不足の地域でも、AIによって事前予測が可能に。</li>
+  <li>支援団体「GiveDirectly」がAPIを活用し、ナイジェリアで事前現金給付を実施。食料不安が90%減少するなどの成果を確認。</li>
+  <li>水文（すいもん）フレームワークのオープンソース化、Groundsourceデータセットおよび洪水予測API（Flood Forecasting API）の公開により、世界中の研究機関や気象機関での利用を支援。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+
+<p>従来の洪水予測モデルは、水位を計測するセンサー（ゲージ）などのローカルな過去データに依存していました。河川には世界各地に水位を測定する物理的なセンサーが多く設置されているため、天候や土地条件から水量を予測する「水文モデル（Hydrologic Model）」と、流速・流量データから影響エリアを予測する「浸水モデル（Inundation Model）」という2つのAIモデルを用いて予測を行っています。</p>
+
+<p>しかし、都市部で突発的に発生する鉄砲水（urban flash floods）については、水位監視センサーが設置されているケースが極めて稀であり、過去の計測データが存在しないという課題がありました。</p>
+
+<p>このデータ不足を解消するために開発されたのが「Groundsource」です。Groundsourceでは、GoogleのAI「Gemini」を活用して過去20年間のニュース報道500万件以上を読み込ませることで、150カ国以上にわたる260万件の洪水イベントのアーカイブを自動生成しました。この独自データセットを新たな都市型鉄砲水モデルに統合したことで、物理センサーのデータがない都市エリアにおいても、マップ上で予測アラートを提供するツール「Flood Hub」での鉄砲水予測が可能になりました。</p>
+
+<h2>誰に関係する？</h2>
+
+<ul>
+  <li><strong>災害リスク地域の住民および一般ユーザー</strong>：Google検索や、地図上に予測アラートを表示するツール「Flood Hub」を通じて、早期警戒情報を取得できます。</li>
+  <li><strong>人道支援団体や支援組織</strong>：Googleが提供する「洪水予測API（Flood Forecasting API）」を利用することで、水害が発生する前に危険性が高い地域を特定し、避難支援や予防的な手当を講じることができます。</li>
+  <li><strong>国家気象水文機関（NMHSs）および気象研究者</strong>：オープンソース化された水文フレームワークや公表されたデータセットを活用して、自国のデータを組み込んだ独自予測の生成や、災害耐性に関する研究を進めることができます。</li>
+</ul>
+
+<h2>どう活用できる？</h2>
+
+<p><strong>1. 防災情報としての確認（一般ユーザー向け）</strong><br>
+一般ユーザーは、Google検索で地域の洪水情報を調べる際や、「Flood Hub」という専用ツールを通じて予測情報を閲覧できます。河川の洪水については最大7日前、都市部の鉄砲水については最大24時間前までの予測アラートがマップ上に表示されます。</p>
+
+<p><strong>2. 支援団体による先回り型の災害支援（組織向け）</strong><br>
+人道支援団体の「GiveDirectly」は、Googleの洪水予測API（Flood Forecasting API）を活用して西アフリカ・ナイジェリアのコギ州（Kogi）で先行支援を実施しました。実際に水位が上昇する前に早期の現金支援を行った結果、避難や財産保護が可能となり、対象世帯の収入が2倍以上に増加、食料不安が90%減少したほか、93%の住民が将来の洪水に対する備えが改善したと感じたと報告されています。</p>
+
+<p><strong>3. 研究機関・気象機関によるデータ統合と独自予測（開発者・研究者向け）</strong><br>
+Googleは、水文フレームワーク（hydrology framework）をオープンソースとして公開しています。これにより、各国の国家気象水文機関（NMHSs）などは、自らが保有するローカルデータをモデルに統合し、それぞれの地域特性に応じた独自の予測を生成・利用できます。また、Groundsourceのデータセットや洪水予測APIも一般公開されています。</p>
+
+<h2>注意点</h2>
+
+<ul>
+  <li><strong>対象領域の限定</strong>：現在のGroundsourceに基づく鉄砲水予測モデルは、データが比較的確保しやすい「都市部」の鉄砲水に限定されています。農村部（地方）の鉄砲水や沿岸部の洪水については、現在のデータセットでは予測が困難であり、現在研究段階にあります。</li>
+  <li><strong>専門的な利用における留意事項</strong>：オープンソースのフレームワークやAPIは、研究者や気象機関・支援団体を対象としており、独自予測モデルの構築やシステム連携には気象データや開発に関する専門知識が必要です。一般の個人ユーザーが直接APIを扱うものではなく、一般利用の範囲はFlood HubやGoogle検索での情報閲覧となります。</li>
+  <li><strong>他の自然災害への適応は研究段階</strong>：Groundsourceの手法（過去のニュース記事等のテキストから災害データを生成する技術）は、猛暑（ヒートウェーブ）や地すべり（土砂崩れ）といった他の自然災害への応用研究が行われている段階であり、現時点でこれらの災害に対する予測機能として実用化されているわけではありません。</li>
+</ul>
+
+<h2>まとめ</h2>
+
+<p>Googleの洪水予測への取り組みは、AIとビッグデータを駆使して、従来の物理的センサーだけに頼らない新たな防災アプローチを提示しています。特に、AI「Gemini」を用いてニュース記事から過去データを構築する「Groundsource」は、データが不足している地域や都市部における鉄砲水予測のデータギャップを埋める役割を果たしています。</p>
+
+<p>予測データは「Flood Hub」やGoogle検索を通じて一般に提供されるほか、APIやオープンソースの技術として研究者や行政機関、支援団体にも開放されています。今後は農村部への適用や他の自然災害への応用など、AIを活用した災害予測技術のさらなる研究が進められています。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+Google
+</strong>
+
+<br>
+
+<a
+href="https://blog.google/innovation-and-ai/technology/research/flood-prediction-ai/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+How Google uses its AI to predict floods
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
