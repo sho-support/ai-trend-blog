@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-09-12_193617.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="OpenAIが明かすChatGPTを支えるストレージ基盤「Habitat」の裏側：10億人規模のアクセスを処理する技術進化">
+<meta property="og:description" content="OpenAIは、同社の各種プロダクトを支えるオンラインストレージプラットフォーム「Habitat（ハビタット）」の拡大とアーキテクチャの進化に関するエンジニアリング情報を公開しました。ChatGPTをはじめとするサービスの急速な利用拡大に伴い、裏側のデータ基盤がどのようにスケールし、構造的な変更を行ってきた…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-09-12_193617.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenAIが明かすChatGPTを支えるストレージ基盤「Habitat」の裏側：10億人規模のアクセスを処理する技術進化">
+<meta name="twitter:description" content="OpenAIは、同社の各種プロダクトを支えるオンラインストレージプラットフォーム「Habitat（ハビタット）」の拡大とアーキテクチャの進化に関するエンジニアリング情報を公開しました。ChatGPTをはじめとするサービスの急速な利用拡大に伴い、裏側のデータ基盤がどのようにスケールし、構造的な変更を行ってきた…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"OpenAIが明かすChatGPTを支えるストレージ基盤「Habitat」の裏側：10億人規模のアクセスを処理する技術進化","description":"OpenAIは、同社の各種プロダクトを支えるオンラインストレージプラットフォーム「Habitat（ハビタット）」の拡大とアーキテクチャの進化に関するエンジニアリング情報を公開しました。ChatGPTをはじめとするサービスの急速な利用拡大に伴い、裏側のデータ基盤がどのようにスケールし、構造的な変更を行ってきた…","datePublished":"2026-09-12","dateModified":"2026-09-12","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-09-12_193617.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>OpenAIが明かすChatGPTを支えるストレージ基盤「Habitat」の裏側：10億人規模のアクセスを処理する技術進化 | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAIは、同社の各種プロダクトを支えるオンラインストレージプラットフォーム「Habitat（ハビタット）」の拡大とアーキテクチャの進化に関するエンジニアリング情報を公開しました。ChatGPTをはじめとするサービスの急速な利用拡大に伴い、裏側のデータ基盤がどのようにスケールし、構造的な変更を行ってきた…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.09.12
+
+</div>
+
+<h1>OpenAIが明かすChatGPTを支えるストレージ基盤「Habitat」の裏側：10億人規模のアクセスを処理する技術進化</h1>
+
+<p>OpenAIは、同社の各種プロダクトを支えるオンラインストレージプラットフォーム「Habitat（ハビタット）」の拡大とアーキテクチャの進化に関するエンジニアリング情報を公開しました。ChatGPTをはじめとするサービスの急速な利用拡大に伴い、裏側のデータ基盤がどのようにスケールし、構造的な変更を行ってきたのかが明かされています。公式発表の内容に基づき、その仕組みと運用の裏側を整理して解説します。</p>
+
+<h2>今回のポイント</h2>
+<ul>
+  <li>Habitatは毎秒7,000万件以上のリクエスト、毎週10億人以上のユーザー、500ペタバイトを超えるデータを処理するストレージプラットフォームに成長。</li>
+  <li>DevDay 2023で登場した当初は単一データベースに接続するPythonライブラリだったが、2025年中旬に独立した「サービス」へと切り離しを実施。</li>
+  <li>高トラフィックなPythonサービス運用において、GILやasyncioのスケジューリング遅延に対処するため、多数のワーカープロセス展開やコネクションプーリングの再利用ロジック最適化を導入。</li>
+  <li>暗号化、アクセス制御、監査ログ、データの保管場所（データレジデンシー）の管理などを中央サービスで一元的に適用する構成へ移行。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+<p>OpenAIのプロダクトでは、ユーザーのログインや設定確認、会話の開始といったあらゆる操作で多数のデータ検索が行われます。Habitatは、プロダクト開発者が下層のデータベース管理を意識することなく、高速かつ信頼性の高いデータアクセスを行えるように構築された基盤です。</p>
+
+<p>従来からの主な変更点と技術的経緯は以下の通りです。</p>
+
+<p><strong>ライブラリから単一サービスへの移行</strong><br>
+HabitatはDevDay 2023で「GPTs」をサポートするために初公開され、当初はChatGPTのメインサーバーと対話するシンプルなPythonクライアントライブラリとして機能していました。開発者はデータベース（Azure Cosmos DBなど）の具体的な仕様やスキーマ検索、ルーティング、暗号化などを考慮せずに開発を行える利点がありました。</p>
+
+<p>しかし、2025年中旬にはOpenAI内のサービス数が増加し、ライブラリ構成のままでは変更の管理が難しくなりました。例えば、障害の影響範囲を抑えるためにルーティングロジック変更を行う際、数十のサービスにライブラリの更新を適用・調整する作業に数日を要し、予期せぬ旧バージョンへのロールバックによってトラブルが発生する事例も起きました。そのため、ストレージロジックを独立した「Habitatサービス」として切り離し、デプロイや可視性、新機能の追加を一元管理できるポイントを確立しました。</p>
+
+<p><strong>Pythonサービスにおける遅延の制御と最適化</strong><br>
+高トラフィックなサービスをPythonで運用すると、他の言語と比べてネットワークレイテンシやCPU・メモリのコスト面でオーバーヘッドが生じます。特にPythonの「asyncio（非同期I/O処理のための機能）」はI/O待ちの並行処理には有効ですが、GIL（グローバルインタプリタロック：同時に1つのスレッドしかCPUで実行できない仕組み）の制限があるため、暗号化やデータのパースなどのCPU負荷が高い処理を行うと、レスポンスの処理待ち（asyncio遅延）が発生して応答時間が悪化します。</p>
+
+<p>OpenAIはこの課題に対し、1プロセスあたりが処理する同時リクエスト数を小さく絞り込み、Pythonのワーカープロセス自体を大量に並列配置する手法を採用しました。さらに、以下のようなチューニングが行われました。</p>
+
+<ul>
+  <li><strong>機能フラグ処理の改善：</strong>設定ツール（Statsig）の巨大なJSON設定ファイルを毎分同期・解析する際、CPUが占有されて発生していた遅延に対し、設定ファイルの絞り込みと更新タイミングの分散（ジッター追加）を実施。</li>
+  <li><strong>コネクションプーリングの最適化：</strong>HTTPクライアント（aiohttp）のデフォルト挙動であるLIFO（後入れ先出し）による接続再利用が、遅いサーバーにリクエストが集中し続ける現象（メタステイブル障害）を引き起こしていたため、FIFO（先入れ先出し）に変更して負荷を分散。現在はEnvoyやIstioを活用した負荷分散を行っています。</li>
+</ul>
+
+<h2>誰に関係する？</h2>
+<p>今回の発表は、主に以下のような対象に関係する情報です。</p>
+
+<ul>
+  <li><strong>バックエンド・インフラエンジニア：</strong>巨大規模のトラフィックを支える分散ストレージの設計や、Pythonを用いた高負荷サービスの運用ノウハウに関心がある開発者。</li>
+  <li><strong>AIサービス開発者：</strong>ChatGPT、Codex、APIなどの裏側でデータがどのように管理・保護されているかの構造を知りたい技術者。</li>
+</ul>
+
+<p>※本情報はOpenAIの内部インフラに関するエンジニアリング解説であり、一般ユーザー向けの操作画面や画面上の新機能に関する発表ではありません。</p>
+
+<h2>どう活用できる？</h2>
+<p>日本の開発者やテクノロジー関係者にとって、本情報は以下のように役立ちます。</p>
+
+<p><strong>大規模システム運用・パフォーマンス改善の参照</strong><br>
+Pythonで高トラフィックなWebアプリケーションやマイクロサービスを構築する際、イベントループの遅延をリアルタイムに計測する重要性や、コネクションプーリングの挙動がシステム全体に与える影響など、実地で得られたトラブルシューティングのパターンを参考にすることができます。</p>
+
+<p><strong>セキュリティとデータプライバシー構造の理解</strong><br>
+アクセス制御ポリシーの適用、監査ログの取得、Azure Cosmos DBなどのストレージリソースへのアクセス制限が中央のHabitatサービスで一元的に行われているため、外部・内部・エージェントによる不正アクセスからユーザーデータがどのように保護されているかの理解に繋がります。</p>
+
+<p><strong>技術的負債とAIツールの活用戦略</strong><br>
+OpenAIは、将来的な大規模化においてPython以外の言語への書き換えが必要になる可能性を認識しつつも、短期的な開発スピードとプラットフォームの安定を優先してPythonを採用しました。この際、「将来コードを移行する段階になれば、自社のCodexやGPTといったコーディングモデルが移行作業を容易にする」という賭けを行い、それが実際に成功したと記述されています。技術選定とAI活用のアプローチとして示唆を与える事例です。</p>
+
+<h2>注意点</h2>
+<ul>
+  <li><strong>一般ユーザーが直接利用できる新機能ではありません：</strong>本内容はストレージ基盤の技術解説であり、ChatGPTの使い勝手や料金、新機能が直接追加されたことを意味するものではありません。</li>
+  <li><strong>将来的なシステム変更の可能性：</strong>Pythonサービスでの運用は現時点での戦略的な選択であり、記事内では100倍規模への拡張に向けた将来的な再構築（リライト）の可能性が言及されています。</li>
+  <li><strong>2部構成の第1弾：</strong>本記事はOpenAIによる連載の第1弾です。マルチテナンシーの信頼性向上、読み込み性能の最適化、Azure Cosmos DBとの連携に関する詳細は今後の記事で明かされる予定となっています。</li>
+</ul>
+
+<h2>まとめ</h2>
+<p>OpenAIのオンラインストレージ基盤「Habitat」は、DevDay 2023におけるシンプルなライブラリから、過去3年間にわたり毎年10倍以上の成長を続け、毎週10億人以上のユーザーと500ペタバイト以上のデータを支える分散システムへと進化しました。</p>
+
+<p>ライブラリから中央サービスへの移行、Pythonの特性を踏まえたプロセス管理やネットワーク接続のチューニングにより、急速な利用増加に伴う負荷を克服しています。巨大なインフラを支えるこれらのエンジニアリングの取り組みによって、世界中のユーザーが利用するプロダクトの安定性とセキュリティが維持されています。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/scaling-storage-one-billion-users-part-one/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+Rapidly scaling online storage to serve over 1 billion ChatGPT users | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
