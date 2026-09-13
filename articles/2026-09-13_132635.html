@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-09-13_132635.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="OpenAIが「Agents API」をパブリックベータで公開—長時間稼働するAIエージェントの開発と運用を容易に">
+<meta property="og:description" content="OpenAIは2026年9月10日、クラウド上で動作するAIエージェントの構築・実行を支援する「Agents API」のパブリックベータ版（Public Beta）を公開しました。本機能は、同社の「Codex」や「ChatGPT for Work」を支えるハーネス（制御機構）とインフラストラクチャを、シンプ…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-09-13_132635.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenAIが「Agents API」をパブリックベータで公開—長時間稼働するAIエージェントの開発と運用を容易に">
+<meta name="twitter:description" content="OpenAIは2026年9月10日、クラウド上で動作するAIエージェントの構築・実行を支援する「Agents API」のパブリックベータ版（Public Beta）を公開しました。本機能は、同社の「Codex」や「ChatGPT for Work」を支えるハーネス（制御機構）とインフラストラクチャを、シンプ…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"OpenAIが「Agents API」をパブリックベータで公開—長時間稼働するAIエージェントの開発と運用を容易に","description":"OpenAIは2026年9月10日、クラウド上で動作するAIエージェントの構築・実行を支援する「Agents API」のパブリックベータ版（Public Beta）を公開しました。本機能は、同社の「Codex」や「ChatGPT for Work」を支えるハーネス（制御機構）とインフラストラクチャを、シンプ…","datePublished":"2026-09-13","dateModified":"2026-09-13","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-09-13_132635.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>OpenAIが「Agents API」をパブリックベータで公開—長時間稼働するAIエージェントの開発と運用を容易に | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAIは2026年9月10日、クラウド上で動作するAIエージェントの構築・実行を支援する「Agents API」のパブリックベータ版（Public Beta）を公開しました。本機能は、同社の「Codex」や「ChatGPT for Work」を支えるハーネス（制御機構）とインフラストラクチャを、シンプ…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.09.13
+
+</div>
+
+<h1>OpenAIが「Agents API」をパブリックベータで公開—長時間稼働するAIエージェントの開発と運用を容易に</h1>
+
+<p>OpenAIは2026年9月10日、クラウド上で動作するAIエージェントの構築・実行を支援する「Agents API」のパブリックベータ版（Public Beta）を公開しました。本機能は、同社の「Codex」や「ChatGPT for Work」を支えるハーネス（制御機構）とインフラストラクチャを、シンプルなAPIとしてすべての開発者に提供するものです。自前で複雑なインフラを構築することなく、単一のAPI呼び出しから本格的なAIエージェントを立ち上げることが可能になります。</p>
+
+<h2>今回のポイント</h2>
+
+<p>今回発表されたAgents APIの主な特徴や条件は以下のとおりです。</p>
+
+<ul>
+  <li><strong>開発者向けパブリックベータでの提供：</strong>すべての開発者が本日より利用可能です。</li>
+  <li><strong>OpenAIによるフルマネージドなハーネス：</strong>コンテキスト管理やツール利用の効率化、サブエージェントの調整機能をOpenAI側が管理します。</li>
+  <li><strong>選べる実行環境（サンドボックス）：</strong>OpenAIが提供する「OpenAI hosted sandbox」のほか、自社インフラやパートナー企業の環境（VPCや各種ストレージ、特定のCPU/GPU設定など）を選択可能です。</li>
+  <li><strong>API追加料金なし：</strong>Agents API自体の利用に追加料金はなく、エージェントが消費したトークンとツールの利用料のみが課金されます。</li>
+  <li><strong>オープンソース基盤：</strong>ベースとなるCodexハーネスはオープンソース化されており、パブリックコードベースで制御ロジックを確認できます。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+
+<p>従来のAI活用では、数時間に及ぶ連続処理や、複雑なタスクを分担して実行する「AIエージェント」を自前で運用しようとすると、メモリや実行環境の管理、エラーからの回復手順といった高度なインフラを開発者自身が構築・保守する必要がありました。</p>
+
+<p>Agents APIの導入によって、こうしたAIエージェントに必要な機能群（ハーネス）がOpenAIのプラットフォーム側で統合・自動化されます。具体的には、以下のような改善が行われています。</p>
+
+<h3>1. 自動的なコンテキスト管理（Context compaction）</h3>
+<p>AIが長時間処理を行うと、入力できる情報量の限界（コンテキスト制限）に達することがあります。Agents APIでは、制限に近づくと過去のコンテキストを自動的に要約・圧縮する仕組みを備えています。これにより、開発者が自前で圧縮ロジックを実装しなくても、必要な情報を保持したまま数時間以上にわたるセッションを維持できます。</p>
+
+<h3>2. 効率的なツール利用と検索機能</h3>
+<p>AIが必要なツールを効率よく呼び出すため、必要な時点でのみツール定義を読み込む「ツール検索（Tool search）」機能を搭載。トークン消費量とコストを抑えながら処理を行えます。さらに、コード上で処理の並列化やデータのフィルタリングを行う「プログラマティックなツール呼び出し（Programmatic tool calling）」や、標準規格であるMCP（Model Context Protocol）、カスタム関数、組み込みWeb検索などに対応しています。</p>
+
+<h3>3. サブエージェントによる並列処理（Multi-agent support）</h3>
+<p>大きなタスクを独立した複数の作業に分解し、サブエージェントへ並行して割り当てるマルチエージェント機能を備えています。各サブエージェントは自身のコンテキストを持って集中して作業を行い、メインのエージェントが全体の成果を統合します。これにより、調査やコード解析などの作業スピードが向上します。</p>
+
+<h2>誰に関係する？</h2>
+
+<p>このニュースは主に、<strong>AIを活用したWebサービス、自社ツール、自動化システムを開発・運用するエンジニアや開発企業</strong>に関係します。エンドユーザー（一般の消費者）が直接操作する画面やアプリケーションそのものではなく、AIシステムを構築するためのバックエンド機能（API）の発表です。</p>
+
+<p>先行してテスト導入を行ったパートナー企業からは、以下のような具体的な数値や実績報告が寄せられています。</p>
+
+<ul>
+  <li><strong>Ciridae（CTO: Jack Weissenberger氏）：</strong>評価スコアが0.71から0.85へ向上。サブエージェント対応によりワークフローが加速し、レイテンシが4倍削減された。</li>
+  <li><strong>SafetyKit（Bhavyansh Sabharwal氏）：</strong>ケース審査ワークフローを移植した結果、1ケースあたりのコストが60%削減され、レイテンシの低下とトークン効率の向上が実現した。</li>
+  <li><strong>Hypha（Lead Engineer: Serhii Shchoholiev氏）：</strong>エージェントのハーネスと実行環境（サンドボックス）を分離したことで、エージェントの応答失敗率が86%減少した。</li>
+  <li><strong>Dwelly（Co-founder & CTO: Dmitry Khanukov氏）：</strong>数百のエージェントにタスクを分散して非同期処理し、後から結果を回収するスパイク（バースト的）ワークロードを自然に処理できた。</li>
+  <li><strong>Nash.ai（Co-founder & CTO: Aziz Alghunaim氏）：</strong>世界的な物流ネットワークで数百億件の配送を管理する数千の長期稼働エージェントを運用し、実世界のオペレーションと連携させている。</li>
+</ul>
+
+<h2>どう活用できる？</h2>
+
+<p>日本の開発者やプロダクトチームにとっても、業務自動化や高度なAIサービスの開発スピードを飛躍的に高める手段となります。</p>
+
+<p>例えば、コード例として示されているように、モデルに「gpt-6-astra」を指定し、タスク内容、利用するツール（MCPサーバー等）、マルチエージェントの設定（並行稼働数など）、サンドボックス環境（OpenAI hosted sandboxなど）をAPIで一度呼び出すだけで、次のようなワークフローを自動化できます。</p>
+
+<ul>
+  <li><strong>障害調査やエラー解析：</strong>システムで発生したエラーの分析、デプロイ状態の確認、依存関係の解析を複数のサブエージェントに分散して調査させ、結果をワークスペース上のファイルに出力させる。</li>
+  <li><strong>複雑なデータ分析とレポート生成：</strong>長時間かかる市場調査やデータ集計を、コンテキスト切れを起こさずにバックグラウンドで連続実行させる。</li>
+  <li><strong>外部環境との安全な連携：</strong>Blaxel、Cloudflare、Daytona、DigitalOcean、E2B、Modal、Oracle、Runloop、Vercelなどの各種パートナー環境や自社VPC（仮想プライベートクラウド）と連携し、必要なセキュリティ要件やリソース構成（CPU/GPU/メモリ）に合わせた環境でコードを実行させる。</li>
+</ul>
+
+<h2>注意点</h2>
+
+<p>Agents APIの導入にあたっては、以下の点に留意する必要があります。</p>
+
+<ul>
+  <li><strong>一般ユーザーがそのまま使えるサービスではない：</strong>プログラミング言語（JavaScriptやPythonなど）を用いてAPIを呼び出し、システムを構築する開発者向けの機能です。ChatGPTの画面のように一般ユーザーがすぐに利用できる機能ではありません。</li>
+  <li><strong>パブリックベータ版であること：</strong>現在は一般提供（General Availability）に向けたパブリックベータ段階です。OpenAIはフィードバックを受け取りながら迅速な改善を行っていくとしています。</li>
+  <li><strong>従量課金の仕組み：</strong>API自体の基本料金や追加利用料はありませんが、エージェントが稼働中に使用した「トークン数」および「ツール」に応じた料金が発生します（価格詳細は公式の料金ページに記載されています）。長時間の自動処理やサブエージェントの多用時にはトークン消費量に注意が必要です。</li>
+</ul>
+
+<h2>まとめ</h2>
+
+<p>OpenAIの「Agents API」は、同社のCodexなどで培われたエージェント制御技術とインフラを、世界中の開発者に提供する新しいAPIです。自動的なコンテキスト圧縮、ツール検索、サブエージェントによる並列処理、柔軟なサンドボックス環境の選択により、これまで開発コストが高かった長時間稼働型のAIエージェントを、単一のAPI呼び出しで構築できるようになります。</p>
+
+<p>パブリックベータとして公開された本機能を活用することで、開発者はインフラ構築の手間を減らし、自社サービス独自のツールやワークフローの設計に集中することが可能になります。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/introducing-the-agents-api/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+Introducing the Agents API | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
