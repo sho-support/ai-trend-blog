@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-09-13_203910.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="AIで新薬候補の探索を「数年から数時間」へ短縮——OpenAIのChatGPTとCodexを活用した薬剤耐性菌研究の最前線">
+<meta property="og:description" content="薬剤耐性を持つ微生物の拡大が世界的な脅威となる中、新しい抗菌薬（抗生物質）の発見には膨大な時間とコストがかかっています。こうした課題に対し、バイオエンジニアのセザール・デ・ラ・フエンテ（César de la Fuente）氏が率いる研究チームは、生命の遺伝情報を「コード」として解読する独自AIに加え、Op…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-09-13_203910.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIで新薬候補の探索を「数年から数時間」へ短縮——OpenAIのChatGPTとCodexを活用した薬剤耐性菌研究の最前線">
+<meta name="twitter:description" content="薬剤耐性を持つ微生物の拡大が世界的な脅威となる中、新しい抗菌薬（抗生物質）の発見には膨大な時間とコストがかかっています。こうした課題に対し、バイオエンジニアのセザール・デ・ラ・フエンテ（César de la Fuente）氏が率いる研究チームは、生命の遺伝情報を「コード」として解読する独自AIに加え、Op…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"AIで新薬候補の探索を「数年から数時間」へ短縮——OpenAIのChatGPTとCodexを活用した薬剤耐性菌研究の最前線","description":"薬剤耐性を持つ微生物の拡大が世界的な脅威となる中、新しい抗菌薬（抗生物質）の発見には膨大な時間とコストがかかっています。こうした課題に対し、バイオエンジニアのセザール・デ・ラ・フエンテ（César de la Fuente）氏が率いる研究チームは、生命の遺伝情報を「コード」として解読する独自AIに加え、Op…","datePublished":"2026-09-13","dateModified":"2026-09-13","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-09-13_203910.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>AIで新薬候補の探索を「数年から数時間」へ短縮——OpenAIのChatGPTとCodexを活用した薬剤耐性菌研究の最前線 | AI Trend Blog</title>
+
+<meta name="description"
+content="薬剤耐性を持つ微生物の拡大が世界的な脅威となる中、新しい抗菌薬（抗生物質）の発見には膨大な時間とコストがかかっています。こうした課題に対し、バイオエンジニアのセザール・デ・ラ・フエンテ（César de la Fuente）氏が率いる研究チームは、生命の遺伝情報を「コード」として解読する独自AIに加え、Op…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.09.13
+
+</div>
+
+<h1>AIで新薬候補の探索を「数年から数時間」へ短縮——OpenAIのChatGPTとCodexを活用した薬剤耐性菌研究の最前線</h1>
+
+<p>薬剤耐性を持つ微生物の拡大が世界的な脅威となる中、新しい抗菌薬（抗生物質）の発見には膨大な時間とコストがかかっています。こうした課題に対し、バイオエンジニアのセザール・デ・ラ・フエンテ（César de la Fuente）氏が率いる研究チームは、生命の遺伝情報を「コード」として解読する独自AIに加え、OpenAIの生成AI「ChatGPT」およびプログラミング支援モデル「Codex」を研究プロセスに導入しています。</p>
+
+<p>本記事は、OpenAIが公開した公式記事に基づき、研究現場でAIがどのように活用されているのか、従来の手法と何が異なるのか、そして実用化に向けた課題や注意点について分かりやすく整理してお伝えします。なお、本記事で紹介する事例は高度な学術・創薬研究に関するものであり、一般の個人ユーザーが直接新薬を開発・使用できるツールについての発表ではない点にご注意ください。</p>
+
+<h2>今回のポイント</h2>
+
+<ul>
+  <li><strong>世界的な課題解決へのアプローチ：</strong>年間約500万人（2021年時点）の関連死亡者が存在する薬剤耐性菌に対し、50年間登場していなかった新しい系統の抗生物質を見つける研究。</li>
+  <li><strong>探索期間の大幅な短縮：</strong>生物学的配列を認識するディープラーニング技術により、新薬候補となる分子の初期探索時間を「数年」から「数時間」に短縮。</li>
+  <li><strong>ChatGPTとCodexの役割：</strong>仮説のブレインストーミング、プログラムコードの記述・修正、ゲノムデータセットの前処理、異分野間の専門知識の補完などに活用。</li>
+  <li><strong>実験による検証の必須性：</strong>AIによる予測だけでなく、実際の生物学的実験（実地実験）や臨床試験などの多段階の検証プロセスが不可欠。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+
+<p>従来の抗菌薬開発では、既存の医薬品の一部を改変したり、既知の化学物質のグループから候補を探したりする手法が主流でした。しかし、この方法では新しい発見が得られる割合が徐々に低下していくという課題がありました。また、植物、動物、昆虫、水、土壌などの自然界からサンプルを回収し、実験を通じて有効な分子を特定する作業には何年もかかっていました。</p>
+
+<p>デ・ラ・フエンテ氏の研究チームは、生物を一種の「情報システム」として捉えるアプローチを採用しました。DNAを構成するヌクレオチドや、タンパク質・ペプチドを構成するアミノ酸を「言語のアルファベット」のように扱い、生命の規則性を読み解く方法です。</p>
+
+<p>この考え方に基づき、デジタル化されたゲノム（全遺伝情報）やタンパク質のデータベースをAIで解析することで、以下のような変化が生まれています。</p>
+
+<p>1つ目は「探索範囲とスピードの変化」です。絶滅種や現生生物のゲノムから生物学的配列のパターンを認識する独自のディープラーニング（深層学習：大量のデータから特徴を自動で学習する技術）モデルを用いて巨大なデータをスキャンすることで、新薬候補となる分子を探す初期プロセスが、従来の「数年」から「数時間」へと劇的に短縮されました。</p>
+
+<p>2つ目は「研究作業の効率化と異分野連携の強化」です。研究チームは自身のAIモデルに加え、汎用的なAIツールである「ChatGPT」や「Codex（プログラミングコードの生成やリファインを行うAI）」を導入しています。これにより、大量データの整理やスクリプト作成、さらには異なる学問分野をまたいだ概念の整理がスムーズに行えるようになりました。</p>
+
+<h2>誰に関係する？</h2>
+
+<p>この取り組みは、主に以下のような対象に関係しています。</p>
+
+<ul>
+  <li><strong>ライフサイエンス・創薬分野の研究者：</strong>生物学、化学、コンピュータサイエンス、工学などが融合する最新の研究アプローチの事例として参考になります。</li>
+  <li><strong>医療・バイオテクノロジー領域の開発者：</strong>巨大なゲノムデータや文献データを処理する際、生成AIを高度な補助ツールとしてどう組み込むかの知見が得られます。</li>
+  <li><strong>AI技術の産業応用に関心のある技術者：</strong>ディープラーニングモデルと大規模言語モデルやコード生成モデルを併用する具体的なワークフローに関わる情報です。</li>
+</ul>
+
+<p>※注意：本情報は先端研究の現場における事例紹介であり、一般のAIユーザー向けに新しい個人向けアプリや医療用サービスが提供されたわけではありません。</p>
+
+<h2>どう活用できる？</h2>
+
+<p>研究チームのラボ（研究室）は、生物学、化学、コンピュータサイエンス、工学などの多様なバックグラウンドを持つメンバーで構成されています。ラボ内では、ChatGPTやCodexが次のような具体的な用途で活用されています。</p>
+
+<h3>1. 専門分野間のギャップ解消</h3>
+<p>プログラミングが得意だが生物学の知識が少ない研究者や、逆に生物学に精通しているがコード記述が得意ではない研究者が存在します。AIを活用することで、生物学者が自らプログラムを構築したり、プログラマーが生物学的な課題にアプローチしたりすることが可能になり、分野間の壁が低くなっています。</p>
+
+<h3>2. プログラミングとデータ処理の加速</h3>
+<p>大量のゲノムデータセットをダウンロードし、整理・前処理するためのコードを書き、修正（リファイン）する作業にCodexやChatGPTが使われています。手作業や試行錯誤にかかる時間を減らし、データ解析へ速やかに移行できます。</p>
+
+<h3>3. 仮説構築とブレインストーミング</h3>
+<p>デ・ラ・フエンテ氏はChatGPTを「ブレインストーミングのパートナー」として位置付けています。研究者同士の議論に加え、AIに対して良いアイデアや悪いアイデアを問いかけることで、仮説の輪郭を整える壁打ち相手（サウンドボード）として利用しています。</p>
+
+<h3>4. 未知の知識の復習と多言語対応</h3>
+<p>専門外の分野に関する用語の確認、異なる学問分野間での手法の比較、創薬アイデアの整理に活用されています。また、研究者が自身の母国語でAIとやり取りできるため、作業上の言語バリアを低減する効果ももたらされています。</p>
+
+<h2>注意点</h2>
+
+<p>AIは創薬研究を大幅に加速させますが、公式記事ではいくつかの重要な注意点や限界が示されています。</p>
+
+<h3>1. AIによる予測だけでは医薬品にならない</h3>
+<p>AIが有望な分子候補を特定したとしても、それが直ちに有効な薬になるわけではありません。予測結果が正しいかを確認するためには、実際の生物を用いた実験（実地実験：Ground-truth experiments）による検証が不可欠です。</p>
+
+<h3>2. 多段階にわたる厳格な検証プロセス</h3>
+<p>候補分子が実際の医薬品として患者に届くためには、以下のような多数のステップをクリアする必要があります。</p>
+<ul>
+  <li>対象となる微生物を実際に殺菌・抑制できるかの確認</li>
+  <li>効果を発揮するために必要な用量の特定</li>
+  <li>ヒトの細胞に対する安全性や毒性のテスト</li>
+  <li>化学的な最適化（効果、安全性、安定性の向上）</li>
+  <li>微生物がその分子に対して耐性を獲得しやすいかどうかの検証</li>
+  <li>体内での分子の動き（動態）の確認</li>
+  <li>信頼性の高い製造方法の確立</li>
+  <li>規制当局による審査および臨床試験</li>
+</ul>
+
+<h3>3. 情報の正確性のダブルチェック</h3>
+<p>デ・ラ・フエンテ氏は、AIの利便性を評価しつつも、「精度については常に二重チェック（ダブルチェック）を行わなければならない」と警告しています。AIの提案を鵜呑みにせず、研究者が事実を確認する姿勢が求められます。</p>
+
+<h2>まとめ</h2>
+
+<p>今回のOpenAIの発表は、かつて望遠鏡が宇宙を照らし、顕微鏡が見えない世界を可視化したように、AIが複雑な生命科学を解読・予測するための「新しいツール」として機能していることを示しています。</p>
+
+<p>ディープラーニングによるデータ解析と、ChatGPTやCodexによる作業支援・思考の整理を組み合わせることで、新薬候補の初期探索は「数年から数時間」へと短縮されました。しかし、最終的な安全性の確認や有効性の証明には、人間による厳密な実験と検証が欠かせません。</p>
+
+<p>最先端の科学研究においてAIは、異分野の知見を接続し、新たな発見の可能性を広げる強力な協力者として活用されています。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
