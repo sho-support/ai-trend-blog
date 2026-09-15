@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-09-15_133331.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap-index.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="GPT-5.6 SolとCodexが量子計算の実験を支援——MITが実証したAIエージェントによる自動較正と測定ワークフロー">
+<meta property="og:description" content="OpenAIは、同社のAIモデル「GPT-5.6 Sol」および開発支援ツール「Codex」を研究所の制御ソフトウェアに接続し、量子コンピューティング実験における定常的な測定や較正（キャリブレーション）作業を自律実行させた事例を公開しました。マサチューセッツ工科大学（MIT）の研究チームによるこの取り組みで…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-09-15_133331.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GPT-5.6 SolとCodexが量子計算の実験を支援——MITが実証したAIエージェントによる自動較正と測定ワークフロー">
+<meta name="twitter:description" content="OpenAIは、同社のAIモデル「GPT-5.6 Sol」および開発支援ツール「Codex」を研究所の制御ソフトウェアに接続し、量子コンピューティング実験における定常的な測定や較正（キャリブレーション）作業を自律実行させた事例を公開しました。マサチューセッツ工科大学（MIT）の研究チームによるこの取り組みで…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"GPT-5.6 SolとCodexが量子計算の実験を支援——MITが実証したAIエージェントによる自動較正と測定ワークフロー","description":"OpenAIは、同社のAIモデル「GPT-5.6 Sol」および開発支援ツール「Codex」を研究所の制御ソフトウェアに接続し、量子コンピューティング実験における定常的な測定や較正（キャリブレーション）作業を自律実行させた事例を公開しました。マサチューセッツ工科大学（MIT）の研究チームによるこの取り組みで…","datePublished":"2026-09-15","dateModified":"2026-09-15","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-09-15_133331.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>GPT-5.6 SolとCodexが量子計算の実験を支援——MITが実証したAIエージェントによる自動較正と測定ワークフロー | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAIは、同社のAIモデル「GPT-5.6 Sol」および開発支援ツール「Codex」を研究所の制御ソフトウェアに接続し、量子コンピューティング実験における定常的な測定や較正（キャリブレーション）作業を自律実行させた事例を公開しました。マサチューセッツ工科大学（MIT）の研究チームによるこの取り組みで…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.09.15
+
+</div>
+
+<h1>GPT-5.6 SolとCodexが量子計算の実験を支援——MITが実証したAIエージェントによる自動較正と測定ワークフロー</h1>
+
+<p>OpenAIは、同社のAIモデル「GPT-5.6 Sol」および開発支援ツール「Codex」を研究所の制御ソフトウェアに接続し、量子コンピューティング実験における定常的な測定や較正（キャリブレーション）作業を自律実行させた事例を公開しました。マサチューセッツ工科大学（MIT）の研究チームによるこの取り組みでは、これまで研究者が手動で行っていた数百から数千回に及ぶ予備測定をAIが代行。研究者が常時監視することなく実験を進行できる環境を実現しています。</p>
+
+<h2>今回のポイント</h2>
+
+<ul>
+  <li><strong>実験制御ソフトへのAI連携：</strong> Codexをラボの制御ソフトウェアに接続し、GPT-5.6 Solが測定の実行、データ解析、次のステップの選定までを自律的に処理。</li>
+  <li><strong>ルーチン較正の自動化：</strong> 6量子ビットの超伝導チップを用いた実験で、明確な信号が得られる標準手順を研究者の介入を最小限に抑えて完了。</li>
+  <li><strong>長時間・並行作業の実現：</strong> 夜間やクリーンルーム作業中もエージェントに測定を行わせ、研究者はスマートフォン等から進捗の確認や修正指示を与えることが可能。</li>
+  <li><strong>ノイズ環境下での制限：</strong> 信号が弱い場合やノイズが多いケースではパラメータ調整に時間がかかり、熟練研究者のサポートが必要。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+
+<p>量子プロセッサ（量子チップ）の制御には、従来のコンピュータと異なり「量子ビット（qubit）」と呼ばれる素子が用いられます。試作された量子チップを冷却して使用可能にするまでには、素子の特性を把握するために数百から数千回という膨大な予備測定と較正（キャリブレーション：計測器や素子の調整作業）が必要とされ、これには数ヶ月の準備期間がかかることもあります。</p>
+
+<p>MITのEngineering Quantum Systems Group（EQuS）が取り扱う「超伝導量子ビット」は、希釈冷凍機と呼ばれる専用装置で絶対零度近くまで冷却され、マイクロ波信号を使って正確に制御されます。量子ビットの周波数や情報保持時間などの特性を測定する過程では、一つの測定結果に基づいて次の測定設定を決めるという、相互に依存した判断が連続して求められます。また、量子ビットの特性は時間経過によって変化が生じることもあり、物理的な挙動のブレに対応する判断が必要です。</p>
+
+<p>今回の取り組みでは、Beatriz Yankelevich氏らがGPT-5.6 SolとCodexを組み合わせ、各実験手順の実行・評価基準（測定用スキル）と設計目標をAIに与えました。その結果、GPT-5.6 Solは自律的に以下のループを実行できるようになりました。</p>
+
+<ul>
+  <li>測定パラメータの選択</li>
+  <li>実験ハードウェアの操作とデータ測定の実施</li>
+  <li>得られたデータの解析とパラメータの調整</li>
+  <li>次の測定手順への結果の引き継ぎ、または保存</li>
+</ul>
+
+<p>標準的な6量子ビットチップの試験では、クリアな信号が得られている状況下において、AIが量子ビットの遷移周波数の特定、制御・読み出しパルスの調整、情報保持時間の計測までの一連のシーケンスを、人間の介在をほとんど必要とせずに完了させました。</p>
+
+<h2>誰に関係する？</h2>
+
+<p>本成果は、主に先端テクノロジー領域の研究開発に携わる専門家に関係するニュースです。</p>
+
+<ul>
+  <li><strong>量子コンピューティング・物理学分野の研究者：</strong> 量子チップの評価（キャラクタリゼーション）作業を効率化し、試作評価のリードタイムを削減したい研究組織。</li>
+  <li><strong>実験制御システムやAIエージェントの開発者：</strong> AIモデルを実世界の物理機器や制御ソフトウェアに連携させ、判定ループを自動化させたいエンジニア。</li>
+</ul>
+
+<p>なお、本技術はMITのラボ環境および専門ソフトウェアと連携させた応用事例であり、一般的なWebユーザーがブラウザ等で直接利用するような汎用サービスではありません。専門知識を持つ研究者がワークフローを構築して運用するアプローチとなります。</p>
+
+<h2>どう活用できる？</h2>
+
+<p>日本の大学や公的機関、企業の研究開発部門においても、物理実験や精密計測の領域でAIエージェントを組み込む際の参考モデルとして活用が期待されます。</p>
+
+<p><strong>1. 定常測定の自動化と無人運用</strong><br>
+研究者が直接PCの前に座り続ける必要がなくなります。クリーンルームでのチップ作成作業中や夜間の時間帯を利用してAIエージェントに長時間の測定を実行させ、研究者はスマートフォンからステータスを確認し、必要に応じて軌道修正を行うといった効率的な運用スタイルが可能になります。</p>
+
+<p><strong>2. 実験用コードの修正・テストの高速化</strong><br>
+定型的なルーチン測定だけでなく、新しい実験を行う際にはエージェントに対して限定的な目標を設定し、制御・解析・シミュレーション用のコードの作成・修正・テストを行わせることができます。測定・理論・チップ設計といった各工程にエージェントを分散配置することで、研究者は結果の解釈や高次元な実験設計、論文の執筆など、人間が対応すべき高度な業務に集中できるようになります。</p>
+
+<h2>注意点</h2>
+
+<p>公式発表では、現在のAIエージェントにおける限界や留意すべき課題についても明記されています。</p>
+
+<ul>
+  <li><strong>ノイズや弱い信号への対応力不足：</strong> 実験信号が弱かったり、ノイズが大きい状況では、適切な測定パラメータを見つけるのに時間を要し、経験豊富な人間の研究者による指導が必要となる場合があります。</li>
+  <li><strong>物理的異変の解釈限界：</strong> 明確に定義されたルーチン手順の実行は得意とするものの、曖昧な物理現象や不規則な結果に対する解釈・柔軟な適応には依然として難しさがあります。</li>
+  <li><strong>熟練者の判定スピード：</strong> 最適な較正設定を導き出すスピードにおいて、経験を積んだ人間の研究者の方がAIモデルよりも素早く最適な設定を見つけられるケースが存在します。</li>
+</ul>
+
+<h2>まとめ</h2>
+
+<p>OpenAIのGPT-5.6 SolとCodexを用いた本実証は、量子コンピューティングという高度で専門的な実験現場において、AIエージェントがハードウェア制御ソフトと連動し、複雑な較正手順やデータ解析を自律処理できることを示しました。</p>
+
+<p>ノイズの多い環境下での調整や曖昧なデータの解釈といった課題は残されているものの、研究者が繰り返し行う測定監視の手間を大幅に削減し、より本質的な実験デザインや結果の解釈に集中するための強力なパートナーになり得る事例と言えます。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/codex-quantum-computing-experiments/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+How GPT-5.6 Sol helps run quantum computing experiments | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
