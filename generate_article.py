@@ -28,7 +28,12 @@ GA_MEASUREMENT_ID = "G-J5ZDLF30CS"
 ARTICLE_DIR = Path("articles")
 INDEX_FILE = Path("index.html")
 HISTORY_FILE = Path("article_history.json")
+# sitemap.xml は互換用のサイトマップインデックスとして維持。
+# Search Consoleには sitemap-index.xml を新規送信する。
 SITEMAP_FILE = Path("sitemap.xml")
+SITEMAP_INDEX_FILE = Path("sitemap-index.xml")
+SITE_SITEMAP_FILE = Path("site-sitemap.xml")
+ARTICLES_SITEMAP_FILE = Path("articles-sitemap.xml")
 ROBOTS_FILE = Path("robots.txt")
 
 JST = timezone(timedelta(hours=9))
@@ -164,7 +169,7 @@ def build_seo_block(
         '<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">',
         '<meta name="googlebot" content="index,follow">',
         f'<link rel="canonical" href="{safe_canonical}">',
-        f'<link rel="sitemap" type="application/xml" href="{SITE_BASE_URL}/sitemap.xml">',
+        f'<link rel="sitemap" type="application/xml" href="{SITE_BASE_URL}/sitemap-index.xml">',
         f'<meta property="og:site_name" content="{html.escape(SITE_NAME, quote=True)}">',
         f'<meta property="og:title" content="{safe_title}">',
         f'<meta property="og:description" content="{safe_description}">',
@@ -529,44 +534,8 @@ def history_date_map(history):
     return date_map
 
 
-def generate_sitemap(history=None):
-    print("")
-    print("sitemap.xml 生成開始")
-
-    if history is None:
-        history = load_history()
-
-    article_dates = history_date_map(history)
-
-    urlset = Element(
-        "urlset",
-        {"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9"},
-    )
-
-    if INDEX_FILE.exists():
-        url = SubElement(urlset, "url")
-        SubElement(url, "loc").text = SITE_BASE_URL + "/"
-        SubElement(url, "lastmod").text = datetime.now(
-            JST
-        ).date().isoformat()
-
-    if ARTICLE_DIR.exists():
-        for filepath in sorted(ARTICLE_DIR.glob("*.html")):
-            url = SubElement(urlset, "url")
-
-            SubElement(url, "loc").text = (
-                f"{SITE_BASE_URL}/articles/{filepath.name}"
-            )
-
-            history_date = article_dates.get(filepath.name)
-            lastmod_value = history_date or filename_date(filepath.name)
-
-            if not lastmod_value:
-                lastmod_value = datetime.now(JST).date().isoformat()
-
-            SubElement(url, "lastmod").text = lastmod_value
-
-    tree = ElementTree(urlset)
+def _write_xml(root, filepath):
+    tree = ElementTree(root)
 
     try:
         indent(tree, space="  ")
@@ -574,19 +543,223 @@ def generate_sitemap(history=None):
         pass
 
     tree.write(
-        SITEMAP_FILE,
+        filepath,
         encoding="utf-8",
         xml_declaration=True,
     )
 
-    print("sitemap.xml 生成完了:", SITEMAP_FILE)
+
+def generate_sitemap(history=None):
+    """
+    2段構成のサイトマップを生成する。
+
+    sitemap-index.xml
+      ├─ site-sitemap.xml       : トップページ
+      └─ articles-sitemap.xml   : 全記事
+
+    既にSearch Consoleへ送信済みの sitemap.xml も、
+    sitemap-index.xml と同内容のインデックスとして生成し、
+    旧URLとの互換性を維持する。
+    """
+
+    print("")
+    print("サイトマップ一式 生成開始")
+
+    if history is None:
+        history = load_history()
+
+    article_dates = history_date_map(history)
+    today = datetime.now(JST).date().isoformat()
+
+    namespace = (
+        "http://www.sitemaps.org/schemas/sitemap/0.9"
+    )
+
+    # =====================================================
+    # 1. トップページ専用 site-sitemap.xml
+    # =====================================================
+
+    site_urlset = Element(
+        "urlset",
+        {"xmlns": namespace},
+    )
+
+    if INDEX_FILE.exists():
+        url = SubElement(
+            site_urlset,
+            "url",
+        )
+
+        SubElement(
+            url,
+            "loc",
+        ).text = SITE_BASE_URL + "/"
+
+        SubElement(
+            url,
+            "lastmod",
+        ).text = today
+
+    _write_xml(
+        site_urlset,
+        SITE_SITEMAP_FILE,
+    )
+
+    print(
+        "site-sitemap.xml 生成完了:",
+        SITE_SITEMAP_FILE,
+    )
+
+    # =====================================================
+    # 2. 記事専用 articles-sitemap.xml
+    # =====================================================
+
+    articles_urlset = Element(
+        "urlset",
+        {"xmlns": namespace},
+    )
+
+    article_count = 0
+    newest_article_date = None
+
+    if ARTICLE_DIR.exists():
+
+        for filepath in sorted(
+            ARTICLE_DIR.glob("*.html")
+        ):
+
+            url = SubElement(
+                articles_urlset,
+                "url",
+            )
+
+            SubElement(
+                url,
+                "loc",
+            ).text = (
+                f"{SITE_BASE_URL}/articles/"
+                f"{filepath.name}"
+            )
+
+            history_date = article_dates.get(
+                filepath.name
+            )
+
+            lastmod_value = (
+                history_date
+                or filename_date(
+                    filepath.name
+                )
+                or today
+            )
+
+            SubElement(
+                url,
+                "lastmod",
+            ).text = lastmod_value
+
+            article_count += 1
+
+            if (
+                newest_article_date is None
+                or lastmod_value
+                > newest_article_date
+            ):
+                newest_article_date = (
+                    lastmod_value
+                )
+
+    _write_xml(
+        articles_urlset,
+        ARTICLES_SITEMAP_FILE,
+    )
+
+    print(
+        "articles-sitemap.xml 生成完了:",
+        ARTICLES_SITEMAP_FILE,
+        "| 記事数:",
+        article_count,
+    )
+
+    # =====================================================
+    # 3. sitemap index
+    # =====================================================
+
+    sitemap_index = Element(
+        "sitemapindex",
+        {"xmlns": namespace},
+    )
+
+    site_map = SubElement(
+        sitemap_index,
+        "sitemap",
+    )
+
+    SubElement(
+        site_map,
+        "loc",
+    ).text = (
+        f"{SITE_BASE_URL}/"
+        f"{SITE_SITEMAP_FILE.name}"
+    )
+
+    SubElement(
+        site_map,
+        "lastmod",
+    ).text = today
+
+    article_map = SubElement(
+        sitemap_index,
+        "sitemap",
+    )
+
+    SubElement(
+        article_map,
+        "loc",
+    ).text = (
+        f"{SITE_BASE_URL}/"
+        f"{ARTICLES_SITEMAP_FILE.name}"
+    )
+
+    SubElement(
+        article_map,
+        "lastmod",
+    ).text = (
+        newest_article_date
+        or today
+    )
+
+    # Search Consoleへ新規送信する本命
+    _write_xml(
+        sitemap_index,
+        SITEMAP_INDEX_FILE,
+    )
+
+    # 旧 sitemap.xml も同じサイトマップインデックスに変更
+    _write_xml(
+        sitemap_index,
+        SITEMAP_FILE,
+    )
+
+    print(
+        "sitemap-index.xml 生成完了:",
+        SITEMAP_INDEX_FILE,
+    )
+
+    print(
+        "sitemap.xml 互換インデックス生成完了:",
+        SITEMAP_FILE,
+    )
 
 
 def generate_robots():
+
     content = (
         "User-agent: *\n"
         "Allow: /\n\n"
-        f"Sitemap: {SITE_BASE_URL}/sitemap.xml\n"
+        f"Sitemap: "
+        f"{SITE_BASE_URL}/"
+        f"{SITEMAP_INDEX_FILE.name}\n"
     )
 
     ROBOTS_FILE.write_text(
@@ -594,7 +767,10 @@ def generate_robots():
         encoding="utf-8",
     )
 
-    print("robots.txt 更新:", ROBOTS_FILE)
+    print(
+        "robots.txt 更新:",
+        ROBOTS_FILE,
+    )
 
 
 # =========================================================
@@ -2430,7 +2606,22 @@ def main():
         ),
     )
     print("GA4:", GA_MEASUREMENT_ID)
-    print("Sitemap:", SITEMAP_FILE)
+    print(
+        "Sitemap Index:",
+        SITEMAP_INDEX_FILE,
+    )
+    print(
+        "Site Sitemap:",
+        SITE_SITEMAP_FILE,
+    )
+    print(
+        "Articles Sitemap:",
+        ARTICLES_SITEMAP_FILE,
+    )
+    print(
+        "Legacy Sitemap:",
+        SITEMAP_FILE,
+    )
     print("Robots:", ROBOTS_FILE)
     print(
         "Canonical:",
