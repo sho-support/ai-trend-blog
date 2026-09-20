@@ -741,5 +741,14 @@
     "url": "https://openai.com/index/australian-youth-safety-blueprint/",
     "filename": "2026-09-20_003011.html",
     "created_at": "2026-09-20T00:30:11.641590+09:00"
+  },
+  {
+    "title": "GoogleとNASA JPL、宇宙から地球全体のメタン排出を可視化するAIモデル「MAPL-EMIT」を発表",
+    "source_title": "Mapping global methane emissions from space with deep learning",
+    "page_title": "AI maps global methane emissions from space",
+    "source_name": "Google",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/mapping-global-methane-emissions-from-space/",
+    "filename": "2026-09-20_133504.html",
+    "created_at": "2026-09-20T13:35:04.468416+09:00"
   }
 ]
