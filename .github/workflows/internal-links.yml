@@ -1,0 +1,428 @@
+name: Strengthen Internal Links
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 記事生成（JST 09:00 / 15:00 / 21:00）の30分後
+    - cron: "30 0 * * *"
+    - cron: "30 6 * * *"
+    - cron: "30 12 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-trend-blog-internal-links
+  cancel-in-progress: false
+
+jobs:
+  strengthen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependency
+        run: pip install beautifulsoup4
+
+      - name: Rebuild internal links and archive
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import re
+          import html
+          from datetime import datetime, timezone, timedelta
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+
+          SITE_NAME = "AI Trend Blog"
+          SITE_BASE_URL = "https://sho-support.github.io/ai-trend-blog"
+          JST = timezone(timedelta(hours=9))
+
+          INDEX_FILE = Path("index.html")
+          HISTORY_FILE = Path("article_history.json")
+          ARTICLE_DIR = Path("articles")
+          ARCHIVE_FILE = Path("archive.html")
+
+          LINK_START = "<!-- AI_TREND_INTERNAL_LINKS_START -->"
+          LINK_END = "<!-- AI_TREND_INTERNAL_LINKS_END -->"
+
+          INDEX_ARCHIVE_START = "<!-- AI_TREND_ARCHIVE_LINK_START -->"
+          INDEX_ARCHIVE_END = "<!-- AI_TREND_ARCHIVE_LINK_END -->"
+
+          def read_text(path):
+              return path.read_text(encoding="utf-8")
+
+          def write_if_changed(path, text):
+              old = path.read_text(encoding="utf-8") if path.exists() else None
+              if old != text:
+                  path.write_text(text, encoding="utf-8")
+                  print("更新:", path)
+                  return True
+              return False
+
+          def parse_filename_date(filename):
+              m = re.match(r"(\d{4})-(\d{2})-(\d{2})_", filename or "")
+              if not m:
+                  return ""
+              return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+
+          def load_history():
+              if not HISTORY_FILE.exists():
+                  return []
+              try:
+                  data = json.loads(read_text(HISTORY_FILE))
+                  return data if isinstance(data, list) else []
+              except Exception:
+                  return []
+
+          def extract_title_from_file(path):
+              try:
+                  soup = BeautifulSoup(read_text(path), "html.parser")
+                  h1 = soup.find("h1")
+                  if h1:
+                      return h1.get_text(" ", strip=True)
+                  title = soup.find("title")
+                  if title:
+                      return title.get_text(" ", strip=True).split("|")[0].strip()
+              except Exception:
+                  pass
+              return path.stem
+
+          def extract_source_from_file(path):
+              try:
+                  soup = BeautifulSoup(read_text(path), "html.parser")
+                  box = soup.select_one(".source-box strong")
+                  if box:
+                      return box.get_text(" ", strip=True)
+              except Exception:
+                  pass
+              return "AIニュース"
+
+          history = load_history()
+          history_by_filename = {
+              str(x.get("filename", "")): x
+              for x in history
+              if x.get("filename")
+          }
+
+          records = []
+          if ARTICLE_DIR.exists():
+              for path in sorted(ARTICLE_DIR.glob("*.html")):
+                  item = history_by_filename.get(path.name, {})
+                  title = item.get("title") or extract_title_from_file(path)
+                  source = item.get("source_name") or extract_source_from_file(path)
+                  created_at = item.get("created_at", "")
+                  date = ""
+                  if created_at:
+                      try:
+                          date = datetime.fromisoformat(created_at).date().isoformat()
+                      except Exception:
+                          pass
+                  if not date:
+                      date = parse_filename_date(path.name)
+
+                  records.append({
+                      "filename": path.name,
+                      "title": title,
+                      "source": source,
+                      "date": date,
+                      "path": path,
+                  })
+
+          # 新しい順
+          records.sort(key=lambda x: x["filename"], reverse=True)
+
+          print("記事数:", len(records))
+
+          # -------------------------------------------------
+          # archive.html を毎回完全再生成
+          # -------------------------------------------------
+          cards = []
+          for r in records:
+              safe_title = html.escape(r["title"])
+              safe_source = html.escape(r["source"])
+              display_date = r["date"].replace("-", ".") if r["date"] else ""
+              cards.append(f"""
+              <article class="article-card">
+                <div class="meta">{display_date} ｜ {safe_source}</div>
+                <h2><a href="articles/{r['filename']}">{safe_title}</a></h2>
+              </article>
+              """)
+
+          archive_html = f"""<!DOCTYPE html>
+          <html lang="ja">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="robots" content="index,follow">
+            <link rel="canonical" href="{SITE_BASE_URL}/archive.html">
+            <title>全記事一覧 | {SITE_NAME}</title>
+            <meta name="description" content="{SITE_NAME}の全記事一覧です。OpenAI、Google、GitHubなどの公式情報をもとにしたAI関連記事を新しい順に掲載しています。">
+            <style>
+              *{{box-sizing:border-box}}
+              body{{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:#f5f7fb;color:#1d2433;line-height:1.7}}
+              header{{background:#111827;padding:22px 20px}}
+              header a{{color:#fff;text-decoration:none;font-size:24px;font-weight:800}}
+              main{{max-width:1000px;margin:32px auto;padding:0 20px 60px}}
+              .intro{{background:#fff;padding:28px;border-radius:16px;margin-bottom:24px;box-shadow:0 5px 22px rgba(0,0,0,.05)}}
+              .article-list{{display:grid;gap:16px}}
+              .article-card{{background:#fff;padding:20px;border-radius:14px;box-shadow:0 5px 22px rgba(0,0,0,.05)}}
+              .article-card h2{{font-size:19px;line-height:1.55;margin:7px 0 0}}
+              .article-card a{{color:inherit;text-decoration:none}}
+              .article-card a:hover{{text-decoration:underline}}
+              .meta{{color:#94a3b8;font-size:12px}}
+              footer{{text-align:center;padding:28px;color:#94a3b8}}
+            </style>
+          </head>
+          <body>
+            <header><a href="./">AI Trend Blog</a></header>
+            <main>
+              <section class="intro">
+                <h1>全記事一覧</h1>
+                <p>AI・生成AI・Webサービスの最新情報を、新しい順にまとめています。</p>
+                <p><a href="./">トップページへ戻る</a></p>
+              </section>
+              <div class="article-list">
+                {''.join(cards)}
+              </div>
+            </main>
+            <footer>© {datetime.now(JST).year} {SITE_NAME}</footer>
+          </body>
+          </html>
+          """
+
+          write_if_changed(ARCHIVE_FILE, archive_html)
+
+          # -------------------------------------------------
+          # index.html に「全記事一覧」導線を追加
+          # トップページは既存デザインを壊さない
+          # -------------------------------------------------
+          if INDEX_FILE.exists():
+              index_text = read_text(INDEX_FILE)
+
+              archive_link = f"""
+          {INDEX_ARCHIVE_START}
+          <div style="max-width:1100px;margin:0 auto 26px;padding:0 20px;">
+            <a href="archive.html"
+               style="display:inline-block;background:#111827;color:white;text-decoration:none;padding:11px 18px;border-radius:999px;font-weight:700;">
+              全記事一覧を見る
+            </a>
+          </div>
+          {INDEX_ARCHIVE_END}
+          """.strip()
+
+              pattern = re.compile(
+                  re.escape(INDEX_ARCHIVE_START) + r".*?" + re.escape(INDEX_ARCHIVE_END),
+                  re.DOTALL,
+              )
+
+              if pattern.search(index_text):
+                  index_text = pattern.sub(archive_link, index_text, count=1)
+              elif "<main>" in index_text:
+                  index_text = index_text.replace("<main>", archive_link + "\n\n<main>", 1)
+              elif "</header>" in index_text:
+                  index_text = index_text.replace("</header>", "</header>\n\n" + archive_link, 1)
+
+              # navの「ホーム」だけ実URLに修正。# のダミーカテゴリは触らない。
+              index_text = index_text.replace(
+                  '<a href="#">ホーム</a>',
+                  '<a href="./">ホーム</a>',
+                  1,
+              )
+
+              write_if_changed(INDEX_FILE, index_text)
+
+          # -------------------------------------------------
+          # 関連記事スコア
+          # -------------------------------------------------
+          def tokens(title):
+              text = re.sub(r"[^\wぁ-んァ-ヶ一-龠]+", " ", title.lower())
+              words = [w for w in text.split() if len(w) >= 2]
+              # よく出る語は弱める
+              stop = {
+                  "openai","google","github","ai","chatgpt","gemini",
+                  "発表","最新","活用","機能","方法","解説","実現","導入",
+              }
+              return {w for w in words if w not in stop}
+
+          for i, current in enumerate(records):
+              current_tokens = tokens(current["title"])
+
+              scored = []
+              for j, other in enumerate(records):
+                  if i == j:
+                      continue
+
+                  other_tokens = tokens(other["title"])
+                  overlap = len(current_tokens & other_tokens)
+
+                  score = overlap * 5
+
+                  if current["source"] == other["source"]:
+                      score += 2
+
+                  # 近い時期の記事を少し優先
+                  distance = abs(i - j)
+                  score += max(0, 4 - min(distance, 4))
+
+                  scored.append((score, -distance, other))
+
+              scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
+              related = [x[2] for x in scored[:3]]
+
+              # 時系列上の前後
+              # records は新→旧なので、i-1 が新しい記事、i+1 が古い記事
+              newer = records[i - 1] if i > 0 else None
+              older = records[i + 1] if i + 1 < len(records) else None
+
+              related_items = "\n".join(
+                  f'<li><a href="{html.escape(r["filename"], quote=True)}">{html.escape(r["title"])}</a></li>'
+                  for r in related
+              )
+
+              prev_next = []
+              if older:
+                  prev_next.append(
+                      f'<a class="internal-nav-card" href="{html.escape(older["filename"], quote=True)}">'
+                      f'<span>← 前の記事</span><strong>{html.escape(older["title"])}</strong></a>'
+                  )
+              if newer:
+                  prev_next.append(
+                      f'<a class="internal-nav-card" href="{html.escape(newer["filename"], quote=True)}">'
+                      f'<span>次の記事 →</span><strong>{html.escape(newer["title"])}</strong></a>'
+                  )
+
+              block = f"""
+          {LINK_START}
+          <section class="ai-trend-internal-links" aria-label="関連記事">
+            <h2>関連記事</h2>
+            <ul>
+              {related_items}
+            </ul>
+
+            <div class="internal-nav-grid">
+              {''.join(prev_next)}
+            </div>
+
+            <p class="internal-archive-link">
+              <a href="../archive.html">AI Trend Blogの全記事を見る</a>
+            </p>
+          </section>
+          {LINK_END}
+          """.strip()
+
+              path = current["path"]
+              try:
+                  article_text = read_text(path)
+              except Exception as e:
+                  print("読込失敗:", path, e)
+                  continue
+
+              # CSS追加（1回のみ）
+              if ".ai-trend-internal-links" not in article_text:
+                  css = r"""
+          .ai-trend-internal-links {
+            margin-top: 40px;
+            padding-top: 26px;
+            border-top: 1px solid #e2e8f0;
+          }
+          .ai-trend-internal-links ul {
+            padding-left: 22px;
+          }
+          .ai-trend-internal-links a {
+            color: #1d4ed8;
+            text-decoration: none;
+          }
+          .ai-trend-internal-links a:hover {
+            text-decoration: underline;
+          }
+          .internal-nav-grid {
+            margin-top: 26px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+          }
+          .internal-nav-card {
+            display: block;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px;
+            background: #f8fafc;
+          }
+          .internal-nav-card span {
+            display: block;
+            color: #64748b;
+            font-size: 12px;
+            margin-bottom: 5px;
+          }
+          .internal-nav-card strong {
+            display: block;
+            color: #1d2433;
+            font-size: 14px;
+            line-height: 1.5;
+          }
+          .internal-archive-link {
+            margin-top: 22px;
+            font-weight: 700;
+          }
+          @media (max-width: 700px) {
+            .internal-nav-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+          """.strip()
+
+                  article_text = article_text.replace(
+                      "</style>",
+                      css + "\n\n</style>",
+                      1,
+                  )
+
+              pattern = re.compile(
+                  re.escape(LINK_START) + r".*?" + re.escape(LINK_END),
+                  re.DOTALL,
+              )
+
+              if pattern.search(article_text):
+                  article_text = pattern.sub(block, article_text, count=1)
+              elif '<div class="source-box">' in article_text:
+                  article_text = article_text.replace(
+                      '<div class="source-box">',
+                      block + '\n\n<div class="source-box">',
+                      1,
+                  )
+              elif "</article>" in article_text:
+                  article_text = article_text.replace(
+                      "</article>",
+                      block + "\n\n</article>",
+                      1,
+                  )
+
+              write_if_changed(path, article_text)
+
+          print("内部リンク強化完了")
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "AI Internal Link Bot"
+          git config user.email "actions@github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+
+          git commit -m "Strengthen internal links and archive"
+          git push
