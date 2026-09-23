@@ -813,5 +813,14 @@
     "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
     "filename": "2026-09-23_132551.html",
     "created_at": "2026-09-23T13:25:51.103395+09:00"
+  },
+  {
+    "title": "OpenAIがGPT-6向けにプロンプトキャッシングを強化　ダッシュボード導入や推論負荷の調整で開発効率を向上",
+    "source_title": "Better prompt caching for GPT-6",
+    "page_title": "Better prompt caching for GPT-6 | OpenAI",
+    "source_name": "OpenAI",
+    "url": "https://openai.com/index/better-prompt-caching-for-gpt-6/",
+    "filename": "2026-09-23_202246.html",
+    "created_at": "2026-09-23T20:22:46.406952+09:00"
   }
 ]
