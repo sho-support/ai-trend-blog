@@ -32,7 +32,7 @@ jobs:
       - name: Install dependency
         run: pip install beautifulsoup4
 
-      - name: Rebuild internal links and archive
+      - name: Build categories, archive and internal links
         shell: bash
         run: |
           python - <<'PY'
@@ -41,6 +41,7 @@ jobs:
           import html
           from datetime import datetime, timezone, timedelta
           from pathlib import Path
+          from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
           from bs4 import BeautifulSoup
 
           SITE_NAME = "AI Trend Blog"
@@ -51,12 +52,81 @@ jobs:
           HISTORY_FILE = Path("article_history.json")
           ARTICLE_DIR = Path("articles")
           ARCHIVE_FILE = Path("archive.html")
+          CATEGORY_DIR = Path("category")
+          SITE_SITEMAP_FILE = Path("site-sitemap.xml")
 
           LINK_START = "<!-- AI_TREND_INTERNAL_LINKS_START -->"
           LINK_END = "<!-- AI_TREND_INTERNAL_LINKS_END -->"
-
           INDEX_ARCHIVE_START = "<!-- AI_TREND_ARCHIVE_LINK_START -->"
           INDEX_ARCHIVE_END = "<!-- AI_TREND_ARCHIVE_LINK_END -->"
+          INDEX_CATEGORY_START = "<!-- AI_TREND_CATEGORY_NAV_START -->"
+          INDEX_CATEGORY_END = "<!-- AI_TREND_CATEGORY_NAV_END -->"
+
+          CATEGORIES = [
+              {
+                  "slug": "ai-news",
+                  "name": "AIニュース",
+                  "color": "#2563eb",
+                  "soft": "#dbeafe",
+                  "keywords": [
+                      "研究", "安全", "政策", "発表", "新モデル", "標準化", "教育",
+                      "医療ai", "社会", "政府", "規制", "調査", "研究結果"
+                  ],
+              },
+              {
+                  "slug": "openai-chatgpt",
+                  "name": "ChatGPT / OpenAI",
+                  "color": "#7c3aed",
+                  "soft": "#ede9fe",
+                  "keywords": [
+                      "openai", "chatgpt", "gpt-", "codex", "sora", "astra",
+                      "luna", "sol", "jalapeño", "jalapeno"
+                  ],
+              },
+              {
+                  "slug": "gemini-google",
+                  "name": "Gemini / Google AI",
+                  "color": "#0891b2",
+                  "soft": "#cffafe",
+                  "keywords": [
+                      "gemini", "google", "veo", "gemma", "deepmind",
+                      "antigravity", "lyria", "project astra"
+                  ],
+              },
+              {
+                  "slug": "video-ai",
+                  "name": "動画生成AI",
+                  "color": "#db2777",
+                  "soft": "#fce7f3",
+                  "keywords": [
+                      "動画", "video", "veo", "sora", "映像", "higgsfield",
+                      "画像生成", "クリエイティブ", "広告動画"
+                  ],
+              },
+              {
+                  "slug": "developer-api",
+                  "name": "開発・API",
+                  "color": "#059669",
+                  "soft": "#d1fae5",
+                  "keywords": [
+                      "api", "developer", "開発", "github", "copilot", "コード",
+                      "coding", "sdk", "モデル", "推論", "エージェント", "agent",
+                      "キャッシュ", "token", "トークン"
+                  ],
+              },
+              {
+                  "slug": "price-deals",
+                  "name": "料金・セール",
+                  "color": "#ea580c",
+                  "soft": "#ffedd5",
+                  "keywords": [
+                      "料金", "価格", "無料", "割引", "セール", "キャンペーン",
+                      "cost", "price", "free", "discount", "広告", "プラン"
+                  ],
+              },
+          ]
+
+          CATEGORY_BY_SLUG = {c["slug"]: c for c in CATEGORIES}
 
           def read_text(path):
               return path.read_text(encoding="utf-8")
@@ -64,6 +134,7 @@ jobs:
           def write_if_changed(path, text):
               old = path.read_text(encoding="utf-8") if path.exists() else None
               if old != text:
+                  path.parent.mkdir(parents=True, exist_ok=True)
                   path.write_text(text, encoding="utf-8")
                   print("更新:", path)
                   return True
@@ -107,6 +178,51 @@ jobs:
                   pass
               return "AIニュース"
 
+          def category_score(title, source, category):
+              text = f"{title} {source}".lower()
+              score = 0
+              for kw in category["keywords"]:
+                  if kw.lower() in text:
+                      score += 1
+
+              # より具体的なカテゴリを優先
+              if category["slug"] == "video-ai" and any(x in text for x in ["動画", "video", "veo", "sora", "映像"]):
+                  score += 4
+              if category["slug"] == "price-deals" and any(x in text for x in ["料金", "価格", "無料", "割引", "セール", "campaign", "price", "cost"]):
+                  score += 4
+              if category["slug"] == "developer-api" and any(x in text for x in ["api", "developer", "開発", "github", "copilot", "sdk", "推論", "エージェント"]):
+                  score += 3
+              if category["slug"] == "openai-chatgpt" and source.lower() == "openai":
+                  score += 2
+              if category["slug"] == "gemini-google" and source.lower() == "google":
+                  score += 2
+
+              return score
+
+          def classify(title, source):
+              ranked = sorted(
+                  ((category_score(title, source, c), idx, c) for idx, c in enumerate(CATEGORIES)),
+                  key=lambda x: (x[0], -x[1]),
+                  reverse=True,
+              )
+              best_score, _, best = ranked[0]
+              if best_score <= 0:
+                  return CATEGORY_BY_SLUG["ai-news"]
+
+              # 汎用AIニュースより具体カテゴリを優先
+              if best["slug"] == "ai-news":
+                  for score, _, c in ranked:
+                      if c["slug"] != "ai-news" and score >= best_score:
+                          return c
+              return best
+
+          def badge_html(category, href_prefix=""):
+              return (
+                  f'<a class="category-badge" href="{href_prefix}category/{category["slug"]}.html" '
+                  f'style="--cat:{category["color"]};--cat-soft:{category["soft"]};">'
+                  f'{html.escape(category["name"])}</a>'
+              )
+
           history = load_history()
           history_by_filename = {
               str(x.get("filename", "")): x
@@ -122,13 +238,17 @@ jobs:
                   source = item.get("source_name") or extract_source_from_file(path)
                   created_at = item.get("created_at", "")
                   date = ""
+
                   if created_at:
                       try:
                           date = datetime.fromisoformat(created_at).date().isoformat()
                       except Exception:
                           pass
+
                   if not date:
                       date = parse_filename_date(path.name)
+
+                  category = classify(title, source)
 
                   records.append({
                       "filename": path.name,
@@ -136,27 +256,99 @@ jobs:
                       "source": source,
                       "date": date,
                       "path": path,
+                      "category": category,
                   })
 
-          # 新しい順
           records.sort(key=lambda x: x["filename"], reverse=True)
-
           print("記事数:", len(records))
 
-          # -------------------------------------------------
-          # archive.html を毎回完全再生成
-          # -------------------------------------------------
-          cards = []
+          # =================================================
+          # category pages
+          # =================================================
+          CATEGORY_DIR.mkdir(exist_ok=True)
+
+          common_css = """
+          *{box-sizing:border-box}
+          body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:#f5f7fb;color:#1d2433;line-height:1.7}
+          header{background:linear-gradient(135deg,#111827,#1f2937);padding:22px 20px}
+          header a{color:#fff;text-decoration:none;font-size:24px;font-weight:800}
+          main{max-width:1000px;margin:32px auto;padding:0 20px 60px}
+          .intro{background:#fff;padding:28px;border-radius:18px;margin-bottom:24px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+          .top-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+          .top-links a{color:#334155}
+          .article-list{display:grid;gap:16px}
+          .article-card{background:#fff;padding:20px 22px;border-radius:16px;box-shadow:0 5px 22px rgba(0,0,0,.05);border-left:5px solid var(--cat)}
+          .article-card h2{font-size:19px;line-height:1.55;margin:7px 0 0}
+          .article-card h2 a{color:inherit;text-decoration:none}
+          .article-card h2 a:hover{text-decoration:underline}
+          .meta{color:#94a3b8;font-size:12px}
+          .category-badge{display:inline-block;padding:5px 10px;border-radius:999px;background:var(--cat-soft);color:var(--cat);font-size:12px;font-weight:800;text-decoration:none}
+          footer{text-align:center;padding:28px;color:#94a3b8}
+          """
+
+          for cat in CATEGORIES:
+              cat_records = [r for r in records if r["category"]["slug"] == cat["slug"]]
+
+              cards = []
+              for r in cat_records:
+                  display_date = r["date"].replace("-", ".") if r["date"] else ""
+                  cards.append(f"""
+                  <article class="article-card" style="--cat:{cat['color']}">
+                    <div class="meta">{display_date} ｜ {html.escape(r['source'])}</div>
+                    <h2><a href="../articles/{r['filename']}">{html.escape(r['title'])}</a></h2>
+                  </article>
+                  """)
+
+              page = f"""<!DOCTYPE html>
+          <html lang="ja">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="robots" content="index,follow">
+            <link rel="canonical" href="{SITE_BASE_URL}/category/{cat['slug']}.html">
+            <title>{html.escape(cat['name'])} | {SITE_NAME}</title>
+            <meta name="description" content="{SITE_NAME}の{html.escape(cat['name'])}カテゴリです。公式情報をもとにした関連記事を新しい順に掲載しています。">
+            <style>{common_css}</style>
+          </head>
+          <body>
+            <header><a href="../">AI Trend Blog</a></header>
+            <main>
+              <section class="intro" style="border-top:6px solid {cat['color']}">
+                {badge_html(cat, "../")}
+                <h1>{html.escape(cat['name'])}</h1>
+                <p>{len(cat_records)}件の記事を掲載しています。</p>
+                <div class="top-links">
+                  <a href="../">トップページ</a>
+                  <a href="../archive.html">全記事一覧</a>
+                </div>
+              </section>
+              <div class="article-list">{''.join(cards)}</div>
+            </main>
+            <footer>© {datetime.now(JST).year} {SITE_NAME}</footer>
+          </body>
+          </html>
+          """
+              write_if_changed(CATEGORY_DIR / f"{cat['slug']}.html", page)
+
+          # =================================================
+          # archive.html
+          # =================================================
+          archive_cards = []
           for r in records:
-              safe_title = html.escape(r["title"])
-              safe_source = html.escape(r["source"])
+              cat = r["category"]
               display_date = r["date"].replace("-", ".") if r["date"] else ""
-              cards.append(f"""
-              <article class="article-card">
-                <div class="meta">{display_date} ｜ {safe_source}</div>
-                <h2><a href="articles/{r['filename']}">{safe_title}</a></h2>
+              archive_cards.append(f"""
+              <article class="article-card" style="--cat:{cat['color']};--cat-soft:{cat['soft']}">
+                <div class="meta">{display_date} ｜ {html.escape(r['source'])}</div>
+                <div class="badge-row">{badge_html(cat)}</div>
+                <h2><a href="articles/{r['filename']}">{html.escape(r['title'])}</a></h2>
               </article>
               """)
+
+          category_chips = "".join(
+              f'<a href="category/{c["slug"]}.html" style="--cat:{c["color"]};--cat-soft:{c["soft"]}">{html.escape(c["name"])}</a>'
+              for c in CATEGORIES
+          )
 
           archive_html = f"""<!DOCTYPE html>
           <html lang="ja">
@@ -166,20 +358,23 @@ jobs:
             <meta name="robots" content="index,follow">
             <link rel="canonical" href="{SITE_BASE_URL}/archive.html">
             <title>全記事一覧 | {SITE_NAME}</title>
-            <meta name="description" content="{SITE_NAME}の全記事一覧です。OpenAI、Google、GitHubなどの公式情報をもとにしたAI関連記事を新しい順に掲載しています。">
+            <meta name="description" content="{SITE_NAME}の全記事一覧です。AI・生成AI・Webサービス関連記事を新しい順に掲載しています。">
             <style>
               *{{box-sizing:border-box}}
               body{{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:#f5f7fb;color:#1d2433;line-height:1.7}}
-              header{{background:#111827;padding:22px 20px}}
-              header a{{color:#fff;text-decoration:none;font-size:24px;font-weight:800}}
+              header{{background:linear-gradient(135deg,#111827,#1f2937);padding:22px 20px}}
+              header a{{color:#fff;text-decoration:none;font-size:26px;font-weight:800}}
               main{{max-width:1000px;margin:32px auto;padding:0 20px 60px}}
-              .intro{{background:#fff;padding:28px;border-radius:16px;margin-bottom:24px;box-shadow:0 5px 22px rgba(0,0,0,.05)}}
+              .intro{{background:#fff;padding:30px;border-radius:18px;margin-bottom:24px;box-shadow:0 8px 30px rgba(0,0,0,.06)}}
+              .category-grid{{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 8px}}
+              .category-grid a,.category-badge{{display:inline-block;padding:7px 12px;border-radius:999px;background:var(--cat-soft);color:var(--cat);font-size:12px;font-weight:800;text-decoration:none;border:1px solid color-mix(in srgb,var(--cat) 18%,transparent)}}
               .article-list{{display:grid;gap:16px}}
-              .article-card{{background:#fff;padding:20px;border-radius:14px;box-shadow:0 5px 22px rgba(0,0,0,.05)}}
-              .article-card h2{{font-size:19px;line-height:1.55;margin:7px 0 0}}
-              .article-card a{{color:inherit;text-decoration:none}}
-              .article-card a:hover{{text-decoration:underline}}
+              .article-card{{background:#fff;padding:20px 22px;border-radius:16px;box-shadow:0 5px 22px rgba(0,0,0,.05);border-left:5px solid var(--cat)}}
+              .article-card h2{{font-size:19px;line-height:1.55;margin:9px 0 0}}
+              .article-card h2 a{{color:inherit;text-decoration:none}}
+              .article-card h2 a:hover{{text-decoration:underline}}
               .meta{{color:#94a3b8;font-size:12px}}
+              .badge-row{{margin-top:8px}}
               footer{{text-align:center;padding:28px;color:#94a3b8}}
             </style>
           </head>
@@ -189,65 +384,130 @@ jobs:
               <section class="intro">
                 <h1>全記事一覧</h1>
                 <p>AI・生成AI・Webサービスの最新情報を、新しい順にまとめています。</p>
+                <div class="category-grid">{category_chips}</div>
                 <p><a href="./">トップページへ戻る</a></p>
               </section>
-              <div class="article-list">
-                {''.join(cards)}
-              </div>
+              <div class="article-list">{''.join(archive_cards)}</div>
             </main>
             <footer>© {datetime.now(JST).year} {SITE_NAME}</footer>
           </body>
           </html>
           """
-
           write_if_changed(ARCHIVE_FILE, archive_html)
 
-          # -------------------------------------------------
-          # index.html に「全記事一覧」導線を追加
-          # トップページは既存デザインを壊さない
-          # -------------------------------------------------
+          # =================================================
+          # index.html: category nav + archive link + badges
+          # =================================================
           if INDEX_FILE.exists():
               index_text = read_text(INDEX_FILE)
+
+              # 既存カテゴリチップを実リンク化した新ブロックに置換
+              category_nav = f"""
+          {INDEX_CATEGORY_START}
+          <div class="categories ai-category-links">
+            {''.join(
+                f'<a class="category" href="category/{c["slug"]}.html" '
+                f'style="--cat:{c["color"]};--cat-soft:{c["soft"]};background:var(--cat-soft);color:var(--cat);font-weight:800;text-decoration:none;">'
+                f'{html.escape(c["name"])}</a>'
+                for c in CATEGORIES
+            )}
+          </div>
+          {INDEX_CATEGORY_END}
+          """.strip()
+
+              nav_pattern = re.compile(
+                  re.escape(INDEX_CATEGORY_START) + r".*?" + re.escape(INDEX_CATEGORY_END),
+                  re.DOTALL,
+              )
+
+              if nav_pattern.search(index_text):
+                  index_text = nav_pattern.sub(category_nav, index_text, count=1)
+              else:
+                  index_text = re.sub(
+                      r'<div class="categories">.*?</div>',
+                      category_nav,
+                      index_text,
+                      count=1,
+                      flags=re.DOTALL,
+                  )
 
               archive_link = f"""
           {INDEX_ARCHIVE_START}
           <div style="max-width:1100px;margin:0 auto 26px;padding:0 20px;">
             <a href="archive.html"
-               style="display:inline-block;background:#111827;color:white;text-decoration:none;padding:11px 18px;border-radius:999px;font-weight:700;">
+               style="display:inline-block;background:linear-gradient(135deg,#111827,#334155);color:white;text-decoration:none;padding:11px 18px;border-radius:999px;font-weight:800;box-shadow:0 4px 14px rgba(15,23,42,.16);">
               全記事一覧を見る
             </a>
           </div>
           {INDEX_ARCHIVE_END}
           """.strip()
 
-              pattern = re.compile(
+              archive_pattern = re.compile(
                   re.escape(INDEX_ARCHIVE_START) + r".*?" + re.escape(INDEX_ARCHIVE_END),
                   re.DOTALL,
               )
 
-              if pattern.search(index_text):
-                  index_text = pattern.sub(archive_link, index_text, count=1)
-              elif "<main>" in index_text:
-                  index_text = index_text.replace("<main>", archive_link + "\n\n<main>", 1)
-              elif "</header>" in index_text:
-                  index_text = index_text.replace("</header>", "</header>\n\n" + archive_link, 1)
+              if archive_pattern.search(index_text):
+                  index_text = archive_pattern.sub(archive_link, index_text, count=1)
 
-              # navの「ホーム」だけ実URLに修正。# のダミーカテゴリは触らない。
-              index_text = index_text.replace(
-                  '<a href="#">ホーム</a>',
-                  '<a href="./">ホーム</a>',
-                  1,
-              )
+              soup = BeautifulSoup(index_text, "html.parser")
 
+              # ヘッダーナビを実リンク化
+              nav = soup.find("nav")
+              if nav:
+                  nav.clear()
+                  links = [("ホーム", "./"), ("全記事", "archive.html")]
+                  for c in CATEGORIES:
+                      links.append((c["name"], f"category/{c['slug']}.html"))
+                  for label, href in links:
+                      a = soup.new_tag("a", href=href)
+                      a.string = label
+                      nav.append(a)
+
+              # 記事カードにカテゴリ色・バッジを追加
+              record_by_filename = {r["filename"]: r for r in records}
+
+              for card in soup.select(".article-card"):
+                  a = card.select_one("h2 a[href]")
+                  if not a:
+                      continue
+                  href = a.get("href", "")
+                  filename = href.split("/")[-1]
+                  r = record_by_filename.get(filename)
+                  if not r:
+                      continue
+
+                  cat = r["category"]
+                  card["style"] = f"border-left:5px solid {cat['color']};"
+
+                  old_badge = card.select_one(".auto-category-badge")
+                  if old_badge:
+                      old_badge.decompose()
+
+                  meta = card.select_one(".meta")
+                  badge = soup.new_tag(
+                      "a",
+                      href=f"category/{cat['slug']}.html",
+                      attrs={"class": "auto-category-badge"},
+                  )
+                  badge["style"] = (
+                      f"display:inline-block;margin:0 0 9px;padding:5px 10px;border-radius:999px;"
+                      f"background:{cat['soft']};color:{cat['color']};font-size:12px;font-weight:800;text-decoration:none;"
+                  )
+                  badge.string = cat["name"]
+
+                  if meta:
+                      meta.insert_after(badge)
+
+              index_text = str(soup)
               write_if_changed(INDEX_FILE, index_text)
 
-          # -------------------------------------------------
-          # 関連記事スコア
-          # -------------------------------------------------
+          # =================================================
+          # article pages: category badge + related + prev/next
+          # =================================================
           def tokens(title):
               text = re.sub(r"[^\wぁ-んァ-ヶ一-龠]+", " ", title.lower())
               words = [w for w in text.split() if len(w) >= 2]
-              # よく出る語は弱める
               stop = {
                   "openai","google","github","ai","chatgpt","gemini",
                   "発表","最新","活用","機能","方法","解説","実現","導入",
@@ -256,31 +516,28 @@ jobs:
 
           for i, current in enumerate(records):
               current_tokens = tokens(current["title"])
+              current_cat = current["category"]
 
               scored = []
               for j, other in enumerate(records):
                   if i == j:
                       continue
 
-                  other_tokens = tokens(other["title"])
-                  overlap = len(current_tokens & other_tokens)
-
+                  overlap = len(current_tokens & tokens(other["title"]))
                   score = overlap * 5
 
-                  if current["source"] == other["source"]:
+                  if current_cat["slug"] == other["category"]["slug"]:
+                      score += 5
+                  elif current["source"] == other["source"]:
                       score += 2
 
-                  # 近い時期の記事を少し優先
                   distance = abs(i - j)
                   score += max(0, 4 - min(distance, 4))
-
                   scored.append((score, -distance, other))
 
               scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
               related = [x[2] for x in scored[:3]]
 
-              # 時系列上の前後
-              # records は新→旧なので、i-1 が新しい記事、i+1 が古い記事
               newer = records[i - 1] if i > 0 else None
               older = records[i + 1] if i + 1 < len(records) else None
 
@@ -303,16 +560,16 @@ jobs:
 
               block = f"""
           {LINK_START}
-          <section class="ai-trend-internal-links" aria-label="関連記事">
+          <section class="ai-trend-internal-links" aria-label="関連記事"
+                   style="--cat:{current_cat['color']};--cat-soft:{current_cat['soft']}">
+            <p>
+              <a class="article-category-badge" href="../category/{current_cat['slug']}.html">
+                {html.escape(current_cat['name'])}
+              </a>
+            </p>
             <h2>関連記事</h2>
-            <ul>
-              {related_items}
-            </ul>
-
-            <div class="internal-nav-grid">
-              {''.join(prev_next)}
-            </div>
-
+            <ul>{related_items}</ul>
+            <div class="internal-nav-grid">{''.join(prev_next)}</div>
             <p class="internal-archive-link">
               <a href="../archive.html">AI Trend Blogの全記事を見る</a>
             </p>
@@ -321,63 +578,25 @@ jobs:
           """.strip()
 
               path = current["path"]
+
               try:
                   article_text = read_text(path)
               except Exception as e:
                   print("読込失敗:", path, e)
                   continue
 
-              # CSS追加（1回のみ）
-              if ".ai-trend-internal-links" not in article_text:
-                  css = r"""
-          .ai-trend-internal-links {
-            margin-top: 40px;
-            padding-top: 26px;
-            border-top: 1px solid #e2e8f0;
-          }
-          .ai-trend-internal-links ul {
-            padding-left: 22px;
-          }
-          .ai-trend-internal-links a {
-            color: #1d4ed8;
-            text-decoration: none;
-          }
-          .ai-trend-internal-links a:hover {
-            text-decoration: underline;
-          }
-          .internal-nav-grid {
-            margin-top: 26px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-          }
-          .internal-nav-card {
-            display: block;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 14px;
-            background: #f8fafc;
-          }
-          .internal-nav-card span {
-            display: block;
-            color: #64748b;
-            font-size: 12px;
-            margin-bottom: 5px;
-          }
-          .internal-nav-card strong {
-            display: block;
-            color: #1d2433;
-            font-size: 14px;
-            line-height: 1.5;
-          }
-          .internal-archive-link {
-            margin-top: 22px;
-            font-weight: 700;
-          }
-          @media (max-width: 700px) {
-            .internal-nav-grid {
-              grid-template-columns: 1fr;
-            }
+              # 古い内部リンクCSSを含めても重複せず、追加分だけ新クラスで補完
+              if ".article-category-badge" not in article_text:
+                  css = """
+          .article-category-badge {
+            display:inline-block;
+            padding:6px 11px;
+            border-radius:999px;
+            background:var(--cat-soft);
+            color:var(--cat) !important;
+            font-size:12px;
+            font-weight:800;
+            text-decoration:none !important;
           }
           """.strip()
 
@@ -409,7 +628,43 @@ jobs:
 
               write_if_changed(path, article_text)
 
-          print("内部リンク強化完了")
+          # =================================================
+          # site-sitemap.xml に archive/category を追加
+          # =================================================
+          today = datetime.now(JST).date().isoformat()
+
+          urlset = Element(
+              "urlset",
+              {"xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9"},
+          )
+
+          urls = [
+              f"{SITE_BASE_URL}/",
+              f"{SITE_BASE_URL}/archive.html",
+          ] + [
+              f"{SITE_BASE_URL}/category/{c['slug']}.html"
+              for c in CATEGORIES
+          ]
+
+          for url in urls:
+              url_el = SubElement(urlset, "url")
+              SubElement(url_el, "loc").text = url
+              SubElement(url_el, "lastmod").text = today
+
+          tree = ElementTree(urlset)
+          try:
+              indent(tree, space="  ")
+          except Exception:
+              pass
+
+          tree.write(
+              SITE_SITEMAP_FILE,
+              encoding="utf-8",
+              xml_declaration=True,
+          )
+          print("更新:", SITE_SITEMAP_FILE)
+
+          print("カテゴリ分け・色分け・内部リンク強化 完了")
           PY
 
       - name: Commit changes
@@ -424,5 +679,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Strengthen internal links and archive"
+          git commit -m "Add category pages and colored internal links"
           git push
