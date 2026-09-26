@@ -1,0 +1,238 @@
+name: Upgrade Article Quality
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upgrade generate_article.py
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("generate_article.py")
+          text = path.read_text(encoding="utf-8")
+
+          start_marker = "def generate_article(candidate, source_text):"
+          end_marker = "# =========================================================\n# タイトル / 説明文"
+
+          start = text.find(start_marker)
+          end = text.find(end_marker, start)
+
+          if start == -1 or end == -1:
+              raise RuntimeError("generate_article 関数の位置を特定できませんでした")
+
+          replacement = r'''def generate_article(candidate, source_text):
+    prompt = f"""
+あなたは日本のAI・テクノロジー系Webメディアの編集者です。
+
+以下に渡す「公式記事本文」だけを事実の根拠として、
+日本の読者向けの記事を書いてください。
+
+【独自解説強化 v1】
+
+この記事はニュースの言い換えではなく、
+公式情報を読者が判断・行動しやすい形に整理することを目的とします。
+
+【絶対ルール】
+
+・公式記事に書かれていない数字を作らない
+・公式記事に書かれていない機能を作らない
+・公式記事に書かれていない料金を作らない
+・対象ユーザーを勝手に拡張しない
+・対応国や提供時期を推測しない
+・因果関係を補完しない
+・公式情報から直接確認できない目的を断定しない
+・ベンチマーク数値は公式本文にあるものだけ使う
+・旧モデルとの比較を推測しない
+・情報源URLを生成しない
+・不明な点は無理に説明しない
+・煽りタイトルにしない
+・公式情報が専門家向けの場合、「一般ユーザーがすぐ使える」と誤解させない
+・「従来との違い」は、公式本文から確認できる内容だけを書く
+・日本での提供が明記されていない場合、日本で使えると断定しない
+・「向いている人」「様子見でいい人」は、公式情報から確認できる対象・用途・制約だけを根拠に整理する
+・公式本文で確認できないことは「公式情報では確認できない」と明示する
+・同じ内容を見出しごとに言い換えて水増ししない
+
+ニュース本文の単純な要約ではなく、
+次の観点を整理してください。
+
+・何が起きたのか
+・従来と何が違うのか
+・誰に関係するのか
+・日本のユーザーへの影響
+・どんな人に向いているのか
+・まだ様子見でよいケース
+・実際に試す場合の最初の一歩
+・注意点、未確定事項
+
+【独自性の出し方】
+
+事実そのものを追加するのではなく、
+公式本文の情報を次のように整理することで独自価値を出してください。
+
+・重要度の高いポイントを優先順位付きで整理
+・一般ユーザー目線と開発者目線を分ける
+・「できること」と「まだ分からないこと」を分ける
+・利用判断に必要な条件や制約をまとめる
+・日本の読者が誤解しやすい点を補足する
+・最後に「結局どう考えればいいか」を簡潔にまとめる
+
+読みやすさは、
+一般ユーザー向け 約70%
+開発者向け 約30%
+程度を意識してください。
+
+専門用語には必要であれば短い説明を加えてください。
+
+文字量はおおむね1800〜3000文字。
+公式本文が短い場合は無理に引き伸ばさず、
+重複表現を避けて情報密度を優先してください。
+
+HTML断片だけを出力してください。
+
+禁止：
+<html>
+<head>
+<body>
+Markdownコードフェンス
+情報源一覧
+架空URL
+
+構成：
+
+<h1>自然で検索意図に合うタイトル</h1>
+
+<p>導入文</p>
+
+<h2>今回のポイント</h2>
+<p>重要ポイントを3〜5個程度に整理。単なる本文の再掲にしない。</p>
+
+<h2>何が変わった？</h2>
+<p>公式本文から確認できる従来との差分だけを書く。比較できない場合は、その旨を明示する。</p>
+
+<h2>誰に関係する？</h2>
+<p>公式本文で確認できる対象ユーザー・業界・利用者を整理する。</p>
+
+<h2>日本のユーザーへの影響</h2>
+<p>日本での提供有無を推測せず、公式情報から言える範囲で整理する。日本向け情報が無い場合は明記する。</p>
+
+<h2>向いている人・まだ様子見でいい人</h2>
+<p>公式情報に基づいて、利用価値が高そうなケースと、急いで使う必要がないケースを分ける。</p>
+
+<h2>実際に試すなら</h2>
+<p>公式本文に導入方法・利用方法・対象サービスがある場合だけ、最初の一歩を具体的に整理する。確認できない場合は無理に手順を作らない。</p>
+
+<h2>注意点</h2>
+<p>提供地域、料金、制約、ベータ版、対象者、未確定情報などを整理する。</p>
+
+<h2>まとめ</h2>
+<p>事実を繰り返すだけでなく、読者が「自分に関係あるか」を判断できる形で締める。</p>
+
+【公式媒体】
+{candidate['source_name']}
+
+【RSSタイトル】
+{candidate['title']}
+
+【実ページタイトル】
+{candidate.get('page_title', candidate['title'])}
+
+【公式記事本文】
+{source_text}
+"""
+
+    waits = [0, 10, 30, 60]
+    last_error = None
+
+    for attempt, wait_seconds in enumerate(waits, start=1):
+        if wait_seconds:
+            print(
+                f"{wait_seconds}秒待って本文生成を再試行..."
+            )
+            time.sleep(wait_seconds)
+
+        try:
+            print(
+                f"本文生成 {attempt}/{len(waits)}"
+            )
+
+            response = client.models.generate_content(
+                model=MODEL_NAME,
+                contents=prompt,
+            )
+
+            text = (response.text or "").strip()
+            text = text.replace("```html", "")
+            text = text.replace("```", "")
+
+            required_headings = [
+                "今回のポイント",
+                "何が変わった",
+                "誰に関係する",
+                "日本のユーザーへの影響",
+                "向いている人・まだ様子見でいい人",
+                "実際に試すなら",
+                "注意点",
+                "まとめ",
+            ]
+
+            headings_ok = all(
+                keyword in text
+                for keyword in required_headings
+            )
+
+            if (
+                "<h1" in text
+                and len(text) > 1500
+                and headings_ok
+            ):
+                return text
+
+            print(
+                "本文品質条件を満たさないため再試行"
+            )
+
+        except Exception as e:
+            last_error = e
+            print("記事生成エラー:", e)
+
+    raise RuntimeError(
+        f"記事生成失敗: {last_error}"
+    )
+
+
+'''
+
+          new_text = text[:start] + replacement + text[end:]
+          path.write_text(new_text, encoding="utf-8")
+
+          print("generate_article.py の記事生成プロンプトを独自解説強化版へ更新しました")
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "AI Article Quality Bot"
+          git config user.email "actions@github.com"
+
+          git add generate_article.py
+
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+
+          git commit -m "Improve article originality and reader value"
+          git push
