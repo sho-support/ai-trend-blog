@@ -1772,67 +1772,41 @@ def generate_article(candidate, source_text):
 以下に渡す「公式記事本文」だけを事実の根拠として、
 日本の読者向けの記事を書いてください。
 
+【独自解説強化 v1】
+
+この記事はニュースの言い換えではなく、公式情報を読者が判断・行動しやすい形に整理することを目的とします。
+
 【絶対ルール】
+・公式記事に書かれていない数字・機能・料金を作らない
+・対象ユーザー、対応国、提供時期、因果関係を推測しない
+・旧モデルとの比較は公式本文に根拠がある場合だけ行う
+・日本での提供が明記されていない場合、日本で使えると断定しない
+・公式本文で確認できないことは「公式情報では確認できない」と明示する
+・同じ内容を見出しごとに言い換えて水増ししない
 
-・公式記事に書かれていない数字を作らない
-・公式記事に書かれていない機能を作らない
-・公式記事に書かれていない料金を作らない
-・対象ユーザーを勝手に拡張しない
-・対応国や提供時期を推測しない
-・因果関係を補完しない
-・公式情報から直接確認できない目的を断定しない
-・ベンチマーク数値は公式本文にあるものだけ使う
-・旧モデルとの比較を推測しない
-・情報源URLを生成しない
-・不明な点は無理に説明しない
-・煽りタイトルにしない
-・公式情報が専門家向けの場合、「一般ユーザーがすぐ使える」と誤解させない
-
-ニュース本文の単純な言い換えにはせず、
-
+次の観点を整理してください。
 ・何が起きたのか
 ・従来と何が違うのか
 ・誰に関係するのか
-・日本のユーザーにどう役立つのか
-・注意点
+・日本のユーザーへの影響
+・どんな人に向いているのか
+・まだ様子見でよいケース
+・実際に試す場合の最初の一歩
+・注意点、未確定事項
 
-を整理してください。
-
-読みやすさは、
-一般ユーザー向け 約70%
-開発者向け 約30%
-程度を意識してください。
-
-専門用語には必要であれば短い説明を加えてください。
-
-文字量はおおむね1500〜2500文字。
-
+文字量はおおむね1800〜3000文字。情報密度を優先してください。
 HTML断片だけを出力してください。
 
-禁止：
-<html>
-<head>
-<body>
-Markdownコードフェンス
-情報源一覧
-架空URL
-
 構成：
-
 <h1>自然で検索意図に合うタイトル</h1>
-
 <p>導入文</p>
-
 <h2>今回のポイント</h2>
-
 <h2>何が変わった？</h2>
-
 <h2>誰に関係する？</h2>
-
-<h2>どう活用できる？</h2>
-
+<h2>日本のユーザーへの影響</h2>
+<h2>向いている人・まだ様子見でいい人</h2>
+<h2>実際に試すなら</h2>
 <h2>注意点</h2>
-
 <h2>まとめ</h2>
 
 【公式媒体】
@@ -1853,57 +1827,25 @@ Markdownコードフェンス
 
     for attempt, wait_seconds in enumerate(waits, start=1):
         if wait_seconds:
-            print(
-                f"{wait_seconds}秒待って本文生成を再試行..."
-            )
+            print(f"{wait_seconds}秒待って本文生成を再試行...")
             time.sleep(wait_seconds)
 
         try:
-            print(
-                f"本文生成 {attempt}/{len(waits)}"
-            )
-
-            response = client.models.generate_content(
-                model=MODEL_NAME,
-                contents=prompt,
-            )
-
+            print(f"本文生成 {attempt}/{len(waits)}")
+            response = client.models.generate_content(model=MODEL_NAME, contents=prompt)
             text = (response.text or "").strip()
             text = text.replace("```html", "")
             text = text.replace("```", "")
-
-            required_headings = [
-                "今回のポイント",
-                "何が変わった",
-                "誰に関係する",
-                "どう活用できる",
-                "注意点",
-                "まとめ",
-            ]
-
-            headings_ok = all(
-                keyword in text
-                for keyword in required_headings
-            )
-
-            if (
-                "<h1" in text
-                and len(text) > 1200
-                and headings_ok
-            ):
+            required_headings = ["今回のポイント","何が変わった","誰に関係する","日本のユーザーへの影響","向いている人・まだ様子見でいい人","実際に試すなら","注意点","まとめ"]
+            headings_ok = all(keyword in text for keyword in required_headings)
+            if "<h1" in text and len(text) > 1500 and headings_ok:
                 return text
-
-            print(
-                "本文品質条件を満たさないため再試行"
-            )
-
+            print("本文品質条件を満たさないため再試行")
         except Exception as e:
             last_error = e
             print("記事生成エラー:", e)
 
-    raise RuntimeError(
-        f"記事生成失敗: {last_error}"
-    )
+    raise RuntimeError(f"記事生成失敗: {last_error}")
 
 
 # =========================================================
