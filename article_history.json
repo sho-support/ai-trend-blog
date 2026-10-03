@@ -1092,5 +1092,14 @@
     "url": "https://openai.com/index/albertsons-reimagining-retail/",
     "filename": "2026-10-03_135801.html",
     "created_at": "2026-10-03T13:58:01.158075+09:00"
+  },
+  {
+    "title": "OpenAIがモデルの「保護された推論」を狙った組織的蒸留攻撃を阻止——Moonshot AI関係者が関与と分析",
+    "source_title": "Disrupting a coordinated model-distillation campaign",
+    "page_title": "Disrupting a coordinated model-distillation campaign | OpenAI",
+    "source_name": "OpenAI",
+    "url": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign/",
+    "filename": "2026-10-03_203226.html",
+    "created_at": "2026-10-03T20:32:26.069920+09:00"
   }
 ]
