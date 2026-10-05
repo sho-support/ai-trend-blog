@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-10-06_052337.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap-index.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="OpenAIがテキスト透かし技術「textGrain」の対応方針を発表！EU AI法への対応と日本ユーザーへの影響を整理">
+<meta property="og:description" content="OpenAIは2026年10月5日、EU AI法（EU AI Act）における生成AIテキストの識別規則に対応するため、テキスト透かし（text watermarking）技術の導入および今後のアプローチを発表しました。これまで画像や音声向けに提供されてきたコンテンツ由来管理ツールに加え、テキスト出力に対す…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-10-06_052337.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenAIがテキスト透かし技術「textGrain」の対応方針を発表！EU AI法への対応と日本ユーザーへの影響を整理">
+<meta name="twitter:description" content="OpenAIは2026年10月5日、EU AI法（EU AI Act）における生成AIテキストの識別規則に対応するため、テキスト透かし（text watermarking）技術の導入および今後のアプローチを発表しました。これまで画像や音声向けに提供されてきたコンテンツ由来管理ツールに加え、テキスト出力に対す…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"OpenAIがテキスト透かし技術「textGrain」の対応方針を発表！EU AI法への対応と日本ユーザーへの影響を整理","description":"OpenAIは2026年10月5日、EU AI法（EU AI Act）における生成AIテキストの識別規則に対応するため、テキスト透かし（text watermarking）技術の導入および今後のアプローチを発表しました。これまで画像や音声向けに提供されてきたコンテンツ由来管理ツールに加え、テキスト出力に対す…","datePublished":"2026-10-06","dateModified":"2026-10-06","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-10-06_052337.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>OpenAIがテキスト透かし技術「textGrain」の対応方針を発表！EU AI法への対応と日本ユーザーへの影響を整理 | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAIは2026年10月5日、EU AI法（EU AI Act）における生成AIテキストの識別規則に対応するため、テキスト透かし（text watermarking）技術の導入および今後のアプローチを発表しました。これまで画像や音声向けに提供されてきたコンテンツ由来管理ツールに加え、テキスト出力に対す…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.10.06
+
+</div>
+
+<h1>OpenAIがテキスト透かし技術「textGrain」の対応方針を発表！EU AI法への対応と日本ユーザーへの影響を整理</h1>
+
+<p>OpenAIは2026年10月5日、EU AI法（EU AI Act）における生成AIテキストの識別規則に対応するため、テキスト透かし（text watermarking）技術の導入および今後のアプローチを発表しました。これまで画像や音声向けに提供されてきたコンテンツ由来管理ツールに加え、テキスト出力に対する識別技術「textGrain」の導入方針と技術的限界が公開されています。本記事では、公式発表の事実に基づき、新技術の仕様、検出精度、対象ユーザー、および日本国内のユーザーへの影響を整理して解説します。</p>
+
+<h2>今回のポイント</h2>
+
+<p>公式発表で明確にされた主要なポイントは以下の通りです。</p>
+
+<ul>
+  <li><strong>API顧客向けオプトイン提供の開始：</strong>世界中のAPI顧客向けに、一部のモデルでテキスト透かし機能の選択（オプトイン）が可能になりました。初期状態（デフォルト）ではオフに設定されています。</li>
+  <li><strong>EU域内での先行導入：</strong>数週間以内に、EU（欧州連合）域内の対象となるChatGPTおよびCodexのテキスト出力に対し、不可視の透かしが自動導入されます。</li>
+  <li><strong>検出ツールの限定公開：</strong>テキスト透かし検出器（text watermark detector）の利用申請受付を開始しました。偽陽性や偽陰性のリスクを考慮し、アクセスは承認された研究者や専門機関に限定されます。</li>
+  <li><strong>モデル性能への影響：</strong>最新のフロンティアモデル「Astra」での検証において、透かしの付与による出力品質の有意な低下は見られませんでした。</li>
+  <li><strong>技術的な限界の明示：</strong>短い文章、数学のような語彙選択の自由度が低い分野、あるいは文章の書き換えや翻訳が行われた場合、透かしの検出精度が大きく低下することが示されています。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+
+<p>これまでOpenAIは、画像や音声の生成物に対して「openai.com/verify」や「Content Provenance API」、C2PA規格、SynthIDなどを活用した識別・検証手段を一般公開してきました。今回の発表により、新たに「テキスト分野」における識別アプローチが定義されました。</p>
+
+<h3>テキスト透かし技術「textGrain」の仕組み</h3>
+<p>OpenAIが開発した「textGrain」は、モデルが単語を選択する際に不可視の統計的シグナルを付加する技術です。専用の検出器が文章内のシグナルを読み取ることで、OpenAIのモデルによって生成または処理されたテキストかどうかを判定します。評価実験において、textGrainはSynthID for textを含む他の手法と同等以上の性能を示したと報告されています。</p>
+
+<h3>出力品質への影響（ベンチマーク評価）</h3>
+<p>最新モデル「Astra」を用いた各種ベンチマーク評価において、透かしの有無による実質的な性能差は確認されていません。公式発表で開示された比較数値は以下の通りです。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ベンチマーク指標</th>
+      <th>透かしなし（Astra max）</th>
+      <th>透かしあり（Astra max）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Artificial Analysis Intelligence Index</td>
+      <td>49.57 points</td>
+      <td>49.76 points</td>
+    </tr>
+    <tr>
+      <td>AutomationBench</td>
+      <td>34.09%</td>
+      <td>34.86%</td>
+    </tr>
+    <tr>
+      <td>DeepSWE v1.1</td>
+      <td>72.80%</td>
+      <td>71.68%</td>
+    </tr>
+    <tr>
+      <td>Terminal-Bench 4.0</td>
+      <td>53.90%</td>
+      <td>56.06%</td>
+    </tr>
+    <tr>
+      <td>Terminal-Bench Science 0.1</td>
+      <td>56.90%</td>
+      <td>60.00%</td>
+    </tr>
+    <tr>
+      <td>BrowseComp</td>
+      <td>87.92%</td>
+      <td>87.35%</td>
+    </tr>
+    <tr>
+      <td>HealthBench Professional</td>
+      <td>64.27%</td>
+      <td>64.60%</td>
+    </tr>
+    <tr>
+      <td>GPQA Diamond</td>
+      <td>94.44%</td>
+      <td>93.94%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>検出精度と耐性の限界</h3>
+<p>一方で、実験データによりテキスト透かしの技術的な制限も明らかにされています。目標とする偽陽性率（誤検出率）を1%に設定した場合の検出結果は以下の通りです。</p>
+
+<ul>
+  <li><strong>文章量による影響（心理学分野など）：</strong>400トークンの文章では約95%の精度で検出されたのに対し、200トークンの短い文章では検出率が約80%に低下します。</li>
+  <li><strong>専門分野による影響：</strong>数学のように表現や単語選択の自由度が少ないコンテンツでは、検出率が大幅に低下します。</li>
+  <li><strong>編集・書き換えによる影響（400トークンの英語文章）：</strong>単語の10%を類義語に置き換えた場合、検出率は約92%から66%に低下します。さらに25%の単語を置き換えた場合、検出率は17%まで減衰します。</li>
+</ul>
+
+<h2>誰に関係する？</h2>
+
+<p>今回の導入および変更方針に関係する対象は以下の通りです。</p>
+
+<ul>
+  <li><strong>グローバルなAPI利用者：</strong>一部の対象モデルにおいて、自発的にテキスト透かしを有効化するオプションが選択可能です。</li>
+  <li><strong>EU域内のChatGPTおよびCodexユーザー：</strong>全プラン（無償・有償問わず）において、数週間以内にテキスト出力への自動透かし付与が開始されます。</li>
+  <li><strong>研究機関および専門組織：</strong>技術検証や改善に協力する承認済みの機関に対して、検出器への限定アクセス権限が提供されます。</li>
+  <li><strong>クラウドパートナー経由のモデル利用者：</strong>今後数週間以内に、クラウドサービス経由での透かし機能の提供が予定されています。</li>
+</ul>
+
+<h2>日本のユーザーへの影響</h2>
+
+<p>日本国内のユーザーにおける影響は、利用形態によって異なります。</p>
+
+<h3>ChatGPTおよびCodex（Web/アプリ）を利用中の場合</h3>
+<p>今回発表された自動テキスト透かしの導入は「EU域内（European Union）」に限定された地域的な措置です。グローバルでの一括導入ではないため、日本のChatGPTおよびCodexの利用においてテキスト透かしが自動適用されるか、あるいはいつ適用されるかについて、公式情報では確認できません。</p>
+
+<h3>APIを利用中の場合</h3>
+<p>日本を含む世界中のAPI顧客は、本日から一部のモデルにおいてテキスト透かしの「オプトイン（任意有効化）」機能を利用できます。デフォルト状態は「オフ」に設定されているため、開発者側が意図的に設定を変更しない限り、従来の出力結果に変化はありません。</p>
+
+<h3>透かし検出ツールの利用について</h3>
+<p>現在、画像や音声向けの検証ツール（openai.com/verify）は一般公開されていますが、テキスト透かし検出器に関しては一般向けに公開されていません。日本の一般ユーザーがテキストのAI判定ツールとして即座に利用できる状況ではない点に注意が必要です。</p>
+
+<h2>向いている人・まだ様子見でいい人</h2>
+
+<h3>向いている人（試行・申請を検討できる対象）</h3>
+<ul>
+  <li><strong>透明性ガイドライン等に対応したいAPI開発者：</strong>自社アプリやサービスで出力テキストの由来を証明する必要がある場合、APIのオプトイン機能を有効化して検証を進めることができます。</li>
+  <li><strong>AI生成物の検証を行う研究者・専門機関：</strong>検出器の評価や技術改善に協力できる審査基準を満たした組織は、アクセス権限の申請を行うことができます。</li>
+</ul>
+
+<h3>まだ様子見でいいケース</h3>
+<ul>
+  <li><strong>日本国内で一般のChatGPTを利用しているユーザー：</strong>現時点で日本の一般アカウントに対する機能変更や設定項目は明記されておらず、対応の必要はありません。</li>
+  <li><strong>文章の完全なAI判定・著作権判定を期待している場合：</strong>技術的な限界として書き換えや翻訳、短文に対する検出率低下が明記されており、不検出が「人間の執筆」を証明するわけではないため、判定ツールに依存した運用を考えている場合は注意が必要です。</li>
+</ul>
+
+<h2>実際に試すなら</h2>
+
+<p>公式発表に基づき、ユーザーが取ることのできる具体的なアクションは以下の通りです。</p>
+
+<ol>
+  <li><strong>API設定の確認（API利用者向け）：</strong>自社のダッシュボードや設定環境において、対象モデルでのテキスト透かしのオプトイン設定項目を確認します（必要に応じて有効化）。</li>
+  <li><strong>検出器アクセスの申請（研究機関向け）：</strong>条件を満たす研究者または専門組織は、公式の申請窓口よりテキスト透かし検出器へのアクセス申請を行います。</li>
+  <li><strong>技術レポートの参照：</strong>技術仕様や「textGrain」の詳細、オープンソース化に向けた進捗を確認したい場合は、数週間以内に更新予定の技術レポート（technical report）を参照します。</li>
+</ol>
+
+<h2>注意点</h2>
+
+<p>OpenAIは公式発表の中で、テキスト透かしの結果から「確認できること」と「判断できないこと」の限界を厳格に定義しています。誤解を防ぐため、以下の点に注意する必要があります。</p>
+
+<ul>
+  <li><strong>人間の貢献度は測定できない：</strong>透かしの存在はモデルが生成または処理したことを示しますが、人間がどれだけ編集、創作、判断を加えたかは測定できません。</li>
+  <li><strong>所有権や責任、法的適合性は確定できない：</strong>テキストの所有者が誰であるか、著作権や法令を遵守しているか、責任の所在がどこにあるかを特定するものではありません。</li>
+  <li><strong>個人や会話の特定は不可能：</strong>透かし情報から、生成を行った特定の人物、組織、アカウント、プロンプト、会話内容などが特定・追跡されることはありません。</li>
+  <li><strong>情報の正確性や害の有無は判定できない：</strong>該当テキストが事実であるか、誤導的であるか、あるいは有害であるかを検証する機能はありません。</li>
+  <li><strong>透かしが「ない」ことは人間による執筆を証明しない：</strong>文章が短すぎる場合、類義語への置き換えや翻訳が行われた場合、未対応モデルや他社ツールで生成された場合は、透かしが検出されないか消滅する可能性があります。</li>
+</ul>
+
+<h2>まとめ</h2>
+
+<p>OpenAIが発表したテキスト透かし技術「textGrain」は、EU AI法をはじめとする透明性規制に対応するための世界的なアプローチです。出力品質を維持しながら透かしを付与できる技術的進歩が示された一方、短文や語彙の少ない分野、書き換え処理に対する耐性の課題も明示されています。</p>
+
+<p>日本のユーザーにおいては、API利用者が一部モデルで任意（オプトイン）に導入を試すことが可能な状態ですが、ChatGPTの自動適用はEU限定であり、検出ツールの一般公開も行われていません。OpenAIは今後、標準規格の議論や技術的検証の進展に応じてアプローチを見直すとしており、続報が注目されます。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/eu-text-provenance/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+Our approach to EU text provenance rules | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
