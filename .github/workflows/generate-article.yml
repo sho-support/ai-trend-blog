@@ -13,69 +13,52 @@ on:
     # 日本時間 21:00
     - cron: "0 12 * * *"
 
-
 permissions:
   contents: write
-
 
 concurrency:
   group: ai-trend-blog-generate
   cancel-in-progress: false
 
-
 jobs:
-
   generate:
-
     runs-on: ubuntu-latest
-
     timeout-minutes: 20
 
-
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
-
       - name: Set up Python
         uses: actions/setup-python@v5
-
         with:
           python-version: "3.11"
-
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-
       - name: Generate article
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-
         run: python generate_article.py
 
+      - name: Queue X post in Buffer
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python publish_to_buffer.py
 
       - name: Commit generated files
         run: |
-
           git config user.name "AI Article Bot"
           git config user.email "actions@github.com"
 
-
-          # 新しいサイトマップ関連ファイルも含めて
-          # 変更されたものをすべて保存
           git add -A
 
-
           if git diff --cached --quiet; then
-
             echo "No changes generated."
             exit 0
-
           fi
 
-
           git commit -m "Update AI Trend Blog"
-
           git push
