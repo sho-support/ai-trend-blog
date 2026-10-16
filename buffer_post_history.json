@@ -2,5 +2,10 @@
   {
     "filename": "2026-10-11_142302.html",
     "note": "Manually scheduled in Buffer before automation was enabled"
+  },
+  {
+    "filename": "2026-10-17_023037.html",
+    "buffer_post_id": "6ad25f47b54530c2c99afa92",
+    "due_at": "2026-10-19T00:00:00.000Z"
   }
 ]
