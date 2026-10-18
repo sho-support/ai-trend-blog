@@ -9,6 +9,7 @@ import feedparser
 import requests
 from bs4 import BeautifulSoup
 from google import genai
+from gnews_decoder import decode as decode_google_news_url
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
@@ -35,8 +36,6 @@ HEADERS = {
     )
 }
 
-# 自動検証で「公式」とみなせる既知ドメイン。
-# 不明なブランドは無理に公式扱いせず needs_manual に落とす。
 OFFICIAL_DOMAIN_RULES = [
     (["amazon", "プライム", "kindle", "music unlimited"], [
         "amazon.co.jp", "amazon.com", "aboutamazon.jp"
@@ -130,7 +129,6 @@ def official_domains_for_candidate(candidate):
         if any(keyword.lower() in haystack for keyword in keywords):
             domains.extend(mapped_domains)
 
-    # 重複除去
     return list(dict.fromkeys(domains))
 
 
@@ -138,7 +136,32 @@ def clean_text(text):
     return re.sub(r"\s+", " ", text or "").strip()
 
 
+def resolve_google_news_url(url):
+    if "news.google.com" not in (url or ""):
+        return url
+
+    try:
+        resolved = decode_google_news_url(url)
+
+        if isinstance(resolved, str) and resolved.startswith("http"):
+            return resolved
+
+        # 実装差異に備える
+        if isinstance(resolved, dict):
+            for key in ("url", "decoded_url"):
+                value = resolved.get(key)
+                if isinstance(value, str) and value.startswith("http"):
+                    return value
+
+    except Exception as e:
+        print("Google News URLデコード失敗:", e)
+
+    return url
+
+
 def fetch_page(url):
+    url = resolve_google_news_url(url)
+
     try:
         response = requests.get(
             url,
@@ -151,7 +174,10 @@ def fetch_page(url):
         final_url = response.url
         content_type = response.headers.get("content-type", "")
 
-        if "text/html" not in content_type and "<html" not in response.text[:500].lower():
+        if (
+            "text/html" not in content_type
+            and "<html" not in response.text[:500].lower()
+        ):
             return {
                 "url": final_url,
                 "domain": normalize_domain(final_url),
@@ -163,11 +189,18 @@ def fetch_page(url):
 
         soup = BeautifulSoup(response.text, "html.parser")
 
-        for tag in soup(["script", "style", "nav", "footer", "header", "aside", "noscript"]):
+        for tag in soup(
+            ["script", "style", "nav", "footer", "header", "aside", "noscript"]
+        ):
             tag.decompose()
 
-        title = clean_text(soup.title.get_text(" ", strip=True) if soup.title else "")
-        text = clean_text(soup.get_text(" ", strip=True))
+        title = clean_text(
+            soup.title.get_text(" ", strip=True)
+            if soup.title else ""
+        )
+        text = clean_text(
+            soup.get_text(" ", strip=True)
+        )
 
         return {
             "url": final_url,
@@ -199,17 +232,18 @@ def google_news_search(query, max_results=8):
     results = []
 
     for entry in feed.entries[:max_results]:
-        results.append(
-            {
-                "title": clean_text(getattr(entry, "title", "")),
-                "url": getattr(entry, "link", ""),
-                "source": clean_text(
-                    getattr(getattr(entry, "source", {}), "title", "")
-                    if hasattr(getattr(entry, "source", {}), "title")
-                    else ""
-                ),
-            }
-        )
+        raw_url = getattr(entry, "link", "")
+        decoded_url = resolve_google_news_url(raw_url)
+
+        results.append({
+            "title": clean_text(getattr(entry, "title", "")),
+            "url": decoded_url,
+            "source": clean_text(
+                getattr(getattr(entry, "source", {}), "title", "")
+                if hasattr(getattr(entry, "source", {}), "title")
+                else ""
+            ),
+        })
 
     return results
 
@@ -218,7 +252,6 @@ def find_official_sources(candidate):
     allowed_domains = official_domains_for_candidate(candidate)
     sources = []
 
-    # 1. 元候補URLをまず取得。公式ドメインに着地したら一次情報として採用。
     original = fetch_page(candidate.get("url", ""))
 
     if original.get("ok"):
@@ -232,7 +265,6 @@ def find_official_sources(candidate):
         )
         sources.append(original)
 
-    # 2. 既知の公式ドメインがある場合はGoogle News RSSで公式ソースを探す。
     search_seed = (
         candidate.get("candidate_title")
         or candidate.get("title")
@@ -242,7 +274,7 @@ def find_official_sources(candidate):
     for domain in allowed_domains:
         query = f'{search_seed} site:{domain}'
 
-        for result in google_news_search(query, max_results=4):
+        for result in google_news_search(query, max_results=5):
             page = fetch_page(result["url"])
 
             if not page.get("ok"):
@@ -259,10 +291,16 @@ def find_official_sources(candidate):
             ):
                 sources.append(page)
 
-            if len([s for s in sources if s.get("source_type") == "official"]) >= 3:
+            if len([
+                s for s in sources
+                if s.get("source_type") == "official"
+            ]) >= 3:
                 break
 
-        if len([s for s in sources if s.get("source_type") == "official"]) >= 3:
+        if len([
+            s for s in sources
+            if s.get("source_type") == "official"
+        ]) >= 3:
             break
 
     return sources, allowed_domains
@@ -275,7 +313,9 @@ def extract_json_object(text):
     match = re.search(r"\{[\s\S]*\}", text)
 
     if not match:
-        raise ValueError("Gemini応答からJSONオブジェクトを取得できませんでした。")
+        raise ValueError(
+            "Gemini応答からJSONオブジェクトを取得できませんでした。"
+        )
 
     return json.loads(match.group(0))
 
@@ -357,11 +397,18 @@ def verify_candidate(candidate, sources, allowed_domains):
 
     status = result.get("status", "needs_manual")
 
-    if status not in {"verified", "partial", "rejected", "needs_manual"}:
+    if status not in {
+        "verified",
+        "partial",
+        "rejected",
+        "needs_manual",
+    }:
         status = "needs_manual"
 
     result["status"] = status
-    result["confidence"] = int(result.get("confidence", 0) or 0)
+    result["confidence"] = int(
+        result.get("confidence", 0) or 0
+    )
 
     return result
 
@@ -376,11 +423,14 @@ def build_report(today, results):
     ]
 
     if not results:
-        lines.append("今回、新しく検証する候補はありませんでした。")
+        lines.append(
+            "今回、新しく検証する候補はありませんでした。"
+        )
         return "\n".join(lines) + "\n"
 
     for i, item in enumerate(results, 1):
         v = item["verification"]
+
         lines.extend([
             f"## {i}. {item.get('candidate_title') or item.get('title')}",
             "",
@@ -400,7 +450,8 @@ def build_report(today, results):
         if verified_claims:
             for claim in verified_claims:
                 lines.append(
-                    f"- {claim.get('claim', '')} — {claim.get('source_url', '')}"
+                    f"- {claim.get('claim', '')} — "
+                    f"{claim.get('source_url', '')}"
                 )
         else:
             lines.append("- なし")
@@ -442,14 +493,15 @@ def main():
 
     candidates = load_json_list(CANDIDATE_FILE)
 
+    # needs_manual も再検証対象にする。
     pending_indexes = [
         i
         for i, item in enumerate(candidates)
-        if item.get("status") == "unverified"
+        if item.get("status") in {"unverified", "needs_manual"}
     ][:MAX_CANDIDATES_PER_RUN]
 
     if not pending_indexes:
-        print("新しく検証する未確認候補はありません。")
+        print("新しく検証する候補はありません。")
         return
 
     verified_history = load_json_list(VERIFIED_FILE)
@@ -460,7 +512,11 @@ def main():
 
         print("")
         print("========================")
-        print("検証:", candidate.get("candidate_title") or candidate.get("title"))
+        print(
+            "検証:",
+            candidate.get("candidate_title")
+            or candidate.get("title")
+        )
         print("========================")
 
         sources, allowed_domains = find_official_sources(candidate)
@@ -474,15 +530,16 @@ def main():
         print("公式ソース数:", official_count)
         print("公式候補ドメイン:", allowed_domains)
 
-        # 公式ソースがまったく取れない場合もGeminiに判定させるが、
-        # verified には昇格させない安全弁を後段でかける。
         verification = verify_candidate(
             candidate,
             sources,
             allowed_domains,
         )
 
-        if official_count == 0 and verification.get("status") == "verified":
+        if (
+            official_count == 0
+            and verification.get("status") == "verified"
+        ):
             verification["status"] = "needs_manual"
             verification["recommended_action"] = "hold"
             verification["reason"] = (
@@ -518,6 +575,7 @@ def main():
     save_json_list(VERIFIED_FILE, verified_history)
 
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
+
     report_path = REPORT_DIR / f"{today}.md"
     report_path.write_text(
         build_report(today, run_results),
@@ -532,7 +590,10 @@ def main():
     }
 
     for item in run_results:
-        status = item["verification"].get("status", "needs_manual")
+        status = item["verification"].get(
+            "status",
+            "needs_manual",
+        )
         counts[status] = counts.get(status, 0) + 1
 
     print("")
