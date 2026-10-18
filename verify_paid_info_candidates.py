@@ -1208,19 +1208,46 @@ def main():
         CANDIDATE_FILE
     )
 
-    # partial / needs_manual も改善のため再検証。
+    # 新規候補はすぐ検証。
+    # partial / needs_manual は毎日同じものを再検証せず、
+    # 緊急度 high は1日、それ以外は3日のクールダウンを置く。
+    def should_verify(item):
+        status = item.get("status", "")
+
+        if status == "unverified":
+            return True
+
+        if status not in {"partial", "needs_manual"}:
+            return False
+
+        verified_at = item.get("verified_at")
+
+        if not verified_at:
+            return True
+
+        try:
+            last_checked = datetime.fromisoformat(verified_at)
+
+            if last_checked.tzinfo is None:
+                last_checked = last_checked.replace(tzinfo=JST)
+
+            cooldown_days = (
+                1
+                if item.get("urgency") == "high"
+                else 3
+            )
+
+            return (
+                now_jst - last_checked.astimezone(JST)
+            ) >= timedelta(days=cooldown_days)
+
+        except Exception:
+            return True
+
     pending_indexes = [
         index
-        for index, item in enumerate(
-            candidates
-        )
-        if item.get(
-            "status"
-        ) in {
-            "unverified",
-            "partial",
-            "needs_manual",
-        }
+        for index, item in enumerate(candidates)
+        if should_verify(item)
     ][:MAX_CANDIDATES_PER_RUN]
 
     if not pending_indexes:
