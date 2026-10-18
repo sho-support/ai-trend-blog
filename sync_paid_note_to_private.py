@@ -254,28 +254,44 @@ def create_full_body(
     )
 
 
+def create_note_ready(
+    title,
+    free_body,
+    paid_body,
+):
+    return f"""# {title}
+
+{free_body}
+
+<!-- NOTEでここに有料ラインを設定 -->
+
+{paid_body}
+"""
+
+
 def create_posting_guide(
     title,
 ):
     return f"""# note投稿手順
 
+新規記事:
+https://note.com/new
+
 タイトル:
 {title}
 
-1. title.txt の内容をnoteのタイトル欄へ貼る
-
+最短手順:
+1. title.txt をタイトル欄へ貼る
 2. free_part.txt を本文へ貼る
+3. paid_part.txt をその直後へ貼る
+4. 右上の「公開設定」から有料を選び、価格を設定
+5. 「有料エリア設定」で free_part.txt と paid_part.txt の境目にラインを置く
+6. プレビューで無料部分・有料部分・リンク・期限を確認
+7. 公開
 
-3. free_part.txt の末尾に
-   noteの「有料エリア設定」を入れる
-
-4. paid_part.txt を有料部分へ貼る
-
-5. 表示崩れ・リンク・金額・期限を最終確認する
-
-6. 販売価格を設定する
-
-7. 公開する
+確認用:
+- NOTE_READY.md = タイトル＋無料部分＋有料部分を1ファイルで確認
+- full_body.txt = 全文確認用
 
 注意:
 この原稿は自動検証済み情報を元に作成されていますが、
@@ -371,6 +387,18 @@ def upload_publish_package(
     upload_text(
         full_body,
         f"{base_path}/full_body.txt",
+        "Update note publish package",
+    )
+
+    note_ready = create_note_ready(
+        title,
+        free_body,
+        paid_body,
+    )
+
+    upload_text(
+        note_ready,
+        f"{base_path}/NOTE_READY.md",
         "Update note publish package",
     )
 
