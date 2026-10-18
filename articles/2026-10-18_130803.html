@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-10-18_130803.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap-index.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="1万自律エージェントを36時間以上連続稼働させる方法とは？Third Moment Researchが示す大規模AI運用の実態">
+<meta property="og:description" content="OpenAIは、北米のAIスタートアップであるThird Moment Researchによる大規模な自律型エージェントシステムの事例を公開しました。同社はOpenAIのAPI、Codex、そして次世代モデル群（GPT-6 Astra、GPT-6 Sol、GPT-6.1 Solなど）を活用し、1万体もの自律…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-10-18_130803.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1万自律エージェントを36時間以上連続稼働させる方法とは？Third Moment Researchが示す大規模AI運用の実態">
+<meta name="twitter:description" content="OpenAIは、北米のAIスタートアップであるThird Moment Researchによる大規模な自律型エージェントシステムの事例を公開しました。同社はOpenAIのAPI、Codex、そして次世代モデル群（GPT-6 Astra、GPT-6 Sol、GPT-6.1 Solなど）を活用し、1万体もの自律…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"1万自律エージェントを36時間以上連続稼働させる方法とは？Third Moment Researchが示す大規模AI運用の実態","description":"OpenAIは、北米のAIスタートアップであるThird Moment Researchによる大規模な自律型エージェントシステムの事例を公開しました。同社はOpenAIのAPI、Codex、そして次世代モデル群（GPT-6 Astra、GPT-6 Sol、GPT-6.1 Solなど）を活用し、1万体もの自律…","datePublished":"2026-10-18","dateModified":"2026-10-18","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-10-18_130803.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>1万自律エージェントを36時間以上連続稼働させる方法とは？Third Moment Researchが示す大規模AI運用の実態 | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAIは、北米のAIスタートアップであるThird Moment Researchによる大規模な自律型エージェントシステムの事例を公開しました。同社はOpenAIのAPI、Codex、そして次世代モデル群（GPT-6 Astra、GPT-6 Sol、GPT-6.1 Solなど）を活用し、1万体もの自律…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.10.18
+
+</div>
+
+<h1>1万自律エージェントを36時間以上連続稼働させる方法とは？Third Moment Researchが示す大規模AI運用の実態</h1>
+
+<p>OpenAIは、北米のAIスタートアップであるThird Moment Researchによる大規模な自律型エージェントシステムの事例を公開しました。同社はOpenAIのAPI、Codex、そして次世代モデル群（GPT-6 Astra、GPT-6 Sol、GPT-6.1 Solなど）を活用し、1万体もの自律エージェントを36〜48時間にわたって同時並行で稼働させる環境を構築しています。1日あたり1兆トークンを消費しながら、エージェント自身の弱点を特定して自己改善を繰り返す運用フレームワークや、Codexによるコード最適化、セキュリティプラットフォーム「Daybreak」を用いた安全対策など、自律型AIを極限まで実務へ適用するための具体的なアーキテクチャが明かされています。本稿では、公開された公式情報に基づき、その技術的要点と実用化に向けた知見を整理します。</p>
+
+<h2>今回のポイント</h2>
+<ul>
+  <li><strong>1万体のエージェントが36〜48時間連続稼働：</strong>単一セッション内で文脈や論理の一貫性を保ちながら、長期的な計算・研究プロセスを自律実行。1日のトークン消費量は1兆トークン規模に到達。</li>
+  <li><strong>Codexによるバックテスト時間97%削減：</strong>シミュレーションのログとコードをCodexが解析し、キャッシング最適化とメモリパッキングを実装。約3時間かかっていた処理を約3〜5分へ短縮し、トークンの無駄な消費とコンテキスト汚染を防止。</li>
+  <li><strong>階層型ハーネスによる自律タスク管理：</strong>GPT-6 SolまたはGPT-6.1 Solで駆動する外側ハーネスが、Codexをサブエージェントとして統括。途中で停止したタスクの軌跡を検証し、再試行・停止・人間へのエスカレーションを自動判断。</li>
+  <li><strong>モデルの世代別役割分担：</strong>最もトークン効率が高くメインで使われる「GPT-6.1 Sol」、最適化性能で最高スピードアップを記録する「GPT-6 Astra」、特定セキュリティチェック向けの「GPT-5.6 Terra」などを用途に応じて使い分け。</li>
+  <li><strong>Daybreakによる自動ペネトレーションテスト：</strong>1万エージェントが実行環境（Docker）を抜け出して外部ネットワークに不正アクセスしないかを、エージェント自身を用いて自動検証。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+<p>本事例において最も注目すべきは、AIモデルの進化に伴う「自律型研究プロセスの質的変化」と「長時間稼働を支えるシステム設計」の変遷です。公式発表では、モデル世代ごとの能力差が具体的に整理されています。</p>
+
+<h3>1. 実験プロセスの自律化レベルの変遷</h3>
+<p>Third Moment Researchの共同創業者Adam Khakhar氏によると、モデルの世代によってエージェントの自律度合いは以下のように進化してきました。</p>
+<ul>
+  <li><strong>GPT-5.5以前：</strong>ユーザーが指示・定義した実験計画を実行することしかできなかった。</li>
+  <li><strong>GPT-5.5およびGPT-5.6：</strong>得られた実験結果をもとに、モデル自身が次の追試や追加実験を設計できるようになった。</li>
+  <li><strong>GPT-6 Astra / Sol / 6.1 Sol：</strong>サブエージェントを並列展開し、数百もの実験を同時並行で走らせながら、事象の根本原因まで掘り下げて調査できるようになった。</li>
+</ul>
+<p>この変化により、研究チームが当初想定していなかった現象の発見が可能になりました。実際にGPT-6.1 Solを用いたセッションでは、特定の取引所において非表示取引（non-displayed trades）が取引量全体に占める影響の大きさをモデル自身が見つけ出し、人間のチームが予期していなかった洞察をもたらしたとされています。</p>
+
+<h3>2. 実行ボトルネックの解消とトークン効率化</h3>
+<p>初期のクオンツ分析環境では、1年分の米国株式オーダーレベルデータのバックテストに約3時間かかっていました。その間、エージェントは処理完了を繰り返しポーリングして確認していたため、大量のトークンを無駄にし、コンテキストウィンドウが状態確認ログで埋め尽くされる問題（コンテキスト汚染）が発生していました。</p>
+<p>当時の最新モデルであったGPT-5.6とCodexを組み合わせ、シミュレーションの挙動ログ、タイムスタンプ、コードベースを解析させたところ、Codexはキャッシングの最適化とメモリパッキング手法を特定しました。その修正を本番環境へデプロイした結果、処理時間は約3〜5分へと大幅に短縮（約97%削減）されました。これによりコンテキスト汚染が解消され、浮いたトークン予算をさらなる研究実験へ振り向けることが可能になっています。</p>
+
+<h3>3. 多層化されたエージェント管理とタスク完遂機構</h3>
+<p>自律型エージェントの課題である「途中で作業を止めてしまう問題」に対し、同社はDocker環境内にCodexハーネスを構築するだけでなく、その外側にGPT-6 SolまたはGPT-6.1 Solを配置する2層構造を採用しました。外側のハーネスがCodexの実行ログ（軌跡）を監視し、タスクが未完了のまま停止した場合は、再試行（retry）、終了（terminate）、または人間への報告（escalate）を判断します。</p>
+
+<h2>誰に関係する？</h2>
+<p>公式記事で言及されている関係者や想定ユースケースは以下の通りです。</p>
+<ul>
+  <li><strong>AI研究者・MLエンジニア：</strong>自律型エージェントを数日単位で稼働させ、ハイパーパラメータ探索やモデル最適化、コード修正を自動化したいチーム。</li>
+  <li><strong>クオンツ・金融工学リサーチャー：</strong>膨大な過去データを用いた取引戦略のバックテストや、市場データの異常検知・アルゴリズム改善を行う組織。</li>
+  <li><strong>大規模コードベースを管理する開発組織：</strong>システムのボトルネック検出、プロファイリング、コード最適化を自動化したいエンジニア。</li>
+  <li><strong>サプライチェーンや書類監査を行う事業会社：</strong>将来的な適用領域として、在庫不足やサプライヤー遅延時の供給網判断（小売業）、複数文書間での記載不一致の検証（文書中心の業務）などが挙げられています。</li>
+</ul>
+
+<h2>日本のユーザーへの影響</h2>
+<p>本発表は北米のスタートアップであるThird Moment Researchにおける運用事例を紹介したものであり、公式記事内において日本市場への言及や、日本国内での特定機能の提供時期・利用可否に関する記述はありません。</p>
+<p>したがって、日本国内のユーザーが記載されている全モデル（GPT-6シリーズ等）やDaybreakプラットフォームを即座に利用できるかどうかについて、公式情報からは確認できません。国内のエンジニアや企業にとっては、現時点で直接ツールを導入するための情報というよりも、「大規模エージェントを連続稼働させるためのアーキテクチャ設計（ハーネスの二重化、コンテキスト圧縮、自動ペネトレーションテストの必要性）」を学ぶための先端技術リファレンスとして捉えるのが実用的です。</p>
+
+<h2>向いている人・まだ様子見でいい人</h2>
+<p>公開された構成や要件に基づき、本アーキテクチャの知見が適合する環境と、現段階では様子見が適切な環境を整理します。</p>
+
+<h3>向いている人</h3>
+<ul>
+  <li><strong>評価基準（成功の定義）が明確なドメインを持つ開発者：</strong>クオンツ金融のように「レイテンシ削減」「リターン改善」といった定量的指標が存在し、エージェントが成否を自動判定できる領域を扱う組織。</li>
+  <li><strong>Dockerやコンテナ化されたサンドボックス環境を自前で運用できるチーム：</strong>エージェントにコード実行権限や大規模データへのアクセス権を与えるため、Daybreakのようなセキュリティ検証を含め、隔離環境を厳密に構築・保守できる技術力がある場合。</li>
+  <li><strong>1日数千億〜兆単位のトークン消費を許容できる研究機関・先進企業：</strong>GPT-6.1 Solなどを最大推論設定で長時間並列稼働させるための予算とインフラ体制がある環境。</li>
+</ul>
+
+<h3>まだ様子見でいい人</h3>
+<ul>
+  <li><strong>単一のリクエストや短時間の対話で完結する業務を想定している場合：</strong>数日間にわたる自律実験やサブエージェントの並列オーケストレーションは過剰構成となります。</li>
+  <li><strong>安全な実行環境や監視インフラが整っていない組織：</strong>エージェントが自律的にコードを書いて実行するため、ネットワーク隔離や脱走防止のテスト体制がない状態での導入はリスクを伴います。</li>
+  <li><strong>成功条件が曖昧で人間の主観的判断が多くを占めるタスクを扱う場合：</strong>Third Moment Research自身が金融領域を選んだ理由として「成功の明確な測定基準があること」を挙げており、基準が定まらない業務では自己改善ループが機能しにくいと考えられます。</li>
+</ul>
+
+<h2>実際に試すなら</h2>
+<p>公式記事で言及されているアプローチを自社のシステム設計に取り入れる場合、以下のステップが参考になります。</p>
+<ol>
+  <li><strong>コンテナ化された実行環境（Codex harness）の準備：</strong>エージェントがコードを実行し、ツールを呼び出し、データを参照できる隔離されたDocker環境を構築します。</li>
+  <li><strong>ボトルネックのログ解析とプロファイリング：</strong>Third Moment Researchが最初に取り組んだように、エージェントの行動履歴（軌跡）やタイムスタンプを分析し、待機ポーリングによるトークンの無駄やコンテキスト汚染が発生していないかを特定します。</li>
+  <li><strong>監視用のアウターハーネス設計：</strong>実行エージェントとは別に、タスクの進捗状況を客観的に評価する監視用モデルを配置し、作業が停止した際の再試行や人間へのエスカレーションのルールを設けます。</li>
+  <li><strong>タスクの特性に応じたモデルの使い分け：</strong>同社の事例では、最高度のスピードアップが必要なタスクにはGPT-6 Astra、効率重視の研究推進にはGPT-6.1 Sol、セキュリティチェックなどの特定作業にはGPT-5.6 Terraが選択されています。タスクの価値とコストのバランスに応じたモデル選定が必要です。</li>
+</ol>
+<p>なお、OpenAIの公式サイト上には「Start building with OpenAI」などの導線が設置されていますが、各個別モデルのAPIアクセス権や提供状況については利用環境ごとのダッシュボード等での確認が必要です。</p>
+
+<h2>注意点</h2>
+<p>本事例を参考にするにあたり、留意すべき未確定事項および注意点があります。</p>
+<ul>
+  <li><strong>未公開モデルおよびプラットフォームの利用可否：</strong>記事内に登場する「GPT-6 Astra」「GPT-6 Sol」「GPT-6.1 Sol」「GPT-6 Luna」「GPT-5.6 Terra」、およびセキュリティツールの「Daybreak」について、一般ユーザー向けの提供形態、料金体系、APIの利用条件などは公式記事内に明記されていません。</li>
+  <li><strong>環境脱走（Breakout）のリスク：</strong>1万体規模の自律エージェントを動かすにあたり、同社はエージェントが研究環境を抜け出して外部ネットワークに到達しないようDaybreakによる自動ペネトレーションテストを必須としています。自律エージェントの大規模稼働には重大なセキュリティリスクが伴う点が示唆されています。</li>
+  <li><strong>莫大な計算リソースとトークン消費：</strong>1日に1兆トークンを消費する規模のシステムであり、一般的なプロダクト開発とはコスト構造が大きく異なる点に留意する必要があります。</li>
+</ul>
+
+<h2>まとめ</h2>
+<p>Third Moment Researchの事例は、AIモデルを単なる「アシスタント」としてではなく、自律的に仮説検証と自己改善を繰り返す「リサーチャー」として数千・数万規模で組織化できる可能性を示しています。長時間の連続稼働を成立させるためには、モデルの推論能力だけでなく、Codexを用いたコードレベルでの実行時間短縮、コンテキスト汚染を防ぐハーネス設計、そしてDaybreakによる徹底したセキュリティ検証が不可欠です。次世代の大規模エージェント活用を視野に入れるエンジニアにとって、システム設計の堅牢性とトークン効率化の重要性を再認識させる先進的な事例といえます。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/third-moment-research/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+How Third Moment Research runs 10,000 agents for 36+ hours | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
