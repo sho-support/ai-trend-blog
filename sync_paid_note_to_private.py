@@ -263,7 +263,7 @@ def create_note_ready(
 
 {free_body}
 
-<!-- NOTEでここに有料ラインを設定 -->
+=== ここでNOTEの有料ラインを設定 ===
 
 {paid_body}
 """
