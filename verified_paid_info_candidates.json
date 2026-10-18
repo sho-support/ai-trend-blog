@@ -790,5 +790,848 @@
         "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定｜北日本新聞webunプラス"
       }
     ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "Amazon セール 割引 キャンペーン",
+    "title": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート - Yahoo!ニュース",
+    "summary": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート &nbsp;&nbsp; Yahoo!ニュース",
+    "source": "Yahoo!ニュース",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOZ0J2VUNkOUVHVWppVG1iRkFNTGhwUV9HeUFWVlcySnM1ZDFUT3ZsQzROamRMTDhTdkFOemlLbWNxWGZxWFpBSkx5M09zWDRKWXNjNkxCYV9wSkw0SFBJekZ5Yy1QVXJTdmxYZWhHMWJfc1dGakg2NlZUaFl2N3hnQmVqSVBPd3Jp?oc=5",
+    "published": "Tue, 13 Oct 2026 10:19:32 GMT",
+    "category": "お金が得",
+    "score": 82,
+    "urgency": "high",
+    "candidate_title": "プライム感謝祭で損しない：還元率最大化エントリー＆無料サブスク総取りリスト",
+    "why_paid_value": "セール本編だけでなく、還元上限アップや複数サブスクの無料特典を網羅・整理することで読者の取りこぼしを防ぎ、調べる時間を大幅に節約できるため。",
+    "verification_needed": [
+      "2026年プライム感謝祭の正確な開催期間と先行セール日程",
+      "ポイントアップキャンペーンの還元率と上限ポイント",
+      "対象となるサブスク無料期間（Music Unlimited、Kindle等）の終了日と自動更新条件"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 30,
+      "verified_claims": [
+        {
+          "claim": "Yahoo!ニュース（エキスパート記事）およびnote記事において、プライム感謝祭2026の日程（先行セール：10月13日0:00〜10月15日23:59、本番：10月16日0:00〜10月19日23:59）やポイントアップキャンペーンの条件（合計1万円以上購入、最大18%、上限10,000ポイント）、サブスクキャンペーン（Kindle Unlimited 3か月無料、Amazon Music Unlimited 4か月無料等）が記載されている",
+          "source_url": "https://news.yahoo.co.jp/expert/articles/b0c503a1cc08db43c1bd9c2f986d872e65fff689",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "指定された公式ドメイン（amazon.co.jp, aboutamazon.jp）の一次情報ソースによる各キャンペーン条件、還元率内訳、上限ポイント、開催期間の直接確認",
+        "各サブスクリプション（Kindle Unlimited、Amazon Music Unlimited等）の公式規約および自動更新条件の公式発表"
+      ],
+      "contradictions": [],
+      "safe_paid_title": "",
+      "safe_summary": "二次情報（Yahoo!ニュース エキスパート、note等）により、プライム感謝祭2026の先行セール・本番日程や、最大18%還元（上限10,000ポイント）のポイントアップキャンペーン、各種サブスクの無料特典内容が報じられています。ただし、有料noteとして担保すべき公式ドメイン（amazon.co.jp等）からの一次情報ソースが提供されていないため、公式裏付けが未取得の状態です。",
+      "recommended_action": "hold",
+      "reason": "提示された情報源がすべて二次情報（Yahoo!ニュース、note、Impress Watch）であり、公式・一次情報（amazon.co.jp等）が不足しているため、「二次情報しかない、または公式・一次情報が不足している」の基準に基づき needs_manual（保留）と判定しました。"
+    },
+    "verified_at": "2026-10-18T14:33:04.280654+09:00",
+    "entity_info": {
+      "main_entity": "Amazon プライム感謝祭",
+      "company_name": "Amazon",
+      "search_keywords": [
+        "Amazon プライム感謝祭",
+        "Amazon プライム感謝祭 ポイントアップキャンペーン",
+        "Kindle Unlimited キャンペーン",
+        "Amazon Music Unlimited キャンペーン"
+      ],
+      "likely_official_domains": [
+        "amazon.co.jp",
+        "aboutamazon.jp"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン",
+        "利用規約"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://news.yahoo.co.jp/expert/articles/b0c503a1cc08db43c1bd9c2f986d872e65fff689",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート - Yahoo!ニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.yahoo.co.jp/expert/articles/1fabd916643b93429c6a85880be1ecdbb2267aee",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "Amazonプライム感謝祭おすすめガジェット＆目玉商品10選！買ってよかったもの（みつ） - エキスパート - Yahoo!ニュース",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://note.com/muramitsu/n/nee84bafeb55c",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "【Amazonプライム感謝祭2026】買う前にやること全部まとめ｜エントリー必須のキャンペーンから無料サブスクまで｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n3582143fd843",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "【10/18まで】名探偵コナン・ドラえもん・寄生獣がKindleで50%還元｜受賞作マンガ41作品を人気順に｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n08febd6bc37e",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "プライム感謝祭で買ってほしい、毎日使っている「本当に満足しているもの」17選｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n0cb4a6c5ca41",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "買ってよかったもの一生モノ！殿堂入りQOL爆上がり便利グッズ最新版｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://internet.watch.impress.co.jp/docs/column/teleworkgoods/2148580.html",
+        "domain": "internet.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "発売直後でもう半額だと!! Amazonプライム感謝祭で即ポチった最新Fire TV Stick 4Kと有線LAN化の意外な落とし穴【テレワークグッズレビュー 第170回】 - INTERNET Watch",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "楽天 セール ポイント キャンペーン",
+    "title": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ - OREFOLDER",
+    "summary": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ &nbsp;&nbsp; OREFOLDER",
+    "source": "OREFOLDER",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9WYVJKbzhkRzh0ZXB1VmVyaTd2d0FqYWYtSFR4OEwtU1lGUHJ4aDN0NkxoN1hReUZ5YmJ5QUF6dFB5LXV4ZTJQXzNTQ3BZN04yWnFES1RpaXNmcmtq?oc=5",
+    "published": "Fri, 18 Sep 2026 07:00:00 GMT",
+    "category": "お金が得",
+    "score": 72,
+    "urgency": "medium",
+    "candidate_title": "楽天モバイル紹介CP改定：MNP以外でも13,000pt獲得できる裏技・併用条件",
+    "why_paid_value": "新規契約（MNPなし）でも13,000ptもらえる条件変更は大きく、サブ回線契約やポイント目的のポイ活読者にとって直接的な金銭メリットがある。",
+    "verification_needed": [
+      "13,000pt進呈の適用条件（紹介リンク経由、開通期限など）",
+      "既存会員の再契約や2回線目以降の対象可否",
+      "キャンペーンの終了予定日"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "「楽天・三木谷浩史の特別なお客様キャンペーン」（キャンペーンコード：2798）において、2026年9月17日0:00以降の申し込み分より、新規お申し込み（乗り換え以外）およびドコモ回線・au回線からのプラン変更で進呈されるポイントが13,000ポイント（期間限定ポイント、3カ月分割進呈）である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=e6160429-5cd6-4b47-8030-ce72854abf53&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "キャンペーンの適用条件として、Webまたは店舗で対象プラン（Rakuten最強プランまたはRakuten最強U-NEXT）にクーポンコード（WTPRMI20261008等）を適用して申し込み、翌月末日23:59までの利用開始、および翌月末日23:59までにRakuten Linkアプリから発信で10秒以上の通話が必要である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=e6160429-5cd6-4b47-8030-ce72854abf53&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "本キャンペーンの適用回数はおひとり様1契約1回限りであり、終了日は未定である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=e6160429-5cd6-4b47-8030-ce72854abf53&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "Rakuten最強プラン（データタイプ）やRakuten UN-LIMIT VIIからの移行は対象外である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=e6160429-5cd6-4b47-8030-ce72854abf53&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "過去に本キャンペーンを利用したユーザーによる再契約や2回線目契約時の公式な可否（公式ルール上は「おひとり様1回限り」「短期間での解約や複数回解約を繰り返すなど特典獲得目的の契約は対象外」とあるが、完全な解約後の再契約についての詳細な明文化はない）",
+        "候補タイトルにある「裏技」に関する公式な記述"
+      ],
+      "contradictions": [
+        "候補タイトルに「裏技」とあるが、公式情報には裏技としての提供事実はなく、通常の公式キャンペーン条件（改定）である。",
+        "候補では「紹介キャンペーン」と総称されているが、公式ページ上はキャンペーンコード2798の「楽天・三木谷浩史の特別なお客様キャンペーン」であり、通常の紹介キャンペーン（コード1784等）とは併用不可・別枠扱いである。"
+      ],
+      "safe_paid_title": "楽天モバイル「特別なお客様キャンペーン」：MNP以外でも新規13,000pt獲得の適用条件と注意点",
+      "safe_summary": "楽天モバイルの「特別なお客様キャンペーン（コード2798）」では、2026年9月17日以降の申し込みより、MNP以外の新規契約等でも進呈ポイントが13,000ポイント（期間限定・分割進呈）となっています。適用には指定クーポンコードの適用、翌月末までの開通、およびRakuten Linkでの10秒以上通話が必要で、おひとり様1回限りの適用となります。",
+      "recommended_action": "hold",
+      "reason": "公式情報により、乗り換え（MNP）以外の新規申し込みで13,000ポイントに進呈額が増額されたこと、適用条件（クーポンコード適用、開通期限、Rakuten Linkでの10秒以上通話）、終了日未定であることなど主要な事実は確認できました。しかし、候補タイトルに含まれる「裏技」は誇張・根拠不足であり、再契約や2回線目の公式適用範囲についても一部解釈が分かれるため、partial判定としタイトル等の修正（hold）を推奨します。"
+    },
+    "verified_at": "2026-10-18T14:33:04.280654+09:00",
+    "entity_info": {
+      "main_entity": "楽天モバイル",
+      "company_name": "楽天モバイル株式会社",
+      "search_keywords": [
+        "楽天モバイル 特別なお客様へ Rakuten最強プランのご案内",
+        "楽天モバイル 三木谷 キャンペーン 13000",
+        "楽天モバイル キャンペーンコード 2798"
+      ],
+      "likely_official_domains": [
+        "network.mobile.rakuten.co.jp",
+        "rakuten.co.jp"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン詳細",
+        "適用条件・注意事項"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=e6160429-5cd6-4b47-8030-ce72854abf53&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+        "domain": "network.mobile.rakuten.co.jp",
+        "source_type": "official",
+        "title": "特別なお客様へ: Rakuten最強プランのご案内 | 楽天モバイル",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://network.mobile.rakuten.co.jp/?scid=af_trf_mno&trflg=1",
+        "domain": "network.mobile.rakuten.co.jp",
+        "source_type": "official",
+        "title": "楽天モバイル",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://my-best.com/articles/2662",
+        "domain": "my-best.com",
+        "source_type": "secondary",
+        "title": "楽天モバイル三木谷キャンペーン 元販売員が条件&評判を解説【26年10月最大1.4万Pt獲得はどこから？ いつまで？】 | マイベスト",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://scan.netsecurity.ne.jp/internet/mikitanicampaign-rakutenmobile/",
+        "domain": "scan.netsecurity.ne.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの三木谷キャンペーンの全て。1回線限定で最大14,000ポイントがもらえる！ | 光回線トリビア",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://mobile.economical.co.jp/rakuten-mobile-coupon/rakutenmobile-recontract/",
+        "domain": "mobile.economical.co.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの再契約キャンペーンまとめ!同じ番号での出戻り方法も解説 | スマホプラネット",
+        "source_confidence": 1
+      },
+      {
+        "url": "https://orefolder.jp/2026/09/rakuten-referral-3/",
+        "domain": "orefolder.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ – OREFOLDER",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.showcase-tv.com/sim/rakuten-mikitani-campaign/",
+        "domain": "showcase-tv.com",
+        "source_type": "secondary",
+        "title": "楽天モバイル三木谷キャンペーン【2026年10月】14,000ptの条件・いつもらえる・本物リンク",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://all-connect.co.jp/magazine/rakuten-mobile-mikitani-campaign/",
+        "domain": "all-connect.co.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの三木谷キャンペーンを徹底解説｜最大14,000ポイント還元の適用条件・申込方法【2026年10月】 | オールコネクトマガジン",
+        "source_confidence": 0
+      }
+    ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "キャッシュバック キャンペーン お得",
+    "title": "【終了迫る】αオータムキャッシュバック他お得なCPが10月19日終了！ - call-t.co.jp",
+    "summary": "【終了迫る】αオータムキャッシュバック他お得なCPが10月19日終了！ &nbsp;&nbsp; call-t.co.jp",
+    "source": "call-t.co.jp",
+    "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9vU3lieURfZUtSRDNkTmxOcXYyenZ4NjlGNkotWTd1dmt6MWRRWno0Um5uRlhUMjlSajlqSVNNVjZic1o3bklmWllfSEhGUFkyNGR4dXFmTVZTcC1CR2FEY1BR?oc=5",
+    "published": "Mon, 12 Oct 2026 07:19:36 GMT",
+    "category": "お金が得",
+    "score": 70,
+    "urgency": "high",
+    "candidate_title": "ソニーαオータムキャッシュバック終了直前：最大数万円還元の駆け込み適用チェックリスト",
+    "why_paid_value": "高額機材のキャッシュバックは数万円規模の金銭メリットがあり、終了直前のリマインドと対象レンズ・本体の組み合わせ表に明確な需要がある。",
+    "verification_needed": [
+      "10月19日の終了対象（購入期限と応募締切日の違い）",
+      "対象機種ごとの還元金額とレシート・保証書の提出要件",
+      "ECショップ購入時の領収書有効期限"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "verified",
+      "confidence": 95,
+      "verified_claims": [
+        {
+          "claim": "ソニーが「αオータムキャッシュバックキャンペーン2026」を開催しており、購入対象期間は2026年9月4日（金）から2026年10月19日（月）までであること",
+          "source_url": "https://www.sony.jp/camera/campaign/cb26ilc_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001&s_pid=jp_/ichigan/_cb26ilc_autumn_Default",
+          "source_type": "official"
+        },
+        {
+          "claim": "応募期間は2026年9月4日（金）から2026年11月4日（水）までで、WEB申し込み締め切りは2026年11月4日午前10時00分00秒、専用応募封筒締め切りは2026年11月4日当日消印有効であること",
+          "source_url": "https://www.sony.jp/camera/campaign/cb26ilc_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001&s_pid=jp_/ichigan/_cb26ilc_autumn_Default",
+          "source_type": "official"
+        },
+        {
+          "claim": "カメラ本体単品のキャッシュバック額は、α7 IV（ILCE-7M4/ILCE-7M4M）が40,000円（※ILCE-7M4Kは対象外）、ZV-E1/ZV-E1Lが30,000円、α1 II/α7R V/α7CR/α7C IIが20,000円、α6700/ZV-E10 IIが10,000円であること",
+          "source_url": "https://www.sony.jp/camera/campaign/cb26ilc_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001&s_pid=jp_/ichigan/_cb26ilc_autumn_Default",
+          "source_type": "official"
+        },
+        {
+          "claim": "対象レンズの単品購入で10,000円または8,000円、対象アクセサリーで5,000円または3,000円のキャッシュバックがあること",
+          "source_url": "https://www.sony.jp/camera/campaign/cb26ilc_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001&s_pid=jp_/ichigan/_cb26ilc_autumn_Default",
+          "source_type": "official"
+        },
+        {
+          "claim": "対象カメラ本体と対象レンズの同時購入により、追加で10,000円〜30,000円のキャッシュバックが受けられること（期間内であれば購入日や店舗が異なっても対象）",
+          "source_url": "https://www.sony.jp/camera/campaign/cb26ilc_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001&s_pid=jp_/ichigan/_cb26ilc_autumn_Default",
+          "source_type": "official"
+        },
+        {
+          "claim": "応募にはMy Sony登録、製品サポート登録、WEBエントリー、専用応募用紙と専用応募封筒による書類郵送が必要で、製品パッケージのバーコード切り抜き原本（コピー不可）、当社発行の保証書コピー、購入年月日・購入販売店名・購入商品名・購入価格が確認できるレシート等のコピーが必要であること",
+          "source_url": "https://www.sony.jp/camera/campaign/cb26ilc_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001&s_pid=jp_/ichigan/_cb26ilc_autumn_Default",
+          "source_type": "official"
+        },
+        {
+          "claim": "商品到着や保証書の日付が購入期間外であっても、購入証明書類（領収書や納品書）または注文書等にキャンペーン期間（購入期間）内の日付の記載があれば応募可能であること",
+          "source_url": "https://www.sony.jp/camera/campaign/cb26ilc_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001&s_pid=jp_/ichigan/_cb26ilc_autumn_Default",
+          "source_type": "official"
+        },
+        {
+          "claim": "「Cinema Line オータムキャッシュバックキャンペーン2026」も購入期間2026年9月4日〜10月19日、応募締切11月4日午前10時で開催され、FX3Aが50,000円、FX2B/FX30/FX30Bが30,000円キャッシュバック等の設定があること",
+          "source_url": "https://www.sony.jp/camera/campaign/cb26cl_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "ソニーストアの「分割払い60回まで金利手数料0%キャンペーン規約」の公式一次情報（二次情報サイトのみで言及あり）"
+      ],
+      "contradictions": [],
+      "safe_paid_title": "ソニー「αオータムキャッシュバックキャンペーン2026」10月19日購入分まで：対象機種・還元額と応募条件まとめ",
+      "safe_summary": "ソニー公式情報により、「αオータムキャッシュバックキャンペーン2026」の購入対象期間が2026年9月4日〜10月19日であることが確認されました。カメラ本体単品で最大40,000円（α7 IVなど）、レンズ単品で最大10,000円、同時購入で追加最大30,000円が還元されます。WEB申し込み締切は11月4日午前10時、郵送締切は同日消印有効です。応募にはバーコード原本の切り抜き、保証書コピー、所定事項を満たす領収書等のコピーが必要です。",
+      "recommended_action": "publish_candidate",
+      "reason": "指定公式ドメイン（sony.jp）のキャンペーンページが提供され、購入期限（10月19日）、応募締切（11月4日）、各対象機種の還元金額、同時購入条件、および領収書・保証書・バーコード等の応募要件がすべて一次情報で確認できたため。"
+    },
+    "verified_at": "2026-10-18T14:33:04.280654+09:00",
+    "entity_info": {
+      "main_entity": "αオータムキャッシュバックキャンペーン2026",
+      "company_name": "ソニー",
+      "search_keywords": [
+        "ソニー αオータムキャッシュバックキャンペーン2026",
+        "Sony Cinema Line オータムキャッシュバックキャンペーン2026",
+        "ソニーストア α レンズ 分割金利無料 キャンペーン"
+      ],
+      "likely_official_domains": [
+        "sony.jp",
+        "sony.com"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン詳細・応募要項",
+        "対象モデル・キャッシュバック金額一覧",
+        "ソニーストア 分割払手数料0%キャンペーン規約"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.sony.jp/camera/campaign/cb26ilc_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001&s_pid=jp_/ichigan/_cb26ilc_autumn_Default",
+        "domain": "sony.jp",
+        "source_type": "official",
+        "title": "αオータムキャッシュバックキャンペーン2026 | ソニー",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.sony.jp/camera/campaign/cb26cl_autumn/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001",
+        "domain": "sony.jp",
+        "source_type": "official",
+        "title": "Cinema Line オータムキャッシュバックキャンペーン2026 | ソニー",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.sony.jp/?s_tc=aff_999_0_10_170686&utm_medium=aff&utm_source=001",
+        "domain": "sony.jp",
+        "source_type": "official",
+        "title": "ソニー製品情報・ソニーストア - ソニー",
+        "source_confidence": 85
+      },
+      {
+        "url": "https://news.kakaku.com/prdnews/cd=camera/ctcd=0049/id=158596/",
+        "domain": "news.kakaku.com",
+        "source_type": "secondary",
+        "title": "価格.com - ソニー、最大4万円還元の「αオータムキャッシュバックキャンペーン2026」",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://kunkoku.jp/camerabunkatsu60-12.html",
+        "domain": "kunkoku.jp",
+        "source_type": "secondary",
+        "title": "【9月4日(金)午前10時開始】ソニーストア デジタル一眼カメラα「分割払い60回まで金利手数料0%キャンペーン」2026年10月20日(火)午前10時まで開催！。α1II・レンズを含む多数のモデルが対象。 - ソニーが基本的に好き。| ソニーショップくんこく",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://tecstaff.jp/2026-6-26-sony-store-60month-interest-free.html",
+        "domain": "tecstaff.jp",
+        "source_type": "secondary",
+        "title": "【本日開始】ソニーストアで60回分割手数料0％！α1 II・α7 V・交換レンズも対象 - ソニーショップ テックスタッフ",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.call-t.co.jp/tenchoblog/entry/52292.html",
+        "domain": "call-t.co.jp",
+        "source_type": "secondary",
+        "title": "【終了迫る】αオータムキャッシュバック他お得なCPが10月19日終了！ | 店長のつぶやき日記ハイパぁ...3",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://tecstaff.jp/2026-10-16-alpha-autumn-cashback.html",
+        "domain": "tecstaff.jp",
+        "source_type": "secondary",
+        "title": "【締切間近】ソニー「αオータムキャッシュバックキャンペーン2026」は10月19日まで！カメラ最大4万円＋レンズ同時購入で追加還元 - ソニーショップ テックスタッフ",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://dc.watch.impress.co.jp/docs/news/campaign/2137567.html",
+        "domain": "dc.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "【キャンペーン】ソニーα対象の2026秋キャンペーンが開始 - デジカメ Watch",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://kunkoku.jp/cb26ilcautumn.html",
+        "domain": "kunkoku.jp",
+        "source_type": "secondary",
+        "title": "【9月4日(金)開始】α1IIも対象！「αオータムキャッシュバックキャンペーン2026」2026年10月19日(月)まで開催。デジタル一眼カメラαボディで最大4万円、レンズ単品最大1万円、同時購入でさらに最大3万円キャッシュバック。 - ソニーが基本的に好き。| ソニーショップくんこく",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "お金を生む",
+    "query": "AI 副業 新サービス 収益化",
+    "title": "AI副業で数ヶ月で100万円超えの報告が相次ぐXで、収益の土台は9月7日に静かに終了していた - shiritomo",
+    "summary": "AI副業で数ヶ月で100万円超えの報告が相次ぐXで、収益の土台は9月7日に静かに終了していた &nbsp;&nbsp; shiritomo",
+    "source": "shiritomo",
+    "url": "https://news.google.com/rss/articles/CBMiQ0FVX3lxTE9tWU1NMHFzRWRYV0NLT05yZUJWVklxbGt5Nm9JMGZhMWlHc2JkUng5MWtyM1JuTzNrSmVMelRNSTdmYUk?oc=5",
+    "published": "Fri, 02 Oct 2026 07:00:00 GMT",
+    "category": "お金を生む",
+    "score": 85,
+    "urgency": "high",
+    "candidate_title": "【警告】「AI副業で月100万」の土台が終了？X収益化の仕様変更と新・生存戦略",
+    "why_paid_value": "SNS上でバブル化していたAI副業スキームの規制・仕様変更を暴く情報であり、読者の「無駄な投資を防ぐ」「時代遅れのノウハウに騙されない」損失回避価値が極めて高いため。",
+    "verification_needed": [
+      "9月7日に終了・改定されたX（旧Twitter）の規約またはインプレッション収益化の変更内容",
+      "具体的にどのAI副業手法（コピペポスト、動画生成等）が収益化対象外となったか",
+      "現在の代替収益化手法の存在"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 40,
+      "verified_claims": [
+        {
+          "claim": "Xは2026年8月7日に「クリエイター収益配分プログラム」の新規登録を停止し、2026年9月7日で同プログラムの収益獲得を終了した",
+          "source_url": "https://www.itmedia.co.jp/news/article/2608/09/2000000464/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "Xは後継として「オリジナルコンテンツ報酬プログラム（Original Content Rewards Program）」を開始し、参加条件として18歳以上、対象国居住、Premium系プラン加入、認証済みフォロワー500人以上、過去90日間に認証済みユーザーからホームタイムラインで50万件以上のインプレッション獲得（返信除外）などを定めている",
+          "source_url": "https://www.itmedia.co.jp/news/article/2608/09/2000000464/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "新プログラムでは、他人の投稿の複製や自動化ツールで生成されたものなどは報酬対象外とされ、AI生成コンテンツについては一律禁止ではないものの、武力紛争のAI動画を開示なしで投稿した場合は停止措置などのルールがある",
+          "source_url": "https://www.itmedia.co.jp/news/article/2608/09/2000000464/",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "X公式ドメイン（x.com、help.x.com、legal.x.com等）による一次情報ソース本文の直接的な確認",
+        "「AI副業で月100万円超え」といった収益事例や副業スキームの具体的な実態および因果関係の客観的検証"
+      ],
+      "contradictions": [
+        "候補タイトルは「『AI副業で月100万』の土台が終了？」とAI副業に焦点を当てているが、取得ソースで報じられている公式発表内容はX全体の「クリエイター収益配分プログラム」終了と「オリジナルコンテンツ報酬プログラム」への移行であり、AI副業に特化した制度終了ではない",
+        "AI生成コンテンツそのものが一律禁止されたわけではなく、対象外とされているのは「自動化された手段で作成または投稿されたもの」や「他人のコンテンツの無断転載・軽微な編集」等であるため、タイトルや訴求が誇張気味である"
+      ],
+      "safe_paid_title": "Xが収益配分プログラムを終了し「オリジナルコンテンツ報酬」へ移行、新条件と対象コンテンツの変更点",
+      "safe_summary": "Xは2026年9月7日をもって従来の「クリエイター収益配分プログラム」を終了し、新たに「オリジナルコンテンツ報酬プログラム」へ移行しました。新制度では認証済みフォロワー500人以上や過去90日間で認証済みユーザーからのホームタイムライン表示50万回以上などの条件が設定され、単なる転載や自動化ツールによる投稿などは対象外とされています。",
+      "recommended_action": "hold",
+      "reason": "提供された情報源がすべて二次情報（ITmedia、GIGAZINE、Impress Watch、note等）のみであり、判定基準において『verified』に必要な公式ドメイン（x.com、help.x.com等）の一次情報ソースが直接含まれていないため。また、候補のAI副業に関する訴求は二次情報記事内の独自考察・フックであり、プラットフォーム側の公式発表内容とは焦点に乖離があるため保留とします。"
+    },
+    "verified_at": "2026-10-18T14:33:04.280654+09:00",
+    "entity_info": {
+      "main_entity": "X（旧Twitter）の収益化プログラム（クリエイター収益配分プログラム / オリジナルコンテンツ報酬プログラム）",
+      "company_name": "",
+      "search_keywords": [
+        "X クリエイター収益配分プログラム 終了",
+        "X オリジナルコンテンツ報酬プログラム",
+        "X Creator Revenue Sharing",
+        "X Original Content Rewards Program"
+      ],
+      "likely_official_domains": [
+        "x.com",
+        "help.x.com"
+      ],
+      "official_pages_to_find": [
+        "クリエイター収益配分プログラムのヘルプ・規約",
+        "オリジナルコンテンツ報酬プログラムの参加要件・ヘルプ",
+        "クリエイター向けポリシー"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://netaful.jp/twitter/0207544.html",
+        "domain": "netaful.jp",
+        "source_type": "secondary",
+        "title": "「X」収益分配プログラムを9月7日に終了｜新たな報酬制度は「オリジナルコンテンツ」を重視 - ネタフル",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.watch.impress.co.jp/docs/news/2131768.html",
+        "domain": "watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "X、収益化プログラムを一新 「オリジナル投稿」が基準に - Impress Watch",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://hashout.jp/sns/11744/",
+        "domain": "hashout.jp",
+        "source_type": "secondary",
+        "title": "AI副業で数ヶ月で100万円超えの報告が相次ぐXで、収益の土台は9月7日に静かに終了していた – shiritomo",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://innovatopia.jp/tech-social/tech-social-news/115578/",
+        "domain": "innovatopia.jp",
+        "source_type": "secondary",
+        "title": "X、収益分配プログラムを9月7日終了｜新報酬制度「オリジナルコンテンツ」へ",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://www.itmedia.co.jp/news/article/2608/09/2000000464/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "X、「クリエイター収益分配プログラム」終了へ──「オリジナル投稿」に絞った新報酬制度に移行 - ITmedia NEWS",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://kai-you.net/article/96216",
+        "domain": "kai-you.net",
+        "source_type": "secondary",
+        "title": "Xの収益配分プログラム終了へ オリジナルコンテンツ重視の新制度に移行 - KAI-YOU",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://tokyonewsmedia.com/archives/26310",
+        "domain": "tokyonewsmedia.com",
+        "source_type": "secondary",
+        "title": "X、クリエイター収益配分を9月に終了 新「オリジナルコンテンツ報酬」に移行 - 東京報道新聞",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://note.com/munou_ac/n/n95310b9902f0",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "完全解説：X「Original Content Rewards Program」｜参加条件・収益対象インプレッション・オリジナルコンテンツの基準を整理｜てんねん｜AIイラストクリエイター",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://gigazine.net/news/20260808-x-original-content-rewards-program/",
+        "domain": "gigazine.net",
+        "source_type": "secondary",
+        "title": "Xが「クリエイター収益分配」を終了し「オリジナルコンテンツ報酬プログラム」開始へ - GIGAZINE",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://finance.biggo.jp/news/3bc200f8-9035-4249-9045-2c58cba099c3",
+        "domain": "finance.biggo.jp",
+        "source_type": "secondary",
+        "title": "X、収益化プログラムを刷新、「オリジナル投稿」で報酬獲得へ 9月8日から開始 — BigGo ファイナンス",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "お金を生む",
+    "query": "生成AI 新サービス API 料金 プラン",
+    "title": "AI動画生成サービス「Crento」、全プランでAPI・MCP・Slack連携機能を標準搭載 - PR TIMES",
+    "summary": "AI動画生成サービス「Crento」、全プランでAPI・MCP・Slack連携機能を標準搭載 &nbsp;&nbsp; PR TIMES",
+    "source": "PR TIMES",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9tTmw1WlE0XzZEU1c3dkNWQW5ESDNZTTZNRWVwbTR2SDViaFZJSjl2bVlVQjBSTktpUVk5WG9Hdkd2Nm82a29GOVlIVFZaeW5XeUpiN3gzS2Fnb0YzNEhQdUpYMmdEMS0xMnc?oc=5",
+    "published": "Thu, 24 Sep 2026 07:00:00 GMT",
+    "category": "お金を生む",
+    "score": 80,
+    "urgency": "medium",
+    "candidate_title": "AI動画自動生成「Crento」で実現するMCP・Slack連携の完全自動コンテンツ販売パイプライン",
+    "why_paid_value": "AI動画生成ツールがAPI/MCP/Slack連携に対応したことで、プロンプト指示から動画生成・納品までの完全自動化ワークフローを構築でき、受託や自社コンテンツ量産で稼ぐ武器になるため。",
+    "verification_needed": [
+      "「Crento」の料金プランとAPI呼び出しコスト",
+      "MCP（Model Context Protocol）連携の仕様と設定手順",
+      "商用利用規約および生成動画の著作権の帰属"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "rejected",
+      "confidence": 90,
+      "verified_claims": [
+        {
+          "claim": "株式会社PKSHA Infinityが提供するAI動画生成サービス「Crento」において、フリープランを含む全プランでAPI・Slack・MCP連携が2026年9月24日より標準提供されている",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000044.000066814.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "2026年12月31日までの有料プラン新規登録で月額料金が解約まで永続的に半額となるキャンペーンを実施中（スターター税込1,400円/月、スタンダード税込4,900円/月、ビジネス/プレミアム税込14,000円/月。追加クレジットは通常価格）",
+          "source_url": "https://web.crento.ai/?utm_source=prtimes&utm_medium=referral&utm_campaign=pressrelease0916",
+          "source_type": "official"
+        },
+        {
+          "claim": "生成された動画・PDFはプラン内において業務利用および商用利用が可能と公式FAQに明記されている",
+          "source_url": "https://web.crento.ai/?utm_source=prtimes&utm_medium=referral&utm_campaign=pressrelease0916",
+          "source_type": "official"
+        },
+        {
+          "claim": "動画生成の消費ポイントは1本あたり約400ptであり、生成失敗時はポイントが自動返却される",
+          "source_url": "https://web.crento.ai/?utm_source=prtimes&utm_medium=referral&utm_campaign=pressrelease0916",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "「コンテンツ販売パイプライン」を構築するためのAPI仕様書・エンドポイント・実装手順",
+        "MCP連携の具体的な設定方法・プロトコル定義",
+        "受託・コンテンツ販売を前提とした商用ライセンスの詳細規約"
+      ],
+      "contradictions": [
+        "候補タイトルは「完全自動コンテンツ販売パイプライン」を謳っているが、公式情報におけるCrentoの主用途は「社内の連絡・報告・共有を見てもらえる動画にする」社内コミュニケーション・業務効率化ツールであり、外部向けコンテンツ販売パイプラインの提供や推奨は一切言及されていない（誇張・用途の逸脱）"
+      ],
+      "safe_paid_title": "AI動画生成「Crento」のAPI・MCP・Slack連携機能と商用利用条件・永続半額キャンペーン概要",
+      "safe_summary": "PKSHA InfinityのAI動画生成サービス「Crento」は、全プランでAPI・Slack・MCP連携に対応し、業務利用および商用利用が可能です。2026年12月31日まで有料プラン月額が解約まで半額となるキャンペーンが実施されていますが、本来の用途は社内情報共有の動画化であり、コンテンツ販売の自動化システム等を公式に提供しているわけではありません。",
+      "recommended_action": "reject",
+      "reason": "商用利用可能であることや料金・キャンペーンの事実は確認できたものの、候補タイトルにある「完全自動コンテンツ販売パイプライン」は公式の機能や用途（社内連絡・情報共有の動画化）から著しく逸脱した過大な誇張であり、根拠以上の強すぎる主張となっているため。"
+    },
+    "verified_at": "2026-10-18T14:33:04.280654+09:00",
+    "entity_info": {
+      "main_entity": "Crento",
+      "company_name": "株式会社PKSHA Infinity",
+      "search_keywords": [
+        "Crento AI動画生成",
+        "Crento PKSHA Infinity",
+        "Crento 料金",
+        "Crento API MCP Slack",
+        "Crento 利用規約 商用利用"
+      ],
+      "likely_official_domains": [
+        "infinity.pkshatech.com"
+      ],
+      "official_pages_to_find": [
+        "料金プラン・キャンペーン詳細ページ",
+        "API・MCP連携仕様ページ",
+        "利用規約（商用利用・著作権規定）"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://web.crento.ai/?utm_source=prtimes&utm_medium=referral&utm_campaign=pressrelease0916",
+        "domain": "web.crento.ai",
+        "source_type": "official",
+        "title": "Crento — 社内の連絡・報告・共有を、見てもらえる動画に。",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://infinity.pkshatech.com/",
+        "domain": "infinity.pkshatech.com",
+        "source_type": "official",
+        "title": "AIで世界を最適化しよう。｜株式会社PKSHA Infinity（旧名：アーニーMLG株式会社）",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000044.000066814.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "AI動画生成サービス「Crento」、全プランでAPI・MCP・Slack連携機能を標準搭載 | 株式会社PKSHA Infinityのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000033.000066814.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "あらゆる資料を1分のプレゼン動画に自動変換。AI動画生成サービス「Crento」提供開始 | 株式会社PKSHA Infinityのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.nishinippon.co.jp/image/1085278/",
+        "domain": "nishinippon.co.jp",
+        "source_type": "secondary",
+        "title": "AI動画生成サービス「Crento」、全プランでAPI・MCP・Slack連携機能を標準搭載 - 写真・画像(1/1)｜【西日本新聞me】",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "業務効率化 AI サービス 新機能",
+    "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 - 北日本新聞webunプラス",
+    "summary": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 &nbsp;&nbsp; 北日本新聞webunプラス",
+    "source": "北日本新聞webunプラス",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE8yMnJTV25kSXVtZW1uRHRSNTd4cnNJX19oWUhwbWhZdWFfT2tINW9XN2VacHBEN2ZzMjdGcGFSUEFySHAycWY0ZU44VQ?oc=5",
+    "published": "Fri, 02 Oct 2026 06:36:46 GMT",
+    "category": "時間を得する",
+    "score": 88,
+    "urgency": "medium",
+    "candidate_title": "PowerPointを開いたままAIがスライドを直接編集：「ChatSense」新機能と実務時短テクニック",
+    "why_paid_value": "外部ツールを行き来せずパワポネイティブでAI編集ができる機能は、多くのホワイトカラー読者が直面する「資料作成の時間」を直接削減できるため、有料コンテンツとして最も購入動機が生まれやすい。",
+    "verification_needed": [
+      "「ChatSense」の提供開始日とPowerPointアドインとしての利用料金",
+      "既存のMicrosoft 365 Copilot等との機能・コスト比較",
+      "日本語プロンプトの対応精度と編集可能な要素（レイアウト、テキスト、図形）"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 75,
+      "verified_claims": [
+        {
+          "claim": "株式会社ナレッジセンスは、法人向けAIエージェント「ChatSense」のスライド生成AIにおいて、PowerPointを開いたまま選択したスライドの修正や続きのスライドの追加をAIに依頼できる新機能の提供を予定している",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000413.000073671.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "ChatSenseのスライド生成AIは作成した資料をPowerPoint形式で出力でき、新機能によりChatSenseとPowerPointを行き来する手間を削減できる",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000413.000073671.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "ChatSenseは初期費用が無料で、最低利用期間の縛りがない",
+          "source_url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+          "source_type": "official"
+        },
+        {
+          "claim": "ChatSenseの「スライド生成AI」拡張機能は月額98,000円（ビジネスプラン以上の加入が必要、組織全体で月1000枚まで利用可能）である",
+          "source_url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "新機能の具体的な提供開始日",
+        "PowerPoint上で直接編集する新機能の具体的な利用条件や追加料金（プレスリリース上は問い合わせ対応と記載）",
+        "候補タイトルに含まれる「実務時短テクニック」の具体的な手順やノウハウ"
+      ],
+      "contradictions": [
+        "候補タイトルにある「実務時短テクニック」について、情報源には新機能の提供予定発表と問い合わせ案内のみが記載されており、具体的な実務テクニックの記載はない"
+      ],
+      "safe_paid_title": "PowerPointを開いたままスライド修正・追加をAIに依頼：「ChatSense」新機能の提供予定",
+      "safe_summary": "株式会社ナレッジセンスは、法人向けAIエージェント「ChatSense」のスライド生成AIにおいて、PowerPointを開いたままスライドの修正や続きのスライド追加を依頼できる新機能を提供予定であることを発表しました。従来発生していた画面の行き来を減らすことが狙いです。提供開始時期や新機能の詳細な利用条件は問い合わせ対応となっています。",
+      "recommended_action": "hold",
+      "reason": "新機能の発表内容や既存の料金体系は一次情報・公式情報から確認できますが、新機能自体の具体的な提供開始時期や利用条件が未公開（問い合わせ対応）であり、候補タイトルにある「実務時短テクニック」を裏付ける情報源も不足しているため。"
+    },
+    "verified_at": "2026-10-18T14:33:04.280654+09:00",
+    "entity_info": {
+      "main_entity": "ChatSense",
+      "company_name": "株式会社ナレッジセンス",
+      "search_keywords": [
+        "ChatSense",
+        "ナレッジセンス",
+        "スライド生成AI PowerPoint",
+        "ChatSense 料金"
+      ],
+      "likely_official_domains": [
+        "chatsense.jp",
+        "knowledgesense.jp"
+      ],
+      "official_pages_to_find": [
+        "料金",
+        "スライド生成機能詳細",
+        "お問い合わせ"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「ChatSense Notebook」｜社内資料を根拠つきで読み解くAIワークスペース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/cowork?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「Cowork」｜ブラウザ操作AIエージェント",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/gallery/slide-gen?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatSense スライド生成AI事例集",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://chatsense.jp/function/codesense",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "国産コーディングエージェント「CodeSense」｜複雑なコード・VBAの改修を支援",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://chatsense.jp/contact?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向けChatGPT「ChatSense」｜社内データ検索・セキュリティ強化",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://chatsense.jp/blog/enterprise-ai-comparison?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け生成AIサービス比較｜全ての料金公開・おすすめ契約",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://knowledgesense.jp/?utm_source=413&utm_medium=prtimes",
+        "domain": "knowledgesense.jp",
+        "source_type": "official",
+        "title": "株式会社ナレッジセンス｜会社概要｜東京都",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://chatsense.jp/blog/chatgpt-business-plan?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatGPTの法人契約プラン｜利用方法・料金について",
+        "source_confidence": 85
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000413.000073671.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 | 株式会社ナレッジセンスのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://webun.jp/articles/-/1104108",
+        "domain": "webun.jp",
+        "source_type": "primary_release",
+        "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定｜北日本新聞webunプラス",
+        "source_confidence": 95
+      }
+    ]
   }
 ]
