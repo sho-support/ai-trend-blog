@@ -2,3 +2,4 @@ google-genai
 feedparser
 requests
 beautifulsoup4
+gnews-decoder
