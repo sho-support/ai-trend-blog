@@ -2195,5 +2195,425 @@
         "source_confidence": 95
       }
     ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "Amazon セール 割引 キャンペーン",
+    "title": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート - Yahoo!ニュース",
+    "summary": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート &nbsp;&nbsp; Yahoo!ニュース",
+    "source": "Yahoo!ニュース",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOZ0J2VUNkOUVHVWppVG1iRkFNTGhwUV9HeUFWVlcySnM1ZDFUT3ZsQzROamRMTDhTdkFOemlLbWNxWGZxWFpBSkx5M09zWDRKWXNjNkxCYV9wSkw0SFBJekZ5Yy1QVXJTdmxYZWhHMWJfc1dGakg2NlZUaFl2N3hnQmVqSVBPd3Jp?oc=5",
+    "published": "Tue, 13 Oct 2026 10:19:32 GMT",
+    "category": "お金が得",
+    "score": 82,
+    "urgency": "high",
+    "candidate_title": "プライム感謝祭で損しない：還元率最大化エントリー＆無料サブスク総取りリスト",
+    "why_paid_value": "セール本編だけでなく、還元上限アップや複数サブスクの無料特典を網羅・整理することで読者の取りこぼしを防ぎ、調べる時間を大幅に節約できるため。",
+    "verification_needed": [
+      "2026年プライム感謝祭の正確な開催期間と先行セール日程",
+      "ポイントアップキャンペーンの還元率と上限ポイント",
+      "対象となるサブスク無料期間（Music Unlimited、Kindle等）の終了日と自動更新条件"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 30,
+      "verified_claims": [
+        {
+          "claim": "Yahoo!ニュース（エキスパート記事）およびnoteにおいて、プライム感謝祭2026の日程（先行セール：10月13日0:00〜10月15日23:59、本番：10月16日0:00〜10月19日23:59）、合計1万円以上の購入で最大18%還元（上限10,000ポイント）のポイントアップキャンペーン、各種サブスク（Kindle Unlimited 3か月無料、Amazon Music Unlimited 4か月無料、Audible 4か月99円等）が紹介されている",
+          "source_url": "https://news.yahoo.co.jp/expert/articles/b0c503a1cc08db43c1bd9c2f986d872e65fff689",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "note記事において、ポイントアップキャンペーンの還元率内訳（プライム会員最大+3.0%、Amazon Mastercard最大+3.0%、ブランドセレクション+7.0%、ドラッグストア・ホーム用品+5.0%、Apple製品は対象外など）やサブスク無料期間終了後の自動更新に関する言及がある",
+          "source_url": "https://note.com/muramitsu/n/nee84bafeb55c",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "指定された公式ドメイン（amazon.co.jp、aboutamazon.jp）の一次情報ソースによる各キャンペーン開催日程、利用規約、対象商品・対象者条件の裏付け",
+        "ポイントアップキャンペーンの還元率内訳（最大18%）および上限10,000ポイントの公式規約",
+        "各サブスクリプション（Kindle Unlimited、Music Unlimited、Audible）のキャンペーン期間および自動更新条件に関する公式規約"
+      ],
+      "contradictions": [],
+      "safe_paid_title": "",
+      "safe_summary": "二次情報（Yahoo!ニュース エキスパート、note等）により、プライム感謝祭2026の日程（10月13日〜19日）や最大18%還元のポイントアップキャンペーン、サブスクリプションの無料体験施策が言及されています。ただし、公式ドメイン（amazon.co.jp等）による一次情報ソースが提示されていないため、利用規約や正確な適用条件の公式な確認は取れていません。",
+      "recommended_action": "hold",
+      "reason": "提供された情報源がすべて二次情報（Yahoo!ニュース、note、INTERNET Watch）であり、公式・一次情報（amazon.co.jp等の公式ドメイン）が不足しているため、判定基準「二次情報しかない、または公式・一次情報が不足している」に従い needs_manual（保留）と判定しました。"
+    },
+    "verified_at": "2026-10-18T15:30:34.418778+09:00",
+    "entity_info": {
+      "main_entity": "Amazon プライム感謝祭",
+      "company_name": "Amazon",
+      "search_keywords": [
+        "Amazon プライム感謝祭",
+        "Amazon プライム感謝祭 ポイントアップキャンペーン",
+        "Kindle Unlimited キャンペーン",
+        "Amazon Music Unlimited キャンペーン"
+      ],
+      "likely_official_domains": [
+        "amazon.co.jp",
+        "aboutamazon.jp"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン",
+        "利用規約"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://news.yahoo.co.jp/expert/articles/b0c503a1cc08db43c1bd9c2f986d872e65fff689",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート - Yahoo!ニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://note.com/muramitsu/n/nee84bafeb55c",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "【Amazonプライム感謝祭2026】買う前にやること全部まとめ｜エントリー必須のキャンペーンから無料サブスクまで｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n3582143fd843",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "【10/18まで】名探偵コナン・ドラえもん・寄生獣がKindleで50%還元｜受賞作マンガ41作品を人気順に｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n08febd6bc37e",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "プライム感謝祭で買ってほしい、毎日使っている「本当に満足しているもの」17選｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n0cb4a6c5ca41",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "買ってよかったもの一生モノ！殿堂入りQOL爆上がり便利グッズ最新版｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.yahoo.co.jp/expert/articles/1fabd916643b93429c6a85880be1ecdbb2267aee",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "Amazonプライム感謝祭おすすめガジェット＆目玉商品10選！買ってよかったもの（みつ） - エキスパート - Yahoo!ニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://internet.watch.impress.co.jp/docs/column/teleworkgoods/2148580.html",
+        "domain": "internet.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "発売直後でもう半額だと!! Amazonプライム感謝祭で即ポチった最新Fire TV Stick 4Kと有線LAN化の意外な落とし穴【テレワークグッズレビュー 第170回】 - INTERNET Watch",
+        "source_confidence": 100
+      }
+    ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "楽天 セール ポイント キャンペーン",
+    "title": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ - OREFOLDER",
+    "summary": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ &nbsp;&nbsp; OREFOLDER",
+    "source": "OREFOLDER",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9WYVJKbzhkRzh0ZXB1VmVyaTd2d0FqYWYtSFR4OEwtU1lGUHJ4aDN0NkxoN1hReUZ5YmJ5QUF6dFB5LXV4ZTJQXzNTQ3BZN04yWnFES1RpaXNmcmtq?oc=5",
+    "published": "Fri, 18 Sep 2026 07:00:00 GMT",
+    "category": "お金が得",
+    "score": 72,
+    "urgency": "medium",
+    "candidate_title": "楽天モバイル紹介CP改定：MNP以外でも13,000pt獲得できる裏技・併用条件",
+    "why_paid_value": "新規契約（MNPなし）でも13,000ptもらえる条件変更は大きく、サブ回線契約やポイント目的のポイ活読者にとって直接的な金銭メリットがある。",
+    "verification_needed": [
+      "13,000pt進呈の適用条件（紹介リンク経由、開通期限など）",
+      "既存会員の再契約や2回線目以降の対象可否",
+      "キャンペーンの終了予定日"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "「楽天・三木谷浩史の特別なお客様キャンペーン」（キャンペーンコード：2798）において、2026年9月17日0:00以降の申し込み分より、新規お申し込みおよびドコモ回線・au回線からのプラン変更で進呈されるポイントが13,000ポイント（期間限定ポイント、3回分割進呈）である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=001078d3-4bc6-49d9-aa1f-589e9645fbf0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "適用条件は、Webまたは店舗で対象プラン（Rakuten最強プランまたはRakuten最強U-NEXT）にクーポンコード（WTPRMI20261008等）を適用して申し込み、翌月末日23:59までに利用開始し、同期限までにRakuten Linkアプリから発信で10秒以上の通話を行うことである。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=001078d3-4bc6-49d9-aa1f-589e9645fbf0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "本キャンペーンの適用回数は「おひとり様1回限り（1契約1回限り）」であり、キャンペーン期間は終了日未定である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=001078d3-4bc6-49d9-aa1f-589e9645fbf0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "Rakuten最強プラン（データタイプ）やRakuten UN-LIMIT VIIからの移行は対象外である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=001078d3-4bc6-49d9-aa1f-589e9645fbf0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "通常の紹介キャンペーン（コード：1784）や従業員紹介キャンペーン（コード：2162）とは併用不可である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=001078d3-4bc6-49d9-aa1f-589e9645fbf0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "過去に本キャンペーン適用済みユーザーの再契約時における公式な適用可否（公式規約には「おひとり様1契約1回限り」「特典目的の複数回解約等は対象外」とあるのみ）",
+        "候補タイトルにある「裏技」に関する公式な記述"
+      ],
+      "contradictions": [
+        "候補タイトルに「裏技」とあるが、公式情報には裏技としての提供事実は存在せず、正規キャンペーン条件の改定である。",
+        "候補タイトルで「紹介CP」と総称されているが、公式上はキャンペーンコード2798の「特別なお客様キャンペーン」であり、通常の紹介キャンペーン（コード1784）とは別枠・併用不可である。"
+      ],
+      "safe_paid_title": "楽天モバイル「特別なお客様キャンペーン」：MNP以外の新規契約で13,000pt獲得の適用条件と注意点",
+      "safe_summary": "楽天モバイルの「特別なお客様キャンペーン（コード2798）」では、2026年9月17日以降の申し込み分より、MNP以外の新規契約等での進呈ポイントが13,000ポイント（期間限定・分割進呈）に改定されています。適用には専用クーポンコードの適用、翌月末日までの開通、Rakuten Linkアプリでの10秒以上通話が必要であり、おひとり様1回限りの適用となります。",
+      "recommended_action": "hold",
+      "reason": "公式情報により、MNP以外の新規契約等で13,000ポイント進呈となる改定、適用条件（クーポンコード適用、開通期限、Rakuten Linkでの10秒以上通話）、おひとり様1回限りであることなどの主要事実は確認できました。しかし、候補タイトルに含まれる「裏技」は公式根拠のない誇張表現であり、通常の紹介キャンペーンとの混同も見られるため、タイトルおよび構成の修正を前提としたhold判定とします。"
+    },
+    "verified_at": "2026-10-18T15:30:34.418778+09:00",
+    "entity_info": {
+      "main_entity": "楽天モバイル",
+      "company_name": "楽天モバイル株式会社",
+      "search_keywords": [
+        "楽天モバイル 特別なお客様キャンペーン",
+        "楽天・三木谷浩史の特別なお客様キャンペーン",
+        "楽天モバイル キャンペーンコード 2798"
+      ],
+      "likely_official_domains": [
+        "network.mobile.rakuten.co.jp",
+        "rakuten.co.jp"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン詳細",
+        "適用条件・注意事項"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=001078d3-4bc6-49d9-aa1f-589e9645fbf0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+        "domain": "network.mobile.rakuten.co.jp",
+        "source_type": "official",
+        "title": "特別なお客様へ: Rakuten最強プランのご案内 | 楽天モバイル",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://network.mobile.rakuten.co.jp/?scid=af_trf_mno&trflg=1",
+        "domain": "network.mobile.rakuten.co.jp",
+        "source_type": "official",
+        "title": "楽天モバイル",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://orefolder.jp/2026/09/rakuten-referral-3/",
+        "domain": "orefolder.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ – OREFOLDER",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://my-best.com/articles/2662",
+        "domain": "my-best.com",
+        "source_type": "secondary",
+        "title": "楽天モバイル三木谷キャンペーン 元販売員が条件&評判を解説【26年10月最大1.4万Pt獲得はどこから？ いつまで？】 | マイベスト",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.showcase-tv.com/sim/rakuten-mikitani-campaign/",
+        "domain": "showcase-tv.com",
+        "source_type": "secondary",
+        "title": "楽天モバイル三木谷キャンペーン【2026年10月】14,000ptの条件・いつもらえる・本物リンク",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://all-connect.co.jp/magazine/rakuten-mobile-mikitani-campaign/",
+        "domain": "all-connect.co.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの三木谷キャンペーンを徹底解説｜最大14,000ポイント還元の適用条件・申込方法【2026年10月】 | オールコネクトマガジン",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://selectra.jp/telecom/mobile/rakutenmobile-campaigns",
+        "domain": "selectra.jp",
+        "source_type": "secondary",
+        "title": "【10月9日更新】楽天モバイルキャンペーンまとめ - 14,000ポイントもらえる三木谷社長の紹介キャンペーン詳しく解説＆新規・乗り換えで人気iPhoneもお得",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://pixela.co.jp/mobiledash/rakuten-mobile-campaign/",
+        "domain": "pixela.co.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルのキャンペーンどれがお得？【2026年10月】乗り換え・新規向けや併用パターンも解説 | モバイルDASH",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://scan.netsecurity.ne.jp/internet/mikitanicampaign-rakutenmobile/",
+        "domain": "scan.netsecurity.ne.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの三木谷キャンペーンの全て。1回線限定で最大14,000ポイントがもらえる！ | 光回線トリビア",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "業務効率化 AI サービス 新機能",
+    "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 - 北日本新聞webunプラス",
+    "summary": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 &nbsp;&nbsp; 北日本新聞webunプラス",
+    "source": "北日本新聞webunプラス",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE8yMnJTV25kSXVtZW1uRHRSNTd4cnNJX19oWUhwbWhZdWFfT2tINW9XN2VacHBEN2ZzMjdGcGFSUEFySHAycWY0ZU44VQ?oc=5",
+    "published": "Fri, 02 Oct 2026 06:36:46 GMT",
+    "category": "時間を得する",
+    "score": 88,
+    "urgency": "medium",
+    "candidate_title": "PowerPointを開いたままAIがスライドを直接編集：「ChatSense」新機能と実務時短テクニック",
+    "why_paid_value": "外部ツールを行き来せずパワポネイティブでAI編集ができる機能は、多くのホワイトカラー読者が直面する「資料作成の時間」を直接削減できるため、有料コンテンツとして最も購入動機が生まれやすい。",
+    "verification_needed": [
+      "「ChatSense」の提供開始日とPowerPointアドインとしての利用料金",
+      "既存のMicrosoft 365 Copilot等との機能・コスト比較",
+      "日本語プロンプトの対応精度と編集可能な要素（レイアウト、テキスト、図形）"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 60,
+      "verified_claims": [
+        {
+          "claim": "ChatSenseの基本プラン「ビジネス」は月額980円/人から利用可能で、初期費用は0円、最低利用期間および最低利用人数の制限はない",
+          "source_url": "https://chatsense.jp/function/codesense",
+          "source_type": "official"
+        },
+        {
+          "claim": "ChatSenseの拡張機能「スライド生成AI」は月額98,000円（ビジネスプラン以上の基本プランへの加入が必要）で、組織全体で月1000枚までパワポ資料を生成できる",
+          "source_url": "https://chatsense.jp/function/codesense",
+          "source_type": "official"
+        },
+        {
+          "claim": "ChatSense Notebook機能において、PDF、Word、Excel、PowerPointなどの資料を読み込ませてスライドを生成することが可能である",
+          "source_url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "「PowerPoint上で直接AIがスライドを編集する」新機能の公式発表内容・仕様・提供開始時期",
+        "PowerPoint上での直接編集機能の利用料金や対応プラン",
+        "候補タイトルに含まれる「実務時短テクニック」の具体的な操作ノウハウや解説手順"
+      ],
+      "contradictions": [
+        "候補タイトルにある「PowerPointを開いたままAIがスライドを直接編集」という新機能について、提供された公式ページ内に該当機能の仕様やリリースの記載が存在せず、二次情報（北日本新聞の見出し）のみにとどまっている",
+        "候補タイトルに「実務時短テクニック」と記載されているが、提供された情報源はサービス仕様や料金プランのみであり、具体的なテクニックの根拠が存在しないため誇張にあたる"
+      ],
+      "safe_paid_title": "法人向けAI「ChatSense」のスライド生成AI機能と料金体系の概要",
+      "safe_summary": "法人向けChatGPT「ChatSense」では、月額980円/人〜のビジネスプランに加え、月額98,000円（月1000枚まで）の拡張機能「スライド生成AI」や、資料をもとにスライドを作成できるNotebook機能が提供されています。一方で、PowerPoint上で直接編集を行う新機能の詳細や具体的な実務テクニックについては公式ソースで確認できません。",
+      "recommended_action": "hold",
+      "reason": "既存のスライド生成AIやNotebook機能、料金プランは公式ページで確認できますが、主要主張である「PowerPoint上で直接スライドを編集する新機能」の一次情報・公式情報が不足しており、二次情報の見出しのみであるため。"
+    },
+    "verified_at": "2026-10-18T15:30:34.418778+09:00",
+    "entity_info": {
+      "main_entity": "ChatSense",
+      "company_name": "株式会社ナレッジセンス",
+      "search_keywords": [
+        "ChatSense",
+        "ナレッジセンス",
+        "ChatSense スライド生成AI PowerPoint",
+        "ChatSense 料金"
+      ],
+      "likely_official_domains": [
+        "chatsense.jp",
+        "knowledgesense.jp"
+      ],
+      "official_pages_to_find": [
+        "料金プラン",
+        "スライド生成機能詳細",
+        "お問い合わせ"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://chatsense.jp/contact?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向けChatGPT「ChatSense」｜社内データ検索・セキュリティ強化",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/gallery/slide-gen?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatSense スライド生成AI事例集",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/blog/enterprise-ai-comparison?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け生成AIサービス比較｜全ての料金公開・おすすめ契約",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/codesense",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "国産コーディングエージェント「CodeSense」｜複雑なコード・VBAの改修を支援",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://knowledgesense.jp/?utm_source=413&utm_medium=prtimes",
+        "domain": "knowledgesense.jp",
+        "source_type": "official",
+        "title": "株式会社ナレッジセンス｜会社概要｜東京都",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「ChatSense Notebook」｜社内資料を根拠つきで読み解くAIワークスペース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/cowork?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「Cowork」｜ブラウザ操作AIエージェント",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/blog/chatgpt-business-plan?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatGPTの法人契約プラン｜利用方法・料金について",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://chatsense.jp/blog/chatgpt-dots",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "「dots」とは？ChatGPTの新機能・使い方・料金を解説",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://chatsense.jp/blog/openai-astra",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "GPT-6 Astraとは？5.6 Solとの違い・セキュリティ・GPTで使えるプラン",
+        "source_confidence": 95
+      }
+    ]
   }
 ]
