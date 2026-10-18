@@ -1,15 +1,18 @@
+# verify_paid_info_candidates.py
+
 import os
 import re
 import json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
-from urllib.parse import urlparse, quote_plus
+from urllib.parse import urlparse, urljoin, quote_plus
 
 import feedparser
 import requests
 from bs4 import BeautifulSoup
 from google import genai
 from gnews_decoder import decode as decode_google_news_url
+
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
@@ -26,7 +29,7 @@ VERIFIED_FILE = Path("verified_paid_info_candidates.json")
 REPORT_DIR = Path("paid_info_verification")
 
 MAX_CANDIDATES_PER_RUN = 10
-MAX_SOURCE_CHARS = 12000
+MAX_SOURCE_CHARS = 14000
 REQUEST_TIMEOUT = 20
 
 HEADERS = {
@@ -36,29 +39,20 @@ HEADERS = {
     )
 }
 
-OFFICIAL_DOMAIN_RULES = [
-    (["amazon", "プライム", "kindle", "music unlimited"], [
-        "amazon.co.jp", "amazon.com", "aboutamazon.jp"
-    ]),
-    (["楽天市場", "楽天モバイル", "楽天", "rakuten"], [
-        "rakuten.co.jp", "corp.rakuten.co.jp", "network.mobile.rakuten.co.jp"
-    ]),
-    (["sony", "ソニー", "α", "alpha"], [
-        "sony.jp", "sony.com"
-    ]),
-    (["x収益", "x（旧twitter）", "twitter", "xの"], [
-        "x.com", "help.x.com", "business.x.com"
-    ]),
-    (["microsoft", "powerpoint", "copilot"], [
-        "microsoft.com"
-    ]),
-    (["openai", "chatgpt", "codex"], [
-        "openai.com"
-    ]),
-    (["google", "gemini"], [
-        "google.com", "blog.google"
-    ]),
-]
+IGNORE_EXTERNAL_DOMAINS = {
+    "facebook.com",
+    "twitter.com",
+    "x.com",
+    "instagram.com",
+    "youtube.com",
+    "youtu.be",
+    "linkedin.com",
+    "line.me",
+    "tiktok.com",
+    "google.com",
+    "google.co.jp",
+    "news.google.com",
+}
 
 if not GEMINI_API_KEY:
     raise RuntimeError("GEMINI_API_KEY が設定されていません。")
@@ -72,10 +66,12 @@ def generate_content_with_fallback(contents, purpose="Gemini生成"):
     for model_name in [MODEL_NAME, *FALLBACK_MODEL_NAMES]:
         try:
             print(f"{purpose}: {model_name} を使用")
+
             return client.models.generate_content(
                 model=model_name,
                 contents=contents,
             )
+
         except Exception as e:
             last_error = e
             print(f"{purpose}エラー [{model_name}]: {e}")
@@ -90,50 +86,82 @@ def load_json_list(path):
         return []
 
     try:
-        value = json.loads(path.read_text(encoding="utf-8"))
-        return value if isinstance(value, list) else []
+        value = json.loads(
+            path.read_text(encoding="utf-8")
+        )
+
+        return (
+            value
+            if isinstance(value, list)
+            else []
+        )
+
     except Exception:
         return []
 
 
 def save_json_list(path, value):
     path.write_text(
-        json.dumps(value, ensure_ascii=False, indent=2),
+        json.dumps(
+            value,
+            ensure_ascii=False,
+            indent=2,
+        ),
         encoding="utf-8",
     )
+
+
+def clean_text(text):
+    return re.sub(
+        r"\s+",
+        " ",
+        text or "",
+    ).strip()
 
 
 def normalize_domain(url):
     try:
         host = urlparse(url).netloc.lower()
-        return host[4:] if host.startswith("www.") else host
+
+        if host.startswith("www."):
+            host = host[4:]
+
+        return host
+
     except Exception:
         return ""
 
 
-def domain_matches(host, allowed):
-    return host == allowed or host.endswith("." + allowed)
+def same_domain_or_subdomain(host, base):
+    return (
+        host == base
+        or host.endswith("." + base)
+    )
 
 
-def official_domains_for_candidate(candidate):
-    haystack = " ".join([
-        candidate.get("title", ""),
-        candidate.get("candidate_title", ""),
-        candidate.get("summary", ""),
-        candidate.get("source", ""),
-    ]).lower()
+def extract_json_object(text):
+    text = (text or "").strip()
 
-    domains = []
+    text = (
+        text
+        .replace("```json", "")
+        .replace("```", "")
+        .strip()
+    )
 
-    for keywords, mapped_domains in OFFICIAL_DOMAIN_RULES:
-        if any(keyword.lower() in haystack for keyword in keywords):
-            domains.extend(mapped_domains)
+    match = re.search(
+        r"\{[\s\S]*\}",
+        text,
+    )
 
-    return list(dict.fromkeys(domains))
+    if not match:
+        raise ValueError(
+            "Gemini応答からJSONオブジェクトを取得できませんでした。"
+        )
 
-
-def clean_text(text):
-    return re.sub(r"\s+", " ", text or "").strip()
+    return json.loads(
+        match.group(0)
+    )
 
 
 def resolve_google_news_url(url):
@@ -143,18 +171,30 @@ def resolve_google_news_url(url):
     try:
         resolved = decode_google_news_url(url)
 
-        if isinstance(resolved, str) and resolved.startswith("http"):
+        if (
+            isinstance(resolved, str)
+            and resolved.startswith("http")
+        ):
             return resolved
 
-        # 実装差異に備える
         if isinstance(resolved, dict):
-            for key in ("url", "decoded_url"):
+            for key in (
+                "url",
+                "decoded_url",
+            ):
                 value = resolved.get(key)
-                if isinstance(value, str) and value.startswith("http"):
+
+                if (
+                    isinstance(value, str)
+                    and value.startswith("http")
+                ):
                     return value
 
     except Exception as e:
-        print("Google News URLデコード失敗:", e)
+        print(
+            "Google News URLデコード失敗:",
+            e,
+        )
 
     return url
 
@@ -169,10 +209,14 @@ def fetch_page(url):
             timeout=REQUEST_TIMEOUT,
             allow_redirects=True,
         )
+
         response.raise_for_status()
 
         final_url = response.url
-        content_type = response.headers.get("content-type", "")
+        content_type = response.headers.get(
+            "content-type",
+            "",
+        )
 
         if (
             "text/html" not in content_type
@@ -183,23 +227,79 @@ def fetch_page(url):
                 "domain": normalize_domain(final_url),
                 "title": "",
                 "text": "",
+                "links": [],
                 "ok": False,
-                "error": f"HTMLではありません: {content_type}",
+                "error": (
+                    "HTMLではありません: "
+                    + content_type
+                ),
             }
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(
+            response.text,
+            "html.parser",
+        )
+
+        title = clean_text(
+            soup.title.get_text(
+                " ",
+                strip=True,
+            )
+            if soup.title
+            else ""
+        )
+
+        links = []
+
+        for a in soup.find_all(
+            "a",
+            href=True,
+        ):
+            href = a.get("href", "").strip()
+
+            if not href:
+                continue
+
+            absolute = urljoin(
+                final_url,
+                href,
+            )
+
+            if not absolute.startswith(
+                ("http://", "https://")
+            ):
+                continue
+
+            links.append(
+                {
+                    "url": absolute,
+                    "text": clean_text(
+                        a.get_text(
+                            " ",
+                            strip=True,
+                        )
+                    ),
+                }
+            )
 
         for tag in soup(
-            ["script", "style", "nav", "footer", "header", "aside", "noscript"]
+            [
+                "script",
+                "style",
+                "nav",
+                "footer",
+                "header",
+                "aside",
+                "noscript",
+            ]
         ):
             tag.decompose()
 
-        title = clean_text(
-            soup.title.get_text(" ", strip=True)
-            if soup.title else ""
-        )
         text = clean_text(
-            soup.get_text(" ", strip=True)
+            soup.get_text(
+                " ",
+                strip=True,
+            )
         )
 
         return {
@@ -207,6 +307,7 @@ def fetch_page(url):
             "domain": normalize_domain(final_url),
             "title": title,
             "text": text[:MAX_SOURCE_CHARS],
+            "links": links[:300],
             "ok": bool(text),
             "error": "",
         }
@@ -217,150 +318,562 @@ def fetch_page(url):
             "domain": normalize_domain(url),
             "title": "",
             "text": "",
+            "links": [],
             "ok": False,
             "error": str(e),
         }
 
 
-def google_news_search(query, max_results=8):
+def google_news_search(
+    query,
+    max_results=10,
+):
     url = (
         "https://news.google.com/rss/search"
-        f"?q={quote_plus(query)}&hl=ja&gl=JP&ceid=JP:ja"
+        f"?q={quote_plus(query)}"
+        "&hl=ja"
+        "&gl=JP"
+        "&ceid=JP:ja"
     )
 
     feed = feedparser.parse(url)
+
     results = []
 
     for entry in feed.entries[:max_results]:
-        raw_url = getattr(entry, "link", "")
-        decoded_url = resolve_google_news_url(raw_url)
+        raw_url = getattr(
+            entry,
+            "link",
+            "",
+        )
 
-        results.append({
-            "title": clean_text(getattr(entry, "title", "")),
-            "url": decoded_url,
-            "source": clean_text(
-                getattr(getattr(entry, "source", {}), "title", "")
-                if hasattr(getattr(entry, "source", {}), "title")
-                else ""
-            ),
-        })
+        decoded_url = resolve_google_news_url(
+            raw_url
+        )
+
+        source_obj = getattr(
+            entry,
+            "source",
+            {},
+        )
+
+        source_name = ""
+
+        if hasattr(
+            source_obj,
+            "title",
+        ):
+            source_name = clean_text(
+                source_obj.title
+            )
+
+        results.append(
+            {
+                "title": clean_text(
+                    getattr(
+                        entry,
+                        "title",
+                        "",
+                    )
+                ),
+                "url": decoded_url,
+                "source": source_name,
+            }
+        )
 
     return results
 
 
-def find_official_sources(candidate):
-    allowed_domains = official_domains_for_candidate(candidate)
-    sources = []
+def extract_entity_info(
+    candidate,
+    article_page,
+):
+    prompt = f"""
+以下の有料情報候補について、
+検証対象となる「商品・サービス・企業・ブランド」を特定してください。
 
-    original = fetch_page(candidate.get("url", ""))
+推測で存在しない企業名やURLを作ってはいけません。
 
-    if original.get("ok"):
-        original["source_type"] = (
-            "official"
-            if any(
-                domain_matches(original["domain"], d)
-                for d in allowed_domains
-            )
-            else "secondary"
-        )
-        sources.append(original)
+候補:
+{json.dumps(candidate, ensure_ascii=False, indent=2)}
 
-    search_seed = (
-        candidate.get("candidate_title")
-        or candidate.get("title")
-        or ""
+元記事タイトル:
+{article_page.get("title", "")}
+
+元記事本文:
+{article_page.get("text", "")[:8000]}
+
+次のJSONだけを返してください。
+
+{{
+  "main_entity": "主対象の商品・サービス・ブランド名",
+  "company_name": "運営会社名。本文で確認できなければ空文字",
+  "search_keywords": [
+    "公式情報を探すための検索語1",
+    "検索語2"
+  ],
+  "likely_official_domains": [
+    "本文や明確な知識から高確度で分かる場合のみドメイン。推測なら入れない"
+  ],
+  "official_pages_to_find": [
+    "料金",
+    "キャンペーン",
+    "利用規約"
+  ]
+}}
+"""
+
+    response = generate_content_with_fallback(
+        prompt,
+        purpose="公式情報探索対象の抽出",
     )
 
-    for domain in allowed_domains:
-        query = f'{search_seed} site:{domain}'
+    return extract_json_object(
+        response.text
+    )
 
-        for result in google_news_search(query, max_results=5):
-            page = fetch_page(result["url"])
+
+def collect_external_links(
+    article_page,
+):
+    source_domain = article_page.get(
+        "domain",
+        "",
+    )
+
+    found = []
+
+    for link in article_page.get(
+        "links",
+        [],
+    ):
+        url = link.get(
+            "url",
+            "",
+        )
+
+        domain = normalize_domain(url)
+
+        if not domain:
+            continue
+
+        if same_domain_or_subdomain(
+            domain,
+            source_domain,
+        ):
+            continue
+
+        if any(
+            same_domain_or_subdomain(
+                domain,
+                ignored,
+            )
+            for ignored in IGNORE_EXTERNAL_DOMAINS
+        ):
+            continue
+
+        found.append(
+            {
+                "url": url,
+                "domain": domain,
+                "anchor_text": link.get(
+                    "text",
+                    "",
+                ),
+            }
+        )
+
+    unique = []
+    seen = set()
+
+    for item in found:
+        key = item["url"]
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+        unique.append(item)
+
+    return unique[:30]
+
+
+def classify_source(
+    candidate,
+    entity_info,
+    page,
+):
+    prompt = f"""
+あなたはファクトチェック用の情報源分類担当です。
+
+以下のWebページが、
+対象の商品・サービス・キャンペーンについて
+どの種類の情報源か判定してください。
+
+対象候補:
+{json.dumps(candidate, ensure_ascii=False)}
+
+対象企業・ブランド:
+{json.dumps(entity_info, ensure_ascii=False)}
+
+ページURL:
+{page.get("url", "")}
+
+ページタイトル:
+{page.get("title", "")}
+
+ページ本文:
+{page.get("text", "")[:6000]}
+
+判定基準:
+
+official:
+対象企業・ブランド自身が運営する公式サイト、
+公式料金ページ、公式キャンペーンページ、
+公式ヘルプ、公式利用規約など
+
+primary_release:
+対象企業自身が出したプレスリリース。
+PR TIMESなど第三者プラットフォーム掲載でも、
+企業自身の正式発表と明確に確認できる場合を含む
+
+secondary:
+新聞、ニュースサイト、ブログ、販売店、比較サイト等
+
+unrelated:
+対象と無関係
+
+JSONだけ返してください。
+
+{{
+  "source_type": "official|primary_release|secondary|unrelated",
+  "confidence": 0,
+  "reason": "理由"
+}}
+"""
+
+    response = generate_content_with_fallback(
+        prompt,
+        purpose="情報源分類",
+    )
+
+    return extract_json_object(
+        response.text
+    )
+
+
+def build_search_queries(
+    candidate,
+    entity_info,
+):
+    queries = []
+
+    entity = entity_info.get(
+        "main_entity",
+        "",
+    )
+
+    company = entity_info.get(
+        "company_name",
+        "",
+    )
+
+    for keyword in entity_info.get(
+        "search_keywords",
+        [],
+    ):
+        if keyword:
+            queries.append(keyword)
+
+    if entity:
+        queries.extend(
+            [
+                f"{entity} 公式",
+                f"{entity} 料金",
+                f"{entity} キャンペーン",
+                f"{entity} 利用規約",
+                f"{entity} プレスリリース",
+            ]
+        )
+
+    if company:
+        queries.extend(
+            [
+                f"{company} {entity}",
+                f"{company} 公式",
+            ]
+        )
+
+    queries.append(
+        candidate.get(
+            "candidate_title",
+            "",
+        )
+    )
+
+    cleaned = []
+
+    for query in queries:
+        query = clean_text(query)
+
+        if (
+            query
+            and query not in cleaned
+        ):
+            cleaned.append(query)
+
+    return cleaned[:8]
+
+
+def find_sources(candidate):
+    article_page = fetch_page(
+        candidate.get(
+            "url",
+            "",
+        )
+    )
+
+    if not article_page.get("ok"):
+        print(
+            "元記事を取得できません:",
+            article_page.get(
+                "error",
+                "",
+            ),
+        )
+
+    entity_info = extract_entity_info(
+        candidate,
+        article_page,
+    )
+
+    print(
+        "対象:",
+        entity_info.get(
+            "main_entity",
+            "",
+        ),
+    )
+
+    print(
+        "運営会社:",
+        entity_info.get(
+            "company_name",
+            "",
+        ),
+    )
+
+    pages = []
+
+    if article_page.get("ok"):
+        pages.append(
+            {
+                **article_page,
+                "discovery": "original_article",
+            }
+        )
+
+    external_links = collect_external_links(
+        article_page
+    )
+
+    for item in external_links[:12]:
+        page = fetch_page(
+            item["url"]
+        )
+
+        if page.get("ok"):
+            pages.append(
+                {
+                    **page,
+                    "discovery": "article_external_link",
+                }
+            )
+
+    search_queries = build_search_queries(
+        candidate,
+        entity_info,
+    )
+
+    for query in search_queries:
+        print(
+            "公式情報検索:",
+            query,
+        )
+
+        for result in google_news_search(
+            query,
+            max_results=6,
+        ):
+            page = fetch_page(
+                result["url"]
+            )
 
             if not page.get("ok"):
                 continue
 
-            if not domain_matches(page["domain"], domain):
-                continue
+            pages.append(
+                {
+                    **page,
+                    "discovery": "news_search",
+                }
+            )
 
-            page["source_type"] = "official"
+    # Geminiが高確度の公式ドメイン候補を返した場合は
+    # そのドメインを狙った検索も行う。
+    for domain in entity_info.get(
+        "likely_official_domains",
+        [],
+    ):
+        domain = clean_text(domain)
 
-            if all(
-                existing.get("url") != page.get("url")
-                for existing in sources
-            ):
-                sources.append(page)
+        if not domain:
+            continue
 
-            if len([
-                s for s in sources
-                if s.get("source_type") == "official"
-            ]) >= 3:
-                break
-
-        if len([
-            s for s in sources
-            if s.get("source_type") == "official"
-        ]) >= 3:
-            break
-
-    return sources, allowed_domains
-
-
-def extract_json_object(text):
-    text = (text or "").strip()
-    text = text.replace("```json", "").replace("```", "").strip()
-
-    match = re.search(r"\{[\s\S]*\}", text)
-
-    if not match:
-        raise ValueError(
-            "Gemini応答からJSONオブジェクトを取得できませんでした。"
+        query = (
+            f'{entity_info.get("main_entity", "")} '
+            f"site:{domain}"
         )
 
-    return json.loads(match.group(0))
+        for result in google_news_search(
+            query,
+            max_results=6,
+        ):
+            page = fetch_page(
+                result["url"]
+            )
+
+            if page.get("ok"):
+                pages.append(
+                    {
+                        **page,
+                        "discovery": "domain_search",
+                    }
+                )
+
+    unique_pages = []
+    seen_urls = set()
+
+    for page in pages:
+        url = page.get(
+            "url",
+            "",
+        )
+
+        if (
+            not url
+            or url in seen_urls
+        ):
+            continue
+
+        seen_urls.add(url)
+        unique_pages.append(page)
+
+    classified = []
+
+    # APIコストと実行時間を抑えるため最大15ページ。
+    for page in unique_pages[:15]:
+        classification = classify_source(
+            candidate,
+            entity_info,
+            page,
+        )
+
+        source_type = classification.get(
+            "source_type",
+            "unrelated",
+        )
+
+        if source_type == "unrelated":
+            continue
+
+        classified.append(
+            {
+                **page,
+                "source_type": source_type,
+                "source_confidence": int(
+                    classification.get(
+                        "confidence",
+                        0,
+                    )
+                    or 0
+                ),
+                "source_reason": classification.get(
+                    "reason",
+                    "",
+                ),
+            }
+        )
+
+    priority = {
+        "official": 0,
+        "primary_release": 1,
+        "secondary": 2,
+    }
+
+    classified.sort(
+        key=lambda x: (
+            priority.get(
+                x.get(
+                    "source_type",
+                    "secondary",
+                ),
+                9,
+            ),
+            -x.get(
+                "source_confidence",
+                0,
+            ),
+        )
+    )
+
+    return (
+        entity_info,
+        classified[:10],
+    )
 
 
-def verify_candidate(candidate, sources, allowed_domains):
+def verify_candidate(
+    candidate,
+    entity_info,
+    sources,
+):
     source_payload = []
 
     for source in sources:
-        source_payload.append({
-            "url": source.get("url", ""),
-            "domain": source.get("domain", ""),
-            "source_type": source.get("source_type", ""),
-            "title": source.get("title", ""),
-            "text": source.get("text", "")[:MAX_SOURCE_CHARS],
-        })
+        source_payload.append(
+            {
+                "url": source.get(
+                    "url",
+                    "",
+                ),
+                "domain": source.get(
+                    "domain",
+                    "",
+                ),
+                "source_type": source.get(
+                    "source_type",
+                    "",
+                ),
+                "title": source.get(
+                    "title",
+                    "",
+                ),
+                "text": source.get(
+                    "text",
+                    "",
+                )[:MAX_SOURCE_CHARS],
+            }
+        )
 
     prompt = f"""
-あなたは有料情報商品のファクトチェック担当です。
+あなたは有料note用情報の厳格なファクトチェック担当です。
 
-以下の候補を、与えられたソースだけで厳格に検証してください。
-あなた自身の知識や推測で不足情報を補ってはいけません。
+与えられた情報源だけを使用してください。
+知識や推測で不足部分を埋めてはいけません。
 
-【判定ルール】
-- verified:
-  有料記事で重要になる主要事実が公式・一次情報で確認できる
-- partial:
-  一部は確認できるが、価格・期限・条件など重要事項に未確認が残る
-- rejected:
-  候補の重要主張がソースと矛盾する、期限切れ、誇張が大きい
-- needs_manual:
-  公式・一次情報が十分取得できず自動判定できない
-
-【特に厳格に確認するもの】
-- 金額
-- 割引率
-- ポイント数
-- 開催期間・終了日
-- 対象者
-- エントリー条件
-- 自動更新
-- 商用利用条件
-- 「最大」「過去最安」「史上最大」「必ず得」等の強い表現
-
-公式ドメイン候補:
-{json.dumps(allowed_domains, ensure_ascii=False)}
+対象:
+{json.dumps(entity_info, ensure_ascii=False, indent=2)}
 
 候補:
 {json.dumps(candidate, ensure_ascii=False, indent=2)}
@@ -368,21 +881,77 @@ def verify_candidate(candidate, sources, allowed_domains):
 取得ソース:
 {json.dumps(source_payload, ensure_ascii=False, indent=2)}
 
-次のJSONオブジェクトだけを返してください。
+情報源の信頼優先順位:
+
+1. official
+2. primary_release
+3. secondary
+
+【verifiedにしてよい条件】
+
+有料記事で重要となる主要主張の大部分が、
+official または primary_release で確認できること。
+
+【partial】
+
+主要部分は確認できるが、
+価格、期限、条件、対象範囲、利用規約など
+重要情報に不足がある。
+
+【needs_manual】
+
+二次情報しかない、
+または公式・一次情報が不足している。
+
+【rejected】
+
+重要主張が誤っている、
+期限切れ、
+誇張が大きい、
+候補タイトルが根拠以上に強い。
+
+特に次を厳格に確認してください。
+
+- 金額
+- 割引率
+- 還元率
+- ポイント数
+- キャンペーン期間
+- 申込期限
+- 購入期限
+- 対象商品
+- 対象者
+- エントリー条件
+- 自動更新
+- 商用利用
+- API料金
+- 著作権・利用規約
+- 「最大」
+- 「過去最安」
+- 「史上最大」
+- 「必ず」
+- 「裏技」
+
+JSONだけ返してください。
 
 {{
-  "status": "verified|partial|rejected|needs_manual",
+  "status": "verified|partial|needs_manual|rejected",
   "confidence": 0,
   "verified_claims": [
     {{
       "claim": "確認できた事実",
-      "source_url": "根拠URL"
+      "source_url": "根拠URL",
+      "source_type": "official|primary_release|secondary"
     }}
   ],
-  "missing_claims": ["まだ確認できない重要事項"],
-  "contradictions": ["矛盾や誇張。なければ空配列"],
-  "safe_paid_title": "確認済み情報だけで作った安全な有料記事タイトル案",
-  "safe_summary": "確認済みの範囲だけで120〜250文字程度の要約",
+  "missing_claims": [
+    "未確認の重要事項"
+  ],
+  "contradictions": [
+    "候補と根拠の矛盾や誇張"
+  ],
+  "safe_paid_title": "確認済み情報だけを使った有料記事タイトル",
+  "safe_summary": "確認済みの範囲だけの要約",
   "recommended_action": "publish_candidate|hold|reject",
   "reason": "判定理由"
 }}
@@ -390,35 +959,80 @@ def verify_candidate(candidate, sources, allowed_domains):
 
     response = generate_content_with_fallback(
         prompt,
-        purpose="有料情報候補のファクトチェック",
+        purpose="有料情報候補の最終検証",
     )
 
-    result = extract_json_object(response.text)
+    result = extract_json_object(
+        response.text
+    )
 
-    status = result.get("status", "needs_manual")
+    status = result.get(
+        "status",
+        "needs_manual",
+    )
 
     if status not in {
         "verified",
         "partial",
-        "rejected",
         "needs_manual",
+        "rejected",
     }:
         status = "needs_manual"
 
+    official_or_primary = [
+        source
+        for source in sources
+        if source.get(
+            "source_type"
+        ) in {
+            "official",
+            "primary_release",
+        }
+    ]
+
+    # 安全弁:
+    # 一次系ソースがないのにverifiedは許可しない。
+    if (
+        status == "verified"
+        and not official_or_primary
+    ):
+        status = "needs_manual"
+
+        result["recommended_action"] = "hold"
+
+        result["reason"] = (
+            "公式または企業自身の一次発表を"
+            "自動取得できなかったため、"
+            "verified判定をneeds_manualへ変更。 "
+            + result.get(
+                "reason",
+                "",
+            )
+        )
+
     result["status"] = status
+
     result["confidence"] = int(
-        result.get("confidence", 0) or 0
+        result.get(
+            "confidence",
+            0,
+        )
+        or 0
     )
 
     return result
 
 
-def build_report(today, results):
+def build_report(
+    today,
+    results,
+):
     lines = [
         f"# 有料情報 自動検証レポート — {today}",
         "",
-        "このレポートは候補情報を公式・一次情報優先で自動検証した結果です。",
-        "**verified 以外は、そのまま有料noteへ公開しません。**",
+        "公式サイト・企業発表・二次情報を分けて評価しています。",
+        "",
+        "**verified 以外は自動公開しません。**",
         "",
     ]
 
@@ -426,187 +1040,437 @@ def build_report(today, results):
         lines.append(
             "今回、新しく検証する候補はありませんでした。"
         )
-        return "\n".join(lines) + "\n"
 
-    for i, item in enumerate(results, 1):
-        v = item["verification"]
+        return (
+            "\n".join(lines)
+            + "\n"
+        )
 
-        lines.extend([
-            f"## {i}. {item.get('candidate_title') or item.get('title')}",
-            "",
-            f"- 判定: **{v.get('status')}**",
-            f"- 信頼度: {v.get('confidence', 0)}/100",
-            f"- 推奨: {v.get('recommended_action', 'hold')}",
-            f"- 分類: {item.get('category', '')}",
-            f"- 元候補スコア: {item.get('score', 0)}/100",
-            f"- 安全なタイトル案: {v.get('safe_paid_title', '')}",
-            f"- 判定理由: {v.get('reason', '')}",
-            "",
-            "### 確認できた事実",
-        ])
+    for i, item in enumerate(
+        results,
+        1,
+    ):
+        verification = item[
+            "verification"
+        ]
 
-        verified_claims = v.get("verified_claims") or []
+        lines.extend(
+            [
+                (
+                    f"## {i}. "
+                    f"{item.get('candidate_title') or item.get('title')}"
+                ),
+                "",
+                (
+                    "- 判定: **"
+                    + verification.get(
+                        "status",
+                        "",
+                    )
+                    + "**"
+                ),
+                (
+                    "- 信頼度: "
+                    + str(
+                        verification.get(
+                            "confidence",
+                            0,
+                        )
+                    )
+                    + "/100"
+                ),
+                (
+                    "- 推奨: "
+                    + verification.get(
+                        "recommended_action",
+                        "hold",
+                    )
+                ),
+                (
+                    "- 分類: "
+                    + item.get(
+                        "category",
+                        "",
+                    )
+                ),
+                (
+                    "- 安全なタイトル案: "
+                    + verification.get(
+                        "safe_paid_title",
+                        "",
+                    )
+                ),
+                "",
+                "### 確認できた事実",
+            ]
+        )
 
-        if verified_claims:
-            for claim in verified_claims:
+        claims = verification.get(
+            "verified_claims",
+            [],
+        )
+
+        if claims:
+            for claim in claims:
                 lines.append(
-                    f"- {claim.get('claim', '')} — "
-                    f"{claim.get('source_url', '')}"
+                    "- "
+                    + claim.get(
+                        "claim",
+                        "",
+                    )
+                    + " — "
+                    + claim.get(
+                        "source_url",
+                        "",
+                    )
                 )
         else:
             lines.append("- なし")
 
-        lines.extend(["", "### 未確認事項"])
+        lines.extend(
+            [
+                "",
+                "### 未確認事項",
+            ]
+        )
 
-        missing = v.get("missing_claims") or []
+        missing = verification.get(
+            "missing_claims",
+            [],
+        )
 
         if missing:
-            for claim in missing:
-                lines.append(f"- {claim}")
+            for item_missing in missing:
+                lines.append(
+                    "- "
+                    + item_missing
+                )
         else:
             lines.append("- なし")
 
-        lines.extend(["", "### 矛盾・誇張チェック"])
+        lines.extend(
+            [
+                "",
+                "### 矛盾・誇張",
+            ]
+        )
 
-        contradictions = v.get("contradictions") or []
+        contradictions = verification.get(
+            "contradictions",
+            [],
+        )
 
         if contradictions:
-            for claim in contradictions:
-                lines.append(f"- {claim}")
+            for contradiction in contradictions:
+                lines.append(
+                    "- "
+                    + contradiction
+                )
         else:
             lines.append("- なし")
 
-        lines.extend([
-            "",
-            "### 確認済み範囲の要約",
-            "",
-            v.get("safe_summary", ""),
-            "",
-        ])
+        lines.extend(
+            [
+                "",
+                "### 確認済み要約",
+                "",
+                verification.get(
+                    "safe_summary",
+                    "",
+                ),
+                "",
+                "### 使用した情報源",
+            ]
+        )
 
-    return "\n".join(lines) + "\n"
+        for source in item.get(
+            "sources_checked",
+            [],
+        ):
+            lines.append(
+                f"- [{source.get('source_type')}] "
+                f"{source.get('url')}"
+            )
+
+        lines.append("")
+
+    return (
+        "\n".join(lines)
+        + "\n"
+    )
 
 
 def main():
     now_jst = datetime.now(JST)
     today = now_jst.date().isoformat()
 
-    candidates = load_json_list(CANDIDATE_FILE)
+    candidates = load_json_list(
+        CANDIDATE_FILE
+    )
 
-    # needs_manual も再検証対象にする。
+    # partial / needs_manual も改善のため再検証。
     pending_indexes = [
-        i
-        for i, item in enumerate(candidates)
-        if item.get("status") in {"unverified", "needs_manual"}
+        index
+        for index, item in enumerate(
+            candidates
+        )
+        if item.get(
+            "status"
+        ) in {
+            "unverified",
+            "partial",
+            "needs_manual",
+        }
     ][:MAX_CANDIDATES_PER_RUN]
 
     if not pending_indexes:
-        print("新しく検証する候補はありません。")
+        print(
+            "検証対象の候補はありません。"
+        )
         return
 
-    verified_history = load_json_list(VERIFIED_FILE)
+    verified_history = load_json_list(
+        VERIFIED_FILE
+    )
+
     run_results = []
 
-    for idx in pending_indexes:
-        candidate = candidates[idx]
+    for index in pending_indexes:
+        candidate = candidates[
+            index
+        ]
 
         print("")
-        print("========================")
+        print(
+            "========================"
+        )
         print(
             "検証:",
-            candidate.get("candidate_title")
-            or candidate.get("title")
+            candidate.get(
+                "candidate_title"
+            )
+            or candidate.get(
+                "title"
+            )
         )
-        print("========================")
+        print(
+            "========================"
+        )
 
-        sources, allowed_domains = find_official_sources(candidate)
+        (
+            entity_info,
+            sources,
+        ) = find_sources(
+            candidate
+        )
 
-        official_count = len([
-            s for s in sources
-            if s.get("source_type") == "official"
-        ])
+        print(
+            "取得ソース数:",
+            len(sources),
+        )
 
-        print("取得ソース数:", len(sources))
-        print("公式ソース数:", official_count)
-        print("公式候補ドメイン:", allowed_domains)
+        print(
+            "official:",
+            len(
+                [
+                    source
+                    for source in sources
+                    if source.get(
+                        "source_type"
+                    ) == "official"
+                ]
+            ),
+        )
+
+        print(
+            "primary_release:",
+            len(
+                [
+                    source
+                    for source in sources
+                    if source.get(
+                        "source_type"
+                    ) == "primary_release"
+                ]
+            ),
+        )
 
         verification = verify_candidate(
             candidate,
+            entity_info,
             sources,
-            allowed_domains,
         )
-
-        if (
-            official_count == 0
-            and verification.get("status") == "verified"
-        ):
-            verification["status"] = "needs_manual"
-            verification["recommended_action"] = "hold"
-            verification["reason"] = (
-                "公式・一次情報を自動取得できなかったため、"
-                "verified判定を安全側でneeds_manualへ変更。 "
-                + verification.get("reason", "")
-            )
 
         record = {
             **candidate,
+            "entity_info": entity_info,
             "verification": verification,
-            "official_domains_checked": allowed_domains,
             "sources_checked": [
                 {
-                    "url": s.get("url", ""),
-                    "domain": s.get("domain", ""),
-                    "source_type": s.get("source_type", ""),
-                    "title": s.get("title", ""),
+                    "url": source.get(
+                        "url",
+                        "",
+                    ),
+                    "domain": source.get(
+                        "domain",
+                        "",
+                    ),
+                    "source_type": source.get(
+                        "source_type",
+                        "",
+                    ),
+                    "title": source.get(
+                        "title",
+                        "",
+                    ),
+                    "source_confidence": source.get(
+                        "source_confidence",
+                        0,
+                    ),
                 }
-                for s in sources
+                for source in sources
             ],
             "verified_at": now_jst.isoformat(),
         }
 
-        candidates[idx]["status"] = verification["status"]
-        candidates[idx]["verification"] = verification
-        candidates[idx]["verified_at"] = now_jst.isoformat()
+        candidates[index][
+            "status"
+        ] = verification[
+            "status"
+        ]
 
-        verified_history.append(record)
-        run_results.append(record)
+        candidates[index][
+            "verification"
+        ] = verification
 
-    save_json_list(CANDIDATE_FILE, candidates)
-    save_json_list(VERIFIED_FILE, verified_history)
+        candidates[index][
+            "verified_at"
+        ] = now_jst.isoformat()
 
-    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+        candidates[index][
+            "entity_info"
+        ] = entity_info
 
-    report_path = REPORT_DIR / f"{today}.md"
+        candidates[index][
+            "sources_checked"
+        ] = record[
+            "sources_checked"
+        ]
+
+        verified_history.append(
+            record
+        )
+
+        run_results.append(
+            record
+        )
+
+    save_json_list(
+        CANDIDATE_FILE,
+        candidates,
+    )
+
+    save_json_list(
+        VERIFIED_FILE,
+        verified_history,
+    )
+
+    REPORT_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    report_path = (
+        REPORT_DIR
+        / f"{today}.md"
+    )
+
     report_path.write_text(
-        build_report(today, run_results),
+        build_report(
+            today,
+            run_results,
+        ),
         encoding="utf-8",
     )
 
     counts = {
         "verified": 0,
         "partial": 0,
-        "rejected": 0,
         "needs_manual": 0,
+        "rejected": 0,
     }
 
     for item in run_results:
-        status = item["verification"].get(
-            "status",
-            "needs_manual",
+        status = (
+            item[
+                "verification"
+            ]
+            .get(
+                "status",
+                "needs_manual",
+            )
         )
-        counts[status] = counts.get(status, 0) + 1
+
+        counts[
+            status
+        ] = (
+            counts.get(
+                status,
+                0,
+            )
+            + 1
+        )
 
     print("")
-    print("========================")
-    print("有料情報候補 自動検証完了")
-    print("========================")
-    print("検証件数:", len(run_results))
-    print("verified:", counts.get("verified", 0))
-    print("partial:", counts.get("partial", 0))
-    print("needs_manual:", counts.get("needs_manual", 0))
-    print("rejected:", counts.get("rejected", 0))
-    print("保存:", VERIFIED_FILE)
-    print("レポート:", report_path)
+    print(
+        "========================"
+    )
+    print(
+        "有料情報候補 自動検証完了"
+    )
+    print(
+        "========================"
+    )
+
+    print(
+        "検証件数:",
+        len(
+            run_results
+        ),
+    )
+
+    print(
+        "verified:",
+        counts[
+            "verified"
+        ],
+    )
+
+    print(
+        "partial:",
+        counts[
+            "partial"
+        ],
+    )
+
+    print(
+        "needs_manual:",
+        counts[
+            "needs_manual"
+        ],
+    )
+
+    print(
+        "rejected:",
+        counts[
+            "rejected"
+        ],
+    )
+
+    print(
+        "レポート:",
+        report_path,
+    )
 
 
 if __name__ == "__main__":
