@@ -51,6 +51,11 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python generate_paid_note_draft.py
 
+      - name: Review free and paid note drafts
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python review_note_drafts.py
+
       - name: Move paid note drafts to private repo
         env:
           PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
