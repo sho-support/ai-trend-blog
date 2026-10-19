@@ -61,5 +61,12 @@
     "buffer_post_id": "6ad457466d56c60a73f85dee",
     "due_at": "2026-10-30T00:00:00.000Z",
     "type": "twitter_thread_2_posts"
+  },
+  {
+    "filename": "2026-10-18_153030.html",
+    "buffer_post_id": "6ad599c2938409f1d0fbaf39",
+    "due_at": "2026-11-02T00:00:00.000Z",
+    "queued_date_jst": "2026-10-19",
+    "type": "twitter_thread_2_posts"
   }
 ]
