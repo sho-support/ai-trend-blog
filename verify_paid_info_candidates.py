@@ -952,6 +952,14 @@ JSONだけ返してください。
   ],
   "safe_paid_title": "確認済み情報だけを使った有料記事タイトル",
   "safe_summary": "確認済みの範囲だけの要約",
+  "money_value_score": 0,
+  "paid_conversion_score": 0,
+  "time_sensitivity_score": 0,
+  "second_slot_eligible": false,
+  "purchase_deadline": "YYYY-MM-DD または空文字",
+  "application_deadline": "YYYY-MM-DD または空文字",
+  "useful_until": "YYYY-MM-DD または空文字",
+  "evergreen": false,
   "recommended_action": "publish_candidate|hold|reject",
   "reason": "判定理由"
 }}
@@ -1018,6 +1026,30 @@ JSONだけ返してください。
             0,
         )
         or 0
+    )
+
+    for score_key in (
+        "money_value_score",
+        "paid_conversion_score",
+        "time_sensitivity_score",
+    ):
+        try:
+            result[score_key] = max(
+                0,
+                min(
+                    100,
+                    int(result.get(score_key, 0) or 0),
+                ),
+            )
+        except Exception:
+            result[score_key] = 0
+
+    result["second_slot_eligible"] = bool(
+        result.get("second_slot_eligible", False)
+    )
+
+    result["evergreen"] = bool(
+        result.get("evergreen", False)
     )
 
     return result
