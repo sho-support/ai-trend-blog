@@ -34,7 +34,8 @@ DRAFT_DIR = Path(
     "paid_note_drafts"
 )
 
-MAX_ITEMS_PER_DRAFT = 5
+MAX_ITEMS_PER_DRAFT = 1
+RUN_SLOT = os.environ.get("PAID_RUN_SLOT", "primary").strip() or "primary"
 
 
 if not GEMINI_API_KEY:
@@ -224,6 +225,36 @@ def collect_verified_candidates(
 
         if action != "publish_candidate":
             continue
+
+        if RUN_SLOT == "opportunity":
+            paid_score = int(
+                verification.get(
+                    "paid_conversion_score",
+                    0,
+                )
+                or 0
+            )
+            money_score = int(
+                verification.get(
+                    "money_value_score",
+                    0,
+                )
+                or 0
+            )
+            second_slot = bool(
+                verification.get(
+                    "second_slot_eligible",
+                    False,
+                )
+            )
+
+            if not (
+                second_slot
+                and paid_score >= 80
+                and money_score >= 75
+                and int(item.get("score", 0) or 0) >= 85
+            ):
+                continue
 
         eligible.append(
             item
@@ -564,20 +595,30 @@ def main():
         HISTORY_FILE
     )
 
-    # 有料note原稿は1日1本まで。
-    if any(
-        item.get(
-            "draft_date_jst"
-        )
-        == today
+    todays = [
+        item
         for item in history
-    ):
-        print(
-            "本日はすでに"
-            "有料note原稿を生成済みです。"
-        )
+        if item.get("draft_date_jst") == today
+    ]
 
-        return
+    if RUN_SLOT == "primary":
+        if any(
+            item.get("run_slot", "primary") == "primary"
+            for item in todays
+        ):
+            print("本日の通常有料noteはすでに生成済みです。")
+            return
+    else:
+        if any(
+            item.get("run_slot") == "opportunity"
+            for item in todays
+        ):
+            print("本日の追加有料noteはすでに生成済みです。")
+            return
+
+        if len(todays) >= 2:
+            print("本日の有料noteは最大2本に達しています。")
+            return
 
     verified_items = (
         collect_verified_candidates(
@@ -593,6 +634,11 @@ def main():
         )
 
         return
+
+    print(
+        "実行枠:",
+        RUN_SLOT,
+    )
 
     print(
         "有料note採用候補数:",
@@ -667,6 +713,9 @@ def main():
         {
             "draft_date_jst":
                 today,
+
+            "run_slot":
+                RUN_SLOT,
 
             "created_at":
                 now_jst.isoformat(),
