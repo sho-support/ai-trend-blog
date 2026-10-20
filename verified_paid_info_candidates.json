@@ -3408,5 +3408,752 @@
         "source_confidence": 95
       }
     ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "Amazon セール 割引 キャンペーン",
+    "title": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート - Yahoo!ニュース",
+    "summary": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート &nbsp;&nbsp; Yahoo!ニュース",
+    "source": "Yahoo!ニュース",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOZ0J2VUNkOUVHVWppVG1iRkFNTGhwUV9HeUFWVlcySnM1ZDFUT3ZsQzROamRMTDhTdkFOemlLbWNxWGZxWFpBSkx5M09zWDRKWXNjNkxCYV9wSkw0SFBJekZ5Yy1QVXJTdmxYZWhHMWJfc1dGakg2NlZUaFl2N3hnQmVqSVBPd3Jp?oc=5",
+    "published": "Tue, 13 Oct 2026 10:19:32 GMT",
+    "category": "お金が得",
+    "score": 82,
+    "urgency": "high",
+    "candidate_title": "プライム感謝祭で損しない：還元率最大化エントリー＆無料サブスク総取りリスト",
+    "why_paid_value": "セール本編だけでなく、還元上限アップや複数サブスクの無料特典を網羅・整理することで読者の取りこぼしを防ぎ、調べる時間を大幅に節約できるため。",
+    "verification_needed": [
+      "2026年プライム感謝祭の正確な開催期間と先行セール日程",
+      "ポイントアップキャンペーンの還元率と上限ポイント",
+      "対象となるサブスク無料期間（Music Unlimited、Kindle等）の終了日と自動更新条件"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 30,
+      "verified_claims": [
+        {
+          "claim": "Yahoo!ニュース（エキスパート記事）およびnoteにおいて、Amazonプライム感謝祭2026が先行セール（10月13日0:00〜10月15日23:59）および本番（10月16日0:00〜10月19日23:59）の日程で開催され、合計1万円（税込）以上の購入で上限10,000ポイント（最大18%）還元のポイントアップキャンペーンやdポイント連携キャンペーンが実施されている旨が紹介されている",
+          "source_url": "https://news.yahoo.co.jp/expert/articles/b0c503a1cc08db43c1bd9c2f986d872e65fff689",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "Yahoo!ニュース（エキスパート記事）およびnoteにおいて、Kindle Unlimited（3か月無料、10月19日まで）、Amazon Music Unlimited（4か月無料、10月20日まで）、Audible（4か月月99円、10月19日まで）のキャンペーンおよび無料期間終了後の自動更新に関する注意点が紹介されている",
+          "source_url": "https://note.com/muramitsu/n/nee84bafeb55c",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "Amazon公式ドメイン（amazon.co.jp、aboutamazon.jp等）による各キャンペーンの利用規約および公式一次情報",
+        "ポイントアップキャンペーンの詳細な還元率内訳（最大18%の適用条件、対象・対象外商品、ポイント付与日等）の公式規約",
+        "各サブスクリプション（Kindle Unlimited、Amazon Music Unlimited、Audible）のキャンペーン適用対象者条件および自動更新・解約条項に関する公式規約"
+      ],
+      "contradictions": [],
+      "safe_paid_title": "",
+      "safe_summary": "二次情報（Yahoo!ニュース、note等）により、プライム感謝祭2026の開催日程（先行セール：10月13日〜15日、本番：10月16日〜19日）や、最大18%・上限10,000ポイント還元のポイントアップキャンペーン、各種サブスクリプション（Kindle Unlimited、Amazon Music Unlimited、Audible）の無料・割引施策が報じられています。ただし、公式ドメインによる一次情報が提示されていないため、利用規約や正確な適用条件の公式確認は完了していません。",
+      "money_value_score": 75,
+      "paid_conversion_score": 60,
+      "time_sensitivity_score": 90,
+      "second_slot_eligible": false,
+      "purchase_deadline": "2026-10-19",
+      "application_deadline": "2026-10-20",
+      "useful_until": "2026-10-19",
+      "evergreen": false,
+      "recommended_action": "hold",
+      "reason": "提示された情報源がすべて二次情報（Yahoo!ニュース、note、Goal.com）であり、Amazon公式ドメイン（amazon.co.jp等）による一次情報・公式利用規約が不足しているため、判定基準「二次情報しかない、または公式・一次情報が不足している」に従い needs_manual（保留）と判定しました。"
+    },
+    "verified_at": "2026-10-21T02:25:59.669077+09:00",
+    "entity_info": {
+      "main_entity": "Amazon プライム感謝祭",
+      "company_name": "Amazon",
+      "search_keywords": [
+        "Amazon プライム感謝祭 2026",
+        "Amazon プライム感謝祭 ポイントアップキャンペーン",
+        "Kindle Unlimited キャンペーン",
+        "Amazon Music Unlimited キャンペーン"
+      ],
+      "likely_official_domains": [
+        "amazon.co.jp",
+        "aboutamazon.jp"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン",
+        "利用規約"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://news.yahoo.co.jp/expert/articles/b0c503a1cc08db43c1bd9c2f986d872e65fff689",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "プライム感謝祭2026キャンペーンまとめ。エントリーしないと損するポイント還元とサブスク無料まとめ（みつ） - エキスパート - Yahoo!ニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://note.com/muramitsu/n/nee84bafeb55c",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "【Amazonプライム感謝祭2026】買う前にやること全部まとめ｜エントリー必須のキャンペーンから無料サブスクまで｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n3582143fd843",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "名探偵コナン・ドラえもん・寄生獣がKindleで50%還元｜受賞作マンガ41作品を人気順に｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n08febd6bc37e",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "プライム感謝祭で買ってほしい、毎日使っている「本当に満足しているもの」17選｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.goal.com/jp/%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/amazon-prime-big-deal-days-2026-final-day-best-deals-products-to-buy/bltf6eb481a8060f5c0",
+        "domain": "goal.com",
+        "source_type": "secondary",
+        "title": "Amazonプライム感謝祭2026 最終日に買うべきおすすめ目玉商品は？ | Goal.com 日本",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.yahoo.co.jp/expert/articles/1fabd916643b93429c6a85880be1ecdbb2267aee",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "Amazonプライム感謝祭おすすめガジェット＆目玉商品10選！買ってよかったもの（みつ） - エキスパート - Yahoo!ニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://note.com/muramitsu/n/n0cb4a6c5ca41",
+        "domain": "note.com",
+        "source_type": "secondary",
+        "title": "買ってよかったもの一生モノ！殿堂入りQOL爆上がり便利グッズ最新版｜みつ / ガジェット暮らしのnote",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "カメラ キャッシュバック キャンペーン",
+    "title": "【締切間近】ソニー「αオータムキャッシュバックキャンペーン2026」は10月19日まで！カメラ最大4万円＋レンズ同時購入で追加還元 - ソニーショップ テックスタッフ",
+    "summary": "【締切間近】ソニー「αオータムキャッシュバックキャンペーン2026」は10月19日まで！カメラ最大4万円＋レンズ同時購入で追加還元 &nbsp;&nbsp; ソニーショップ テックスタッフ",
+    "source": "ソニーショップ テックスタッフ",
+    "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBwbFVsbU14eTc3ZXNxWUVoeWR2dGpSUlF5T2Z1VDBaZ3FhcGNFTXIydHM4OVpWbjcxbXhSZGpNOFFHbWd2RTdYLVhTS2ZrOC1uRkl6eW1PNXZCcXo3YkVFUmp5SzNoQjd6?oc=5",
+    "published": "Fri, 16 Oct 2026 11:48:21 GMT",
+    "category": "お金が得",
+    "score": 85,
+    "urgency": "high",
+    "candidate_title": "最大7万円還元：ソニーαオータムCBのレンズ同時購入組み合わせ最大化シート",
+    "why_paid_value": "高額機材のキャッシュバックは絶対金額が大きく、ボディとレンズの組み合わせで還元額を最大化する計算表は読者の実利に直結する。",
+    "verification_needed": [
+      "キャンペーン終了日時（10月19日当日消印有効か等）",
+      "対象製品型番一覧",
+      "同時購入追加還元の適用ルール"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-21T02:24:30.868113+09:00",
+    "collection_date_jst": "2026-10-21",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "αオータムキャッシュバックキャンペーン2026",
+      "company_name": "ソニー",
+      "search_keywords": [
+        "ソニー αオータムキャッシュバックキャンペーン2026",
+        "ソニー α キャッシュバック キャンペーン"
+      ],
+      "likely_official_domains": [
+        "sony.jp"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン",
+        "対象商品一覧",
+        "応募要項・応募方法"
+      ]
+    },
+    "verification": {
+      "status": "rejected",
+      "confidence": 95,
+      "verified_claims": [
+        {
+          "claim": "「αオータムキャッシュバックキャンペーン2026」の購入対象期間は2026年9月4日（金）から2026年10月19日（月）までである",
+          "source_url": "https://dc.watch.impress.co.jp/docs/news/campaign/2137567.html",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "応募期間は2026年9月4日（金）から2026年11月4日（水）まで（WEB申し込みは10:00:00まで、専用応募封筒は当日消印有効）である",
+          "source_url": "https://dc.watch.impress.co.jp/docs/news/campaign/2137567.html",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "カメラ本体単品の最大キャッシュバックはα7 IV（ILCE-7M4 / 7M4M）の40,000円である",
+          "source_url": "https://dc.watch.impress.co.jp/docs/news/campaign/2137567.html",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "ソニー公式（official / sony.jp）による一次情報ソース",
+        "「最大7万円還元」となる組み合わせの公式条件"
+      ],
+      "contradictions": [
+        "情報収集日（collected_at / collection_date_jst）が2026年10月21日であるのに対し、キャンペーンの購入対象期間は2026年10月19日に終了しており、既に購入期限切れである。"
+      ],
+      "safe_paid_title": "",
+      "safe_summary": "ソニーが実施した「αオータムキャッシュバックキャンペーン2026」は、対象カメラ本体やレンズ、アクセサリーの購入でキャッシュバックおよび同時購入の追加還元を行うキャンペーンでしたが、購入対象期間は2026年10月19日をもって終了しています。",
+      "money_value_score": 0,
+      "paid_conversion_score": 0,
+      "time_sensitivity_score": 0,
+      "second_slot_eligible": false,
+      "purchase_deadline": "2026-10-19",
+      "application_deadline": "2026-11-04",
+      "useful_until": "2026-10-19",
+      "evergreen": false,
+      "recommended_action": "reject",
+      "reason": "購入対象期間が2026年10月19日（月）までとなっており、情報収集日（2026年10月21日）時点で既に購入期限が終了しているため。有料記事としての実利価値が喪失していることから却下（rejected）と判定します。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.call-t.co.jp/tenchoblog/entry/52292.html",
+        "domain": "call-t.co.jp",
+        "source_type": "secondary",
+        "title": "【終了迫る】αオータムキャッシュバック他お得なCPが10月19日終了！ | 店長のつぶやき日記ハイパぁ...3",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://tecstaff.jp/2026-10-16-alpha-autumn-cashback.html",
+        "domain": "tecstaff.jp",
+        "source_type": "secondary",
+        "title": "【締切間近】ソニー「αオータムキャッシュバックキャンペーン2026」は10月19日まで！カメラ最大4万円＋レンズ同時購入で追加還元 - ソニーショップ テックスタッフ",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://news.kakaku.com/prdnews/cd=camera/ctcd=0049/id=158596/",
+        "domain": "news.kakaku.com",
+        "source_type": "secondary",
+        "title": "価格.com - ソニー、最大4万円還元の「αオータムキャッシュバックキャンペーン2026」",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://dc.watch.impress.co.jp/docs/news/campaign/2137567.html",
+        "domain": "dc.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "【キャンペーン】ソニーα対象の2026秋キャンペーンが開始 - デジカメ Watch",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://kunkoku.jp/cb26ilcautumn.html",
+        "domain": "kunkoku.jp",
+        "source_type": "secondary",
+        "title": "【9月4日(金)開始】α1IIも対象！「αオータムキャッシュバックキャンペーン2026」2026年10月19日(月)まで開催。デジタル一眼カメラαボディで最大4万円、レンズ単品最大1万円、同時購入でさらに最大3万円キャッシュバック。 - ソニーが基本的に好き。| ソニーショップくんこく",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://asobinet.com/info-cb-sony-2026-autumn/",
+        "domain": "asobinet.com",
+        "source_type": "secondary",
+        "title": "ソニーα キャッシュバックキャンペーン対象製品早見表【2026秋】 - とるなら",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://news.kakaku.com/prdnews/cd=camera/ctcd=0049/id=156289/",
+        "domain": "news.kakaku.com",
+        "source_type": "secondary",
+        "title": "価格.com - ソニー、最大30,000円を還元する「α7R VI発売記念キャンペーン」",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-10-21T02:25:59.669077+09:00"
+  },
+  {
+    "category_hint": "お金を生む",
+    "query": "生成AI 新サービス API 料金 プラン",
+    "title": "【2026年10月版】生成AI主要8サービス料金早見表 ―― 上位モデル「GPT 6 Astra」や「Gemini 4 Argon」が登場 - Business Insider Japan",
+    "summary": "【2026年10月版】生成AI主要8サービス料金早見表 ―― 上位モデル「GPT 6 Astra」や「Gemini 4 Argon」が登場 &nbsp;&nbsp; Business Insider Japan",
+    "source": "Business Insider Japan",
+    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOU0t4dzRMWGU2Sk5NS1lTV1gwWHl2Zlc1SkVna0xydXRKNmhHS19NTlA1a0s4TUpvcjQ0WDZDQnM5bmRYRzV5bTVSRHYzWXY2OXVpeDJreEdBcjRMY0lobXhUTWwxYmxJYWZfaUIwWTJiRnRwMzJGTjM1cng3aUJjVzlTdm5mcnNZM0RXZ3Z1RWJRVlJy?oc=5",
+    "published": "Sun, 18 Oct 2026 02:00:00 GMT",
+    "category": "お金を生む",
+    "score": 86,
+    "urgency": "medium",
+    "candidate_title": "次世代生成AI APIコスト早見表：GPT-6 Astra／Gemini 4 Argonの費用対効果と移行判断",
+    "why_paid_value": "最新上位モデルのAPIトークン単価・料金体系の比較整理は、AI受託やサービス開発を行うクリエイターの開発費削減と利益最大化に不可欠。",
+    "verification_needed": [
+      "各モデルの正式名称、公開ステータス、一般提供日",
+      "入力/出力トークンごとの正規料金表",
+      "レートリミットおよび商用利用規約"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-21T02:24:30.868113+09:00",
+    "collection_date_jst": "2026-10-21",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "ChatGPT",
+      "company_name": "OpenAI",
+      "search_keywords": [
+        "ChatGPT 料金 プラン",
+        "OpenAI pricing",
+        "GPT-6 Astra",
+        "Gemini 4 Argon",
+        "Google AI 料金"
+      ],
+      "likely_official_domains": [
+        "openai.com",
+        "google.com"
+      ],
+      "official_pages_to_find": [
+        "料金",
+        "利用規約",
+        "API pricing"
+      ]
+    },
+    "verification": {
+      "status": "partial",
+      "confidence": 65,
+      "verified_claims": [
+        {
+          "claim": "OpenAI APIにおけるGPT-6 Astra（Standard）の料金は、入力100万トークンあたり$10、出力100万トークンあたり$50である",
+          "source_url": "https://openai.com/ja-JP/index/gpt-6-astra/",
+          "source_type": "official"
+        },
+        {
+          "claim": "GPT-6 AstraのAPI高速モードは、Standardの最大2倍の処理速度をStandardの2倍の料金（入力$20/出力$100）で提供する",
+          "source_url": "https://openai.com/ja-JP/index/gpt-6-astra/",
+          "source_type": "official"
+        },
+        {
+          "claim": "OpenAI APIにおけるGPT-6.1 Solの標準料金は入力100万トークンあたり$2、出力100万トークンあたり$10、キャッシュ済み入力は$0.10である",
+          "source_url": "https://openai.com/ja-JP/index/introducing-gpt-6-1-sol/",
+          "source_type": "official"
+        },
+        {
+          "claim": "OpenAI APIにおけるGPT-6 Lunaの料金は入力100万トークンあたり$0.10、出力100万トークンあたり$0.50、キャッシュ済み入力は$0.01である",
+          "source_url": "https://openai.com/ja-JP/index/introducing-gpt-6-1-sol/",
+          "source_type": "official"
+        },
+        {
+          "claim": "Gemini 4 ArgonがGoogle AI Studio/Gemini APIおよびGeminiアプリ向けに提供開始された旨が報じられている",
+          "source_url": "https://www.businessinsider.jp/article/2610-how-much-did-major-generative-ai-service-fees/",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "Gemini 4 Argonの公式発表および公式APIトークン料金（入力・出力単価、キャッシュ料金等）",
+        "GPT-6 AstraおよびGemini 4 Argonのレートリミット（利用制限枠）の公式情報",
+        "各モデルの商用利用規約の詳細"
+      ],
+      "contradictions": [
+        "候補タイトルは「GPT-6 Astra／Gemini 4 Argonの費用対効果と移行判断」を謳っているが、提供された情報源内にGemini 4 ArgonのAPI正規料金や詳細スペックに関する公式情報が存在せず、比較・費用対効果の算出ができない"
+      ],
+      "safe_paid_title": "OpenAI GPT-6ファミリーのAPI料金体系と各モデル（Astra／Sol／Luna）のコスト比較",
+      "safe_summary": "OpenAI公式発表に基づき、GPT-6 Astra（入力$10/出力$50）、GPT-6.1 Sol（入力$2/出力$10）、GPT-6 Luna（入力$0.10/出力$0.50）のAPIトークン単価および高速モード等の料金体系を整理。なおGemini 4 Argonの公式API料金は提供情報内では確認できません。",
+      "money_value_score": 70,
+      "paid_conversion_score": 60,
+      "time_sensitivity_score": 65,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": false,
+      "recommended_action": "hold",
+      "reason": "GPT-6 AstraおよびGPT-6ファミリー（Sol, Luna）のAPI料金体系はOpenAI公式情報から確認可能ですが、記事のもう一つの主軸であるGemini 4 Argonの公式情報およびAPI料金表、各モデルのレートリミットや商用利用規約が不足しているため保留（hold）とします。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://openai.com/ja-JP/index/gpt-6-astra/",
+        "domain": "openai.com",
+        "source_type": "official",
+        "title": "GPT-6 Astra：新世代の応答性能 | OpenAI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+        "domain": "openai.com",
+        "source_type": "official",
+        "title": "Introducing GPT-6 Sol and Luna | OpenAI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://openai.com/ja-JP/index/introducing-gpt-6-1-sol/",
+        "domain": "openai.com",
+        "source_type": "official",
+        "title": "GPT-6.1 Sol のご紹介 | OpenAI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://openai.com/ja-JP/index/introducing-chatgpt-images-2-5/",
+        "domain": "openai.com",
+        "source_type": "official",
+        "title": "ChatGPT Images 2.5 のご紹介 | OpenAI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://openai.com/ja-JP/index/devday-2026-recap/",
+        "domain": "openai.com",
+        "source_type": "official",
+        "title": "DevDay 2026 の振り返り | OpenAI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://openai.com/ja-JP/index/introducing-dots/",
+        "domain": "openai.com",
+        "source_type": "official",
+        "title": "dots のご紹介 | OpenAI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://chatgpt.com/features/space/",
+        "domain": "chatgpt.com",
+        "source_type": "official",
+        "title": "ChatGPT Space | Create and collaborate with AI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://shift-ai.co.jp/blog/1771/",
+        "domain": "shift-ai.co.jp",
+        "source_type": "secondary",
+        "title": "【常時最新】ChatGPTの料金プランを徹底比較！無料・有料版の違いは？｜SHIFT AI TIMES",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://www.businessinsider.jp/article/2610-how-much-did-major-generative-ai-service-fees/",
+        "domain": "businessinsider.jp",
+        "source_type": "secondary",
+        "title": "【2026年10月版】生成AI主要8サービス料金早見表 ―― 上位モデル「GPT 6 Astra」や「Gemini 4 Argon」が登場 | Business Insider Japan",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://aismiley.co.jp/ai_news/chatgpt-paid-plan-2026/",
+        "domain": "aismiley.co.jp",
+        "source_type": "secondary",
+        "title": "【2026年最新版】ChatGPTの有料プランでできることは？主要プランの料金と機能を解説",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-10-21T02:25:59.669077+09:00"
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 - ニコニコニュース",
+    "summary": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 &nbsp;&nbsp; ニコニコニュース",
+    "source": "ニコニコニュース",
+    "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9Sa0JVTUk0QVRLRmhaNkVreS0zZ2x1dmNEZTJieW5XdGJoLXNJbl9VOFF1ckZtaDFKcF94aDlacFNMelJqbWpIdHk5eUs2TjBsTDhmb3I2Wm1NelEzR3FzRXc0X0VkZWNtcU5aek0tNzI2WU1NRUQ2cHphRQ?oc=5",
+    "published": "Tue, 20 Oct 2026 15:45:14 GMT",
+    "category": "時間を得する",
+    "score": 87,
+    "urgency": "high",
+    "candidate_title": "HIX AI新機能「スキル」攻略：多重業務をワンクリック完結させる自動化レシピ",
+    "why_paid_value": "従来複数のプロンプトや手作業が必要だった多段階ワークフロー（調査→執筆→要約等）を1発で自動化する具体的レシピは、読者の労働時間を劇的に削る価値がある。",
+    "verification_needed": [
+      "新機能「スキル」の対象プラン（無料枠で試せるか）",
+      "作成したスキルの共有・複製可否",
+      "日本語出力の精度および外部ツール連携機能"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-21T02:24:30.868113+09:00",
+    "collection_date_jst": "2026-10-21",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "HIX AI",
+      "company_name": "",
+      "search_keywords": [
+        "HIX AI スキル",
+        "HIX.AI 新機能 スキル",
+        "HIX AI 料金プラン"
+      ],
+      "likely_official_domains": [
+        "hix.ai"
+      ],
+      "official_pages_to_find": [
+        "料金プラン",
+        "新機能「スキル」詳細",
+        "利用規約"
+      ]
+    },
+    "verification": {
+      "status": "partial",
+      "confidence": 75,
+      "verified_claims": [
+        {
+          "claim": "INNOVATE AI PTE. LTD.が提供するHIX AIにおいて、AIエージェントに専門的な実行能力を付与する新機能「スキル」が2026年10月20日に公開された。",
+          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "「スキル」は単なる指示文ではなく独立した機能パッケージであり、情報検索からデータ抽出、レポート執筆、プレゼン資料生成などの一連のプロセスを一括・自律処理する。",
+          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "主要スキルとして「画像から動画生成」「YouTubeショート動画作成」「写真をアニメ化」「データ分析」「PDF AI」「画像文字起こし」「ビジネスレポート作成」「市場・競合分析」「AI議事録・会議アシスタント」などが提供される。",
+          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "公式提供スキルのほかにマイスキル管理があり、PCからのZIPファイル等のアップロードやGitHub公開リポジトリのURL経由でスキルをインポートできる。",
+          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "チャット入力欄で「/」を入力するとスキルのリストが展開し手動指定できるほか、会話内容からAIが意図を汲み取り自律的に呼び出される機能もある。また「AI スキルを無料で試す」リンクが存在する。",
+          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
+          "source_type": "primary_release"
+        }
+      ],
+      "missing_claims": [
+        "各有料プラン（Pro、Max等）と「スキル」機能の具体的な利用枠・制限（無料枠でどこまで試せるかのクレジット消費や回数制限の詳細）",
+        "作成したマイスキルの他ユーザーへの共有・配布機能の詳細",
+        "各スキル実行時の外部ツール連携（外部API連携等）の詳細仕様"
+      ],
+      "contradictions": [
+        "候補タイトルにある「ワンクリック完結させる自動化レシピ」について、一次情報ではチャットでの手動呼び出し（/入力）や自動呼び出し、ファイルアップロードやインポート機能は説明されているものの、ワンクリックで完結するレシピ集といった提供形態は明記されておらず、誇張表現にあたる。"
+      ],
+      "safe_paid_title": "HIX AI新機能「スキル」解説：自律型AIエージェントによる業務一括処理とカスタムスキルの導入法",
+      "safe_summary": "HIX AIが2026年10月20日に公開した新機能「スキル」は、動画生成、データ分析、PDF解析、議事録作成などの複数ステップに及ぶタスクを一括処理する機能パッケージです。チャットからの呼び出しに加え、ZIPやGitHub経由で独自スキルをインポートして専用AI環境を構築できます。",
+      "money_value_score": 60,
+      "paid_conversion_score": 65,
+      "time_sensitivity_score": 70,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "新機能「スキル」の公開事実、主要な機能一覧、GitHubやZIPからのインポート仕様などは一次情報（プレスリリース）で確認できます。しかし、有料noteの検証必須項目である『対象プランや無料枠の具体的制限』や『スキルの共有機能の詳細』についての記載がソース内で不足しており、候補タイトルの「ワンクリック完結」も誇張表現が含まれるため、partial（保留）判定とします。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000006.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "【全面アップデート】生成AIプラットフォーム「HIX.AI」、AIチャット・スライド・動画・画像・文章生成機能を大幅強化！ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000024.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "【機能アップデート】HIX AIはPPTコンバーターを提供！PDF・Word・画像・HTML・動画をPowerPointに変換できる | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/442/4442172/",
+        "domain": "ascii.jp",
+        "source_type": "primary_release",
+        "title": "ASCII.jp：【機能アップデート】HIX AI スライド作成機能に「最適化」「変換」の専用入口と新テンプレートを追加！",
+        "source_confidence": 9
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/401/4401810/",
+        "domain": "ascii.jp",
+        "source_type": "primary_release",
+        "title": "ASCII.jp：オールインワンAI動画生成「HIX.AI」がアップデート！注目モデル『Happy Horse 1.0』＆『Seedance 2.0』を新搭載し、映画レベルの動画制作を全自動化",
+        "source_confidence": 9
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/444/4444317/",
+        "domain": "ascii.jp",
+        "source_type": "primary_release",
+        "title": "ASCII.jp：HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/368/4368085/",
+        "domain": "ascii.jp",
+        "source_type": "primary_release",
+        "title": "ASCII.jp：【全面アップデート】生成AIプラットフォーム「HIX.AI」、AIチャット・スライド・動画・画像・文章生成機能を大幅強化！",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000016.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX.AIが実写レベルの最新モデル『GPT Image 2.0』の提供を開始！AI画像内に「正確な文字」が書ける時代へ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000004.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "テキストや画像から動画生成AI「HIX AI」機能強化のお知らせ、複雑な操作不要、無料で動画を作成 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000002.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "オールインワン AI画像生成ツール「HIX AI」の機能を強化、チャットだけで高精度な画像を作成 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://voix.jp/business-cards/hix-ai-slide-update/",
+        "domain": "voix.jp",
+        "source_type": "secondary",
+        "title": "HIX.AIが大幅アップデート！新機能でプレゼン資料の美しさとクオリティが飛躍的に向上 - VOIX",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-10-21T02:25:59.669077+09:00"
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "業務効率化 AI サービス 新機能",
+    "title": "長いPC作業も、AIがマニュアル化。ChatSenseが新機能を提供 - PR TIMES",
+    "summary": "長いPC作業も、AIがマニュアル化。ChatSenseが新機能を提供 &nbsp;&nbsp; PR TIMES",
+    "source": "PR TIMES",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9aMW1Hd2k1cm9tdmwtc09HYWlJNXNTbnBPREtZTmRxcG5iZ1RJR0s2clBCNTZDM0tUMjFfSXlyWjl2bnZ2MUh3UktuS3M1a1FaSVFoR1VFQWJRNTBlNFV1Mm05Ymc2aGRDY2c?oc=5",
+    "published": "Mon, 19 Oct 2026 01:59:13 GMT",
+    "category": "時間を得する",
+    "score": 89,
+    "urgency": "high",
+    "candidate_title": "PC操作を録画するだけ：ChatSenseで業務マニュアルを完全自動生成する時短術",
+    "why_paid_value": "画面作業を行うだけでAIが手順書やマニュアルを自動生成する機能は、個人事業主から組織まで外注化・引き継ぎの工数を数十時間単位で削減できる極めて高い実用性がある。",
+    "verification_needed": [
+      "マニュアル自動生成機能の対応OS（Windows/Mac）",
+      "生成されるドキュメント形式（PDF、Markdown等）と編集の自由度",
+      "無料体験枠または最小プラン料金"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-21T02:24:30.868113+09:00",
+    "collection_date_jst": "2026-10-21",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "ChatSense",
+      "company_name": "株式会社ナレッジセンス",
+      "search_keywords": [
+        "ChatSense",
+        "ChatSense マニュアル作成",
+        "ChatSense デスクトップAI",
+        "ナレッジセンス ChatSense 料金"
+      ],
+      "likely_official_domains": [
+        "chatsense.jp",
+        "knowledgesense.jp"
+      ],
+      "official_pages_to_find": [
+        "料金プラン",
+        "デスクトップAI機能・マニュアル化機能詳細",
+        "β版利用・お問い合わせ",
+        "利用規約"
+      ]
+    },
+    "verification": {
+      "status": "rejected",
+      "confidence": 0,
+      "verified_claims": [
+        {
+          "claim": "株式会社ナレッジセンスが提供する法人向けChatGPT「ChatSense」には、初期費用0円・月額0円のスタータープランや月額980円/人〜のビジネスプラン等がある。",
+          "source_url": "https://chatsense.jp/function/cowork?utm_source=424&utm_medium=prtimes",
+          "source_type": "official"
+        },
+        {
+          "claim": "ChatSenseにはブラウザ操作AIエージェント「Cowork」（月額5,000円/人）や社内資料を根拠つきで読み解く「Notebook」、スライド生成AI等の機能が存在する。",
+          "source_url": "https://chatsense.jp/function/cowork?utm_source=424&utm_medium=prtimes",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "「PC操作を録画するだけでマニュアルを完全自動生成する」機能の存在や詳細",
+        "マニュアル自動生成機能の対応OS（Windows/Mac）",
+        "生成されるドキュメント形式（PDF、Markdown等）や編集の自由度",
+        "マニュアル自動生成機能の提供条件および料金"
+      ],
+      "contradictions": [
+        "候補のタイトルおよび主張では「PC操作を録画するだけ：ChatSenseで業務マニュアルを完全自動生成する時短術」「長いPC作業も、AIがマニュアル化」とされているが、提示された取得ソース内にPC操作録画によるマニュアル作成機能やデスクトップAI機能に関する記載は一切存在せず、ブラウザ操作エージェント（Cowork）や資料解析（Notebook）、コード改修（CodeSense）等の情報しかない。"
+      ],
+      "safe_paid_title": "",
+      "safe_summary": "",
+      "money_value_score": 0,
+      "paid_conversion_score": 0,
+      "time_sensitivity_score": 0,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": false,
+      "recommended_action": "reject",
+      "reason": "候補の主要な主張である「PC操作を録画してマニュアルを完全自動生成する機能」を裏付ける情報が取得ソース内に一切存在せず、確認されたのはブラウザ操作AI（Cowork）やNotebook機能のみであり、主要主張を検証できないため却下（rejected）。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://chatsense.jp/function/cowork?utm_source=424&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「Cowork」｜ブラウザ操作AIエージェント",
+        "source_confidence": 1
+      },
+      {
+        "url": "https://chatsense.jp/function/notebook?utm_source=424&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「ChatSense Notebook」｜社内資料を根拠つきで読み解くAIワークスペース",
+        "source_confidence": 1
+      },
+      {
+        "url": "https://chatsense.jp/contact?utm_source=424&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向けChatGPT「ChatSense」｜社内データ検索・セキュリティ強化",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://chatsense.jp/blog/enterprise-ai-comparison?utm_source=424&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け生成AIサービス比較｜全ての料金公開・おすすめ契約",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://chatsense.jp/blog/chatgpt-business-plan?utm_source=424&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatGPTの法人契約プラン｜利用方法・料金について",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://knowledgesense.jp/?utm_source=424&utm_medium=prtimes",
+        "domain": "knowledgesense.jp",
+        "source_type": "official",
+        "title": "株式会社ナレッジセンス｜会社概要｜東京都",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://chatsense.jp/function/codesense",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "国産コーディングエージェント「CodeSense」｜複雑なコード・VBAの改修を支援",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://chatsense.jp/gallery/slide-gen?utm_source=424&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatSense スライド生成AI事例集",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://knowledgesense.jp/",
+        "domain": "knowledgesense.jp",
+        "source_type": "official",
+        "title": "株式会社ナレッジセンス｜会社概要｜東京都",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://tayori.com/form/c5788940efb74672cc13bd2cb1d8587b3f20fcb8",
+        "domain": "tayori.com",
+        "source_type": "official",
+        "title": "報道関係者様からのお問い合わせ",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-10-21T02:25:59.669077+09:00"
   }
 ]
