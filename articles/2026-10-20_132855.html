@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J5ZDLF30CS');
+</script>
+
+<!-- AI_TREND_SEO_START -->
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta name="googlebot" content="index,follow">
+<link rel="canonical" href="https://sho-support.github.io/ai-trend-blog/articles/2026-10-20_132855.html">
+<link rel="sitemap" type="application/xml" href="https://sho-support.github.io/ai-trend-blog/sitemap-index.xml">
+<meta property="og:site_name" content="AI Trend Blog">
+<meta property="og:title" content="OpenAIが低リソース言語のコーディング性能を強化——COBOLやFortranの構築・移行精度が大幅向上">
+<meta property="og:description" content="OpenAIは、COBOL、Fortran、Visual Basic、OCamlといった「低リソースプログラミング言語」におけるソフトウェアの新規構築およびコード移行（マイグレーション）能力を大幅に向上させた最新モデルの検証結果を発表しました。これらの言語はPythonやJavaScriptと比べて学習用の…">
+<meta property="og:url" content="https://sho-support.github.io/ai-trend-blog/articles/2026-10-20_132855.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenAIが低リソース言語のコーディング性能を強化——COBOLやFortranの構築・移行精度が大幅向上">
+<meta name="twitter:description" content="OpenAIは、COBOL、Fortran、Visual Basic、OCamlといった「低リソースプログラミング言語」におけるソフトウェアの新規構築およびコード移行（マイグレーション）能力を大幅に向上させた最新モデルの検証結果を発表しました。これらの言語はPythonやJavaScriptと比べて学習用の…">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"OpenAIが低リソース言語のコーディング性能を強化——COBOLやFortranの構築・移行精度が大幅向上","description":"OpenAIは、COBOL、Fortran、Visual Basic、OCamlといった「低リソースプログラミング言語」におけるソフトウェアの新規構築およびコード移行（マイグレーション）能力を大幅に向上させた最新モデルの検証結果を発表しました。これらの言語はPythonやJavaScriptと比べて学習用の…","datePublished":"2026-10-20","dateModified":"2026-10-20","mainEntityOfPage":{"@type":"WebPage","@id":"https://sho-support.github.io/ai-trend-blog/articles/2026-10-20_132855.html"},"publisher":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"},"author":{"@type":"Organization","name":"AI Trend Blog","url":"https://sho-support.github.io/ai-trend-blog/"}}
+</script>
+<!-- AI_TREND_SEO_END -->
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>OpenAIが低リソース言語のコーディング性能を強化——COBOLやFortranの構築・移行精度が大幅向上 | AI Trend Blog</title>
+
+<meta name="description"
+content="OpenAIは、COBOL、Fortran、Visual Basic、OCamlといった「低リソースプログラミング言語」におけるソフトウェアの新規構築およびコード移行（マイグレーション）能力を大幅に向上させた最新モデルの検証結果を発表しました。これらの言語はPythonやJavaScriptと比べて学習用の…">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans JP",
+    sans-serif;
+  background: #f5f7fb;
+  color: #1d2433;
+  line-height: 1.9;
+}
+
+header {
+  background: #111827;
+  padding: 20px;
+}
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+main {
+  max-width: 850px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+article {
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow:
+    0 8px 30px
+    rgba(0,0,0,0.06);
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 1.4;
+  margin-top: 0;
+}
+
+h2 {
+  margin-top: 38px;
+  font-size: 23px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 19px;
+}
+
+p {
+  font-size: 16px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+code {
+  background: #f1f5f9;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.source-box {
+  margin-top: 40px;
+  padding: 20px;
+  background: #f1f5f9;
+  border-radius: 12px;
+}
+
+.source-box a {
+  word-break: break-all;
+}
+
+.notice {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 20px;
+}
+
+@media (max-width: 700px) {
+
+  article {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="../index.html">
+AI Trend Blog
+</a>
+
+</header>
+
+<main>
+
+<article>
+
+<div style="
+color:#94a3b8;
+font-size:13px;
+margin-bottom:20px;
+">
+
+2026.10.20
+
+</div>
+
+<h1>OpenAIが低リソース言語のコーディング性能を強化——COBOLやFortranの構築・移行精度が大幅向上</h1>
+
+<p>OpenAIは、COBOL、Fortran、Visual Basic、OCamlといった「低リソースプログラミング言語」におけるソフトウェアの新規構築およびコード移行（マイグレーション）能力を大幅に向上させた最新モデルの検証結果を発表しました。これらの言語はPythonやJavaScriptと比べて学習用のコードやドキュメントが少ない一方で、金融取引や気象予測、原子炉の安全性解析といった重要インフラを支え続けています。発表では、2つの新たな評価ベンチマークを通じて、次世代モデル（GPT-6 Astra、GPT-6 Luna、GPT-6.1 Sol）が従来モデル（GPT-5.6 Sol）と比較して飛躍的な精度向上とAPIコスト削減を同時に実現していることが示されました。</p>
+
+<h2>今回のポイント</h2>
+<ul>
+  <li><strong>低リソース言語への対応強化：</strong>学習データが限られるCOBOL、Fortran、Visual Basic、OCamlなどにおけるコード生成および移行能力が強化されました。</li>
+  <li><strong>2つの新評価ベンチマークを導入：</strong>20言語でゼロからSQLite互換エンジンを作る「MultiLangBench」と、既存COBOLコードを他言語へ書き換える「COBOL migration evaluation」で性能を測定しています。</li>
+  <li><strong>新規構築能力の向上（MultiLangBench）：</strong>最大reasoning effortにおいて、GPT-6 Astraが20言語平均で87.4%のテスト通過率を記録（GPT-5.6 Solは26.8%）。低コスト版のGPT-6 Lunaも40.3%を達成しつつ、APIコストを約78%削減しました。</li>
+  <li><strong>コード移行能力の向上（COBOL migration evaluation）：</strong>GPT-6.1 Solは高reasoning effortで97.9%の精度を達成。低reasoning effortでも86.6%（コストはGPT-5.6 Sol比で39%減）を記録し、GPT-5.6 Solの5.4%から大幅に改善しました。</li>
+  <li><strong>評価リソースの公開：</strong>MultiLangBenchの評価セットアップとテストスイートはGitHub上で公開されています。</li>
+</ul>
+
+<h2>何が変わった？</h2>
+<p>今回の発表で示された最大の進化は、これまでAIモデルが苦手としてきた「学習資源の少ない言語」において、実用的な水準のコード構築と振る舞いを維持した言語間移行が可能になった点です。公式発表では、2つの独自ベンチマークによって従来モデルとの詳細な比較が行われています。</p>
+
+<h3>1. 20言語でゼロからDBエンジンを作る「MultiLangBench」</h3>
+<p>MultiLangBenchは、指定されたプログラミング言語を用いて、ゼロからSQLite互換のデータベースエンジンを構築できるかをテストする評価手法です。モデルはコードベースの構成、状態管理、エラー処理、既存機能を壊さない新機能の追加などを長時間にわたるコーディングセッションを通じて行います。言語ごとの差異を公平に比較するため、データベースファイルを共通インターフェースとして使用し、公式のSQLite実装と出力結果を照合する仕組みが採用されています。</p>
+<p>このベンチマークにおいて、最大reasoning effort時のモデル性能は以下のように変化しました。</p>
+<ul>
+  <li><strong>GPT-6 Astra：</strong>20言語の平均テスト通過率が87.4%に達しました。GPT-5.6 Solの26.8%から大幅に向上しており、テストされた20言語中19言語で83%以上のスコアを記録しています。言語別に見ると、COBOLが10.9%から72.1%、OCamlが25.6%から85.8%、Fortranが21.4%から83.5%、Visual Basicが27.5%から89.4%へとそれぞれ改善しています（COBOLは全言語中最も難度が高く72%にとどまりました）。</li>
+  <li><strong>GPT-6 Luna：</strong>低コストモデルでありながら全言語でGPT-5.6 Solを上回り、平均通過率40.3%を記録しました。言語別ではCOBOLが17.1%、OCamlが34.1%、Fortranが31.4%、Visual Basicが41.6%となっています。特筆すべきはコスト効率であり、推定平均APIコストは1サンプルあたり0.77ドルと、GPT-5.6 Solの3.48ドルから約78%削減されています。</li>
+</ul>
+
+<h3>2. 厳密な等価性を検証する「COBOL migration evaluation」</h3>
+<p>もうひとつの評価であるCOBOL migration evaluationでは、既存のCOBOLプログラムをC++、Java、Kotlin、Python、Rustのいずれかに移行するタスクが課されます。この評価では、観測可能な出力がバイト単位で完全に一致（byte-for-byte parity）する隠れテストを用いており、すべてのテストを通過した場合のみ成功と判定されます。</p>
+<p>COBOLにおける固定小数点演算の端数切り捨てルールなど、言語固有の仕様やビジネスロジックを忠実に再現できるかが焦点となります。</p>
+<ul>
+  <li><strong>GPT-6.1 Sol（低reasoning effort）：</strong>86.6%の精度を達成しました。GPT-5.6 Solの5.4%から飛躍的に向上しただけでなく、APIコストもGPT-5.6 Solの61%（39%減）に抑えられています。</li>
+  <li><strong>GPT-6.1 Sol（高reasoning effort）：</strong>精度は97.9%に達し、ベンチマーク上限に近い飽和状態（nearly saturating the evaluation）を記録しました。</li>
+</ul>
+
+<h2>誰に関係する？</h2>
+<p>本発表は、古いシステム資産（レガシーシステム）の保守やモダナイゼーション（現代化）に直面している組織やエンジニアに直接関係します。</p>
+<ul>
+  <li><strong>金融機関・重要インフラの保守運用担当者：</strong>公式記事によれば、COBOLはオンラインバンキングシステムの40%以上、対面クレジットカード決済の80%、ATM取引の95%を支えています。また、Fortranは気象予測や原子炉の安全性解析で活用されています。これらのシステムを維持管理しているチームが該当します。</li>
+  <li><strong>レガシーマイグレーションを推進する開発組織：</strong>ドキュメントが不完全なシステム、元の開発者がすでに離職したシステム、ビジネスルールがコード内にしか残っていないシステムの移行を担当するエンジニアに関係します。</li>
+  <li><strong>AIモデルを組み込んだ開発支援ツールを手がける開発者：</strong>APIを通じて最新モデルを利用し、レガシーコードの解析やリライト機能を自社ワークフローに組み込むことを検討している技術者に関係します。</li>
+</ul>
+
+<h2>日本のユーザーへの影響</h2>
+<p>日本のユーザーや国内企業への具体的な影響を考える上では、公開された情報の範囲を正確に見極める必要があります。</p>
+<p>まず、今回の公式発表において「日本」や「日本語環境」に関する個別の言及や提供スケジュールの違いについての記載はありません。したがって、日本向けに特化した機能やサポートが用意されているかどうかは公式情報からは確認できません。</p>
+<p>ただし、最新モデル自体はAPIを通じて提供されており、利用可能な環境にあれば言語を問わずテストすることができます。日本国内においても、金融システムをはじめとする重要インフラやエンタープライズ領域でCOBOLなどのレガシー言語が広く使われている背景があるため、これらのモデルが備える高い振る舞い保持能力や低コストなコード生成能力は、システム近代化に向けた技術検証の選択肢となり得ます。</p>
+
+<h2>向いている人・まだ様子見でいい人</h2>
+<h3>向いている人</h3>
+<ul>
+  <li><strong>COBOL資産の他言語移行を計画・検証しているチーム：</strong>GPT-6.1 Solはバイト単位の出力一致を検証する評価で高い精度（最大97.9%）を示しているため、C++、Java、Kotlin、Python、Rustへのコード変換プロトタイプ作成やPoC（概念実証）を行うのに適しています。</li>
+  <li><strong>移行や検証にかかるAPIコストを抑えたい開発者：</strong>GPT-6 Luna（GPT-5.6 Sol比で約78%安価）や、GPT-6.1 Solの低reasoning effort設定（同39%安価）が選択肢として存在するため、予算制約の中で大規模なコードベースを評価したい場合に向いています。</li>
+  <li><strong>自社の評価パイプラインを標準化したい組織：</strong>GitHubに公開されたMultiLangBenchのセットアップを活用し、自社で利用しているプログラミング言語の客観的なモデル性能を測定したい開発者に向いています。</li>
+</ul>
+
+<h3>まだ様子見でいい人</h3>
+<ul>
+  <li><strong>AIによる完全自動のコード置き換えを求めている人：</strong>公式記事では、本番ソフトウェアへの適用には専門家によるレビューや、システムのビジネスルールおよび依存関係に対するテストが不可欠であると明記されています。AIに任せきりで無検証の移行を行いたいケースには適していません。</li>
+  <li><strong>PythonやJavaScriptなど主要言語の開発のみを行っている人：</strong>今回の強化はCOBOLやFortran、OCaml、Visual Basicといった「低リソース言語」に焦点を当てたものです。主流言語の開発環境やワークフローの刷新を主目的とする場合は、直接の恩恵を感じにくい可能性があります。</li>
+</ul>
+
+<h2>実際に試すなら</h2>
+<p>公式記事で案内されている、最新モデルと評価スイートを試す手順は以下の通りです。</p>
+<ol>
+  <li><strong>API経由で最新モデルにアクセスする：</strong>チームで実際に使用しているプログラミング言語のコーディングタスクを用意し、OpenAIのAPI経由で最新モデルを実行します。公式記事では、モデルがどのようなタスクで機能し、どこで苦戦したかについてのフィードバックを求めています。</li>
+  <li><strong>GitHub上のMultiLangBenchを確認する：</strong>GitHubで公開されているMultiLangBenchの評価セットアップとテストスイートを確認します。各言語のテスト内容やスコアを確認し、自社の開発対象言語におけるギャップを把握することが推奨されています。</li>
+  <li><strong>reasoning effortを適切に選択する：</strong>COBOL migration evaluationの結果にあるように、要求される精度とAPIコストのバランスに応じて、低reasoning effortと高reasoning effortの設定を切り替えて比較検証を行います。</li>
+</ol>
+
+<h2>注意点</h2>
+<p>利用および検証にあたっては、以下の公式情報および未確定事項に留意する必要があります。</p>
+<ul>
+  <li><strong>本番適用には専門家のレビューが必須：</strong>公式記事では、振る舞いを維持する能力はレガシーシステムの近代化に有用であるとしつつも、「本番ソフトウェアへの適用には、専門家によるレビューと、システムのビジネスルールおよび依存関係に対するテストが依然として必要である」と強調されています。</li>
+  <li><strong>言語特有の計算仕様によるリスク：</strong>COBOLの固定小数点演算では、明示的に丸めが指定されない限り余分な小数点以下の桁が切り捨てられます。移行先の言語で誤って四捨五入などの丸め処理を行ってしまうと、プログラム自体はエラーなく動作しても財務計算の結果が狂うリスクがあります。</li>
+  <li><strong>言語ごとの難易度差：</strong>MultiLangBenchにおいて、GPT-6 Astraは19言語で83%を超えたものの、COBOLは72.1%にとどまり、「COBOLが最も困難な言語として残っている」と記載されています。言語によって成功率にばらつきがある点に注意が必要です。</li>
+  <li><strong>未確定・記載のない事項：</strong>日本国内向けの特別な料金体系、提供形態の詳細、Webインターフェース（ChatGPT等）での提供状況、あるいはMultiLangBenchでテストされた20言語の全言語名リストなどは、提供された公式記事本文からは確認できません。</li>
+</ul>
+
+<h2>まとめ</h2>
+<p>OpenAIによる今回の発表は、これまでモデルの学習用リソースが乏しかったCOBOL、Fortran、Visual Basicなどのレガシープログラミング言語に対して、大幅な精度向上とコスト削減をもたらすものです。ゼロからの実装能力を測る「MultiLangBench」と、厳密な振る舞いの保持を測る「COBOL migration evaluation」の双方で、最新モデルは旧モデルを大きく上回る数値を記録しました。</p>
+<p>世界中の基幹インフラを支えるコードの近代化に向けた強力な支援材料となる一方、本番適用には専門家のレビューと厳格なテストが前提となります。まずは公開されたGitHubのベンチマークやAPIを通じて、自社システムの言語と課題に合致するか検証することが推奨されます。</p>
+
+<div class="source-box">
+
+<h2>情報源</h2>
+
+<p>
+この記事は以下の公式ページを確認したうえで作成しています。
+</p>
+
+<p>
+
+<strong>
+OpenAI
+</strong>
+
+<br>
+
+<a
+href="https://openai.com/index/low-resource-programming-languages/"
+target="_blank"
+rel="noopener noreferrer"
+>
+
+Advancing coding in low‑resource programming languages | OpenAI
+
+</a>
+
+</p>
+
+</div>
+
+<div class="notice">
+
+この記事はAIを利用して公式情報を整理しています。
+内容は公開時点の情報に基づきます。
+重要な仕様・料金・提供地域・利用条件などは、
+必ずリンク先の公式情報をご確認ください。
+
+</div>
+
+</article>
+
+</main>
+
+<footer>
+
+© 2026 AI Trend Blog
+
+</footer>
+
+</body>
+
+</html>
