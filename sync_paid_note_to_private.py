@@ -18,6 +18,14 @@ LOCAL_DRAFT_DIR = Path(
     "paid_note_drafts"
 )
 
+CANDIDATE_FILE = Path(
+    "paid_info_candidates.json"
+)
+
+PAID_HISTORY_FILE = Path(
+    "paid_note_draft_history.json"
+)
+
 PRIVATE_DRAFT_DIR = "paid_note_drafts"
 PRIVATE_PACKAGE_DIR = "note_publish_packages"
 
@@ -43,6 +51,103 @@ HEADERS = {
         "2022-11-28"
     ),
 }
+
+
+def load_json_list(path):
+    if not path.exists():
+        return []
+
+    try:
+        value = json.loads(
+            path.read_text(encoding="utf-8")
+        )
+        return value if isinstance(value, list) else []
+    except Exception:
+        return []
+
+
+def lifecycle_for_draft(draft_file):
+    history = load_json_list(
+        PAID_HISTORY_FILE
+    )
+
+    record = next(
+        (
+            item
+            for item in reversed(history)
+            if item.get("draft_filename") == draft_file.name
+        ),
+        {},
+    )
+
+    keys = set(
+        record.get("candidate_keys", [])
+    )
+
+    candidates = load_json_list(
+        CANDIDATE_FILE
+    )
+
+    selected = []
+
+    for item in candidates:
+        key = (
+            item.get("url")
+            or item.get("candidate_title")
+            or item.get("title")
+            or ""
+        )
+
+        if key in keys:
+            selected.append(item)
+
+    deadlines = []
+    money_scores = []
+    conversion_scores = []
+
+    for item in selected:
+        verification = item.get("verification", {})
+
+        for key in (
+            "purchase_deadline",
+            "application_deadline",
+            "useful_until",
+        ):
+            value = (verification.get(key) or "").strip()
+            if value:
+                deadlines.append((key, value))
+
+        money_scores.append(
+            int(verification.get("money_value_score", 0) or 0)
+        )
+        conversion_scores.append(
+            int(verification.get("paid_conversion_score", 0) or 0)
+        )
+
+    useful_dates = [
+        value
+        for key, value in deadlines
+        if key == "useful_until"
+    ]
+
+    return {
+        "run_slot": record.get("run_slot", "primary"),
+        "candidate_keys": list(keys),
+        "purchase_deadlines": [
+            value
+            for key, value in deadlines
+            if key == "purchase_deadline"
+        ],
+        "application_deadlines": [
+            value
+            for key, value in deadlines
+            if key == "application_deadline"
+        ],
+        "useful_until": max(useful_dates) if useful_dates else "",
+        "money_value_score": max(money_scores) if money_scores else 0,
+        "paid_conversion_score": max(conversion_scores) if conversion_scores else 0,
+        "expiry_action": "review_stop_sales_or_archive",
+    }
 
 
 def get_existing_file_sha(
@@ -306,6 +411,10 @@ def create_metadata(
     free_body,
     paid_body,
 ):
+    lifecycle = lifecycle_for_draft(
+        draft_file
+    )
+
     return {
         "title": title,
         "source_draft": draft_file.name,
@@ -322,6 +431,7 @@ def create_metadata(
         ),
         "status": "ready_for_manual_note_post",
         "auto_publish": False,
+        "lifecycle": lifecycle,
     }
 
 
