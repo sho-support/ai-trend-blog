@@ -25,6 +25,10 @@ ARTICLE_DIR = Path("articles")
 FREE_NOTE_DIR = Path("note_drafts")
 PAID_NOTE_DIR = Path("paid_note_drafts")
 
+REVIEW_PAID_ONLY = (
+    os.environ.get("REVIEW_PAID_ONLY", "0").strip() == "1"
+)
+
 if not GEMINI_API_KEY:
     raise RuntimeError("GEMINI_API_KEY が設定されていません。")
 
@@ -320,7 +324,9 @@ def review_paid_note(today):
 
 def main():
     today = datetime.now(JST).date().isoformat()
-    review_free_note(today)
+    if not REVIEW_PAID_ONLY:
+        review_free_note(today)
+
     review_paid_note(today)
 
     print("")
