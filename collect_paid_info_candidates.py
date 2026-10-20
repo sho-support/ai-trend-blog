@@ -30,17 +30,23 @@ GOOGLE_NEWS_RSS = (
 SEARCH_QUERIES = [
     ("お金が得", "Amazon セール 割引 キャンペーン"),
     ("お金が得", "楽天 セール ポイント キャンペーン"),
-    ("お金が得", "キャッシュバック キャンペーン お得"),
+    ("お金が得", "家電 キャッシュバック キャンペーン"),
+    ("お金が得", "カメラ キャッシュバック キャンペーン"),
+    ("お金が得", "スマホ 通信 キャッシュバック キャンペーン"),
+    ("お金が得", "旅行 ホテル クーポン キャンペーン"),
     ("お金が得", "サブスク 割引 キャンペーン"),
+    ("お金が得", "ソフトウェア セール 永久ライセンス キャンペーン"),
     ("お金が得", "無料配布 ソフト アプリ キャンペーン"),
     ("お金を生む", "AI 副業 新サービス 収益化"),
     ("お金を生む", "生成AI 新サービス API 料金 プラン"),
+    ("お金を生む", "クリエイター 収益化 新機能 キャンペーン"),
     ("時間を得する", "AI ツール 自動化 新機能"),
     ("時間を得する", "業務効率化 AI サービス 新機能"),
 ]
 
 MAX_ITEMS_PER_QUERY = 5
-MIN_SCORE_TO_KEEP = 70
+RUN_SLOT = os.environ.get("PAID_RUN_SLOT", "primary").strip() or "primary"
+MIN_SCORE_TO_KEEP = 85 if RUN_SLOT == "opportunity" else 70
 
 if not GEMINI_API_KEY:
     raise RuntimeError("GEMINI_API_KEY が設定されていません。")
@@ -308,11 +314,12 @@ def main():
 
     run_history = load_json_list(RUN_HISTORY_FILE)
 
-    if any(
+    if RUN_SLOT == "primary" and any(
         item.get("collection_date_jst") == today
+        and item.get("run_slot", "primary") == "primary"
         for item in run_history
     ):
-        print("本日はすでに有料情報候補を収集済みです。")
+        print("本日の通常枠はすでに有料情報候補を収集済みです。")
         return
 
     raw_candidates = collect_news_candidates()
@@ -360,7 +367,8 @@ def main():
 
     REPORT_DIR.mkdir(parents=True, exist_ok=True)
 
-    report_path = REPORT_DIR / f"{today}.md"
+    suffix = now_jst.strftime("%H%M") if RUN_SLOT == "opportunity" else "primary"
+    report_path = REPORT_DIR / f"{today}_{suffix}.md"
     report_path.write_text(
         build_markdown_report(today, newly_added),
         encoding="utf-8",
@@ -369,6 +377,7 @@ def main():
     run_history.append(
         {
             "collection_date_jst": today,
+            "run_slot": RUN_SLOT,
             "created_at": now_jst.isoformat(),
             "raw_count": len(raw_candidates),
             "scored_count": len(scored),
