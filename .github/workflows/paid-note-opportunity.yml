@@ -1,0 +1,80 @@
+name: Paid Note Opportunity Scan
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    # 日本時間 15:30
+    - cron: "30 6 * * *"
+
+    # 日本時間 21:30
+    - cron: "30 12 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-trend-blog-paid-opportunity
+  cancel-in-progress: false
+
+jobs:
+  opportunity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    env:
+      PAID_RUN_SLOT: opportunity
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Scan for high-conversion paid topics
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python collect_paid_info_candidates.py
+
+      - name: Verify paid info candidates
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python verify_paid_info_candidates.py
+
+      - name: Generate extra paid note only if strong enough
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PAID_RUN_SLOT: opportunity
+        run: python generate_paid_note_draft.py
+
+      - name: Review extra paid note
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          REVIEW_PAID_ONLY: "1"
+        run: python review_note_drafts.py
+
+      - name: Move paid note drafts to private repo
+        env:
+          PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+        run: python sync_paid_note_to_private.py
+
+      - name: Commit generated files
+        run: |
+          git config user.name "AI Article Bot"
+          git config user.email "actions@github.com"
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes generated."
+            exit 0
+          fi
+
+          git commit -m "Update paid note opportunity scan"
+          git push
