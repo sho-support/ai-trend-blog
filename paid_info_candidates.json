@@ -20,43 +20,38 @@
     "reject_reason": "",
     "collected_at": "2026-10-18T13:58:30.206923+09:00",
     "collection_date_jst": "2026-10-18",
-    "status": "needs_manual",
+    "status": "rejected",
     "product_type": "paid_note_candidate",
     "verification": {
-      "status": "needs_manual",
-      "confidence": 30,
+      "status": "rejected",
+      "confidence": 95,
       "verified_claims": [
         {
-          "claim": "Yahoo!ニュース（エキスパート記事）およびnoteにおいて、Amazonプライム感謝祭2026が先行セール（10月13日0:00〜10月15日23:59）および本番（10月16日0:00〜10月19日23:59）の日程で開催され、合計1万円（税込）以上の購入で上限10,000ポイント（最大18%）還元のポイントアップキャンペーンやdポイント連携キャンペーンが実施されている旨が紹介されている",
-          "source_url": "https://news.yahoo.co.jp/expert/articles/b0c503a1cc08db43c1bd9c2f986d872e65fff689",
-          "source_type": "secondary"
-        },
-        {
-          "claim": "Yahoo!ニュース（エキスパート記事）およびnoteにおいて、Kindle Unlimited（3か月無料、10月19日まで）、Amazon Music Unlimited（4か月無料、10月20日まで）、Audible（4か月月99円、10月19日まで）のキャンペーンおよび無料期間終了後の自動更新に関する注意点が紹介されている",
-          "source_url": "https://note.com/muramitsu/n/nee84bafeb55c",
+          "claim": "Amazonプライム感謝祭2026（先行セール：10月13日〜15日、本番：10月16日〜19日）および関連キャンペーン（ポイントアップ、Kindle Unlimited等のサブスク施策）は2026年10月19日（一部サブスクは10月20日）をもってすでに終了している",
+          "source_url": "https://www.funq.jp/flick/article/1067272/",
           "source_type": "secondary"
         }
       ],
       "missing_claims": [
-        "Amazon公式ドメイン（amazon.co.jp、aboutamazon.jp等）による各キャンペーンの利用規約および公式一次情報",
-        "ポイントアップキャンペーンの詳細な還元率内訳（最大18%の適用条件、対象・対象外商品、ポイント付与日等）の公式規約",
-        "各サブスクリプション（Kindle Unlimited、Amazon Music Unlimited、Audible）のキャンペーン適用対象者条件および自動更新・解約条項に関する公式規約"
+        "Amazon公式ドメイン（amazon.co.jp、aboutamazon.jp等）による一次情報・公式利用規約"
       ],
-      "contradictions": [],
+      "contradictions": [
+        "候補タイトルは「プライム感謝祭で損しない：還元率最大化エントリー＆無料サブスク総取りリスト」としてこれから購入・エントリーを促す内容となっているが、セール本番（2026年10月16日〜10月19日）およびKindle/Audibleの申込期限（10月19日）、Music Unlimited（10月20日）は検証時点（2026年10月21日）ですでに終了・期限切れとなっている"
+      ],
       "safe_paid_title": "",
-      "safe_summary": "二次情報（Yahoo!ニュース、note等）により、プライム感謝祭2026の開催日程（先行セール：10月13日〜15日、本番：10月16日〜19日）や、最大18%・上限10,000ポイント還元のポイントアップキャンペーン、各種サブスクリプション（Kindle Unlimited、Amazon Music Unlimited、Audible）の無料・割引施策が報じられています。ただし、公式ドメインによる一次情報が提示されていないため、利用規約や正確な適用条件の公式確認は完了していません。",
-      "money_value_score": 75,
-      "paid_conversion_score": 60,
-      "time_sensitivity_score": 90,
+      "safe_summary": "Amazonプライム感謝祭2026は2026年10月13日〜19日に開催され、ポイントアップキャンペーンや各種サブスク施策（Kindle Unlimited、Audible、Amazon Music Unlimited）が実施されましたが、すべての期間および申込期限が終了しています。",
+      "money_value_score": 0,
+      "paid_conversion_score": 0,
+      "time_sensitivity_score": 0,
       "second_slot_eligible": false,
       "purchase_deadline": "2026-10-19",
       "application_deadline": "2026-10-20",
       "useful_until": "2026-10-19",
       "evergreen": false,
-      "recommended_action": "hold",
-      "reason": "提示された情報源がすべて二次情報（Yahoo!ニュース、note、Goal.com）であり、Amazon公式ドメイン（amazon.co.jp等）による一次情報・公式利用規約が不足しているため、判定基準「二次情報しかない、または公式・一次情報が不足している」に従い needs_manual（保留）と判定しました。"
+      "recommended_action": "reject",
+      "reason": "対象となっているセール（購入期限：2026年10月19日）および各種サブスクリプションの申込期限（2026年10月19日〜20日）がすべて終了済み（期限切れ）であるため、判定基準に従い rejected と判定しました。"
     },
-    "verified_at": "2026-10-21T02:25:59.669077+09:00",
+    "verified_at": "2026-10-22T02:30:32.919831+09:00",
     "entity_info": {
       "main_entity": "Amazon プライム感謝祭",
       "company_name": "Amazon",
@@ -105,25 +100,25 @@
         "source_confidence": 100
       },
       {
-        "url": "https://www.goal.com/jp/%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9/amazon-prime-big-deal-days-2026-final-day-best-deals-products-to-buy/bltf6eb481a8060f5c0",
-        "domain": "goal.com",
-        "source_type": "secondary",
-        "title": "Amazonプライム感謝祭2026 最終日に買うべきおすすめ目玉商品は？ | Goal.com 日本",
-        "source_confidence": 100
-      },
-      {
-        "url": "https://news.yahoo.co.jp/expert/articles/1fabd916643b93429c6a85880be1ecdbb2267aee",
-        "domain": "news.yahoo.co.jp",
-        "source_type": "secondary",
-        "title": "Amazonプライム感謝祭おすすめガジェット＆目玉商品10選！買ってよかったもの（みつ） - エキスパート - Yahoo!ニュース",
-        "source_confidence": 100
-      },
-      {
         "url": "https://note.com/muramitsu/n/n0cb4a6c5ca41",
         "domain": "note.com",
         "source_type": "secondary",
         "title": "買ってよかったもの一生モノ！殿堂入りQOL爆上がり便利グッズ最新版｜みつ / ガジェット暮らしのnote",
-        "source_confidence": 95
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.funq.jp/flick/article/1067272/",
+        "domain": "funq.jp",
+        "source_type": "secondary",
+        "title": "Amazonブラックフライデー2026はいつ？過去3年の日程と次のセール｜年間スケジュール・一番安い時期も解説 | flick!",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.gqjapan.jp/article/20261016-amazon-prime-big-deal-days-2026",
+        "domain": "gqjapan.jp",
+        "source_type": "secondary",
+        "title": "【2026年最新】Amazonプライム感謝祭おすすめ20選｜セールはいつから？ 何が安くなる？ | GQ JAPAN",
+        "source_confidence": 100
       }
     ]
   },
@@ -210,40 +205,48 @@
       "confidence": 85,
       "verified_claims": [
         {
-          "claim": "「楽天・三木谷浩史の特別なお客様キャンペーン」（キャンペーンコード：2798）において、2026年9月17日0:00以降の申し込み分より、新規お申し込みおよび楽天モバイル（ドコモ回線・au回線）からのプラン変更（移行）で進呈されるポイントが13,000ポイント（期間限定ポイント、3回分割進呈）である。",
-          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=54a76f2a-6e48-4d78-9577-2db8812209c7&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "claim": "「楽天・三木谷浩史の特別なお客様キャンペーン」（コード：2798）において、2026年9月17日0:00以降の申し込み分より、新規お申し込みおよび楽天モバイル（ドコモ回線・au回線）からのプラン変更（移行）で進呈されるポイントが13,000ポイント（期間限定ポイント、3回分割進呈）である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=75c478a4-10d8-4238-8dfe-6969b80652fb&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
           "source_type": "official"
         },
         {
           "claim": "特典適用の条件として、Webまたは店舗で対象プラン（Rakuten最強プランまたはRakuten最強U-NEXT）に指定のクーポンコードを適用して申し込み、プラン申し込みの翌月末日23:59までに利用開始し、同期限までにRakuten Linkアプリから発信して10秒以上の通話を行う必要がある。",
-          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=54a76f2a-6e48-4d78-9577-2db8812209c7&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=75c478a4-10d8-4238-8dfe-6969b80652fb&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
           "source_type": "official"
         },
         {
-          "claim": "本キャンペーンの適用回数はおひとり様1契約1回限りであり、Web・店舗ともに終了日は未定である。",
-          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=54a76f2a-6e48-4d78-9577-2db8812209c7&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "claim": "本キャンペーンの適用回数はおひとり様1契約1回限りであり、Web・店舗ともに申し込みの終了日は未定である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=75c478a4-10d8-4238-8dfe-6969b80652fb&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
           "source_type": "official"
         },
         {
           "claim": "通常の「【楽天モバイル】紹介キャンペーン（コード：1784）」や「【楽天従業員から紹介された方限定】Rakuten最強プラン紹介キャンペーン（コード：2162）」とは併用不可である。",
-          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=54a76f2a-6e48-4d78-9577-2db8812209c7&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=75c478a4-10d8-4238-8dfe-6969b80652fb&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
           "source_type": "official"
         }
       ],
       "missing_claims": [
-        "候補タイトルにある「裏技」に該当する公式な制度や記述",
-        "過去に同一キャンペーンを適用したユーザーの再契約時における適用可否の例外規定（公式上は「おひとり様1契約1回限り」「短期間での解約や複数回解約を繰り返す等は対象外」の記載のみ）"
+        "候補タイトルにある「裏技」に該当する公式な制度や手順",
+        "過去に同一キャンペーンを適用したユーザーの再契約や2回線目以降の対象可否（公式上は「おひとり様1契約1回限り」と記載）"
       ],
       "contradictions": [
-        "候補タイトルに「裏技」とあるが、公式情報には裏技要素はなく、定められたクーポンコード入力と利用開始、Linkアプリ利用を満たす正規のキャンペーン適用手続きである。",
-        "候補タイトルに「紹介CP」とあるが、本施策は「楽天・三木谷浩史の特別なお客様キャンペーン（コード：2798）」であり、通常の紹介キャンペーン（コード：1784）とは異なり併用も不可である。"
+        "候補タイトルに「裏技」とあるが、公式情報には裏技要素はなく、正規のクーポンコード入力、回線開通、Rakuten Link通話を要する通常手順である。",
+        "候補タイトルに「紹介CP」とあるが、本施策は「楽天・三木谷浩史の特別なお客様キャンペーン（コード：2798）」であり、通常の紹介キャンペーン（コード：1784）とは異なり併用不可である。"
       ],
-      "safe_paid_title": "楽天モバイル「特別なお客様キャンペーン」：MNP以外の新規申込で13,000pt進呈の条件と併用ルール",
-      "safe_summary": "楽天モバイルの「楽天・三木谷浩史の特別なお客様キャンペーン（コード：2798）」では、2026年9月17日以降の申し込み分より、MNP以外の新規申し込み等に対して進呈される楽天ポイントが13,000ポイント（期間限定・3回分割進呈）となっています。適用には指定クーポンコードの適用、翌月末日までの利用開始およびRakuten Linkアプリでの10秒以上の通話が必要で、おひとり様1契約1回限りとなります。通常の紹介キャンペーン等とは併用できません。",
+      "safe_paid_title": "楽天モバイル「特別なお客様キャンペーン」：MNP以外の新規申込で13,000pt獲得の適用条件と注意点",
+      "safe_summary": "楽天モバイルの「楽天・三木谷浩史の特別なお客様キャンペーン（コード：2798）」では、2026年9月17日以降の申し込み分より、新規お申し込み等のMNP以外の契約で進呈されるポイントが13,000ポイント（期間限定・3回分割進呈）となっています。特典獲得には指定クーポンコードの適用、翌月末日までの利用開始およびRakuten Linkアプリで10秒以上の発信通話が必要です。おひとり様1契約1回限りで、通常の紹介キャンペーンとは併用できません。",
+      "money_value_score": 75,
+      "paid_conversion_score": 60,
+      "time_sensitivity_score": 50,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
       "recommended_action": "hold",
-      "reason": "MNP以外の新規契約等で13,000ポイントが付与される改定内容や達成条件は公式ページで確認できたものの、候補タイトルに含まれる「裏技」は公式根拠のない誇張表現であり、通常の紹介キャンペーンとの混同も見られるため、タイトルおよび構成の修正を前提とした保留（hold）とします。"
+      "reason": "新規契約（MNP以外）で13,000ポイントが付与される条件や達成要件は公式ページで確認できたものの、候補タイトルに含まれる「裏技」は公式根拠のない誇張表現であり、通常の紹介キャンペーンとの混同も見られるため、タイトルおよび構成の修正を前提とした保留（hold）とします。"
     },
-    "verified_at": "2026-10-18T16:17:38.176962+09:00",
+    "verified_at": "2026-10-22T02:30:32.919831+09:00",
     "entity_info": {
       "main_entity": "楽天モバイル",
       "company_name": "楽天モバイル株式会社",
@@ -264,7 +267,7 @@
     },
     "sources_checked": [
       {
-        "url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=54a76f2a-6e48-4d78-9577-2db8812209c7&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+        "url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=75c478a4-10d8-4238-8dfe-6969b80652fb&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
         "domain": "network.mobile.rakuten.co.jp",
         "source_type": "official",
         "title": "特別なお客様へ: Rakuten最強プランのご案内 | 楽天モバイル",
@@ -285,17 +288,31 @@
         "source_confidence": 100
       },
       {
-        "url": "https://xtech.nikkei.com/atcl/nxt/column/18/00745/100900275/?P=2",
-        "domain": "xtech.nikkei.com",
+        "url": "https://news.livedoor.com/article/detail/32601307/",
+        "domain": "news.livedoor.com",
         "source_type": "secondary",
-        "title": "都市部でKDDIローミング縮小、楽天モバイルに問われる通信品質と収益改善（2ページ目） | 日経クロステック（xTECH）",
+        "title": "楽天モバイル、栃木・佐野でU字工事の1日店長イベント！家族のスマホ事情や地元愛を語る - ライブドアニュース",
         "source_confidence": 100
       },
       {
-        "url": "https://k-tai.watch.impress.co.jp/docs/news/2148880.html",
+        "url": "https://k-tai.watch.impress.co.jp/docs/news/2149515.html",
         "domain": "k-tai.watch.impress.co.jp",
         "source_type": "secondary",
-        "title": "楽天モバイル、「iPhone Duo」の価格を発表 約43万円～ - ケータイ Watch",
+        "title": "楽天モバイル、Apple Watchを最大4.3万円値下げ 外装不良品も - ケータイ Watch",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.yahoo.co.jp/articles/d1696d5f05084bbede7e8e21cc2f73a0fa313679",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "U字工事、故郷・栃木で楽天モバイル1日店長に就任 子どもの「感動」スマホ事情も告白（オリコン） - Yahoo!ニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://selectra.jp/telecom/news/nothing-phone-4b-release-price",
+        "domain": "selectra.jp",
+        "source_type": "secondary",
+        "title": "Nothing Phone (4b)は楽天モバイルで10/27発売、6万円以下でおサイフケータイ対応",
         "source_confidence": 95
       }
     ]
@@ -770,7 +787,7 @@
           "source_type": "primary_release"
         },
         {
-          "claim": "ChatSenseの基本プラン「ビジネス」は初期費用0円、月額980円/人から利用可能で、最低利用期間および最低利用人数の制限はない",
+          "claim": "ChatSenseの基本プラン「ビジネス」は初期費用0円、月額980円/人から利用可能で、最低利用期間および最低利用人数はない",
           "source_url": "https://chatsense.jp/function/codesense",
           "source_type": "official"
         },
@@ -780,26 +797,34 @@
           "source_type": "official"
         },
         {
-          "claim": "ChatSense Notebook機能では、PDF、Word、Excel、PowerPointをソースとして追加し、スライドを生成することが可能である",
+          "claim": "ChatSense Notebook機能では、PDF、Word、Excel、PowerPointをソースとして追加し、AIによる回答やスライド生成が可能である",
           "source_url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
           "source_type": "official"
         }
       ],
       "missing_claims": [
-        "PowerPoint上でAIが編集する新機能の具体的な提供開始日（リリース時期）",
-        "PowerPoint上で直接編集する新機能にかかる利用料金、追加費用の有無、または対象となるプラン条件",
-        "候補タイトルに含まれる「実務時短テクニック」の具体的な操作ノウハウや活用手順"
+        "PowerPoint上でAIが編集する新機能の具体的な提供開始日（リリース日）",
+        "PowerPoint上で直接編集する新機能の利用条件、対象プラン、追加費用の有無",
+        "候補タイトルに含まれる「実務時短テクニック」に関する具体的な操作手順や活用ノウハウ"
       ],
       "contradictions": [
-        "候補タイトルに「実務時短テクニック」とあるが、情報源には機能の提供予定告知と概要のみが記載されており、具体的な時短テクニックやノウハウの記載はなく誇張である",
-        "該当機能は「提供予定」の段階であり、現在利用可能な機能としてテクニックを紹介できる状態ではない"
+        "候補タイトルに「実務時短テクニック」とあるが、提供された公式情報およびプレスリリースには新機能の提供予定告知と概要のみが記載されており、具体的な時短テクニックや操作ノウハウの根拠が存在しない",
+        "該当機能は「提供予定」の段階であり、現在利用可能な機能として実務テクニックを解説できる状態ではない"
       ],
-      "safe_paid_title": "PowerPoint上でスライド編集が可能に：法人向けAI「ChatSense」の新機能予定とスライド生成機能の概要",
-      "safe_summary": "ナレッジセンスは、法人向けAI「ChatSense」においてPowerPointを開いたままスライドの修正や追加をAIに依頼できる新機能の提供予定を発表しました。ChatSenseは月額980円/人のビジネスプランに加え、月額98,000円の拡張機能としてスライド生成AIを提供していますが、新機能の具体的な提供開始日や追加料金の有無、実務ノウハウは公表されていません。",
+      "safe_paid_title": "PowerPoint上でスライド編集が可能に：法人向けAI「ChatSense」の新機能提供予定と既存スライド機能の概要",
+      "safe_summary": "ナレッジセンスは、法人向けAI「ChatSense」においてPowerPointを開いたままスライドの修正や追加をAIに依頼できる新機能の提供予定を発表しました。ChatSenseは月額980円/人のビジネスプランに加え、月額98,000円の拡張機能としてスライド生成AIを提供していますが、新機能の具体的な提供開始日や追加費用の有無、実務操作ノウハウは公表されていません。",
+      "money_value_score": 40,
+      "paid_conversion_score": 45,
+      "time_sensitivity_score": 50,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": false,
       "recommended_action": "hold",
-      "reason": "プレスリリースにより「PowerPoint上でAIがスライドを編集する新機能を提供予定」であることは確認できますが、具体的な提供開始時期や新機能の利用条件・料金の詳細が未公表であり、タイトルにある「実務時短テクニック」の根拠となる情報も不足しているため。"
+      "reason": "プレスリリースおよび公式サイトにより新機能の提供予定と基本料金体系は確認できるものの、新機能自体の提供開始時期や個別利用条件・追加料金が未公表であり、タイトルにある「実務時短テクニック」を裏付ける情報源が存在しないため。"
     },
-    "verified_at": "2026-10-18T16:17:38.176962+09:00",
+    "verified_at": "2026-10-22T02:30:32.919831+09:00",
     "entity_info": {
       "main_entity": "ChatSense",
       "company_name": "株式会社ナレッジセンス",
@@ -814,9 +839,9 @@
         "knowledgesense.jp"
       ],
       "official_pages_to_find": [
-        "プレスリリース・お知らせ",
         "スライド生成機能詳細",
         "料金プラン",
+        "プレスリリース",
         "お問い合わせ"
       ]
     },
@@ -878,18 +903,18 @@
         "source_confidence": 95
       },
       {
+        "url": "https://chatsense.jp/blog/chatgpt-dots",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "「dots」とは？ChatGPTの新機能・使い方・料金を解説",
+        "source_confidence": 95
+      },
+      {
         "url": "https://prtimes.jp/main/html/rd/p/000000413.000073671.html",
         "domain": "prtimes.jp",
         "source_type": "primary_release",
         "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 | 株式会社ナレッジセンスのプレスリリース",
         "source_confidence": 100
-      },
-      {
-        "url": "https://prtimes.jp/main/html/rd/p/000000419.000073671.html",
-        "domain": "prtimes.jp",
-        "source_type": "primary_release",
-        "title": "Web会議を、Botなしで文字起こし。ChatSenseのデスクトップ機能で対応予定 | 株式会社ナレッジセンスのプレスリリース",
-        "source_confidence": 95
       }
     ]
   },
@@ -1221,41 +1246,46 @@
       "confidence": 75,
       "verified_claims": [
         {
-          "claim": "INNOVATE AI PTE. LTD.が提供するHIX AIにおいて、AIエージェントに専門的な実行能力を付与する新機能「スキル」が2026年10月20日に公開された。",
-          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
-          "source_type": "primary_release"
+          "claim": "INNOVATE AI PTE. LTD.が2026年10月20日にコアブランドHIX AIにおいて新機能「スキル」をリリースした。",
+          "source_url": "https://voix.jp/business-cards/hix-ai-new-skill-launch/",
+          "source_type": "secondary"
         },
         {
-          "claim": "「スキル」は単なる指示文ではなく独立した機能パッケージであり、情報検索からデータ抽出、レポート執筆、プレゼン資料生成などの一連のプロセスを一括・自律処理する。",
-          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
-          "source_type": "primary_release"
+          "claim": "新機能「スキル」は独立した機能パッケージであり、情報検索からデータ抽出、レポート執筆、プレゼン資料生成などの一連のプロセスをAIが自律的に一括処理する。",
+          "source_url": "https://voix.jp/business-cards/hix-ai-new-skill-launch/",
+          "source_type": "secondary"
         },
         {
-          "claim": "主要スキルとして「画像から動画生成」「YouTubeショート動画作成」「写真をアニメ化」「データ分析」「PDF AI」「画像文字起こし」「ビジネスレポート作成」「市場・競合分析」「AI議事録・会議アシスタント」などが提供される。",
-          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
-          "source_type": "primary_release"
+          "claim": "提供されるスキルには「画像から動画生成」「YouTubeショート動画作成」「データ分析」「PDF AI」「ビジネスレポート作成」などが含まれる。",
+          "source_url": "https://voix.jp/business-cards/hix-ai-new-skill-launch/",
+          "source_type": "secondary"
         },
         {
-          "claim": "公式提供スキルのほかにマイスキル管理があり、PCからのZIPファイル等のアップロードやGitHub公開リポジトリのURL経由でスキルをインポートできる。",
-          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
-          "source_type": "primary_release"
+          "claim": "自作や外部のスキルをPCからのアップロードやGitHub公開リポジトリのURL経由でインポートして管理できる「マイスキル」機能が備わっている。",
+          "source_url": "https://voix.jp/business-cards/hix-ai-new-skill-launch/",
+          "source_type": "secondary"
         },
         {
-          "claim": "チャット入力欄で「/」を入力するとスキルのリストが展開し手動指定できるほか、会話内容からAIが意図を汲み取り自律的に呼び出される機能もある。また「AI スキルを無料で試す」リンクが存在する。",
-          "source_url": "https://ascii.jp/elem/000/004/444/4444317/",
+          "claim": "チャット入力欄で「/」を入力してスキルを手動呼び出しできるほか、会話内容からAIが意図を汲み取り自律的に呼び出す自動読み込み機能がある。",
+          "source_url": "https://voix.jp/business-cards/hix-ai-new-skill-launch/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "HIX AIには無料プラン（月額$0.00）のほか、年払い月額$9.99のProプラン、年払い月額$14.99〜のMaxプランが存在する。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000016.000175497.html",
           "source_type": "primary_release"
         }
       ],
       "missing_claims": [
-        "各有料プラン（Pro、Max等）と「スキル」機能の具体的な利用枠・制限（無料枠でどこまで試せるかのクレジット消費や回数制限の詳細）",
-        "作成したマイスキルの他ユーザーへの共有・配布機能の詳細",
-        "各スキル実行時の外部ツール連携（外部API連携等）の詳細仕様"
+        "新機能「スキル」を利用する際の各有料プラン（Pro、Max等）および無料プランにおける具体的な利用制限（クレジット消費量や実行回数制限の詳細）",
+        "「スキル」機能に関する利用規約や商用利用範囲の詳細条件",
+        "自作・インポートしたスキルの他ユーザーへの配布・共有仕様の詳細"
       ],
       "contradictions": [
-        "候補タイトルにある「ワンクリック完結させる自動化レシピ」について、一次情報ではチャットでの手動呼び出し（/入力）や自動呼び出し、ファイルアップロードやインポート機能は説明されているものの、ワンクリックで完結するレシピ集といった提供形態は明記されておらず、誇張表現にあたる。"
+        "候補タイトルの「多重業務をワンクリック完結させる自動化レシピ」について、提供される情報はチャットでのコマンド（/）指定や自律呼び出し、GitHub等からのインポート仕様であり、ワンクリックで完結するレシピ集の提供は確認できず誇張表現にあたる。"
       ],
-      "safe_paid_title": "HIX AI新機能「スキル」解説：自律型AIエージェントによる業務一括処理とカスタムスキルの導入法",
-      "safe_summary": "HIX AIが2026年10月20日に公開した新機能「スキル」は、動画生成、データ分析、PDF解析、議事録作成などの複数ステップに及ぶタスクを一括処理する機能パッケージです。チャットからの呼び出しに加え、ZIPやGitHub経由で独自スキルをインポートして専用AI環境を構築できます。",
+      "safe_paid_title": "HIX AI新機能「スキル」解説：自律型AIエージェントによるタスク一括処理とカスタムスキルの導入手順",
+      "safe_summary": "HIX AIが2026年10月20日に公開した新機能「スキル」は、動画生成、データ分析、PDF解析、レポート作成などの一連のタスクを一括処理する機能パッケージです。チャットからの呼び出しやGitHub・PCからのスキルインポートにより、業務に応じた専用AI環境を構築できます。",
       "money_value_score": 60,
       "paid_conversion_score": 65,
       "time_sensitivity_score": 70,
@@ -1265,12 +1295,12 @@
       "useful_until": "",
       "evergreen": true,
       "recommended_action": "hold",
-      "reason": "新機能「スキル」の公開事実、主要な機能一覧、GitHubやZIPからのインポート仕様などは一次情報（プレスリリース）で確認できます。しかし、有料noteの検証必須項目である『対象プランや無料枠の具体的制限』や『スキルの共有機能の詳細』についての記載がソース内で不足しており、候補タイトルの「ワンクリック完結」も誇張表現が含まれるため、partial（保留）判定とします。"
+      "reason": "新機能「スキル」のリリース事実や主要機能（データ分析、動画作成、GitHubからのインポート等）は確認できますが、有料noteとして重要な「各プランにおけるスキル機能の利用制限・クレジット消費仕様」や「利用規約・商用利用条件」に関する情報が提供ソース内で不足しており、候補タイトルにも一部誇張が含まれるためpartial（保留）とします。"
     },
-    "verified_at": "2026-10-21T02:25:59.669077+09:00",
+    "verified_at": "2026-10-22T02:30:32.919831+09:00",
     "entity_info": {
       "main_entity": "HIX AI",
-      "company_name": "",
+      "company_name": "INNOVATE AI PTE. LTD.",
       "search_keywords": [
         "HIX AI スキル",
         "HIX.AI 新機能 スキル",
@@ -1287,6 +1317,27 @@
     },
     "sources_checked": [
       {
+        "url": "https://prtimes.jp/main/html/rd/p/000000007.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "高速・高精度なAI会話を実現――HIX.AI、次世代AIチャットモデルで生成速度と精度を強化！ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000026.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがシーン別の画像生成機能をリリース！商品やロゴの原型を保ち、プロ品質のマーケティング画像を瞬時に作成 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000016.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX.AIが実写レベルの最新モデル『GPT Image 2.0』の提供を開始！AI画像内に「正確な文字」が書ける時代へ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 98
+      },
+      {
         "url": "https://prtimes.jp/main/html/rd/p/000000006.000175497.html",
         "domain": "prtimes.jp",
         "source_type": "primary_release",
@@ -1294,67 +1345,46 @@
         "source_confidence": 98
       },
       {
-        "url": "https://prtimes.jp/main/html/rd/p/000000024.000175497.html",
-        "domain": "prtimes.jp",
+        "url": "https://news.livedoor.com/pr_topics/detail/32613409/",
+        "domain": "news.livedoor.com",
         "source_type": "primary_release",
-        "title": "【機能アップデート】HIX AIはPPTコンバーターを提供！PDF・Word・画像・HTML・動画をPowerPointに変換できる | INNOVATE AI PTE. LTDのプレスリリース",
+        "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 (2026年10月20日掲載) - ライブドアニュース",
         "source_confidence": 95
       },
       {
-        "url": "https://ascii.jp/elem/000/004/442/4442172/",
-        "domain": "ascii.jp",
-        "source_type": "primary_release",
-        "title": "ASCII.jp：【機能アップデート】HIX AI スライド作成機能に「最適化」「変換」の専用入口と新テンプレートを追加！",
-        "source_confidence": 9
-      },
-      {
-        "url": "https://ascii.jp/elem/000/004/401/4401810/",
-        "domain": "ascii.jp",
-        "source_type": "primary_release",
-        "title": "ASCII.jp：オールインワンAI動画生成「HIX.AI」がアップデート！注目モデル『Happy Horse 1.0』＆『Seedance 2.0』を新搭載し、映画レベルの動画制作を全自動化",
-        "source_confidence": 9
-      },
-      {
-        "url": "https://ascii.jp/elem/000/004/444/4444317/",
-        "domain": "ascii.jp",
-        "source_type": "primary_release",
-        "title": "ASCII.jp：HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現",
-        "source_confidence": 0
-      },
-      {
-        "url": "https://ascii.jp/elem/000/004/368/4368085/",
-        "domain": "ascii.jp",
-        "source_type": "primary_release",
-        "title": "ASCII.jp：【全面アップデート】生成AIプラットフォーム「HIX.AI」、AIチャット・スライド・動画・画像・文章生成機能を大幅強化！",
-        "source_confidence": 0
-      },
-      {
-        "url": "https://prtimes.jp/main/html/rd/p/000000016.000175497.html",
+        "url": "https://prtimes.jp/main/html/rd/p/000000010.000175497.html",
         "domain": "prtimes.jp",
         "source_type": "primary_release",
-        "title": "HIX.AIが実写レベルの最新モデル『GPT Image 2.0』の提供を開始！AI画像内に「正確な文字」が書ける時代へ | INNOVATE AI PTE. LTDのプレスリリース",
-        "source_confidence": 0
+        "title": "HIX.AIは「AI記事作成」機能を強化──複数AIモデル対応で、SEO記事の品質と生成効率が向上 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 95
       },
       {
         "url": "https://prtimes.jp/main/html/rd/p/000000004.000175497.html",
         "domain": "prtimes.jp",
         "source_type": "primary_release",
         "title": "テキストや画像から動画生成AI「HIX AI」機能強化のお知らせ、複雑な操作不要、無料で動画を作成 | INNOVATE AI PTE. LTDのプレスリリース",
-        "source_confidence": 0
+        "source_confidence": 95
       },
       {
-        "url": "https://prtimes.jp/main/html/rd/p/000000002.000175497.html",
-        "domain": "prtimes.jp",
-        "source_type": "primary_release",
-        "title": "オールインワン AI画像生成ツール「HIX AI」の機能を強化、チャットだけで高精度な画像を作成 | INNOVATE AI PTE. LTDのプレスリリース",
-        "source_confidence": 0
+        "url": "https://voix.jp/business-cards/hix-ai-new-skill-launch/",
+        "domain": "voix.jp",
+        "source_type": "secondary",
+        "title": "HIX AIが業務を革新する新機能「スキル」を発表！全自動化で生産性向上を実現 - VOIX",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://voix.jp/business-cards/hix-ai-scene-image-generation/",
+        "domain": "voix.jp",
+        "source_type": "secondary",
+        "title": "HIX AIが新たにシーン別画像生成機能を搭載し、プロ品質のマーケティング素材を瞬時に作成可能に - VOIX",
+        "source_confidence": 95
       },
       {
         "url": "https://voix.jp/business-cards/hix-ai-slide-update/",
         "domain": "voix.jp",
         "source_type": "secondary",
         "title": "HIX.AIが大幅アップデート！新機能でプレゼン資料の美しさとクオリティが飛躍的に向上 - VOIX",
-        "source_confidence": 0
+        "source_confidence": 95
       }
     ]
   },
