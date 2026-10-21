@@ -64,17 +64,5 @@ jobs:
           PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
         run: python sync_paid_note_to_private.py
 
-      - name: Commit generated files
-        run: |
-          git config user.name "AI Article Bot"
-          git config user.email "actions@github.com"
-
-          git add -A
-
-          if git diff --cached --quiet; then
-            echo "No changes generated."
-            exit 0
-          fi
-
-          git commit -m "Update paid note opportunity scan"
-          git push
+      - name: Commit generated files safely
+        run: bash .github/scripts/safe-commit-push.sh 'Update paid note opportunity scan'
