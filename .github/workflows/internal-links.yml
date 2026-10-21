@@ -667,17 +667,5 @@ jobs:
           print("カテゴリ分け・色分け・内部リンク強化 完了")
           PY
 
-      - name: Commit changes
-        run: |
-          git config user.name "AI Internal Link Bot"
-          git config user.email "actions@github.com"
-
-          git add -A
-
-          if git diff --cached --quiet; then
-            echo "No changes."
-            exit 0
-          fi
-
-          git commit -m "Add category pages and colored internal links"
-          git push
+      - name: Commit generated files safely
+        run: GIT_BOT_NAME="AI Internal Link Bot" bash .github/scripts/safe-commit-push.sh 'Add category pages and colored internal links'
