@@ -82,5 +82,12 @@
     "due_at": "2026-11-04T00:00:00.000Z",
     "queued_date_jst": "2026-10-21",
     "type": "twitter_thread_2_posts"
+  },
+  {
+    "filename": "2026-10-18_151603.html",
+    "buffer_post_id": "6ad98ee0ecaa6cda042812af",
+    "due_at": "2026-11-05T00:00:00.000Z",
+    "queued_date_jst": "2026-10-22",
+    "type": "twitter_thread_2_posts"
   }
 ]
