@@ -1532,5 +1532,155 @@
         "source_confidence": 0
       }
     ]
+  },
+  {
+    "category_hint": "お金を生む",
+    "query": "クリエイター 収益化 新機能 キャンペーン",
+    "title": "企業案件の獲得から収益化までをワンストップ化！YouTubeがクリエイター支援の新機能を大量発表 - DXマガジン",
+    "summary": "企業案件の獲得から収益化までをワンストップ化！YouTubeがクリエイター支援の新機能を大量発表 &nbsp;&nbsp; DXマガジン",
+    "source": "DXマガジン",
+    "url": "https://news.google.com/rss/articles/CBMiTEFVX3lxTE90TnFueEZVbkIxN2EzdTluRUI5LVJOY3ZuMUFQY2lNWS1JZWFZdHJMV3UxTnBrWlBPZWhWVGd6RkFfUDBUTHZ4Y3VweW0?oc=5",
+    "published": "Sat, 26 Sep 2026 07:00:00 GMT",
+    "category": "お金を生む",
+    "score": 85,
+    "urgency": "high",
+    "candidate_title": "YouTubeクリエイター新機能解剖：企業案件獲得から自動収益化までの導線設計法",
+    "why_paid_value": "YouTube公式が追加した案件マッチング・収益化機能をいち早く使いこなし、登録者数が少なくてもスポンサー案件を獲得するための実践ガイドはクリエイター読者に直結する利益をもたらす。",
+    "verification_needed": [
+      "新機能の日本国内ロールアウト時期",
+      "利用条件（登録者数・再生時間などの足切り基準）",
+      "手数料率と支払いサイクル"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-24T02:20:23.767795+09:00",
+    "collection_date_jst": "2026-10-24",
+    "status": "rejected",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "rejected",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "YouTubeは2027年2月1日よりYPPの新規参加要件を改定し、直近365日で8,000時間の有効総再生時間または直近90日で2,000万回の有効ショート動画視聴回数を求める予定である",
+          "source_url": "https://blog.youtube/intl/ja-jp/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/",
+          "source_type": "official"
+        },
+        {
+          "claim": "YouTubeはYouTube StudioのAsk Studioにおいて、ブランドからの依頼への回答作成や提案の下書き、メディアキット調整助言などのブランド案件向け支援機能を導入する計画を発表した",
+          "source_url": "https://www.itmedia.co.jp/news/article/2609/24/2000001682/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "YouTubeショッピングのアフィリエイトプログラムにおいて、海外視聴者向けローカライズリンクの表示や特別手数料率・ボーナスを提示できるキャンペーンの導入が発表された",
+          "source_url": "https://www.itmedia.co.jp/news/article/2609/24/2000001682/",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "Ask Studioブランド案件支援機能やダイナミックブランドセグメント等の公式一次情報（公式ブログやヘルプ）",
+        "各新機能の日本国内での具体的なロールアウト時期および利用条件（登録者数等の足切り基準）",
+        "アフィリエイトキャンペーンや案件マッチングにおける具体的な手数料率・支払いサイクル"
+      ],
+      "contradictions": [
+        "候補タイトルにある「自動収益化」は誇張である。提供ソース（QUASA記事等）によると、Ask Studioが支援するのは提案文や回答案の下書き・資料準備であり、ブランドへの送信、条件交渉、契約締結まで自動で完結する機能ではないと明記されている。",
+        "「登録者数が少なくてもスポンサー案件を獲得するための実践ガイド」とする点について、新機能の利用条件（対象基準）は公式情報として提示されておらず、根拠以上に強い主張となっている。"
+      ],
+      "safe_paid_title": "YouTube Studioの新機能：Ask Studioによるブランド案件提案支援とショッピング拡大の概要",
+      "safe_summary": "YouTubeは年次イベント等で、クリエイター向けにAsk Studioを活用したブランド案件の回答作成・提案下書き支援機能や、ショッピングアフィリエイト機能の対象国拡大などを発表した。ただし、提案の下書き支援にとどまり自動で交渉や契約が完結するものではなく、機能ごとの国内提供時期や詳細な利用条件は明記されていない。",
+      "money_value_score": 40,
+      "paid_conversion_score": 35,
+      "time_sensitivity_score": 50,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": false,
+      "recommended_action": "reject",
+      "reason": "候補タイトルに含まれる「自動収益化」という表現が誇張であり、情報源で示された『提案の下書き支援に過ぎず自動交渉・成約ではない』という事実に反している。また、案件獲得支援機能に関する公式一次ソースがなく二次情報のみにとどまっており、利用条件やロールアウト時期も不明なため。"
+    },
+    "verified_at": "2026-10-24T02:22:09.504714+09:00",
+    "entity_info": {
+      "main_entity": "YouTube",
+      "company_name": "YouTube",
+      "search_keywords": [
+        "YouTube クリエイター パートナーシップ",
+        "YouTube Studio Ask Studio",
+        "YouTube ダイナミック ブランド セグメント",
+        "YouTube ショッピング アフィリエイト プログラム"
+      ],
+      "likely_official_domains": [
+        "youtube.com"
+      ],
+      "official_pages_to_find": [
+        "クリエイター パートナーシップ 利用条件",
+        "ショッピング アフィリエイト プログラムの手数料・報酬体系",
+        "YouTube Studio 新機能ヘルプ・公式発表"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://blog.youtube/intl/ja-jp/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/",
+        "domain": "blog.youtube",
+        "source_type": "official",
+        "title": "YouTube パートナー プログラムの新しい収益機会と変更点 - YouTube Blog",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://dxmagazine.jp/news/2653ko82/",
+        "domain": "dxmagazine.jp",
+        "source_type": "secondary",
+        "title": "企業案件の獲得から収益化までをワンストップ化！YouTubeがクリエイター支援の新機能を大量発表 | DXマガジン",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://digiday.jp/platforms/youtube-is-building-infrastructure-for-the-full-creator-brand-partnership-lifecycle/",
+        "domain": "digiday.jp",
+        "source_type": "secondary",
+        "title": "クリエイター選びでもう悩まない。 YouTube がGemini搭載の提携マッチングツール発表 | DIGIDAY［日本版］",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://finance.biggo.jp/news/e85d67e6-2fa8-4aea-bda3-94931292fe5a",
+        "domain": "finance.biggo.jp",
+        "source_type": "secondary",
+        "title": "Cafe24、アジア初のグーグルYouTubeクリエイターパートナーシップAPI連携を完了 — BigGo ファイナンス",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://mediamixi.jp/news/16367/",
+        "domain": "mediamixi.jp",
+        "source_type": "secondary",
+        "title": "YouTube、ブランドダッシュボードにクリエイター分析データ表示をテスト | ニュース | IT×エンタメの最前線を届ける | MEDIAMIXI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://gigazine.net/news/20260811-youtube-partner-program/",
+        "domain": "gigazine.net",
+        "source_type": "secondary",
+        "title": "YouTubeパートナープログラムの新規登録に「過去1年間の動画視聴時間が8000時間」か「過去90日間のショート動画再生回数が2000万回」が必要に - GIGAZINE",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://voi.id/ja/amp/599700",
+        "domain": "voi.id",
+        "source_type": "secondary",
+        "title": "YouTube、クリエイター向けに「Dislike」ボタンの配置を変更",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://quasa.io/ja/media/burandoan-jian-noti-an-woaidexia-shu-ki-youtube-studionei-dewan-jie-he",
+        "domain": "quasa.io",
+        "source_type": "secondary",
+        "title": "Ask Studioでブランド案件の提案を下書き、Studio内で完結へ",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.itmedia.co.jp/news/article/2609/24/2000001682/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "YouTube、クリエイター向け新機能を多数発表 Geminiによる会話型編集、動画のA/Bテスト、ライブ配信者のマッチングなど - ITmedia NEWS",
+        "source_confidence": 0
+      }
+    ]
   }
 ]
