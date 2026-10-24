@@ -5380,5 +5380,171 @@
       }
     ],
     "verified_at": "2026-10-24T20:21:23.007985+09:00"
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 - ニコニコニュース",
+    "summary": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 &nbsp;&nbsp; ニコニコニュース",
+    "source": "ニコニコニュース",
+    "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9Sa0JVTUk0QVRLRmhaNkVreS0zZ2x1dmNEZTJieW5XdGJoLXNJbl9VOFF1ckZtaDFKcF94aDlacFNMelJqbWpIdHk5eUs2TjBsTDhmb3I2Wm1NelEzR3FzRXc0X0VkZWNtcU5aek0tNzI2WU1NRUQ2cHphRQ?oc=5",
+    "published": "Tue, 20 Oct 2026 15:45:14 GMT",
+    "category": "時間を得する",
+    "score": 87,
+    "urgency": "high",
+    "candidate_title": "HIX AI新機能「スキル」攻略：多重業務をワンクリック完結させる自動化レシピ",
+    "why_paid_value": "従来複数のプロンプトや手作業が必要だった多段階ワークフロー（調査→執筆→要約等）を1発で自動化する具体的レシピは、読者の労働時間を劇的に削る価値がある。",
+    "verification_needed": [
+      "新機能「スキル」の対象プラン（無料枠で試せるか）",
+      "作成したスキルの共有・複製可否",
+      "日本語出力の精度および外部ツール連携機能"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-21T02:24:30.868113+09:00",
+    "collection_date_jst": "2026-10-21",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 65,
+      "verified_claims": [
+        {
+          "claim": "INNOVATE AI PTE. LTD.が2026年10月20日にHIX AIの新機能「スキル」を公開し、情報検索からレポート執筆、資料生成までの複数工程をAIが自律的に一括処理する機能パッケージを提供している。",
+          "source_url": "https://news.livedoor.com/pr_topics/detail/32613409/",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "新機能「スキル」では動画生成やデータ分析など多数の機能を提供し、自作スキルの追加や管理も可能である。",
+          "source_url": "https://news.livedoor.com/pr_topics/detail/32613409/",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "2026年10月21日には画像生成機能において「ポスターとチラシ」「SNS投稿」「商品広告」「EC商品画像」「インフォグラフィック」の5つのシーン別画像生成スキルがリリースされた。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000026.000175497.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "2026年10月22日にリリースされた新機能「プロジェクト」において、同一プロジェクト下の異なるタスク間で専用スキルを配置・共有できる。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000027.000175497.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "HIX AIには無料プラン（月額$0.00）のほか、年払い月額$9.99のProプラン、年払い月額$14.99〜のMaxプランが存在する。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000016.000175497.html",
+          "source_type": "primary_release"
+        }
+      ],
+      "missing_claims": [
+        "新機能「スキル」を利用する際の各プラン（無料・Pro・Max）における利用制限（クレジット消費量や実行回数の上限）",
+        "自作スキルの共有・複製に関する具体的な仕様",
+        "新機能「スキル」全体の商用利用に関する利用規約および外部ツール連携の詳細仕様"
+      ],
+      "contradictions": [
+        "候補タイトルにある「多重業務をワンクリック完結させる自動化レシピ」について、提供された情報源にはワンクリックで完結するレシピ集や具体的な手順は記載されておらず、誇張表現にあたる。"
+      ],
+      "safe_paid_title": "HIX AI新機能「スキル」の概要：自律型AIによる複数業務の一括処理と自作スキルの追加・管理機能",
+      "safe_summary": "HIX AIは2026年10月20日に新機能「スキル」を公開しました。情報検索からレポート執筆、資料生成などの複数工程をAIが自律的に一括処理する機能パッケージであり、自作スキルの追加・管理や、プロジェクト機能を通じたタスク間でのスキル共有に対応しています。",
+      "money_value_score": 60,
+      "paid_conversion_score": 60,
+      "time_sensitivity_score": 70,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "新機能「スキル」のリリースおよび概要は確認できるものの、有料note作成に必要なプラン別利用制限（無料枠での可否、クレジット消費量等）や商用利用規約、自作スキルの共有・複製に関する公式仕様が提供ソース内で不足しており、候補タイトルにも根拠のない誇張表現が含まれるため保留（hold）とします。"
+    },
+    "verified_at": "2026-10-25T01:10:06.406872+09:00",
+    "entity_info": {
+      "main_entity": "HIX AI",
+      "company_name": "INNOVATE AI PTE. LTD.",
+      "search_keywords": [
+        "HIX AI スキル",
+        "HIX.AI 新機能 スキル",
+        "HIX AI 料金プラン",
+        "INNOVATE AI PTE. LTD."
+      ],
+      "likely_official_domains": [
+        "hix.ai"
+      ],
+      "official_pages_to_find": [
+        "新機能「スキル」詳細",
+        "料金プラン・利用制限",
+        "利用規約・商用利用"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000027.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがすべてのタスクを一元管理する新機能「プロジェクト」を公開！分断された業務を繋ぎ、長期プロジェクトを自動化 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000026.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがシーン別の画像生成機能をリリース！商品やロゴの原型を保ち、プロ品質のマーケティング画像を瞬時に作成 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000016.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX.AIが実写レベルの最新モデル『GPT Image 2.0』の提供を開始！AI画像内に「正確な文字」が書ける時代へ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000004.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "テキストや画像から動画生成AI「HIX AI」機能強化のお知らせ、複雑な操作不要、無料で動画を作成 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000006.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "【全面アップデート】生成AIプラットフォーム「HIX.AI」、AIチャット・スライド・動画・画像・文章生成機能を大幅強化！ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.livedoor.com/pr_topics/detail/32613409/",
+        "domain": "news.livedoor.com",
+        "source_type": "primary_release",
+        "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 (2026年10月20日掲載) - ライブドアニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/prtimes_000000027_000175497/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがすべてのタスクを一元管理する新機能「プロジェクト」を公開！分断された業務を繋ぎ、長期プロジェクトを自動化｜Infoseekニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/prtimes_000000026_000175497/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがシーン別の画像生成機能をリリース！商品やロゴの原型を保ち、プロ品質のマーケティング画像を瞬時に作成｜Infoseekニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/prtimes_000000024_000175497/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "primary_release",
+        "title": "【機能アップデート】HIX AIはPPTコンバーターを提供！PDF・Word・画像・HTML・動画をPowerPointに変換できる｜Infoseekニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/442/4442172/",
+        "domain": "ascii.jp",
+        "source_type": "primary_release",
+        "title": "ASCII.jp：【機能アップデート】HIX AI スライド作成機能に「最適化」「変換」の専用入口と新テンプレートを追加！",
+        "source_confidence": 95
+      }
+    ]
   }
 ]
