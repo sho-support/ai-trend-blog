@@ -1361,6 +1361,7 @@ def main():
             )
             verification = {
                 "status": "needs_manual",
+                "retry_pending": True,
                 "confidence": 0,
                 "verified_claims": [],
                 "missing_claims": [
@@ -1405,11 +1406,13 @@ def main():
             "verified_at": now_jst.isoformat(),
         }
 
-        candidates[index][
-            "status"
-        ] = verification[
-            "status"
-        ]
+        # 一時的なAPI/JSONエラーは次回の自動実行で再検証。
+        # 有料原稿に使われるverifiedには決してしない。
+        candidates[index]["status"] = (
+            "unverified"
+            if verification.get("retry_pending")
+            else verification["status"]
+        )
 
         candidates[index][
             "verification"
