@@ -67,17 +67,24 @@ def generate_content_with_fallback(contents, purpose="Gemini生成"):
         try:
             print(f"{purpose}: {model_name} を使用")
 
-            return client.models.generate_content(
+            # この検証スクリプトのGemini応答はすべてJSON形式。
+            # プロンプトで依頼するだけでなくAPI側でもJSONを指定する。
+            response = client.models.generate_content(
                 model=model_name,
                 contents=contents,
+                config={"response_mime_type": "application/json"},
             )
+
+            # JSONが壊れている場合は成功扱いせず次のモデルへ。
+            extract_json_object(response.text)
+            return response
 
         except Exception as e:
             last_error = e
             print(f"{purpose}エラー [{model_name}]: {e}")
 
     raise RuntimeError(
-        f"{purpose}失敗: 全モデルで生成できませんでした: {last_error}"
+        f"{purpose}失敗: 全モデルで有効なJSONを取得できませんでした: {last_error}"
     )
 
 
@@ -141,7 +148,6 @@ def same_domain_or_subdomain(host, base):
 
 def extract_json_object(text):
     text = (text or "").strip()
-
     text = (
         text
         .replace("```json", "")
@@ -149,19 +155,18 @@ def extract_json_object(text):
         .strip()
     )
 
-    match = re.search(
-        r"\{[\s\S]*\}",
-        text,
-    )
-
+    match = re.search(r"\\{", text)
     if not match:
         raise ValueError(
             "Gemini応答からJSONオブジェクトを取得できませんでした。"
         )
 
-    return json.loads(
-        match.group(0)
-    )
+    # 余分な文章が後ろにあっても最初のオブジェクトのみを読む。
+    # JSON構文エラーを勝手に修復・補完しない。
+    result, _ = json.JSONDecoder().raw_decode(text[match.start():])
+    if not isinstance(result, dict):
+        raise ValueError("Gemini応答がJSONオブジェクトではありません。")
+    return result
 
 
 def resolve_google_news_url(url):
@@ -773,11 +778,21 @@ def find_sources(candidate):
 
     # APIコストと実行時間を抑えるため最大15ページ。
     for page in unique_pages[:15]:
-        classification = classify_source(
-            candidate,
-            entity_info,
-            page,
-        )
+        try:
+            classification = classify_source(
+                candidate,
+                entity_info,
+                page,
+            )
+        except (RuntimeError, ValueError, TypeError) as e:
+            # 未分類ページを公式情報として採用しない。
+            print(
+                "::warning::情報源分類を保留（JSON/APIエラー）:",
+                page.get("url", ""),
+                type(e).__name__,
+                str(e)[:250],
+            )
+            continue
 
         source_type = classification.get(
             "source_type",
@@ -1316,49 +1331,47 @@ def main():
             "========================"
         )
 
-        (
-            entity_info,
-            sources,
-        ) = find_sources(
-            candidate
-        )
+        entity_info = {}
+        sources = []
+        try:
+            entity_info, sources = find_sources(candidate)
 
-        print(
-            "取得ソース数:",
-            len(sources),
-        )
+            print("取得ソース数:", len(sources))
+            print(
+                "official:",
+                sum(s.get("source_type") == "official" for s in sources),
+            )
+            print(
+                "primary_release:",
+                sum(s.get("source_type") == "primary_release" for s in sources),
+            )
 
-        print(
-            "official:",
-            len(
-                [
-                    source
-                    for source in sources
-                    if source.get(
-                        "source_type"
-                    ) == "official"
-                ]
-            ),
-        )
-
-        print(
-            "primary_release:",
-            len(
-                [
-                    source
-                    for source in sources
-                    if source.get(
-                        "source_type"
-                    ) == "primary_release"
-                ]
-            ),
-        )
-
-        verification = verify_candidate(
-            candidate,
-            entity_info,
-            sources,
-        )
+            verification = verify_candidate(
+                candidate,
+                entity_info,
+                sources,
+            )
+        except (RuntimeError, ValueError, TypeError, KeyError) as e:
+            # 情報が確認できない候補をverifiedにしない。
+            # 他の候補の検証まで止めないため、手動確認待ちにする。
+            print(
+                "::warning::候補を未検証として保留:",
+                type(e).__name__,
+                str(e)[:300],
+            )
+            verification = {
+                "status": "needs_manual",
+                "confidence": 0,
+                "verified_claims": [],
+                "missing_claims": [
+                    "AI応答形式または検証処理に失敗したため根拠確認が未完了"
+                ],
+                "contradictions": [],
+                "safe_paid_title": "",
+                "safe_summary": "",
+                "recommended_action": "hold",
+                "reason": "自動検証エラー。公式情報の確認が完了するまで販売対象外。",
+            }
 
         record = {
             **candidate,
