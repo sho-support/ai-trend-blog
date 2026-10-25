@@ -155,7 +155,7 @@ def extract_json_object(text):
         .strip()
     )
 
-    match = re.search(r"\\{", text)
+    match = re.search(r"\{", text)
     if not match:
         raise ValueError(
             "Gemini応答からJSONオブジェクトを取得できませんでした。"
