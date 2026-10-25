@@ -87,5 +87,14 @@
     "scored_count": 69,
     "kept_count": 2,
     "new_count": 0
+  },
+  {
+    "collection_date_jst": "2026-10-26",
+    "run_slot": "opportunity",
+    "created_at": "2026-10-26T01:38:56.172357+09:00",
+    "raw_count": 69,
+    "scored_count": 69,
+    "kept_count": 2,
+    "new_count": 0
   }
 ]
