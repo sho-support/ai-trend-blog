@@ -5546,5 +5546,465 @@
         "source_confidence": 95
       }
     ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "楽天 セール ポイント キャンペーン",
+    "title": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ - OREFOLDER",
+    "summary": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ &nbsp;&nbsp; OREFOLDER",
+    "source": "OREFOLDER",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9WYVJKbzhkRzh0ZXB1VmVyaTd2d0FqYWYtSFR4OEwtU1lGUHJ4aDN0NkxoN1hReUZ5YmJ5QUF6dFB5LXV4ZTJQXzNTQ3BZN04yWnFES1RpaXNmcmtq?oc=5",
+    "published": "Fri, 18 Sep 2026 07:00:00 GMT",
+    "category": "お金が得",
+    "score": 72,
+    "urgency": "medium",
+    "candidate_title": "楽天モバイル紹介CP改定：MNP以外でも13,000pt獲得できる裏技・併用条件",
+    "why_paid_value": "新規契約（MNPなし）でも13,000ptもらえる条件変更は大きく、サブ回線契約やポイント目的のポイ活読者にとって直接的な金銭メリットがある。",
+    "verification_needed": [
+      "13,000pt進呈の適用条件（紹介リンク経由、開通期限など）",
+      "既存会員の再契約や2回線目以降の対象可否",
+      "キャンペーンの終了予定日"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "「楽天・三木谷浩史の特別なお客様キャンペーン」（キャンペーンコード：2798）において、2026年9月17日0:00以降の申し込み分より、新規お申し込みおよび楽天モバイル（ドコモ回線・au回線）からのプラン変更（移行）で進呈されるポイントが13,000ポイント（期間限定ポイント、3回分割進呈）である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=8254717d-9e8a-487f-afe0-d3e0ebe867e0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "特典適用の条件として、Webまたは店舗で対象プラン（Rakuten最強プランまたはRakuten最強U-NEXT）に指定のクーポンコードを適用して申し込み、プラン申し込みの翌月末日23:59までに利用開始し、同期限までにRakuten Linkアプリから発信して10秒以上の通話を行う必要がある。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=8254717d-9e8a-487f-afe0-d3e0ebe867e0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "本キャンペーンの適用回数はおひとり様1契約1回限りであり、Web・店舗ともにプラン申し込み終了日は未定である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=8254717d-9e8a-487f-afe0-d3e0ebe867e0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "通常の「【楽天モバイル】紹介キャンペーン（コード：1784）」や「【楽天従業員から紹介された方限定】Rakuten最強プラン紹介キャンペーン（コード：2162）」とは併用不可（本キャンペーンが優先適用）である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=8254717d-9e8a-487f-afe0-d3e0ebe867e0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "候補タイトルにある「裏技」に該当する公式手順・制度の存在",
+        "過去に同一キャンペーンを適用したユーザーの再契約や2回線目以降の対象可否（公式上は「おひとり様1契約1回限り」と明記）"
+      ],
+      "contradictions": [
+        "候補タイトルに「裏技」とあるが、公式情報には裏技要素は一切なく、指定クーポン適用・回線開通・Rakuten Link通話という通常の手続きに限定される。",
+        "候補タイトルに「紹介CP改定」とあるが、本施策は「楽天・三木谷浩史の特別なお客様キャンペーン（コード：2798）」であり、通常の紹介キャンペーン（コード：1784）とは別枠かつ併用不可である。"
+      ],
+      "safe_paid_title": "楽天モバイル「特別なお客様キャンペーン」：MNP以外の新規申込で13,000pt獲得の適用条件と注意点",
+      "safe_summary": "楽天モバイルの「楽天・三木谷浩史の特別なお客様キャンペーン（コード：2798）」では、2026年9月17日以降の申し込み分より、新規契約等のMNP以外の申し込みで進呈されるポイントが13,000ポイント（期間限定・3回分割進呈）となっています。特典獲得には指定クーポンコードの適用、翌月末日までの利用開始およびRakuten Linkアプリで10秒以上の発信通話が必要です。特典適用はおひとり様1契約1回限りで、通常の紹介キャンペーン等とは併用できません。",
+      "money_value_score": 75,
+      "paid_conversion_score": 60,
+      "time_sensitivity_score": 50,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "MNP以外の新規契約で13,000ポイントが進呈される条件や期限は公式情報で確認できているものの、候補タイトルにある「裏技」は根拠のない誇張表現であり、通常の紹介キャンペーンとの混同も見られるため、タイトルおよび構成の修正を前提とした保留（hold）とします。"
+    },
+    "verified_at": "2026-10-25T20:51:15.215698+09:00",
+    "entity_info": {
+      "main_entity": "楽天モバイル",
+      "company_name": "楽天モバイル株式会社",
+      "search_keywords": [
+        "楽天モバイル",
+        "楽天・三木谷浩史の特別なお客様キャンペーン",
+        "キャンペーンコード 2798",
+        "Rakuten最強プラン"
+      ],
+      "likely_official_domains": [
+        "network.mobile.rakuten.co.jp",
+        "rakuten.co.jp"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン詳細",
+        "適用条件・注意事項",
+        "特別なお客様へ: Rakuten最強プランのご案内"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=8254717d-9e8a-487f-afe0-d3e0ebe867e0&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+        "domain": "network.mobile.rakuten.co.jp",
+        "source_type": "official",
+        "title": "特別なお客様へ: Rakuten最強プランのご案内 | 楽天モバイル",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://network.mobile.rakuten.co.jp/?scid=af_trf_mno&trflg=1",
+        "domain": "network.mobile.rakuten.co.jp",
+        "source_type": "official",
+        "title": "楽天モバイル",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://orefolder.jp/2026/09/rakuten-referral-3/",
+        "domain": "orefolder.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ – OREFOLDER",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.yahoo.co.jp/articles/01858f9369cb0db60332d79c293a77be0a56756f",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "「motorola edge 70 fusion」本日23日発売 7000mAhバッテリー搭載スマホ（ケータイ Watch） - Yahoo!ニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/mynavi_3239992/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "secondary",
+        "title": "モトローラ、「motorola edge 70 fusion」の販売を開始 - 楽天モバイルでプレゼントキャンペーン実施中｜Infoseekニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.itmedia.co.jp/mobile/articles/2610/23/news061.html",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "yVoCAuiPhone DuovªLy[ÅÅå4~Ò³@2NÔñ17~`ÉyX}z¨¾îñz - ITmedia Mobile",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.itmedia.co.jp/mobile/articles/2610/22/news076.html",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "yVoCÌ1023ú­umotorola edge 70 fusionvAMNP{Ly[ÅÀ¿48900~yX}z¨¾îñz - ITmedia Mobile",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "業務効率化 AI サービス 新機能",
+    "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 - 北日本新聞webunプラス",
+    "summary": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 &nbsp;&nbsp; 北日本新聞webunプラス",
+    "source": "北日本新聞webunプラス",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE8yMnJTV25kSXVtZW1uRHRSNTd4cnNJX19oWUhwbWhZdWFfT2tINW9XN2VacHBEN2ZzMjdGcGFSUEFySHAycWY0ZU44VQ?oc=5",
+    "published": "Fri, 02 Oct 2026 06:36:46 GMT",
+    "category": "時間を得する",
+    "score": 88,
+    "urgency": "medium",
+    "candidate_title": "PowerPointを開いたままAIがスライドを直接編集：「ChatSense」新機能と実務時短テクニック",
+    "why_paid_value": "外部ツールを行き来せずパワポネイティブでAI編集ができる機能は、多くのホワイトカラー読者が直面する「資料作成の時間」を直接削減できるため、有料コンテンツとして最も購入動機が生まれやすい。",
+    "verification_needed": [
+      "「ChatSense」の提供開始日とPowerPointアドインとしての利用料金",
+      "既存のMicrosoft 365 Copilot等との機能・コスト比較",
+      "日本語プロンプトの対応精度と編集可能な要素（レイアウト、テキスト、図形）"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 80,
+      "verified_claims": [
+        {
+          "claim": "株式会社ナレッジセンスは、法人向けAIエージェント「ChatSense」のスライド生成AIにおいて、PowerPointを開いたまま選択したスライドの修正や続きのスライドの追加をAIに依頼できる新機能を提供予定であることを発表した",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000413.000073671.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "ChatSenseの基本プラン「ビジネス」は初期費用0円、月額980円/人から利用可能で、最低利用期間・最低利用人数はない",
+          "source_url": "https://chatsense.jp/function/codesense",
+          "source_type": "official"
+        },
+        {
+          "claim": "ChatSenseの拡張機能「スライド生成AI」は月額98,000円（ビジネスプラン以上の基本プラン加入が必要）で、組織全体で月1000枚まで資料生成が可能である",
+          "source_url": "https://chatsense.jp/function/codesense",
+          "source_type": "official"
+        },
+        {
+          "claim": "ChatSense Notebook機能では、PDF、Word、Excel、PowerPointをソースとして追加し、AIによる回答やスライド生成が可能である",
+          "source_url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "PowerPoint上でAI編集を行う新機能の具体的な提供開始日（リリース日）",
+        "新機能の利用条件、対象プラン、追加費用の有無",
+        "候補タイトルにある「実務時短テクニック」を裏付ける具体的な操作手順やノウハウ"
+      ],
+      "contradictions": [
+        "候補タイトルに「実務時短テクニック」とあるが、公式情報およびプレスリリースには新機能の提供予定告知と概要のみが記載されており、具体的な時短テクニックや操作ノウハウの根拠が存在しない",
+        "該当機能は「提供予定」の段階であり、現在利用可能な機能として実務テクニックを解説できる状態ではない"
+      ],
+      "safe_paid_title": "PowerPoint上でスライド編集が可能に：法人向けAI「ChatSense」の新機能提供予定と既存スライド機能の概要",
+      "safe_summary": "ナレッジセンスは、法人向けAI「ChatSense」においてPowerPointを開いたままスライドの修正や追加をAIに依頼できる新機能の提供予定を発表しました。ChatSenseは月額980円/人のビジネスプランに加え、月額98,000円の拡張機能としてスライド生成AIを提供していますが、新機能の具体的な提供開始日や利用料金の詳細、実務操作ノウハウは公表されていません。",
+      "money_value_score": 40,
+      "paid_conversion_score": 45,
+      "time_sensitivity_score": 50,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": false,
+      "recommended_action": "hold",
+      "reason": "プレスリリースおよび公式サイトにより新機能の提供予定や基本料金体系は確認できるものの、新機能自体の提供開始時期や個別利用条件・追加料金が未公表であり、タイトルにある「実務時短テクニック」を裏付ける情報源が存在しないため。"
+    },
+    "verified_at": "2026-10-25T20:51:15.215698+09:00",
+    "entity_info": {
+      "main_entity": "ChatSense",
+      "company_name": "株式会社ナレッジセンス",
+      "search_keywords": [
+        "ChatSense",
+        "ナレッジセンス",
+        "ChatSense スライド生成AI",
+        "ChatSense PowerPoint"
+      ],
+      "likely_official_domains": [
+        "chatsense.jp",
+        "knowledgesense.jp"
+      ],
+      "official_pages_to_find": [
+        "スライド生成機能詳細",
+        "料金プラン",
+        "プレスリリース",
+        "お問い合わせ"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://chatsense.jp/contact?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向けChatGPT「ChatSense」｜社内データ検索・セキュリティ強化",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/gallery/slide-gen?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatSense スライド生成AI事例集",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/blog/enterprise-ai-comparison?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け生成AIサービス比較｜全ての料金公開・おすすめ契約",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/blog/chatgpt-business-plan?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatGPTの法人契約プラン｜利用方法・料金について",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/codesense",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "国産コーディングエージェント「CodeSense」｜複雑なコード・VBAの改修を支援",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://knowledgesense.jp/?utm_source=413&utm_medium=prtimes",
+        "domain": "knowledgesense.jp",
+        "source_type": "official",
+        "title": "株式会社ナレッジセンス｜会社概要｜東京都",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「ChatSense Notebook」｜社内資料を根拠つきで読み解くAIワークスペース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/cowork?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「Cowork」｜ブラウザ操作AIエージェント",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/case/kao",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "花王、ChatSense を導入。膨大な「研究データ」を生成AI で探索可能に。新時代のデータ活用術",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000413.000073671.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 | 株式会社ナレッジセンスのプレスリリース",
+        "source_confidence": 100
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "OpenAI、Codexの新機能「Record & Replay」を公開 操作の実演で作業を自動化 - ビジネス+IT",
+    "summary": "OpenAI、Codexの新機能「Record & Replay」を公開 操作の実演で作業を自動化 &nbsp;&nbsp; ビジネス+IT",
+    "source": "ビジネス+IT",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1lYklOLUF4RG1yVmEzalZGWHBwZk04RDY1cENkdWZKYldwNzgybEhtWDZfWDlwUVlvNmFxYXZEalppMWxaSmVyZ0w4M1BOUnlIakFB?oc=5",
+    "published": "Sat, 20 Jun 2026 07:00:00 GMT",
+    "category": "時間を得する",
+    "score": 88,
+    "urgency": "high",
+    "candidate_title": "OpenAI Codex「Record & Replay」：操作を見せるだけでPC業務を完全自動化する手法",
+    "why_paid_value": "操作の実演（画面録画・操作トレース）だけでAIがコード化・自動実行する機能は、プログラミング不要でRPA以上の時短を実現する最先端情報。",
+    "verification_needed": [
+      "提供ステータス（一般プレビューかAPI限定か）",
+      "動作環境（WebブラウザのみかOS全体か）",
+      "実行時のトークン消費コスト"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-24T20:19:41.724427+09:00",
+    "collection_date_jst": "2026-10-24",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 60,
+      "verified_claims": [
+        {
+          "claim": "OpenAIがCodex向けにユーザーの操作実演を画面録画して再利用可能なスキルとして保存・再実行する新機能「Record & Replay」を公開したこと",
+          "source_url": "https://www.sbbit.jp/article/cont1/185840",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "提供環境はmacOS向けに限定されており、Computer Use機能が有効になっていることが条件であること（Codexバージョン26.616で追加）",
+          "source_url": "https://ascii.jp/elem/000/004/411/4411859/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "提供地域は欧州経済領域（EEA）、英国、スイスを除く地域であること",
+          "source_url": "https://www.watch.impress.co.jp/docs/news/2118707.html",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "OpenAI公式サイト・公式ドキュメント（openai.com）による一次情報",
+        "利用可能なCodex対象プラン（有料プラン限定か否かなど具体的な提供ステータス）",
+        "実行時のトークン消費コストおよび料金体系の詳細"
+      ],
+      "contradictions": [
+        "候補タイトルに「PC業務を完全自動化」とあるが、提供されている機能はmacOS限定かつ特定の手順を実演・記録してスキル化するものであり、PC業務全般の完全自動化を意味するものではなく誇張表現となっている"
+      ],
+      "safe_paid_title": "OpenAI Codex「Record & Replay」：画面操作の実演から手順をスキル化・自動実行する機能（macOS限定）",
+      "safe_summary": "OpenAIがCodex（macOS版）向けに公開した新機能「Record & Replay」は、利用者がMac上で行った操作を録画し、AIが再利用可能な「スキル」として保存・再実行する機能です。利用にはComputer Useの有効化が必要で、欧州経済領域（EEA）・英国・スイスを除く地域で提供されています。",
+      "money_value_score": 5,
+      "paid_conversion_score": 5,
+      "time_sensitivity_score": 4,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "取得できた情報源がすべて二次情報（メディア記事・他社プレスリリース）であり、公式・一次情報（openai.com）による直接の確認が取れていないため。また、候補タイトルの「完全自動化」は根拠情報に対して誇張があり、料金やトークン消費コストに関する詳細情報も未確認のため保留とします。"
+    },
+    "verified_at": "2026-10-25T20:51:15.215698+09:00",
+    "entity_info": {
+      "main_entity": "Codex Record & Replay",
+      "company_name": "OpenAI",
+      "search_keywords": [
+        "OpenAI Codex Record & Replay",
+        "OpenAI Codex Record and Replay",
+        "Codex Record & Replay"
+      ],
+      "likely_official_domains": [
+        "openai.com"
+      ],
+      "official_pages_to_find": [
+        "機能概要・リリース情報",
+        "利用要件・対応環境",
+        "提供プラン・料金"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.sbbit.jp/article/cont1/185840",
+        "domain": "sbbit.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexの新機能「Record & Replay」を公開 操作の実演で作業を自動化 画面録画からAIが手順を学習し、自動で再実行｜ビジネス+IT",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://xtech.nikkei.com/atcl/nxt/info/18/00061/062400103/",
+        "domain": "xtech.nikkei.com",
+        "source_type": "secondary",
+        "title": "従業員のPC操作を録画しスキル抽出、OpenAIが「禁断のツール」 | 日経クロステック（xTECH）",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://ledge.ai/articles/openai_codex_record_replay_skill",
+        "domain": "ledge.ai",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexに作業を“見せて教える”新機能「Record& Replay」 実演した手順をスキル化 | Ledge.ai",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "画面操作を“録画”→AIが作業代行 Codexに新機能「Record & Replay」 - ITmedia NEWS",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://www.watch.impress.co.jp/docs/news/2118707.html",
+        "domain": "watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexが作業を見て覚える「Record& Replay」 - Impress Watch",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://hashout.jp/ai/2346/",
+        "domain": "hashout.jp",
+        "source_type": "secondary",
+        "title": "「毎月の経費精算、もう自分でやらなくていい」——OpenAI Codexの新機能「Record & Replay」がXで1.2万いいね – shiritomo",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/411/4411859/",
+        "domain": "ascii.jp",
+        "source_type": "secondary",
+        "title": "ASCII.jp：OpenAI Codexが作業を“録画”して自動化、Macで実演するだけでスキル化",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://www.itmedia.co.jp/aiplus/article/2607/22/2000000213/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "画面操作を録画→AIが作業代行 Claude新機能「Record a skill」 Codex対抗か - ITmedia AI＋",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://finance.biggo.jp/news/c71bc1ab-424f-4b57-9713-9f7b1cb5880f",
+        "domain": "finance.biggo.jp",
+        "source_type": "secondary",
+        "title": "OpenAI Codex、3つの大型アップデート：オープンソースモデル接続が可能に、「録画・再生」機能が登場、ユーザーが入浴中に返金手続きを完了 — BigGo ファイナンス",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000027.000139254.html",
+        "domain": "prtimes.jp",
+        "source_type": "secondary",
+        "title": "「録画でAIに仕事を教える」時代へ──OpenAI・Anthropic・Microsoftの3機能を徹底解説。Renewer、『録画でAIに仕事を教える 3社徹底比較ガイド』（全62ページ）を無料公開 | 株式会社Renewerのプレスリリース",
+        "source_confidence": 95
+      }
+    ]
   }
 ]
