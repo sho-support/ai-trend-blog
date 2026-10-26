@@ -6327,5 +6327,337 @@
         "source_confidence": 85
       }
     ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 - ニコニコニュース",
+    "summary": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 &nbsp;&nbsp; ニコニコニュース",
+    "source": "ニコニコニュース",
+    "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9Sa0JVTUk0QVRLRmhaNkVreS0zZ2x1dmNEZTJieW5XdGJoLXNJbl9VOFF1ckZtaDFKcF94aDlacFNMelJqbWpIdHk5eUs2TjBsTDhmb3I2Wm1NelEzR3FzRXc0X0VkZWNtcU5aek0tNzI2WU1NRUQ2cHphRQ?oc=5",
+    "published": "Tue, 20 Oct 2026 15:45:14 GMT",
+    "category": "時間を得する",
+    "score": 87,
+    "urgency": "high",
+    "candidate_title": "HIX AI新機能「スキル」攻略：多重業務をワンクリック完結させる自動化レシピ",
+    "why_paid_value": "従来複数のプロンプトや手作業が必要だった多段階ワークフロー（調査→執筆→要約等）を1発で自動化する具体的レシピは、読者の労働時間を劇的に削る価値がある。",
+    "verification_needed": [
+      "新機能「スキル」の対象プラン（無料枠で試せるか）",
+      "作成したスキルの共有・複製可否",
+      "日本語出力の精度および外部ツール連携機能"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-21T02:24:30.868113+09:00",
+    "collection_date_jst": "2026-10-21",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 75,
+      "verified_claims": [
+        {
+          "claim": "INNOVATE AI PTE. LTD.は2026年10月20日、HIX AIにおいて、AIエージェントに専門的な実行能力を付与する新機能「スキル」をリリースした。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000025.000175497.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "「スキル」機能では、情報検索からデータ抽出、レポート執筆、プレゼン資料生成までの一連の業務プロセスをAIが自律的に一括処理できる。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000025.000175497.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "提供されるスキルには「画像から動画生成」「YouTubeショート動画作成」「写真をアニメ化」「データ分析」「PDF AI」「画像文字起こし」「ビジネスレポート作成」「市場・競合分析」「AI議事録・会議アシスタント」などがある。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000025.000175497.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "自作スキルや外部スキルは、パソコンからのアップロード（ZIP形式など）またはGitHubの公開リポジトリのURL経由でインポート可能で、チャット上で「/」を入力するか自動読み込みで呼び出して実行できる。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000025.000175497.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "「画像から動画生成スキル」において、プロンプト不要で商用利用可能な動画コンテンツが作成可能と明記されている。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000025.000175497.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "2026年10月22日公開の「プロジェクト」機能により、プロジェクト専用スキルを配置して同一プロジェクト下の異なるタスク間で共有可能である。",
+          "source_url": "https://news.infoseek.co.jp/article/prtimes_000000027_000175497/",
+          "source_type": "primary_release"
+        }
+      ],
+      "missing_claims": [
+        "各料金プラン（無料プラン、Pro、Maxなど）における新機能「スキル」の具体的な利用可否およびクレジット消費・実行回数制限",
+        "動画生成以外の各種スキル（文章、分析、画像等）における生成物の包括的な商用利用規約・条件",
+        "自作スキルの他者への共有・配布手順の詳細"
+      ],
+      "contradictions": [
+        "候補タイトルの「多重業務をワンクリック完結させる自動化レシピ」について、提供されたプレスリリースにはワンクリックで完結するレシピ集や具体的な設定手順の記載はなく、機能説明以上の誇張表現にあたる。"
+      ],
+      "safe_paid_title": "HIX AI新機能「スキル」の全貌：自律型AIによる一括業務処理と自作スキルのインポート手順",
+      "safe_summary": "INNOVATE AI PTE. LTD.は2026年10月20日、HIX AIに新機能「スキル」を導入しました。リサーチからレポート作成、動画生成などの多段階タスクをAIが自律的に一括処理できるほか、ZIPファイルやGitHubからの自作スキルのインポート、チャット上での「/」コマンドによる呼び出しに対応しています。",
+      "money_value_score": 60,
+      "paid_conversion_score": 60,
+      "time_sensitivity_score": 65,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "新機能「スキル」の公式発表内容やインポート手順は一次情報で確認できているものの、有料記事の訴求点である「ワンクリック完結の自動化レシピ」は情報源に存在しない誇張であり、プランごとの利用枠やスキル全体の商用利用条件などの重要情報が不足しているため保留（hold）とします。"
+    },
+    "verified_at": "2026-10-27T03:47:23.171439+09:00",
+    "entity_info": {
+      "main_entity": "HIX AI",
+      "company_name": "INNOVATE AI PTE. LTD.",
+      "search_keywords": [
+        "HIX AI スキル",
+        "HIX.AI 新機能 スキル",
+        "HIX AI 料金プラン",
+        "INNOVATE AI PTE. LTD."
+      ],
+      "likely_official_domains": [
+        "hix.ai"
+      ],
+      "official_pages_to_find": [
+        "新機能「スキル」詳細",
+        "料金プラン・利用制限",
+        "商用利用規約"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000025.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000026.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがシーン別の画像生成機能をリリース！商品やロゴの原型を保ち、プロ品質のマーケティング画像を瞬時に作成 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000016.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX.AIが実写レベルの最新モデル『GPT Image 2.0』の提供を開始！AI画像内に「正確な文字」が書ける時代へ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000006.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "【全面アップデート】生成AIプラットフォーム「HIX.AI」、AIチャット・スライド・動画・画像・文章生成機能を大幅強化！ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.livedoor.com/pr_topics/detail/32613409/",
+        "domain": "news.livedoor.com",
+        "source_type": "primary_release",
+        "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 (2026年10月20日掲載) - ライブドアニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/prtimes_000000027_000175497/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがすべてのタスクを一元管理する新機能「プロジェクト」を公開！分断された業務を繋ぎ、長期プロジェクトを自動化｜Infoseekニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/prtimes_000000026_000175497/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがシーン別の画像生成機能をリリース！商品やロゴの原型を保ち、プロ品質のマーケティング画像を瞬時に作成｜Infoseekニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/prtimes_000000024_000175497/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "primary_release",
+        "title": "【機能アップデート】HIX AIはPPTコンバーターを提供！PDF・Word・画像・HTML・動画をPowerPointに変換できる｜Infoseekニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/442/4442172/",
+        "domain": "ascii.jp",
+        "source_type": "primary_release",
+        "title": "ASCII.jp：【機能アップデート】HIX AI スライド作成機能に「最適化」「変換」の専用入口と新テンプレートを追加！",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/401/4401810/",
+        "domain": "ascii.jp",
+        "source_type": "primary_release",
+        "title": "ASCII.jp：オールインワンAI動画生成「HIX.AI」がアップデート！注目モデル『Happy Horse 1.0』＆『Seedance 2.0』を新搭載し、映画レベルの動画制作を全自動化",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "アトラシアン、JiraがAIによる要件定義の自動作成、コンテキストを保持しつつタスクをClaudeやCopilotなどのAIエージェントへアサインなど新機能 - Publickey",
+    "summary": "アトラシアン、JiraがAIによる要件定義の自動作成、コンテキストを保持しつつタスクをClaudeやCopilotなどのAIエージェントへアサインなど新機能 &nbsp;&nbsp; Publickey",
+    "source": "Publickey",
+    "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1uTzVYc0hZY2RnMVJLTFRNVVVQcmxUSXVfcjRTdTJ0eXhaY1ZZME8ySER4V0Z6VjBUQzBtWXBQa0s1a0NxeGl4VTU1N3FhdmpubURpSDJQd3hyQ010bzVTZS1iQTN1TVg5YjFyOA?oc=5",
+    "published": "Thu, 23 Jul 2026 07:00:00 GMT",
+    "category": "時間を得する",
+    "score": 85,
+    "urgency": "high",
+    "candidate_title": "JiraのAI自動要件定義＆タスク自動アサイン機能：Claude/Copilot連携による業務爆速化",
+    "why_paid_value": "要件定義の自動ドラフト作成からClaude/Copilot等のAIエージェントへのタスク丸投げまでをカバーする業務直結機能。導入設定とプロンプトの工夫でプロジェクト進行の圧倒的時短になるため。",
+    "verification_needed": [
+      "利用可能なプラン（Atlassian Intelligence対象ライセンス）",
+      "Claude/CopilotとのAPI接続要件",
+      "日本語環境での要件定義生成精度"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-27T03:45:42.330361+09:00",
+    "collection_date_jst": "2026-10-27",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "Jira",
+      "company_name": "アトラシアン",
+      "search_keywords": [
+        "Jira AI 要件定義",
+        "Jira Planner",
+        "Jira Coding Agent",
+        "Atlassian Jira AI agent"
+      ],
+      "likely_official_domains": [
+        "atlassian.com"
+      ],
+      "official_pages_to_find": [
+        "料金・プラン",
+        "Atlassian Intelligence利用条件",
+        "新機能詳細・リリースノート"
+      ]
+    },
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "アトラシアンはJiraにAIエージェント対応機能を追加し、Jira Plannerによる要件定義およびConfluence上での技術仕様書生成が可能になる",
+          "source_url": "https://www.atlassian.com/ja/blog/ai-sdlc",
+          "source_type": "official"
+        },
+        {
+          "claim": "Agents in Jiraにより、作業アイテムをClaude Code、Cursor、GitHub Copilotへ直接割り当て可能（Codexも近日対応予定）",
+          "source_url": "https://www.atlassian.com/ja/blog/ai-sdlc",
+          "source_type": "official"
+        },
+        {
+          "claim": "Jira Coding Agentはすべての有料Jiraプランに標準搭載される",
+          "source_url": "https://www.atlassian.com/ja/blog/ai-sdlc",
+          "source_type": "official"
+        },
+        {
+          "claim": "Teamwork Graphによるコンテキスト連携により、社内ベンチマークで回答精度44%向上・トークン使用コスト48%削減を達成したと公表されている",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000079.000028142.html",
+          "source_type": "primary_release"
+        }
+      ],
+      "missing_claims": [
+        "Jira Plannerの一般提供開始日（現時点ではプライベートアーリーアクセス提供）",
+        "外部AIエージェント（Claude Code、GitHub Copilot等）連携時に必要となる各社APIキー・契約要件の詳細",
+        "日本語環境における要件定義・仕様書生成の精度に関する公式検証結果"
+      ],
+      "contradictions": [
+        "候補タイトルでは機能が全面即時利用可能であるかのような印象を与えるが、Jira Plannerはプライベート早期アクセス提供段階であり、一般提供開始ではない"
+      ],
+      "safe_paid_title": "Jiraの新AI機能：仕様駆動型開発を支援するJira PlannerとClaude/Copilot等AIエージェントへの作業委任連携",
+      "safe_summary": "アトラシアンはJiraにおいて、コードベースやConfluence等の履歴から要件定義・仕様書を生成する「Jira Planner」や、Claude Code・GitHub Copilot等のAIエージェントへタスクを割り当てる「Agents in Jira」を発表。Jira Coding Agentは有料プランに標準搭載され、Planner等はプライベート早期アクセスとして展開されています。",
+      "money_value_score": 75,
+      "paid_conversion_score": 70,
+      "time_sensitivity_score": 65,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "公式ブログおよび一次プレスリリースにより、Jira Plannerによる要件定義やClaude/Copilotへのタスクアサイン、有料プランへのJira Coding Agent標準搭載という主要事実は確認できました。ただし、Jira Plannerはプライベート早期アクセス段階であり、外部エージェント連携の前提条件（ライセンスやAPI費用）の詳細が記載されていないため、導入ノウハウとして有料記事化するには提供状況の整理が必要です。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.atlassian.com/ja/blog/ai-sdlc",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "AIネイティブなソフトウェア開発に向け、Jiraが進化 | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/governed-agent-loops",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "統制を伴ったエージェントの開発ループ：AIネイティブSDLCの新時代へ | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/team26-europe-ai-sdlc",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "AIネイティブなソフトウェア開発ライフサイクルを構想から実稼働へ | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/introducing-product-collection",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "Product Collectionの発表：AI時代におけるより良い意思決定のために | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/rovo-github-software-teams",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "Teamwork Graph コネクタで GitHub のコンテキストを Rovo に取り込む | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/team26-europe-atlassian-mcp",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "Atlassian MCP で、あらゆる AI エージェントがより多くの業務にアクセスできるように | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000079.000028142.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "AIネイティブなソフトウェア開発に向け、Jiraが進化 ― 人とAIエージェントを横断して開発を管理する新機能を発表 | アトラシアン株式会社のプレスリリース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://it.impress.co.jp/articles/-/29606",
+        "domain": "it.impress.co.jp",
+        "source_type": "secondary",
+        "title": "アトラシアン、プロジェクト管理「Jira」にAI駆動開発の新機能、タスクをAIエージェントにアサイン可能に | IT Leaders",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://it.impress.co.jp/articles/-/27974",
+        "domain": "it.impress.co.jp",
+        "source_type": "secondary",
+        "title": "アトラシアン、タスク管理ツール「Trello」新版、AI機能やJira連携で使い勝手を向上 | IT Leaders",
+        "source_confidence": 85
+      },
+      {
+        "url": "https://www.publickey1.jp/blog/26/jiraaiclaudecopilotai.html",
+        "domain": "publickey1.jp",
+        "source_type": "secondary",
+        "title": "ã¢ãã©ã·ã¢ã³ãJiraãAIã«ããè¦ä»¶å®ç¾©ã®èªåä½æãã³ã³ãã­ã¹ããä¿æãã¤ã¤ã¿ã¹ã¯ãClaudeãCopilotãªã©ã®AIã¨ã¼ã¸ã§ã³ãã¸ã¢ãµã¤ã³ãªã©æ°æ©è½ ï¼ Publickey",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-10-27T03:47:23.171439+09:00"
   }
 ]
