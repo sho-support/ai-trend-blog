@@ -1716,8 +1716,8 @@
           "source_type": "secondary"
         },
         {
-          "claim": "提供環境はmacOS向けに限定されており、Computer Use機能が有効になっていることが条件であること（Codexバージョン26.616で追加）",
-          "source_url": "https://ascii.jp/elem/000/004/411/4411859/",
+          "claim": "Record & Replayの提供環境はmacOS向けに限定されており、Computer Use機能が有効になっていることが利用条件であること",
+          "source_url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
           "source_type": "secondary"
         },
         {
@@ -1728,7 +1728,7 @@
       ],
       "missing_claims": [
         "OpenAI公式サイト・公式ドキュメント（openai.com）による一次情報",
-        "利用可能なCodex対象プラン（有料プラン限定か否かなど具体的な提供ステータス）",
+        "利用可能なCodex対象プラン（有料プラン限定か否かなど具体的な提供ステータス）に関する公式発表",
         "実行時のトークン消費コストおよび料金体系の詳細"
       ],
       "contradictions": [
@@ -1745,23 +1745,23 @@
       "useful_until": "",
       "evergreen": true,
       "recommended_action": "hold",
-      "reason": "取得できた情報源がすべて二次情報（メディア記事・他社プレスリリース）であり、公式・一次情報（openai.com）による直接の確認が取れていないため。また、候補タイトルの「完全自動化」は根拠情報に対して誇張があり、料金やトークン消費コストに関する詳細情報も未確認のため保留とします。"
+      "reason": "取得できた情報源がすべて二次情報（メディア記事等）であり、公式・一次情報（openai.com）による直接の確認が取れていないため。また、候補タイトルの「完全自動化」は根拠情報に対して誇張があり、料金やトークン消費コストに関する詳細情報も未確認のため保留とします。"
     },
-    "verified_at": "2026-10-25T20:51:15.215698+09:00",
+    "verified_at": "2026-10-26T22:22:57.975275+09:00",
     "entity_info": {
-      "main_entity": "Codex Record & Replay",
+      "main_entity": "OpenAI Codex「Record & Replay」",
       "company_name": "OpenAI",
       "search_keywords": [
         "OpenAI Codex Record & Replay",
-        "OpenAI Codex Record and Replay",
-        "Codex Record & Replay"
+        "Codex Record and Replay",
+        "OpenAI Codex Record Replay"
       ],
       "likely_official_domains": [
         "openai.com"
       ],
       "official_pages_to_find": [
         "機能概要・リリース情報",
-        "利用要件・対応環境",
+        "対応環境・利用要件",
         "提供プラン・料金"
       ]
     },
@@ -1774,10 +1774,38 @@
         "source_confidence": 100
       },
       {
+        "url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "画面操作を“録画”→AIが作業代行 Codexに新機能「Record & Replay」 - ITmedia NEWS",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.watch.impress.co.jp/docs/news/2118707.html",
+        "domain": "watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexが作業を見て覚える「Record& Replay」 - Impress Watch",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://hashout.jp/ai/2346/",
+        "domain": "hashout.jp",
+        "source_type": "secondary",
+        "title": "「毎月の経費精算、もう自分でやらなくていい」——OpenAI Codexの新機能「Record & Replay」がXで1.2万いいね – shiritomo",
+        "source_confidence": 100
+      },
+      {
         "url": "https://xtech.nikkei.com/atcl/nxt/info/18/00061/062400103/",
         "domain": "xtech.nikkei.com",
         "source_type": "secondary",
         "title": "従業員のPC操作を録画しスキル抽出、OpenAIが「禁断のツール」 | 日経クロステック（xTECH）",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://finance.biggo.jp/news/c71bc1ab-424f-4b57-9713-9f7b1cb5880f",
+        "domain": "finance.biggo.jp",
+        "source_type": "secondary",
+        "title": "OpenAI Codex、3つの大型アップデート：オープンソースモデル接続が可能に、「録画・再生」機能が登場、ユーザーが入浴中に返金手続きを完了 — BigGo ファイナンス",
         "source_confidence": 100
       },
       {
@@ -1788,45 +1816,10 @@
         "source_confidence": 95
       },
       {
-        "url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
-        "domain": "itmedia.co.jp",
+        "url": "https://www.zaikei.co.jp/article/20260621/858007.html",
+        "domain": "zaikei.co.jp",
         "source_type": "secondary",
-        "title": "画面操作を“録画”→AIが作業代行 Codexに新機能「Record & Replay」 - ITmedia NEWS",
-        "source_confidence": 95
-      },
-      {
-        "url": "https://www.watch.impress.co.jp/docs/news/2118707.html",
-        "domain": "watch.impress.co.jp",
-        "source_type": "secondary",
-        "title": "OpenAI、Codexが作業を見て覚える「Record& Replay」 - Impress Watch",
-        "source_confidence": 95
-      },
-      {
-        "url": "https://hashout.jp/ai/2346/",
-        "domain": "hashout.jp",
-        "source_type": "secondary",
-        "title": "「毎月の経費精算、もう自分でやらなくていい」——OpenAI Codexの新機能「Record & Replay」がXで1.2万いいね – shiritomo",
-        "source_confidence": 95
-      },
-      {
-        "url": "https://ascii.jp/elem/000/004/411/4411859/",
-        "domain": "ascii.jp",
-        "source_type": "secondary",
-        "title": "ASCII.jp：OpenAI Codexが作業を“録画”して自動化、Macで実演するだけでスキル化",
-        "source_confidence": 95
-      },
-      {
-        "url": "https://www.itmedia.co.jp/aiplus/article/2607/22/2000000213/",
-        "domain": "itmedia.co.jp",
-        "source_type": "secondary",
-        "title": "画面操作を録画→AIが作業代行 Claude新機能「Record a skill」 Codex対抗か - ITmedia AI＋",
-        "source_confidence": 95
-      },
-      {
-        "url": "https://finance.biggo.jp/news/c71bc1ab-424f-4b57-9713-9f7b1cb5880f",
-        "domain": "finance.biggo.jp",
-        "source_type": "secondary",
-        "title": "OpenAI Codex、3つの大型アップデート：オープンソースモデル接続が可能に、「録画・再生」機能が登場、ユーザーが入浴中に返金手続きを完了 — BigGo ファイナンス",
+        "title": "OpenAIãmacOSçCodexã«ãRecord & Replayãæ©è½ãè¿½å ââæä½ãè¦ããã ãã§èªååã¹ã­ã«ãçæ | è²¡çµæ°è",
         "source_confidence": 95
       },
       {
@@ -1835,6 +1828,13 @@
         "source_type": "secondary",
         "title": "「録画でAIに仕事を教える」時代へ──OpenAI・Anthropic・Microsoftの3機能を徹底解説。Renewer、『録画でAIに仕事を教える 3社徹底比較ガイド』（全62ページ）を無料公開 | 株式会社Renewerのプレスリリース",
         "source_confidence": 95
+      },
+      {
+        "url": "https://www.sbbit.jp/article/cont1/185928",
+        "domain": "sbbit.jp",
+        "source_type": "secondary",
+        "title": "OpenAIの自律型AI「Codex」の利用急増、企業の非エンジニアの利用が189倍に チャットからエージェントへの移行が進む｜ビジネス+IT",
+        "source_confidence": 85
       }
     ]
   }
