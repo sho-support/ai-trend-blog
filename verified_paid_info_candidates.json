@@ -6815,5 +6815,164 @@
         "source_confidence": 95
       }
     ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "OpenAI、Codexの新機能「Record & Replay」を公開 操作の実演で作業を自動化 - ビジネス+IT",
+    "summary": "OpenAI、Codexの新機能「Record & Replay」を公開 操作の実演で作業を自動化 &nbsp;&nbsp; ビジネス+IT",
+    "source": "ビジネス+IT",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1lYklOLUF4RG1yVmEzalZGWHBwZk04RDY1cENkdWZKYldwNzgybEhtWDZfWDlwUVlvNmFxYXZEalppMWxaSmVyZ0w4M1BOUnlIakFB?oc=5",
+    "published": "Sat, 20 Jun 2026 07:00:00 GMT",
+    "category": "時間を得する",
+    "score": 88,
+    "urgency": "high",
+    "candidate_title": "OpenAI Codex「Record & Replay」：操作を見せるだけでPC業務を完全自動化する手法",
+    "why_paid_value": "操作の実演（画面録画・操作トレース）だけでAIがコード化・自動実行する機能は、プログラミング不要でRPA以上の時短を実現する最先端情報。",
+    "verification_needed": [
+      "提供ステータス（一般プレビューかAPI限定か）",
+      "動作環境（WebブラウザのみかOS全体か）",
+      "実行時のトークン消費コスト"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-24T20:19:41.724427+09:00",
+    "collection_date_jst": "2026-10-24",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 60,
+      "verified_claims": [
+        {
+          "claim": "OpenAIがCodex向けにユーザーの操作実演を記録し、再利用可能なスキルとして保存・再実行する「Record & Replay」機能を公開したこと",
+          "source_url": "https://www.sbbit.jp/article/cont1/185840",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "Record & Replayの提供環境はmacOS向けに限定されており、Computer Use機能が有効になっていることが利用条件であること",
+          "source_url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "提供地域は欧州経済領域（EEA）、英国、スイスを除く地域であること",
+          "source_url": "https://www.watch.impress.co.jp/docs/news/2118707.html",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "ChatGPT Plus、Pro、Business、Enterprise、Eduのサブスクリプション契約者向けに提供されていること",
+          "source_url": "https://www.zaikei.co.jp/article/20260621/858007.html",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "OpenAI公式ドキュメントまたは公式サイト（openai.com）による一次情報",
+        "実行時のトークン消費コストおよびAPI/従量課金等の料金詳細"
+      ],
+      "contradictions": [
+        "候補タイトルに『PC業務を完全自動化』とあるが、提供されている機能はmacOS限定かつ特定の実演手順をスキル化・再実行するものであり、PC業務全般の完全自動化を保証するものではなく誇張表現となっている"
+      ],
+      "safe_paid_title": "OpenAI Codex「Record & Replay」：画面操作の実演から手順をスキル化・自動実行する機能（macOS限定）",
+      "safe_summary": "OpenAIがmacOS版Codex向けに公開した新機能「Record & Replay」は、ユーザーが画面上で行った操作を録画・解析し、再利用可能な「スキル」として自動実行する機能です。利用にはComputer Useの有効化が必要で、欧州経済領域（EEA）・英国・スイスを除く地域においてChatGPTの有料プラン契約者向けに提供されています。",
+      "money_value_score": 5,
+      "paid_conversion_score": 5,
+      "time_sensitivity_score": 4,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "提示された情報源がすべて二次情報（メディア記事）であり、公式・一次情報（openai.com）での直接確認が取れていないためneeds_manual判定とします。また、候補タイトルの『完全自動化』という表現は誇張に該当し、トークン消費コスト等の公式詳細も未確認のため保留（hold）が妥当です。"
+    },
+    "verified_at": "2026-10-28T03:09:47.615729+09:00",
+    "entity_info": {
+      "main_entity": "Codex「Record & Replay」",
+      "company_name": "OpenAI",
+      "search_keywords": [
+        "OpenAI Codex Record & Replay",
+        "OpenAI Codex Record and Replay",
+        "Codex Record Replay macOS"
+      ],
+      "likely_official_domains": [
+        "openai.com"
+      ],
+      "official_pages_to_find": [
+        "新機能アナウンス・リリースノート",
+        "利用要件・対応環境（macOS・Computer Use等）",
+        "提供対象プラン・料金"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.sbbit.jp/article/cont1/185840",
+        "domain": "sbbit.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexの新機能「Record & Replay」を公開 操作の実演で作業を自動化 画面録画からAIが手順を学習し、自動で再実行｜ビジネス+IT",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://ledge.ai/articles/openai_codex_record_replay_skill",
+        "domain": "ledge.ai",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexに作業を“見せて教える”新機能「Record& Replay」 実演した手順をスキル化 | Ledge.ai",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "画面操作を“録画”→AIが作業代行 Codexに新機能「Record & Replay」 - ITmedia NEWS",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.watch.impress.co.jp/docs/news/2118707.html",
+        "domain": "watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexが作業を見て覚える「Record& Replay」 - Impress Watch",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://hashout.jp/ai/2346/",
+        "domain": "hashout.jp",
+        "source_type": "secondary",
+        "title": "「毎月の経費精算、もう自分でやらなくていい」——OpenAI Codexの新機能「Record & Replay」がXで1.2万いいね – shiritomo",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/411/4411859/",
+        "domain": "ascii.jp",
+        "source_type": "secondary",
+        "title": "ASCII.jp：OpenAI Codexが作業を“録画”して自動化、Macで実演するだけでスキル化",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://xtech.nikkei.com/atcl/nxt/info/18/00061/062400103/",
+        "domain": "xtech.nikkei.com",
+        "source_type": "secondary",
+        "title": "従業員のPC操作を録画しスキル抽出、OpenAIが「禁断のツール」 | 日経クロステック（xTECH）",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://finance.biggo.jp/news/c71bc1ab-424f-4b57-9713-9f7b1cb5880f",
+        "domain": "finance.biggo.jp",
+        "source_type": "secondary",
+        "title": "OpenAI Codex、3つの大型アップデート：オープンソースモデル接続が可能に、「録画・再生」機能が登場、ユーザーが入浴中に返金手続きを完了 — BigGo ファイナンス",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.zaikei.co.jp/article/20260621/858007.html",
+        "domain": "zaikei.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAIãmacOSçCodexã«ãRecord & Replayãæ©è½ãè¿½å ââæä½ãè¦ããã ãã§èªååã¹ã­ã«ãçæ | è²¡çµæ°è",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://www.itmedia.co.jp/aiplus/article/2607/22/2000000213/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "画面操作を録画→AIが作業代行 Claude新機能「Record a skill」 Codex対抗か - ITmedia AI＋",
+        "source_confidence": 95
+      }
+    ]
   }
 ]
