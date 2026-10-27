@@ -1079,38 +1079,32 @@
       "confidence": 45,
       "verified_claims": [
         {
-          "claim": "OpenAI APIにおけるGPT-6 Astraの料金は、入力100万トークンあたり10ドル、出力100万トークンあたり50ドルである",
-          "source_url": "https://www.sbbit.jp/article/cont1/186858",
+          "claim": "OpenAI APIにおけるGPT-6 Astraの標準料金は入力100万トークンあたり10ドル、出力100万トークンあたり50ドルである",
+          "source_url": "https://aismiley.co.jp/ai_news/chatgpt-6-1-terra/",
           "source_type": "secondary"
         },
         {
-          "claim": "OpenAI APIにおけるGPT-6.1 Solの標準料金は、入力100万トークンあたり2ドル、キャッシュ済み入力が0.10ドル、出力が10ドルである",
-          "source_url": "https://www.watch.impress.co.jp/docs/news/2144306.html",
+          "claim": "Gemini APIにおけるGemini 4 Argonの利用料金は入力100万トークンあたり2ドル、出力100万トークンあたり10ドル（キャッシュされた入力トークンは95％オフ）である",
+          "source_url": "https://k-tai.watch.impress.co.jp/docs/news/2147947.html",
           "source_type": "secondary"
         },
         {
-          "claim": "OpenAI APIにおけるGPT-6 Solの標準料金は入力2ドル・出力10ドル、GPT-6 Lunaは入力0.10ドル・出力0.50ドルである",
-          "source_url": "https://gihyo.jp/article/2026/09/gpt-6-sol-and-luna",
-          "source_type": "secondary"
-        },
-        {
-          "claim": "Gemini 4 ArgonがGoogle AI Studio/Gemini APIおよびGeminiアプリ向けに提供開始された",
-          "source_url": "https://www.businessinsider.jp/article/2610-how-much-did-major-generative-ai-service-fees/",
+          "claim": "OpenAI APIにおけるGPT-6.1 Solの標準料金は入力100万トークンあたり2ドル・出力10ドル、GPT-6.1 Terraは入力1ドル・出力5ドル、GPT-6 Lunaは入力0.10ドル・出力0.50ドルである",
+          "source_url": "https://aismiley.co.jp/ai_news/chatgpt-6-1-terra/",
           "source_type": "secondary"
         }
       ],
       "missing_claims": [
-        "提供された取得ソース内における公式（official）または一次発表（primary_release）の情報源",
-        "Gemini 4 ArgonのAPIトークン正規料金（入力・出力単価、キャッシュ単価など）",
-        "各モデルのAPIレートリミットおよび商用利用規約"
+        "OpenAIおよびGoogle公式ドメイン（official）や一次発表（primary_release）による正規料金ページ・ドキュメントの直接確認",
+        "各モデルのAPIレートリミット、クォータ、および商用利用規約の公式情報"
       ],
       "contradictions": [
-        "候補タイトルは「GPT-6 Astra／Gemini 4 Argonの費用対効果と移行判断」を謳っているが、情報源内にGemini 4 ArgonのAPI料金表やコスト詳細が記載されておらず、費用対効果の比較や移行判断の算出ができない"
+        "提供された情報源はすべてメディア等の二次情報（secondary）であり、有料記事の基準を満たす公式・一次発表のソースが含まれていない"
       ],
-      "safe_paid_title": "報道に基づくGPT-6シリーズ（Astra／Sol／Luna）のAPI料金体系整理",
-      "safe_summary": "メディア報道に基づき、GPT-6 Astra（入力$10/出力$50）、GPT-6.1 Sol（入力$2/出力$10）、GPT-6 Luna（入力$0.10/出力$0.50）などのAPIトークン料金を整理。なお提供情報内にはGemini 4 ArgonのAPI料金や公式発表ソースは含まれていません。",
-      "money_value_score": 50,
-      "paid_conversion_score": 40,
+      "safe_paid_title": "報道に基づくGPT-6シリーズおよびGemini 4 ArgonのAPI料金体系比較",
+      "safe_summary": "メディア各社の報道に基づき、GPT-6 Astra（入力$10/出力$50）、Gemini 4 Argon（入力$2/出力$10）、GPT-6.1 Sol（入力$2/出力$10）、GPT-6.1 Terra（入力$1/出力$5）の各API料金を整理。ただし公式ドメインによる一次ソースの直接確認は未了です。",
+      "money_value_score": 55,
+      "paid_conversion_score": 45,
       "time_sensitivity_score": 60,
       "second_slot_eligible": false,
       "purchase_deadline": "",
@@ -1118,17 +1112,17 @@
       "useful_until": "",
       "evergreen": false,
       "recommended_action": "hold",
-      "reason": "提示された取得ソースがすべて二次情報（secondary）であり、検証基準である公式・一次情報が存在しません。また、候補タイトルに含まれるGemini 4 ArgonのAPI価格データが情報源内に存在せず比較が成り立たないため、要手動確認（needs_manual）および保留（hold）とします。"
+      "reason": "提示された情報源がすべて二次情報（secondary）であり、有料記事の厳格なファクトチェック基準である公式（official）または一次発表（primary_release）の情報源が存在しません。料金数値自体の報道は確認できますが、公式情報による裏付けが不足しているため要手動確認（needs_manual）および保留（hold）とします。"
     },
-    "verified_at": "2026-10-24T20:21:23.007985+09:00",
+    "verified_at": "2026-10-27T21:31:03.532440+09:00",
     "entity_info": {
       "main_entity": "OpenAI API",
       "company_name": "OpenAI",
       "search_keywords": [
         "OpenAI API pricing",
         "GPT-6 Astra 料金",
-        "ChatGPT 料金プラン",
-        "Gemini 4 Argon API pricing"
+        "Gemini 4 Argon API pricing",
+        "ChatGPT 料金プラン"
       ],
       "likely_official_domains": [
         "openai.com",
@@ -1149,31 +1143,52 @@
         "source_confidence": 100
       },
       {
-        "url": "https://gihyo.jp/article/2026/09/gpt-6-sol-and-luna",
-        "domain": "gihyo.jp",
+        "url": "https://forest.watch.impress.co.jp/docs/news/2151338.html",
+        "domain": "forest.watch.impress.co.jp",
         "source_type": "secondary",
-        "title": "OpenAI、「GPT-6 Sol」「GPT-6 Luna」を発表 ——速度と費用効率を重視、API入出力単価はGPT-5.6版比でSolが半額、Lunaが半額以下に | gihyo.jp",
+        "title": "OpenAI、「GPT-6.1 Terra」を発表 ～性能とコストのバランス型、API料金は先代の半額 - 窓の杜",
         "source_confidence": 100
       },
       {
-        "url": "https://www.watch.impress.co.jp/docs/news/2144306.html",
-        "domain": "watch.impress.co.jp",
+        "url": "https://www.digitaltoday.co.kr/jp/view/119730/openai-unveils-gpt-6-1-terra-cuts-prices-boosts-coding-performance",
+        "domain": "digitaltoday.co.kr",
         "source_type": "secondary",
-        "title": "5分の1の料金でAstraに迫る「GPT-6.1 Sol」公開 前バージョンから1週間 - Impress Watch",
+        "title": "OpenAI、「GPT-6.1 Terra」発表 標準API料金を半額に",
         "source_confidence": 100
       },
       {
-        "url": "https://gigazine.net/news/20260930-gpt-6-1-sol/",
-        "domain": "gigazine.net",
+        "url": "https://xenospectrum.com/openai-decisions-api-ga-jev-price/",
+        "domain": "xenospectrum.com",
         "source_type": "secondary",
-        "title": "「GPT-6.1 Sol」がもう登場、GPT-6 Astraと同等性能で料金は5分の1 - GIGAZINE",
+        "title": "OpenAIãå¤æ­ç¹åAIãDecisions APIããæ­£å¼å ¬éãå è¡ããJevã¨ã®ä¾¡æ ¼å·®ã¯2.4å | XenoSpectrum",
         "source_confidence": 100
       },
       {
-        "url": "https://www.watch.impress.co.jp/docs/news/2124043.html",
-        "domain": "watch.impress.co.jp",
+        "url": "https://aismiley.co.jp/ai_news/chatgpt-6-1-terra/",
+        "domain": "aismiley.co.jp",
         "source_type": "secondary",
-        "title": "OpenAI、最上位モデル「GPT 5.6」が一般公開 最高性能を低コストに - Impress Watch",
+        "title": "GPT-6.1 Terraとは？性能・料金・使い方とSol・Astraとの違いを解説",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.yahoo.co.jp/articles/bc012062ad2d4cd21bcef90cf4028e5fc97ada8b",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、「GPT-6.1 Terra」を発表 ～性能とコストのバランス型、API料金は先代の半額（窓の杜） - Yahoo!ニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://k-tai.watch.impress.co.jp/docs/news/2147947.html",
+        "domain": "k-tai.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "Google「Gemini 4 Argon」の提供スタート、APIや企業向けに加えAI Ultra/Proユーザーも利用可能に - ケータイ Watch",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://exawizards.com/column/article/ai-article/azure-openai-service-price/",
+        "domain": "exawizards.com",
+        "source_type": "secondary",
+        "title": "Azure OpenAI Serviceの料金は？課金方式・モデル別単価・月額の見積もり方【2026年版】 - AI新聞",
         "source_confidence": 98
       },
       {
@@ -1184,31 +1199,10 @@
         "source_confidence": 98
       },
       {
-        "url": "https://xenospectrum.com/openai-decisions-api-ga-jev-price/",
+        "url": "https://xenospectrum.com/gemini-argon-long-work-availability/",
         "domain": "xenospectrum.com",
         "source_type": "secondary",
-        "title": "OpenAIãå¤æ­ç¹åAIãDecisions APIããæ­£å¼å ¬éãå è¡ããJevã¨ã®ä¾¡æ ¼å·®ã¯2.4å | XenoSpectrum",
-        "source_confidence": 95
-      },
-      {
-        "url": "https://exawizards.com/column/article/ai-article/azure-openai-service-price/",
-        "domain": "exawizards.com",
-        "source_type": "secondary",
-        "title": "Azure OpenAI Serviceの料金は？課金方式・モデル別単価・月額の見積もり方【2026年版】 - AI新聞",
-        "source_confidence": 95
-      },
-      {
-        "url": "https://www.sbbit.jp/article/cont1/186858",
-        "domain": "sbbit.jp",
-        "source_type": "secondary",
-        "title": "【実測】GPT-6 Astraは「人の仕事」を変える…半日→1分「待たない・直さない」仕事術 連載：きょうから使える生成AI仕事術｜ビジネス+IT",
-        "source_confidence": 95
-      },
-      {
-        "url": "https://www.orcarouter.ai/ja/blog/gpt-6-astra-cyber-leak",
-        "domain": "orcarouter.ai",
-        "source_type": "secondary",
-        "title": "GPT-6 Astra Cyber：OpenAIが実際に確認したこと",
+        "title": "Gemini 4 Argonãä¸è¬æä¾ãé·ãä»äºãæ¯ãã100ä¸ãã¼ã¯ã³ã®ä»çµã¿ | XenoSpectrum",
         "source_confidence": 95
       }
     ]
