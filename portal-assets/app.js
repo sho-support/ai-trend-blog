@@ -75,27 +75,27 @@ function render(){
  if(s.pref!=='すべて')arr=arr.filter(x=>x.prefecture===s.pref);
  if(DATA.kind==='events' && s.when!=='any'){
   const start=today;
-  const jstDate=t=>new Date(t+'T00:00:00+09:00');
+  const jstDate=t=>new Date(t+'T00:00:00Z');
   const pad=n=>String(n).padStart(2,'0');
-  const iso=t=>t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
+  const iso=t=>t.getUTCFullYear()+'-'+pad(t.getUTCMonth()+1)+'-'+pad(t.getUTCDate());
   const base=jstDate(start);
   let low=start,high=start;
   if(s.when==='next7'){
    high=iso(new Date(base.getTime()+6*86400000));
   }else if(s.when==='weekend'){
-   const day=base.getDay();
+   const day=base.getUTCDay();
    let until=(6-day+7)%7;
    const sat=new Date(base.getTime()+until*86400000);
    const sun=new Date(sat.getTime()+86400000);
    low=iso(sat);high=iso(sun);
   }else if(s.when==='month'){
    low=start.slice(0,7)+'-01';
-   const next=new Date(base.getFullYear(),base.getMonth()+1,0);
+   const next=new Date(Date.UTC(base.getUTCFullYear(),base.getUTCMonth()+1,0));
    high=iso(next);
    low=low<start?start:low;
   }else if(s.when==='nextmonth'){
-   const next=new Date(base.getFullYear(),base.getMonth()+1,1);
-   const end=new Date(base.getFullYear(),base.getMonth()+2,0);
+   const next=new Date(Date.UTC(base.getUTCFullYear(),base.getUTCMonth()+1,1));
+   const end=new Date(Date.UTC(base.getUTCFullYear(),base.getUTCMonth()+2,0));
    low=iso(next);high=iso(end);
   }
   arr=arr.filter(x=>!!x.start && !!x.end && x.start<=high && x.end>=low);
