@@ -65,7 +65,7 @@ def make_home():
       '<div class="spotlight">'+cards+'</div><div class="disclaimer"><strong>掲載と広告について</strong>'
       '各情報は参照時点の情報です。価格や開催日程は必ず公式リンクで再確認してください。'
       'アフィリエイト広告が入る場合はPR表示を行います。</div></main>'
-      '<footer class="shell footer">© 2026 SHO DISCOVERY NETWORK</footer></body></html>'
+      '<footer class="shell footer">© 2026 SHO DISCOVERY NETWORK <span class="policy-nav"><a href="deals/about.html">運営・広告方針</a> <a href="deals/privacy.html">プライバシー</a></span></footer></body></html>'
     )
     write(Path("index.html"),content)
 
