@@ -1,0 +1,53 @@
+name: Refresh Event Stay Affiliate Feed
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "portal-tools/refresh_travel.py"
+      - ".github/workflows/commerce-travel.yml"
+  schedule:
+    # Daily at 06:20 JST, after the shopping feed refresh.
+    - cron: "20 21 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-trend-travel-feed
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    env:
+      RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+      RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+      RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check credentials
+        id: creds
+        shell: bash
+        run: |
+          if [[ -n "$RAKUTEN_APP_ID" && -n "$RAKUTEN_ACCESS_KEY" && -n "$RAKUTEN_AFFILIATE_ID" ]]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::楽天トラベルのAPI認証情報が未設定です。"
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Fetch official hotels
+        if: steps.creds.outputs.ready == 'true'
+        run: python portal-tools/refresh_travel.py
+      - name: Validate portal data
+        if: steps.creds.outputs.ready == 'true'
+        run: python portal-tools/test_portals.py
+      - name: Publish hotel list safely
+        if: steps.creds.outputs.ready == 'true'
+        run: bash .github/scripts/safe-commit-push.sh 'Refresh official Rakuten Travel affiliate hotels'
