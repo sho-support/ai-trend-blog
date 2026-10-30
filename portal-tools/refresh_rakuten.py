@@ -6,6 +6,7 @@ Optional: RAKUTEN_AFFILIATE_ID. No token values enter the public output.
 Offers are NOT labeled discounted or cheapest; prices are snapshots.
 """
 import json
+import re
 import os
 import sys
 import time
@@ -20,14 +21,25 @@ OUT = Path("portal-assets/rakuten-feed.json")
 JST = timezone(timedelta(hours=9))
 SEARCHES = [
     ("食品・お菓子", "お菓子 詰め合わせ", "🍪"),
-    ("お米・飲料", "米 5kg", "🍚"),
+    ("お米・飲料", "白米 5kg", "🍚"),
     ("家電・デジタル", "モバイルバッテリー USB-C", "🔋"),
     ("家電・デジタル", "モニター 4K", "🖥️"),
     ("日用品・生活", "洗剤 まとめ買い", "🧴"),
     ("ファッション", "スニーカー", "👟"),
     ("美容・コスメ", "スキンケア", "💄"),
-    ("ペット", "ペット用品", "🐾"),
+    ("ペット", "ペット ウェットシート", "🐾"),
 ]
+def shorten_title(title):
+    """Remove loud ad prefixes, without changing item identity or specifications."""
+    tidy = re.sub(
+        r"^(?:(?:【(?:送料無料|公式|ポイント[0-9]+倍)】)|(?:★[^★]{1,36}★)|(?:＼[^／]{1,40}／))\\s*",
+        "",
+        title,
+    ).strip()
+    tidy = tidy or title
+    return tidy[:70].rstrip() + ("…" if len(tidy) > 70 else "")
+
+
 def main():
     app_id = os.getenv("RAKUTEN_APP_ID", "")
     access_key = os.getenv("RAKUTEN_ACCESS_KEY", "")
@@ -38,6 +50,7 @@ def main():
     now = datetime.now(JST)
     expires_at = (now + timedelta(hours=23)).isoformat()
     result = []
+    used_codes = set()
     errors = 0
     for index, (cat, query, emoji) in enumerate(SEARCHES):
         if index:
@@ -47,8 +60,11 @@ def main():
             "keyword": query,
             "format": "json",
             "formatVersion": 2,
-            "hits": 3,
+            "hits": 15,
             "page": 1,
+            "NGKeyword": "ふるさと納税",
+            "availability": 1,
+            "imageFlag": 1,
         }
         if affiliate_id:
             params["affiliateId"] = affiliate_id
@@ -95,9 +111,13 @@ def main():
                     "検索総件数=", payload.get("count") if isinstance(payload.get("count"), int) else "未提供",
                     file=sys.stderr,
                 )
+            kept = 0
             for v in objects:
                 item = v.get("item", v) if isinstance(v, dict) else {}
-                name = str(item.get("itemName") or "").strip()[:110]
+                name = str(item.get("itemName") or "").strip()[:170]
+                # A regular purchase guide must not silently recommend donations.
+                if any(word in name for word in ("ふるさと納税", "返礼品", "寄附金")):
+                    continue
                 # No ordinary product link is published as an affiliate link.
                 link = item.get("affiliateUrl") if affiliate_id else item.get("itemUrl")
                 if not name or not isinstance(link, str) or urlsplit(link).scheme != "https":
@@ -106,7 +126,7 @@ def main():
                 if not isinstance(price, int) or price <= 0:
                     continue
                 code = str(item.get("itemCode") or "")
-                if not code:
+                if not code or code in used_codes:
                     continue
                 image_list = item.get("mediumImageUrls") or []
                 image = ""
@@ -135,8 +155,10 @@ def main():
                     "shop": "楽天市場",
                     "icon": emoji,
                     "title": name,
+                    "display_title": shorten_title(name),
                     "price_yen": price,
                     "seller": str(item.get("shopName") or "楽天市場出店ショップ")[:70],
+                    "review_count": item.get("reviewCount") if isinstance(item.get("reviewCount"), int) else None,
                     "description": text,
                     "url": link,
                     "approved": True,
@@ -146,7 +168,11 @@ def main():
                     "image": image,
                     "label": ("PR｜楽天公式API" if affiliate_id else "楽天公式API｜広告なし"),
                 })
-            print(f"取得: {cat} {len(objects)}件")
+                used_codes.add(code)
+                kept += 1
+                if kept >= 3:
+                    break
+            print(f"候補: {cat} API={len(objects)}件 掲載={kept}件")
         except HTTPError as e:
             errors += 1
             body = e.read(2048).decode("utf-8", errors="replace")
