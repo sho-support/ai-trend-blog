@@ -647,6 +647,13 @@ jobs:
               f"{SITE_BASE_URL}/deals/muji-week-202610.html",
               f"{SITE_BASE_URL}/events/",
               f"{SITE_BASE_URL}/products/",
+              f"{SITE_BASE_URL}/products/okashi-matome.html",
+              f"{SITE_BASE_URL}/products/okome-5kg.html",
+              f"{SITE_BASE_URL}/products/mobile-battery-monitors.html",
+              f"{SITE_BASE_URL}/products/nichiyohin-matome.html",
+              f"{SITE_BASE_URL}/products/sneakers.html",
+              f"{SITE_BASE_URL}/products/skincare.html",
+              f"{SITE_BASE_URL}/products/pet-supplies.html",
           ] + [
               f"{SITE_BASE_URL}/category/{c['slug']}.html"
               for c in CATEGORIES
