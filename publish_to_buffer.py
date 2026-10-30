@@ -7,6 +7,7 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 from google import genai
+from gemini_budget_guard import stop_if_monthly_cap_exceeded
 
 
 BUFFER_API_URL = "https://api.buffer.com"
@@ -79,6 +80,7 @@ def generate_content_with_fallback(
             )
 
         except Exception as e:
+            stop_if_monthly_cap_exceeded(e)
             last_error = e
 
             print(
