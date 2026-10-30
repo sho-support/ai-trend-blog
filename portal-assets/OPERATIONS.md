@@ -28,7 +28,7 @@
 
 - `products/okome-5kg.html`：送料込み1kg単価。
 - `products/okashi-matome.html`：配布人数・個数・送料。
-- `products/nichiyohin-matome.html`：洗濯洗剤の1回当たり費用。食器用洗剤を混ぜない。
+- `products/nichiyohin-matome.html`：洗濯洗剤の1回当たり費用。食器用洗剤を混ぜない。容量単位で計算する記事のため、ジェルボール等も一覧から外す。
 - `products/mobile-battery.html`：バッテリーの用途・出力・容量。
 - `products/work-monitor.html`：27型4Kと34型UWQHDの解像度・設置・端子。
 - `products/mobile-battery-monitors.html`：従来URLを維持した家電ガイドの入口。
@@ -55,11 +55,12 @@
 
 更新時刻は今回から商品06:00・18:00、宿泊06:20・18:20（日本時間）。毎日1回では23時間の表示期限より更新間隔が長かったため、1日2回に変更。どちらもGeminiを呼ばない。
 
-商品検索は用途キー `kind` を出力する。洗濯洗剤は「洗濯洗剤 詰め替え」で検索し、衣料用を確認。4Kと3440×1440のモニター検索を分け、重複コードは排除。型番の末尾・選択する規格・送料を揃えた商品ランキングではない。
+商品検索は用途キー `kind` を出力する。洗濯洗剤は「液体 洗濯洗剤 詰め替え」で検索し、衣料用を確認。4Kと3440×1440のモニター検索を分け、重複コードは排除。型番の末尾・選択する規格・送料を揃えた商品ランキングではない。
 
 既存の接続成功実績（今回以前）：
 
 - 商品： https://github.com/sho-support/ai-trend-blog/actions/runs/41083604065
+- 今回の更新後、2026-10-31 02:46 JSTに27件を取得。内訳はモニター6件、ほか7用途が各3件。後続の調整ではボール型を除外して液体洗剤を再取得する。
 - 宿泊： https://github.com/sho-support/ai-trend-blog/actions/runs/41085961921
 
 `rakuten-feed.json` / `travel-feed.json` の有効期限は23時間。期限切れ・不正な期限・取得失敗では古い価格を売るために残さない。取得した紹介URLと承認売上は別。

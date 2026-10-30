@@ -28,7 +28,7 @@
     return config.kinds.some(kind => {
       const title = item.title || '';
       if (kind === 'monitor' && /モバイルバッテリー|Power Bank|モニターアーム|保護フィルム|保護カバー|スタンドのみ/i.test(title)) return false;
-      if (kind === 'laundry-detergent' && /食器|台所|柔軟剤/.test(title)) return false;
+      if (kind === 'laundry-detergent' && /食器|台所|柔軟剤|ジェルボール|パーフェクトスティック|洗剤シート/.test(title)) return false;
       return item.kind ? item.kind === kind : !!kinds[kind] && kinds[kind].test(title);
     });
   };

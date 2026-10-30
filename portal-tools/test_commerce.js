@@ -33,6 +33,7 @@ check(C.matches({...product, title:'4K モニター'}, monitor), true, 'old feed
 check(C.matches({...product, kind:'monitor'}, battery), false, 'typed feed is filtered by exact kind');
 check(C.matches({title:'キュキュット 食器用洗剤', category:'日用品・生活'}, {category:'日用品・生活', kinds:['laundry-detergent']}), false, 'dish detergent never shown as laundry');
 check(C.matches({title:'衣料用 アタック 洗濯洗剤', category:'日用品・生活'}, {category:'日用品・生活', kinds:['laundry-detergent']}), true, 'laundry match');
+check(C.matches({title:'ボールド 洗濯洗剤 ジェルボール', kind:'laundry-detergent',category:'日用品・生活'}, {category:'日用品・生活', kinds:['laundry-detergent']}), false, 'capsules are excluded from a mass/volume dose comparison');
 check(C.unitCost({price:3980, shipping:0, coupon:0, quantity:5}).unit, 796, 'rice A includes delivery');
 check(C.unitCost({price:7480, shipping:660, coupon:0, quantity:10}).unit, 814, 'delivery reverses rice ranking');
 check(C.unitCost({price:1800, shipping:0, coupon:0, quantity:1500, dose:25}).perUse, 30, 'detergent A');

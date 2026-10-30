@@ -33,7 +33,7 @@ SEARCHES = [
     ("家電・デジタル", "モバイルバッテリー USB-C", "🔋", "power-bank"),
     ("家電・デジタル", "モニター 4K", "🖥️", "monitor"),
     ("家電・デジタル", "モニター 3440 1440", "🖥️", "monitor"),
-    ("日用品・生活", "洗濯洗剤 詰め替え", "🧺", "laundry-detergent"),
+    ("日用品・生活", "液体 洗濯洗剤 詰め替え", "🧺", "laundry-detergent"),
     ("ファッション", "スニーカー", "👟", "sneakers"),
     ("美容・コスメ", "スキンケア", "💄", "skincare"),
     ("ペット", "ペット ウェットシート", "🐾", "pet-wipes"),
@@ -45,7 +45,7 @@ def eligible_title(title, kind):
     if any(word in title for word in ("ふるさと納税", "返礼品", "寄附金")):
         return False
     if kind == "laundry-detergent":
-        return bool(re.search(r"洗濯|衣料用|アタック|アリエール|ナノックス|NANOX|ランドリー", title, re.I)) and not re.search(r"食器|台所|柔軟剤", title)
+        return bool(re.search(r"洗濯|衣料用|アタック|アリエール|ナノックス|NANOX|ランドリー", title, re.I)) and not re.search(r"食器|台所|柔軟剤|ジェルボール|パーフェクトスティック|洗剤シート", title)
     if kind == "power-bank":
         return bool(re.search(r"モバイルバッテリー|Power Bank", title, re.I))
     if kind == "monitor":
