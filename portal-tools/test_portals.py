@@ -49,10 +49,31 @@ def main():
     for name in ("portal-assets/rakuten-feed.json","portal-assets/a8-approved.json"):
         feed=json.loads((ROOT/name).read_text(encoding="utf-8"))
         check(isinstance(feed.get("items"),list),name+" invalid affiliate feed")
+    guides = (
+        "okashi-matome.html", "okome-5kg.html",
+        "mobile-battery-monitors.html", "nichiyohin-matome.html",
+        "sneakers.html", "skincare.html", "pet-supplies.html",
+    )
+    for filename in guides:
+        page = (ROOT/"products"/filename).read_text(encoding="utf-8")
+        check('window.GUIDE_CATEGORY=' in page, filename+" missing category")
+        check('portal-assets/guide.js' in page, filename+" missing official feed script")
+        check('rel="canonical"' in page, filename+" missing SEO canonical")
+        check("PR｜広告" in page, filename+" missing visible advertising disclosure")
+    home = (ROOT/"products"/"index.html").read_text(encoding="utf-8")
+    check(all(filename in home for filename in guides), "product home missing guide links")
+    affiliate_feed = json.loads((ROOT/"portal-assets"/"rakuten-feed.json").read_text(encoding="utf-8"))
+    for item in affiliate_feed["items"]:
+        check(item.get("approved") is True, "unapproved Rakuten item in public feed")
+        check(item.get("expires_at"), "Rakuten price data without expiry")
+        check(urlparse(item.get("url") or "").scheme == "https", "Rakuten item URL not HTTPS")
+        if item.get("affiliate"):
+            check("rakuten.co.jp" in urlparse(item["url"]).netloc, "Non-Rakuten affiliate destination")
     script=(ROOT/"portal-assets"/"app.js").read_text(encoding="utf-8")
     check(all(x in script for x in ("今週末","来月開催","portal_outbound_click","expires_at")), "Missing key filters, tracking or expiration")
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"app.js")],check=True)
-    for script in ("refresh_portals.py","refresh_rakuten.py"):
+    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"guide.js")],check=True)
+    for script in ("refresh_portals.py","refresh_rakuten.py","build_commercial_site.py"):
         ast.parse((ROOT/"portal-tools"/script).read_text(encoding="utf-8"))
     print("PASS:",counts,"47 prefecture options and expiration checks")
 
