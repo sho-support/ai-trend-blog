@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - "portal-tools/refresh_rakuten.py"
+      - "portal-tools/track_prices.py"
       - "portal-assets/guide.js"
       - "portal-tools/test_portals.py"
       - ".github/workflows/commerce-rakuten.yml"
@@ -43,6 +44,10 @@ jobs:
       - name: Refresh official Rakuten feed
         if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
         run: python portal-tools/refresh_rakuten.py
+
+      - name: Track daily observed Rakuten prices
+        if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
+        run: python portal-tools/track_prices.py
 
       - name: Verify storefront and affiliate feed before publishing
         if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
