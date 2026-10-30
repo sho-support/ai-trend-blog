@@ -13,6 +13,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError
 
 ENDPOINT = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
 OUT = Path("portal-assets/rakuten-feed.json")
@@ -63,13 +64,18 @@ def main():
         try:
             with urlopen(req, timeout=20) as response:
                 payload = json.load(response)
+            if not isinstance(payload, dict):
+                raise ValueError("API response is not an object")
+            if payload.get("error") or payload.get("errors"):
+                raise ValueError("Rakuten API returned an error object")
             objects = payload.get("items", [])
             if not isinstance(objects, list):
                 raise ValueError("API items is not a list")
             for v in objects:
                 item = v.get("item", v) if isinstance(v, dict) else {}
                 name = str(item.get("itemName") or "").strip()[:110]
-                link = (item.get("affiliateUrl") or item.get("itemUrl")) if affiliate_id else item.get("itemUrl")
+                # No ordinary product link is published as an affiliate link.
+                link = item.get("affiliateUrl") if affiliate_id else item.get("itemUrl")
                 if not name or not isinstance(link, str) or urlsplit(link).scheme != "https":
                     continue
                 price = item.get("itemPrice")
@@ -115,6 +121,9 @@ def main():
                     "label": ("PR｜楽天公式API" if affiliate_id else "楽天公式API｜広告なし"),
                 })
             print(f"取得: {cat} {len(objects)}件")
+        except HTTPError as e:
+            errors += 1
+            print(f"取得失敗: {cat} (HTTP {e.code})", file=sys.stderr)
         except Exception as e:
             errors += 1
             print(f"取得失敗: {cat} ({type(e).__name__})", file=sys.stderr)
