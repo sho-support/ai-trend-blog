@@ -69,9 +69,32 @@ def main():
                 raise ValueError("API response is not an object")
             if payload.get("error") or payload.get("errors"):
                 raise ValueError("Rakuten API returned an error object")
-            objects = payload.get("items", [])
+            # Only report field names/counts in logs. Never print credentials,
+            # item URLs, affiliate URLs or raw response bodies.
+            safe_keys = [k for k in payload.keys() if k in (
+                "items", "Items", "count", "hits", "page", "pageCount",
+                "error", "errors", "data", "result", "status",
+            )]
+            objects = payload.get("items")
+            if objects is None:
+                objects = payload.get("Items")
+            if objects is None and isinstance(payload.get("data"), dict):
+                objects = payload["data"].get("items")
             if not isinstance(objects, list):
-                raise ValueError("API items is not a list")
+                print(
+                    "API応答の形式不一致:",
+                    "確認可能フィールド=", safe_keys,
+                    "items型=", type(objects).__name__,
+                    file=sys.stderr,
+                )
+                raise ValueError("API response contains no supported items list")
+            if len(objects) == 0:
+                print(
+                    "API応答0件:",
+                    "確認可能フィールド=", safe_keys,
+                    "検索総件数=", payload.get("count") if isinstance(payload.get("count"), int) else "未提供",
+                    file=sys.stderr,
+                )
             for v in objects:
                 item = v.get("item", v) if isinstance(v, dict) else {}
                 name = str(item.get("itemName") or "").strip()[:110]
@@ -150,7 +173,7 @@ def main():
             print(f"取得失敗: {cat} ({type(e).__name__})", file=sys.stderr)
     if not result:
         print("取得0件。古いデータを上書きしません。")
-        return 1 if errors else 0
+        return 1  # Never mark an empty feed as a successful connection test.
     output = {
         "updated_at": now.isoformat(),
         "source": ENDPOINT,
