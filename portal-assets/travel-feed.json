@@ -1,0 +1,6 @@
+{
+  "updated_at": null,
+  "source": "https://webservice.rakuten.co.jp/documentation/keyword-hotel-search",
+  "items": [],
+  "note": "楽天トラベルAPIの取得結果は連携成功後に表示。料金・空室・イベント会場との距離は未確認。"
+}
