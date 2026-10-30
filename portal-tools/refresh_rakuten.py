@@ -8,6 +8,7 @@ Offers are NOT labeled discounted or cheapest; prices are snapshots.
 import json
 import os
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlencode, urlsplit
@@ -37,7 +38,9 @@ def main():
     expires_at = (now + timedelta(hours=23)).isoformat()
     result = []
     errors = 0
-    for cat, query, emoji in SEARCHES:
+    for index, (cat, query, emoji) in enumerate(SEARCHES):
+        if index:
+            time.sleep(1.1)  # Registration estimate: <= 1 request per second
         params = {
             "applicationId": app_id,
             "keyword": query,
@@ -53,6 +56,8 @@ def main():
             headers={
                 "accessKey": access_key,
                 "User-Agent": "ShoCommercePortal/1.0",
+                # Identifies our owned publishing site for Rakuten Web Application settings.
+                "Referer": "https://sho-support.github.io/ai-trend-blog/deals/",
             },
         )
         try:
