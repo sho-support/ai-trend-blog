@@ -83,12 +83,27 @@ def main():
         check(hotel.get("expires_at"), "hotel listing has no expiry")
         check(hotel.get("prefecture") and hotel.get("city"), "hotel location missing")
         check(urlparse(hotel["url"]).scheme == "https", "insecure hotel referral link")
+    watch_page=(ROOT/"deals"/"price-watch.html").read_text(encoding="utf-8")
+    check('portal-assets/watch.js' in watch_page, "Price watch JS not linked")
+    check('Supported by Rakuten Developers</a>' in watch_page, "Price watch API credit missing")
+    history=json.loads((ROOT/"portal-assets"/"price-history.json").read_text(encoding="utf-8"))
+    check(isinstance(history.get("items"),dict), "Price history must be a keyed object")
+    for snapshots in history["items"].values():
+        check(isinstance(snapshots,list), "Snapshot history must be an array")
+        check(all(isinstance(x.get("price"),int) and x["price"]>0 for x in snapshots), "Bad observed prices")
+    for item in affiliate_feed["items"]:
+        check("ふるさと納税" not in (item.get("title") or ""), "Donation listing leaked into normal shopping feed")
+        if item.get("verified_deal"):
+            deal=item["verified_deal"]
+            check(deal.get("comparison_days",0)>=3 and deal.get("drop_percent",0)>=5, "Unproven discount badge")
+            check(item.get("price_yen")==deal.get("current_yen"), "Price badge mismatch")
     script=(ROOT/"portal-assets"/"app.js").read_text(encoding="utf-8")
     check(all(x in script for x in ("今週末","来月開催","portal_outbound_click","expires_at")), "Missing key filters, tracking or expiration")
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"app.js")],check=True)
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"guide.js")],check=True)
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"travel.js")],check=True)
-    for script in ("refresh_portals.py","refresh_rakuten.py","refresh_travel.py","build_commercial_site.py"):
+    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"watch.js")],check=True)
+    for script in ("refresh_portals.py","refresh_rakuten.py","refresh_travel.py","track_prices.py","build_commercial_site.py"):
         ast.parse((ROOT/"portal-tools"/script).read_text(encoding="utf-8"))
     print("PASS:",counts,"47 prefecture options and expiration checks")
 
