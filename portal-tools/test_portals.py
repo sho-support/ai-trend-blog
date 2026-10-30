@@ -69,11 +69,26 @@ def main():
         check(urlparse(item.get("url") or "").scheme == "https", "Rakuten item URL not HTTPS")
         if item.get("affiliate"):
             check("rakuten.co.jp" in urlparse(item["url"]).netloc, "Non-Rakuten affiliate destination")
+    # The API mandates its exact, unmodified attribution snippet on pages
+    # that show Rakuten Web Service product or hotel data.
+    for source in ("deals/index.html", "products/index.html", "events/index.html"):
+        body = (ROOT/source).read_text(encoding="utf-8")
+        check("Supported by Rakuten Developers</a>" in body, source+" missing official API attribution")
+    event_index = (ROOT/"events/index.html").read_text(encoding="utf-8")
+    check("portal-assets/travel.js" in event_index, "event stay widget missing")
+    travel_feed = json.loads((ROOT/"portal-assets/travel-feed.json").read_text(encoding="utf-8"))
+    check(isinstance(travel_feed.get("items"), list), "invalid Rakuten Travel feed")
+    for hotel in travel_feed["items"]:
+        check(hotel.get("affiliate") is True, "unapproved hotel listing")
+        check(hotel.get("expires_at"), "hotel listing has no expiry")
+        check(hotel.get("prefecture") and hotel.get("city"), "hotel location missing")
+        check(urlparse(hotel["url"]).scheme == "https", "insecure hotel referral link")
     script=(ROOT/"portal-assets"/"app.js").read_text(encoding="utf-8")
     check(all(x in script for x in ("今週末","来月開催","portal_outbound_click","expires_at")), "Missing key filters, tracking or expiration")
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"app.js")],check=True)
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"guide.js")],check=True)
-    for script in ("refresh_portals.py","refresh_rakuten.py","build_commercial_site.py"):
+    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"travel.js")],check=True)
+    for script in ("refresh_portals.py","refresh_rakuten.py","refresh_travel.py","build_commercial_site.py"):
         ast.parse((ROOT/"portal-tools"/script).read_text(encoding="utf-8"))
     print("PASS:",counts,"47 prefecture options and expiration checks")
 
