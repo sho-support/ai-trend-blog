@@ -11,7 +11,7 @@ const regionMap = {
  '中国・四国':prefectures.slice(30,39),
  '九州・沖縄':prefectures.slice(39)
 };
-const s={category:'すべて',term:'',shop:'すべて',pref:'すべて',region:'すべて',saved:false};
+const s={category:'すべて',term:'',shop:'すべて',pref:'すべて',region:'すべて',when:'any',saved:false};
 const esc = v => String(v??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const today = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const key='sho-portal-saved-'+DATA.kind;
@@ -30,6 +30,7 @@ function setup(){
  if(DATA.kind==='events'){
   html+='<select id="region" aria-label="地方">'+option(['すべて',...Object.keys(regionMap)])+'</select>';
   html+='<select id="pref" aria-label="都道府県">'+option(['すべて',...prefectures])+'</select>';
+  html+='<select id="when" aria-label="開催時期"><option value="any">すべての開催日</option><option value="weekend">今週末</option><option value="next7">7日以内に開催</option><option value="month">今月開催</option><option value="nextmonth">来月開催</option></select>';
  }else{
   html+='<select id="shop" aria-label="ショップ">'+option(shops)+'</select>';
  }
@@ -43,6 +44,7 @@ function setup(){
    render();
   });
   node('pref').addEventListener('change',e=>{s.pref=e.target.value;render()});
+  node('when').addEventListener('change',e=>{s.when=e.target.value;render()});
  }else node('shop').addEventListener('change',e=>{s.shop=e.target.value;render()});
  node('savedOnly').addEventListener('change',e=>{s.saved=e.target.value==='saved';render()});
  chipbox.innerHTML=cats.map(c=>'<button type="button" class="chip '+(c==='すべて'?'on':'')+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>').join('');
@@ -71,6 +73,33 @@ function render(){
  if(s.shop!=='すべて')arr=arr.filter(x=>x.shop===s.shop);
  if(s.region!=='すべて')arr=arr.filter(x=>(regionMap[s.region]||[]).includes(x.prefecture));
  if(s.pref!=='すべて')arr=arr.filter(x=>x.prefecture===s.pref);
+ if(DATA.kind==='events' && s.when!=='any'){
+  const start=today;
+  const jstDate=t=>new Date(t+'T00:00:00+09:00');
+  const pad=n=>String(n).padStart(2,'0');
+  const iso=t=>t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
+  const base=jstDate(start);
+  let low=start,high=start;
+  if(s.when==='next7'){
+   high=iso(new Date(base.getTime()+6*86400000));
+  }else if(s.when==='weekend'){
+   const day=base.getDay();
+   let until=(6-day+7)%7;
+   const sat=new Date(base.getTime()+until*86400000);
+   const sun=new Date(sat.getTime()+86400000);
+   low=iso(sat);high=iso(sun);
+  }else if(s.when==='month'){
+   low=start.slice(0,7)+'-01';
+   const next=new Date(base.getFullYear(),base.getMonth()+1,0);
+   high=iso(next);
+   low=low<start?start:low;
+  }else if(s.when==='nextmonth'){
+   const next=new Date(base.getFullYear(),base.getMonth()+1,1);
+   const end=new Date(base.getFullYear(),base.getMonth()+2,0);
+   low=iso(next);high=iso(end);
+  }
+  arr=arr.filter(x=>!!x.start && !!x.end && x.start<=high && x.end>=low);
+ }
  if(s.saved)arr=arr.filter(x=>saved.has(x.id));
  if(s.term)arr=arr.filter(x=>[x.title,x.category,x.description,x.shop,x.prefecture,x.place].join(' ').toLowerCase().includes(s.term));
  arr.sort((a,b)=>(a.start||a.end||'').localeCompare(b.start||b.end||''));
@@ -86,8 +115,10 @@ function render(){
   const label=hasDate?dateText(x):(x.label||'公式情報を確認');
   const url=typeof x.url==='string'&&/^https:\/\//.test(x.url)?x.url:'#';
   const old=x.verified && x.verified < today;
+  const isFuture=x.start && x.start>today;
+  const displayLabel=isFuture && DATA.kind==='deals' ? '開催予定｜'+label : label;
   const stamp=hasDate?(x.start||'日程要確認'):('参照日 '+(x.verified||'記載なし'));
-  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+esc(x.icon||'✨')+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><span class="badge">'+esc(label)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(x.title)+' 公式情報">公式情報を確認 ↗</a></div></article>';
+  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+esc(x.icon||'✨')+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(x.title)+' 公式情報">公式情報を確認 ↗</a></div></article>';
  }).join('');
 }
 if(node('cards')){
