@@ -87,6 +87,13 @@ def main():
                 )
                 if isinstance(point_rate, (int, float)) and point_rate > 1:
                     text += f" API掲載ポイント倍率: {point_rate}倍。"
+                # 楽天ウェブサービス規定に従い、価格表示の隣に注記。
+                text += (
+                    " このサイトで掲載されている情報は、トクサーチの作成者により運営されています。"
+                    "価格、販売可能情報は、変更される場合があります。"
+                    "購入時に楽天市場店舗（www.rakuten.co.jp）に表示されている価格が、"
+                    "その商品の販売に適用されます。"
+                )
                 result.append({
                     "id": "rakuten-" + code.replace(":", "-"),
                     "category": cat,
