@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T01:00:53.662086+09:00",
+  "updated_at": "2026-10-31T01:03:27.932621+09:00",
   "source": "https://openapi.rakuten.co.jp/engine/api/Travel/KeywordHotelSearch/20260731",
   "note": "PR・楽天トラベル公式API。宿泊日ごとの空き室・料金・会場からの距離は未確認。",
   "items": [
@@ -8,243 +8,270 @@
       "prefecture": "北海道",
       "city": "札幌",
       "name": "コンフォートホテルＥＲＡ札幌北口",
+      "address": "北海道札幌市北区北七条西5-17-1",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D196705",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-札幌-172398",
       "prefecture": "北海道",
       "city": "札幌",
       "name": "ベッセルホテルカンパーナすすきの｜サウナ付大浴場（札幌・すすきの）",
+      "address": "北海道札幌市中央区南五条西6-16-1",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D172398",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-札幌-762",
       "prefecture": "北海道",
       "city": "札幌",
       "name": "札幌グランドホテル",
+      "address": "北海道札幌市中央区北1条西4丁目",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D762",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-帯広-181734",
       "prefecture": "北海道",
       "city": "帯広",
       "name": "ホテルグランテラス帯広アネックス　帯広大通り（ＢＢＨホテルグループ）",
+      "address": "北海道帯広市大通南11丁目7番地",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D181734",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-帯広-1176",
       "prefecture": "北海道",
       "city": "帯広",
       "name": "ホテル日航ノースランド帯広",
+      "address": "北海道帯広市西2条南13丁目1番地",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D1176",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-帯広-50752",
       "prefecture": "北海道",
       "city": "帯広",
       "name": "ホテルパコ帯広駅前（旧ホテルパコ帯広２）",
+      "address": "北海道帯広市大通南12丁目1-3",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D50752",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-仙台-179798",
       "prefecture": "宮城県",
       "city": "仙台",
       "name": "天然温泉　源氏翼の湯　スーパーホテル美田園・仙台エアポート＜仙台空港＞",
+      "address": "宮城県名取市美田園2丁目1番地の11",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D179798",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-仙台-191668",
       "prefecture": "宮城県",
       "city": "仙台",
       "name": "スーパーホテル仙台駅東口天然温泉",
+      "address": "宮城県仙台市宮城野区名掛丁203-12",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D191668",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-仙台-187247",
       "prefecture": "宮城県",
       "city": "仙台",
       "name": "スーパーホテルＰｒｅｍｉｅｒ仙台国分町天然温泉",
+      "address": "宮城県仙台市青葉区国分町2-13-5",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D187247",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-弘前-1506",
       "prefecture": "青森県",
       "city": "弘前",
       "name": "スマイルホテル弘前",
+      "address": "青森県弘前市大字土手町73-2",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D1506",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-弘前-70913",
       "prefecture": "青森県",
       "city": "弘前",
       "name": "ホテルルートイン弘前城東",
+      "address": "青森県弘前市城東中央5-5-6",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D70913",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-弘前-14932",
       "prefecture": "青森県",
       "city": "弘前",
       "name": "弘前パークホテル",
+      "address": "青森県弘前市土手町126",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D14932",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-東京-78182",
       "prefecture": "東京都",
       "city": "東京",
       "name": "サイプレスイン東京",
+      "address": "東京都葛飾区西新小岩1-2-5",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D78182",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-東京-160785",
       "prefecture": "東京都",
       "city": "東京",
       "name": "コンフォートホテルＥＲＡ東京東神田",
+      "address": "東京都千代田区東神田1-9-10",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D160785",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-東京-4822",
       "prefecture": "東京都",
       "city": "東京",
       "name": "ホテルイースト２１東京（オークラホテルズ＆リゾーツ）",
+      "address": "東京都江東区東陽6-3-3",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D4822",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-大阪-166198",
       "prefecture": "大阪府",
       "city": "大阪",
       "name": "ＳＡＲＡＳＡ　ＨＯＴＥＬ新大阪（サラサ　ホテル新大阪）",
+      "address": "大阪府大阪市淀川区西中島7-1-17",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D166198",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-大阪-810",
       "prefecture": "大阪府",
       "city": "大阪",
       "name": "ホテルフクラシア大阪ベイ",
+      "address": "大阪府大阪市住之江区南港北1-7-50",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D810",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-大阪-153232",
       "prefecture": "大阪府",
       "city": "大阪",
       "name": "クインテッサホテル　Ｔｈｅ　Ｃｏｌｌｅｃｔｉｏｎ　大阪ベイ（旧：クインテッサホテル大阪ベイ）",
+      "address": "大阪府大阪市住之江区南港北1-13-65",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D153232",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-京都-179147",
       "prefecture": "京都府",
       "city": "京都",
       "name": "レフ京都八条口ｂｙベッセルホテルズ｜ＲＥＦ京都八条口（京都２号店）",
+      "address": "京都府京都市南区東九条室町57番地",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D179147",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-京都-147994",
       "prefecture": "京都府",
       "city": "京都",
       "name": "ベッセルホテルカンパーナ京都五条｜サウナ付大浴場（京都１号店）",
+      "address": "京都府京都市下京区東洞院通五条下る下万寿寺町498",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D147994",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-京都-181319",
       "prefecture": "京都府",
       "city": "京都",
       "name": "コンフォートホテルＥＲＡ京都東寺",
+      "address": "京都府京都市南区西九条島町54-1",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D181319",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-佐賀-166515",
       "prefecture": "佐賀県",
       "city": "佐賀",
       "name": "ガーデンテラス佐賀ホテル＆リゾート",
+      "address": "佐賀県佐賀市新栄東3-7-8",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D166515",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-佐賀-196715",
       "prefecture": "佐賀県",
       "city": "佐賀",
       "name": "大人の隠れ家　佐賀風雅",
+      "address": "佐賀県佐賀市富士町小副川2208-1",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D196715",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-佐賀-448",
       "prefecture": "佐賀県",
       "city": "佐賀",
       "name": "アパホテル〈佐賀駅南口〉",
+      "address": "佐賀県佐賀市駅前中央1-164",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D448",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-大分-70923",
       "prefecture": "大分県",
       "city": "大分",
       "name": "ダイワロイネットホテル大分（２０２６年９月リニューアル）",
+      "address": "大分県大分市荷揚町2-3",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D70923",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-大分-4847",
       "prefecture": "大分県",
       "city": "大分",
       "name": "レンブラントホテル大分",
+      "address": "大分県大分市田室町9-20",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D4847",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     },
     {
       "id": "travel-大分-193114",
       "prefecture": "大分県",
       "city": "大分",
       "name": "天然温泉　アリストンホテル大分",
+      "address": "大分県大分市金池町1-2-1",
       "url": "https://hb.afl.rakuten.co.jp/hgc/58f99eed.3fee5b14.58f99eee.360b94fa/?pc=https%3A%2F%2Fimg.travel.rakuten.co.jp%2Fimage%2Ftr%2Fapi%2Fkw%2FJBe8h%2F%3Ff_no%3D193114",
       "affiliate": true,
-      "expires_at": "2026-11-01T00:00:53.662086+09:00"
+      "expires_at": "2026-11-01T00:03:27.932621+09:00"
     }
   ]
 }
