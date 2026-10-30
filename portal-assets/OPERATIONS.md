@@ -99,3 +99,27 @@ GitHub Secrets:
 3. Netlifyアカウントを接続し、GitHubリポジトリから商用デプロイする。現時点でNetlifyへは未デプロイ。
 4. 47都道府県のイベント情報の本格収集。現状8都道府県の18件のみ。確認していないイベントを大量掲載しない。
 5. 新ホストの外部表示・GA4クリック・A8成果承認の実機検証。
+
+## 2026-10-31 楽天API接続・商品比較記事の稼働実績
+
+- Rakuten Ichiba API: ユーザーがGitHub Secretsに RAKUTEN_APP_ID / RAKUTEN_ACCESS_KEY / RAKUTEN_AFFILIATE_ID を設定。
+- GitHub Actions「Refresh Commerce Product Feed」 #5 成功（https://github.com/sho-support/ai-trend-blog/actions/runs/41083604065）。
+- 2026-10-31 00:45 JST の取得では24件中24件が楽天正規アフィリエイトURL。price_yen・seller・image・expires_atも保持。取得失敗カテゴリ0件。
+- API接続と正規URL取得の成功は「購入発生」「報酬承認」を意味しない。
+- 商品データの取得は原則毎朝06:00 JST、Gemini API不要。表示期限は取得から23時間。
+- 新規SEO記事（自動ではなく今回手動で内容を作成した固定ガイド）7本：
+  products/okashi-matome.html
+  products/okome-5kg.html
+  products/mobile-battery-monitors.html
+  products/nichiyohin-matome.html
+  products/sneakers.html
+  products/skincare.html
+  products/pet-supplies.html
+- 7つの固定ガイドは文章を毎日作り直さず、表示する商品・価格・出店者・報酬リンクのみ公式APIデータを自動更新する設計。API失敗・期限切れなら商品は非表示。
+- portal-assets/guide.js で価格の期限確認、楽天商品リンクのPR表示、クリックのGA4イベントを実装。
+- portal-assets/app.js で楽天/提携商品に rel=sponsored を付与。
+- 全7記事へ products/index.html からリンク。dealサイトから主要3記事へリンク。サイトマップも7記事を収録。
+- テストスクリプト portal-tools/test_portals.py に7記事・PR表記・商品URL・画像・JS構文検査を追加。商品更新workflow #5で成功。
+- GitHub Pagesデプロイ 511 https://github.com/sho-support/ai-trend-blog/actions/runs/41084112241 は成功。外部ブラウザ実機のクリック表示は未確認。
+- Rakuten affiliate の掲載サイト登録 statusは利用者の画面で未確認。A8.net 承認済み実案件は引き続き0件。商用ホストへの移転（Netlify）・成果承認データ連携は未完了。
+- 特価・最安値・レビュー実体験を装った表示は禁止。楽天API表示価格は条件により変わるためリンク先の店舗条件を案内。
