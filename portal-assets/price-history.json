@@ -1,5 +1,150 @@
 {
-  "updated_at": null,
-  "items": {},
-  "note": "楽天公式APIにより同一商品を日次観測した価格のみ保存。掲載の値下がり判定は観測履歴に限定。"
+  "updated_at": "2026-10-31T01:04:36.608127+09:00",
+  "items": {
+    "rakuten-yokumoku-10000435": [
+      {
+        "date": "2026-10-31",
+        "price": 3672
+      }
+    ],
+    "rakuten-nichokiti-10000134": [
+      {
+        "date": "2026-10-31",
+        "price": 540
+      }
+    ],
+    "rakuten-lindt-chocolate-10001570": [
+      {
+        "date": "2026-10-31",
+        "price": 2980
+      }
+    ],
+    "rakuten-hseason-10000260": [
+      {
+        "date": "2026-10-31",
+        "price": 6080
+      }
+    ],
+    "rakuten-yokogoshi-10000946": [
+      {
+        "date": "2026-10-31",
+        "price": 6650
+      }
+    ],
+    "rakuten-kawasaki-beikoku-10000016": [
+      {
+        "date": "2026-10-31",
+        "price": 6580
+      }
+    ],
+    "rakuten-anker-10001908": [
+      {
+        "date": "2026-10-31",
+        "price": 3490
+      }
+    ],
+    "rakuten-anker-10001561": [
+      {
+        "date": "2026-10-31",
+        "price": 3990
+      }
+    ],
+    "rakuten-gracevally-10000033": [
+      {
+        "date": "2026-10-31",
+        "price": 1580
+      }
+    ],
+    "rakuten-pixiogaming-10000135": [
+      {
+        "date": "2026-10-31",
+        "price": 52980
+      }
+    ],
+    "rakuten-fpdvision-10000042": [
+      {
+        "date": "2026-10-31",
+        "price": 63980
+      }
+    ],
+    "rakuten-fpdvision-10000036": [
+      {
+        "date": "2026-10-31",
+        "price": 27980
+      }
+    ],
+    "rakuten-kashitani-10420535": [
+      {
+        "date": "2026-10-31",
+        "price": 5536
+      }
+    ],
+    "rakuten-k-home-10073324": [
+      {
+        "date": "2026-10-31",
+        "price": 2200
+      }
+    ],
+    "rakuten-kusurinokiyoshi-10009050": [
+      {
+        "date": "2026-10-31",
+        "price": 3344
+      }
+    ],
+    "rakuten-adidas-10204230": [
+      {
+        "date": "2026-10-31",
+        "price": 11000
+      }
+    ],
+    "rakuten-adidas-10168896": [
+      {
+        "date": "2026-10-31",
+        "price": 6050
+      }
+    ],
+    "rakuten-adidas-10193265": [
+      {
+        "date": "2026-10-31",
+        "price": 6600
+      }
+    ],
+    "rakuten-yunth-10000000": [
+      {
+        "date": "2026-10-31",
+        "price": 3960
+      }
+    ],
+    "rakuten-shuuemura-10000018": [
+      {
+        "date": "2026-10-31",
+        "price": 13200
+      }
+    ],
+    "rakuten-yunth-10000122": [
+      {
+        "date": "2026-10-31",
+        "price": 3960
+      }
+    ],
+    "rakuten-lecdirect-10002407": [
+      {
+        "date": "2026-10-31",
+        "price": 1690
+      }
+    ],
+    "rakuten-lecdirect-10002040": [
+      {
+        "date": "2026-10-31",
+        "price": 5478
+      }
+    ],
+    "rakuten-lecdirect-2-10003561": [
+      {
+        "date": "2026-10-31",
+        "price": 1690
+      }
+    ]
+  },
+  "note": "API経由の当サイト観測価格。楽天市場全体の最安値ではありません。送料・クーポン・ポイント・在庫未考慮。"
 }
