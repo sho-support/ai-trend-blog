@@ -106,7 +106,7 @@ function render(){
  node('count').textContent=arr.length+'件の情報';
  const grid=node('cards');
  if(!arr.length){
-  grid.innerHTML='<div class="empty">条件に合う掲載情報がありません。全国47都道府県から検索できますが、現段階では確認済みの情報のみ掲載しています。条件を変更するか、後日ご確認ください。</div>';
+  grid.innerHTML='<div class="empty">条件に合う掲載情報がありません。現在は確認済みの情報のみ掲載しています。'+(DATA.kind==='events'?'<p>全国のイベント情報は、<a href="https://www.japan47go.travel/ja/event" target="_blank" rel="noopener noreferrer" style="color:#326a89;text-decoration:underline">日本観光振興協会のイベントカレンダー</a>でも探せます。</p>':'対象ジャンルや店舗を変えて検索してください。')+'</div>';
   return;
  }
  grid.innerHTML=arr.map(x=>{
