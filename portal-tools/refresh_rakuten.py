@@ -34,7 +34,7 @@ def main():
         print("楽天のAPI設定なし。既存データを変更しません。")
         return 0
     now = datetime.now(JST)
-    tomorrow = (now + timedelta(hours=24)).strftime("%Y-%m-%d")
+    expires_at = (now + timedelta(hours=23)).isoformat()
     result = []
     errors = 0
     for cat, query, emoji in SEARCHES:
@@ -64,13 +64,22 @@ def main():
             for v in objects:
                 item = v.get("item", v) if isinstance(v, dict) else {}
                 name = str(item.get("itemName") or "").strip()[:110]
-                link = item.get("affiliateUrl") if affiliate_id else item.get("itemUrl")
+                link = (item.get("affiliateUrl") or item.get("itemUrl")) if affiliate_id else item.get("itemUrl")
                 if not name or not isinstance(link, str) or urlsplit(link).scheme != "https":
                     continue
                 price = item.get("itemPrice")
                 if not isinstance(price, int) or price <= 0:
                     continue
                 code = str(item.get("itemCode") or "")
+                if not code:
+                    continue
+                image_list = item.get("mediumImageUrls") or []
+                image = ""
+                if image_list:
+                    raw_image = image_list[0]
+                    image = (raw_image.get("imageUrl") if isinstance(raw_image, dict) else raw_image) or ""
+                    if not isinstance(image, str) or not image.startswith("https://"):
+                        image = ""
                 point_rate = item.get("pointRate")
                 text = (
                     "楽天公式API取得時の参考価格: "
@@ -88,8 +97,10 @@ def main():
                     "url": link,
                     "approved": True,
                     "verified": now.strftime("%Y-%m-%d"),
-                    "end": tomorrow,
-                    "label": "公式API価格・購入前に再確認",
+                    "expires_at": expires_at,
+                    "affiliate": bool(affiliate_id),
+                    "image": image,
+                    "label": ("PR｜楽天公式API" if affiliate_id else "楽天公式API｜広告なし"),
                 })
             print(f"取得: {cat} {len(objects)}件")
         except Exception as e:
