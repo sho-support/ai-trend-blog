@@ -1,7 +1,7 @@
 (()=>{
 'use strict';
 const DATA = window.PORTAL_DATA || {};
-const ALL = Array.isArray(DATA.items) ? DATA.items : [];
+let ALL = Array.isArray(DATA.items) ? DATA.items.slice() : [];
 const prefectures = ('北海道 青森県 岩手県 宮城県 秋田県 山形県 福島県 茨城県 栃木県 群馬県 埼玉県 千葉県 東京都 神奈川県 新潟県 富山県 石川県 福井県 山梨県 長野県 岐阜県 静岡県 愛知県 三重県 滋賀県 京都府 大阪府 兵庫県 奈良県 和歌山県 鳥取県 島根県 岡山県 広島県 山口県 徳島県 香川県 愛媛県 高知県 福岡県 佐賀県 長崎県 熊本県 大分県 宮崎県 鹿児島県 沖縄県').split(' ');
 const regionMap = {
  '北海道・東北':prefectures.slice(0,7),
@@ -22,7 +22,6 @@ const uniq=arr=>[...new Set(arr.filter(Boolean))];
 const option=(a)=>a.map(v=>'<option value="'+esc(v)+'">'+esc(v)+'</option>').join('');
 const isExpired=x=>x.end && x.end < today;
 const dateText=x=>x.start?(x.end&&x.end!==x.start?x.start+' 〜 '+x.end:x.start):'公式で確認';
-const a8=DATA.kind==='products'?[]:[];
 function setup(){
  const filter=node('filters'),chipbox=node('chips');
  const cats=['すべて',...uniq(ALL.map(x=>x.category))];
@@ -82,5 +81,31 @@ function render(){
   return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+esc(x.icon||'✨')+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><span class="badge">'+esc(label)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(x.title)+' 公式情報">公式情報を確認 ↗</a></div></article>';
  }).join('');
 }
-if(node('cards'))setup();
+if(node('cards')){
+ const urls=DATA.kind==='events'?[]:[
+  '../portal-assets/rakuten-feed.json',
+  ...(DATA.kind==='products'?['../portal-assets/a8-approved.json']:[])
+ ];
+ if(!urls.length){setup();}else{
+  Promise.all(urls.map(url=>fetch(url,{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null))).then(feeds=>{
+   const additions=[];
+   for(let i=0;i<feeds.length;i++){
+    const feed=feeds[i], type=urls[i].includes('a8-')?'a8':'rakuten';
+    if(!Array.isArray(feed?.items))continue;
+    for(const x of feed.items){
+     if(!x || typeof x!=='object' || !/^https:\/\/\S+$/.test(x.url||''))continue;
+     if(!x.id||!x.title||!x.category)continue;
+     if(type==='a8'){
+      // A8.netの承認済み「フリー素材」の正規広告URLのみ使用。
+      if(x.approved!==true||x.material_type!=='free_link')continue;
+      additions.push({...x,shop:x.shop||'A8.net提携店',icon:x.icon||'🎁',label:'PR｜提携確認済み'});
+     }else if(x.approved===true){
+      additions.push({...x,shop:x.shop||'楽天市場',icon:x.icon||'📦',label:x.label||'楽天公式API情報'});
+     }
+    }
+   }
+   ALL=[...additions,...ALL];
+  }).finally(setup);
+ }
+}
 })();
