@@ -1,0 +1,32 @@
+name: Refresh Portal Listings
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 04:15 JST daily, no LLM usage
+    - cron: "15 19 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-trend-blog-portal-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Refresh static listings
+        run: python portal-tools/refresh_portals.py
+      - name: Verify portal files
+        run: python portal-tools/test_portals.py
+      - name: Publish updated static listings
+        run: bash .github/scripts/safe-commit-push.sh 'Refresh portal listings and expire outdated cards'
