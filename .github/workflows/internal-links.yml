@@ -643,6 +643,8 @@ jobs:
               f"{SITE_BASE_URL}/archive.html",
               f"{SITE_BASE_URL}/deals/",
               f"{SITE_BASE_URL}/deals/price-watch.html",
+              f"{SITE_BASE_URL}/deals/about.html",
+              f"{SITE_BASE_URL}/deals/privacy.html",
               f"{SITE_BASE_URL}/deals/rakuten-superdeal-guide.html",
               f"{SITE_BASE_URL}/deals/yahoo-weekly-coupons-202611.html",
               f"{SITE_BASE_URL}/deals/muji-week-202610.html",
