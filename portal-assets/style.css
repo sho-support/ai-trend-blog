@@ -3,3 +3,16 @@
 
 /* Official API product images (never sourced from A8 HTML ads). */
 .product-pic{max-width:100%;max-height:100%;object-fit:contain;border-radius:9px}.tile .emblem:has(.product-pic){padding:7px;background:#fff;width:94px;height:90px;border:1px solid #f0f0e8}
+
+/* Commerce: skim in seconds; the purchase decision stays with the customer. */
+.catalog-price{font-size:23px;line-height:1.35;font-weight:900;letter-spacing:-.6px;margin:2px 0 9px;color:#192d37;font-variant-numeric:tabular-nums}
+.catalog-price span{font-size:11px;font-weight:500;letter-spacing:0;display:block;color:#6a7b87;margin-top:3px}
+.tile .emblem:has(img){width:92px;height:88px;overflow:hidden}
+.tile h3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tile .badge{font-size:10px}
+.rakuten-credit{display:inline-flex;align-items:center;font-size:11px}
+.rakuten-credit a{color:#6c8291;text-decoration:underline}
+.guide-criteria{background:#fff;border:1px solid #e4eae1;border-radius:20px;padding:24px;margin:20px 0;font-size:13px;line-height:1.8}
+.guide-criteria h2{margin:0 0 10px;font-size:20px}
+.guide-criteria li{padding:4px 0}
+@media(max-width:600px){.catalog-price{font-size:22px}.guide-criteria{padding:18px}}
