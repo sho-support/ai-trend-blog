@@ -641,6 +641,9 @@ jobs:
           urls = [
               f"{SITE_BASE_URL}/",
               f"{SITE_BASE_URL}/archive.html",
+              f"{SITE_BASE_URL}/deals/",
+              f"{SITE_BASE_URL}/events/",
+              f"{SITE_BASE_URL}/products/",
           ] + [
               f"{SITE_BASE_URL}/category/{c['slug']}.html"
               for c in CATEGORIES
