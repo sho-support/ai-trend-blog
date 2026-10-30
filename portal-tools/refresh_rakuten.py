@@ -135,6 +135,8 @@ def main():
                     "shop": "楽天市場",
                     "icon": emoji,
                     "title": name,
+                    "price_yen": price,
+                    "seller": str(item.get("shopName") or "楽天市場出店ショップ")[:70],
                     "description": text,
                     "url": link,
                     "approved": True,
