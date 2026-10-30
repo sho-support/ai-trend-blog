@@ -53,6 +53,7 @@ def main():
         "okashi-matome.html", "okome-5kg.html",
         "mobile-battery-monitors.html", "nichiyohin-matome.html",
         "sneakers.html", "skincare.html", "pet-supplies.html",
+        "mobile-battery.html", "work-monitor.html",
     )
     for filename in guides:
         page = (ROOT/"products"/filename).read_text(encoding="utf-8")
@@ -60,6 +61,19 @@ def main():
         check('portal-assets/guide.js' in page, filename+" missing official feed script")
         check('rel="canonical"' in page, filename+" missing SEO canonical")
         check("PR｜広告" in page, filename+" missing visible advertising disclosure")
+        check('portal-assets/commerce.js' in page, filename+" missing live product eligibility checks")
+        check('参照した公式情報' in page, filename+" missing editorial sources")
+        check(len(re.findall(r'<h1[ >]', page))==1, filename+" must have exactly one title")
+        ids=re.findall(r'\bid="([^"]+)"',page)
+        check(len(ids)==len(set(ids)), filename+" duplicate HTML IDs")
+        for href in re.findall(r'href="([^"]+)"',page):
+            if href.startswith(('https:', 'http:')):
+                continue
+            if href.startswith('#'):
+                check(href[1:] in ids, filename+" broken anchor: "+href)
+                continue
+            target=(ROOT/"products"/href.split('#')[0]).resolve()
+            check(target.exists(), filename+" broken local link: "+href)
     home = (ROOT/"products"/"index.html").read_text(encoding="utf-8")
     check(all(filename in home for filename in guides), "product home missing guide links")
     affiliate_feed = json.loads((ROOT/"portal-assets"/"rakuten-feed.json").read_text(encoding="utf-8"))
@@ -68,7 +82,8 @@ def main():
         check(item.get("expires_at"), "Rakuten price data without expiry")
         check(urlparse(item.get("url") or "").scheme == "https", "Rakuten item URL not HTTPS")
         if item.get("affiliate"):
-            check("rakuten.co.jp" in urlparse(item["url"]).netloc, "Non-Rakuten affiliate destination")
+            host=urlparse(item["url"]).hostname or ''
+            check(host=='rakuten.co.jp' or host.endswith('.rakuten.co.jp'), "Non-Rakuten affiliate destination")
     # The API mandates its exact, unmodified attribution snippet on pages
     # that show Rakuten Web Service product or hotel data.
     for source in ("deals/index.html", "products/index.html", "events/index.html"):
@@ -103,8 +118,16 @@ def main():
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"guide.js")],check=True)
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"travel.js")],check=True)
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"watch.js")],check=True)
-    for script in ("refresh_portals.py","refresh_rakuten.py","refresh_travel.py","track_prices.py","build_commercial_site.py"):
+    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"calculator.js")],check=True)
+    subprocess.run(["node",str(ROOT/"portal-tools"/"test_commerce.js")],check=True)
+    subprocess.run([sys.executable,str(ROOT/"portal-tools"/"test_article_quality.py")],check=True)
+    for script in ("refresh_portals.py","refresh_rakuten.py","refresh_travel.py","track_prices.py","build_commercial_site.py","build_guides.py","guide_content.py"):
         ast.parse((ROOT/"portal-tools"/script).read_text(encoding="utf-8"))
+    spec=importlib.util.spec_from_file_location('rakuten_checks',ROOT/'portal-tools'/'refresh_rakuten.py')
+    refresh=importlib.util.module_from_spec(spec);spec.loader.exec_module(refresh)
+    check(not refresh.eligible_title('キュキュット 食器用洗剤','laundry-detergent'), 'dish soap passed laundry filter')
+    check(refresh.eligible_title('衣料用 アタック 詰め替え','laundry-detergent'), 'laundry item rejected')
+    check(not refresh.eligible_title('モニターアーム 4K用','monitor'), 'monitor accessory passed filter')
     print("PASS:",counts,"47 prefecture options and expiration checks")
 
 if __name__=="__main__":

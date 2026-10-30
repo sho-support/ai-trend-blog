@@ -9,10 +9,20 @@ on:
       - "events/**"
       - "portal-assets/app.js"
       - "portal-assets/guide.js"
+      - "portal-assets/commerce.js"
+      - "portal-assets/calculator.js"
+      - "portal-assets/editorial.css"
       - "portal-assets/travel.js"
       - "portal-assets/watch.js"
       - "portal-assets/style.css"
       - "portal-tools/test_portals.py"
+      - "portal-tools/test_commerce.js"
+      - "portal-tools/test_article_quality.py"
+      - "generate_article.py"
+      - "article_quality.py"
+      - "portal-tools/build_guides.py"
+      - "portal-tools/guide_content.py"
+      - "portal-tools/refresh_portals.py"
       - ".github/workflows/refresh-portals.yml"
   schedule:
     # 04:15 JST daily, no LLM usage
@@ -37,7 +47,9 @@ jobs:
         with:
           python-version: "3.11"
       - name: Refresh static listings
-        run: python portal-tools/refresh_portals.py
+        run: |
+          python portal-tools/build_guides.py
+          python portal-tools/refresh_portals.py
       - name: Verify portal files
         run: python portal-tools/test_portals.py
       - name: Publish updated static listings

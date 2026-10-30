@@ -11,16 +11,18 @@ const regionMap = {
  '中国・四国':prefectures.slice(30,39),
  '九州・沖縄':prefectures.slice(39)
 };
+let lastGridMarkup='';
 const s={category:'すべて',term:'',shop:'すべて',pref:'すべて',region:'すべて',when:'any',sort:'default',saved:false};
 const esc = v => String(v??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const today = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const key='sho-portal-saved-'+DATA.kind;
 let favorites;try{favorites=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){favorites=[]}
-const saved=new Set(favorites);
+const saved=new Set(Array.isArray(favorites)?favorites.filter(x=>typeof x==='string'):[]);
 const node=id=>document.getElementById(id);
 const uniq=arr=>[...new Set(arr.filter(Boolean))];
 const option=(a)=>a.map(v=>'<option value="'+esc(v)+'">'+esc(v)+'</option>').join('');
-const isExpired=x=>(x.expires_at && Date.parse(x.expires_at)<=Date.now()) || (x.end && x.end<today);
+const currentDay=()=>new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+const isExpired=x=>(x.expires_at && (!Number.isFinite(Date.parse(x.expires_at)) || Date.parse(x.expires_at)<=Date.now())) || (x.end && x.end<currentDay()) || (x.affiliate===true && !window.PortalCommerce?.isLive(x));
 const dateText=x=>x.start?(x.end&&x.end!==x.start?x.start+' 〜 '+x.end:x.start):'公式で確認';
 function setup(){
  const filter=node('filters'),chipbox=node('chips');
@@ -55,12 +57,15 @@ function setup(){
  chipbox.addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;s.category=b.dataset.cat;chipbox.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat===s.category));render()});
  node('cards').addEventListener('click',e=>{
   const outbound=e.target.closest('a.go');
+  if(outbound?.dataset.itemId){const item=ALL.find(x=>x.id===outbound.dataset.itemId);if(item&&isExpired(item)){e.preventDefault();render();return;}}
   if(outbound && typeof window.gtag === 'function'){
    try{
+    if(new URL(outbound.href).origin!==window.location.origin){
     window.gtag('event','portal_outbound_click',{
-     portal_kind:DATA.kind,
-     destination_host:new URL(outbound.href).hostname
+     portal_kind:DATA.kind, item_id:outbound.dataset.itemId||'',
+     destination_host:new URL(outbound.href).hostname, transport_type:'beacon'
     });
+    }
    }catch(err){}
   }
   const b=e.target.closest('[data-save]');if(!b)return;
@@ -70,38 +75,17 @@ function setup(){
   render();
  });
  render();
+ window.PortalCommerce?.observe(render);
 }
 function render(){
+ const today=currentDay();
  let arr=ALL.filter(x=>!isExpired(x));
  if(s.category!=='すべて')arr=arr.filter(x=>x.category===s.category);
  if(s.shop!=='すべて')arr=arr.filter(x=>x.shop===s.shop);
  if(s.region!=='すべて')arr=arr.filter(x=>(regionMap[s.region]||[]).includes(x.prefecture));
  if(s.pref!=='すべて')arr=arr.filter(x=>x.prefecture===s.pref);
  if(DATA.kind==='events' && s.when!=='any'){
-  const start=today;
-  const jstDate=t=>new Date(t+'T00:00:00Z');
-  const pad=n=>String(n).padStart(2,'0');
-  const iso=t=>t.getUTCFullYear()+'-'+pad(t.getUTCMonth()+1)+'-'+pad(t.getUTCDate());
-  const base=jstDate(start);
-  let low=start,high=start;
-  if(s.when==='next7'){
-   high=iso(new Date(base.getTime()+6*86400000));
-  }else if(s.when==='weekend'){
-   const day=base.getUTCDay();
-   let until=(6-day+7)%7;
-   const sat=new Date(base.getTime()+until*86400000);
-   const sun=new Date(sat.getTime()+86400000);
-   low=iso(sat);high=iso(sun);
-  }else if(s.when==='month'){
-   low=start.slice(0,7)+'-01';
-   const next=new Date(Date.UTC(base.getUTCFullYear(),base.getUTCMonth()+1,0));
-   high=iso(next);
-   low=low<start?start:low;
-  }else if(s.when==='nextmonth'){
-   const next=new Date(Date.UTC(base.getUTCFullYear(),base.getUTCMonth()+1,1));
-   const end=new Date(Date.UTC(base.getUTCFullYear(),base.getUTCMonth()+2,0));
-   low=iso(next);high=iso(end);
-  }
+  const {low,high}=window.PortalCommerce.eventWindow(s.when,today);
   arr=arr.filter(x=>!!x.start && !!x.end && x.start<=high && x.end>=low);
  }
  if(s.saved)arr=arr.filter(x=>saved.has(x.id));
@@ -113,14 +97,16 @@ function render(){
  node('count').textContent=arr.length+'件の情報';
  const grid=node('cards');
  if(!arr.length){
+  lastGridMarkup='';
   grid.innerHTML='<div class="empty">条件に合う掲載情報がありません。現在は確認済みの情報のみ掲載しています。'+(DATA.kind==='events'?'<p>全国のイベント情報は、<a href="https://www.japan47go.travel/ja/event" target="_blank" rel="noopener noreferrer" style="color:#326a89;text-decoration:underline">日本観光振興協会のイベントカレンダー</a>でも探せます。</p>':'対象ジャンルや店舗を変えて検索してください。')+'</div>';
   return;
  }
- grid.innerHTML=arr.map(x=>{
+ const markup=arr.map(x=>{
   const hasDate=DATA.kind==='events';
   const place=hasDate?[x.prefecture,x.place].filter(Boolean).join('・'):x.shop;
   const label=hasDate?dateText(x):(x.label||'公式情報を確認');
-  const url=typeof x.url==='string'&&/^https:\/\//.test(x.url)?x.url:'#';
+  const localGuide=typeof x.guide_path==='string'&&/^[a-z0-9-]+\.html$/.test(x.guide_path);
+  const url=localGuide?x.guide_path:typeof x.url==='string'&&/^https:\/\//.test(x.url)?x.url:'#';
   const old=x.verified && x.verified < today;
   const isFuture=x.start && x.start>today;
   const displayLabel=isFuture && DATA.kind==='deals' ? '開催予定｜'+label : label;
@@ -132,9 +118,10 @@ function render(){
   const shortInfo=x.affiliate===true?esc(x.seller||'楽天市場出店ショップ')+' · 送料や在庫は購入先で確認':esc(x.description||'');
   const sponsored=x.affiliate===true || x.material_type==='free_link';
   const rel=sponsored?'noopener noreferrer sponsored':'noopener noreferrer';
-  const action=sponsored?'楽天市場で商品を見る ↗':'公式情報を確認 ↗';
-  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+picture+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3 title="'+esc(x.title)+'">'+esc(visibleName)+'</h3>'+realPrice+'<p>'+shortInfo+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="'+rel+'" aria-label="'+esc(x.title)+' '+(sponsored?'PR商品':'公式情報')+'">'+action+'</a></div></article>';
+  const action=x.material_type==='free_link'?'提携店で確認 ↗':x.affiliate===true?'楽天市場で商品を見る ↗':x.guide_path?'比較ガイドを読む →':'公式情報を確認 ↗';
+  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+picture+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="'+(saved.has(x.id)?'保存を解除':'この情報を保存')+'" aria-pressed="'+saved.has(x.id)+'">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3 title="'+esc(x.title)+'">'+esc(visibleName)+'</h3>'+realPrice+'<p>'+shortInfo+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" data-item-id="'+esc(x.id)+'" href="'+esc(url)+'"'+(localGuide?'':' target="_blank"')+' rel="'+rel+'" aria-label="'+esc(x.title)+' '+(sponsored?'PR商品':'公式情報')+'">'+action+'</a></div></article>';
  }).join('');
+ if(lastGridMarkup!==markup){grid.innerHTML=markup;lastGridMarkup=markup;}
 }
 if(node('cards')){
  const urls=DATA.kind==='events'?[]:[

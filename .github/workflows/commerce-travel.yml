@@ -7,8 +7,8 @@ on:
       - "portal-tools/refresh_travel.py"
       - ".github/workflows/commerce-travel.yml"
   schedule:
-    # Daily at 06:20 JST, after the shopping feed refresh.
-    - cron: "20 21 * * *"
+    # 06:20 and 18:20 JST, after the shopping feed refresh.
+    - cron: "20 9,21 * * *"
 
 permissions:
   contents: write

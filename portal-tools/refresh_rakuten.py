@@ -28,15 +28,29 @@ PRICE_LIMITS = {
 }
 
 SEARCHES = [
-    ("食品・お菓子", "お菓子 詰め合わせ", "🍪"),
-    ("お米・飲料", "白米 5kg", "🍚"),
-    ("家電・デジタル", "モバイルバッテリー USB-C", "🔋"),
-    ("家電・デジタル", "モニター 4K", "🖥️"),
-    ("日用品・生活", "洗剤 まとめ買い", "🧴"),
-    ("ファッション", "スニーカー", "👟"),
-    ("美容・コスメ", "スキンケア", "💄"),
-    ("ペット", "ペット ウェットシート", "🐾"),
+    ("食品・お菓子", "お菓子 詰め合わせ", "🍪", "snacks"),
+    ("お米・飲料", "白米 5kg", "🍚", "rice"),
+    ("家電・デジタル", "モバイルバッテリー USB-C", "🔋", "power-bank"),
+    ("家電・デジタル", "モニター 4K", "🖥️", "monitor"),
+    ("家電・デジタル", "モニター 3440 1440", "🖥️", "monitor"),
+    ("日用品・生活", "洗濯洗剤 詰め替え", "🧺", "laundry-detergent"),
+    ("ファッション", "スニーカー", "👟", "sneakers"),
+    ("美容・コスメ", "スキンケア", "💄", "skincare"),
+    ("ペット", "ペット ウェットシート", "🐾", "pet-wipes"),
 ]
+
+
+def eligible_title(title, kind):
+    """Reject adjacent product types rather than mislabeling search results."""
+    if any(word in title for word in ("ふるさと納税", "返礼品", "寄附金")):
+        return False
+    if kind == "laundry-detergent":
+        return bool(re.search(r"洗濯|衣料用|アタック|アリエール|ナノックス|NANOX|ランドリー", title, re.I)) and not re.search(r"食器|台所|柔軟剤", title)
+    if kind == "power-bank":
+        return bool(re.search(r"モバイルバッテリー|Power Bank", title, re.I))
+    if kind == "monitor":
+        return bool(re.search(r"モニター|液晶ディスプレイ|PCディスプレイ|有機ELディスプレイ", title)) and not re.search(r"モバイルバッテリー|Power Bank|モニターアーム|保護フィルム|保護カバー|スタンドのみ", title, re.I)
+    return True
 def shorten_title(title):
     """Remove loud ad prefixes, without changing item identity or specifications."""
     tidy = re.sub(
@@ -60,7 +74,7 @@ def main():
     result = []
     used_codes = set()
     errors = 0
-    for index, (cat, query, emoji) in enumerate(SEARCHES):
+    for index, (cat, query, emoji, kind) in enumerate(SEARCHES):
         if index:
             time.sleep(1.1)  # Registration estimate: <= 1 request per second
         params = {
@@ -126,11 +140,15 @@ def main():
                 item = v.get("item", v) if isinstance(v, dict) else {}
                 name = str(item.get("itemName") or "").strip()[:170]
                 # A regular purchase guide must not silently recommend donations.
-                if any(word in name for word in ("ふるさと納税", "返礼品", "寄附金")):
+                if not eligible_title(name, kind):
                     continue
                 # No ordinary product link is published as an affiliate link.
                 link = item.get("affiliateUrl") if affiliate_id else item.get("itemUrl")
-                if not name or not isinstance(link, str) or urlsplit(link).scheme != "https":
+                if not name or not isinstance(link, str):
+                    continue
+                parsed = urlsplit(link)
+                host = parsed.hostname or ""
+                if parsed.scheme != "https" or parsed.username or parsed.password or not (host == "rakuten.co.jp" or host.endswith(".rakuten.co.jp")):
                     continue
                 price = item.get("itemPrice")
                 if not isinstance(price, int) or price <= 0:
@@ -162,6 +180,7 @@ def main():
                 result.append({
                     "id": "rakuten-" + code.replace(":", "-"),
                     "category": cat,
+                    "kind": kind,
                     "shop": "楽天市場",
                     "icon": emoji,
                     "title": name,

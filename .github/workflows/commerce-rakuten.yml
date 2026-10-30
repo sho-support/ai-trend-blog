@@ -7,11 +7,13 @@ on:
       - "portal-tools/refresh_rakuten.py"
       - "portal-tools/track_prices.py"
       - "portal-assets/guide.js"
+      - "portal-assets/commerce.js"
       - "portal-tools/test_portals.py"
+      - "portal-tools/test_commerce.js"
       - ".github/workflows/commerce-rakuten.yml"
   schedule:
-    # Daily 06:00 JST. No Gemini API calls.
-    - cron: "0 21 * * *"
+    # 06:00 and 18:00 JST; renew before the 23-hour display expiry. No Gemini calls.
+    - cron: "0 9,21 * * *"
 
 permissions:
   contents: write

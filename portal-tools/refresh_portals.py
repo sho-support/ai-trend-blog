@@ -47,8 +47,10 @@ def article_card(x, kind):
         "開催: " + str(x.get("start") or "未記載") + ("〜" + str(x["end"]) if x.get("end") and x.get("end") != x.get("start") else "")
         if kind == "events" else "参照日 " + str(x.get("verified") or "未記載")
     )
-    url = x.get("url") or ""
-    if not isinstance(url, str) or not re.match(r"^https://", url):
+    local_guide = x.get("guide_path")
+    local_guide = local_guide if isinstance(local_guide, str) and re.fullmatch(r"[a-z0-9-]+\.html", local_guide) else None
+    url = local_guide or x.get("url") or ""
+    if not isinstance(url, str) or (not local_guide and not re.match(r"^https://", url)):
         return ""
     return (
         '<article class="tile"><div class="tile-top"><div class="emblem">'
@@ -58,8 +60,8 @@ def article_card(x, kind):
         + '<span class="tag">' + esc(area) + '</span></div>'
         + '<h3>' + esc(x.get("title")) + '</h3><p>' + esc(x.get("description")) + '</p>'
         + '</div><div class="tile-foot"><small>' + esc(date) + '</small>'
-        + '<a class="go" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">'
-        + '公式情報を確認 ↗</a></div></article>'
+        + '<a class="go" href="' + esc(url) + '"' + ('' if local_guide else ' target="_blank" rel="noopener noreferrer"') + '>'
+        + ('比較ガイドを読む →' if local_guide else '公式情報を確認 ↗') + '</a></div></article>'
     )
 
 def regenerate(source, today):

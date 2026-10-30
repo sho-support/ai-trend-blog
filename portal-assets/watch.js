@@ -2,13 +2,14 @@
 'use strict';
 const root=document.getElementById('watch-items'),status=document.getElementById('watch-status');
 const cat=document.getElementById('watch-category'),sort=document.getElementById('watch-sort');
-if(!root||!status||!cat||!sort)return;
+const C=window.PortalCommerce;
+if(!root||!status||!cat||!sort||!C)return;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const yen=v=>Number(v).toLocaleString('ja-JP');
 let rows=[];
 function render(){
  const current=cat.value;
- let list=rows.filter(x=>current==='all'||x.category===current);
+ let list=rows.filter(x=>C.isLive(x)&&(current==='all'||x.category===current));
  if(sort.value==='cheap')list.sort((a,b)=>a.price_yen-b.price_yen);
  else if(sort.value==='expensive')list.sort((a,b)=>b.price_yen-a.price_yen);
  else list.sort((a,b)=>(b.verified_deal?.drop_percent||0)-(a.verified_deal?.drop_percent||0));
@@ -22,7 +23,7 @@ function render(){
    :tracked<4 ? '価格を記録中｜比較には過去3日以上の記録が必要':'観測価格の値下がり判定なし';
   return '<article class="watch-card"><div><span class="tag highlight">'+esc(x.category)+'</span><h3>'+esc(x.display_title||x.title)+'</h3><p>'+esc(x.seller||'楽天市場出店ショップ')+'</p></div>'
   +'<div class="watch-num">'+yen(x.price_yen)+'円<small>API取得時の参考価格</small></div>'
-  +'<div class="watch-bottom"><span class="watch-signal '+(deal?'verified':'')+'">'+esc(label)+'</span><a class="go" href="'+esc(x.url)+'" rel="noopener noreferrer sponsored" target="_blank" data-buy-link>楽天市場で確認 ↗</a></div></article>';
+  +'<div class="watch-bottom"><span class="watch-signal '+(deal?'verified':'')+'">'+esc(label)+'</span><a class="go" href="'+esc(x.url)+'" rel="noopener noreferrer sponsored" target="_blank" data-item-id="'+esc(x.id)+'" data-buy-link>楽天市場で確認 ↗</a></div></article>';
  }).join('');
 }
 Promise.all([
@@ -30,9 +31,7 @@ Promise.all([
  fetch('../portal-assets/price-history.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('history');return r.json()})
 ]).then(([feed,history])=>{
  if(!Array.isArray(feed.items)||!history.items||typeof history.items!=='object')throw Error('bad feed');
- rows=feed.items.filter(x=>x&&x.affiliate===true&&x.approved===true&&Number.isFinite(x.price_yen)&&x.price_yen>0
-  &&x.expires_at&&Date.parse(x.expires_at)>Date.now()
-  &&/^https:\/\/(?:[a-z0-9-]+\.)*rakuten\.co\.jp\//i.test(x.url||''))
+ rows=feed.items.filter(x=>C.isLive(x))
  .map(x=>({...x,_tracked:new Set((history.items[x.id]||[]).map(y=>y.date)).size}));
  const cats=[...new Set(rows.map(x=>x.category))];
  cat.innerHTML='<option value="all">すべてのジャンル</option>'+cats.map(v=>'<option value="'+esc(v)+'">'+esc(v)+'</option>').join('');
@@ -40,8 +39,11 @@ Promise.all([
 }).catch(()=>{status.textContent='価格情報を取得できませんでした。';root.innerHTML='';});
 cat.addEventListener('change',render);
 sort.addEventListener('change',render);
+C.observe(render);
 root.addEventListener('click',e=>{
- const a=e.target.closest('a[data-buy-link]');if(!a||typeof window.gtag!=='function')return;
- try{window.gtag('event','portal_outbound_click',{portal_kind:'price_watch',destination_host:new URL(a.href).hostname})}catch(err){}
+ const a=e.target.closest('a[data-buy-link]');if(!a)return;
+ const item=rows.find(x=>x.id===a.dataset.itemId);
+ if(!C.isLive(item)){e.preventDefault();render();return}
+ C.track(a,{portal_kind:'price_watch',category:item.category});
 });
 })();
