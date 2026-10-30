@@ -7,6 +7,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 from google import genai
+from gemini_budget_guard import stop_if_monthly_cap_exceeded
 
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
@@ -73,6 +74,7 @@ def generate_content_with_fallback(
             )
 
         except Exception as e:
+            stop_if_monthly_cap_exceeded(e)
             last_error = e
 
             print(
