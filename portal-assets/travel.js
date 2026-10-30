@@ -1,0 +1,42 @@
+(()=>{
+'use strict';
+const root=document.getElementById('event-stays'),status=document.getElementById('stay-status');
+if(!root||!status)return;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let feed=[];
+const write=()=>{
+ const selected=document.getElementById('pref')?.value||'すべて';
+ const all=feed.filter(x=>selected==='すべて'||x.prefecture===selected);
+ const visible=selected==='すべて' ? all.filter((x,i)=>all.findIndex(y=>y.city===x.city)===i).slice(0,9):all.slice(0,9);
+ if(!visible.length){
+  status.textContent=selected==='すべて'?'現在は宿泊施設の紹介データを取得できていません。':'この地域の宿泊施設情報は未取得です。';
+  root.innerHTML='';
+  return;
+ }
+ status.textContent='楽天トラベルの宿泊施設情報 '+visible.length+'件｜宿泊日・空室・料金は未確認';
+ root.innerHTML=visible.map(x=>'<article class="tile" style="min-height:195px">'
+  +'<div class="tile-top"><div class="emblem" aria-hidden="true">🛏️</div><span class="badge">PR</span></div>'
+  +'<div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.prefecture)+'・'+esc(x.city)+'</span></div>'
+  +'<h3>'+esc(x.name)+'</h3><p>'+esc(x.city)+'の宿泊先候補。イベント会場からの距離・当日の空室は確認していません。</p></div>'
+  +'<div class="tile-foot"><small>PR｜楽天トラベル</small><a class="go" href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer sponsored" data-travel-link>宿泊プランを確認 ↗</a></div></article>').join('');
+};
+fetch('../portal-assets/travel-feed.json',{cache:'no-store'})
+ .then(r=>{if(!r.ok)throw Error('hotel feed unavailable');return r.json()})
+ .then(d=>{
+  if(!Array.isArray(d.items))throw Error('hotel feed invalid');
+  feed=d.items.filter(x=>x&&x.affiliate===true&&x.name&&x.city&&x.prefecture
+    &&/^https:\/\/(?:[a-z0-9-]+\.)*rakuten\.co\.jp\//i.test(x.url||'')
+    &&x.expires_at&&Date.parse(x.expires_at)>Date.now());
+  write();
+ }).catch(()=>{status.textContent='現在、宿泊施設情報を取得できません。';root.innerHTML='';});
+document.addEventListener('change',e=>{
+ if(e.target && (e.target.id==='pref'||e.target.id==='region'))write();
+});
+root.addEventListener('click',e=>{
+ const link=e.target.closest('a[data-travel-link]');
+ if(!link || typeof window.gtag!=='function')return;
+ try{window.gtag('event','portal_outbound_click',{
+  portal_kind:'travel',destination_host:new URL(link.href).hostname
+ })}catch(err){}
+});
+})();
