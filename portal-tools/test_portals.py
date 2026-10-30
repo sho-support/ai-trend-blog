@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Offline regression checks for the three public portals (stdlib only)."""
 import importlib.util
+import ast
+import sys
+sys.dont_write_bytecode = True
 import json
 import re
 import subprocess
@@ -49,7 +52,8 @@ def main():
     script=(ROOT/"portal-assets"/"app.js").read_text(encoding="utf-8")
     check(all(x in script for x in ("今週末","来月開催","portal_outbound_click","expires_at")), "Missing key filters, tracking or expiration")
     subprocess.run(["node","--check",str(ROOT/"portal-assets"/"app.js")],check=True)
-    subprocess.run(["python","-m","py_compile",str(ROOT/"portal-tools"/"refresh_portals.py"),str(ROOT/"portal-tools"/"refresh_rakuten.py")],check=True)
+    for script in ("refresh_portals.py","refresh_rakuten.py"):
+        ast.parse((ROOT/"portal-tools"/script).read_text(encoding="utf-8"))
     print("PASS:",counts,"47 prefecture options and expiration checks")
 
 if __name__=="__main__":
