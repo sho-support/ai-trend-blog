@@ -11,7 +11,7 @@ const regionMap = {
  '中国・四国':prefectures.slice(30,39),
  '九州・沖縄':prefectures.slice(39)
 };
-const s={category:'すべて',term:'',shop:'すべて',pref:'すべて',region:'すべて',when:'any',saved:false};
+const s={category:'すべて',term:'',shop:'すべて',pref:'すべて',region:'すべて',when:'any',sort:'default',saved:false};
 const esc = v => String(v??'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const today = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const key='sho-portal-saved-'+DATA.kind;
@@ -33,6 +33,7 @@ function setup(){
   html+='<select id="when" aria-label="開催時期"><option value="any">すべての開催日</option><option value="weekend">今週末</option><option value="next7">7日以内に開催</option><option value="month">今月開催</option><option value="nextmonth">来月開催</option></select>';
  }else{
   html+='<select id="shop" aria-label="ショップ">'+option(shops)+'</select>';
+  html+='<select id="sort" aria-label="表示順"><option value="default">通常順</option><option value="low">価格の安い順</option><option value="high">価格の高い順</option></select>';
  }
  html+='<select id="savedOnly" aria-label="保存"><option value="all">すべて表示</option><option value="saved">保存済みだけ</option></select>';
  filter.innerHTML=html;
@@ -45,7 +46,10 @@ function setup(){
   });
   node('pref').addEventListener('change',e=>{s.pref=e.target.value;render()});
   node('when').addEventListener('change',e=>{s.when=e.target.value;render()});
- }else node('shop').addEventListener('change',e=>{s.shop=e.target.value;render()});
+ }else {
+  node('shop').addEventListener('change',e=>{s.shop=e.target.value;render()});
+  node('sort').addEventListener('change',e=>{s.sort=e.target.value;render()});
+ }
  node('savedOnly').addEventListener('change',e=>{s.saved=e.target.value==='saved';render()});
  chipbox.innerHTML=cats.map(c=>'<button type="button" class="chip '+(c==='すべて'?'on':'')+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>').join('');
  chipbox.addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;s.category=b.dataset.cat;chipbox.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat===s.category));render()});
@@ -102,7 +106,10 @@ function render(){
  }
  if(s.saved)arr=arr.filter(x=>saved.has(x.id));
  if(s.term)arr=arr.filter(x=>[x.title,x.category,x.description,x.shop,x.prefecture,x.place].join(' ').toLowerCase().includes(s.term));
- arr.sort((a,b)=>(a.start||a.end||'').localeCompare(b.start||b.end||''));
+ if(s.sort==='low'||s.sort==='high'){
+  const price=x=>Number.isFinite(x.price_yen)?x.price_yen:null;
+  arr.sort((a,b)=>{const pa=price(a),pb=price(b);if(pa===null)return pb===null?0:1;if(pb===null)return -1;return s.sort==='low'?pa-pb:pb-pa});
+ }else if(DATA.kind==='events')arr.sort((a,b)=>(a.start||'').localeCompare(b.start||''));
  node('count').textContent=arr.length+'件の情報';
  const grid=node('cards');
  if(!arr.length){
@@ -120,10 +127,13 @@ function render(){
   const stamp=hasDate?(x.start||'日程要確認'):('参照日 '+(x.verified||'記載なし'));
   const urlImage=typeof x.image==='string' && /^https:\/\//.test(x.image) ? x.image : '';
   const picture=urlImage ? '<img loading="lazy" decoding="async" class="product-pic" src="'+esc(urlImage)+'" alt="'+esc(x.title)+'">' : esc(x.icon||'✨');
+  const realPrice=Number.isFinite(x.price_yen)?'<div class="catalog-price">'+Number(x.price_yen).toLocaleString('ja-JP')+'<span>円 · API取得時の参考価格</span></div>':'';
+  const visibleName=x.display_title||x.title;
+  const shortInfo=x.affiliate===true?esc(x.seller||'楽天市場出店ショップ')+' · 送料や在庫は購入先で確認':esc(x.description||'');
   const sponsored=x.affiliate===true || x.material_type==='free_link';
   const rel=sponsored?'noopener noreferrer sponsored':'noopener noreferrer';
   const action=sponsored?'楽天市場で商品を見る ↗':'公式情報を確認 ↗';
-  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+picture+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="'+rel+'" aria-label="'+esc(x.title)+' '+(sponsored?'PR商品':'公式情報')+'">'+action+'</a></div></article>';
+  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+picture+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3 title="'+esc(x.title)+'">'+esc(visibleName)+'</h3>'+realPrice+'<p>'+shortInfo+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="'+rel+'" aria-label="'+esc(x.title)+' '+(sponsored?'PR商品':'公式情報')+'">'+action+'</a></div></article>';
  }).join('');
 }
 if(node('cards')){
