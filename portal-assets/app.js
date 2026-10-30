@@ -48,6 +48,15 @@ function setup(){
  chipbox.innerHTML=cats.map(c=>'<button type="button" class="chip '+(c==='すべて'?'on':'')+'" data-cat="'+esc(c)+'">'+esc(c)+'</button>').join('');
  chipbox.addEventListener('click',e=>{const b=e.target.closest('[data-cat]');if(!b)return;s.category=b.dataset.cat;chipbox.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',c.dataset.cat===s.category));render()});
  node('cards').addEventListener('click',e=>{
+  const outbound=e.target.closest('a.go');
+  if(outbound && typeof window.gtag === 'function'){
+   try{
+    window.gtag('event','portal_outbound_click',{
+     portal_kind:DATA.kind,
+     destination_host:new URL(outbound.href).hostname
+    });
+   }catch(err){}
+  }
   const b=e.target.closest('[data-save]');if(!b)return;
   const id=b.dataset.save;
   saved.has(id)?saved.delete(id):saved.add(id);
