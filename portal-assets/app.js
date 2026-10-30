@@ -20,7 +20,7 @@ const saved=new Set(favorites);
 const node=id=>document.getElementById(id);
 const uniq=arr=>[...new Set(arr.filter(Boolean))];
 const option=(a)=>a.map(v=>'<option value="'+esc(v)+'">'+esc(v)+'</option>').join('');
-const isExpired=x=>x.end && x.end < today;
+const isExpired=x=>(x.expires_at && Date.parse(x.expires_at)<=Date.now()) || (x.end && x.end<today);
 const dateText=x=>x.start?(x.end&&x.end!==x.start?x.start+' 〜 '+x.end:x.start):'公式で確認';
 function setup(){
  const filter=node('filters'),chipbox=node('chips');
@@ -118,7 +118,9 @@ function render(){
   const isFuture=x.start && x.start>today;
   const displayLabel=isFuture && DATA.kind==='deals' ? '開催予定｜'+label : label;
   const stamp=hasDate?(x.start||'日程要確認'):('参照日 '+(x.verified||'記載なし'));
-  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+esc(x.icon||'✨')+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(x.title)+' 公式情報">公式情報を確認 ↗</a></div></article>';
+  const urlImage=typeof x.image==='string' && /^https:\/\//.test(x.image) ? x.image : '';
+  const picture=urlImage ? '<img loading="lazy" decoding="async" class="product-pic" src="'+esc(urlImage)+'" alt="'+esc(x.title)+'">' : esc(x.icon||'✨');
+  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+picture+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(x.title)+' 公式情報">公式情報を確認 ↗</a></div></article>';
  }).join('');
 }
 if(node('cards')){
