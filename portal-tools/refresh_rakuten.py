@@ -59,6 +59,7 @@ def main():
                 "User-Agent": "ShoCommercePortal/1.0",
                 # Identifies our owned publishing site for Rakuten Web Application settings.
                 "Referer": "https://sho-support.github.io/ai-trend-blog/deals/",
+                "Origin": "https://sho-support.github.io",
             },
         )
         try:
@@ -123,7 +124,27 @@ def main():
             print(f"取得: {cat} {len(objects)}件")
         except HTTPError as e:
             errors += 1
-            print(f"取得失敗: {cat} (HTTP {e.code})", file=sys.stderr)
+            body = e.read(2048).decode("utf-8", errors="replace")
+            # Print only recognized error codes; never expose credentials or URLs.
+            known_errors = (
+                "HTTP_REFERRER_NOT_ALLOWED",
+                "HTTP_REFERRER_MISSING",
+                "HTTP_ORIGIN_NOT_ALLOWED",
+                "INVALID_ACCESS_KEY",
+                "REQUESTED_SCOPES_NOT_ALLOWED",
+                "wrong_parameter",
+                "too_many_requests",
+            )
+            error_label = next((code for code in known_errors if code.lower() in body.lower()), "unknown")
+            print(
+                f"::error title=Rakuten API接続エラー::"
+                f"カテゴリ={cat} HTTP={e.code} 理由={error_label}",
+                file=sys.stderr,
+            )
+            if e.code in (400, 401, 403, 429):
+                # An app-wide authorization or quota error affects all categories.
+                # Do not make the same failing request eight times.
+                break
         except Exception as e:
             errors += 1
             print(f"取得失敗: {cat} ({type(e).__name__})", file=sys.stderr)
