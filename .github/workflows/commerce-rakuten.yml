@@ -5,6 +5,8 @@ on:
   push:
     paths:
       - "portal-tools/refresh_rakuten.py"
+      - "portal-assets/guide.js"
+      - "portal-tools/test_portals.py"
       - ".github/workflows/commerce-rakuten.yml"
   schedule:
     # Daily 06:00 JST. No Gemini API calls.
@@ -41,6 +43,10 @@ jobs:
       - name: Refresh official Rakuten feed
         if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
         run: python portal-tools/refresh_rakuten.py
+
+      - name: Verify storefront and affiliate feed before publishing
+        if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
+        run: python portal-tools/test_portals.py
 
       - name: Save feed safely
         if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
