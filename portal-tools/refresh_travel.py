@@ -105,6 +105,7 @@ def main():
                     "prefecture": pref,
                     "city": city,
                     "name": name[:90],
+                    "address": (str(hotel.get("address1") or "") + str(hotel.get("address2") or ""))[:100],
                     "url": url,
                     "affiliate": True,
                     "expires_at": (now + timedelta(hours=23)).isoformat(),
