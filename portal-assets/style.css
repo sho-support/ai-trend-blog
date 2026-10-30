@@ -16,3 +16,5 @@
 .guide-criteria h2{margin:0 0 10px;font-size:20px}
 .guide-criteria li{padding:4px 0}
 @media(max-width:600px){.catalog-price{font-size:22px}.guide-criteria{padding:18px}}
+
+.policy-nav{font-size:11px;display:inline-flex;gap:14px;flex-wrap:wrap}.policy-nav a{color:#556677;text-decoration:underline}
