@@ -2,6 +2,18 @@ name: Refresh Portal Listings
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "deals/**"
+      - "products/**"
+      - "events/**"
+      - "portal-assets/app.js"
+      - "portal-assets/guide.js"
+      - "portal-assets/travel.js"
+      - "portal-assets/watch.js"
+      - "portal-assets/style.css"
+      - "portal-tools/test_portals.py"
+      - ".github/workflows/refresh-portals.yml"
   schedule:
     # 04:15 JST daily, no LLM usage
     - cron: "15 19 * * *"
