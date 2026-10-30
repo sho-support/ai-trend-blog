@@ -2,6 +2,10 @@ name: Refresh Commerce Product Feed
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - "portal-tools/refresh_rakuten.py"
+      - ".github/workflows/commerce-rakuten.yml"
   schedule:
     # Daily 06:00 JST. No Gemini API calls.
     - cron: "0 21 * * *"
