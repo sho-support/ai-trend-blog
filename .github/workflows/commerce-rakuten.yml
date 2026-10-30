@@ -1,0 +1,43 @@
+name: Refresh Commerce Product Feed
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily 06:00 JST. No Gemini API calls.
+    - cron: "0 21 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ai-trend-blog-commerce-feed
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
+      RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}
+      RAKUTEN_AFFILIATE_ID: ${{ secrets.RAKUTEN_AFFILIATE_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Skip when credentials are missing
+        if: ${{ env.RAKUTEN_APP_ID == '' || env.RAKUTEN_ACCESS_KEY == '' }}
+        run: echo "Rakuten API credentials not configured. Skipping without charge."
+
+      - name: Refresh official Rakuten feed
+        if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
+        run: python portal-tools/refresh_rakuten.py
+
+      - name: Save feed safely
+        if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
+        run: bash .github/scripts/safe-commit-push.sh 'Refresh official Rakuten product feed'
