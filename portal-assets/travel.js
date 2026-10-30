@@ -16,8 +16,8 @@ const write=()=>{
  status.textContent='楽天トラベルの宿泊施設情報 '+visible.length+'件｜宿泊日・空室・料金は未確認';
  root.innerHTML=visible.map(x=>'<article class="tile" style="min-height:195px">'
   +'<div class="tile-top"><div class="emblem" aria-hidden="true">🛏️</div><span class="badge">PR</span></div>'
-  +'<div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.prefecture)+'・'+esc(x.city)+'</span></div>'
-  +'<h3>'+esc(x.name)+'</h3><p>'+esc(x.city)+'の宿泊先候補。イベント会場からの距離・当日の空室は確認していません。</p></div>'
+  +'<div class="tile-body"><div class="tile-tags"><span class="tag highlight">エリア検索：'+esc(x.city)+'</span></div>'
+  +'<h3>'+esc(x.name)+'</h3><p>'+(x.address?'所在地：'+esc(x.address)+'。':'')+'検索エリアの宿泊候補です。会場までの距離や当日の空室は要確認。</p></div>'
   +'<div class="tile-foot"><small>PR｜楽天トラベル</small><a class="go" href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer sponsored" data-travel-link>宿泊プランを確認 ↗</a></div></article>').join('');
 };
 fetch('../portal-assets/travel-feed.json',{cache:'no-store'})
