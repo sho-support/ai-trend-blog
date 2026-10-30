@@ -120,7 +120,10 @@ function render(){
   const stamp=hasDate?(x.start||'日程要確認'):('参照日 '+(x.verified||'記載なし'));
   const urlImage=typeof x.image==='string' && /^https:\/\//.test(x.image) ? x.image : '';
   const picture=urlImage ? '<img loading="lazy" decoding="async" class="product-pic" src="'+esc(urlImage)+'" alt="'+esc(x.title)+'">' : esc(x.icon||'✨');
-  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+picture+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" aria-label="'+esc(x.title)+' 公式情報">公式情報を確認 ↗</a></div></article>';
+  const sponsored=x.affiliate===true || x.material_type==='free_link';
+  const rel=sponsored?'noopener noreferrer sponsored':'noopener noreferrer';
+  const action=sponsored?'楽天市場で商品を見る ↗':'公式情報を確認 ↗';
+  return '<article class="tile"><div class="tile-top"><div class="emblem" aria-hidden="true">'+picture+'</div><button class="save '+(saved.has(x.id)?'saved':'')+'" data-save="'+esc(x.id)+'" aria-label="保存">'+(saved.has(x.id)?'★':'☆')+'</button></div><div class="tile-body"><div class="tile-tags"><span class="tag highlight">'+esc(x.category)+'</span><span class="tag">'+esc(place)+'</span></div><h3>'+esc(x.title)+'</h3><p>'+esc(x.description)+'</p><span class="badge">'+esc(displayLabel)+'</span></div><div class="tile-foot"><small>'+esc(stamp)+(old&&!hasDate?'時点':'')+'</small><a class="go" href="'+esc(url)+'" target="_blank" rel="'+rel+'" aria-label="'+esc(x.title)+' '+(sponsored?'PR商品':'公式情報')+'">'+action+'</a></div></article>';
  }).join('');
 }
 if(node('cards')){
