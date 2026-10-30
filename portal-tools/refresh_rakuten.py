@@ -19,6 +19,14 @@ from urllib.error import HTTPError
 ENDPOINT = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
 OUT = Path("portal-assets/rakuten-feed.json")
 JST = timezone(timedelta(hours=9))
+# Practical buying budgets are selection filters, not claims of discounts.
+PRICE_LIMITS = {
+    "お菓子 詰め合わせ": (400, 8000),
+    "白米 5kg": (2000, 13000),
+    "モバイルバッテリー USB-C": (800, 15000),
+    "ペット ウェットシート": (500, 12000),
+}
+
 SEARCHES = [
     ("食品・お菓子", "お菓子 詰め合わせ", "🍪"),
     ("お米・飲料", "白米 5kg", "🍚"),
@@ -32,7 +40,7 @@ SEARCHES = [
 def shorten_title(title):
     """Remove loud ad prefixes, without changing item identity or specifications."""
     tidy = re.sub(
-        r"^(?:(?:【(?:送料無料|公式|ポイント[0-9]+倍)】)|(?:★[^★]{1,36}★)|(?:＼[^／]{1,40}／))\\s*",
+        r"^(?:(?:【(?:送料無料|公式|ポイント[0-9]+倍)】)|(?:★[^★]{1,36}★)|(?:＼[^／]{1,40}／))\s*",
         "",
         title,
     ).strip()
@@ -66,6 +74,8 @@ def main():
             "availability": 1,
             "imageFlag": 1,
         }
+        if query in PRICE_LIMITS:
+            params["minPrice"], params["maxPrice"] = PRICE_LIMITS[query]
         if affiliate_id:
             params["affiliateId"] = affiliate_id
         req = Request(
