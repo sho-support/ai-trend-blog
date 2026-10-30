@@ -2,59 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/archive.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/deals/</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/deals/price-watch.html</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/deals/about.html</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/deals/privacy.html</loc>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/deals/rakuten-superdeal-guide.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/deals/yahoo-weekly-coupons-202611.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/deals/muji-week-202610.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/events/</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/products/</loc>
-    <lastmod>2026-10-30</lastmod>
-  </url>
-  <url>
-    <loc>https://sho-support.github.io/ai-trend-blog/category/ai-news.html</loc>
-    <lastmod>2026-10-30</lastmod>
-  </url>
-  <url>
-    <loc>https://sho-support.github.io/ai-trend-blog/category/openai-chatgpt.html</loc>
-    <lastmod>2026-10-30</lastmod>
-  </url>
-  <url>
-    <loc>https://sho-support.github.io/ai-trend-blog/category/gemini-google.html</loc>
-    <lastmod>2026-10-30</lastmod>
-  </url>
-  <url>
-    <loc>https://sho-support.github.io/ai-trend-blog/category/video-ai.html</loc>
-    <lastmod>2026-10-30</lastmod>
-  </url>
-  <url>
-    <loc>https://sho-support.github.io/ai-trend-blog/category/developer-api.html</loc>
-    <lastmod>2026-10-30</lastmod>
-  </url>
-  <url>
-    <loc>https://sho-support.github.io/ai-trend-blog/category/price-deals.html</loc>
-    <lastmod>2026-10-30</lastmod>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://sho-support.github.io/ai-trend-blog/products/okashi-matome.html</loc>
@@ -84,7 +72,28 @@
     <loc>https://sho-support.github.io/ai-trend-blog/products/pet-supplies.html</loc>
     <lastmod>2026-10-31</lastmod>
   </url>
-  <url><loc>https://sho-support.github.io/ai-trend-blog/deals/price-watch.html</loc><lastmod>2026-10-31</lastmod></url>
-  <url><loc>https://sho-support.github.io/ai-trend-blog/deals/about.html</loc><lastmod>2026-10-31</lastmod></url>
-  <url><loc>https://sho-support.github.io/ai-trend-blog/deals/privacy.html</loc><lastmod>2026-10-31</lastmod></url>
-<url><loc>https://sho-support.github.io/ai-trend-blog/products/mobile-battery.html</loc><lastmod>2026-10-31</lastmod></url><url><loc>https://sho-support.github.io/ai-trend-blog/products/work-monitor.html</loc><lastmod>2026-10-31</lastmod></url></urlset>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/category/ai-news.html</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/category/openai-chatgpt.html</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/category/gemini-google.html</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/category/video-ai.html</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/category/developer-api.html</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+  <url>
+    <loc>https://sho-support.github.io/ai-trend-blog/category/price-deals.html</loc>
+    <lastmod>2026-10-31</lastmod>
+  </url>
+</urlset>
