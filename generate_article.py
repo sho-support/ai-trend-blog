@@ -12,6 +12,7 @@ import feedparser
 import requests
 from bs4 import BeautifulSoup
 from google import genai
+from gemini_budget_guard import stop_if_monthly_cap_exceeded
 
 
 # =========================================================
@@ -137,6 +138,7 @@ def generate_content_with_fallback(contents, purpose="Gemini生成"):
                 return response
 
             except Exception as e:
+                stop_if_monthly_cap_exceeded(e)
                 last_error = e
                 print(
                     f"{purpose}エラー "
