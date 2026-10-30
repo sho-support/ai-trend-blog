@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/"dist"
 PORTAL_FOLDERS=("deals","events","products")
-ASSET_FILES=("style.css","app.js","rakuten-feed.json","a8-approved.json")
+ASSET_FILES=("style.css","app.js","guide.js","rakuten-feed.json","a8-approved.json")
 SOURCE_BASE="https://sho-support.github.io/ai-trend-blog"
 target=os.getenv("URL","").rstrip("/")
 if target and not target.startswith("https://"):
@@ -74,6 +74,9 @@ def make_sitemap():
     for p in (DIST/"deals").glob("*.html"):
         if p.name!="index.html":
             urls.append("/deals/"+p.name)
+    for p in (DIST/"products").glob("*.html"):
+        if p.name!="index.html":
+            urls.append("/products/"+p.name)
     root=ET.Element("urlset",{"xmlns":"http://www.sitemaps.org/schemas/sitemap/0.9"})
     for path in urls:
         rec=ET.SubElement(root,"url")
