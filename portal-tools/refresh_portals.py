@@ -72,7 +72,7 @@ def regenerate(source, today):
         raise ValueError("Card grid not found exactly once")
     rendered = re.sub(
         r'更新基準：\d{4}年\d{1,2}月\d{1,2}日',
-        "更新基準：" + today[:4] + "年" + str(int(today[5:7])) + "月" + str(int(today[8:10])) + "日",
+        "一覧整理日：" + today[:4] + "年" + str(int(today[5:7])) + "月" + str(int(today[8:10])) + "日",
         rendered
     )
     return rendered
