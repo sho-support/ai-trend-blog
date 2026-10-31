@@ -13,7 +13,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/"dist"
 PORTAL_FOLDERS=("deals","events","products")
-ASSET_FILES=("style.css","editorial.css","app.js","commerce.js","calculator.js","guide.js","travel.js","watch.js","rakuten-feed.json","travel-feed.json","price-history.json","a8-approved.json")
+ASSET_FILES=("storefront.css","catalog.js","listing.js","product-copy.json","style.css","editorial.css","app.js","commerce.js","calculator.js","guide.js","travel.js","watch.js","rakuten-feed.json","travel-feed.json","price-history.json","a8-approved.json")
 SOURCE_BASE="https://sho-support.github.io/ai-trend-blog"
 target=os.getenv("URL","").rstrip("/")
 if target and not target.startswith("https://"):
@@ -40,15 +40,15 @@ def copy_pages():
         shutil.copyfile(ROOT/"portal-assets"/file,DIST/"portal-assets"/file)
 
 def make_home():
-    title="トクサーチ・マチより・モノより｜お買い物・全国イベント・商品ガイド"
+    title="商品・セール・イベントを探す"
     panels=[
-        ("⚡","トクサーチ","お菓子・家電・服・お米のお買い得情報を確認","deals/"),
-        ("🎪","マチより","全国の開催日・地域・ジャンルからイベントを探す","events/"),
-        ("🎁","モノより","商品比較とメーカー公式の仕様をチェック","products/"),
+        ("◈","モノより","商品をジャンルから探す","products/"),
+        ("↗","トクサーチ","セール・クーポン","deals/"),
+        ("◎","マチより","地域のイベント","events/"),
     ]
     cards="".join(
-      '<a class="spot" href="'+link+'"><span class="big">'+icon+'</span>'
-      '<b>'+html.escape(name)+'</b><span>'+html.escape(note)+'</span></a>'
+      '<a class="category-card" href="'+link+'"><div class="category-photo"><span aria-hidden="true">'+icon+'</span></div>'
+      '<h2>'+html.escape(name)+'</h2><p style="padding:12px 15px;font-size:13px">'+html.escape(note)+'</p></a>'
       for icon,name,note,link in panels
     )
     content=(
@@ -57,15 +57,11 @@ def make_home():
       '<title>'+html.escape(title)+'</title>'
       '<meta name="description" content="買い物のお得情報・全国のイベント・商品比較をジャンル別に探せるポータル">'
       '<link rel="canonical" href="'+BASE+'/">'
-      '<link rel="stylesheet" href="portal-assets/style.css"></head>'
-      '<body><main class="shell"><div class="hero"><div class="tiny-label" style="color:#b8d4a2">SHO DISCOVERY NETWORK</div>'
-      '<h1>暮らしの情報を、<em>もっと探しやすく。</em></h1>'
-      '<p>公式情報を優先した、お買い得・おでかけ・商品選びの3サイト。</p></div>'
-      '<div class="section-head"><div><h2>目的から探す</h2></div></div>'
-      '<div class="spotlight">'+cards+'</div><div class="disclaimer"><strong>掲載と広告について</strong>'
-      '各情報は参照時点の情報です。価格や開催日程は必ず公式リンクで再確認してください。'
-      'アフィリエイト広告が入る場合はPR表示を行います。</div></main>'
-      '<footer class="shell footer">© 2026 SHO DISCOVERY NETWORK <span class="policy-nav"><a href="deals/about.html">運営・広告方針</a> <a href="deals/privacy.html">プライバシー</a></span></footer></body></html>'
+      '<link rel="stylesheet" href="portal-assets/storefront.css"></head>'
+      '<body><main class="page"><div class="page-heading"><h1>何を探しますか？</h1></div>'
+      '<div class="category-grid">'+cards+'</div></main>'
+      '<footer class="site-footer"><div><a href="deals/about.html">運営・広告方針</a><a href="deals/privacy.html">プライバシー</a></div>'
+      '<p class="price-note">PR｜アフィリエイト広告を利用しています。</p></footer></body></html>'
     )
     write(Path("index.html"),content)
 
@@ -74,9 +70,9 @@ def make_sitemap():
     for p in (DIST/"deals").glob("*.html"):
         if p.name!="index.html":
             urls.append("/deals/"+p.name)
-    for p in (DIST/"products").glob("*.html"):
+    for p in (DIST/"products").rglob("*.html"):
         if p.name!="index.html":
-            urls.append("/products/"+p.name)
+            urls.append("/"+p.relative_to(DIST).as_posix())
     root=ET.Element("urlset",{"xmlns":"http://www.sitemaps.org/schemas/sitemap/0.9"})
     for path in urls:
         rec=ET.SubElement(root,"url")

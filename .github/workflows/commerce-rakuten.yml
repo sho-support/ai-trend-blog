@@ -51,6 +51,10 @@ jobs:
         if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
         run: python portal-tools/track_prices.py
 
+      - name: Rebuild product and category pages
+        if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
+        run: python portal-tools/build_storefront.py
+
       - name: Verify storefront and affiliate feed before publishing
         if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}
         run: python portal-tools/test_portals.py

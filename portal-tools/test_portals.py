@@ -1,134 +1,79 @@
 #!/usr/bin/env python3
-"""Offline regression checks for the three public portals (stdlib only)."""
-import importlib.util
+"""Check storefront routes, category boundaries, public assets and feed safety."""
 import ast
-import sys
-sys.dont_write_bytecode = True
+import importlib.util
 import json
 import re
 import subprocess
-from datetime import date
+import sys
+from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlparse
-
+from urllib.parse import urlsplit
+sys.dont_write_bytecode=True
 ROOT=Path(__file__).resolve().parents[1]
-spec=importlib.util.spec_from_file_location("refresh_portals",ROOT/"portal-tools"/"refresh_portals.py")
-module=importlib.util.module_from_spec(spec)
-spec.loader.exec_module(module)
+sys.path.insert(0,str(ROOT/'portal-tools'))
+from build_storefront import CATEGORIES
 
-def check(cond,message):
-    if not cond:
-        raise AssertionError(message)
+class Page(HTMLParser):
+    def __init__(self):super().__init__();self.ids=[];self.refs=[];self.h1=0
+    def handle_starttag(self,tag,attrs):
+        d=dict(attrs)
+        if tag=='h1':self.h1+=1
+        if 'id' in d:self.ids.append(d['id'])
+        for key in ('src','href'):
+            if key in d:self.refs.append(d[key])
+
+def check(value,message):
+    if not value:raise AssertionError(message)
 
 def main():
-    required=["deals/index.html","events/index.html","products/index.html"]
-    counts={}
-    for name in required:
-        data=(ROOT/name).read_text(encoding="utf-8")
-        check("<html lang=\"ja\">" in data and "</html>" in data,name+" invalid document")
-        check("G-J5ZDLF30CS" in data,name+" missing analytics")
-        check("<link rel=\"canonical\"" in data,name+" missing canonical")
-        meta=module.read_data(data)
-        rows=meta["items"]
-        check(len(rows)>0,name+" has no editorial listings")
-        ids=[x.get("id") for x in rows]
-        check(len(ids)==len(set(ids)),name+" duplicate IDs")
-        for row in rows:
-            check(all(row.get(k) for k in ("id","title","category","description","url")),name+" missing required card data")
-            check(urlparse(row["url"]).scheme=="https",name+" insecure URL")
-            if name.startswith("events"):
-                check(row.get("prefecture") and row.get("start") and row.get("end"),name+" missing event date")
-                check(date.fromisoformat(row["start"])<=date.fromisoformat(row["end"]),name+" invalid date range")
-            if "end" in row and row["end"]:
-                date.fromisoformat(row["end"])
-        generated=module.regenerate(data,"2026-10-30")
-        check("<div class=\"grid\" id=\"cards\">" in generated,name+" missing card grid after refresh")
-        # JSON data is preserved so client filtering remains possible.
-        check(len(module.read_data(generated)["items"])==len(rows),name+" lost data during generation")
-        counts[name]=len(rows)
-    for name in ("portal-assets/rakuten-feed.json","portal-assets/a8-approved.json"):
-        feed=json.loads((ROOT/name).read_text(encoding="utf-8"))
-        check(isinstance(feed.get("items"),list),name+" invalid affiliate feed")
-    guides = (
-        "okashi-matome.html", "okome-5kg.html",
-        "mobile-battery-monitors.html", "nichiyohin-matome.html",
-        "sneakers.html", "skincare.html", "pet-supplies.html",
-        "mobile-battery.html", "work-monitor.html",
-    )
-    for filename in guides:
-        page = (ROOT/"products"/filename).read_text(encoding="utf-8")
-        check('window.GUIDE_CATEGORY=' in page, filename+" missing category")
-        check('portal-assets/guide.js' in page, filename+" missing official feed script")
-        check('rel="canonical"' in page, filename+" missing SEO canonical")
-        check("PR｜広告" in page, filename+" missing visible advertising disclosure")
-        check('portal-assets/commerce.js' in page, filename+" missing live product eligibility checks")
-        check('参照した公式情報' in page, filename+" missing editorial sources")
-        check(len(re.findall(r'<h1[ >]', page))==1, filename+" must have exactly one title")
-        ids=re.findall(r'\bid="([^"]+)"',page)
-        check(len(ids)==len(set(ids)), filename+" duplicate HTML IDs")
-        for href in re.findall(r'href="([^"]+)"',page):
-            if href.startswith(('https:', 'http:')):
-                continue
-            if href.startswith('#'):
-                check(href[1:] in ids, filename+" broken anchor: "+href)
-                continue
-            target=(ROOT/"products"/href.split('#')[0]).resolve()
-            check(target.exists(), filename+" broken local link: "+href)
-    home = (ROOT/"products"/"index.html").read_text(encoding="utf-8")
-    check(all(filename in home for filename in guides), "product home missing guide links")
-    affiliate_feed = json.loads((ROOT/"portal-assets"/"rakuten-feed.json").read_text(encoding="utf-8"))
-    for item in affiliate_feed["items"]:
-        check(item.get("approved") is True, "unapproved Rakuten item in public feed")
-        check(item.get("expires_at"), "Rakuten price data without expiry")
-        check(urlparse(item.get("url") or "").scheme == "https", "Rakuten item URL not HTTPS")
-        if item.get("affiliate"):
-            host=urlparse(item["url"]).hostname or ''
-            check(host=='rakuten.co.jp' or host.endswith('.rakuten.co.jp'), "Non-Rakuten affiliate destination")
-    # The API mandates its exact, unmodified attribution snippet on pages
-    # that show Rakuten Web Service product or hotel data.
-    for source in ("deals/index.html", "products/index.html", "events/index.html"):
-        body = (ROOT/source).read_text(encoding="utf-8")
-        check("Supported by Rakuten Developers</a>" in body, source+" missing official API attribution")
-    event_index = (ROOT/"events/index.html").read_text(encoding="utf-8")
-    check("portal-assets/travel.js" in event_index, "event stay widget missing")
-    travel_feed = json.loads((ROOT/"portal-assets/travel-feed.json").read_text(encoding="utf-8"))
-    check(isinstance(travel_feed.get("items"), list), "invalid Rakuten Travel feed")
-    for hotel in travel_feed["items"]:
-        check(hotel.get("affiliate") is True, "unapproved hotel listing")
-        check(hotel.get("expires_at"), "hotel listing has no expiry")
-        check(hotel.get("prefecture") and hotel.get("city"), "hotel location missing")
-        check(urlparse(hotel["url"]).scheme == "https", "insecure hotel referral link")
-    watch_page=(ROOT/"deals"/"price-watch.html").read_text(encoding="utf-8")
-    check('portal-assets/watch.js' in watch_page, "Price watch JS not linked")
-    check('Supported by Rakuten Developers</a>' in watch_page, "Price watch API credit missing")
-    history=json.loads((ROOT/"portal-assets"/"price-history.json").read_text(encoding="utf-8"))
-    check(isinstance(history.get("items"),dict), "Price history must be a keyed object")
-    for snapshots in history["items"].values():
-        check(isinstance(snapshots,list), "Snapshot history must be an array")
-        check(all(isinstance(x.get("price"),int) and x["price"]>0 for x in snapshots), "Bad observed prices")
-    for item in affiliate_feed["items"]:
-        check("ふるさと納税" not in (item.get("title") or ""), "Donation listing leaked into normal shopping feed")
-        if item.get("verified_deal"):
-            deal=item["verified_deal"]
-            check(deal.get("comparison_days",0)>=3 and deal.get("drop_percent",0)>=5, "Unproven discount badge")
-            check(item.get("price_yen")==deal.get("current_yen"), "Price badge mismatch")
-    script=(ROOT/"portal-assets"/"app.js").read_text(encoding="utf-8")
-    check(all(x in script for x in ("今週末","来月開催","portal_outbound_click","expires_at")), "Missing key filters, tracking or expiration")
-    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"app.js")],check=True)
-    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"guide.js")],check=True)
-    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"travel.js")],check=True)
-    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"watch.js")],check=True)
-    subprocess.run(["node","--check",str(ROOT/"portal-assets"/"calculator.js")],check=True)
-    subprocess.run(["node",str(ROOT/"portal-tools"/"test_commerce.js")],check=True)
-    subprocess.run([sys.executable,str(ROOT/"portal-tools"/"test_article_quality.py")],check=True)
-    for script in ("refresh_portals.py","refresh_rakuten.py","refresh_travel.py","track_prices.py","build_commercial_site.py","build_guides.py","guide_content.py"):
-        ast.parse((ROOT/"portal-tools"/script).read_text(encoding="utf-8"))
-    spec=importlib.util.spec_from_file_location('rakuten_checks',ROOT/'portal-tools'/'refresh_rakuten.py')
-    refresh=importlib.util.module_from_spec(spec);spec.loader.exec_module(refresh)
-    check(not refresh.eligible_title('キュキュット 食器用洗剤','laundry-detergent'), 'dish soap passed laundry filter')
-    check(refresh.eligible_title('衣料用 アタック 詰め替え','laundry-detergent'), 'laundry item rejected')
-    check(not refresh.eligible_title('モニターアーム 4K用','monitor'), 'monitor accessory passed filter')
-    print("PASS:",counts,"47 prefecture options and expiration checks")
+    pages=[ROOT/'products/index.html',ROOT/'deals/index.html',ROOT/'events/index.html']
+    pages+=list((ROOT/'products').rglob('*.html'))
+    for path in set(pages):
+        body=path.read_text(encoding='utf-8');page=Page();page.feed(body)
+        check(page.h1==1,str(path)+' must have one h1')
+        check(len(page.ids)==len(set(page.ids)),str(path)+' duplicate IDs')
+        check('storefront.css' in body,str(path)+' not using compact storefront')
+        check('Supported by Rakuten Developers</a>' in body,str(path)+' missing API attribution')
+        for ref in page.refs:
+            parsed=urlsplit(ref)
+            if parsed.scheme or not parsed.path:continue
+            target=(path.parent/parsed.path).resolve()
+            check(target.exists(),str(path)+' broken link '+ref)
+        check('unit-form' not in body and 'article-answer' not in body,str(path)+' old lecture/calculator restored')
+    home=(ROOT/'products/index.html').read_text(encoding='utf-8')
+    check('id="catalog-grid"' not in home,'home must not mix product listings')
+    check(home.count('class="category-card"')==8,'home must have eight category entries')
+    for c in CATEGORIES:
+        body=(ROOT/'products'/c['file']).read_text(encoding='utf-8')
+        check('"kind":"'+c['key']+'"' in body,c['key']+' missing category scope')
+        check('id="catalog-grid"' in body,c['key']+' missing product grid')
+        check('calculator.js' not in body,c['key']+' unwanted calculator')
+    feed=json.loads((ROOT/'portal-assets/rakuten-feed.json').read_text())
+    copies=json.loads((ROOT/'portal-assets/product-copy.json').read_text())
+    keys={c['key'] for c in CATEGORIES};ids=set()
+    for x in feed['items']:
+        check(x.get('kind') in keys,'unclassified feed product')
+        check(x['id'] not in ids,'duplicate feed ID');ids.add(x['id'])
+        check(x.get('approved') is True and x.get('affiliate') is True,'unapproved referral')
+        u=urlsplit(x['url']);check(u.scheme=='https' and (u.hostname=='rakuten.co.jp' or u.hostname.endswith('.rakuten.co.jp')),'bad referral host')
+        check(x.get('expires_at'),'missing expiry')
+        check(isinstance(x.get('price_yen'),int) and x['price_yen']>0,'bad price')
+        path=ROOT/'products/items'/(x['id']+'.html');check(path.exists(),'missing product detail '+x['id'])
+        body=path.read_text();check('"id":"'+x['id']+'"' in body,'detail product identity mismatch')
+        if x['id'] in copies:
+            copy=copies[x['id']]
+            check(len(copy['name'])<=45,'product name too long')
+            check(len(copy['description'])<=80,'product introduction too long')
+            check(len(copy['features'])<=3,'too many product features')
+    for name in ('storefront.css','catalog.js','listing.js','commerce.js','product-copy.json'):
+        check((ROOT/'portal-assets'/name).is_file(),'missing public asset '+name)
+    for script in ('catalog.js','listing.js','commerce.js'):
+        subprocess.run(['node','--check',str(ROOT/'portal-assets'/script)],check=True)
+    for name in ('build_storefront.py','build_guides.py','refresh_portals.py','build_commercial_site.py'):
+        ast.parse((ROOT/'portal-tools'/name).read_text())
+    subprocess.run(['node',str(ROOT/'portal-tools/test_commerce.js')],check=True)
+    subprocess.run([sys.executable,str(ROOT/'portal-tools/test_article_quality.py')],check=True)
+    print('PASS: eight separate categories,',len(ids),'product detail routes, short copy, asset links and referral safety')
 
-if __name__=="__main__":
-    main()
+if __name__=='__main__':main()

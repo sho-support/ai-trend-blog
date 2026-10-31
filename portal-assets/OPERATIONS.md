@@ -14,33 +14,38 @@
 
 - `/`：AI Trend Blog（AIニュース）。既存トップのデザインは維持。
 - `/deals/`：トクサーチ（公式セール・クーポン情報）。編集掲載16件。
-- `/products/`：モノより（購入ガイド＋楽天商品の候補）。ガイド9本。
+- `/products/`：モノより（写真から探す商品カテゴリー）。8ジャンル・商品詳細27ページ。
 - `/events/`：マチより（イベント検索＋宿泊候補）。編集掲載18件・8都道府県。47都道府県の検索UIがあることと全国を網羅したことを混同しない。
 - 非公開の有料note原稿：`sho-support/ai-trend-private`。公開ポータル用ビルドには含めない。
 
 現行URL： https://sho-support.github.io/ai-trend-blog/
 
-## 今回の文章・導線の変更
+## 2026-10-31の再設計：ユーザーの明示した優先事項
 
-`portal-tools/guide_content.py` が編集本文の正本。`portal-tools/build_guides.py` でHTML・一覧の入口・サイトマップを再生成する。日々のデータ更新で本文や編集日を勝手に書き換えない。
+説明が多く商品が下に埋まっている、ジャンルが混在する、大きな見出しと不自然な改行が読みにくい、という指摘を受けて全面的に組み替えた。以前の長文ガイド・計算機・仮の比較表を入口へ戻さない。
 
-9本のURL：
+- 商品トップは8ジャンルへの入口だけ。商品カードを混在させない。
+- 各ジャンルに該当する商品だけを表示。写真→短い商品名→商品固有の紹介1文→価格→詳細。
+- 商品詳細は写真を先に置き、短い見出し・紹介・価格・購入ボタンを表示。人数と個数の計算、一般論の選び方、機能バッジの重複、長い免責の前置きを足さない。
+- 大型の暗色ヒーロー、英語ラベル、強制改行、タイトルの部分的な巨大文字を廃止。
+- セールとイベントも一覧・絞り込みを最初に置く。価格蓄積状況や内部運用の説明をトップで読者に見せない。
 
-- `products/okome-5kg.html`：送料込み1kg単価。
-- `products/okashi-matome.html`：配布人数・個数・送料。
-- `products/nichiyohin-matome.html`：洗濯洗剤の1回当たり費用。食器用洗剤を混ぜない。容量単位で計算する記事のため、ジェルボール等も一覧から外す。
-- `products/mobile-battery.html`：バッテリーの用途・出力・容量。
-- `products/work-monitor.html`：27型4Kと34型UWQHDの解像度・設置・端子。
-- `products/mobile-battery-monitors.html`：従来URLを維持した家電ガイドの入口。
-- `products/sneakers.html`：サイズ・販売店別の返品条件。
-- `products/skincare.html`：セット内容と同じ規格の比較。
-- `products/pet-supplies.html`：ペット用ウェットシートの寸法・枚数・単価。
+正本は `portal-tools/build_storefront.py`、編集コピーは `portal-tools/product_copy.json`、セール・イベントの元データは `portal-tools/portal_content.json`。`build_guides.py` と `refresh_portals.py` は互換入口として同じビルダーを呼ぶ。古い `guide_content.py` / `guide.js` は現行商品のHTMLから参照しない。
 
-お米・お菓子・洗剤・ペット用シートの4記事にブラウザー内の比較計算機を設置。送料とクーポンを含め、洗剤は1回の使用量を掛ける。入力値を保存・送信しない。例は架空と表示し、実商品価格や性能テストとして使わない。
+8ジャンルのURL：
 
-`portal-assets/commerce.js` に価格の有効期限、楽天リンクの判定、用途別分類、比較計算、日曜の「今週末」判定を共通化。バッテリーの「ディスプレイ搭載」をモニターと誤認しない。期限切れは再表示時・定期確認・クリック時にも判定する。
+- `products/okashi-matome.html`：お菓子・スイーツ
+- `products/okome-5kg.html`：お米
+- `products/work-monitor.html`：モニター
+- `products/mobile-battery.html`：モバイルバッテリー
+- `products/nichiyohin-matome.html`：洗濯洗剤
+- `products/sneakers.html`：スニーカー
+- `products/skincare.html`：スキンケア
+- `products/pet-supplies.html`：ペット用品
 
-固定の通販トップへ飛ばすだけだった商品テーマの入口は、対応する購入ガイドへのリンクに変更。広告である商品リンクにはPRと `rel=sponsored` を付ける。実測・体験談・架空の値引きを作らない。
+`products/mobile-battery-monitors.html` は家電2ジャンルへの入口として維持。個別商品は `products/items/<id>.html`。商品更新ワークフローで新しい商品IDのページを生成し、サイトマップへ追加する。
+
+写真・価格は `catalog.js` が有効なフィードを確認してから表示する。楽天の公式画像を使い、実測・体験談・架空の値引きやランキングを作らない。APIの商品名の情報だけから短い紹介を書く。広告リンクにはPRと `rel=sponsored`。共通の期限・分類・日付・計測処理は `commerce.js`。
 
 ## 楽天の接続と自動更新
 
@@ -60,7 +65,7 @@
 既存の接続成功実績（今回以前）：
 
 - 商品： https://github.com/sho-support/ai-trend-blog/actions/runs/41083604065
-- 今回の更新後、2026-10-31 02:46 JSTに27件を取得。内訳はモニター6件、ほか7用途が各3件。後続の調整ではボール型を除外して液体洗剤を再取得する。
+- 今回の更新後、2026-10-31 02:46 JSTに27件を取得。内訳はモニター6件、ほか7用途が各3件。その後、ボール型を除外して液体洗剤を再取得済み。
 - 宿泊： https://github.com/sho-support/ai-trend-blog/actions/runs/41085961921
 
 `rakuten-feed.json` / `travel-feed.json` の有効期限は23時間。期限切れ・不正な期限・取得失敗では古い価格を売るために残さない。取得した紹介URLと承認売上は別。
@@ -88,24 +93,22 @@ https://github.com/sho-support/ai-trend-blog/actions/runs/41057068317
 基本検査：
 
 ```bash
-python portal-tools/build_guides.py
-python portal-tools/refresh_portals.py
+python portal-tools/build_storefront.py
 python portal-tools/test_portals.py
 python portal-tools/build_commercial_site.py
 ```
 
-テスト内容：9記事のリンク・アンカー・PR・構造、各フィード、JS構文、単価・濃縮度・不正入力、用途の誤分類、日曜・月跨ぎ、有効期限を過ぎたクリック、記事／商品別のイベント情報。
+テスト内容：8ジャンルの分離・27商品ルート・短いコピー・ローカル参照・PR・楽天クレジット、JS構文、用途の誤分類、日曜・月跨ぎ、期限切れの商品表示／クリック、商品別の計測。
 
-`portal-tools/test_commerce.js` はNode標準機能だけを使う。
-`portal-tools/test_article_quality.py` は実際の生成関数を切り出してスタブで動かし、自然な見出しの受理・重複原稿の修正・上限の伝播を検証。課金APIは呼ばない。
+`test_commerce.js` はNode標準機能のみ。旧計算関数の回帰検証も残るが、商品画面へ計算機を戻す根拠にはしない。`test_article_quality.py` はLLMをスタブにして既存の品質制御と課金上限の伝播を検証する。課金APIは呼ばない。
 
-PCブラウザーで9記事の描画を確認。320px・390px幅の本文／計算機を確認。お米796円/kg対814円/kg、洗剤30円/回対20円/回の架空例とゼロ量エラーを実画面で確認。ローカルQAは実機スマホや全ブラウザーの保証ではない。
+2026-10-31：ブラウザーで8ジャンルを巡回し、27商品詳細すべてで写真・購入リンク・PC画面のはみ出しを検査済み。スクリーンショットを目視し、写真の切れ・カテゴリー名の孤立した折り返し・日本語見出しの折り返しを修正。320px・390px・768px・PCの表示と、セール／イベントの地域絞り込みも確認済み。次の変更時も同じ流れを巡回する。DOM検査の合格だけで見た目が良いとは判定しない。ローカルQAは実機や全ブラウザーの保証ではない。
 
 プレビューは `dist` を削除・作り直した後に再起動が必要になる場合がある。内部QA用ファイルやローカル `.openai/hosting.json` をコミットしない。
 
 ## 計測と未完了
 
-GA4：`G-J5ZDLF30CS`。商品クリックの `portal_outbound_click` に `portal_kind`、`item_id`、`guide_slug`、ジャンルを付与。完全な広告URLや計算機入力は送信しない。ローカルプレビューを本番のGA4計測対象から除外。
+GA4：`G-J5ZDLF30CS`。商品クリックの `portal_outbound_click` に `portal_kind`、`item_id`、`guide_slug`（旧ガイドのみ）、ジャンルを付与。完全な広告URLや計算機入力は送信しない。ローカルプレビューを本番のGA4計測対象から除外。
 
 未完了を「完成済み」としない：
 

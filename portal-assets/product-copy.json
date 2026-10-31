@@ -1,0 +1,271 @@
+{
+  "rakuten-yokumoku-10000435": {
+    "name": "ヨックモック サンク デリス",
+    "headline": "5種類を楽しめる、ヨックモックの焼き菓子40個",
+    "description": "5種類の焼き菓子を40個。個包装の詰め合わせ。",
+    "features": [
+      "5種類・40個入り",
+      "個包装",
+      "焼き菓子の詰め合わせ"
+    ]
+  },
+  "rakuten-nichokiti-10000134": {
+    "name": "お菓子の詰め合わせ セットA",
+    "headline": "イベントのお配り用に。袋入りのお菓子セット",
+    "description": "袋に入ったお菓子の詰め合わせ。中身は販売ページで確認できます。",
+    "features": [
+      "セットA",
+      "袋入りの詰め合わせ"
+    ]
+  },
+  "rakuten-lindt-chocolate-10001570": {
+    "name": "リンツ リンドール 16個入り",
+    "headline": "食べ比べが楽しみになる、リンドール16個セット",
+    "description": "リンツのリンドールを詰めたテイスティングセット。",
+    "features": [
+      "16個入り",
+      "個包装",
+      "テイスティングセット"
+    ]
+  },
+  "rakuten-hseason-10000260": {
+    "name": "山形県産あきたこまち 無洗米10kg",
+    "headline": "いつものごはんに。山形県産あきたこまちの無洗米",
+    "description": "5kgを2袋。山形県産あきたこまちの無洗米。",
+    "features": [
+      "合計10kg（5kg×2袋）",
+      "山形県産あきたこまち",
+      "無洗米"
+    ]
+  },
+  "rakuten-yokogoshi-10000946": {
+    "name": "新潟県産 新之助 10kg",
+    "headline": "新潟の「新之助」を、5kgずつ2袋で",
+    "description": "新潟県産の新之助。白米5kgを2袋でお届け。",
+    "features": [
+      "合計10kg（5kg×2袋）",
+      "新潟県産 新之助",
+      "白米"
+    ]
+  },
+  "rakuten-kawasaki-beikoku-10000016": {
+    "name": "北海道産ゆめぴりか 10kg",
+    "headline": "北海道産ゆめぴりかを、たっぷり10kg",
+    "description": "北海道産ゆめぴりかの白米。5kgを2袋。",
+    "features": [
+      "合計10kg（5kg×2袋）",
+      "北海道産ゆめぴりか",
+      "白米"
+    ]
+  },
+  "rakuten-anker-10001908": {
+    "name": "Anker Power Bank 10,000mAh",
+    "headline": "残量が見える、Ankerの10,000mAhバッテリー",
+    "description": "最大22.5W出力。残量ディスプレイとUSB-Cケーブル付き。",
+    "features": [
+      "10,000mAh",
+      "最大22.5W出力",
+      "USB-Cケーブル付属"
+    ]
+  },
+  "rakuten-anker-10001561": {
+    "name": "Anker Nano Power Bank 5,000mAh",
+    "headline": "端子を直接挿せる、小さなAnker Nano",
+    "description": "USB-CまたはLightningを選べる、端子一体型モデル。",
+    "features": [
+      "5,000mAh",
+      "端子一体型",
+      "接続端子は購入時に選択"
+    ]
+  },
+  "rakuten-gracevally-10000033": {
+    "name": "USB-Cモバイルバッテリー 5,000mAh",
+    "headline": "荷物を軽くしたい日に。小型USB-Cバッテリー",
+    "description": "5,000mAhの小型タイプ。残量を数字で表示。",
+    "features": [
+      "5,000mAh",
+      "USB-C",
+      "残量数字表示"
+    ]
+  },
+  "rakuten-pixiogaming-10000135": {
+    "name": "Pixio PX27UWAVE 27型4K",
+    "headline": "27型4K・160Hz。Pixio PX27UWAVE",
+    "description": "Fast IPSパネルを使った、27型4Kモニター。",
+    "features": [
+      "27型・4K",
+      "160Hz",
+      "Fast IPSパネル"
+    ]
+  },
+  "rakuten-fpdvision-10000042": {
+    "name": "KTC M27P6 27型4K MiniLED",
+    "headline": "27型4KにMiniLED。KTC M27P6",
+    "description": "160Hz／320Hzのデュアルモードに対応した27型モニター。",
+    "features": [
+      "27型・4K",
+      "QD-MiniLED",
+      "USB-C・KVM対応"
+    ]
+  },
+  "rakuten-fpdvision-10000036": {
+    "name": "KTC H27P27 27型4K",
+    "headline": "4Kで仕事の画面を広く。KTC H27P27",
+    "description": "3840×2160・60Hz。IPSパネルを採用。",
+    "features": [
+      "27型・3840×2160",
+      "60Hz",
+      "IPSパネル"
+    ]
+  },
+  "rakuten-koorui-japan-10000013": {
+    "name": "KOORUI 34E6UC 34型ワイド",
+    "headline": "34型の横長画面。KOORUI 34E6UC",
+    "description": "3440×1440・165Hzの湾曲モニター。",
+    "features": [
+      "34型・3440×1440",
+      "165Hz",
+      "1000R湾曲"
+    ]
+  },
+  "rakuten-akibamac-12590137": {
+    "name": "PHILIPS 40B1U5600/11 40型",
+    "headline": "大きな横長画面で並べて作業。PHILIPSの40型",
+    "description": "3440×1440の40型モニター。USB-C接続に対応。",
+    "features": [
+      "40型",
+      "3440×1440",
+      "USB-C接続"
+    ]
+  },
+  "rakuten-z-edge-10000055": {
+    "name": "Z-EDGE UG34W 34型ワイド",
+    "headline": "34型・165Hzの横長画面。Z-EDGE UG34W",
+    "description": "3440×1440のウルトラワイド。非光沢IPSパネルを採用。",
+    "features": [
+      "34型・3440×1440",
+      "165Hz",
+      "IPSパネル"
+    ]
+  },
+  "rakuten-rakuten24-11163653": {
+    "name": "アリエール 液体詰め替え 1,950g×6",
+    "headline": "大容量をまとめて。アリエールの詰め替え6袋",
+    "description": "1,950g入りを6袋。種類は購入画面で選べます。",
+    "features": [
+      "1,950g×6袋",
+      "液体洗剤",
+      "詰め替え用"
+    ]
+  },
+  "rakuten-hikaritv-10251702": {
+    "name": "さらさ 液体詰め替え 6袋",
+    "headline": "さらさの詰め替えを、6袋まとめて",
+    "description": "ほのかな柑橘系の香り。ウルトラジャンボの詰め替え用。",
+    "features": [
+      "6袋セット",
+      "液体洗剤",
+      "詰め替え用"
+    ]
+  },
+  "rakuten-rakuten24-11279561": {
+    "name": "アリエール 液体詰め替え 1,000g×4",
+    "headline": "買い足しの手間を減らす、アリエール4袋セット",
+    "description": "1,000g入りを4袋。種類は購入画面で選べます。",
+    "features": [
+      "1,000g×4袋",
+      "液体洗剤",
+      "詰め替え用"
+    ]
+  },
+  "rakuten-adidas-10204230": {
+    "name": "adidas NY 90",
+    "headline": "白のローカット。adidas NY 90",
+    "description": "メンズのローカットスニーカー。型番HQ5841。",
+    "features": [
+      "メンズ",
+      "ホワイト",
+      "HQ5841"
+    ]
+  },
+  "rakuten-adidas-10168896": {
+    "name": "adidas ライト レーサー 3.0",
+    "headline": "普段の一足に。adidas ライト レーサー 3.0",
+    "description": "レディースの白いローカットモデル。型番GW7955。",
+    "features": [
+      "レディース",
+      "ホワイト",
+      "GW7955"
+    ]
+  },
+  "rakuten-adidas-10193265": {
+    "name": "adidas Ultimashow ホワイト",
+    "headline": "白でそろえる足もと。adidas Ultimashow",
+    "description": "レディースのローカットモデル。型番FX3637。",
+    "features": [
+      "レディース",
+      "ホワイト",
+      "FX3637"
+    ]
+  },
+  "rakuten-shuuemura-10000018": {
+    "name": "シュウ ウエムラ クレンジングキット",
+    "headline": "クレンジングをセットで。シュウ ウエムラのキット",
+    "description": "クレンジングオイルのキット。種類とセット内容を選んで購入。",
+    "features": [
+      "クレンジングオイル",
+      "キット商品",
+      "種類・内容は購入先で確認"
+    ]
+  },
+  "rakuten-yunth-10000000": {
+    "name": "Yunth 生ビタミンC美容液",
+    "headline": "1mLずつ個包装。YunthのビタミンC美容液",
+    "description": "1mL×28包の個包装タイプ。",
+    "features": [
+      "1mL×28包",
+      "個包装",
+      "美容液"
+    ]
+  },
+  "rakuten-yunth-10000122": {
+    "name": "Yunth 生PDRN美容液",
+    "headline": "個包装で使う、Yunth 生PDRN美容液",
+    "description": "1mL×28包の個包装タイプ。",
+    "features": [
+      "1mL×28包",
+      "個包装",
+      "美容液"
+    ]
+  },
+  "rakuten-lecdirect-10002407": {
+    "name": "ペット用ウェットシート 960枚",
+    "headline": "お散歩のあとに。ペット用ウェットシート12個",
+    "description": "80枚入りを12個。犬・猫用のウェットシート。",
+    "features": [
+      "80枚×12個",
+      "合計960枚",
+      "ペット用"
+    ]
+  },
+  "rakuten-lecdirect-10002040": {
+    "name": "ペット用ウェットシート 3,840枚",
+    "headline": "毎日使うシートをケースで。80枚×48個",
+    "description": "ペット用ウェットシートを48個まとめたケース。",
+    "features": [
+      "80枚×48個",
+      "合計3,840枚",
+      "日本製"
+    ]
+  },
+  "rakuten-lecdirect-2-10003561": {
+    "name": "ペット用 水99％シート 960枚",
+    "headline": "水99％タイプ。ペット用ウェットシート12個",
+    "description": "80枚入りを12個。ネット限定デザイン。",
+    "features": [
+      "80枚×12個",
+      "合計960枚",
+      "水99％タイプ"
+    ]
+  }
+}

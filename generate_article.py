@@ -676,10 +676,10 @@ def generate_sitemap(history=None):
         folder = Path(section)
         if not folder.exists():
             continue
-        for portal_html in sorted(folder.glob("*.html")):
+        for portal_html in sorted(folder.rglob("*.html")):
             public_path = (
                 f"/{section}/" if portal_html.name == "index.html"
-                else f"/{section}/{portal_html.name}"
+                else "/" + portal_html.as_posix()
             )
             page = SubElement(site_urlset, "url")
             SubElement(page, "loc").text = SITE_BASE_URL + public_path

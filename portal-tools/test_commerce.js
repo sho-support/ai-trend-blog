@@ -47,40 +47,43 @@ check(C.eventWindow('next7','2026-10-31'), {low:'2026-10-31',high:'2026-11-06'},
 check(C.eventWindow('nextmonth','2026-12-31'), {low:'2027-01-01',high:'2027-01-31'}, 'next month crosses year');
 check(C.eventWindow('month','2026-10-31'), {low:'2026-10-31',high:'2026-10-31'}, 'month ends at month end');
 
-async function guideLifecycle() {
-  let clock = now;
-  class Clock extends Date {static now() {return clock;}}
-  const node = () => ({innerHTML:'', textContent:'', listeners:{}, addEventListener(type, callback) {this.listeners[type] = callback;}});
-  const grid = node(), status = node(), timers = [], events = [];
-  const nodes = {'guide-cards':grid, 'guide-status':status};
-  const context = {
-    Date:Clock, URL, Intl, console,
-    GUIDE_CONFIG:battery,
-    document:{getElementById:id => nodes[id], addEventListener() {}, hidden:false},
-    location:{href:'https://example.test/products/mobile-battery.html', pathname:'/products/mobile-battery.html'},
-    addEventListener() {}, setInterval:callback => {timers.push(callback); return timers.length;}, clearInterval() {},
-    gtag:(...args) => events.push(args),
-    fetch:async () => ({ok:true, json:async () => ({updated_at:'2026-10-31T01:00:00+09:00', items:[product, {...product, id:'monitor', title:'4K モニター'}]})}),
-  };
-  context.window = context;
-  vm.createContext(context);
-  for (const script of ['commerce.js', 'guide.js']) vm.runInContext(fs.readFileSync(path.join(__dirname, '../portal-assets', script), 'utf8'), context);
-  await new Promise(resolve => setImmediate(resolve));
-  check(grid.innerHTML.includes('モバイルバッテリー'), true, 'guide renders its matching live product');
-  check(grid.innerHTML.includes('4K モニター'), false, 'same-category unrelated products are hidden');
-  const link = {dataset:{itemId:'battery'}, href:product.url};
-  grid.listeners.click({target:{closest:() => link}, preventDefault() {throw Error('fresh click blocked');}});
-  check(events[0][1], 'portal_outbound_click', 'real guide click emits conversion precursor');
-  check(events[0][2].item_id, 'battery', 'clicked product ID included');
-  check(events[0][2].guide_slug, 'mobile-battery', 'article identity included');
-  check(JSON.stringify(events).includes(product.url), false, 'full affiliate URL is not sent to analytics');
-  clock = Date.parse(product.expires_at) + 1;
-  let blocked = false;
-  grid.listeners.click({target:{closest:() => link}, preventDefault() {blocked = true;}});
-  check(blocked, true, 'expired product click blocked before timer fires');
-  check(grid.innerHTML.includes('data-rakuten-link'), false, 'expired product removed without page reload');
-  check(timers.length, 1, 'one freshness timer registered');
+async function catalogLifecycle() {
+  async function fixture(mode) {
+    let clock = now;
+    class Clock extends Date {static now() {return clock;}}
+    const node = () => ({innerHTML:'', textContent:'', hidden:false});
+    const grid=node(),status=node(),detail=node(),timers=[],events=[],listeners={};
+    const nodes={'catalog-grid':grid,'catalog-status':status,'product-detail':detail};
+    const context={Date:Clock,URL,Intl,console,HTMLImageElement:class {},
+      CATALOG_CONFIG:{mode,kind:'power-bank',id:'battery'},CATALOG_CATEGORIES:[{key:'power-bank',file:'mobile-battery.html'}],
+      document:{currentScript:{src:'https://example.test/portal-assets/catalog.js'},getElementById:id=>nodes[id],querySelector:()=>null,querySelectorAll:()=>[],addEventListener:(type,callback)=>{listeners[type]=callback;},hidden:false},
+      location:{href:'https://example.test/products/items/battery.html',pathname:'/products/items/battery.html'},
+      addEventListener(){},setInterval:callback=>{timers.push(callback);return timers.length;},clearInterval(){},
+      gtag:(...args)=>events.push(args),
+      fetch:async url=>({ok:true,json:async()=>String(url).endsWith('product-copy.json')?{}:{items:[{...product,kind:'power-bank'},{...product,id:'monitor',kind:'monitor',title:'4K モニター'}]}}),
+    };
+    context.window=context;vm.createContext(context);
+    for(const script of ['commerce.js','catalog.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../portal-assets',script),'utf8'),context);
+    await new Promise(resolve=>setImmediate(resolve));
+    return {grid,status,detail,timers,events,listeners,expire:()=>{clock=Date.parse(product.expires_at)+1;}};
+  }
+  const category=await fixture('category');
+  check(category.grid.innerHTML.includes('モバイルバッテリー'),true,'category renders relevant product');
+  check(category.grid.innerHTML.includes('4K モニター'),false,'category never mixes another genre');
+  category.expire();category.timers[0]();
+  check(category.grid.innerHTML,'','category removes expired offers without a reload');
+  const detail=await fixture('product');
+  check(detail.detail.innerHTML.includes('data-buy="battery"'),true,'product detail has one real purchase action');
+  const link={dataset:{buy:'battery'},href:product.url};
+  detail.listeners.click({target:{closest:()=>link},preventDefault(){throw Error('fresh purchase link blocked');}});
+  check(detail.events[0][1],'portal_outbound_click','purchase action emits a measurable click');
+  check(detail.events[0][2].item_id,'battery','correct product identity is recorded');
+  check(JSON.stringify(detail.events).includes(product.url),false,'full referral URL is not sent to analytics');
+  detail.expire();let blocked=false;
+  detail.listeners.click({target:{closest:()=>link},preventDefault(){blocked=true;}});
+  check(blocked,true,'expired purchase action is blocked immediately');
+  check(detail.detail.innerHTML.includes('data-buy'),false,'expired product is removed');
 }
 
-guideLifecycle().then(() => console.log('PASS:', checks, 'commerce arithmetic, matching, dates, expiry and click regressions'))
-  .catch(error => {console.error(error); process.exitCode = 1;});
+catalogLifecycle().then(()=>console.log('PASS:',checks,'commerce and storefront regressions'))
+  .catch(error=>{console.error(error);process.exitCode=1;});
