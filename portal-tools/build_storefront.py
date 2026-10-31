@@ -27,6 +27,14 @@ CREDIT = '''<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
 <!-- Rakuten Web Services Attribution Snippet TO HERE -->'''
 
 
+def short_title(item):
+    title = item.get('title') or item.get('display_title') or '商品'
+    title = re.sub(r'【[^】]*(?:】|$)', ' ', title)
+    title = re.sub(r'＼[^／]*／|★[^★]*★', ' ', title)
+    title = re.sub(r'\s+', ' ', re.split(r'[|｜]', title)[0]).strip()
+    return title[:32].rstrip()+'…' if len(title)>32 else title
+
+
 def header(brand, depth=1):
     prefix = '../' * depth
     brands = {'products':('モノより','◈'),'deals':('トクサーチ','↗'),'events':('マチより','◎')}
@@ -96,7 +104,7 @@ def products():
         if key not in known or not re.fullmatch('[A-Za-z0-9_-]+',ident):continue
         c=known[key];copy=copies.get(ident,{})
         # No static API image or price: the browser checks the data's expiry first.
-        title=copy.get('headline') or copy.get('name') or item.get('display_title') or item['title'][:45]
+        title=copy.get('headline') or copy.get('name') or short_title(item)
         body='<div class="breadcrumbs"><a href="../">カテゴリー</a><span aria-hidden="true">/</span><a href="../'+c['file']+'">'+c['name']+'</a></div>'
         body+='<article id="product-detail" class="product-detail"><div class="detail-photo placeholder" aria-label="商品写真を読み込み中"></div><div class="detail-info"><span class="ad-label">PR</span><h1>'+E(title)+'</h1><p class="loading" role="status">商品を読み込み中…</p></div></article>'
         body+='<div class="back-to-category"><a href="../'+c['file']+'">'+c['name']+'をもっと見る →</a></div>'

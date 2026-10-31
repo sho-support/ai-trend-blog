@@ -60,7 +60,7 @@ async function catalogLifecycle() {
       location:{href:'https://example.test/products/items/battery.html',pathname:'/products/items/battery.html'},
       addEventListener(){},setInterval:callback=>{timers.push(callback);return timers.length;},clearInterval(){},
       gtag:(...args)=>events.push(args),
-      fetch:async url=>({ok:true,json:async()=>String(url).endsWith('product-copy.json')?{}:{items:[{...product,kind:'power-bank'},{...product,id:'monitor',kind:'monitor',title:'4K モニター'}]}}),
+      fetch:async url=>({ok:true,json:async()=>String(url).endsWith('product-copy.json')?{}:{items:[{...product,kind:'power-bank',title:product.title+'【公式店 ポイント10倍 ギフト 送料無料】',display_title:product.title+'【公式店 ポイント10倍 ギフト 送料'},{...product,id:'monitor',kind:'monitor',title:'4K モニター'}]}}),
     };
     context.window=context;vm.createContext(context);
     for(const script of ['commerce.js','catalog.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../portal-assets',script),'utf8'),context);
@@ -70,6 +70,8 @@ async function catalogLifecycle() {
   const category=await fixture('category');
   check(category.grid.innerHTML.includes('モバイルバッテリー'),true,'category renders relevant product');
   check(category.grid.innerHTML.includes('4K モニター'),false,'category never mixes another genre');
+  check(category.grid.innerHTML.includes('ポイント10倍'),false,'new items strip promotional metadata after the product name');
+  check(category.grid.innerHTML.includes('【'),false,'new items never show a cut-off marketing bracket');
   category.expire();category.timers[0]();
   check(category.grid.innerHTML,'','category removes expired offers without a reload');
   const detail=await fixture('product');

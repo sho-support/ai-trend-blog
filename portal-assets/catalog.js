@@ -13,7 +13,13 @@
     nav.scrollLeft=activeCategory.getBoundingClientRect().left-nav.getBoundingClientRect().left-(nav.clientWidth-activeCategory.clientWidth)/2;
   }
   const get=url=>fetch(new URL(url,assetBase),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('unavailable');return r.json()});
-  const copyFor=x=>copies[x.id]||{name:(x.display_title||x.title).replace(/^(?:(?:【[^】]{1,50}】)|(?:＼[^／]{1,50}／)|(?:★[^★]{1,50}★))\s*/g,'').split(/[|｜]/)[0].slice(0,44),description:'',features:[]};
+  const copyFor=x=>{
+    if(copies[x.id])return copies[x.id];
+    const title=String(x.title||x.display_title||'商品')
+      .replace(/【[^】]*(?:】|$)/g,' ').replace(/＼[^／]*／|★[^★]*★/g,' ')
+      .split(/[|｜]/)[0].replace(/\s+/g,' ').trim();
+    return {name:title.length>32?title.slice(0,32).trimEnd()+'…':title,description:''};
+  };
   const live=x=>C.isLive(x);
   const inCategory=(x,key)=>x.kind===key;
   function image(x,cls=''){
