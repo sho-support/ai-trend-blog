@@ -5,6 +5,9 @@ on:
   push:
     paths:
       - "portal-tools/refresh_rakuten.py"
+      - "portal-tools/catalog_taxonomy.py"
+      - "portal-tools/rakuten_genres.json"
+      - "portal-tools/product_text.py"
       - "portal-tools/track_prices.py"
       - "portal-assets/guide.js"
       - "portal-assets/commerce.js"
@@ -25,7 +28,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 18
     env:
       RAKUTEN_APP_ID: ${{ secrets.RAKUTEN_APP_ID }}
       RAKUTEN_ACCESS_KEY: ${{ secrets.RAKUTEN_ACCESS_KEY }}

@@ -1,0 +1,880 @@
+{
+  "departments": [
+    {
+      "key": "pc",
+      "name": "PC・周辺機器",
+      "file": "departments/pc.html"
+    },
+    {
+      "key": "gaming",
+      "name": "ゲーム",
+      "file": "departments/gaming.html"
+    },
+    {
+      "key": "appliances",
+      "name": "生活家電・テレビ",
+      "file": "departments/appliances.html"
+    },
+    {
+      "key": "cameras",
+      "name": "カメラ",
+      "file": "departments/cameras.html"
+    },
+    {
+      "key": "mobile",
+      "name": "スマホ・タブレット",
+      "file": "departments/mobile.html"
+    },
+    {
+      "key": "audio",
+      "name": "オーディオ",
+      "file": "departments/audio.html"
+    },
+    {
+      "key": "beauty",
+      "name": "美容・コスメ",
+      "file": "departments/beauty.html"
+    },
+    {
+      "key": "food",
+      "name": "食品・お菓子",
+      "file": "departments/food.html"
+    },
+    {
+      "key": "toys",
+      "name": "おもちゃ・ホビー",
+      "file": "departments/toys.html"
+    },
+    {
+      "key": "watches",
+      "name": "時計",
+      "file": "departments/watches.html"
+    },
+    {
+      "key": "fitness",
+      "name": "フィットネス・スポーツ",
+      "file": "departments/fitness.html"
+    },
+    {
+      "key": "stationery",
+      "name": "文房具・事務用品",
+      "file": "departments/stationery.html"
+    },
+    {
+      "key": "bags",
+      "name": "バッグ・旅行用品",
+      "file": "departments/bags.html"
+    },
+    {
+      "key": "fashion",
+      "name": "ファッション・靴",
+      "file": "departments/fashion.html"
+    },
+    {
+      "key": "home",
+      "name": "家具・キッチン",
+      "file": "departments/home.html"
+    },
+    {
+      "key": "daily",
+      "name": "日用品",
+      "file": "departments/daily.html"
+    },
+    {
+      "key": "pets",
+      "name": "ペット用品",
+      "file": "departments/pets.html"
+    },
+    {
+      "key": "outdoors",
+      "name": "アウトドア・防災",
+      "file": "departments/outdoors.html"
+    }
+  ],
+  "categories": [
+    {
+      "key": "laptops",
+      "name": "ノートPC",
+      "file": "laptops.html",
+      "department": "pc",
+      "department_name": "PC・周辺機器",
+      "department_file": "departments/pc.html"
+    },
+    {
+      "key": "desktops",
+      "name": "デスクトップPC",
+      "file": "desktops.html",
+      "department": "pc",
+      "department_name": "PC・周辺機器",
+      "department_file": "departments/pc.html"
+    },
+    {
+      "key": "monitor",
+      "name": "PCモニター",
+      "file": "work-monitor.html",
+      "department": "pc",
+      "department_name": "PC・周辺機器",
+      "department_file": "departments/pc.html"
+    },
+    {
+      "key": "keyboards",
+      "name": "キーボード",
+      "file": "keyboards.html",
+      "department": "pc",
+      "department_name": "PC・周辺機器",
+      "department_file": "departments/pc.html"
+    },
+    {
+      "key": "mice",
+      "name": "マウス",
+      "file": "mice.html",
+      "department": "pc",
+      "department_name": "PC・周辺機器",
+      "department_file": "departments/pc.html"
+    },
+    {
+      "key": "routers",
+      "name": "Wi-Fiルーター",
+      "file": "routers.html",
+      "department": "pc",
+      "department_name": "PC・周辺機器",
+      "department_file": "departments/pc.html"
+    },
+    {
+      "key": "printers",
+      "name": "プリンター",
+      "file": "printers.html",
+      "department": "pc",
+      "department_name": "PC・周辺機器",
+      "department_file": "departments/pc.html"
+    },
+    {
+      "key": "storage",
+      "name": "SSD・外付けストレージ",
+      "file": "storage.html",
+      "department": "pc",
+      "department_name": "PC・周辺機器",
+      "department_file": "departments/pc.html"
+    },
+    {
+      "key": "gaming-monitor",
+      "name": "ゲーミングモニター",
+      "file": "gaming-monitor.html",
+      "department": "gaming",
+      "department_name": "ゲーム",
+      "department_file": "departments/gaming.html"
+    },
+    {
+      "key": "game-consoles",
+      "name": "ゲーム機本体",
+      "file": "game-consoles.html",
+      "department": "gaming",
+      "department_name": "ゲーム",
+      "department_file": "departments/gaming.html"
+    },
+    {
+      "key": "game-controllers",
+      "name": "コントローラー",
+      "file": "game-controllers.html",
+      "department": "gaming",
+      "department_name": "ゲーム",
+      "department_file": "departments/gaming.html"
+    },
+    {
+      "key": "gaming-headsets",
+      "name": "ゲーミングヘッドセット",
+      "file": "gaming-headsets.html",
+      "department": "gaming",
+      "department_name": "ゲーム",
+      "department_file": "departments/gaming.html"
+    },
+    {
+      "key": "game-software",
+      "name": "ゲームソフト",
+      "file": "game-software.html",
+      "department": "gaming",
+      "department_name": "ゲーム",
+      "department_file": "departments/gaming.html"
+    },
+    {
+      "key": "televisions",
+      "name": "テレビ",
+      "file": "televisions.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "refrigerators",
+      "name": "冷蔵庫",
+      "file": "refrigerators.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "washing-machines",
+      "name": "洗濯機",
+      "file": "washing-machines.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "air-conditioners",
+      "name": "エアコン",
+      "file": "air-conditioners.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "vacuum-cleaners",
+      "name": "掃除機",
+      "file": "vacuum-cleaners.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "microwave-ovens",
+      "name": "電子レンジ・オーブン",
+      "file": "microwave-ovens.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "rice-cookers",
+      "name": "炊飯器",
+      "file": "rice-cookers.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "air-purifiers",
+      "name": "空気清浄機",
+      "file": "air-purifiers.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "electric-kettles",
+      "name": "電気ケトル",
+      "file": "electric-kettles.html",
+      "department": "appliances",
+      "department_name": "生活家電・テレビ",
+      "department_file": "departments/appliances.html"
+    },
+    {
+      "key": "mirrorless-cameras",
+      "name": "ミラーレスカメラ",
+      "file": "mirrorless-cameras.html",
+      "department": "cameras",
+      "department_name": "カメラ",
+      "department_file": "departments/cameras.html"
+    },
+    {
+      "key": "digital-cameras",
+      "name": "コンパクトカメラ",
+      "file": "digital-cameras.html",
+      "department": "cameras",
+      "department_name": "カメラ",
+      "department_file": "departments/cameras.html"
+    },
+    {
+      "key": "action-cameras",
+      "name": "アクションカメラ",
+      "file": "action-cameras.html",
+      "department": "cameras",
+      "department_name": "カメラ",
+      "department_file": "departments/cameras.html"
+    },
+    {
+      "key": "camera-lenses",
+      "name": "交換レンズ",
+      "file": "camera-lenses.html",
+      "department": "cameras",
+      "department_name": "カメラ",
+      "department_file": "departments/cameras.html"
+    },
+    {
+      "key": "tripods",
+      "name": "三脚・撮影用品",
+      "file": "tripods.html",
+      "department": "cameras",
+      "department_name": "カメラ",
+      "department_file": "departments/cameras.html"
+    },
+    {
+      "key": "smartphones",
+      "name": "スマートフォン本体",
+      "file": "smartphones.html",
+      "department": "mobile",
+      "department_name": "スマホ・タブレット",
+      "department_file": "departments/mobile.html"
+    },
+    {
+      "key": "tablets",
+      "name": "タブレット本体",
+      "file": "tablets.html",
+      "department": "mobile",
+      "department_name": "スマホ・タブレット",
+      "department_file": "departments/mobile.html"
+    },
+    {
+      "key": "phone-cases",
+      "name": "スマホケース",
+      "file": "phone-cases.html",
+      "department": "mobile",
+      "department_name": "スマホ・タブレット",
+      "department_file": "departments/mobile.html"
+    },
+    {
+      "key": "power-bank",
+      "name": "モバイルバッテリー",
+      "file": "mobile-battery.html",
+      "department": "mobile",
+      "department_name": "スマホ・タブレット",
+      "department_file": "departments/mobile.html"
+    },
+    {
+      "key": "phone-chargers",
+      "name": "充電器・ケーブル",
+      "file": "phone-chargers.html",
+      "department": "mobile",
+      "department_name": "スマホ・タブレット",
+      "department_file": "departments/mobile.html"
+    },
+    {
+      "key": "speakers",
+      "name": "スピーカー",
+      "file": "speakers.html",
+      "department": "audio",
+      "department_name": "オーディオ",
+      "department_file": "departments/audio.html"
+    },
+    {
+      "key": "earbuds",
+      "name": "ワイヤレスイヤホン",
+      "file": "earbuds.html",
+      "department": "audio",
+      "department_name": "オーディオ",
+      "department_file": "departments/audio.html"
+    },
+    {
+      "key": "headphones",
+      "name": "ヘッドホン",
+      "file": "headphones.html",
+      "department": "audio",
+      "department_name": "オーディオ",
+      "department_file": "departments/audio.html"
+    },
+    {
+      "key": "soundbars",
+      "name": "サウンドバー",
+      "file": "soundbars.html",
+      "department": "audio",
+      "department_name": "オーディオ",
+      "department_file": "departments/audio.html"
+    },
+    {
+      "key": "audio-players",
+      "name": "音楽プレーヤー",
+      "file": "audio-players.html",
+      "department": "audio",
+      "department_name": "オーディオ",
+      "department_file": "departments/audio.html"
+    },
+    {
+      "key": "hair-dryers",
+      "name": "ドライヤー",
+      "file": "hair-dryers.html",
+      "department": "beauty",
+      "department_name": "美容・コスメ",
+      "department_file": "departments/beauty.html"
+    },
+    {
+      "key": "hair-irons",
+      "name": "ヘアアイロン",
+      "file": "hair-irons.html",
+      "department": "beauty",
+      "department_name": "美容・コスメ",
+      "department_file": "departments/beauty.html"
+    },
+    {
+      "key": "shavers",
+      "name": "電気シェーバー",
+      "file": "shavers.html",
+      "department": "beauty",
+      "department_name": "美容・コスメ",
+      "department_file": "departments/beauty.html"
+    },
+    {
+      "key": "beauty-devices",
+      "name": "美顔器・スチーマー",
+      "file": "beauty-devices.html",
+      "department": "beauty",
+      "department_name": "美容・コスメ",
+      "department_file": "departments/beauty.html"
+    },
+    {
+      "key": "skincare",
+      "name": "スキンケア",
+      "file": "skincare.html",
+      "department": "beauty",
+      "department_name": "美容・コスメ",
+      "department_file": "departments/beauty.html"
+    },
+    {
+      "key": "haircare",
+      "name": "ヘアケア",
+      "file": "haircare.html",
+      "department": "beauty",
+      "department_name": "美容・コスメ",
+      "department_file": "departments/beauty.html"
+    },
+    {
+      "key": "makeup",
+      "name": "メイクアップ",
+      "file": "makeup.html",
+      "department": "beauty",
+      "department_name": "美容・コスメ",
+      "department_file": "departments/beauty.html"
+    },
+    {
+      "key": "snacks",
+      "name": "お菓子・スイーツ",
+      "file": "okashi-matome.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "rice",
+      "name": "お米",
+      "file": "okome-5kg.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "noodles",
+      "name": "麺類",
+      "file": "noodles.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "prepared-food",
+      "name": "惣菜・冷凍食品",
+      "file": "prepared-food.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "meat",
+      "name": "肉・加工肉",
+      "file": "meat.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "seafood",
+      "name": "魚介・水産品",
+      "file": "seafood.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "fruit",
+      "name": "フルーツ",
+      "file": "fruit.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "water",
+      "name": "水・炭酸水",
+      "file": "water.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "coffee",
+      "name": "コーヒー",
+      "file": "coffee.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "tea",
+      "name": "お茶・紅茶",
+      "file": "tea.html",
+      "department": "food",
+      "department_name": "食品・お菓子",
+      "department_file": "departments/food.html"
+    },
+    {
+      "key": "building-blocks",
+      "name": "ブロック",
+      "file": "building-blocks.html",
+      "department": "toys",
+      "department_name": "おもちゃ・ホビー",
+      "department_file": "departments/toys.html"
+    },
+    {
+      "key": "board-games",
+      "name": "ボードゲーム",
+      "file": "board-games.html",
+      "department": "toys",
+      "department_name": "おもちゃ・ホビー",
+      "department_file": "departments/toys.html"
+    },
+    {
+      "key": "plastic-models",
+      "name": "プラモデル",
+      "file": "plastic-models.html",
+      "department": "toys",
+      "department_name": "おもちゃ・ホビー",
+      "department_file": "departments/toys.html"
+    },
+    {
+      "key": "figures",
+      "name": "フィギュア",
+      "file": "figures.html",
+      "department": "toys",
+      "department_name": "おもちゃ・ホビー",
+      "department_file": "departments/toys.html"
+    },
+    {
+      "key": "learning-toys",
+      "name": "知育玩具",
+      "file": "learning-toys.html",
+      "department": "toys",
+      "department_name": "おもちゃ・ホビー",
+      "department_file": "departments/toys.html"
+    },
+    {
+      "key": "wristwatches",
+      "name": "腕時計",
+      "file": "wristwatches.html",
+      "department": "watches",
+      "department_name": "時計",
+      "department_file": "departments/watches.html"
+    },
+    {
+      "key": "smartwatches",
+      "name": "スマートウォッチ",
+      "file": "smartwatches.html",
+      "department": "watches",
+      "department_name": "時計",
+      "department_file": "departments/watches.html"
+    },
+    {
+      "key": "dumbbells",
+      "name": "ダンベル・筋トレ",
+      "file": "dumbbells.html",
+      "department": "fitness",
+      "department_name": "フィットネス・スポーツ",
+      "department_file": "departments/fitness.html"
+    },
+    {
+      "key": "yoga",
+      "name": "ヨガ・ストレッチ",
+      "file": "yoga.html",
+      "department": "fitness",
+      "department_name": "フィットネス・スポーツ",
+      "department_file": "departments/fitness.html"
+    },
+    {
+      "key": "fitness-bikes",
+      "name": "フィットネスバイク",
+      "file": "fitness-bikes.html",
+      "department": "fitness",
+      "department_name": "フィットネス・スポーツ",
+      "department_file": "departments/fitness.html"
+    },
+    {
+      "key": "treadmills",
+      "name": "ランニングマシン",
+      "file": "treadmills.html",
+      "department": "fitness",
+      "department_name": "フィットネス・スポーツ",
+      "department_file": "departments/fitness.html"
+    },
+    {
+      "key": "sportswear",
+      "name": "スポーツウェア",
+      "file": "sportswear.html",
+      "department": "fitness",
+      "department_name": "フィットネス・スポーツ",
+      "department_file": "departments/fitness.html"
+    },
+    {
+      "key": "pens",
+      "name": "ペン・筆記具",
+      "file": "pens.html",
+      "department": "stationery",
+      "department_name": "文房具・事務用品",
+      "department_file": "departments/stationery.html"
+    },
+    {
+      "key": "notebooks",
+      "name": "ノート・手帳",
+      "file": "notebooks.html",
+      "department": "stationery",
+      "department_name": "文房具・事務用品",
+      "department_file": "departments/stationery.html"
+    },
+    {
+      "key": "files",
+      "name": "ファイル・収納",
+      "file": "files.html",
+      "department": "stationery",
+      "department_name": "文房具・事務用品",
+      "department_file": "departments/stationery.html"
+    },
+    {
+      "key": "desk-tools",
+      "name": "デスク小物",
+      "file": "desk-tools.html",
+      "department": "stationery",
+      "department_name": "文房具・事務用品",
+      "department_file": "departments/stationery.html"
+    },
+    {
+      "key": "calculators",
+      "name": "電卓",
+      "file": "calculators.html",
+      "department": "stationery",
+      "department_name": "文房具・事務用品",
+      "department_file": "departments/stationery.html"
+    },
+    {
+      "key": "backpacks",
+      "name": "リュック",
+      "file": "backpacks.html",
+      "department": "bags",
+      "department_name": "バッグ・旅行用品",
+      "department_file": "departments/bags.html"
+    },
+    {
+      "key": "shoulder-bags",
+      "name": "ショルダーバッグ",
+      "file": "shoulder-bags.html",
+      "department": "bags",
+      "department_name": "バッグ・旅行用品",
+      "department_file": "departments/bags.html"
+    },
+    {
+      "key": "business-bags",
+      "name": "ビジネスバッグ",
+      "file": "business-bags.html",
+      "department": "bags",
+      "department_name": "バッグ・旅行用品",
+      "department_file": "departments/bags.html"
+    },
+    {
+      "key": "suitcases",
+      "name": "スーツケース",
+      "file": "suitcases.html",
+      "department": "bags",
+      "department_name": "バッグ・旅行用品",
+      "department_file": "departments/bags.html"
+    },
+    {
+      "key": "menswear",
+      "name": "メンズ服",
+      "file": "menswear.html",
+      "department": "fashion",
+      "department_name": "ファッション・靴",
+      "department_file": "departments/fashion.html"
+    },
+    {
+      "key": "womenswear",
+      "name": "レディース服",
+      "file": "womenswear.html",
+      "department": "fashion",
+      "department_name": "ファッション・靴",
+      "department_file": "departments/fashion.html"
+    },
+    {
+      "key": "sneakers",
+      "name": "スニーカー",
+      "file": "sneakers.html",
+      "department": "fashion",
+      "department_name": "ファッション・靴",
+      "department_file": "departments/fashion.html"
+    },
+    {
+      "key": "wallets",
+      "name": "財布・小物",
+      "file": "wallets.html",
+      "department": "fashion",
+      "department_name": "ファッション・靴",
+      "department_file": "departments/fashion.html"
+    },
+    {
+      "key": "cookware",
+      "name": "鍋・フライパン",
+      "file": "cookware.html",
+      "department": "home",
+      "department_name": "家具・キッチン",
+      "department_file": "departments/home.html"
+    },
+    {
+      "key": "tableware",
+      "name": "食器・カップ",
+      "file": "tableware.html",
+      "department": "home",
+      "department_name": "家具・キッチン",
+      "department_file": "departments/home.html"
+    },
+    {
+      "key": "bedding",
+      "name": "寝具",
+      "file": "bedding.html",
+      "department": "home",
+      "department_name": "家具・キッチン",
+      "department_file": "departments/home.html"
+    },
+    {
+      "key": "home-storage",
+      "name": "収納家具",
+      "file": "home-storage.html",
+      "department": "home",
+      "department_name": "家具・キッチン",
+      "department_file": "departments/home.html"
+    },
+    {
+      "key": "office-chairs",
+      "name": "デスクチェア",
+      "file": "office-chairs.html",
+      "department": "home",
+      "department_name": "家具・キッチン",
+      "department_file": "departments/home.html"
+    },
+    {
+      "key": "lighting",
+      "name": "照明",
+      "file": "lighting.html",
+      "department": "home",
+      "department_name": "家具・キッチン",
+      "department_file": "departments/home.html"
+    },
+    {
+      "key": "laundry-detergent",
+      "name": "洗濯洗剤",
+      "file": "nichiyohin-matome.html",
+      "department": "daily",
+      "department_name": "日用品",
+      "department_file": "departments/daily.html"
+    },
+    {
+      "key": "tissues",
+      "name": "ティッシュ・紙類",
+      "file": "tissues.html",
+      "department": "daily",
+      "department_name": "日用品",
+      "department_file": "departments/daily.html"
+    },
+    {
+      "key": "cleaning-tools",
+      "name": "掃除用品",
+      "file": "cleaning-tools.html",
+      "department": "daily",
+      "department_name": "日用品",
+      "department_file": "departments/daily.html"
+    },
+    {
+      "key": "towels",
+      "name": "タオル",
+      "file": "towels.html",
+      "department": "daily",
+      "department_name": "日用品",
+      "department_file": "departments/daily.html"
+    },
+    {
+      "key": "pet-wipes",
+      "name": "ウェットシート",
+      "file": "pet-supplies.html",
+      "department": "pets",
+      "department_name": "ペット用品",
+      "department_file": "departments/pets.html"
+    },
+    {
+      "key": "dog-food",
+      "name": "ドッグフード",
+      "file": "dog-food.html",
+      "department": "pets",
+      "department_name": "ペット用品",
+      "department_file": "departments/pets.html"
+    },
+    {
+      "key": "cat-food",
+      "name": "キャットフード",
+      "file": "cat-food.html",
+      "department": "pets",
+      "department_name": "ペット用品",
+      "department_file": "departments/pets.html"
+    },
+    {
+      "key": "pet-beds",
+      "name": "ペットベッド",
+      "file": "pet-beds.html",
+      "department": "pets",
+      "department_name": "ペット用品",
+      "department_file": "departments/pets.html"
+    },
+    {
+      "key": "tents",
+      "name": "テント",
+      "file": "tents.html",
+      "department": "outdoors",
+      "department_name": "アウトドア・防災",
+      "department_file": "departments/outdoors.html"
+    },
+    {
+      "key": "sleeping-bags",
+      "name": "寝袋",
+      "file": "sleeping-bags.html",
+      "department": "outdoors",
+      "department_name": "アウトドア・防災",
+      "department_file": "departments/outdoors.html"
+    },
+    {
+      "key": "camping-chairs",
+      "name": "アウトドアチェア",
+      "file": "camping-chairs.html",
+      "department": "outdoors",
+      "department_name": "アウトドア・防災",
+      "department_file": "departments/outdoors.html"
+    },
+    {
+      "key": "lanterns",
+      "name": "ランタン",
+      "file": "lanterns.html",
+      "department": "outdoors",
+      "department_name": "アウトドア・防災",
+      "department_file": "departments/outdoors.html"
+    },
+    {
+      "key": "portable-power",
+      "name": "ポータブル電源",
+      "file": "portable-power.html",
+      "department": "outdoors",
+      "department_name": "アウトドア・防災",
+      "department_file": "departments/outdoors.html"
+    }
+  ]
+}

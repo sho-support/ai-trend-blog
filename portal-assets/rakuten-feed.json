@@ -21,7 +21,9 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/nichokiti/cabinet/shohin/dagashi/90128/90128-m-04.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "food",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-yokumoku-10000435",
@@ -41,7 +43,9 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/yokumoku/cabinet/yokumoku_thumbnail/aw/10345986/delices40_26aw.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "food",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-friend-gift-10031457",
@@ -61,11 +65,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/friend-gift/cabinet/renewal/re2022/imgrc0085660771.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "food",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-hseason-10000260",
-      "category": "お米・飲料",
+      "category": "食品・お菓子",
       "kind": "rice",
       "shop": "楽天市場",
       "icon": "🍚",
@@ -81,11 +87,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/hseason/cabinet/00208353/04325330/mu_komachi_ha_10k2.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "food",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-yokogoshi-10000946",
-      "category": "お米・飲料",
+      "category": "食品・お菓子",
       "kind": "rice",
       "shop": "楽天市場",
       "icon": "🍚",
@@ -101,11 +109,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/yokogoshi/cabinet/shohin/rice/kome-10kg_006.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "food",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-kawasaki-beikoku-10000016",
-      "category": "お米・飲料",
+      "category": "食品・お菓子",
       "kind": "rice",
       "shop": "楽天市場",
       "icon": "🍚",
@@ -121,11 +131,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/kawasaki-beikoku/cabinet/top/04725866/301pirica10w.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "food",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-anker-10001908",
-      "category": "家電・デジタル",
+      "category": "スマホ・タブレット",
       "kind": "power-bank",
       "shop": "楽天市場",
       "icon": "🔋",
@@ -141,11 +153,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/anker/cabinet/tmb/a1/a1257_normal.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "mobile",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-anker-10001561",
-      "category": "家電・デジタル",
+      "category": "スマホ・タブレット",
       "kind": "power-bank",
       "shop": "楽天市場",
       "icon": "🔋",
@@ -161,11 +175,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/anker/cabinet/tmb/a1/a1645_normal.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "mobile",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-gracevally-10000033",
-      "category": "家電・デジタル",
+      "category": "スマホ・タブレット",
       "kind": "power-bank",
       "shop": "楽天市場",
       "icon": "🔋",
@@ -181,12 +197,14 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/gracevally/cabinet/09355687/09895983/11176895/imgrc0121444938.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "mobile",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-pixiogaming-10000135",
-      "category": "家電・デジタル",
-      "kind": "monitor",
+      "category": "ゲーム",
+      "kind": "gaming-monitor",
       "shop": "楽天市場",
       "icon": "🖥️",
       "title": "ゲーミングモニター 4k 27インチ 白 黒 ホワイト ピンク 水色 160hz ゲーム モニター HDR 新品 1ms Fast IPSパネル 非光沢 ブルーライト軽減 VESA 壁掛け pcモニター 液晶 ディスプレイ テレワーク Pixio 公式 PX27UWAVE【最大5年保証付き】",
@@ -201,12 +219,14 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/pixiogaming/cabinet/px27uwave/px27uwave_r.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "gaming",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-fpdvision-10000042",
-      "category": "家電・デジタル",
-      "kind": "monitor",
+      "category": "ゲーム",
+      "kind": "gaming-monitor",
       "shop": "楽天市場",
       "icon": "🖥️",
       "title": "液晶ディスプレイ 27インチ QD-MiniLED 4K UHD 量子ドットゲーミングモニター デュアルモード技術 320Hz/160Hz HDR1400 Type-C Sync フリッカーフリー対応(DC調光) KVM対応 PS5で120Hz(VRR)対応 3年保証 KTC M27P6",
@@ -221,12 +241,14 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/fpdvision/cabinet/11675626/11705629/1.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "gaming",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-fpdvision-10000036",
-      "category": "家電・デジタル",
-      "kind": "monitor",
+      "category": "ゲーム",
+      "kind": "gaming-monitor",
       "shop": "楽天市場",
       "icon": "🖥️",
       "title": "4K UHD ゲーミングモニター 液晶ディスプレイ 27インチ 3840x2160解像度 60Hz HDR400対応 IPSパネル sRGB135% DC調光 400nitハードウェアブルーライトカット技術 VESA対応 HDMI2.0*2 DP1.4*1 イヤホンジャック搭載 KTC H27P27",
@@ -241,12 +263,14 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/fpdvision/cabinet/11675626/11677500/11737070/1.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "gaming",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-koorui-japan-10000013",
-      "category": "家電・デジタル",
-      "kind": "monitor",
+      "category": "ゲーム",
+      "kind": "gaming-monitor",
       "shop": "楽天市場",
       "icon": "🖥️",
       "title": "【10% OFF クーポン】KOORUI 34E6UC ゲーミングモニター 34 インチ ウルトラワイド UWQHD 3440×1440 165Hz 1ms 1000R 湾曲 VA パネル HDR400 Adaptive Sync HDMI DP VESA 対応",
@@ -261,11 +285,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/koorui-japan/cabinet/10614646/shoutu.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "gaming",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-akibamac-12590137",
-      "category": "家電・デジタル",
+      "category": "PC・周辺機器",
       "kind": "monitor",
       "shop": "楽天市場",
       "icon": "🖥️",
@@ -281,12 +307,14 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/akibamac/cabinet/mc4610/2305201.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "pc",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-z-edge-10000055",
-      "category": "家電・デジタル",
-      "kind": "monitor",
+      "category": "ゲーム",
+      "kind": "gaming-monitor",
       "shop": "楽天市場",
       "icon": "🖥️",
       "title": "Z-EDGE ゲーミングモニター 165Hz ウルトラワイドモニター 34インチ ディスプレイ LED WQHD 21:9 3440x1440 非光沢 IPSパネル (標準輝度:300cd/平方メートル) 1ms FreeSync HDMI DisplayPort UG34W",
@@ -301,11 +329,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/z-edge/cabinet/11897579/ug34w-1.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "gaming",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-rakuten24-11163653",
-      "category": "日用品・生活",
+      "category": "日用品",
       "kind": "laundry-detergent",
       "shop": "楽天市場",
       "icon": "🧺",
@@ -321,11 +351,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakuten24/cabinet/025/405025.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "daily",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-hikaritv-10251702",
-      "category": "日用品・生活",
+      "category": "日用品",
       "kind": "laundry-detergent",
       "shop": "楽天市場",
       "icon": "🧺",
@@ -341,11 +373,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/hikaritv/cabinet/plala/171/00002/1710000234_k.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "daily",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-rakuten24-11279561",
-      "category": "日用品・生活",
+      "category": "日用品",
       "kind": "laundry-detergent",
       "shop": "楽天市場",
       "icon": "🧺",
@@ -361,11 +395,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/rakuten24/cabinet/421/405421.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "daily",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-adidas-10204230",
-      "category": "ファッション",
+      "category": "ファッション・靴",
       "kind": "sneakers",
       "shop": "楽天市場",
       "icon": "👟",
@@ -381,11 +417,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/adidas/cabinet/p4/hq5841_l.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "fashion",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-adidas-10168896",
-      "category": "ファッション",
+      "category": "ファッション・靴",
       "kind": "sneakers",
       "shop": "楽天市場",
       "icon": "👟",
@@ -401,11 +439,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/adidas/cabinet/p2/gw7955_l.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "fashion",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-adidas-10193265",
-      "category": "ファッション",
+      "category": "ファッション・靴",
       "kind": "sneakers",
       "shop": "楽天市場",
       "icon": "👟",
@@ -421,7 +461,9 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/adidas/cabinet/p1/fx3637_l.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "fashion",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-shuuemura-10000018",
@@ -441,7 +483,9 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/shuuemura/cabinet/12824584/13204797/13525001/new.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "beauty",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-yunth-10000000",
@@ -461,7 +505,9 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/yunth/cabinet/11294195/11294196/event/10000000_260918.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "beauty",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-yunth-10000122",
@@ -481,11 +527,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/yunth/cabinet/11294195/11294196/event/yb-126-001_260918.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "beauty",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-lecdirect-10002407",
-      "category": "ペット",
+      "category": "ペット用品",
       "kind": "pet-wipes",
       "shop": "楽天市場",
       "icon": "🐾",
@@ -501,11 +549,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/lecdirect/cabinet/img/e/e90610.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "pets",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-lecdirect-10002040",
-      "category": "ペット",
+      "category": "ペット用品",
       "kind": "pet-wipes",
       "shop": "楽天市場",
       "icon": "🐾",
@@ -521,11 +571,13 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/lecdirect/cabinet/img/e/e133_48_01.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "pets",
+      "source": "rakuten"
     },
     {
       "id": "rakuten-lecdirect-2-10003561",
-      "category": "ペット",
+      "category": "ペット用品",
       "kind": "pet-wipes",
       "shop": "楽天市場",
       "icon": "🐾",
@@ -541,7 +593,9 @@
       "expires_at": "2026-11-01T09:15:05.252403+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/lecdirect-2/cabinet/img/e/e90610.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "department": "pets",
+      "source": "rakuten"
     }
   ]
 }

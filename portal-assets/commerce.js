@@ -16,6 +16,20 @@
     && item.approved === true && item.affiliate === true
     && Number.isFinite(item.price_yen) && item.price_yen > 0
     && !!item.id && !!item.title && isRakutenURL(item.url);
+  const isA8Live = (item, now = Date.now()) => {
+    if (!isFresh(item, now) || item.approved !== true || item.affiliate !== true
+      || item.site_registered !== true || item.material_type !== 'free_link'
+      || !item.id || !item.title || !item.kind) return false;
+    try {
+      const u = new URL(item.url), site = new URL(item.site_url);
+      return u.protocol === 'https:' && !u.username && !u.password
+        && ['px.a8.net','rpx.a8.net','ad.a8.net'].includes(u.hostname)
+        && site.origin === 'https://sho-support.github.io'
+        && (site.pathname === '/ai-trend-blog' || site.pathname.startsWith('/ai-trend-blog/'))
+        && (!item.image || item.image_authorized === true)
+        && (item.price_yen == null || Number.isFinite(item.price_yen) && item.price_yen > 0);
+    } catch (_) { return false; }
+  };
   const kinds = {
     'power-bank': /モバイルバッテリー|Power Bank/i,
     monitor: /モニター|液晶ディスプレイ|PCディスプレイ|有機ELディスプレイ/,
@@ -79,7 +93,7 @@
       });
     } catch (_) { /* Analytics must not prevent navigation. */ }
   };
-  const api = Object.freeze({escape, isRakutenURL, isFresh, isLive, matches, unitCost, eventWindow, observe, track});
+  const api = Object.freeze({escape, isRakutenURL, isFresh, isLive, isA8Live, matches, unitCost, eventWindow, observe, track});
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.PortalCommerce = api;
 })(typeof window !== 'undefined' ? window : globalThis);

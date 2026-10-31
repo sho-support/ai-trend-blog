@@ -10,29 +10,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://sho-support.github.io/ai-trend-blog'
 JST = timezone(timedelta(hours=9))
-CATEGORIES = [
-    {'key':'snacks','name':'お菓子・スイーツ','file':'okashi-matome.html','icon':'🍪'},
-    {'key':'rice','name':'お米','file':'okome-5kg.html','icon':'🍚'},
-    {'key':'monitor','name':'モニター','file':'work-monitor.html','icon':'🖥️'},
-    {'key':'power-bank','name':'モバイルバッテリー','file':'mobile-battery.html','icon':'🔋'},
-    {'key':'laundry-detergent','name':'洗濯洗剤','file':'nichiyohin-matome.html','icon':'🧺'},
-    {'key':'sneakers','name':'スニーカー','file':'sneakers.html','icon':'👟'},
-    {'key':'skincare','name':'スキンケア','file':'skincare.html','icon':'🧴'},
-    {'key':'pet-wipes','name':'ペット用品','file':'pet-supplies.html','icon':'🐾'},
-]
+from catalog_taxonomy import DEPARTMENTS, CATEGORIES, BY_KIND, BY_DEPARTMENT, normalized_kind, public_category
+from product_text import short_title, product_copy, approved_a8
 E = lambda v: html.escape(str(v), quote=True)
 JS = lambda v: json.dumps(v, ensure_ascii=False, separators=(',',':')).replace('<','\\u003c')
 CREDIT = '''<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
 <a href="https://developers.rakuten.com/" target="_blank">Supported by Rakuten Developers</a>
 <!-- Rakuten Web Services Attribution Snippet TO HERE -->'''
-
-
-def short_title(item):
-    title = item.get('title') or item.get('display_title') or '商品'
-    title = re.sub(r'【[^】]*(?:】|$)', ' ', title)
-    title = re.sub(r'＼[^／]*／|★[^★]*★', ' ', title)
-    title = re.sub(r'\s+', ' ', re.split(r'[|｜]', title)[0]).strip()
-    return title[:32].rstrip()+'…' if len(title)>32 else title
 
 
 def header(brand, depth=1):
@@ -47,7 +31,7 @@ def document(title, path, body, brand='products', depth=1, config=None, scripts=
     prefix = '../' * depth
     config_script = ''
     if config is not None:
-        config_script = '<script>window.CATALOG_CONFIG='+JS(config)+';window.CATALOG_CATEGORIES='+JS(CATEGORIES)+';</script>'
+        config_script = '<script>window.CATALOG_CONFIG='+JS(config)+';window.CATALOG_CATEGORIES='+JS([public_category(c) for c in BY_DEPARTMENT[BY_KIND[config['kind']]['department']]['children']] if config.get('kind') in BY_KIND else [])+';</script>'
     if data is not None:
         config_script += '<script>window.PORTAL_DATA='+JS(data)+';</script>'
     includes = ''.join(f'<script defer src="{prefix}portal-assets/{script}"></script>' for script in ('commerce.js',)+tuple(scripts))
@@ -84,32 +68,70 @@ def write(relative, body):
     path.write_text(body,encoding='utf-8')
 
 
+def category_cards(rows, prefix=''):
+    cards=[]
+    for c in rows:
+        is_department='children' in c
+        attr='data-department' if is_department else 'data-category'
+        icon=c.get('icon') or BY_DEPARTMENT[c['department']]['icon']
+        cards.append('<a class="category-card" href="'+prefix+c['file']+'" '+attr+'="'+c['key']+'"><div class="category-photo"><span aria-hidden="true">'+icon+'</span></div><h2>'+E(c['name'])+'</h2></a>')
+    return '<div class="category-grid" id="category-grid">'+''.join(cards)+'</div><p id="directory-status" class="loading" role="status"></p>'
+
+
+def search_form(prefix=''):
+    return '<form class="catalog-search" action="'+prefix+'search.html" method="get" role="search"><input type="search" name="q" id="product-query" aria-label="商品検索" placeholder="商品名・ジャンルで探す"><button type="submit">検索</button></form>'
+
+
 def products():
-    body = '<div class="page-heading"><h1>商品カテゴリー</h1><span class="ad-label">PR</span></div><div class="category-grid" id="category-grid">'
-    body += ''.join(f'<a class="category-card" href="{c["file"]}" data-category="{c["key"]}"><div class="category-photo"><span aria-hidden="true">{c["icon"]}</span></div><h2>{c["name"]}<span aria-hidden="true">→</span></h2></a>' for c in CATEGORIES)
-    body += '</div>'
-    write('products/index.html', document('商品カテゴリー｜モノより','products/',body,config={'mode':'directory'},scripts=('catalog.js',)))
-    for c in CATEGORIES:
-        body = '<div class="breadcrumbs"><a href="./">カテゴリー</a><span aria-hidden="true">/</span><span>'+c['name']+'</span></div>'
-        body += '<div class="page-heading"><h1>'+c['name']+'</h1><span class="ad-label">PR</span></div>'+category_links(c['key'])+empty_cards()
-        write('products/'+c['file'],document(c['name']+'｜モノより','products/'+c['file'],body,config={'mode':'category','kind':c['key']},scripts=('catalog.js',)))
-    subset=[c for c in CATEGORIES if c['key'] in ('power-bank','monitor')]
-    body='<div class="page-heading"><h1>家電・デジタル</h1></div><div class="category-grid compact">'+''.join(f'<a class="category-card" href="{c["file"]}" data-category="{c["key"]}"><div class="category-photo"><span aria-hidden="true">{c["icon"]}</span></div><h2>{c["name"]}<span aria-hidden="true">→</span></h2></a>' for c in subset)+'</div>'
-    write('products/mobile-battery-monitors.html',document('家電・デジタル｜モノより','products/mobile-battery-monitors.html',body,config={'mode':'directory'},scripts=('catalog.js',)))
-    feed=json.loads((ROOT/'portal-assets/rakuten-feed.json').read_text())
-    copies=json.loads((ROOT/'portal-tools/product_copy.json').read_text())
-    known={c['key']:c for c in CATEGORIES}
+    feed_path=ROOT/'portal-assets/rakuten-feed.json'
+    feed=json.loads(feed_path.read_text());changed=False
+    edited=json.loads((ROOT/'portal-tools/product_copy.json').read_text())
+    copies=dict(edited)
     for item in feed.get('items',[]):
+        kind=normalized_kind(item)
+        if kind not in BY_KIND:continue
+        dept=BY_DEPARTMENT[BY_KIND[kind]['department']]
+        for k,v in {'kind':kind,'department':dept['key'],'category':dept['name'],'source':'rakuten'}.items():
+            if item.get(k)!=v:item[k]=v;changed=True
+        copies[item['id']]=product_copy(item,edited)
+    if changed:feed_path.write_text(json.dumps(feed,ensure_ascii=False,indent=2)+'\n')
+    items=list(feed.get('items',[]))
+    a8=json.loads((ROOT/'portal-assets/a8-approved.json').read_text())
+    a8_changed=False
+    for item in a8.get('items',[]):
+        if not approved_a8(item) or item.get('kind') not in BY_KIND:continue
+        d=BY_DEPARTMENT[BY_KIND[item['kind']]['department']]
+        for k,v in {'source':'a8','department':d['key'],'category':d['name']}.items():
+            if item.get(k)!=v:item[k]=v;a8_changed=True
+        items.append(item);copies[item['id']]=product_copy(item,edited)
+    if a8_changed:write('portal-assets/a8-approved.json',json.dumps(a8,ensure_ascii=False,indent=2)+'\n')
+    body='<div class="page-heading"><h1>カテゴリーから探す</h1><span class="ad-label">PR</span></div>'+search_form()+category_cards(DEPARTMENTS)
+    write('products/index.html',document('カテゴリーから探す｜モノより','products/',body,config={'mode':'directory'},scripts=('catalog.js',)))
+    for d in DEPARTMENTS:
+        body='<div class="breadcrumbs"><a href="../">カテゴリー</a><span aria-hidden="true">/</span><span>'+d['name']+'</span></div>'
+        body+='<div class="page-heading"><h1>'+d['name']+'</h1><span class="ad-label">PR</span></div>'+search_form('../')+category_cards(d['children'],'../')
+        write('products/'+d['file'],document(d['name']+'｜モノより','products/'+d['file'],body,depth=2,config={'mode':'directory','department':d['key']},scripts=('catalog.js',)))
+        for c in d['children']:
+            body='<div class="breadcrumbs"><a href="./">カテゴリー</a><span aria-hidden="true">/</span><a href="'+d['file']+'">'+d['name']+'</a><span aria-hidden="true">/</span><span>'+c['name']+'</span></div>'
+            body+='<div class="page-heading"><h1>'+c['name']+'</h1><span class="ad-label">PR</span></div>'+category_links(c['key'],d['children'])+empty_cards()
+            write('products/'+c['file'],document(c['name']+'｜モノより','products/'+c['file'],body,config={'mode':'category','kind':c['key'],'department':d['key']},scripts=('catalog.js',)))
+    body='<div class="breadcrumbs"><a href="./">カテゴリー</a><span aria-hidden="true">/</span><span>商品検索</span></div><div class="page-heading"><h1>商品を探す</h1><span class="ad-label">PR</span></div>'+search_form()+empty_cards()
+    write('products/search.html',document('商品検索｜モノより','products/search.html',body,config={'mode':'search'},scripts=('catalog.js',)))
+    subset=[BY_DEPARTMENT[k] for k in ('pc','gaming','mobile')]
+    body='<div class="page-heading"><h1>PC・ゲーム・スマホ</h1></div>'+category_cards(subset)
+    write('products/mobile-battery-monitors.html',document('PC・ゲーム・スマホ｜モノより','products/mobile-battery-monitors.html',body,config={'mode':'directory'},scripts=('catalog.js',)))
+    for item in items:
         key=item.get('kind');ident=item.get('id','')
-        if key not in known or not re.fullmatch('[A-Za-z0-9_-]+',ident):continue
-        c=known[key];copy=copies.get(ident,{})
-        # No static API image or price: the browser checks the data's expiry first.
-        title=copy.get('headline') or copy.get('name') or short_title(item)
-        body='<div class="breadcrumbs"><a href="../">カテゴリー</a><span aria-hidden="true">/</span><a href="../'+c['file']+'">'+c['name']+'</a></div>'
+        if key not in BY_KIND or not re.fullmatch('[A-Za-z0-9_-]+',ident):continue
+        c=BY_KIND[key];d=BY_DEPARTMENT[c['department']];copy=copies[ident]
+        title=copy.get('headline') or copy['name']
+        body='<div class="breadcrumbs"><a href="../">カテゴリー</a><span aria-hidden="true">/</span><a href="../'+d['file']+'">'+d['name']+'</a><span aria-hidden="true">/</span><a href="../'+c['file']+'">'+c['name']+'</a></div>'
         body+='<article id="product-detail" class="product-detail"><div class="detail-photo placeholder" aria-label="商品写真を読み込み中"></div><div class="detail-info"><span class="ad-label">PR</span><h1>'+E(title)+'</h1><p class="loading" role="status">商品を読み込み中…</p></div></article>'
         body+='<div class="back-to-category"><a href="../'+c['file']+'">'+c['name']+'をもっと見る →</a></div>'
-        write('products/items/'+ident+'.html',document(title+'｜モノより','products/items/'+ident+'.html',body,depth=2,config={'mode':'product','id':ident,'kind':key},scripts=('catalog.js',)))
+        write('products/items/'+ident+'.html',document(title+'｜モノより','products/items/'+ident+'.html',body,depth=2,config={'mode':'product','id':ident,'kind':key,'department':d['key']},scripts=('catalog.js',)))
     write('portal-assets/product-copy.json',json.dumps(copies,ensure_ascii=False,indent=2)+'\n')
+    taxonomy={'departments':[{k:d[k] for k in ('key','name','file')} for d in DEPARTMENTS],'categories':[public_category(c) for c in CATEGORIES]}
+    write('portal-assets/catalog-taxonomy.json',json.dumps(taxonomy,ensure_ascii=False,indent=2)+'\n')
 
 
 def render_listing(data, today):

@@ -19,47 +19,12 @@ from urllib.error import HTTPError
 ENDPOINT = "https://openapi.rakuten.co.jp/ichibams/api/IchibaItem/Search/20260701"
 OUT = Path("portal-assets/rakuten-feed.json")
 JST = timezone(timedelta(hours=9))
-# Practical buying budgets are selection filters, not claims of discounts.
-PRICE_LIMITS = {
-    "お菓子 詰め合わせ": (400, 8000),
-    "白米 5kg": (2000, 13000),
-    "モバイルバッテリー USB-C": (800, 15000),
-    "ペット ウェットシート": (500, 12000),
-}
+from catalog_taxonomy import CATEGORIES, BY_DEPARTMENT, eligible_title
+from product_text import short_title
+SEARCHES=CATEGORIES
 
-SEARCHES = [
-    ("食品・お菓子", "お菓子 詰め合わせ", "🍪", "snacks"),
-    ("お米・飲料", "白米 5kg", "🍚", "rice"),
-    ("家電・デジタル", "モバイルバッテリー USB-C", "🔋", "power-bank"),
-    ("家電・デジタル", "モニター 4K", "🖥️", "monitor"),
-    ("家電・デジタル", "モニター 3440 1440", "🖥️", "monitor"),
-    ("日用品・生活", "液体 洗濯洗剤 詰め替え", "🧺", "laundry-detergent"),
-    ("ファッション", "スニーカー", "👟", "sneakers"),
-    ("美容・コスメ", "スキンケア", "💄", "skincare"),
-    ("ペット", "ペット ウェットシート", "🐾", "pet-wipes"),
-]
-
-
-def eligible_title(title, kind):
-    """Reject adjacent product types rather than mislabeling search results."""
-    if any(word in title for word in ("ふるさと納税", "返礼品", "寄附金")):
-        return False
-    if kind == "laundry-detergent":
-        return bool(re.search(r"洗濯|衣料用|アタック|アリエール|ナノックス|NANOX|ランドリー", title, re.I)) and not re.search(r"食器|台所|柔軟剤|ジェルボール|パーフェクトスティック|洗剤シート", title)
-    if kind == "power-bank":
-        return bool(re.search(r"モバイルバッテリー|Power Bank", title, re.I))
-    if kind == "monitor":
-        return bool(re.search(r"モニター|液晶ディスプレイ|PCディスプレイ|有機ELディスプレイ", title)) and not re.search(r"モバイルバッテリー|Power Bank|モニターアーム|保護フィルム|保護カバー|スタンドのみ", title, re.I)
-    return True
 def shorten_title(title):
-    """Remove loud ad prefixes, without changing item identity or specifications."""
-    tidy = re.sub(
-        r"^(?:(?:【(?:送料無料|公式|ポイント[0-9]+倍)】)|(?:★[^★]{1,36}★)|(?:＼[^／]{1,40}／))\s*",
-        "",
-        title,
-    ).strip()
-    tidy = tidy or title
-    return tidy[:70].rstrip() + ("…" if len(tidy) > 70 else "")
+    return short_title({'title':title})
 
 
 def main():
@@ -74,7 +39,10 @@ def main():
     result = []
     used_codes = set()
     errors = 0
-    for index, (cat, query, emoji, kind) in enumerate(SEARCHES):
+    coverage=[]
+    for index, shelf in enumerate(SEARCHES):
+        kind=shelf['key'];query=shelf['query'];dept=BY_DEPARTMENT[shelf['department']]
+        cat=dept['name'];emoji=dept['icon']
         if index:
             time.sleep(1.1)  # Registration estimate: <= 1 request per second
         params = {
@@ -88,8 +56,8 @@ def main():
             "availability": 1,
             "imageFlag": 1,
         }
-        if query in PRICE_LIMITS:
-            params["minPrice"], params["maxPrice"] = PRICE_LIMITS[query]
+        params['minPrice']=shelf['min_price']
+        if shelf.get('genre_id'):params['genreId']=shelf['genre_id']
         if affiliate_id:
             params["affiliateId"] = affiliate_id
         req = Request(
@@ -103,7 +71,7 @@ def main():
             },
         )
         try:
-            with urlopen(req, timeout=20) as response:
+            with urlopen(req, timeout=15) as response:
                 payload = json.load(response)
             if not isinstance(payload, dict):
                 raise ValueError("API response is not an object")
@@ -138,7 +106,7 @@ def main():
             kept = 0
             for v in objects:
                 item = v.get("item", v) if isinstance(v, dict) else {}
-                name = str(item.get("itemName") or "").strip()[:170]
+                name = str(item.get("itemName") or "").strip()[:500]
                 # A regular purchase guide must not silently recommend donations.
                 if not eligible_title(name, kind):
                     continue
@@ -181,6 +149,8 @@ def main():
                     "id": "rakuten-" + code.replace(":", "-"),
                     "category": cat,
                     "kind": kind,
+                    "department": shelf["department"],
+                    "source": "rakuten",
                     "shop": "楽天市場",
                     "icon": emoji,
                     "title": name,
@@ -201,7 +171,8 @@ def main():
                 kept += 1
                 if kept >= 3:
                     break
-            print(f"候補: {cat} API={len(objects)}件 掲載={kept}件")
+            coverage.append({'kind':kind,'name':shelf['name'],'count':kept,'status':'ok' if kept else 'empty'})
+            print(f"候補: {cat} / {shelf['name']} API={len(objects)}件 掲載={kept}件")
         except HTTPError as e:
             errors += 1
             body = e.read(2048).decode("utf-8", errors="replace")
@@ -236,6 +207,7 @@ def main():
         "source": ENDPOINT,
         "note": "楽天市場公式APIによる参考価格。最安値・値引き保証はありません。",
         "items": result,
+        "coverage": coverage,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(output, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")

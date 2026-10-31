@@ -47,6 +47,10 @@ check(C.eventWindow('next7','2026-10-31'), {low:'2026-10-31',high:'2026-11-06'},
 check(C.eventWindow('nextmonth','2026-12-31'), {low:'2027-01-01',high:'2027-01-31'}, 'next month crosses year');
 check(C.eventWindow('month','2026-10-31'), {low:'2026-10-31',high:'2026-10-31'}, 'month ends at month end');
 
+const a8={id:'a8-test',title:'テスト商品',kind:'hair-dryers',source:'a8',approved:true,affiliate:true,site_registered:true,site_url:'https://sho-support.github.io/ai-trend-blog/products/',material_type:'free_link',url:'https://px.a8.net/svt/ejp?a8mat=unit-test',expires_at:'2026-11-01T00:00:00+09:00'};
+check(C.isA8Live(a8,now),true,'registered and approved A8 free link is usable');
+for(const patch of [{approved:false},{site_registered:false},{site_url:'https://www.youtube.com/channel/test'},{material_type:'banner'},{image:'https://example.test/photo.jpg',image_authorized:false},{url:'https://px.a8.net.attacker.example/'},{expires_at:'2020-01-01T00:00:00+09:00'}])check(C.isA8Live({...a8,...patch},now),false,'reject unapproved or wrong-site A8 material');
+
 async function catalogLifecycle() {
   async function fixture(mode) {
     let clock = now;

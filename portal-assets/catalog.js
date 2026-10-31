@@ -20,7 +20,7 @@
       .split(/[|｜]/)[0].replace(/\s+/g,' ').trim();
     return {name:title.length>32?title.slice(0,32).trimEnd()+'…':title,description:''};
   };
-  const live=x=>C.isLive(x);
+  const live=x=>x?.source==='a8'?C.isA8Live(x):C.isLive(x);
   const inCategory=(x,key)=>x.kind===key;
   function image(x,cls=''){
     if(!x.image||!/^https:\/\//.test(x.image))return '<span class="photo-unavailable">商品写真は販売店で</span>';
@@ -40,19 +40,29 @@
     const signature=JSON.stringify([rows,copies,failed]);
     if(signature===lastSignature)return;lastSignature=signature;
     if(config.mode==='directory'){
-      document.querySelectorAll('[data-category]').forEach(tile=>{
-        const key=tile.dataset.category;
-        const item=rows.find(x=>inCategory(x,key)&&x.image);
+      document.querySelectorAll('[data-category],[data-department]').forEach(tile=>{
+        const selected=rows.filter(x=>tile.dataset.department?x.department===tile.dataset.department:inCategory(x,tile.dataset.category));
+        tile.hidden=!selected.length;
+        const item=selected.find(x=>x.image);
         const photo=tile.querySelector('.category-photo');
-        if(item&&photo)photo.innerHTML=image(item);
+        if(photo)photo.innerHTML=item?image(item):'<span class="photo-unavailable">'+esc(tile.querySelector('h2').textContent)+'</span>';
       });
+      const status=document.getElementById('directory-status');
+      if(status)status.textContent=rows.length?'':failed?'商品を読み込めませんでした。':'現在掲載できる商品はありません。';
       return;
     }
-    if(config.mode==='category'){
+    if(config.mode==='category'||config.mode==='search'){
       const grid=document.getElementById('catalog-grid'),status=document.getElementById('catalog-status');
-      const selected=rows.filter(x=>inCategory(x,config.kind));
+      const query=config.mode==='search'?new URLSearchParams(location.search).get('q')?.trim()||'':'';
+      const input=document.getElementById('product-query');if(input)input.value=query;
+      const words=query.toLocaleLowerCase('ja-JP').split(/\s+/).filter(Boolean);
+      const selected=config.mode==='search'?(words.length?rows.filter(x=>words.every(w=>[x.title,copyFor(x).name,x.category].join(' ').toLocaleLowerCase('ja-JP').includes(w))):[]):rows.filter(x=>inCategory(x,config.kind));
+      document.querySelectorAll('.category-nav a').forEach(link=>{
+        const c=categories.find(c=>link.getAttribute('href')===c.file);
+        if(c)link.hidden=!rows.some(x=>inCategory(x,c.key))&&c.key!==config.kind;
+      });
       if(!selected.length){
-        grid.innerHTML='';status.textContent=failed?'商品を読み込めませんでした。しばらくしてからお試しください。':'現在掲載できる商品はありません。';
+        grid.innerHTML='';status.textContent=config.mode==='search'?(query?'条件に合う商品はありません。':'商品名やジャンルを入力してください。'):failed?'商品を読み込めませんでした。しばらくしてからお試しください。':'現在掲載できる商品はありません。';
         status.hidden=false;return;
       }
       status.textContent='';status.hidden=true;
@@ -62,7 +72,7 @@
           +'<a class="product-photo" href="'+esc(url)+'">'+image(x)+'</a>'
           +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
           +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
-          +'<div class="product-card-bottom"><p class="product-price">¥'+Number(x.price_yen).toLocaleString('ja-JP')+'</p>'
+          +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">¥'+Number(x.price_yen).toLocaleString('ja-JP')+'</p>':'')
           +'<a class="product-open" href="'+esc(url)+'" aria-label="'+esc(copy.name)+'の詳細">詳しく見る <span aria-hidden="true">→</span></a></div></div></article>';
       }).join('');
       return;
@@ -77,14 +87,14 @@
       root.innerHTML='<div class="detail-photo">'+image(item)+'</div><div class="detail-info"><span class="ad-label">PR</span>'
         +'<h1>'+esc(copy.headline||copy.name)+'</h1>'
         +(copy.description?'<p class="detail-intro">'+esc(copy.description)+'</p>':'')
-        +'<p class="detail-price">¥'+Number(item.price_yen).toLocaleString('ja-JP')+'</p>'
-        +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">楽天市場で見る <span aria-hidden="true">↗</span></a>'
+        +(item.price_yen!=null?'<p class="detail-price">¥'+Number(item.price_yen).toLocaleString('ja-JP')+'</p>':'')
+        +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">'+esc(item.source==='a8'?(item.shop||'公式ショップ')+'で見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a>'
         +'<p class="seller">'+esc(item.seller||'楽天市場')+'</p>'
         +'</div>';
     }
   }
-  Promise.all([get('rakuten-feed.json'),get('product-copy.json').catch(()=>({}))])
-    .then(([data,copy])=>{if(!Array.isArray(data.items))throw Error('invalid');feed=data.items;copies=copy&&typeof copy==='object'?copy:{};render();})
+  Promise.all([get('rakuten-feed.json'),get('product-copy.json').catch(()=>({})),get('a8-approved.json').catch(()=>({items:[]}))])
+    .then(([data,copy,a8])=>{if(!Array.isArray(data.items))throw Error('invalid');feed=[...data.items,...(Array.isArray(a8.items)?a8.items.map(x=>({...x,source:'a8'})):[])];copies=copy&&typeof copy==='object'?copy:{};render();})
     .catch(()=>{failed=true;render();});
   C.observe(render);
   document.addEventListener('click',event=>{
@@ -92,7 +102,7 @@
     const item=feed.find(x=>x.id===link.dataset.buy);
     if(!live(item)){event.preventDefault();render();return;}
     link.dataset.itemId=item.id;
-    C.track(link,{portal_kind:'product',category:config.kind});
+    C.track(link,{portal_kind:'product',category:item.kind,source:item.source||'rakuten'});
   });
   document.addEventListener('error',event=>{
     if(event.target instanceof HTMLImageElement&&event.target.classList.contains('product-image')){
