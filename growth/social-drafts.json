@@ -10,11 +10,13 @@
     },
     {
       "id": "hario",
-      "status": "draft",
-      "channel": null,
+      "status": "published",
+      "channel": "X @AITrendBlogJP",
       "expires_at": "2026-11-08T21:02:42+09:00",
-      "text": "【PR】少しだけごはんを炊きたい日に。HARIOのガラスご飯釜は、電子レンジで炊ける1〜2合用です。\nhttps://sho-support.github.io/ai-trend-blog/products/items/a8-hario-xrcn-2-b.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_hario_202611",
-      "url": "https://sho-support.github.io/ai-trend-blog/products/items/a8-hario-xrcn-2-b.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_hario_202611"
+      "text": "【PR】1〜2合だけ炊きたい日に。\n電子レンジで使える、HARIOのガラス製ご飯釜。\n写真と公式ショップへのリンクはこちら。\nhttps://sho-support.github.io/ai-trend-blog/products/items/a8-hario-xrcn-2-b.html?utm_source=x&utm_medium=social&utm_campaign=monoyori_hario_20261102",
+      "url": "https://sho-support.github.io/ai-trend-blog/products/items/a8-hario-xrcn-2-b.html?utm_source=x&utm_medium=social&utm_campaign=monoyori_hario_20261102",
+      "published_url": "https://twitter.com/AITrendBlogJP/status/2117034789005848579",
+      "published_at": "2026-11-01T23:23:21.153Z"
     },
     {
       "id": "joggo",
@@ -25,5 +27,5 @@
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/a8-joggo-jw42104011.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_joggo_202611"
     }
   ],
-  "note": "投稿先は未接続。外部SNSへの投稿・予約は行っていない。公開前に対象商品の掲載継続と購入先を再確認。"
+  "note": "HARIOは既存のBuffer経由でX @AITrendBlogJPへ1件公開済み。ミッフィーとJOGGOは未投稿。Metricoolの選択ブランドは引き続き未接続。次の投稿前に掲載継続と購入先を再確認。"
 }
