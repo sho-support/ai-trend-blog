@@ -280,37 +280,37 @@
   "rakuten-yorozuyasan-reiwa-10000001": {
     "name": "ノートパソコン パソコン Office付き Windows11搭…",
     "headline": "ノートパソコン パソコン Office付き Windows11搭…",
-    "description": "15.6インチ・8GB・32GB。",
+    "description": "メモリ8GB・SSD128GB・15.6インチ。",
     "features": []
   },
   "rakuten-lakshmistore-10000002": {
     "name": "ノートパソコン パソコン JIS 日本語キーボード…",
     "headline": "ノートパソコン パソコン JIS 日本語キーボード…",
-    "description": "15.6インチ・128GB・256GB。",
+    "description": "SSD128GB・15.6インチ・256GB。",
     "features": []
   },
   "rakuten-yorozuyasan-reiwa-10000006": {
     "name": "ノートパソコン パソコン Office付 初期設定済…",
     "headline": "ノートパソコン パソコン Office付 初期設定済…",
-    "description": "15.6インチ・32GB・128G。",
+    "description": "容量128G・15.6インチ・32GB。",
     "features": []
   },
   "rakuten-voltique-10000021": {
     "name": "デスクトップパソコン Windows11 Office付き パソ…",
     "headline": "デスクトップパソコン Windows11 Office付き パソ…",
-    "description": "128GB・2TB・64GB。",
+    "description": "SSD128GB・2TB・64GB。",
     "features": []
   },
   "rakuten-fujitsu-fmv-10000005": {
     "name": "デスクトップパソコン 一体型 office付き 新品 おすすめ…",
     "headline": "デスクトップパソコン 一体型 office付き 新品 おすすめ…",
-    "description": "23.8型・8GB・256GB。",
+    "description": "メモリ8GB・SSD256GB。",
     "features": []
   },
   "rakuten-pcshop-best-10000182": {
     "name": "Lenovo デスクトップパソコン IdeaCentre…",
     "headline": "Lenovo デスクトップパソコン IdeaCentre…",
-    "description": "16GB・512GB。",
+    "description": "メモリ16GB・SSD512GB。",
     "features": []
   },
   "rakuten-jism-14588960": {
@@ -322,7 +322,7 @@
   "rakuten-e-zoa-10110004": {
     "name": "JAPANNEXT ジャパンネクスト27インチ4K液晶ディスプレ…",
     "headline": "JAPANNEXT ジャパンネクスト27インチ4K液晶ディスプレ…",
-    "description": "27インチ。",
+    "description": "27インチ・4K。",
     "features": []
   },
   "rakuten-elecom-10046747": {
@@ -334,7 +334,7 @@
   "rakuten-logicool-10000345": {
     "name": "ロジクール ワイヤレスキーボード K295GP K295OW 静…",
     "headline": "ロジクール ワイヤレスキーボード K295GP K295OW 静…",
-    "description": "295G。",
+    "description": "",
     "features": []
   },
   "rakuten-logicool-10000421": {
@@ -364,7 +364,7 @@
   "rakuten-pcshop-best-10000139": {
     "name": "バッファロー ルーター wifi6 IPv6 無線LAN…",
     "headline": "バッファロー ルーター wifi6 IPv6 無線LAN…",
-    "description": "4L。",
+    "description": "",
     "features": []
   },
   "rakuten-d-shop1one-10239877": {
@@ -400,13 +400,13 @@
   "rakuten-spd-shop-10005425": {
     "name": "週間 ／ポータブルSSD 1TB 外付けssd SanDisk…",
     "headline": "週間 ／ポータブルSSD 1TB 外付けssd SanDisk…",
-    "description": "1TB・3.2G。",
+    "description": "SSD1TB・USB-C。",
     "features": []
   },
   "rakuten-kazamidori-10015401": {
     "name": "SSD 2TB 外付SSD ポータブルSSD USB3.2…",
     "headline": "SSD 2TB 外付SSD ポータブルSSD USB3.2…",
-    "description": "2TB・3.2G。",
+    "description": "SSD2TB・USB-C。",
     "features": []
   },
   "rakuten-bacestore-10000037": {
@@ -454,13 +454,13 @@
   "rakuten-smahoservice-10002176": {
     "name": "switch2 コントローラー Switch2対応…",
     "headline": "switch2 コントローラー Switch2対応…",
-    "description": "600mAh。",
+    "description": "600mAh・有機EL。",
     "features": []
   },
   "rakuten-onostore-10000162": {
     "name": "BIGBIG WON Gale 2 コントローラー 2000Hz…",
     "headline": "BIGBIG WON Gale 2 コントローラー 2000Hz…",
-    "description": "000Hz。",
+    "description": "",
     "features": []
   },
   "rakuten-smahoservice-10002181": {
@@ -520,7 +520,7 @@
   "rakuten-fpdvision-10000000": {
     "name": "チューナーレス テレビ 43V型 壁掛け LED 液晶テレビ…",
     "headline": "チューナーレス テレビ 43V型 壁掛け LED 液晶テレビ…",
-    "description": "10G・Bluetooth・4K。",
+    "description": "Bluetooth・4K。",
     "features": []
   },
   "rakuten-try3-2-10010263": {
@@ -538,25 +538,25 @@
   "rakuten-shimadougu-10010963": {
     "name": "マキタ CW004GZ 充電式保冷温庫(車載用ポータブル冷蔵庫)…",
     "headline": "マキタ CW004GZ 充電式保冷温庫(車載用ポータブル冷蔵庫)…",
-    "description": "004G。",
+    "description": "",
     "features": []
   },
   "rakuten-yozakura-10002045": {
     "name": "洗濯機 4.5kg 一人暮らし コンパクト 全自動洗濯機縦型洗濯…",
     "headline": "洗濯機 4.5kg 一人暮らし コンパクト 全自動洗濯機縦型洗濯…",
-    "description": "4.5kg。",
+    "description": "",
     "features": []
   },
   "rakuten-a-price-10726047": {
     "name": "洗濯機 7kg 全自動洗濯機 一人暮らし 1人暮らし コンパクト…",
     "headline": "洗濯機 7kg 全自動洗濯機 一人暮らし 1人暮らし コンパクト…",
-    "description": "7kg。",
+    "description": "",
     "features": []
   },
   "rakuten-jism-14331002": {
     "name": "（標準設置料込_Aエリアのみ）東芝 5.0kg 全自動洗濯機 ピ…",
     "headline": "（標準設置料込_Aエリアのみ）東芝 5.0kg 全自動洗濯機 ピ…",
-    "description": "5.0kg・5G。",
+    "description": "",
     "features": []
   },
   "rakuten-tantan-13368674": {
@@ -706,13 +706,13 @@
   "rakuten-saedaonline-10017286": {
     "name": "Insta360 GO3S 本体 ホワイト 128GB 4K ハ…",
     "headline": "Insta360 GO3S 本体 ホワイト 128GB 4K ハ…",
-    "description": "360G・128GB・4K。",
+    "description": "128GB・4K。",
     "features": []
   },
   "rakuten-youplan-10323556": {
     "name": "Insta360 ビデオカメラ Insta360 X3 [ブラッ…",
     "headline": "Insta360 ビデオカメラ Insta360 X3 [ブラッ…",
-    "description": "180g・2型。",
+    "description": "",
     "features": []
   },
   "rakuten-birthdaybank-10023315": {
@@ -742,19 +742,19 @@
   "rakuten-md-kk-10005536": {
     "name": "Gitzo ジッツオ トラベラー三脚GT2545T+雲台GH13…",
     "headline": "Gitzo ジッツオ トラベラー三脚GT2545T+雲台GH13…",
-    "description": "12kg。",
+    "description": "耐荷重12kg・全伸高165.5cm。",
     "features": []
   },
   "rakuten-md-kk-10006160": {
     "name": "Gitzo ジッツオ システマティック三脚5型4段ロング…",
     "headline": "Gitzo ジッツオ システマティック三脚5型4段ロング…",
-    "description": "5型・5543L・42kg。",
+    "description": "耐荷重42kg・全伸高156cm。",
     "features": []
   },
   "rakuten-ulanzidirect-10000083": {
     "name": "FALCAM F38 カーボン三脚 クイックシュー カメラ三脚…",
     "headline": "FALCAM F38 カーボン三脚 クイックシュー カメラ三脚…",
-    "description": "10kg。",
+    "description": "耐荷重10kg。",
     "features": []
   },
   "rakuten-superdeal-10006079": {
@@ -766,13 +766,13 @@
   "rakuten-best1mobile-10001575": {
     "name": "「未開封/未使用/国内版SIMフリー」Galaxy A25 5G…",
     "headline": "「未開封/未使用/国内版SIMフリー」Galaxy A25 5G…",
-    "description": "5G・64GB。",
+    "description": "64GB。",
     "features": []
   },
   "rakuten-lala-assoc-10008771": {
     "name": "FOSSiBOT S2 スマートフォン SIMフリー スマホ 本…",
     "headline": "FOSSiBOT S2 スマートフォン SIMフリー スマホ 本…",
-    "description": "8GB・256GB・6.72インチ。",
+    "description": "8GB・256GB・5000mAh。",
     "features": []
   },
   "rakuten-tabletpckoubou-10001261": {
@@ -814,7 +814,7 @@
   "rakuten-ugreen-gear-10000220": {
     "name": "UGREEN 65W USB-C充電器 PD充電器 GaN…",
     "headline": "UGREEN 65W USB-C充電器 PD充電器 GaN…",
-    "description": "type-c。",
+    "description": "USB-C・type-c。",
     "features": []
   },
   "rakuten-ugreen-gear-10001088": {
@@ -946,7 +946,7 @@
   "rakuten-marble-inc-10000649": {
     "name": "KINUJO PRO ストレートアイロン KP001 LM225…",
     "headline": "KINUJO PRO ストレートアイロン KP001 LM225…",
-    "description": "001L。",
+    "description": "",
     "features": []
   },
   "rakuten-kobe-beauty-labo-10000074": {
@@ -1036,7 +1036,7 @@
   "rakuten-rakuten24-11273698": {
     "name": "プリマヴィスタ ブライトチャージ パウダーファンデーション(9g…",
     "headline": "プリマヴィスタ ブライトチャージ パウダーファンデーション(9g…",
-    "description": "9g。",
+    "description": "",
     "features": []
   },
   "rakuten-ginmanstore-10000016": {
@@ -1084,25 +1084,25 @@
   "rakuten-wakuwaku7460-10000524": {
     "name": "11種22食スーパーセット (3kg大容量) 冷凍食品 冷凍惣菜…",
     "headline": "11種22食スーパーセット (3kg大容量) 冷凍食品 冷凍惣菜…",
-    "description": "3kg・22食。",
+    "description": "22食。",
     "features": []
   },
   "rakuten-taishokaneyamafarm-10000351": {
     "name": "米の娘ぶた毎日ごはん応援セットA(2kg) 国産 山形県産 ブラ…",
     "headline": "米の娘ぶた毎日ごはん応援セットA(2kg) 国産 山形県産 ブラ…",
-    "description": "2kg。",
+    "description": "",
     "features": []
   },
   "rakuten-nikunohiguchi-10003064": {
     "name": "バーベキュー 肉 焼肉 セット 飛騨牛 国産豚肉 肉 バーベキュ…",
     "headline": "バーベキュー 肉 焼肉 セット 飛騨牛 国産豚肉 肉 バーベキュ…",
-    "description": "1kg。",
+    "description": "",
     "features": []
   },
   "rakuten-meat-companion-10000700": {
     "name": "福袋 ハンバーグ 確定 福袋 訳あり 肉 食品 はしっこ豚 牛丼…",
     "headline": "福袋 ハンバーグ 確定 福袋 訳あり 肉 食品 はしっこ豚 牛丼…",
-    "description": "2kg。",
+    "description": "",
     "features": []
   },
   "rakuten-rebun-10007922": {
@@ -1132,7 +1132,7 @@
   "rakuten-sosuke-10000619": {
     "name": "シャインマスカット ぶどう 秀品 1.2kg 2房 山梨 長野産…",
     "headline": "シャインマスカット ぶどう 秀品 1.2kg 2房 山梨 長野産…",
-    "description": "1.2kg・600g。",
+    "description": "",
     "features": []
   },
   "rakuten-aino-kajitu-10000371": {
@@ -1168,13 +1168,13 @@
   "rakuten-dripcoffee-10000572": {
     "name": "2kg最安値に挑戦!2kgで3,980円！コーヒー豆 コーヒー…",
     "headline": "2kg最安値に挑戦!2kgで3,980円！コーヒー豆 コーヒー…",
-    "description": "2kg・1kg・500g。",
+    "description": "4袋・2袋。",
     "features": []
   },
   "rakuten-kkonlinestore-10000001": {
     "name": "コーヒー 珈琲 コーヒー豆 コーヒー粉 豆のまま 1kg 2kg…",
     "headline": "コーヒー 珈琲 コーヒー豆 コーヒー粉 豆のまま 1kg 2kg…",
-    "description": "1kg・2kg。",
+    "description": "",
     "features": []
   },
   "rakuten-soukaidrink-10005982": {
@@ -1324,19 +1324,19 @@
   "rakuten-h2brothers-10000452": {
     "name": "ダンベル 可変式ダンベル 24kg 筋トレ ダンベル可変式 アジ…",
     "headline": "ダンベル 可変式ダンベル 24kg 筋トレ ダンベル可変式 アジ…",
-    "description": "24kg。",
+    "description": "",
     "features": []
   },
   "rakuten-super-sports-10000012": {
     "name": "IROTEC（アイロテック）アイアンダンベル60KGセット ダン…",
     "headline": "IROTEC（アイロテック）アイアンダンベル60KGセット ダン…",
-    "description": "60KG・30kg・2個セット。",
+    "description": "2個セット。",
     "features": []
   },
   "rakuten-lysin-10000228": {
     "name": "可変式 ダンベル フレックスベル 2kg刻み 32kg 1個 /…",
     "headline": "可変式 ダンベル フレックスベル 2kg刻み 32kg 1個 /…",
-    "description": "2kg・32kg・1個。",
+    "description": "1個・2個セット。",
     "features": []
   },
   "rakuten-weiwei-10019823": {
@@ -1372,7 +1372,7 @@
   "rakuten-tkms-10000891": {
     "name": "スピンバイク Pro 静音 13kgホイール 家庭用 フィットネ…",
     "headline": "スピンバイク Pro 静音 13kgホイール 家庭用 フィットネ…",
-    "description": "13kg・Bluetooth。",
+    "description": "Bluetooth。",
     "features": []
   },
   "rakuten-auc-skyip-10020619": {
@@ -1504,13 +1504,13 @@
   "rakuten-randrshop-10000560": {
     "name": "クーポン利用で3310円 ビジネスリュック 15.6インチPC…",
     "headline": "クーポン利用で3310円 ビジネスリュック 15.6インチPC…",
-    "description": "15.6インチ・防水。",
+    "description": "防水。",
     "features": []
   },
   "rakuten-jinshop-10000061": {
     "name": "リュック メンズ 大きめ 出張 旅行 2泊3日 3way…",
     "headline": "リュック メンズ 大きめ 出張 旅行 2泊3日 3way…",
-    "description": "45L・17インチ・防水。",
+    "description": "容量45L・17インチ・防水。",
     "features": []
   },
   "rakuten-mtm777-10000256": {
@@ -1786,7 +1786,7 @@
   "rakuten-homeycozy-10000874": {
     "name": "ビッグフェイスタオル バスタオル 6枚セット 50×100 cm…",
     "headline": "ビッグフェイスタオル バスタオル 6枚セット 50×100 cm…",
-    "description": "140g・6枚セット。",
+    "description": "6枚セット。",
     "features": []
   },
   "rakuten-homeycozy-10000747": {
@@ -1810,37 +1810,37 @@
   "rakuten-nyanzaq-10100390": {
     "name": "ニュートロ シュプレモ 小型犬用 成犬用 3kg ドッグフード(…",
     "headline": "ニュートロ シュプレモ 小型犬用 成犬用 3kg ドッグフード(…",
-    "description": "3kg。",
+    "description": "",
     "features": []
   },
   "rakuten-vetschoice-10000017": {
     "name": "おまけ付き セレクトバランス アダルト チキン 小粒 7kg 7…",
     "headline": "おまけ付き セレクトバランス アダルト チキン 小粒 7kg 7…",
-    "description": "7kg。",
+    "description": "",
     "features": []
   },
   "rakuten-nyanzaq-10100399": {
     "name": "ニュートロ シュプレモ 成犬用(4kg) [ドッグフード]",
     "headline": "ニュートロ シュプレモ 成犬用(4kg) [ドッグフード]",
-    "description": "4kg。",
+    "description": "",
     "features": []
   },
   "rakuten-nyanzaq-10140829": {
     "name": "ニュートロ ナチュラルチョイス(2kg) [キャットフード ドラ…",
     "headline": "ニュートロ ナチュラルチョイス(2kg) [キャットフード ドラ…",
-    "description": "2kg。",
+    "description": "",
     "features": []
   },
   "rakuten-rakuten24-11044087": {
     "name": "ピュリナワン キャット ドライ 室内飼い猫用 1歳以上 サーモン…",
     "headline": "ピュリナワン キャット ドライ 室内飼い猫用 1歳以上 サーモン…",
-    "description": "500g・4袋入・1袋。",
+    "description": "4袋入・1袋。",
     "features": []
   },
   "rakuten-kurosu-10022180": {
     "name": "公認店 ニュートロ ナチュラル チョイス キャット 避妊・去勢猫…",
     "headline": "公認店 ニュートロ ナチュラル チョイス キャット 避妊・去勢猫…",
-    "description": "2kg。",
+    "description": "",
     "features": []
   },
   "rakuten-dog-kan-10196443": {
@@ -1882,7 +1882,7 @@
   "rakuten-patri-10001040": {
     "name": "最大限界温度-15度 防災士監修 非常用 1.45kg 寝袋 シ…",
     "headline": "最大限界温度-15度 防災士監修 非常用 1.45kg 寝袋 シ…",
-    "description": "1.45kg。",
+    "description": "",
     "features": []
   },
   "rakuten-weiwei-10019195": {
@@ -1894,7 +1894,7 @@
   "rakuten-luxim647-10000003": {
     "name": "寝袋 オールシーズン 寝袋 冬用 シュラフ 封筒型 防災 来客用…",
     "headline": "寝袋 オールシーズン 寝袋 冬用 シュラフ 封筒型 防災 来客用…",
-    "description": "1.0kg・1.1kg・1.4kg。",
+    "description": "防水。",
     "features": []
   },
   "rakuten-hilander-10000714": {
@@ -1936,19 +1936,19 @@
   "rakuten-jackery-japan-10000033": {
     "name": "Jackery Solar Generator 1000 New…",
     "headline": "Jackery Solar Generator 1000 New…",
-    "description": "",
+    "description": "1070Wh。",
     "features": []
   },
   "rakuten-jackery-japan-10000161": {
     "name": "Jackery Solar Generator 2000 New…",
     "headline": "Jackery Solar Generator 2000 New…",
-    "description": "",
+    "description": "2048Wh。",
     "features": []
   },
   "rakuten-ecoflow-10000197": {
     "name": "EcoFlow ポータブル電源 ソーラーパネル セット…",
     "headline": "EcoFlow ポータブル電源 ソーラーパネル セット…",
-    "description": "",
+    "description": "2048Wh。",
     "features": []
   }
 }

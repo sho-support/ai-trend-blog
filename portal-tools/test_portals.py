@@ -13,7 +13,7 @@ sys.dont_write_bytecode=True
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'portal-tools'))
 from catalog_taxonomy import CATEGORIES, DEPARTMENTS, BY_KIND, eligible_title
-from product_text import approved_a8, short_title
+from product_text import approved_a8, short_title, product_copy
 
 class Page(HTMLParser):
     def __init__(self):super().__init__();self.ids=[];self.refs=[];self.h1=0
@@ -59,6 +59,9 @@ def main():
         check('id="catalog-grid"' in body,c['key']+' missing product grid')
         check('calculator.js' not in body,c['key']+' unwanted calculator')
     check('Nintendo Switch 2' in short_title({'title':'任天堂｜Nintendo Nintendo Switch 2 ゲーム機本体'}),'manufacturer separator hides product identity')
+    spec=product_copy({'id':'test-tripod','kind':'tripods','title':'Gitzo GT5543LS 三脚5型 耐荷重42kg 全伸高156cm'}, {})['description']
+    check('5543L' not in spec and '5型' not in spec,'model code must not become a capacity or screen size')
+    check('耐荷重42kg' in spec and '全伸高156cm' in spec,'specifications need their product context')
     feed=json.loads((ROOT/'portal-assets/rakuten-feed.json').read_text())
     copies=json.loads((ROOT/'portal-assets/product-copy.json').read_text())
     keys={c['key'] for c in CATEGORIES};ids=set()
