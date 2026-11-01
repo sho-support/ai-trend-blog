@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T00:16:38.491786+09:00",
+  "updated_at": "2026-11-01T09:02:04.553943+09:00",
   "items": {
     "rakuten-yokumoku-10000435": [
       {
@@ -505,6 +505,10 @@
       {
         "date": "2026-10-31",
         "price": 24980
+      },
+      {
+        "date": "2026-11-01",
+        "price": 24980
       }
     ],
     "rakuten-biccamera-15501131": [
@@ -828,7 +832,7 @@
       },
       {
         "date": "2026-11-01",
-        "price": 4158
+        "price": 4009
       }
     ],
     "rakuten-mpowjapan-10000907": [
@@ -1301,6 +1305,10 @@
       {
         "date": "2026-10-31",
         "price": 2880
+      },
+      {
+        "date": "2026-11-01",
+        "price": 2880
       }
     ],
     "rakuten-r-kojima-11441069": [
@@ -1371,11 +1379,19 @@
       {
         "date": "2026-10-31",
         "price": 1880
+      },
+      {
+        "date": "2026-11-01",
+        "price": 1880
       }
     ],
     "rakuten-brandshiseido-10000016": [
       {
         "date": "2026-10-31",
+        "price": 7040
+      },
+      {
+        "date": "2026-11-01",
         "price": 7040
       }
     ],
@@ -1769,6 +1785,10 @@
       {
         "date": "2026-10-31",
         "price": 275000
+      },
+      {
+        "date": "2026-11-01",
+        "price": 275000
       }
     ],
     "rakuten-family-life-shop-10000149": [
@@ -1878,6 +1898,10 @@
     "rakuten-marketjapan-10002222": [
       {
         "date": "2026-10-31",
+        "price": 19800
+      },
+      {
+        "date": "2026-11-01",
         "price": 19800
       }
     ],
@@ -2329,6 +2353,10 @@
       {
         "date": "2026-10-31",
         "price": 6999
+      },
+      {
+        "date": "2026-11-01",
+        "price": 6999
       }
     ],
     "rakuten-tansu-10055629": [
@@ -2560,6 +2588,10 @@
     "rakuten-yukinosizuku-10010708": [
       {
         "date": "2026-10-31",
+        "price": 3480
+      },
+      {
+        "date": "2026-11-01",
         "price": 3480
       }
     ],
@@ -3109,6 +3141,216 @@
       {
         "date": "2026-11-01",
         "price": 5990
+      }
+    ],
+    "rakuten-japannext-10000385": [
+      {
+        "date": "2026-11-01",
+        "price": 37980
+      }
+    ],
+    "rakuten-ksk-electronics-10001388": [
+      {
+        "date": "2026-11-01",
+        "price": 10200
+      }
+    ],
+    "rakuten-ksk-electronics-10000697": [
+      {
+        "date": "2026-11-01",
+        "price": 9250
+      }
+    ],
+    "rakuten-logicool-10000272": [
+      {
+        "date": "2026-11-01",
+        "price": 1230
+      }
+    ],
+    "rakuten-a-price-10908996": [
+      {
+        "date": "2026-11-01",
+        "price": 186780
+      }
+    ],
+    "rakuten-kentikuboy-10186501": [
+      {
+        "date": "2026-11-01",
+        "price": 83476
+      }
+    ],
+    "rakuten-denchiya-bekkan-10258951": [
+      {
+        "date": "2026-11-01",
+        "price": 28800
+      }
+    ],
+    "rakuten-auc-stkb-10002715": [
+      {
+        "date": "2026-11-01",
+        "price": 171000
+      }
+    ],
+    "rakuten-kaden-sakura-10136745": [
+      {
+        "date": "2026-11-01",
+        "price": 104903
+      }
+    ],
+    "rakuten-masanios-10181878": [
+      {
+        "date": "2026-11-01",
+        "price": 129880
+      }
+    ],
+    "rakuten-tescom-japan-10000036": [
+      {
+        "date": "2026-11-01",
+        "price": 4480
+      }
+    ],
+    "rakuten-mtgec-beauty-10002142": [
+      {
+        "date": "2026-11-01",
+        "price": 23000
+      }
+    ],
+    "rakuten-takami-labo-10000519": [
+      {
+        "date": "2026-11-01",
+        "price": 5720
+      }
+    ],
+    "rakuten-chanova-10000636": [
+      {
+        "date": "2026-11-01",
+        "price": 4980
+      }
+    ],
+    "rakuten-vox-official-store-10000000": [
+      {
+        "date": "2026-11-01",
+        "price": 1650
+      }
+    ],
+    "rakuten-dripcoffee-10000572": [
+      {
+        "date": "2026-11-01",
+        "price": 2530
+      }
+    ],
+    "rakuten-gourmetcoffee-10001806": [
+      {
+        "date": "2026-11-01",
+        "price": 5398
+      }
+    ],
+    "rakuten-hanwha-10001756": [
+      {
+        "date": "2026-11-01",
+        "price": 1000
+      }
+    ],
+    "rakuten-kitwell-official-10000012": [
+      {
+        "date": "2026-11-01",
+        "price": 13299
+      }
+    ],
+    "rakuten-lysin-10000228": [
+      {
+        "date": "2026-11-01",
+        "price": 37400
+      }
+    ],
+    "rakuten-hankoya-shop-10024424": [
+      {
+        "date": "2026-11-01",
+        "price": 1000
+      }
+    ],
+    "rakuten-book-17394390": [
+      {
+        "date": "2026-11-01",
+        "price": 1210
+      }
+    ],
+    "rakuten-jinshop-10000061": [
+      {
+        "date": "2026-11-01",
+        "price": 11990
+      }
+    ],
+    "rakuten-sentire-10012138": [
+      {
+        "date": "2026-11-01",
+        "price": 49500
+      }
+    ],
+    "rakuten-kirara2-10138093": [
+      {
+        "date": "2026-11-01",
+        "price": 3980
+      }
+    ],
+    "rakuten-sshk-10014934": [
+      {
+        "date": "2026-11-01",
+        "price": 8990
+      }
+    ],
+    "rakuten-euphoric-10000034": [
+      {
+        "date": "2026-11-01",
+        "price": 17490
+      }
+    ],
+    "rakuten-haruyama-10117195": [
+      {
+        "date": "2026-11-01",
+        "price": 3990
+      }
+    ],
+    "rakuten-alpen-10409627": [
+      {
+        "date": "2026-11-01",
+        "price": 4470
+      }
+    ],
+    "rakuten-cookware-carote-10000114": [
+      {
+        "date": "2026-11-01",
+        "price": 3998
+      }
+    ],
+    "rakuten-futontown-10007120": [
+      {
+        "date": "2026-11-01",
+        "price": 38999
+      }
+    ],
+    "rakuten-esaki210-10000611": [
+      {
+        "date": "2026-11-01",
+        "price": 45800
+      }
+    ],
+    "rakuten-houseidou-10000031": [
+      {
+        "date": "2026-11-01",
+        "price": 2980
+      }
+    ],
+    "rakuten-nyanzaq-10100399": [
+      {
+        "date": "2026-11-01",
+        "price": 7678
+      }
+    ],
+    "rakuten-ymbstore-10000345": [
+      {
+        "date": "2026-11-01",
+        "price": 3980
       }
     ]
   },
