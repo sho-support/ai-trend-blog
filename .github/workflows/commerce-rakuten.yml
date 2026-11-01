@@ -3,6 +3,7 @@ name: Refresh Commerce Product Feed
 on:
   workflow_dispatch:
   push:
+    branches: [main]
     paths:
       - "portal-tools/refresh_rakuten.py"
       - "portal-tools/catalog_taxonomy.py"
@@ -22,7 +23,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: ai-trend-blog-commerce-feed
+  group: ai-trend-blog-catalogue-update
   cancel-in-progress: false
 
 jobs:
@@ -36,6 +37,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
