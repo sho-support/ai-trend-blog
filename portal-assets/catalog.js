@@ -88,8 +88,8 @@
         +'<h1>'+esc(copy.headline||copy.name)+'</h1>'
         +(copy.description?'<p class="detail-intro">'+esc(copy.description)+'</p>':'')
         +(item.price_yen!=null?'<p class="detail-price">¥'+Number(item.price_yen).toLocaleString('ja-JP')+'</p>':'')
-        +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">'+esc(item.source==='a8'?(item.shop||'公式ショップ')+'で見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a>'
-        +'<p class="seller">'+esc(item.seller||'楽天市場')+'</p>'
+        +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">'+esc(item.source==='a8'?'公式ショップで価格を見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a>'
+        +'<p class="seller">'+esc(item.seller||(item.source==='a8'?item.shop||'公式ショップ':'楽天市場'))+'</p>'
         +'</div>';
     }
   }

@@ -276,5 +276,29 @@
       "クッキーの詰め合わせ",
       "個包装"
     ]
+  },
+  "a8-hario-xrcn-2-b": {
+    "name": "HARIO ガラスのレンジご飯釜 1〜2合",
+    "headline": "レンジで炊ける、HARIOのガラスご飯釜",
+    "description": "電子レンジで炊ける耐熱ガラスのご飯釜。1〜2合用。",
+    "features": []
+  },
+  "a8-joggo-jw42104011": {
+    "name": "JOGGO 本革二つ折り財布",
+    "headline": "好きな配色で作る、JOGGOの本革財布",
+    "description": "外側もポケットも好みの配色に。小銭入れ付きの本革財布。",
+    "features": []
+  },
+  "a8-henri-financier-madeleine-8": {
+    "name": "アンリ フィナンシェ＆マドレーヌ 8個",
+    "headline": "アンリの焼き菓子を、工場直送で",
+    "description": "フィナンシェとマドレーヌを詰め合わせた、工場直送の8個入り。",
+    "features": []
+  },
+  "a8-henri-miffy-financier-8": {
+    "name": "ミッフィー缶のフィナンシェ 8個入り",
+    "headline": "ミッフィーの限定缶に、アンリのフィナンシェ",
+    "description": "ディック・ブルーナ生誕100周年の限定缶。お届けは11月30日まで。",
+    "features": []
   }
 }

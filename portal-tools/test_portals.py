@@ -81,6 +81,17 @@ def main():
             check(len(copy['name'])<=45,'product name too long')
             check(len(copy['description'])<=80,'product introduction too long')
             check(len(copy['features'])<=3,'too many product features')
+    a8=json.loads((ROOT/'portal-assets/a8-approved.json').read_text())
+    a8_items=[x for x in a8.get('items',[]) if approved_a8(x)]
+    for x in a8_items:
+        check(x['id'] not in ids,'duplicate A8 product ID')
+        check(x.get('kind') in keys,'unclassified A8 product')
+        check(x.get('source')=='a8' and x.get('department')==BY_KIND[x['kind']]['department'],'wrong A8 source or department')
+        check(x.get('seller')==x.get('shop'),'A8 seller must identify its own shop')
+        check(x['id'] in copies,'missing A8 product copy')
+        check(len(copies[x['id']]['description'])<=80,'A8 introduction too long')
+        path=ROOT/'products/items'/(x['id']+'.html')
+        check(path.exists() and '"id":"'+x['id']+'"' in path.read_text(),'missing or mismatched A8 detail')
     for name in ('storefront.css','catalog.js','listing.js','commerce.js','product-copy.json','catalog-taxonomy.json'):
         check((ROOT/'portal-assets'/name).is_file(),'missing public asset '+name)
     for script in ('catalog.js','listing.js','commerce.js'):
@@ -89,6 +100,6 @@ def main():
         ast.parse((ROOT/'portal-tools'/name).read_text())
     subprocess.run(['node',str(ROOT/'portal-tools/test_commerce.js')],check=True)
     subprocess.run([sys.executable,str(ROOT/'portal-tools/test_article_quality.py')],check=True)
-    print('PASS:',len(DEPARTMENTS),'departments,',len(CATEGORIES),'shelves,',len(ids),'products, category boundaries and referral safety')
+    print('PASS:',len(DEPARTMENTS),'departments,',len(CATEGORIES),'shelves,',len(ids),'Rakuten products,',len(a8_items),'A8 products, category boundaries and referral safety')
 
 if __name__=='__main__':main()
