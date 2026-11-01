@@ -83,8 +83,16 @@ def main():
                                'urlList': [x['url'] for x in batch]}).encode()
             request = Request(ENDPOINT, data=data,
                               headers={**HEADERS, 'Content-Type': 'application/json; charset=utf-8'}, method='POST')
-            with urlopen(request, timeout=45) as response:
-                status = response.status
+            try:
+                with urlopen(request, timeout=45) as response:
+                    status = response.status
+            except HTTPError as error:
+                receipt['error_status'] = error.code
+                receipt['error_excerpt'] = error.read(3000).decode('utf-8',errors='replace').replace(config['key'],'[verification-key]')[:1500]
+                args.receipt.parent.mkdir(parents=True,exist_ok=True)
+                args.receipt.write_text(json.dumps(receipt,indent=2)+'\n')
+                print(json.dumps(receipt))
+                raise SystemExit('Search notification was rejected; no submitted-state entry was saved')
             if status not in (200, 202):
                 raise SystemExit('IndexNow did not accept this batch')
             state.update({x['url']: x['fingerprint'] for x in batch})

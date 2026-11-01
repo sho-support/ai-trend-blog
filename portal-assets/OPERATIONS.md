@@ -116,6 +116,8 @@ python portal-tools/build_commercial_site.py
 
 `Notify Search Engines of Catalogue Changes` は公開ビルドと検証ファイルが一致してから、IndexNow対応検索エンジンへ実際の変更を通知する。200は受信、202は受信後のキー確認待ち。どちらも検索登録・順位・流入を証明しない。Google Search Consoleへの送信とは別。通知済みの指紋はActionsのキャッシュ、受信結果はActionsのartifactへ保存する。
 
+拒否された通知は送信済みに保存しない。403などの応答はキーを伏せた本文も受信記録へ残し、受理成功と区別する。
+
 SNS投稿文3本は `growth/social-drafts.json` の下書き。Metricoolの選択ブランドにSNSが未接続のため、投稿・予約はしていない。投稿のURLには計測用UTMを付与している。A8掲載確認期限後の投稿は止める。Search Consoleの登録記録には過去の食い違いがあり、現在の所有権・インデックス状況・GA4受信は未確認。GSC Wizardの契約切れをGoogle未登録と読み替えない。
 
 2026-11-01、A8の広告掲載URLはHARIO2件、JOGGO2件、アンリ3件を提出し、各画面で提出完了を確認済み。
