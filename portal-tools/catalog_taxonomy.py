@@ -44,7 +44,7 @@ DEPARTMENTS = [
   shelf('digital-cameras','コンパクトカメラ','デジタルカメラ 新品','デジタルカメラ|デジカメ|コンパクトカメラ','ケース|バッグ|フィルム|カバー|中古',6000),
   shelf('action-cameras','アクションカメラ','アクションカメラ 本体','アクションカメラ|GoPro|Osmo Action|Insta360','ケース|フィルム|カバー|マウント|バッテリー|中古',15000),
   shelf('camera-lenses','交換レンズ','交換レンズ カメラ','レンズ','レンズキャップ|レンズカバー|フィルター|フィルタ|保護|中古',10000),
-  shelf('tripods','三脚・一脚','三脚 一眼レフ','^.{0,45}(?:三脚|一脚)','バッグ|リュック|撮影ベルト|固定吊り|ケースのみ|ネジのみ|カメラ本体|ジンバルカメラ',1500),
+  shelf('tripods','三脚・一脚','三脚','三脚|一脚','バッグ|リュック|撮影ベルト|固定吊り|ケースのみ|ネジのみ|カメラ本体|ジンバルカメラ',1500),
  ]),
  department('mobile','スマホ・タブレット','📱',[
   shelf('smartphones','スマートフォン本体','スマートフォン 本体 新品','スマートフォン|iPhone|Xperia|Galaxy|Pixel|AQUOS|OPPO|Xiaomi','ケース|フィルム|カバー|ガラス|修理|ジャンク|中古',18000),
@@ -157,6 +157,7 @@ def normalized_kind(item):
 
 def eligible_title(title,kind):
     c=BY_KIND.get(kind)
+    if kind=='tripods' and re.match(r'^(?:ビデオカメラ|アクションカメラ)(?!用).*?[458]K',title,re.I):return False
     if not c or re.search(r'ふるさと納税|返礼品|寄附金|中古|ジャンク',title):return False
     return bool(re.search(c['accept'],title,re.I)) and not (c['exclude'] and re.search(c['exclude'],title,re.I))
 
@@ -169,7 +170,7 @@ import json
 from pathlib import Path
 _GENRES=json.loads((Path(__file__).parent/'rakuten_genres.json').read_text())
 _ROOTS={'pc':'パソコン・周辺機器','gaming':'テレビゲーム','appliances':'家電','cameras':'カメラ・ビデオカメラ・光学機器','mobile':'スマートフォン・タブレット','audio':'オーディオ','beauty':'美容・コスメ・香水','food':'食品','toys':'おもちゃ','watches':'腕時計','fitness':'スポーツ・アウトドア','stationery':'文房具・事務用品','bags':'バッグ・小物・ブランド雑貨','fashion':'靴','home':'インテリア・寝具・収納','daily':'日用品雑貨・文房具・手芸','pets':'ペット・ペットグッズ','outdoors':'スポーツ・アウトドア'}
-_SPECIFIC={'printers':'プリンタ','rice-cookers':'炊飯器','game-software':'NintendoSwitchソフト','sportswear':'スポーツウェア・アクセサリー','monitor':'ディスプレイ','gaming-monitor':'ディスプレイ','gaming-headsets':'ゲーム用機器','televisions':'テレビ','hair-dryers':'美容・健康家電','hair-irons':'美容・健康家電','shavers':'美容・健康家電','beauty-devices':'美顔器・スチーマー','snacks':'スイーツ・お菓子','water':'水・ソフトドリンク','coffee':'コーヒー','tea':'お茶・紅茶','plastic-models':'ホビー','figures':'ホビー','smartwatches':'スマートウォッチ本体','menswear':'メンズファッション','womenswear':'レディースファッション','wallets':'財布・ケース','cookware':'キッチン用品・食器・調理器具','tableware':'キッチン用品・食器・調理器具','lighting':'ライト・照明器具','portable-power':'防災関連グッズ'}
+_SPECIFIC={'tripods':'カメラ用三脚','printers':'プリンタ','rice-cookers':'炊飯器','game-software':'NintendoSwitchソフト','sportswear':'スポーツウェア・アクセサリー','monitor':'ディスプレイ','gaming-monitor':'ディスプレイ','gaming-headsets':'ゲーム用機器','televisions':'テレビ','hair-dryers':'美容・健康家電','hair-irons':'美容・健康家電','shavers':'美容・健康家電','beauty-devices':'美顔器・スチーマー','snacks':'スイーツ・お菓子','water':'水・ソフトドリンク','coffee':'コーヒー','tea':'お茶・紅茶','plastic-models':'ホビー','figures':'ホビー','smartwatches':'スマートウォッチ本体','menswear':'メンズファッション','womenswear':'レディースファッション','wallets':'財布・ケース','cookware':'キッチン用品・食器・調理器具','tableware':'キッチン用品・食器・調理器具','lighting':'ライト・照明器具','portable-power':'防災関連グッズ'}
 for _c in CATEGORIES:
     _c['genre_id']=_GENRES.get(_SPECIFIC.get(_c['key'],_ROOTS[_c['department']]),0)
     if _c['key']=='noodles':_c['query']='麺類 セット'

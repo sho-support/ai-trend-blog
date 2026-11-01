@@ -51,7 +51,7 @@ def main():
         body=(ROOT/'products'/d['file']).read_text()
         check(body.count('class="category-card"')==len(d['children']),'department links must match its shelves')
         check('id="catalog-grid"' not in body,'department must not mix products')
-    for title,kind,expected in [('仕事向け IPS 液晶ディスプレイ','monitor',True),('ゲーミングモニター 4K','monitor',False),('ゲーミングモニター 4K','gaming-monitor',True),('モニターアーム','gaming-monitor',False),('冷蔵庫 300L','refrigerators',True),('冷蔵庫用マット','refrigerators',False),('全自動洗濯機 8kg','washing-machines',True),('洗濯機用ホース','washing-machines',False),('Yoothi 互換品 液晶ディスプレイ 修理交換用液晶パネル','monitor',False),('プリンター用 イメージドラム 本体保証付','printers',False),('Nintendo Switch すぐに遊べるセット 純正アダプタ・ドック付き','game-software',False),('ジアイーノ 電極ユニット 空気清浄機 本体品番','air-purifiers',False),('グローブ スポーツウェア 手袋','sportswear',False),('カメラバッグ 三脚取付可','tripods',False)]:
+    for title,kind,expected in [('仕事向け IPS 液晶ディスプレイ','monitor',True),('ゲーミングモニター 4K','monitor',False),('ゲーミングモニター 4K','gaming-monitor',True),('モニターアーム','gaming-monitor',False),('冷蔵庫 300L','refrigerators',True),('冷蔵庫用マット','refrigerators',False),('全自動洗濯機 8kg','washing-machines',True),('洗濯機用ホース','washing-machines',False),('Yoothi 互換品 液晶ディスプレイ 修理交換用液晶パネル','monitor',False),('プリンター用 イメージドラム 本体保証付','printers',False),('Nintendo Switch すぐに遊べるセット 純正アダプタ・ドック付き','game-software',False),('ジアイーノ 電極ユニット 空気清浄機 本体品番','air-purifiers',False),('グローブ スポーツウェア 手袋','sportswear',False),('カメラバッグ 三脚取付可','tripods',False),('ビデオカメラ 4k 8K 三脚 ビデオ カメラ 動画撮影 一眼レフ','tripods',False),('三脚 カメラ ビデオカメラ 一眼レフ','tripods',True)]:
         check(bool(eligible_title(title,kind))==expected,'classification error '+title)
     for c in CATEGORIES:
         body=(ROOT/'products'/c['file']).read_text(encoding='utf-8')
