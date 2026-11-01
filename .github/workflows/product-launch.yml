@@ -1,0 +1,45 @@
+name: Publish Reviewed Product Notice
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["growth/x-launch.json"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monoyori-reviewed-product-notice
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify notice safety without calling an external API
+        run: python portal-tools/test_product_launch.py
+      - name: Publish the one reviewed notice through existing Buffer connection
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python portal-tools/publish_product_launch.py --publish-now
+      - name: Preserve the actual result, including uncertain submissions
+        if: always()
+        run: |
+          if test -f growth/x-launch-receipt.json; then
+            bash .github/scripts/safe-commit-push.sh 'Record reviewed product notice delivery result'
+          fi
+      - name: Save delivery receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reviewed-product-notice-receipt
+          path: growth/x-launch-receipt.json
+          if-no-files-found: ignore
