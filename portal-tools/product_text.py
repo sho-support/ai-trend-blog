@@ -3,10 +3,23 @@ import re
 
 def short_title(item):
     text=item.get('title') or item.get('display_title') or '商品情報'
-    text=re.sub(r'【[^】]*(?:】|$)|＼[^／]*／|★[^★]*★',' ',text)
-    text=re.sub(r'\s+',' ',re.split(r'[|｜]',text)[0]).strip()
+    text=re.sub(r'【[^】]*(?:】|$)|＼[^／]*／|★[^★]*★|≪[^≫]*≫|《[^》]*》|＜[^＞]*＞',' ',text)
+    pieces=re.split(r'[|｜]',text)
+    text=' '.join(pieces[:2]) if len(pieces)>1 and len(pieces[0].strip())<=12 else pieces[0]
+    for pattern in [r'「[^」]*(?:楽天|ランキング|クーポン)[^」]*」',r'^\s*\d{1,2}/\d{1,2}[^★☆]*[★☆]',r'(?:楽天)?ランキング(?:第)?[\d,]+位(?:獲得|常連)?',r'楽天(?:第)?[\d,]+位',r'最大[\d,]+万?P当選',r'(?:限定)?(?:ポイント|P)\d+倍(?:で[\d,]+円)?',r'[\d,.]+[%％](?:OFF|オフ)(?:クーポン)?',r'(?:販売数|累計)[\d,]+万?(?:足|台|個)?突破[！!]*',r'送料無料[！!]*',r'「楽天で一番売れた\s*」']:
+        text=re.sub(pattern,' ',text,flags=re.I)
+    text=re.sub(r'[★☆⭐️◆◇◎※]+',' ',text)
+    text=re.sub(r'\s+',' ',text).strip(' /！!')
+    text=re.sub(r'^(?:(?:新品|三年保証|3年保証|\d年保証|\d{4}年最新モデル|最新モデル|正規品|公式店)\s*)+','',text).strip()
     if not text:text=re.sub(r'[【】＼／★]','',item.get('title','商品情報'))
-    return text[:32].rstrip()+'…' if len(text)>32 else text
+    if len(text)>32:
+        short=text[:32].rstrip()
+        if re.search(r'[A-Za-z0-9]$',short) and re.match(r'[A-Za-z0-9]',text[32:]):
+            space=short.rfind(' ')
+            if space>=18:short=short[:space]
+        return short+'…'
+    return text
+
 
 def product_copy(item,edited):
     if item['id'] in edited:return edited[item['id']]

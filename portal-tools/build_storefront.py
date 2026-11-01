@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://sho-support.github.io/ai-trend-blog'
 JST = timezone(timedelta(hours=9))
-from catalog_taxonomy import DEPARTMENTS, CATEGORIES, BY_KIND, BY_DEPARTMENT, normalized_kind, public_category
+from catalog_taxonomy import DEPARTMENTS, CATEGORIES, BY_KIND, BY_DEPARTMENT, normalized_kind, public_category, eligible_title
 from product_text import short_title, product_copy, approved_a8
 E = lambda v: html.escape(str(v), quote=True)
 JS = lambda v: json.dumps(v, ensure_ascii=False, separators=(',',':')).replace('<','\\u003c')
@@ -85,6 +85,12 @@ def search_form(prefix=''):
 def products():
     feed_path=ROOT/'portal-assets/rakuten-feed.json'
     feed=json.loads(feed_path.read_text());changed=False
+    previous=feed.get('items',[])
+    feed['items']=[x for x in previous if eligible_title(x.get('title',''),normalized_kind(x))]
+    changed=len(feed['items'])!=len(previous)
+    for entry in feed.get('coverage',[]):
+        count=sum(normalized_kind(x)==entry['kind'] for x in feed['items'])
+        if entry['count']!=count:entry.update(count=count,status='ok' if count else 'empty');changed=True
     edited=json.loads((ROOT/'portal-tools/product_copy.json').read_text())
     copies=dict(edited)
     for item in feed.get('items',[]):

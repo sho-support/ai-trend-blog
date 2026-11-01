@@ -13,7 +13,7 @@ sys.dont_write_bytecode=True
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'portal-tools'))
 from catalog_taxonomy import CATEGORIES, DEPARTMENTS, BY_KIND, eligible_title
-from product_text import approved_a8
+from product_text import approved_a8, short_title
 
 class Page(HTMLParser):
     def __init__(self):super().__init__();self.ids=[];self.refs=[];self.h1=0
@@ -51,13 +51,14 @@ def main():
         body=(ROOT/'products'/d['file']).read_text()
         check(body.count('class="category-card"')==len(d['children']),'department links must match its shelves')
         check('id="catalog-grid"' not in body,'department must not mix products')
-    for title,kind,expected in [('仕事向け IPS 液晶ディスプレイ','monitor',True),('ゲーミングモニター 4K','monitor',False),('ゲーミングモニター 4K','gaming-monitor',True),('モニターアーム','gaming-monitor',False),('冷蔵庫 300L','refrigerators',True),('冷蔵庫用マット','refrigerators',False),('全自動洗濯機 8kg','washing-machines',True),('洗濯機用ホース','washing-machines',False)]:
+    for title,kind,expected in [('仕事向け IPS 液晶ディスプレイ','monitor',True),('ゲーミングモニター 4K','monitor',False),('ゲーミングモニター 4K','gaming-monitor',True),('モニターアーム','gaming-monitor',False),('冷蔵庫 300L','refrigerators',True),('冷蔵庫用マット','refrigerators',False),('全自動洗濯機 8kg','washing-machines',True),('洗濯機用ホース','washing-machines',False),('Yoothi 互換品 液晶ディスプレイ 修理交換用液晶パネル','monitor',False),('プリンター用 イメージドラム 本体保証付','printers',False),('Nintendo Switch すぐに遊べるセット 純正アダプタ・ドック付き','game-software',False),('ジアイーノ 電極ユニット 空気清浄機 本体品番','air-purifiers',False),('グローブ スポーツウェア 手袋','sportswear',False),('カメラバッグ 三脚取付可','tripods',False)]:
         check(bool(eligible_title(title,kind))==expected,'classification error '+title)
     for c in CATEGORIES:
         body=(ROOT/'products'/c['file']).read_text(encoding='utf-8')
         check('"kind":"'+c['key']+'"' in body,c['key']+' missing category scope')
         check('id="catalog-grid"' in body,c['key']+' missing product grid')
         check('calculator.js' not in body,c['key']+' unwanted calculator')
+    check('Nintendo Switch 2' in short_title({'title':'任天堂｜Nintendo Nintendo Switch 2 ゲーム機本体'}),'manufacturer separator hides product identity')
     feed=json.loads((ROOT/'portal-assets/rakuten-feed.json').read_text())
     copies=json.loads((ROOT/'portal-assets/product-copy.json').read_text())
     keys={c['key'] for c in CATEGORIES};ids=set()

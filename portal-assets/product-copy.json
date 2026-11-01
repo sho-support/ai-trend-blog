@@ -278,26 +278,26 @@
     ]
   },
   "rakuten-yorozuyasan-reiwa-10000001": {
-    "name": "楽天ランキング1位★三年保証 新品 ノートパソコン パソコン O…",
-    "headline": "楽天ランキング1位★三年保証 新品 ノートパソコン パソコン O…",
+    "name": "ノートパソコン パソコン Office付き Windows11搭…",
+    "headline": "ノートパソコン パソコン Office付き Windows11搭…",
     "description": "15.6インチ・8GB・32GB。",
     "features": []
   },
   "rakuten-lakshmistore-10000002": {
-    "name": "2026年最新モデル ノートパソコン パソコン JIS 日本語キ…",
-    "headline": "2026年最新モデル ノートパソコン パソコン JIS 日本語キ…",
+    "name": "ノートパソコン パソコン JIS 日本語キーボード…",
+    "headline": "ノートパソコン パソコン JIS 日本語キーボード…",
     "description": "15.6インチ・128GB・256GB。",
     "features": []
   },
   "rakuten-yorozuyasan-reiwa-10000006": {
-    "name": "ノートパソコン パソコン Office付 初期設定済 windo…",
-    "headline": "ノートパソコン パソコン Office付 初期設定済 windo…",
+    "name": "ノートパソコン パソコン Office付 初期設定済…",
+    "headline": "ノートパソコン パソコン Office付 初期設定済…",
     "description": "15.6インチ・32GB・128G。",
     "features": []
   },
   "rakuten-voltique-10000021": {
-    "name": "「楽天ランキング1位」 デスクトップパソコン Windows11…",
-    "headline": "「楽天ランキング1位」 デスクトップパソコン Windows11…",
+    "name": "デスクトップパソコン Windows11 Office付き パソ…",
+    "headline": "デスクトップパソコン Windows11 Office付き パソ…",
     "description": "128GB・2TB・64GB。",
     "features": []
   },
@@ -308,27 +308,15 @@
     "features": []
   },
   "rakuten-pcshop-best-10000182": {
-    "name": "Lenovo デスクトップパソコン IdeaCentre Tow…",
-    "headline": "Lenovo デスクトップパソコン IdeaCentre Tow…",
+    "name": "Lenovo デスクトップパソコン IdeaCentre…",
+    "headline": "Lenovo デスクトップパソコン IdeaCentre…",
     "description": "16GB・512GB。",
     "features": []
   },
   "rakuten-japannext-10000385": {
-    "name": "JAPANNEXT 27インチ IPS BLACKパネル搭載 4…",
-    "headline": "JAPANNEXT 27インチ IPS BLACKパネル搭載 4…",
+    "name": "JAPANNEXT 27インチ IPS BLACKパネル搭載…",
+    "headline": "JAPANNEXT 27インチ IPS BLACKパネル搭載…",
     "description": "27インチ・IPS・4K。",
-    "features": []
-  },
-  "rakuten-ksk-electronics-10001388": {
-    "name": "Yoothi 互換品 液晶 14.0インチ B140UAN03.…",
-    "headline": "Yoothi 互換品 液晶 14.0インチ B140UAN03.…",
-    "description": "14.0インチ・IPS。",
-    "features": []
-  },
-  "rakuten-ksk-electronics-10000697": {
-    "name": "Yoothi 互換品 液晶 15.6インチ LM156LF6L…",
-    "headline": "Yoothi 互換品 液晶 15.6インチ LM156LF6L…",
-    "description": "15.6インチ・156L・6L。",
     "features": []
   },
   "rakuten-logicool-10000345": {
@@ -368,14 +356,14 @@
     "features": []
   },
   "rakuten-pcshop-best-10000139": {
-    "name": "バッファロー ルーター wifi6 IPv6 無線LAN WiF…",
-    "headline": "バッファロー ルーター wifi6 IPv6 無線LAN WiF…",
+    "name": "バッファロー ルーター wifi6 IPv6 無線LAN…",
+    "headline": "バッファロー ルーター wifi6 IPv6 無線LAN…",
     "description": "4L。",
     "features": []
   },
   "rakuten-d-shop1one-10239877": {
-    "name": "バッファロー 無線LANルーター Wi-Fi6対応 2401+5…",
-    "headline": "バッファロー 無線LANルーター Wi-Fi6対応 2401+5…",
+    "name": "バッファロー 無線LANルーター Wi-Fi6対応…",
+    "headline": "バッファロー 無線LANルーター Wi-Fi6対応…",
     "description": "",
     "features": []
   },
@@ -386,62 +374,56 @@
     "features": []
   },
   "rakuten-yamada-denki-10472535": {
-    "name": "プリンター エプソン 本体 複合機 インク PX-M6010F…",
-    "headline": "プリンター エプソン 本体 複合機 インク PX-M6010F…",
+    "name": "プリンター エプソン 本体 複合機 インク…",
+    "headline": "プリンター エプソン 本体 複合機 インク…",
     "description": "",
     "features": []
   },
   "rakuten-matsuyadenki-10031889": {
-    "name": "プリンター エプソン 本体 複合機 インク PX-M6011F…",
-    "headline": "プリンター エプソン 本体 複合機 インク PX-M6011F…",
+    "name": "プリンター エプソン 本体 複合機 インク…",
+    "headline": "プリンター エプソン 本体 複合機 インク…",
     "description": "",
     "features": []
   },
-  "rakuten-lovestyle-10022100": {
-    "name": "日本製 ID-C3LM イメージドラム マゼンタ 単品 オキ プ…",
-    "headline": "日本製 ID-C3LM イメージドラム マゼンタ 単品 オキ プ…",
-    "description": "3L。",
-    "features": []
-  },
   "rakuten-spd-shop-10005425": {
-    "name": "週間ランキング1位常連／ポータブルSSD 1TB 外付けssd…",
-    "headline": "週間ランキング1位常連／ポータブルSSD 1TB 外付けssd…",
+    "name": "週間 ／ポータブルSSD 1TB 外付けssd SanDisk…",
+    "headline": "週間 ／ポータブルSSD 1TB 外付けssd SanDisk…",
     "description": "1TB・3.2G。",
     "features": []
   },
   "rakuten-kazamidori-10015401": {
-    "name": "SSD 2TB 外付SSD ポータブルSSD USB3.2 Ge…",
-    "headline": "SSD 2TB 外付SSD ポータブルSSD USB3.2 Ge…",
+    "name": "SSD 2TB 外付SSD ポータブルSSD USB3.2…",
+    "headline": "SSD 2TB 外付SSD ポータブルSSD USB3.2…",
     "description": "2TB・3.2G。",
     "features": []
   },
   "rakuten-bacestore-10000037": {
-    "name": "2TB ポータブル SSD エクストリーム 外付け SanDis…",
-    "headline": "2TB ポータブル SSD エクストリーム 外付け SanDis…",
+    "name": "2TB ポータブル SSD エクストリーム 外付け…",
+    "headline": "2TB ポータブル SSD エクストリーム 外付け…",
     "description": "2TB。",
     "features": []
   },
   "rakuten-pixiogaming-10000116": {
-    "name": "Pixio ゲーミングモニター 24インチ ホワイト PX249…",
-    "headline": "Pixio ゲーミングモニター 24インチ ホワイト PX249…",
+    "name": "Pixio ゲーミングモニター 24インチ ホワイト…",
+    "headline": "Pixio ゲーミングモニター 24インチ ホワイト…",
     "description": "24インチ・23.8インチ・240hz。",
     "features": []
   },
   "rakuten-fpdvision-10000029": {
-    "name": "ゲーミングモニター 27インチモニター 液晶ディスプレイ WQH…",
-    "headline": "ゲーミングモニター 27インチモニター 液晶ディスプレイ WQH…",
+    "name": "ゲーミングモニター 27インチモニター 液晶ディスプレイ…",
+    "headline": "ゲーミングモニター 27インチモニター 液晶ディスプレイ…",
     "description": "27インチ・200Hz・IPS。",
     "features": []
   },
   "rakuten-kksmart-10000009": {
-    "name": "☆最新240Hz！ゲーミング モニター 23.8インチ 21.5…",
-    "headline": "☆最新240Hz！ゲーミング モニター 23.8インチ 21.5…",
+    "name": "最新240Hz！ゲーミング モニター 23.8インチ 21.5イ…",
+    "headline": "最新240Hz！ゲーミング モニター 23.8インチ 21.5イ…",
     "description": "23.8インチ・21.5インチ・24.5インチ。",
     "features": []
   },
   "rakuten-biccamera-15501131": {
-    "name": "任天堂",
-    "headline": "任天堂",
+    "name": "任天堂 Nintendo Nintendo Switch 2（日…",
+    "headline": "任天堂 Nintendo Nintendo Switch 2（日…",
     "description": "",
     "features": []
   },
@@ -458,8 +440,8 @@
     "features": []
   },
   "rakuten-smahoservice-10002176": {
-    "name": "switch2 コントローラー Switch2対応 Ninten…",
-    "headline": "switch2 コントローラー Switch2対応 Ninten…",
+    "name": "switch2 コントローラー Switch2対応…",
+    "headline": "switch2 コントローラー Switch2対応…",
     "description": "600mAh。",
     "features": []
   },
@@ -493,12 +475,6 @@
     "description": "",
     "features": []
   },
-  "rakuten-daichugame-10012928": {
-    "name": "Nintendo Switch すぐに遊べるセット 純正アダプタ…",
-    "headline": "Nintendo Switch すぐに遊べるセット 純正アダプタ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-book-19143914": {
     "name": "Minecraft Nintendo Switch版",
     "headline": "Minecraft Nintendo Switch版",
@@ -524,14 +500,14 @@
     "features": []
   },
   "rakuten-fpdvision-10000000": {
-    "name": "チューナーレス テレビ 43V型 壁掛け LED 液晶テレビ B…",
-    "headline": "チューナーレス テレビ 43V型 壁掛け LED 液晶テレビ B…",
+    "name": "チューナーレス テレビ 43V型 壁掛け LED 液晶テレビ…",
+    "headline": "チューナーレス テレビ 43V型 壁掛け LED 液晶テレビ…",
     "description": "10G・Bluetooth・4K。",
     "features": []
   },
   "rakuten-try3-2-10010263": {
-    "name": "小型冷蔵庫 1ドア 日立 冷蔵庫 Chiiil R-MR7S 7…",
-    "headline": "小型冷蔵庫 1ドア 日立 冷蔵庫 Chiiil R-MR7S 7…",
+    "name": "小型冷蔵庫 1ドア 日立 冷蔵庫 Chiiil R-MR7S…",
+    "headline": "小型冷蔵庫 1ドア 日立 冷蔵庫 Chiiil R-MR7S…",
     "description": "73L。",
     "features": []
   },
@@ -625,15 +601,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-denchiya-bekkan-10258951": {
-    "name": "FKA4100010 ジアイーノ 電極ユニット 次亜塩素酸 空気…",
-    "headline": "FKA4100010 ジアイーノ 電極ユニット 次亜塩素酸 空気…",
-    "description": "",
-    "features": []
-  },
   "rakuten-akibaoo-r-11928613": {
-    "name": "送料無料！！ ダイキン ACBF15Z-S UVパワフルストリー…",
-    "headline": "送料無料！！ ダイキン ACBF15Z-S UVパワフルストリー…",
+    "name": "ダイキン ACBF15Z-S UVパワフルストリーマ空気清浄機…",
+    "headline": "ダイキン ACBF15Z-S UVパワフルストリーマ空気清浄機…",
     "description": "",
     "features": []
   },
@@ -656,8 +626,8 @@
     "features": []
   },
   "rakuten-biccamera-13877996": {
-    "name": "OLYMPUS",
-    "headline": "OLYMPUS",
+    "name": "OLYMPUS オリンパス OLYMPUS PEN E-P7…",
+    "headline": "OLYMPUS オリンパス OLYMPUS PEN E-P7…",
     "description": "",
     "features": []
   },
@@ -680,8 +650,8 @@
     "features": []
   },
   "rakuten-d-shop1one-10241008": {
-    "name": "コダック カメラ デジタルカメラ 乾電池式 4倍光学ズーム FZ…",
-    "headline": "コダック カメラ デジタルカメラ 乾電池式 4倍光学ズーム FZ…",
+    "name": "コダック カメラ デジタルカメラ 乾電池式 4倍光学ズーム…",
+    "headline": "コダック カメラ デジタルカメラ 乾電池式 4倍光学ズーム…",
     "description": "",
     "features": []
   },
@@ -727,27 +697,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-dji-shop-10002009": {
-    "name": "ビデオカメラ アクションカメラ DJI Osmo Pocket…",
-    "headline": "ビデオカメラ アクションカメラ DJI Osmo Pocket…",
-    "description": "4K。",
-    "features": []
-  },
-  "rakuten-saijozakkaya-10004531": {
-    "name": "送料無料 カメラバッグ カメラショルダー エレコム 一眼レフ カ…",
-    "headline": "送料無料 カメラバッグ カメラショルダー エレコム 一眼レフ カ…",
-    "description": "15.6インチ・18L。",
-    "features": []
-  },
-  "rakuten-funlifestore-10007649": {
-    "name": "多機能写真撮影ベルト 自転車 登山 乗馬 固定吊りベルト カメラ…",
-    "headline": "多機能写真撮影ベルト 自転車 登山 乗馬 固定吊りベルト カメラ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-superdeal-10006079": {
-    "name": "Motorola モトローラ SIMフリースマートフォン mot…",
-    "headline": "Motorola モトローラ SIMフリースマートフォン mot…",
+    "name": "Motorola モトローラ SIMフリースマートフォン…",
+    "headline": "Motorola モトローラ SIMフリースマートフォン…",
     "description": "12GB・256GB。",
     "features": []
   },
@@ -758,8 +710,8 @@
     "features": []
   },
   "rakuten-lala-assoc-10008771": {
-    "name": "最大10万P当選★ FOSSiBOT S2 スマートフォン SI…",
-    "headline": "最大10万P当選★ FOSSiBOT S2 スマートフォン SI…",
+    "name": "FOSSiBOT S2 スマートフォン SIMフリー スマホ 本…",
+    "headline": "FOSSiBOT S2 スマートフォン SIMフリー スマホ 本…",
     "description": "8GB・256GB・6.72インチ。",
     "features": []
   },
@@ -770,44 +722,44 @@
     "features": []
   },
   "rakuten-tabletpckoubou-10001261": {
-    "name": "楽天1位！ 10インチ タブレット Android16 Wi-F…",
-    "headline": "楽天1位！ 10インチ タブレット Android16 Wi-F…",
+    "name": "10インチ タブレット Android16 Wi-Fiモデル 大…",
+    "headline": "10インチ タブレット Android16 Wi-Fiモデル 大…",
     "description": "10インチ・6000mAh・64GB。",
     "features": []
   },
   "rakuten-lenovopc-10006671": {
-    "name": "タブレット wi-fiモデル LTE搭載可能 メーカー 新品 L…",
-    "headline": "タブレット wi-fiモデル LTE搭載可能 メーカー 新品 L…",
+    "name": "タブレット wi-fiモデル LTE搭載可能 メーカー 新品…",
+    "headline": "タブレット wi-fiモデル LTE搭載可能 メーカー 新品…",
     "description": "10.1インチ・4GB・128GB。",
     "features": []
   },
   "rakuten-amicoco-10000003": {
-    "name": "スマホケース 手帳型 全機種対応 本革 ケース iPhone18…",
-    "headline": "スマホケース 手帳型 全機種対応 本革 ケース iPhone18…",
+    "name": "スマホケース 手帳型 全機種対応 本革 ケース…",
+    "headline": "スマホケース 手帳型 全機種対応 本革 ケース…",
     "description": "",
     "features": []
   },
   "rakuten-auc-kingmobile-10004110": {
-    "name": "iPhone18 Pro ケース 手帳型 本革 iPhoneDu…",
-    "headline": "iPhone18 Pro ケース 手帳型 本革 iPhoneDu…",
+    "name": "iPhone18 Pro ケース 手帳型 本革…",
+    "headline": "iPhone18 Pro ケース 手帳型 本革…",
     "description": "",
     "features": []
   },
   "rakuten-tsukitohana1-10000198": {
-    "name": "MagSafe 対応iphone18pro ケース iphone…",
-    "headline": "MagSafe 対応iphone18pro ケース iphone…",
+    "name": "MagSafe 対応iphone18pro ケース…",
+    "headline": "MagSafe 対応iphone18pro ケース…",
     "description": "",
     "features": []
   },
   "rakuten-ugreen-gear-10000220": {
-    "name": "UGREEN 65W USB-C充電器 PD充電器 GaN 65…",
-    "headline": "UGREEN 65W USB-C充電器 PD充電器 GaN 65…",
+    "name": "UGREEN 65W USB-C充電器 PD充電器 GaN…",
+    "headline": "UGREEN 65W USB-C充電器 PD充電器 GaN…",
     "description": "type-c。",
     "features": []
   },
   "rakuten-ugreen-gear-10001088": {
-    "name": "優れた30W電源☆UGREEN 充電器 (30W 2*USB-C…",
-    "headline": "優れた30W電源☆UGREEN 充電器 (30W 2*USB-C…",
+    "name": "優れた30W電源 UGREEN 充電器 (30W 2*USB-C…",
+    "headline": "優れた30W電源 UGREEN 充電器 (30W 2*USB-C…",
     "description": "USB-C。",
     "features": []
   },
@@ -824,8 +776,8 @@
     "features": []
   },
   "rakuten-marshall-official-10000022": {
-    "name": "Marshall 公式ストア ACTON III Bluetoo…",
-    "headline": "Marshall 公式ストア ACTON III Bluetoo…",
+    "name": "Marshall 公式ストア ACTON III…",
+    "headline": "Marshall 公式ストア ACTON III…",
     "description": "",
     "features": []
   },
@@ -842,8 +794,8 @@
     "features": []
   },
   "rakuten-hobinavi-10586219": {
-    "name": "ワイヤレスイヤホン 完全ワイヤレス Bluetooth5.3 I…",
-    "headline": "ワイヤレスイヤホン 完全ワイヤレス Bluetooth5.3 I…",
+    "name": "ワイヤレスイヤホン 完全ワイヤレス Bluetooth5.3…",
+    "headline": "ワイヤレスイヤホン 完全ワイヤレス Bluetooth5.3…",
     "description": "2500mAh・防水。",
     "features": []
   },
@@ -854,14 +806,14 @@
     "features": []
   },
   "rakuten-oneodio-10000018": {
-    "name": "OneOdio A70 ワイヤレス ヘッドホン 72時間再生 B…",
-    "headline": "OneOdio A70 ワイヤレス ヘッドホン 72時間再生 B…",
+    "name": "OneOdio A70 ワイヤレス ヘッドホン 72時間再生…",
+    "headline": "OneOdio A70 ワイヤレス ヘッドホン 72時間再生…",
     "description": "Bluetooth。",
     "features": []
   },
   "rakuten-anker-10001669": {
-    "name": "Anker Soundcore Space One (Bluet…",
-    "headline": "Anker Soundcore Space One (Bluet…",
+    "name": "Anker Soundcore Space One…",
+    "headline": "Anker Soundcore Space One…",
     "description": "Bluetooth。",
     "features": []
   },
@@ -902,14 +854,14 @@
     "features": []
   },
   "rakuten-goodgoodsshop-10000776": {
-    "name": "AGPTEK MP3プレーヤー 4+128GB Bluetoot…",
-    "headline": "AGPTEK MP3プレーヤー 4+128GB Bluetoot…",
+    "name": "AGPTEK MP3プレーヤー 4+128GB…",
+    "headline": "AGPTEK MP3プレーヤー 4+128GB…",
     "description": "128GB・5インチ。",
     "features": []
   },
   "rakuten-panasonic-store-10001874": {
-    "name": "パナソニック ヘアードライヤー イオニティ選べる4色 EH-NE…",
-    "headline": "パナソニック ヘアードライヤー イオニティ選べる4色 EH-NE…",
+    "name": "パナソニック ヘアードライヤー イオニティ選べる4色…",
+    "headline": "パナソニック ヘアードライヤー イオニティ選べる4色…",
     "description": "",
     "features": []
   },
@@ -926,20 +878,20 @@
     "features": []
   },
   "rakuten-salonmoon-10000013": {
-    "name": "「楽天で一番売れた 」 ヘアアイロン ストレートアイロン 15m…",
-    "headline": "「楽天で一番売れた 」 ヘアアイロン ストレートアイロン 15m…",
+    "name": "ヘアアイロン ストレートアイロン 15mm 24mm サロンムー…",
+    "headline": "ヘアアイロン ストレートアイロン 15mm 24mm サロンムー…",
     "description": "",
     "features": []
   },
   "rakuten-kobe-beauty-labo-10000074": {
-    "name": "《公式店》 楽天1位送料無料 1年保証 耐熱ポーチ付き サロニア…",
-    "headline": "《公式店》 楽天1位送料無料 1年保証 耐熱ポーチ付き サロニア…",
+    "name": "耐熱ポーチ付き サロニア 人気 おすすめ プレゼント コテ アイ…",
+    "headline": "耐熱ポーチ付き サロニア 人気 おすすめ プレゼント コテ アイ…",
     "description": "",
     "features": []
   },
   "rakuten-mtgec-beauty-10002142": {
-    "name": "リファ ストレートアイロン プロ STRAIGHT IRON P…",
-    "headline": "リファ ストレートアイロン プロ STRAIGHT IRON P…",
+    "name": "リファ ストレートアイロン プロ STRAIGHT IRON…",
+    "headline": "リファ ストレートアイロン プロ STRAIGHT IRON…",
     "description": "",
     "features": []
   },
@@ -950,8 +902,8 @@
     "features": []
   },
   "rakuten-taimuon-10000077": {
-    "name": "アイビル フェードシェーバー 本体 UL-20B01 充電式 A…",
-    "headline": "アイビル フェードシェーバー 本体 UL-20B01 充電式 A…",
+    "name": "アイビル フェードシェーバー 本体 UL-20B01 充電式…",
+    "headline": "アイビル フェードシェーバー 本体 UL-20B01 充電式…",
     "description": "",
     "features": []
   },
@@ -962,8 +914,8 @@
     "features": []
   },
   "rakuten-brighte-onlineshop-10000000": {
-    "name": "＜今なら19,800円相当！＞ ラヴィットで紹介 ELEKI L…",
-    "headline": "＜今なら19,800円相当！＞ ラヴィットで紹介 ELEKI L…",
+    "name": "ラヴィットで紹介 ELEKI LIFT 美顔器 リフトアップ ブ…",
+    "headline": "ラヴィットで紹介 ELEKI LIFT 美顔器 リフトアップ ブ…",
     "description": "",
     "features": []
   },
@@ -974,14 +926,14 @@
     "features": []
   },
   "rakuten-brighte-onlineshop-10000001": {
-    "name": "＜今なら40,800円相当！＞ 美顔器 リフトアップ ブライト…",
-    "headline": "＜今なら40,800円相当！＞ 美顔器 リフトアップ ブライト…",
+    "name": "美顔器 リフトアップ ブライト エレキブラシプラス /…",
+    "headline": "美顔器 リフトアップ ブライト エレキブラシプラス /…",
     "description": "",
     "features": []
   },
   "rakuten-takami-labo-10000519": {
-    "name": "タカミスキンピール◆送料無料│2本～購入で特典付き◆角質美容水…",
-    "headline": "タカミスキンピール◆送料無料│2本～購入で特典付き◆角質美容水…",
+    "name": "タカミスキンピール │2本～購入で特典付き 角質美容水 美容皮膚…",
+    "headline": "タカミスキンピール │2本～購入で特典付き 角質美容水 美容皮膚…",
     "description": "30mL・2本。",
     "features": []
   },
@@ -1010,8 +962,8 @@
     "features": []
   },
   "rakuten-brandshiseido-10000016": {
-    "name": "エッセンス スキングロウ ファンデーション ☆",
-    "headline": "エッセンス スキングロウ ファンデーション ☆",
+    "name": "エッセンス スキングロウ ファンデーション",
+    "headline": "エッセンス スキングロウ ファンデーション",
     "description": "",
     "features": []
   },
@@ -1046,14 +998,14 @@
     "features": []
   },
   "rakuten-friend-gift-10048369": {
-    "name": "信州そば・讃岐うどん詰合せ （CSU-15） ＜B5＞",
-    "headline": "信州そば・讃岐うどん詰合せ （CSU-15） ＜B5＞",
+    "name": "信州そば・讃岐うどん詰合せ （CSU-15）",
+    "headline": "信州そば・讃岐うどん詰合せ （CSU-15）",
     "description": "",
     "features": []
   },
   "rakuten-aikuru-10387328": {
-    "name": "内祝い 彩食ファクトリー 味わいソースで食べるパスタセット PH…",
-    "headline": "内祝い 彩食ファクトリー 味わいソースで食べるパスタセット PH…",
+    "name": "内祝い 彩食ファクトリー 味わいソースで食べるパスタセット…",
+    "headline": "内祝い 彩食ファクトリー 味わいソースで食べるパスタセット…",
     "description": "",
     "features": []
   },
@@ -1070,8 +1022,8 @@
     "features": []
   },
   "rakuten-chanova-10000636": {
-    "name": "送料無料 中華惣菜セット 福袋10種10食 冷凍 湯煎で簡単 お…",
-    "headline": "送料無料 中華惣菜セット 福袋10種10食 冷凍 湯煎で簡単 お…",
+    "name": "中華惣菜セット 福袋10種10食 冷凍 湯煎で簡単 おかず 詰め…",
+    "headline": "中華惣菜セット 福袋10種10食 冷凍 湯煎で簡単 おかず 詰め…",
     "description": "10食。",
     "features": []
   },
@@ -1112,14 +1064,14 @@
     "features": []
   },
   "rakuten-yamato-takumi-10000039": {
-    "name": "画像送信サービス ★ 厳選果物屋 フルーツギフト5500 送料無…",
-    "headline": "画像送信サービス ★ 厳選果物屋 フルーツギフト5500 送料無…",
+    "name": "画像送信サービス 厳選果物屋 フルーツギフト5500 グルメ 果…",
+    "headline": "画像送信サービス 厳選果物屋 フルーツギフト5500 グルメ 果…",
     "description": "",
     "features": []
   },
   "rakuten-sosuke-10000619": {
-    "name": "シャインマスカット ぶどう 秀品 1.2kg 2房 送料無料 山…",
-    "headline": "シャインマスカット ぶどう 秀品 1.2kg 2房 送料無料 山…",
+    "name": "シャインマスカット ぶどう 秀品 1.2kg 2房 山梨 長野産…",
+    "headline": "シャインマスカット ぶどう 秀品 1.2kg 2房 山梨 長野産…",
     "description": "1.2kg・600g。",
     "features": []
   },
@@ -1130,8 +1082,8 @@
     "features": []
   },
   "rakuten-lifedrinkcompany-10000022": {
-    "name": "炭酸水 500ml 48本 (24本×2ケース) 送料無料※一部…",
-    "headline": "炭酸水 500ml 48本 (24本×2ケース) 送料無料※一部…",
+    "name": "炭酸水 500ml 48本 (24本×2ケース) 一部地域除く…",
+    "headline": "炭酸水 500ml 48本 (24本×2ケース) 一部地域除く…",
     "description": "500ml・48本・24本。",
     "features": []
   },
@@ -1142,8 +1094,8 @@
     "features": []
   },
   "rakuten-vox-official-store-10000000": {
-    "name": "VOX 強炭酸水 500ml 24本 ラベルレス シリカ 50m…",
-    "headline": "VOX 強炭酸水 500ml 24本 ラベルレス シリカ 50m…",
+    "name": "VOX 強炭酸水 500ml 24本 ラベルレス シリカ…",
+    "headline": "VOX 強炭酸水 500ml 24本 ラベルレス シリカ…",
     "description": "500ml・24本。",
     "features": []
   },
@@ -1160,8 +1112,8 @@
     "features": []
   },
   "rakuten-gourmetcoffee-10001806": {
-    "name": "送料無料 コーヒー豆 コーヒー 2kg 怒涛の珈琲豆 粉 (G5…",
-    "headline": "送料無料 コーヒー豆 コーヒー 2kg 怒涛の珈琲豆 粉 (G5…",
+    "name": "コーヒー豆 コーヒー 2kg 怒涛の珈琲豆 粉 (G500×4)…",
+    "headline": "コーヒー豆 コーヒー 2kg 怒涛の珈琲豆 粉 (G500×4)…",
     "description": "2kg。",
     "features": []
   },
@@ -1273,12 +1225,6 @@
     "description": "",
     "features": []
   },
-  "rakuten-auc-rasin-10042926": {
-    "name": "ロレックス サブマリーナ デイト 16610 ブラック オールト…",
-    "headline": "ロレックス サブマリーナ デイト 16610 ブラック オールト…",
-    "description": "",
-    "features": []
-  },
   "rakuten-hrd-web-shop-10001085": {
     "name": "限定150本 シチズン カンパノラ NZ0000-58L 高級ブ…",
     "headline": "限定150本 シチズン カンパノラ NZ0000-58L 高級ブ…",
@@ -1286,8 +1232,8 @@
     "features": []
   },
   "rakuten-theclockhouse-10010804": {
-    "name": "セイコー アストロン ネクスター コズミックデザイン 月 SBX…",
-    "headline": "セイコー アストロン ネクスター コズミックデザイン 月 SBX…",
+    "name": "セイコー アストロン ネクスター コズミックデザイン 月…",
+    "headline": "セイコー アストロン ネクスター コズミックデザイン 月…",
     "description": "",
     "features": []
   },
@@ -1334,14 +1280,14 @@
     "features": []
   },
   "rakuten-lively777-10000016": {
-    "name": "トレーニングマット ヨガマット 厚手15mm 10mm 幅広80…",
-    "headline": "トレーニングマット ヨガマット 厚手15mm 10mm 幅広80…",
+    "name": "トレーニングマット ヨガマット 厚手15mm 10mm…",
+    "headline": "トレーニングマット ヨガマット 厚手15mm 10mm…",
     "description": "",
     "features": []
   },
   "rakuten-lively777-10000017": {
-    "name": "ヨガマット 厚手 選べる4サイズ トレーニングマット 15mm…",
-    "headline": "ヨガマット 厚手 選べる4サイズ トレーニングマット 15mm…",
+    "name": "ヨガマット 厚手 選べる4サイズ トレーニングマット…",
+    "headline": "ヨガマット 厚手 選べる4サイズ トレーニングマット…",
     "description": "",
     "features": []
   },
@@ -1352,8 +1298,8 @@
     "features": []
   },
   "rakuten-tkms-10001072": {
-    "name": "フィットネスバイク Neo マットブラック×ゴールド MONOQ…",
-    "headline": "フィットネスバイク Neo マットブラック×ゴールド MONOQ…",
+    "name": "フィットネスバイク Neo マットブラック×ゴールド…",
+    "headline": "フィットネスバイク Neo マットブラック×ゴールド…",
     "description": "折りたたみ。",
     "features": []
   },
@@ -1370,8 +1316,8 @@
     "features": []
   },
   "rakuten-marketjapan-10000040": {
-    "name": "ルームランナー MAX16km/h アプリ連携 kinomap…",
-    "headline": "ルームランナー MAX16km/h アプリ連携 kinomap…",
+    "name": "ルームランナー MAX16km/h アプリ連携…",
+    "headline": "ルームランナー MAX16km/h アプリ連携…",
     "description": "",
     "features": []
   },
@@ -1381,21 +1327,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-anatman-10000126": {
-    "name": "グローブ スポーツ 手袋 指なし 滑り止め付き てぶくろ ぐろー…",
-    "headline": "グローブ スポーツ 手袋 指なし 滑り止め付き てぶくろ ぐろー…",
-    "description": "",
-    "features": []
-  },
-  "rakuten-anatman-10000348": {
-    "name": "グローブ スポーツ 手袋 指なし 滑り止め付き てぶくろ ぐろー…",
-    "headline": "グローブ スポーツ 手袋 指なし 滑り止め付き てぶくろ ぐろー…",
-    "description": "",
-    "features": []
-  },
   "rakuten-heartbing-10004219": {
-    "name": "ヨガウェア トップス スポーツウェア ゆったり ブランド TAT…",
-    "headline": "ヨガウェア トップス スポーツウェア ゆったり ブランド TAT…",
+    "name": "ヨガウェア トップス スポーツウェア ゆったり ブランド…",
+    "headline": "ヨガウェア トップス スポーツウェア ゆったり ブランド…",
     "description": "",
     "features": []
   },
@@ -1424,14 +1358,14 @@
     "features": []
   },
   "rakuten-labclip-10004358": {
-    "name": "A5ノート カミーユ 《ギフト/リングノート/7mm横罫/ダイエ…",
-    "headline": "A5ノート カミーユ 《ギフト/リングノート/7mm横罫/ダイエ…",
+    "name": "A5ノート カミーユ",
+    "headline": "A5ノート カミーユ",
     "description": "",
     "features": []
   },
   "rakuten-labclip-10004357": {
-    "name": "A5ノート カミーユ 《ギフト/リングノート/7mm横罫/ダイエ…",
-    "headline": "A5ノート カミーユ 《ギフト/リングノート/7mm横罫/ダイエ…",
+    "name": "A5ノート カミーユ",
+    "headline": "A5ノート カミーユ",
     "description": "",
     "features": []
   },
@@ -1448,8 +1382,8 @@
     "features": []
   },
   "rakuten-book-20121944": {
-    "name": "キングジム クリアファイル カキコ A4 縦 40P 赤 863…",
-    "headline": "キングジム クリアファイル カキコ A4 縦 40P 赤 863…",
+    "name": "キングジム クリアファイル カキコ A4 縦 40P 赤…",
+    "headline": "キングジム クリアファイル カキコ A4 縦 40P 赤…",
     "description": "",
     "features": []
   },
@@ -1466,8 +1400,8 @@
     "features": []
   },
   "rakuten-book-18105666": {
-    "name": "ダブルファスナーカラーペンケース ブルー ペンケース （文具(S…",
-    "headline": "ダブルファスナーカラーペンケース ブルー ペンケース （文具(S…",
+    "name": "ダブルファスナーカラーペンケース ブルー ペンケース…",
+    "headline": "ダブルファスナーカラーペンケース ブルー ペンケース…",
     "description": "",
     "features": []
   },
@@ -1484,20 +1418,20 @@
     "features": []
   },
   "rakuten-p-tano-10068694": {
-    "name": "カシオ 卓上電卓 12桁 ジャストサイズ JF－120VB－N…",
-    "headline": "カシオ 卓上電卓 12桁 ジャストサイズ JF－120VB－N…",
+    "name": "カシオ 卓上電卓 12桁 ジャストサイズ…",
+    "headline": "カシオ 卓上電卓 12桁 ジャストサイズ…",
     "description": "",
     "features": []
   },
   "rakuten-randrshop-10000560": {
-    "name": "⭐️クーポン利用で3310円⭐️ ビジネスリュック 15.6イン…",
-    "headline": "⭐️クーポン利用で3310円⭐️ ビジネスリュック 15.6イン…",
+    "name": "クーポン利用で3310円 ビジネスリュック 15.6インチPC…",
+    "headline": "クーポン利用で3310円 ビジネスリュック 15.6インチPC…",
     "description": "15.6インチ・防水。",
     "features": []
   },
   "rakuten-jinshop-10000061": {
-    "name": "リュック メンズ 大きめ 出張 旅行 2泊3日 3way A4…",
-    "headline": "リュック メンズ 大きめ 出張 旅行 2泊3日 3way A4…",
+    "name": "リュック メンズ 大きめ 出張 旅行 2泊3日 3way…",
+    "headline": "リュック メンズ 大きめ 出張 旅行 2泊3日 3way…",
     "description": "45L・17インチ・防水。",
     "features": []
   },
@@ -1550,14 +1484,14 @@
     "features": []
   },
   "rakuten-euphoric-10000029": {
-    "name": "正規品 スーツケース キャリーケース キャリーバッグ 機内持ち込…",
-    "headline": "正規品 スーツケース キャリーケース キャリーバッグ 機内持ち込…",
+    "name": "スーツケース キャリーケース キャリーバッグ 機内持ち込み 1泊…",
+    "headline": "スーツケース キャリーケース キャリーバッグ 機内持ち込み 1泊…",
     "description": "",
     "features": []
   },
   "rakuten-euphoric-10000034": {
-    "name": "正規品 スーツケース キャリーケース キャリーバッグ 機内持ち込…",
-    "headline": "正規品 スーツケース キャリーケース キャリーバッグ 機内持ち込…",
+    "name": "スーツケース キャリーケース キャリーバッグ 機内持ち込み 1泊…",
+    "headline": "スーツケース キャリーケース キャリーバッグ 機内持ち込み 1泊…",
     "description": "",
     "features": []
   },
@@ -1580,8 +1514,8 @@
     "features": []
   },
   "rakuten-hworks-10095067": {
-    "name": "胸元の安心感◎ ボウタイ ブラウス オフィス 長袖 ノーアイロン…",
-    "headline": "胸元の安心感◎ ボウタイ ブラウス オフィス 長袖 ノーアイロン…",
+    "name": "胸元の安心感 ボウタイ ブラウス オフィス 長袖 ノーアイロン…",
+    "headline": "胸元の安心感 ボウタイ ブラウス オフィス 長袖 ノーアイロン…",
     "description": "",
     "features": []
   },
@@ -1592,8 +1526,8 @@
     "features": []
   },
   "rakuten-haruyama-10117195": {
-    "name": "ブラウス 長袖 レディース ワイシャツ アイシャツ i-shir…",
-    "headline": "ブラウス 長袖 レディース ワイシャツ アイシャツ i-shir…",
+    "name": "ブラウス 長袖 レディース ワイシャツ アイシャツ…",
+    "headline": "ブラウス 長袖 レディース ワイシャツ アイシャツ…",
     "description": "",
     "features": []
   },
@@ -1604,50 +1538,50 @@
     "features": []
   },
   "rakuten-alpen-10409627": {
-    "name": "11/1 限定★抽選で最大100％Pバック ニューバランス CT…",
-    "headline": "11/1 限定★抽選で最大100％Pバック ニューバランス CT…",
+    "name": "抽選で最大100％Pバック ニューバランス CT30 SC2 D…",
+    "headline": "抽選で最大100％Pバック ニューバランス CT30 SC2 D…",
     "description": "",
     "features": []
   },
   "rakuten-elephant-sports-10110914": {
-    "name": "販売数2万足突破 当店PUMA売れ筋 NO,1 プーマ メンズ…",
-    "headline": "販売数2万足突破 当店PUMA売れ筋 NO,1 プーマ メンズ…",
+    "name": "当店PUMA売れ筋 NO,1 プーマ メンズ レディース スニー…",
+    "headline": "当店PUMA売れ筋 NO,1 プーマ メンズ レディース スニー…",
     "description": "",
     "features": []
   },
   "rakuten-asamu-10000561": {
-    "name": "楽天1位 財布 メンズ 超薄型 イタリアンレザー 長財布 薄い…",
-    "headline": "楽天1位 財布 メンズ 超薄型 イタリアンレザー 長財布 薄い…",
+    "name": "財布 メンズ 超薄型 イタリアンレザー 長財布 薄い 父の日 ギ…",
+    "headline": "財布 メンズ 超薄型 イタリアンレザー 長財布 薄い 父の日 ギ…",
     "description": "",
     "features": []
   },
   "rakuten-asamu-10000509": {
-    "name": "楽天1位 財布 メンズ ミニ財布 メンズ財布 二つ折り 栃木レザ…",
-    "headline": "楽天1位 財布 メンズ ミニ財布 メンズ財布 二つ折り 栃木レザ…",
+    "name": "財布 メンズ ミニ財布 メンズ財布 二つ折り 栃木レザー 財布…",
+    "headline": "財布 メンズ ミニ財布 メンズ財布 二つ折り 栃木レザー 財布…",
     "description": "",
     "features": []
   },
   "rakuten-woodwest-10000000": {
-    "name": "2万個突破! カード18枚収納 本革 財布 メンズ 二つ折り L…",
-    "headline": "2万個突破! カード18枚収納 本革 財布 メンズ 二つ折り L…",
+    "name": "2万個突破! カード18枚収納 本革 財布 メンズ 二つ折り…",
+    "headline": "2万個突破! カード18枚収納 本革 財布 メンズ 二つ折り…",
     "description": "18枚・折りたたみ。",
     "features": []
   },
   "rakuten-cookware-carote-10000208": {
-    "name": "CAROTE カローテ フライパン セット12・9・8・4点 I…",
-    "headline": "CAROTE カローテ フライパン セット12・9・8・4点 I…",
+    "name": "CAROTE カローテ フライパン セット12・9・8・4点…",
+    "headline": "CAROTE カローテ フライパン セット12・9・8・4点…",
     "description": "",
     "features": []
   },
   "rakuten-cookware-carote-10000105": {
-    "name": "フライパン セット 10点・6点 IH&ガス火対応 PFOA P…",
-    "headline": "フライパン セット 10点・6点 IH&ガス火対応 PFOA P…",
+    "name": "フライパン セット 10点・6点 IH&ガス火対応 PFOA…",
+    "headline": "フライパン セット 10点・6点 IH&ガス火対応 PFOA…",
     "description": "",
     "features": []
   },
   "rakuten-cookware-carote-10000114": {
-    "name": "CAROTE カローテ フライパン セット 18点 鍋セット I…",
-    "headline": "CAROTE カローテ フライパン セット 18点 鍋セット I…",
+    "name": "CAROTE カローテ フライパン セット 18点 鍋セット…",
+    "headline": "CAROTE カローテ フライパン セット 18点 鍋セット…",
     "description": "",
     "features": []
   },
@@ -1658,8 +1592,8 @@
     "features": []
   },
   "rakuten-bruno-official-10000887": {
-    "name": "マグカップ マグ コップ 蓋つきステンレスマグshort 320…",
-    "headline": "マグカップ マグ コップ 蓋つきステンレスマグshort 320…",
+    "name": "マグカップ マグ コップ 蓋つきステンレスマグshort…",
+    "headline": "マグカップ マグ コップ 蓋つきステンレスマグshort…",
     "description": "320ml。",
     "features": []
   },
@@ -1670,8 +1604,8 @@
     "features": []
   },
   "rakuten-futontown-10007120": {
-    "name": "11/1限定★11％OFFクーポン 羽毛布団 シングル 西川 洗…",
-    "headline": "11/1限定★11％OFFクーポン 羽毛布団 シングル 西川 洗…",
+    "name": "羽毛布団 シングル 西川 洗える 大増量1.3k…",
+    "headline": "羽毛布団 シングル 西川 洗える 大増量1.3k…",
     "description": "",
     "features": []
   },
@@ -1712,8 +1646,8 @@
     "features": []
   },
   "rakuten-myhome-10000607": {
-    "name": "累計21万台突破！オフィスチェア 椅子 チェア 新社会人応援 コ…",
-    "headline": "累計21万台突破！オフィスチェア 椅子 チェア 新社会人応援 コ…",
+    "name": "オフィスチェア 椅子 チェア 新社会人応援 コンパクト 腰痛 回…",
+    "headline": "オフィスチェア 椅子 チェア 新社会人応援 コンパクト 腰痛 回…",
     "description": "",
     "features": []
   },
@@ -1778,8 +1712,8 @@
     "features": []
   },
   "rakuten-homeycozy-10000874": {
-    "name": "★ ビッグフェイスタオル バスタオル 6枚セット 50×100…",
-    "headline": "★ ビッグフェイスタオル バスタオル 6枚セット 50×100…",
+    "name": "ビッグフェイスタオル バスタオル 6枚セット 50×100 cm…",
+    "headline": "ビッグフェイスタオル バスタオル 6枚セット 50×100 cm…",
     "description": "140g・6枚セット。",
     "features": []
   },
@@ -1808,8 +1742,8 @@
     "features": []
   },
   "rakuten-vetschoice-10000017": {
-    "name": "ポイント10倍 おまけ付き セレクトバランス アダルト チキン…",
-    "headline": "ポイント10倍 おまけ付き セレクトバランス アダルト チキン…",
+    "name": "おまけ付き セレクトバランス アダルト チキン 小粒 7kg 7…",
+    "headline": "おまけ付き セレクトバランス アダルト チキン 小粒 7kg 7…",
     "description": "7kg。",
     "features": []
   },
@@ -1838,8 +1772,8 @@
     "features": []
   },
   "rakuten-dog-kan-10196443": {
-    "name": "≪10％OFFクーポン★3日迄≫アイリスオーヤマ スクエアペット…",
-    "headline": "≪10％OFFクーポン★3日迄≫アイリスオーヤマ スクエアペット…",
+    "name": "アイリスオーヤマ スクエアペットベッド クッションペットベッド…",
+    "headline": "アイリスオーヤマ スクエアペットベッド クッションペットベッド…",
     "description": "",
     "features": []
   },
@@ -1850,14 +1784,14 @@
     "features": []
   },
   "rakuten-4-l-f-10000057": {
-    "name": "犬 ベッド おしゃれ",
-    "headline": "犬 ベッド おしゃれ",
+    "name": "犬 ベッド おしゃれ ペット クッション ふわふわ ペットベッド…",
+    "headline": "犬 ベッド おしゃれ ペット クッション ふわふわ ペットベッド…",
     "description": "",
     "features": []
   },
   "rakuten-naturehike-direct-10000108": {
-    "name": "ワンタッチテント Naturehike wuji13 pro T…",
-    "headline": "ワンタッチテント Naturehike wuji13 pro T…",
+    "name": "ワンタッチテント Naturehike wuji13 pro…",
+    "headline": "ワンタッチテント Naturehike wuji13 pro…",
     "description": "",
     "features": []
   },
@@ -1910,20 +1844,20 @@
     "features": []
   },
   "rakuten-aideall-10000055": {
-    "name": "限定P15倍で2505円★ledランタン ソーラーランタン US…",
-    "headline": "限定P15倍で2505円★ledランタン ソーラーランタン US…",
+    "name": "ledランタン ソーラーランタン USB 充電式 ランタン 高輝…",
+    "headline": "ledランタン ソーラーランタン USB 充電式 ランタン 高輝…",
     "description": "5000mAh・防水。",
     "features": []
   },
   "rakuten-lepro-10000143": {
-    "name": "「楽天1位」 LEDランタン 防災用 電池式 防災停電対策 キャ…",
-    "headline": "「楽天1位」 LEDランタン 防災用 電池式 防災停電対策 キャ…",
+    "name": "LEDランタン 防災用 電池式 防災停電対策 キャンプ…",
+    "headline": "LEDランタン 防災用 電池式 防災停電対策 キャンプ…",
     "description": "防水。",
     "features": []
   },
   "rakuten-vanilla-vague-10522240": {
-    "name": "最強の2,000ルーメン！ランタン 電池式 LEDランタン LE…",
-    "headline": "最強の2,000ルーメン！ランタン 電池式 LEDランタン LE…",
+    "name": "最強の2,000ルーメン！ランタン 電池式 LEDランタン…",
+    "headline": "最強の2,000ルーメン！ランタン 電池式 LEDランタン…",
     "description": "",
     "features": []
   }

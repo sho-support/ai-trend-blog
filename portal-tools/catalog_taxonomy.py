@@ -14,11 +14,11 @@ DEPARTMENTS = [
  department('pc','PC・周辺機器','💻',[
   shelf('laptops','ノートPC','ノートパソコン 新品','ノートパソコン|ノートPC|MacBook','ケース|バッグ|カバー|フィルム|中古|スタンドのみ',25000),
   shelf('desktops','デスクトップPC','デスクトップパソコン 新品','デスクトップ|ミニPC|ミニパソコン','中古|ケースのみ|電源のみ',25000),
-  shelf('monitor','PCモニター','液晶ディスプレイ IPS','モニター|ディスプレイ','ゲーミング|gaming|アーム|フィルム|カバー|スタンドのみ|中古',6000),
+  shelf('monitor','PCモニター','液晶ディスプレイ IPS','モニター|ディスプレイ','ゲーミング|gaming|アーム|フィルム|カバー|スタンドのみ|中古|互換品|交換用|修理|液晶パネル',6000),
   shelf('keyboards','キーボード','キーボード ワイヤレス','キーボード','ゲーミング|gaming|カバー|ケース|キーキャップ|キースイッチ|楽器',1000),
   shelf('mice','マウス','マウス ワイヤレス','マウス','ゲーミング|gaming|マウスパッド|ケース|スプレー',700),
   shelf('routers','Wi-Fiルーター','Wi-Fi ルーター','ルーター|ルータ','収納|スタンド|ケース|レンタル',2500),
-  shelf('printers','プリンター','プリンター 本体','プリンター|プリンタ|複合機','インクのみ|トナー|用紙|カートリッジのみ|中古',6000),
+  shelf('printers','プリンター','プリンター 本体','プリンター|プリンタ|複合機','インクのみ|トナー|用紙|カートリッジ|イメージドラム|ドラムユニット|プリントヘッド|中古',6000),
   shelf('storage','SSD・外付けストレージ','外付け SSD','SSD|ハードディスク|HDD','ケースのみ|収納|ケーブルのみ',2000),
  ]),
  department('gaming','ゲーム','🎮',[
@@ -26,7 +26,7 @@ DEPARTMENTS = [
   shelf('game-consoles','ゲーム機本体','ゲーム機 本体 新品','Nintendo Switch|ニンテンドースイッチ|PlayStation|プレイステーション|PS5|Xbox','ソフトのみ|ケース|フィルム|カバー|スタンド|コントローラー|修理|ジャンク|中古',20000),
   shelf('game-controllers','コントローラー','ゲーム コントローラー','コントローラー|コントローラ|ゲームパッド','カバー|ケース|スティックのみ',1500),
   shelf('gaming-headsets','ゲーミングヘッドセット','ゲーミングヘッドセット','ゲーミング|gaming','イヤーパッド|ケース|スタンド|交換用',1500),
-  shelf('game-software','ゲームソフト','Nintendo Switch ソフト','Switch|PS5|PlayStation','本体|ケース|収納|カバー|フィルム|中古',2000),
+  shelf('game-software','ゲームソフト','Nintendo Switch ソフト','Switch|PS5|PlayStation','本体|ケース|収納|カバー|フィルム|中古|すぐに遊べるセット|アダプタ|ドック付き',2000),
  ]),
  department('appliances','生活家電・テレビ','🏠',[
   shelf('televisions','テレビ','4K テレビ','テレビ','スタンド|壁掛け金具|リモコン|保護|アンテナ|台のみ|チューナーのみ|中古',18000),
@@ -34,9 +34,9 @@ DEPARTMENTS = [
   shelf('washing-machines','洗濯機','全自動洗濯機','洗濯機','洗濯機用|台のみ|ホース|カバー|ラック|レンタル|中古',18000),
   shelf('air-conditioners','エアコン','エアコン 本体','エアコン','リモコン|カバー|フィルター|洗浄|クリーニング|配管のみ|中古',25000),
   shelf('vacuum-cleaners','掃除機','掃除機 コードレス','掃除機|クリーナー','フィルター|バッテリーのみ|交換用|紙パック|替えブラシ',4000),
-  shelf('microwave-ovens','電子レンジ・オーブン','電子レンジ 本体','電子レンジ|オーブンレンジ','ラック|台のみ|調理器|容器|中古',7000),
-  shelf('rice-cookers','炊飯器','炊飯器 本体','炊飯器|炊飯ジャー','内釜のみ|内なべ|部品|用パッキン|中古',5000),
-  shelf('air-purifiers','空気清浄機','空気清浄機 本体','空気清浄機','交換用|フィルターのみ|フィルタのみ|中古',5000),
+  shelf('microwave-ovens','電子レンジ・オーブン','電子レンジ','電子レンジ|オーブンレンジ','ラック|台のみ|調理器|容器|中古',7000),
+  shelf('rice-cookers','炊飯器','炊飯器','炊飯器|炊飯ジャー','内釜のみ|内なべ|部品|用パッキン|中古',5000),
+  shelf('air-purifiers','空気清浄機','空気清浄機 本体','空気清浄機','交換用|フィルターのみ|フィルタのみ|電極ユニット|脱臭フィルター|加湿フィルター|集じんフィルター|中古',5000),
   shelf('electric-kettles','電気ケトル','電気ケトル','ケトル|電気ポット','フィルター|交換用|中古',2000),
  ]),
  department('cameras','カメラ','📷',[
@@ -44,7 +44,7 @@ DEPARTMENTS = [
   shelf('digital-cameras','コンパクトカメラ','デジタルカメラ 新品','デジタルカメラ|デジカメ|コンパクトカメラ','ケース|バッグ|フィルム|カバー|中古',6000),
   shelf('action-cameras','アクションカメラ','アクションカメラ 本体','アクションカメラ|GoPro|Osmo Action|Insta360','ケース|フィルム|カバー|マウント|バッテリー|中古',15000),
   shelf('camera-lenses','交換レンズ','交換レンズ カメラ','レンズ','レンズキャップ|レンズカバー|フィルター|フィルタ|保護|中古',10000),
-  shelf('tripods','三脚・撮影用品','カメラ 三脚','三脚','ケースのみ|ネジのみ',1500),
+  shelf('tripods','三脚・一脚','三脚 一眼レフ','^.{0,45}(?:三脚|一脚)','バッグ|リュック|撮影ベルト|固定吊り|ケースのみ|ネジのみ|カメラ本体|ジンバルカメラ',1500),
  ]),
  department('mobile','スマホ・タブレット','📱',[
   shelf('smartphones','スマートフォン本体','スマートフォン 本体 新品','スマートフォン|iPhone|Xperia|Galaxy|Pixel|AQUOS|OPPO|Xiaomi','ケース|フィルム|カバー|ガラス|修理|ジャンク|中古',18000),
@@ -97,7 +97,7 @@ DEPARTMENTS = [
   shelf('yoga','ヨガ・ストレッチ','ヨガマット','ヨガマット|ストレッチマット','ケースのみ',1000),
   shelf('fitness-bikes','フィットネスバイク','フィットネスバイク','フィットネスバイク|エアロバイク|スピンバイク','カバー|マットのみ|中古',15000),
   shelf('treadmills','ランニングマシン','ランニングマシン','ランニングマシン|ルームランナー|ウォーキングマシン','マットのみ|カバー|中古',18000),
-  shelf('sportswear','スポーツウェア','スポーツウェア トレーニング','ウェア|シャツ|パンツ|ジャージ','ペット',1000),
+  shelf('sportswear','スポーツウェア','トレーニング シャツ','ウェア|シャツ|パンツ|ジャージ','ペット|グローブ|手袋|ハンドウォーマー',1000),
  ]),
  department('stationery','文房具・事務用品','✏️',[
   shelf('pens','ペン・筆記具','ボールペン','ボールペン|シャープペン|万年筆','替芯のみ|替え芯のみ|リフィルのみ',400),
@@ -157,7 +157,7 @@ def normalized_kind(item):
 
 def eligible_title(title,kind):
     c=BY_KIND.get(kind)
-    if not c or re.search(r'ふるさと納税|返礼品|寄附金',title):return False
+    if not c or re.search(r'ふるさと納税|返礼品|寄附金|中古|ジャンク',title):return False
     return bool(re.search(c['accept'],title,re.I)) and not (c['exclude'] and re.search(c['exclude'],title,re.I))
 
 def public_category(c):
@@ -169,7 +169,7 @@ import json
 from pathlib import Path
 _GENRES=json.loads((Path(__file__).parent/'rakuten_genres.json').read_text())
 _ROOTS={'pc':'パソコン・周辺機器','gaming':'テレビゲーム','appliances':'家電','cameras':'カメラ・ビデオカメラ・光学機器','mobile':'スマートフォン・タブレット','audio':'オーディオ','beauty':'美容・コスメ・香水','food':'食品','toys':'おもちゃ','watches':'腕時計','fitness':'スポーツ・アウトドア','stationery':'文房具・事務用品','bags':'バッグ・小物・ブランド雑貨','fashion':'靴','home':'インテリア・寝具・収納','daily':'日用品雑貨・文房具・手芸','pets':'ペット・ペットグッズ','outdoors':'スポーツ・アウトドア'}
-_SPECIFIC={'monitor':'ディスプレイ','gaming-monitor':'ディスプレイ','gaming-headsets':'ゲーム用機器','televisions':'テレビ','hair-dryers':'美容・健康家電','hair-irons':'美容・健康家電','shavers':'美容・健康家電','beauty-devices':'美顔器・スチーマー','snacks':'スイーツ・お菓子','water':'水・ソフトドリンク','coffee':'コーヒー','tea':'お茶・紅茶','plastic-models':'ホビー','figures':'ホビー','smartwatches':'スマートウォッチ本体','menswear':'メンズファッション','womenswear':'レディースファッション','wallets':'財布・ケース','cookware':'キッチン用品・食器・調理器具','tableware':'キッチン用品・食器・調理器具','lighting':'ライト・照明器具','portable-power':'防災関連グッズ'}
+_SPECIFIC={'printers':'プリンタ','rice-cookers':'炊飯器','game-software':'NintendoSwitchソフト','sportswear':'スポーツウェア・アクセサリー','monitor':'ディスプレイ','gaming-monitor':'ディスプレイ','gaming-headsets':'ゲーム用機器','televisions':'テレビ','hair-dryers':'美容・健康家電','hair-irons':'美容・健康家電','shavers':'美容・健康家電','beauty-devices':'美顔器・スチーマー','snacks':'スイーツ・お菓子','water':'水・ソフトドリンク','coffee':'コーヒー','tea':'お茶・紅茶','plastic-models':'ホビー','figures':'ホビー','smartwatches':'スマートウォッチ本体','menswear':'メンズファッション','womenswear':'レディースファッション','wallets':'財布・ケース','cookware':'キッチン用品・食器・調理器具','tableware':'キッチン用品・食器・調理器具','lighting':'ライト・照明器具','portable-power':'防災関連グッズ'}
 for _c in CATEGORIES:
     _c['genre_id']=_GENRES.get(_SPECIFIC.get(_c['key'],_ROOTS[_c['department']]),0)
     if _c['key']=='noodles':_c['query']='麺類 セット'
@@ -177,3 +177,7 @@ for _c in CATEGORIES:
     if _c['key']=='water':_c['query']='炭酸水'
     if _c['key']=='coffee':_c['query']='コーヒー'
     if _c['key']=='tea':_c['query']='紅茶 ティーバッグ'
+
+# Portable power stations appear under multiple official branches.
+BY_KIND['portable-power']['genre_id']=0
+BY_KIND['portable-power']['query']='ポータブル電源'
