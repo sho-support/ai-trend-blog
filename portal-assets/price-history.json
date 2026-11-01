@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T21:14:48.841438+09:00",
+  "updated_at": "2026-11-01T22:30:22.290126+09:00",
   "items": {
     "rakuten-yokumoku-10000435": [
       {
@@ -1615,6 +1615,10 @@
       {
         "date": "2026-10-31",
         "price": 1280
+      },
+      {
+        "date": "2026-11-01",
+        "price": 1280
       }
     ],
     "rakuten-rakutenoriginal-daily-10000001": [
@@ -1698,6 +1702,10 @@
     "rakuten-netbaby-10044341": [
       {
         "date": "2026-10-31",
+        "price": 6057
+      },
+      {
+        "date": "2026-11-01",
         "price": 6057
       }
     ],
@@ -1938,6 +1946,10 @@
     "rakuten-tkms-10000814": [
       {
         "date": "2026-10-31",
+        "price": 15990
+      },
+      {
+        "date": "2026-11-01",
         "price": 15990
       }
     ],
@@ -4013,6 +4025,138 @@
       {
         "date": "2026-11-01",
         "price": 426800
+      }
+    ],
+    "rakuten-premiumgift-10000042": [
+      {
+        "date": "2026-11-01",
+        "price": 52999
+      }
+    ],
+    "rakuten-jism-14558780": [
+      {
+        "date": "2026-11-01",
+        "price": 92510
+      }
+    ],
+    "rakuten-r-toner-10007556": [
+      {
+        "date": "2026-11-01",
+        "price": 31800
+      }
+    ],
+    "rakuten-jism-14607505": [
+      {
+        "date": "2026-11-01",
+        "price": 39567
+      }
+    ],
+    "rakuten-premoa-11150935": [
+      {
+        "date": "2026-11-01",
+        "price": 208000
+      }
+    ],
+    "rakuten-superdeal-10002065": [
+      {
+        "date": "2026-11-01",
+        "price": 32980
+      }
+    ],
+    "rakuten-superdeal-10005587": [
+      {
+        "date": "2026-11-01",
+        "price": 14990
+      }
+    ],
+    "rakuten-vitopal-10000613": [
+      {
+        "date": "2026-11-01",
+        "price": 37800
+      }
+    ],
+    "rakuten-tabletpckoubou-10002287": [
+      {
+        "date": "2026-11-01",
+        "price": 10780
+      }
+    ],
+    "rakuten-kamimatsuri-10000570": [
+      {
+        "date": "2026-11-01",
+        "price": 2380
+      }
+    ],
+    "rakuten-tescom-japan-10000227": [
+      {
+        "date": "2026-11-01",
+        "price": 8690
+      }
+    ],
+    "rakuten-mycosmeticbox-10000390": [
+      {
+        "date": "2026-11-01",
+        "price": 9350
+      }
+    ],
+    "rakuten-superdeal-10002044": [
+      {
+        "date": "2026-11-01",
+        "price": 3982
+      }
+    ],
+    "rakuten-cafekobo-10000942": [
+      {
+        "date": "2026-11-01",
+        "price": 3880
+      }
+    ],
+    "rakuten-linomirai-10000029": [
+      {
+        "date": "2026-11-01",
+        "price": 2000
+      }
+    ],
+    "rakuten-book-19772683": [
+      {
+        "date": "2026-11-01",
+        "price": 1375
+      }
+    ],
+    "rakuten-book-19872275": [
+      {
+        "date": "2026-11-01",
+        "price": 1540
+      }
+    ],
+    "rakuten-doshisha-marche-10000033": [
+      {
+        "date": "2026-11-01",
+        "price": 3630
+      }
+    ],
+    "rakuten-tansu-10042962": [
+      {
+        "date": "2026-11-01",
+        "price": 26999
+      }
+    ],
+    "rakuten-luminous-club-10008851": [
+      {
+        "date": "2026-11-01",
+        "price": 9980
+      }
+    ],
+    "rakuten-net-ryohin-10285595": [
+      {
+        "date": "2026-11-01",
+        "price": 6980
+      }
+    ],
+    "rakuten-ecoflow-10000266": [
+      {
+        "date": "2026-11-01",
+        "price": 196700
       }
     ]
   },
