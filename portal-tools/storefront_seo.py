@@ -59,8 +59,11 @@ def cards(items, copies):
                     + '<div class="product-card-body"><h2><a href="' + url + '">' + esc(copy['name']) + '</a></h2>'
                     + ('<p class="product-intro">' + esc(copy['description']) + '</p>' if copy['description'] else '')
                     + '<div class="product-card-bottom">' + price
-                    + '<a class="product-open" href="' + url + '" aria-label="' + esc(copy['name'])
-                    + 'の詳細">詳しく見る <span aria-hidden="true">→</span></a></div></div></article>')
+                    + '<a class="product-open product-buy" href="' + esc(item['url'])
+                    + '" data-buy="' + esc(item['id']) + '" target="_blank" rel="noopener noreferrer sponsored" aria-label="'
+                    + esc(copy['name']) + 'を' + ('公式ショップ' if item.get('source') == 'a8' else '楽天市場')
+                    + 'で見る">' + ('公式ショップで見る' if item.get('source') == 'a8' else '楽天市場で見る')
+                    + ' <span aria-hidden="true">↗</span></a></div></div></article>')
     return ('<p class="loading" id="catalog-status" role="status"' + (' hidden' if rows else '') + '>'
             + ('' if rows else '現在掲載できる商品はありません。') + '</p>'
             + '<div class="product-grid" id="catalog-grid">' + ''.join(rows) + '</div>')

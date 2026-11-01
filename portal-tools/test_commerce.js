@@ -60,11 +60,12 @@ async function catalogLifecycle() {
     const nodes={'catalog-grid':grid,'catalog-status':status,'product-detail':detail};
     const context={Date:Clock,URL,Intl,console,HTMLImageElement:class {},
       CATALOG_CONFIG:{mode,kind:'power-bank',id:'battery'},CATALOG_CATEGORIES:[{key:'power-bank',file:'mobile-battery.html'}],
+      CATALOG_INITIAL:{items:[{...product,kind:'power-bank'}],copies:{}},
       document:{currentScript:{src:'https://example.test/portal-assets/catalog.js'},getElementById:id=>nodes[id],querySelector:()=>null,querySelectorAll:()=>[],addEventListener:(type,callback)=>{listeners[type]=callback;},hidden:false},
       location:{href:'https://example.test/products/items/battery.html',pathname:'/products/items/battery.html'},
       addEventListener(){},setInterval:callback=>{timers.push(callback);return timers.length;},clearInterval(){},
       gtag:(...args)=>events.push(args),
-      fetch:async url=>({ok:true,json:async()=>String(url).endsWith('product-copy.json')?{}:{items:[{...product,kind:'power-bank',title:product.title+'【公式店 ポイント10倍 ギフト 送料無料】',display_title:product.title+'【公式店 ポイント10倍 ギフト 送料'},{...product,id:'monitor',kind:'monitor',title:'4K モニター'}]}}),
+      fetch:async url=>({ok:true,json:async()=>String(url).endsWith('product-copy.json')?{}:String(url).endsWith('a8-approved.json')?{items:[]}:{items:[{...product,kind:'power-bank',title:product.title+'【公式店 ポイント10倍 ギフト 送料無料】',display_title:product.title+'【公式店 ポイント10倍 ギフト 送料'},{...product,id:'monitor',kind:'monitor',title:'4K モニター'}]}}),
     };
     context.window=context;vm.createContext(context);
     for(const script of ['commerce.js','catalog.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../portal-assets',script),'utf8'),context);
@@ -76,19 +77,36 @@ async function catalogLifecycle() {
   check(category.grid.innerHTML.includes('4K モニター'),false,'category never mixes another genre');
   check(category.grid.innerHTML.includes('ポイント10倍'),false,'new items strip promotional metadata after the product name');
   check(category.grid.innerHTML.includes('【'),false,'new items never show a cut-off marketing bracket');
+  check(category.grid.innerHTML.includes('data-buy="battery"'),true,'category can open the actual shop without another page');
+  check(category.grid.innerHTML.includes('rel="noopener noreferrer sponsored"'),true,'direct shop link is marked as advertising');
+  const listLink={dataset:{buy:'battery'},href:product.url};
+  category.listeners.click({target:{closest:()=>listLink},preventDefault(){throw Error('fresh list purchase blocked');}});
+  check(category.events[0][2].placement,'list','list clicks are distinguishable from detail clicks');
   category.expire();category.timers[0]();
   check(category.grid.innerHTML,'','category removes expired offers without a reload');
+  let listBlocked=false;
+  category.listeners.click({target:{closest:()=>listLink},preventDefault(){listBlocked=true;}});
+  check(listBlocked,true,'an expired list link cannot bypass eligibility');
+  check(category.events.length,1,'blocked list purchase is not counted as a click');
   const detail=await fixture('product');
   check(detail.detail.innerHTML.includes('data-buy="battery"'),true,'product detail has one real purchase action');
+  const views=detail.events.filter(x=>x[1]==='view_item');
+  check(views.length,1,'seed plus fresh feed counts only one detail view');
+  check(views[0][2].items[0].item_id,'battery','view uses the actual product identity');
+  check(views[0][2].items[0].price,3000,'known price is recorded without inventing revenue');
   const link={dataset:{buy:'battery'},href:product.url};
   detail.listeners.click({target:{closest:()=>link},preventDefault(){throw Error('fresh purchase link blocked');}});
-  check(detail.events[0][1],'portal_outbound_click','purchase action emits a measurable click');
-  check(detail.events[0][2].item_id,'battery','correct product identity is recorded');
+  const click=detail.events.find(x=>x[1]==='portal_outbound_click');
+  check(click[1],'portal_outbound_click','purchase action emits a measurable click');
+  check(click[2].item_id,'battery','correct product identity is recorded');
+  check(click[2].placement,'detail','detail click source can be compared with list clicks');
+  check(detail.events.some(x=>x[1]==='purchase'),false,'visits and outbound clicks never pretend to be sales');
   check(JSON.stringify(detail.events).includes(product.url),false,'full referral URL is not sent to analytics');
   detail.expire();let blocked=false;
   detail.listeners.click({target:{closest:()=>link},preventDefault(){blocked=true;}});
   check(blocked,true,'expired purchase action is blocked immediately');
   check(detail.detail.innerHTML.includes('data-buy'),false,'expired product is removed');
+  check(detail.events.filter(x=>x[1]==='view_item').length,1,'expiry and repeated renders do not inflate views');
 }
 
 catalogLifecycle().then(()=>console.log('PASS:',checks,'commerce and storefront regressions'))

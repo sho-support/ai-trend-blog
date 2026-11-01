@@ -7,6 +7,7 @@
   const productBase=new URL('../products/',assetBase);
   const esc=C.escape;
   let feed=[],copies={},lastSignature='',failed=false,completeFeed=false;
+  const viewedItems=new Set();
   const activeCategory=document.querySelector('.category-nav a[aria-current]');
   if(activeCategory){
     const nav=activeCategory.parentElement;
@@ -35,6 +36,15 @@
     return '<img class="product-image '+cls+'" src="'+esc(x.image)+'"'+srcset+' alt="'+esc(copyFor(x).name)+'" width="600" height="600" decoding="async"'+(priority||config.mode==='product'?' fetchpriority="high"':' loading="lazy"')+'>';
   }
   const detailURL=x=>new URL('items/'+encodeURIComponent(x.id)+'.html',productBase).href;
+  function trackView(item,copy){
+    if(viewedItems.has(item.id)||typeof window.gtag!=='function')return;
+    try{
+      const data={item_id:item.id,item_name:copy.name,item_category:item.kind,affiliation:item.seller||item.shop||'楽天市場'};
+      if(Number.isFinite(item.price_yen))data.price=item.price_yen;
+      window.gtag('event','view_item',{portal_kind:'product',item_id:item.id,category:item.kind,source:item.source||'rakuten',currency:'JPY',items:[data]});
+      viewedItems.add(item.id);
+    }catch(_){ /* Measurement must not affect the shop link. */ }
+  }
   function render(){
     const rows=feed.filter(live);
     const signature=JSON.stringify([rows,copies,failed]);
@@ -74,7 +84,7 @@
           +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
           +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
           +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">¥'+Number(x.price_yen).toLocaleString('ja-JP')+'</p>':'')
-          +'<a class="product-open" href="'+esc(url)+'" aria-label="'+esc(copy.name)+'の詳細">詳しく見る <span aria-hidden="true">→</span></a></div></div></article>';
+          +'<a class="product-open product-buy" href="'+esc(x.url)+'" data-buy="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored" aria-label="'+esc(copy.name)+'を'+(x.source==='a8'?'公式ショップ':'楽天市場')+'で見る">'+(x.source==='a8'?'公式ショップで見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a></div></div></article>';
       }).join('');
       return;
     }
@@ -92,6 +102,7 @@
         +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">'+esc(item.source==='a8'?'公式ショップで価格を見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a>'
         +'<p class="seller">'+esc(item.seller||(item.source==='a8'?item.shop||'公式ショップ':'楽天市場'))+'</p>'
         +'</div>';
+      trackView(item,copy);
     }
   }
   const initial=window.CATALOG_INITIAL;
@@ -107,7 +118,7 @@
     const item=feed.find(x=>x.id===link.dataset.buy);
     if(!live(item)){event.preventDefault();render();return;}
     link.dataset.itemId=item.id;
-    C.track(link,{portal_kind:'product',category:item.kind,source:item.source||'rakuten'});
+    C.track(link,{portal_kind:'product',category:item.kind,source:item.source||'rakuten',placement:config.mode==='product'?'detail':'list'});
   });
   document.addEventListener('error',event=>{
     if(event.target instanceof HTMLImageElement&&event.target.classList.contains('product-image')){

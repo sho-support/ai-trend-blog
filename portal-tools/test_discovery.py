@@ -11,6 +11,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 from storefront_seo import live, fingerprint
+from catalog_taxonomy import BY_KIND
 from notify_indexnow import changes, owned_url
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,6 +75,18 @@ class Discovery(unittest.TestCase):
         self.assertIn('BreadcrumbList',types)
         self.assertIn('ItemList',types)
         self.assertNotIn('Review',types)
+
+    def test_every_current_product_has_a_direct_shop_link_in_its_shelf(self):
+        items = json.loads((ROOT/'portal-assets/rakuten-feed.json').read_text())['items']
+        items += json.loads((ROOT/'portal-assets/a8-approved.json').read_text())['items']
+        for item in filter(live, items):
+            with self.subTest(id=item['id']):
+                page = Document((ROOT/'products'/BY_KIND[item['kind']]['file']).read_text())
+                links = [x for x in page.links if x.get('data-buy') == item['id']]
+                self.assertEqual(len(links),1)
+                self.assertEqual(links[0]['href'],item['url'])
+                self.assertEqual(links[0]['target'],'_blank')
+                self.assertIn('sponsored',links[0]['rel'])
 
     def test_notification_only_includes_our_site_and_changed_content(self):
         good = BASE+'products/'
