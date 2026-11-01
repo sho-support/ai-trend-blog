@@ -6974,5 +6974,1044 @@
         "source_confidence": 95
       }
     ]
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "楽天 セール ポイント キャンペーン",
+    "title": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ - OREFOLDER",
+    "summary": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ &nbsp;&nbsp; OREFOLDER",
+    "source": "OREFOLDER",
+    "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE9WYVJKbzhkRzh0ZXB1VmVyaTd2d0FqYWYtSFR4OEwtU1lGUHJ4aDN0NkxoN1hReUZ5YmJ5QUF6dFB5LXV4ZTJQXzNTQ3BZN04yWnFES1RpaXNmcmtq?oc=5",
+    "published": "Fri, 18 Sep 2026 07:00:00 GMT",
+    "category": "お金が得",
+    "score": 72,
+    "urgency": "medium",
+    "candidate_title": "楽天モバイル紹介CP改定：MNP以外でも13,000pt獲得できる裏技・併用条件",
+    "why_paid_value": "新規契約（MNPなし）でも13,000ptもらえる条件変更は大きく、サブ回線契約やポイント目的のポイ活読者にとって直接的な金銭メリットがある。",
+    "verification_needed": [
+      "13,000pt進呈の適用条件（紹介リンク経由、開通期限など）",
+      "既存会員の再契約や2回線目以降の対象可否",
+      "キャンペーンの終了予定日"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "「楽天・三木谷浩史の特別なお客様キャンペーン」（キャンペーンコード：2798）において、2026年9月17日0:00以降の申し込み分より、新規お申し込みおよび楽天モバイル（ドコモ回線・au回線）からのプラン変更（移行）で進呈されるポイントが13,000ポイント（期間限定ポイント、3回分割進呈）である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=87085238-9f1b-4af1-a470-ec2b20228755&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "特典適用の条件として、Webまたは店舗で対象プラン（Rakuten最強プランまたはRakuten最強U-NEXT）に指定のクーポンコードを適用して申し込み、プラン申し込みの翌月末日23:59までに利用開始し、同期限までにRakuten Linkアプリから発信して10秒以上の通話を行う必要がある。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=87085238-9f1b-4af1-a470-ec2b20228755&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "本キャンペーンの適用回数はおひとり様1契約1回限りであり、プラン申し込み終了日はWeb・店舗ともに未定である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=87085238-9f1b-4af1-a470-ec2b20228755&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        },
+        {
+          "claim": "通常の「【楽天モバイル】紹介キャンペーン（コード：1784）」や「【楽天従業員から紹介された方限定】Rakuten最強プラン紹介キャンペーン（コード：2162）」とは併用不可（本キャンペーンが優先適用）である。",
+          "source_url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=87085238-9f1b-4af1-a470-ec2b20228755&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "候補タイトルにある「裏技」に該当する公式の手順や制度の存在",
+        "過去に同一キャンペーンを適用したユーザーの再契約や2回線目以降の対象可否（公式ルール上は「おひとり様1契約1回限り」と明記）"
+      ],
+      "contradictions": [
+        "候補タイトルに「裏技」とあるが、公式情報には裏技要素はなく、指定クーポン適用・回線開通・Rakuten Link通話という規定通りの手続きに限定される。",
+        "候補タイトルに「紹介CP改定」とあるが、本施策は「楽天・三木谷浩史の特別なお客様キャンペーン（コード：2798）」であり、通常の紹介キャンペーン（コード：1784）とは別枠かつ併用不可である。"
+      ],
+      "safe_paid_title": "楽天モバイル「特別なお客様キャンペーン」：MNP以外の新規申込で13,000pt獲得の適用条件と注意点",
+      "safe_summary": "楽天モバイルの「楽天・三木谷浩史の特別なお客様キャンペーン（コード：2798）」では、2026年9月17日以降の申し込み分より、新規契約等のMNP以外の申し込みで進呈されるポイントが13,000ポイント（期間限定・3回分割進呈）となっています。特典獲得には指定クーポンコードの適用、翌月末日までの利用開始およびRakuten Linkアプリで10秒以上の発信通話が必要です。特典適用はおひとり様1契約1回限りで、通常の紹介キャンペーン等とは併用できません。",
+      "money_value_score": 75,
+      "paid_conversion_score": 60,
+      "time_sensitivity_score": 50,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "MNP以外の新規契約で13,000ポイントが進呈される公式条件や期限は確認できているものの、候補タイトルにある「裏技」は根拠のない誇張表現であり、通常の紹介キャンペーンとの混同も見られるため、タイトルおよび構成の修正を前提とした保留（hold）とします。"
+    },
+    "verified_at": "2026-11-01T22:41:08.727701+09:00",
+    "entity_info": {
+      "main_entity": "楽天モバイル",
+      "company_name": "楽天モバイル株式会社",
+      "search_keywords": [
+        "楽天モバイル",
+        "楽天・三木谷浩史の特別なお客様キャンペーン",
+        "キャンペーンコード 2798",
+        "Rakuten最強プラン"
+      ],
+      "likely_official_domains": [
+        "network.mobile.rakuten.co.jp",
+        "rakuten.co.jp"
+      ],
+      "official_pages_to_find": [
+        "特別なお客様へ: Rakuten最強プランのご案内",
+        "キャンペーン詳細・適用条件",
+        "キャンペーンルール"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://network.mobile.rakuten.co.jp/campaign/rakuten-employee/entry/vip/?tgMID=4401&sesid=87085238-9f1b-4af1-a470-ec2b20228755&scid=trf_mno_slink&argument=ZMhPE4GP&dmai=trf_mno_slink",
+        "domain": "network.mobile.rakuten.co.jp",
+        "source_type": "official",
+        "title": "特別なお客様へ: Rakuten最強プランのご案内 | 楽天モバイル",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://network.mobile.rakuten.co.jp/?scid=af_trf_mno&trflg=1",
+        "domain": "network.mobile.rakuten.co.jp",
+        "source_type": "official",
+        "title": "楽天モバイル",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://orefolder.jp/2026/09/rakuten-referral-3/",
+        "domain": "orefolder.jp",
+        "source_type": "secondary",
+        "title": "楽天モバイルの紹介キャンペーン（MNP以外）でもらえるポイントが最大13,000ポイントに増額！ – OREFOLDER",
+        "source_confidence": 100
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "業務効率化 AI サービス 新機能",
+    "title": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 - 北日本新聞webunプラス",
+    "summary": "PowerPoint上で、AIがスライドを編集。ChatSenseが新機能を提供予定 &nbsp;&nbsp; 北日本新聞webunプラス",
+    "source": "北日本新聞webunプラス",
+    "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE8yMnJTV25kSXVtZW1uRHRSNTd4cnNJX19oWUhwbWhZdWFfT2tINW9XN2VacHBEN2ZzMjdGcGFSUEFySHAycWY0ZU44VQ?oc=5",
+    "published": "Fri, 02 Oct 2026 06:36:46 GMT",
+    "category": "時間を得する",
+    "score": 88,
+    "urgency": "medium",
+    "candidate_title": "PowerPointを開いたままAIがスライドを直接編集：「ChatSense」新機能と実務時短テクニック",
+    "why_paid_value": "外部ツールを行き来せずパワポネイティブでAI編集ができる機能は、多くのホワイトカラー読者が直面する「資料作成の時間」を直接削減できるため、有料コンテンツとして最も購入動機が生まれやすい。",
+    "verification_needed": [
+      "「ChatSense」の提供開始日とPowerPointアドインとしての利用料金",
+      "既存のMicrosoft 365 Copilot等との機能・コスト比較",
+      "日本語プロンプトの対応精度と編集可能な要素（レイアウト、テキスト、図形）"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-18T13:58:30.206923+09:00",
+    "collection_date_jst": "2026-10-18",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 75,
+      "verified_claims": [
+        {
+          "claim": "ChatSenseの基本プラン「ビジネス」は初期費用0円、月額980円/人から利用可能で、最低利用期間・最低利用人数はない",
+          "source_url": "https://chatsense.jp/function/codesense",
+          "source_type": "official"
+        },
+        {
+          "claim": "ChatSenseの拡張機能「スライド生成AI」は月額98,000円（ビジネスプラン以上の基本プラン加入が必要）で、組織全体で月1000枚までスライド生成が可能である",
+          "source_url": "https://chatsense.jp/function/codesense",
+          "source_type": "official"
+        },
+        {
+          "claim": "ChatSense Notebook機能では、PDF、Word、Excel、PowerPointをソースとして追加し、AIによる回答やスライド生成が可能である",
+          "source_url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "PowerPoint上でAIがスライドを直接編集する新機能の具体的な提供開始日（リリース日）",
+        "新機能の利用条件および追加費用の有無",
+        "候補タイトルに含まれる「実務時短テクニック」の具体的な操作手順やノウハウ"
+      ],
+      "contradictions": [
+        "候補タイトルに「実務時短テクニック」とあるが、与えられた情報源には新機能の操作ノウハウや具体的な時短テクニックに関する記載は存在しない",
+        "機能は「提供予定」とされており、現時点で実務テクニックとして解説可能な状態ではない"
+      ],
+      "safe_paid_title": "PowerPoint連携を予定する法人向けAI「ChatSense」：既存スライド生成機能と料金体系の概要",
+      "safe_summary": "ナレッジセンスが提供する法人向けAI「ChatSense」では、月額980円/人のビジネスプランに加え、月額98,000円の拡張機能として月1000枚まで作成できるスライド生成AIを提供しています。PowerPoint上で編集可能とする新機能の提供予定が報じられていますが、具体的なリリース日や実務テクニックの詳細は公開情報から確認できません。",
+      "money_value_score": 35,
+      "paid_conversion_score": 40,
+      "time_sensitivity_score": 45,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": false,
+      "recommended_action": "hold",
+      "reason": "既存のスライド生成機能や料金プランは公式ページで確認できるものの、新機能の詳細な提供開始日や利用条件が未確定であり、候補タイトルにある「実務時短テクニック」を裏付ける情報源が存在しないため。"
+    },
+    "verified_at": "2026-11-01T22:41:08.727701+09:00",
+    "entity_info": {
+      "main_entity": "ChatSense",
+      "company_name": "株式会社ナレッジセンス",
+      "search_keywords": [
+        "ChatSense",
+        "ナレッジセンス",
+        "ChatSense スライド生成AI",
+        "ChatSense PowerPoint"
+      ],
+      "likely_official_domains": [
+        "chatsense.jp",
+        "knowledgesense.jp"
+      ],
+      "official_pages_to_find": [
+        "スライド生成機能詳細",
+        "料金プラン",
+        "新機能リリース情報",
+        "お問い合わせ"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://chatsense.jp/contact?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向けChatGPT「ChatSense」｜社内データ検索・セキュリティ強化",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/gallery/slide-gen?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatSense スライド生成AI事例集",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/blog/enterprise-ai-comparison?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け生成AIサービス比較｜全ての料金公開・おすすめ契約",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/blog/chatgpt-business-plan?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "ChatGPTの法人契約プラン｜利用方法・料金について",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/codesense",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "国産コーディングエージェント「CodeSense」｜複雑なコード・VBAの改修を支援",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://knowledgesense.jp/?utm_source=413&utm_medium=prtimes",
+        "domain": "knowledgesense.jp",
+        "source_type": "official",
+        "title": "株式会社ナレッジセンス｜会社概要｜東京都",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/notebook?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「ChatSense Notebook」｜社内資料を根拠つきで読み解くAIワークスペース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/function/cowork?utm_source=413&utm_medium=prtimes",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "法人向け「Cowork」｜ブラウザ操作AIエージェント",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/case/kao",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "花王、ChatSense を導入。膨大な「研究データ」を生成AI で探索可能に。新時代のデータ活用術",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://chatsense.jp/blog/openai-astra",
+        "domain": "chatsense.jp",
+        "source_type": "official",
+        "title": "GPT-6 Astraとは？5.6 Solとの違い・セキュリティ・GPTで使えるプラン",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "お金を生む",
+    "query": "生成AI 新サービス API 料金 プラン",
+    "title": "【2026年10月版】生成AI主要8サービス料金早見表 ―― 上位モデル「GPT 6 Astra」や「Gemini 4 Argon」が登場 - Business Insider Japan",
+    "summary": "【2026年10月版】生成AI主要8サービス料金早見表 ―― 上位モデル「GPT 6 Astra」や「Gemini 4 Argon」が登場 &nbsp;&nbsp; Business Insider Japan",
+    "source": "Business Insider Japan",
+    "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOU0t4dzRMWGU2Sk5NS1lTV1gwWHl2Zlc1SkVna0xydXRKNmhHS19NTlA1a0s4TUpvcjQ0WDZDQnM5bmRYRzV5bTVSRHYzWXY2OXVpeDJreEdBcjRMY0lobXhUTWwxYmxJYWZfaUIwWTJiRnRwMzJGTjM1cng3aUJjVzlTdm5mcnNZM0RXZ3Z1RWJRVlJy?oc=5",
+    "published": "Sun, 18 Oct 2026 02:00:00 GMT",
+    "category": "お金を生む",
+    "score": 86,
+    "urgency": "medium",
+    "candidate_title": "次世代生成AI APIコスト早見表：GPT-6 Astra／Gemini 4 Argonの費用対効果と移行判断",
+    "why_paid_value": "最新上位モデルのAPIトークン単価・料金体系の比較整理は、AI受託やサービス開発を行うクリエイターの開発費削減と利益最大化に不可欠。",
+    "verification_needed": [
+      "各モデルの正式名称、公開ステータス、一般提供日",
+      "入力/出力トークンごとの正規料金表",
+      "レートリミットおよび商用利用規約"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-21T02:24:30.868113+09:00",
+    "collection_date_jst": "2026-10-21",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 45,
+      "verified_claims": [
+        {
+          "claim": "OpenAI APIにおけるGPT-6 Astraの標準料金は入力100万トークンあたり10ドル、出力100万トークンあたり50ドル、27万2000トークン超過時は入力・キャッシュ2倍・出力1.5倍の長文料金が適用されると報じられている",
+          "source_url": "https://aismiley.co.jp/ai_news/gpt-6-astra/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "OpenAI APIにおけるGPT-6.1 Solの標準料金は入力100万トークンあたり2ドル、出力100万トークンあたり10ドルであると報じられている",
+          "source_url": "https://www.itmedia.co.jp/news/article/2609/23/2000001674/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "OpenAI APIにおけるGPT-6.1 Terraの標準料金は入力100万トークンあたり1米ドル、キャッシュ入力0.05米ドル、出力5米ドルであると報じられている",
+          "source_url": "https://forest.watch.impress.co.jp/docs/news/2151338.html",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "OpenAI APIにおけるGPT-6 Lunaの標準料金は入力100万トークンあたり0.1ドル、出力0.5ドルであると報じられている",
+          "source_url": "https://www.itmedia.co.jp/news/article/2609/23/2000001674/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "GoogleのGemini 4 Argonが2026年10月14日にGoogle AI Studio/Gemini APIおよびGeminiアプリ向けに提供開始されたと報じられている",
+          "source_url": "https://www.businessinsider.jp/article/2610-how-much-did-major-generative-ai-service-fees/",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "OpenAI（openai.com）およびGoogle（google.com）の公式ドメインまたは一次発表（primary_release）による正規API料金表・規約の直接確認",
+        "取得ソース内におけるGemini 4 Argonの具体的なAPIトークン単価（入力・出力・キャッシュ単価）の明記",
+        "各モデルのAPIレートリミットおよび商用利用規約の公式情報"
+      ],
+      "contradictions": [
+        "提供された取得ソースがすべてメディア等の二次情報（secondary）であり、有料記事基準を満たす公式・一次ソースが含まれていない",
+        "提供された取得テキスト内にGemini 4 ArgonのAPI具体的な料金数値（入力$2/出力$10等）の直接の記述が存在しない"
+      ],
+      "safe_paid_title": "報道に基づくGPT-6シリーズ（Astra・Sol・Terra・Luna）のAPI料金概要整理",
+      "safe_summary": "メディア報道に基づき、GPT-6 Astra（入力$10/出力$50）、GPT-6.1 Sol（入力$2/出力$10）、GPT-6.1 Terra（入力$1/出力$5）、GPT-6 Luna（入力$0.1/出力$0.5）の各API料金数値を整理。ただし公式ドメインによる一次情報の直接確認は未完了です。",
+      "money_value_score": 50,
+      "paid_conversion_score": 40,
+      "time_sensitivity_score": 60,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": false,
+      "recommended_action": "hold",
+      "reason": "提示された情報源がすべて二次情報（secondary）であり、有料記事の厳格なファクトチェック基準である公式（official）または一次発表（primary_release）の情報源が不足しています。また、取得ソース内にGemini 4 Argonの具体的なAPI料金数値の記載が確認できないため、要手動確認（needs_manual）および保留（hold）とします。"
+    },
+    "verified_at": "2026-11-01T22:41:08.727701+09:00",
+    "entity_info": {
+      "main_entity": "OpenAI API",
+      "company_name": "OpenAI",
+      "search_keywords": [
+        "OpenAI API pricing",
+        "GPT-6 Astra 料金",
+        "Gemini 4 Argon API pricing",
+        "ChatGPT 料金プラン"
+      ],
+      "likely_official_domains": [
+        "openai.com",
+        "google.com"
+      ],
+      "official_pages_to_find": [
+        "料金",
+        "API pricing",
+        "利用規約"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.businessinsider.jp/article/2610-how-much-did-major-generative-ai-service-fees/",
+        "domain": "businessinsider.jp",
+        "source_type": "secondary",
+        "title": "【2026年10月版】生成AI主要8サービス料金早見表 ―― 上位モデル「GPT 6 Astra」や「Gemini 4 Argon」が登場 | Business Insider Japan",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://aismiley.co.jp/ai_news/gpt-realtime2-translate-whisper/",
+        "domain": "aismiley.co.jp",
+        "source_type": "secondary",
+        "title": "GPT-Realtime-2とは？OpenAI新音声3モデルの違い・料金・使い分けを徹底解説",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://forest.watch.impress.co.jp/docs/news/2151338.html",
+        "domain": "forest.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、「GPT-6.1 Terra」を発表 ～性能とコストのバランス型、API料金は先代の半額 - 窓の杜",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://ledge.ai/articles/openai_gpt_6_sol_luna",
+        "domain": "ledge.ai",
+        "source_type": "secondary",
+        "title": "OpenAI、「GPT-6 Sol」「GPT-6 Luna」を公開 Astraの技術を低価格モデルに展開、API料金を引き下げ | Ledge.ai",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.digitaltoday.co.kr/jp/view/119730/openai-unveils-gpt-6-1-terra-cuts-prices-boosts-coding-performance",
+        "domain": "digitaltoday.co.kr",
+        "source_type": "secondary",
+        "title": "OpenAI、「GPT-6.1 Terra」発表 標準API料金を半額に",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.itmedia.co.jp/news/article/2609/23/2000001674/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、「GPT-6 Sol」と「GPT-6 Luna」公開 API料金は前世代の半額に - ITmedia NEWS",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://aismiley.co.jp/ai_news/gpt-6-astra/",
+        "domain": "aismiley.co.jp",
+        "source_type": "secondary",
+        "title": "GPT-6 Astraとは？進化点・旧モデル比較からビジネス活用法まで徹底解説 | DXを推進するAIポータルメディア「AIsmiley」",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://shift-ai.co.jp/blog/72847/",
+        "domain": "shift-ai.co.jp",
+        "source_type": "secondary",
+        "title": "【推論・PC操作が進化】GPT-6 Astraの特徴・料金・使い方を解説｜SHIFT AI TIMES",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.yahoo.co.jp/articles/bc012062ad2d4cd21bcef90cf4028e5fc97ada8b",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、「GPT-6.1 Terra」を発表 ～性能とコストのバランス型、API料金は先代の半額（窓の杜） - Yahoo!ニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://aismiley.co.jp/ai_news/chatgpt-6-1-terra/",
+        "domain": "aismiley.co.jp",
+        "source_type": "secondary",
+        "title": "GPT-6.1 Terraとは？性能・料金・使い方とSol・Astraとの違いを解説",
+        "source_confidence": 100
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 - ニコニコニュース",
+    "summary": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現 &nbsp;&nbsp; ニコニコニュース",
+    "source": "ニコニコニュース",
+    "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9Sa0JVTUk0QVRLRmhaNkVreS0zZ2x1dmNEZTJieW5XdGJoLXNJbl9VOFF1ckZtaDFKcF94aDlacFNMelJqbWpIdHk5eUs2TjBsTDhmb3I2Wm1NelEzR3FzRXc0X0VkZWNtcU5aek0tNzI2WU1NRUQ2cHphRQ?oc=5",
+    "published": "Tue, 20 Oct 2026 15:45:14 GMT",
+    "category": "時間を得する",
+    "score": 87,
+    "urgency": "high",
+    "candidate_title": "HIX AI新機能「スキル」攻略：多重業務をワンクリック完結させる自動化レシピ",
+    "why_paid_value": "従来複数のプロンプトや手作業が必要だった多段階ワークフロー（調査→執筆→要約等）を1発で自動化する具体的レシピは、読者の労働時間を劇的に削る価値がある。",
+    "verification_needed": [
+      "新機能「スキル」の対象プラン（無料枠で試せるか）",
+      "作成したスキルの共有・複製可否",
+      "日本語出力の精度および外部ツール連携機能"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-21T02:24:30.868113+09:00",
+    "collection_date_jst": "2026-10-21",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "rejected",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "INNOVATE AI PTE. LTD.は2026年10月20日、HIX AIにおいて、AIエージェントに専門的な実行能力を付与する新機能「スキル」をリリースした。",
+          "source_url": "https://www.jiji.com/jc/article?k=000000025.000175497&g=prt",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "「スキル」機能は、ユーザーの指示により情報検索・データ抽出・レポート執筆・プレゼン資料生成などの一連の業務プロセスをAIが自律的に一括処理する機能パッケージである。",
+          "source_url": "https://www.jiji.com/jc/article?k=000000025.000175497&g=prt",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "提供されるスキルには「画像から動画生成」「YouTubeショート動画作成」「写真をアニメ化」「データ分析」「PDF AI」「画像文字起こし」「ビジネスレポート作成」「市場・競合分析」「AI議事録・会議アシスタント」などがある。",
+          "source_url": "https://www.jiji.com/jc/article?k=000000025.000175497&g=prt",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "自作スキルや外部スキルは、パソコンからのアップロード（ZIP形式など）またはGitHubの公開リポジトリURL経由でインポート可能で、チャット上での自動読み込みまたは「/」入力による手動呼び出しで実行できる。",
+          "source_url": "https://www.jiji.com/jc/article?k=000000025.000175497&g=prt",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "「ワークスペース 2.0」公開に伴い、10月27日～11月11日の期間で全有料プランが20%OFFとなる特別割引キャンペーンが実施された。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000028.000175497.html",
+          "source_type": "primary_release"
+        }
+      ],
+      "missing_claims": [
+        "各料金プラン（無料プラン、Pro、Max）における「スキル」機能の具体的な利用枠やクレジット消費量",
+        "「画像から動画生成」以外の各スキル生成物に関する包括的な商用利用規約・著作権条件",
+        "候補記事が謳う「自動化レシピ」に相当する具体的な設定手順・実例"
+      ],
+      "contradictions": [
+        "候補タイトルの「多重業務をワンクリック完結させる自動化レシピ」について、公式情報に記載されているのは「簡単な指示」や「/」コマンドによる機能呼び出しであり、「ワンクリック完結」や「自動化レシピ」といった具体的なノウハウ・設定集は存在せず、候補タイトルおよび有料価値の訴求が根拠以上に誇張されている。"
+      ],
+      "safe_paid_title": "HIX AI新機能「スキル」解説：自律型AIによる一括タスク処理とスキルのインポート手順",
+      "safe_summary": "INNOVATE AI PTE. LTD.は2026年10月20日、HIX AIに新機能「スキル」を追加しました。リサーチからレポート作成、データ分析や動画生成までの一連のタスクを自律的に一括処理できるほか、ZIPやGitHub経由で自作・外部スキルをインポートし、チャット上のコマンド等で呼び出して利用可能です。",
+      "money_value_score": 40,
+      "paid_conversion_score": 35,
+      "time_sensitivity_score": 50,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "reject",
+      "reason": "候補タイトルにある「ワンクリック完結させる自動化レシピ」および有料価値として掲げる具体的レシピ集は情報源に一切存在せず、機能説明を超えた大きな誇張となっています。公式発表内容以上の実用ノウハウが情報源から確認できないため却下（reject）とします。"
+    },
+    "verified_at": "2026-11-01T22:41:08.727701+09:00",
+    "entity_info": {
+      "main_entity": "HIX AI",
+      "company_name": "INNOVATE AI PTE. LTD.",
+      "search_keywords": [
+        "HIX AI スキル",
+        "HIX.AI 新機能 スキル",
+        "HIX AI 料金プラン",
+        "INNOVATE AI PTE. LTD."
+      ],
+      "likely_official_domains": [
+        "hix.ai"
+      ],
+      "official_pages_to_find": [
+        "料金プラン・利用制限",
+        "新機能「スキル」詳細",
+        "利用規約・商用利用条件"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.jiji.com/jc/article?k=000000025.000175497&g=prt",
+        "domain": "jiji.com",
+        "source_type": "primary_release",
+        "title": "HIX AIが複雑な業務を全自動化する新機能「スキル」を公開！複数ステップの作業を一気に完結し、圧倒的な生産性を実現：時事ドットコム",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000028.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIが「ワークスペース 2.0」をリリース！個人とチームの業務を一箇所で完結させ、ビジネスの生産性を大幅に向上 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000027.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがすべてのタスクを一元管理する新機能「プロジェクト」を公開！分断された業務を繋ぎ、長期プロジェクトを自動化 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000026.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがシーン別の画像生成機能をリリース！商品やロゴの原型を保ち、プロ品質のマーケティング画像を瞬時に作成 | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/prtimes_000000027_000175497/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIがすべてのタスクを一元管理する新機能「プロジェクト」を公開！分断された業務を繋ぎ、長期プロジェクトを自動化｜Infoseekニュース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000016.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "HIX.AIが実写レベルの最新モデル『GPT Image 2.0』の提供を開始！AI画像内に「正確な文字」が書ける時代へ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000006.000175497.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "【全面アップデート】生成AIプラットフォーム「HIX.AI」、AIチャット・スライド・動画・画像・文章生成機能を大幅強化！ | INNOVATE AI PTE. LTDのプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.jiji.com/jc/article?k=000000026.000175497&g=prt",
+        "domain": "jiji.com",
+        "source_type": "primary_release",
+        "title": "HIX AIがシーン別の画像生成機能をリリース！商品やロゴの原型を保ち、プロ品質のマーケティング画像を瞬時に作成：時事ドットコム",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://news.infoseek.co.jp/article/prtimes_000000029_000175497/",
+        "domain": "news.infoseek.co.jp",
+        "source_type": "primary_release",
+        "title": "HIX AIが「スライド生成エージェント2.0」を公開！資料生成からデザインの最適化、テンプレート適用までを全面的に自動化｜Infoseekニュース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://ascii.jp/elem/000/004/446/4446991/",
+        "domain": "ascii.jp",
+        "source_type": "primary_release",
+        "title": "ASCII.jp：HIX AIが「スライド生成エージェント2.0」を公開！資料生成からデザインの最適化、テンプレート適用までを全面的に自動化",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "OpenAI、Codexの新機能「Record & Replay」を公開 操作の実演で作業を自動化 - ビジネス+IT",
+    "summary": "OpenAI、Codexの新機能「Record & Replay」を公開 操作の実演で作業を自動化 &nbsp;&nbsp; ビジネス+IT",
+    "source": "ビジネス+IT",
+    "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE1lYklOLUF4RG1yVmEzalZGWHBwZk04RDY1cENkdWZKYldwNzgybEhtWDZfWDlwUVlvNmFxYXZEalppMWxaSmVyZ0w4M1BOUnlIakFB?oc=5",
+    "published": "Sat, 20 Jun 2026 07:00:00 GMT",
+    "category": "時間を得する",
+    "score": 88,
+    "urgency": "high",
+    "candidate_title": "OpenAI Codex「Record & Replay」：操作を見せるだけでPC業務を完全自動化する手法",
+    "why_paid_value": "操作の実演（画面録画・操作トレース）だけでAIがコード化・自動実行する機能は、プログラミング不要でRPA以上の時短を実現する最先端情報。",
+    "verification_needed": [
+      "提供ステータス（一般プレビューかAPI限定か）",
+      "動作環境（WebブラウザのみかOS全体か）",
+      "実行時のトークン消費コスト"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-24T20:19:41.724427+09:00",
+    "collection_date_jst": "2026-10-24",
+    "status": "needs_manual",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 60,
+      "verified_claims": [
+        {
+          "claim": "OpenAIがmacOS向けCodexアプリの新機能として「Record & Replay」を公開したこと",
+          "source_url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "Mac上で実演した作業手順をCodexが解析し、再利用可能な「スキル」として記録・自動再実行できること",
+          "source_url": "https://www.watch.impress.co.jp/docs/news/2118707.html",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "利用には「Computer Use」機能が有効になっている必要があり、macOS向け限定で欧州経済領域（EEA）、英国、スイスを除く地域で提供されていること",
+          "source_url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
+          "source_type": "secondary"
+        },
+        {
+          "claim": "ChatGPT Plus、Pro、Business、Enterprise、Eduの有料プラン契約者向けに提供されていること",
+          "source_url": "https://www.zaikei.co.jp/article/20260621/858007.html",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "OpenAI公式ドキュメントまたは公式サイト（openai.com）による一次情報",
+        "実行時のトークン消費コストおよびAPI等の料金詳細"
+      ],
+      "contradictions": [
+        "候補タイトルの『PC業務を完全自動化』は誇張。提供機能はmacOS限定かつ定型的なワークフローの実演をスキル化するものであり、PC業務全般の完全自動化を意味するものではない"
+      ],
+      "safe_paid_title": "OpenAI Codex「Record & Replay」：操作実演から作業手順をスキル化・自動実行する機能（macOS限定）",
+      "safe_summary": "OpenAIがmacOS向けCodexに公開した新機能「Record & Replay」は、画面上で実演した操作をAIが解析し、再利用可能なスキルとして保存・再実行できる機能です。利用にはComputer Useの有効化が必要で、欧州経済領域（EEA）・英国・スイスを除く地域のChatGPT有料プラン契約者向けに提供されています。",
+      "money_value_score": 5,
+      "paid_conversion_score": 5,
+      "time_sensitivity_score": 4,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "取得された情報源がすべて二次情報（メディア記事）であり、公式・一次情報（openai.com）での直接確認ができていないためneeds_manualと判定します。また、候補タイトルの『完全自動化』という表現は誇張に該当するため保留（hold）が妥当です。"
+    },
+    "verified_at": "2026-11-01T22:41:08.727701+09:00",
+    "entity_info": {
+      "main_entity": "Codex「Record & Replay」",
+      "company_name": "OpenAI",
+      "search_keywords": [
+        "OpenAI Codex Record & Replay",
+        "OpenAI Codex Record and Replay",
+        "Codex Record Replay macOS"
+      ],
+      "likely_official_domains": [
+        "openai.com"
+      ],
+      "official_pages_to_find": [
+        "新機能アナウンス・リリースノート",
+        "利用要件・対応環境",
+        "提供対象プラン・料金"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://ledge.ai/articles/openai_codex_record_replay_skill",
+        "domain": "ledge.ai",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexに作業を“見せて教える”新機能「Record& Replay」 実演した手順をスキル化 | Ledge.ai",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.itmedia.co.jp/news/article/2606/19/1260619102/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "画面操作を“録画”→AIが作業代行 Codexに新機能「Record & Replay」 - ITmedia NEWS",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.watch.impress.co.jp/docs/news/2118707.html",
+        "domain": "watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAI、Codexが作業を見て覚える「Record& Replay」 - Impress Watch",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.zaikei.co.jp/article/20260621/858007.html",
+        "domain": "zaikei.co.jp",
+        "source_type": "secondary",
+        "title": "OpenAIãmacOSçCodexã«ãRecord & Replayãæ©è½ãè¿½å ââæä½ãè¦ããã ãã§èªååã¹ã­ã«ãçæ | è²¡çµæ°è",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://hashout.jp/ai/2346/",
+        "domain": "hashout.jp",
+        "source_type": "secondary",
+        "title": "「毎月の経費精算、もう自分でやらなくていい」——OpenAI Codexの新機能「Record & Replay」がXで1.2万いいね – shiritomo",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://xtech.nikkei.com/atcl/nxt/info/18/00061/062400103/",
+        "domain": "xtech.nikkei.com",
+        "source_type": "secondary",
+        "title": "従業員のPC操作を録画しスキル抽出、OpenAIが「禁断のツール」 | 日経クロステック（xTECH）",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://finance.biggo.jp/news/c71bc1ab-424f-4b57-9713-9f7b1cb5880f",
+        "domain": "finance.biggo.jp",
+        "source_type": "secondary",
+        "title": "OpenAI Codex、3つの大型アップデート：オープンソースモデル接続が可能に、「録画・再生」機能が登場、ユーザーが入浴中に返金手続きを完了 — BigGo ファイナンス",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.itmedia.co.jp/aiplus/article/2607/22/2000000213/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "画面操作を録画→AIが作業代行 Claude新機能「Record a skill」 Codex対抗か - ITmedia AI＋",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000027.000139254.html",
+        "domain": "prtimes.jp",
+        "source_type": "secondary",
+        "title": "「録画でAIに仕事を教える」時代へ──OpenAI・Anthropic・Microsoftの3機能を徹底解説。Renewer、『録画でAIに仕事を教える 3社徹底比較ガイド』（全62ページ）を無料公開 | 株式会社Renewerのプレスリリース",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "アトラシアン、JiraがAIによる要件定義の自動作成、コンテキストを保持しつつタスクをClaudeやCopilotなどのAIエージェントへアサインなど新機能 - Publickey",
+    "summary": "アトラシアン、JiraがAIによる要件定義の自動作成、コンテキストを保持しつつタスクをClaudeやCopilotなどのAIエージェントへアサインなど新機能 &nbsp;&nbsp; Publickey",
+    "source": "Publickey",
+    "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1uTzVYc0hZY2RnMVJLTFRNVVVQcmxUSXVfcjRTdTJ0eXhaY1ZZME8ySER4V0Z6VjBUQzBtWXBQa0s1a0NxeGl4VTU1N3FhdmpubURpSDJQd3hyQ010bzVTZS1iQTN1TVg5YjFyOA?oc=5",
+    "published": "Thu, 23 Jul 2026 07:00:00 GMT",
+    "category": "時間を得する",
+    "score": 85,
+    "urgency": "high",
+    "candidate_title": "JiraのAI自動要件定義＆タスク自動アサイン機能：Claude/Copilot連携による業務爆速化",
+    "why_paid_value": "要件定義の自動ドラフト作成からClaude/Copilot等のAIエージェントへのタスク丸投げまでをカバーする業務直結機能。導入設定とプロンプトの工夫でプロジェクト進行の圧倒的時短になるため。",
+    "verification_needed": [
+      "利用可能なプラン（Atlassian Intelligence対象ライセンス）",
+      "Claude/CopilotとのAPI接続要件",
+      "日本語環境での要件定義生成精度"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-10-27T03:45:42.330361+09:00",
+    "collection_date_jst": "2026-10-27",
+    "status": "partial",
+    "product_type": "paid_note_candidate",
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "アトラシアンはJiraにエージェント型プロダクト開発機能を追加し、Jira PlannerによりコードベースやConfluenceの履歴から要件定義を行い、Confluence上に構造化された技術仕様書を生成可能にした",
+          "source_url": "https://www.atlassian.com/ja/blog/ai-sdlc",
+          "source_type": "official"
+        },
+        {
+          "claim": "Agents in Jiraにより、作業アイテムをClaude Code、Cursor、GitHub Copilotへ直接割り当て可能（OpenAI Codexも近日対応予定）",
+          "source_url": "https://www.atlassian.com/ja/blog/ai-sdlc",
+          "source_type": "official"
+        },
+        {
+          "claim": "Jira Coding Agentはすべての有料Jiraプランに標準搭載され、レビュー可能なプルリクエストを作成して返す",
+          "source_url": "https://www.atlassian.com/ja/blog/ai-sdlc",
+          "source_type": "official"
+        },
+        {
+          "claim": "Teamwork Graphのコンテキスト連携により、社内ベンチマークで回答精度44%向上・トークン使用コスト48%削減を達成したと公表されている",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000079.000028142.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "Planner機能はプライベートアーリーアクセス（早期アクセス）での提供段階にある",
+          "source_url": "https://www.atlassian.com/ja/blog/team26-europe-ai-sdlc",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "Jira Plannerの一般提供（GA）開始日および対象ライセンス詳細",
+        "サードパーティ製AIエージェント（Claude Code等）利用時に必要となるAPIキーや追加コスト体系の公式契約要件",
+        "日本語環境における要件定義・仕様書生成の精度に関する公式検証結果"
+      ],
+      "contradictions": [
+        "候補のタイトルや紹介文は機能が即座に一般利用できるように読めるが、公式発表ではJira Plannerはプライベートアーリーアクセス提供であり、全ユーザーが即時利用できる状態ではない"
+      ],
+      "safe_paid_title": "Jiraの新AI機能：仕様駆動開発を実現するJira PlannerとClaude/Copilot等AIエージェントへの作業委任連携",
+      "safe_summary": "アトラシアンはJiraにおいて、過去のコードやナレッジから技術仕様書を生成する「Jira Planner」や、Claude Code・GitHub Copilot等のAIエージェントへ直接タスクを割り当てる「Agents in Jira」を発表。Jira Coding Agentはすべての有料Jiraプランに標準搭載されますが、Jira Plannerはプライベート早期アクセス提供となっています。",
+      "money_value_score": 75,
+      "paid_conversion_score": 70,
+      "time_sensitivity_score": 65,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "公式ブログおよび一次プレスリリースにより、Jira Plannerによる仕様書生成やClaude Code/Copilotへのタスク割り当て、有料プランへのJira Coding Agent標準搭載という重要事実は確認できました。しかし、Jira Plannerがプライベート早期アクセス段階である点や、サードパーティ製エージェント連携に必要なAPIキー・利用料金の公式規約情報が不足しているため、有料記事として配信するには提供状況と前提条件の整理が必要です。"
+    },
+    "verified_at": "2026-11-01T22:41:08.727701+09:00",
+    "entity_info": {
+      "main_entity": "Jira",
+      "company_name": "アトラシアン",
+      "search_keywords": [
+        "Jira Planner",
+        "Jira Coding Agent",
+        "Jira AI 要件定義",
+        "Atlassian Jira AI agent"
+      ],
+      "likely_official_domains": [
+        "atlassian.com"
+      ],
+      "official_pages_to_find": [
+        "新機能詳細・リリースノート",
+        "料金・プラン",
+        "Atlassian Intelligence利用条件"
+      ]
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.atlassian.com/ja/blog/ai-sdlc",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "AIネイティブなソフトウェア開発に向け、Jiraが進化 | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/rovo-github-software-teams",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "Teamwork Graph コネクタで GitHub のコンテキストを Rovo に取り込む | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/team26-europe-ai-sdlc",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "AIネイティブなソフトウェア開発ライフサイクルを構想から実稼働へ | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/introducing-product-collection",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "Product Collectionの発表：AI時代におけるより良い意思決定のために | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://www.atlassian.com/ja/blog/ace-tokyo-online-78-report",
+        "domain": "atlassian.com",
+        "source_type": "official",
+        "title": "第78回 ACE Tokyo Online イベントレポート | Atlassian Japan 公式ブログ | アトラシアン株式会社",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000079.000028142.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "AIネイティブなソフトウェア開発に向け、Jiraが進化 ― 人とAIエージェントを横断して開発を管理する新機能を発表 | アトラシアン株式会社のプレスリリース",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://www.publickey1.jp/blog/26/jiraaiclaudecopilotai.html",
+        "domain": "publickey1.jp",
+        "source_type": "secondary",
+        "title": "ã¢ãã©ã·ã¢ã³ãJiraãAIã«ããè¦ä»¶å®ç¾©ã®èªåä½æãã³ã³ãã­ã¹ããä¿æãã¤ã¤ã¿ã¹ã¯ãClaudeãCopilotãªã©ã®AIã¨ã¼ã¸ã§ã³ãã¸ã¢ãµã¤ã³ãªã©æ°æ©è½ ï¼ Publickey",
+        "source_confidence": 100
+      },
+      {
+        "url": "https://japan.zdnet.com/article/35250861/",
+        "domain": "japan.zdnet.com",
+        "source_type": "secondary",
+        "title": "アトラシアン、「Jira」にAIネイティブ開発機能を実装--トークンコストも約半減 - ZDNET Japan",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://it.impress.co.jp/articles/-/29606",
+        "domain": "it.impress.co.jp",
+        "source_type": "secondary",
+        "title": "アトラシアン、プロジェクト管理「Jira」にAI駆動開発の新機能、タスクをAIエージェントにアサイン可能に | IT Leaders",
+        "source_confidence": 98
+      },
+      {
+        "url": "https://finance.biggo.jp/news/47d6262dd9476f2a",
+        "domain": "finance.biggo.jp",
+        "source_type": "secondary",
+        "title": "アトラシアンのアンドレイ・ボカン氏：AIコーディングの本当のボトルネックはコードではなく、誰もレビューしたがらない50件のプルリクエストだ — BigGo ファイナンス",
+        "source_confidence": 95
+      }
+    ]
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "GitHubがAIエージェント前提の新機能群発表、タスクごとにAIモデルを自動で振り分けて複数リポジトリの作業を並列実行 - au Webポータル",
+    "summary": "GitHubがAIエージェント前提の新機能群発表、タスクごとにAIモデルを自動で振り分けて複数リポジトリの作業を並列実行 &nbsp;&nbsp; au Webポータル",
+    "source": "au Webポータル",
+    "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBWNzNhUnRuYTVoMHFRUXRIQXJ5SThTZE1WTkhsNmF6Y0ExNWxxOU50WDZ3NWxEUzdOeHJkU2h5bVExMWFBc0t0ZTZkZG1mWjRKbFgxTFlOSVFwc0pieXhlR3BLMDdxZHRSRmtpZG9n?oc=5",
+    "published": "Thu, 29 Oct 2026 09:19:23 GMT",
+    "category": "時間を得する",
+    "score": 86,
+    "urgency": "high",
+    "candidate_title": "GitHub新機能「AIエージェント並列実行」：複数リポジトリのタスクをAIモデル最適化で自動処理する手順",
+    "why_paid_value": "タスクごとにAIモデルを自動で振り分け並列実行するGitHubの次世代AIエージェント。エンジニアの開発・保守工数を激減させる圧倒的な時短情報。",
+    "verification_needed": [
+      "利用可能なプラン（Copilot Enterprise/Individual等の条件）",
+      "対応する外部モデル（Claude, GPT等）とAPI課金形態",
+      "公開ベータまたは一般提供の開始時期"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-11-01T22:39:22.861720+09:00",
+    "collection_date_jst": "2026-11-01",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "GitHub Copilot",
+      "company_name": "GitHub",
+      "search_keywords": [
+        "GitHub AIエージェント 新機能",
+        "GitHub Copilot agent",
+        "GitHub Copilot multi-model"
+      ],
+      "likely_official_domains": [
+        "github.com",
+        "github.blog"
+      ],
+      "official_pages_to_find": [
+        "公式ブログ発表記事",
+        "料金プラン・Copilot提供条件",
+        "機能仕様・ドキュメント"
+      ]
+    },
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "GitHubは年次イベント「GitHub Universe 2026」において、タスクに応じて複数のAIモデルを最適化する「Copilot Fusion」や、複数リポジトリにまたがる作業を並列実行する「Copilotプロジェクト」などの新機能を発表した",
+          "source_url": "https://digitalpr.jp/r/147105",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "GitHub Enterprise向けに、別途Copilotのサブスクリプション契約なしで全機能を利用できる新たな提供モデル（AIクレジット使用量に応じた課金）が発表された",
+          "source_url": "https://digitalpr.jp/r/147105",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "現在はGitHub営業担当者経由で利用可能であり、近日中にセルフサービスでの申し込みにも対応予定。既存のCopilot Business/Enterprise顧客は契約継続または移行を選択可能",
+          "source_url": "https://digitalpr.jp/r/147105",
+          "source_type": "primary_release"
+        }
+      ],
+      "missing_claims": [
+        "個人向けプラン（Copilot Individual等）での提供有無および提供時期",
+        "AIクレジット使用量に応じた課金の具体的な金額・単価",
+        "セルフサービス提供の具体的な開始日時",
+        "エンドユーザーが実際に設定・利用するための詳細な操作手順"
+      ],
+      "contradictions": [
+        "候補タイトルに「自動処理する手順」とあるが、提供された公式一次情報は機能発表・概要説明にとどまり、具体的な設定や操作手順は記載されていない"
+      ],
+      "safe_paid_title": "GitHub Copilot新機能：複数リポジトリ並列実行とマルチモデル最適化「Copilot Fusion」の概要と提供条件",
+      "safe_summary": "GitHubがGitHub Universe 2026にて、タスクごとにAIモデルを最適化する「Copilot Fusion」や複数リポジトリの並列処理を行う「Copilotプロジェクト」を発表。GitHub Enterprise向けには追加サブスク不要のAIクレジット従量課金型で提供が開始され、セルフサービス化も近日予定されている。",
+      "money_value_score": 50,
+      "paid_conversion_score": 65,
+      "time_sensitivity_score": 75,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "発表された新機能の内容やEnterprise向け提供形態は一次情報で確認できたものの、記事タイトルで謳われている「自動処理する手順」や個人プランの可否、具体的なクレジット料金体系が情報源に含まれておらず、有料記事として販売するには情報が不足しているため。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://digitalpr.jp/r/147105",
+        "domain": "digitalpr.jp",
+        "source_type": "primary_release",
+        "title": "GitHub、GitHub Universe 2026でAIエージェント時代の ソフトウェア開発を加速する新機能とインフラ基盤の進化を発表 | GitHub Japan",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://article.auone.jp/398f4815-8b53-49a0-9730-ccb0925d4281",
+        "domain": "article.auone.jp",
+        "source_type": "secondary",
+        "title": "GitHubがAIエージェント前提の新機能群発表、タスクごとにAIモデルを自動で振り分けて複数リポジトリの作業を並列実行 | au Webポータル",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.techno-edge.net/",
+        "domain": "techno-edge.net",
+        "source_type": "secondary",
+        "title": "テクノエッジ TechnoEdge",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.techno-edge.net/article/2026/10/29/5649.html",
+        "domain": "techno-edge.net",
+        "source_type": "secondary",
+        "title": "GitHubがAIエージェント前提の新機能群発表、タスクごとにAIモデルを自動で振り分けて複数リポジトリの作業を並列実行 | テクノエッジ TechnoEdge",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-11-01T22:41:08.727701+09:00"
   }
 ]
