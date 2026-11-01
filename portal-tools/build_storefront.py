@@ -12,6 +12,7 @@ BASE = 'https://sho-support.github.io/ai-trend-blog'
 JST = timezone(timedelta(hours=9))
 from catalog_taxonomy import DEPARTMENTS, CATEGORIES, BY_KIND, BY_DEPARTMENT, normalized_kind, public_category, eligible_title
 from product_text import short_title, product_copy, approved_a8
+from storefront_seo import live, image, cards, detail, breadcrumb, inventory_entry, fingerprint, share_image
 E = lambda v: html.escape(str(v), quote=True)
 JS = lambda v: json.dumps(v, ensure_ascii=False, separators=(',',':')).replace('<','\\u003c')
 CREDIT = '''<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
@@ -27,19 +28,33 @@ def header(brand, depth=1):
     return f'<header class="site-header"><div class="header-inner"><a class="brand" href="{prefix}{brand}/"><span class="brand-mark" aria-hidden="true">{mark}</span>{name}</a><nav aria-label="サイト">{nav}</nav></div></header>'
 
 
-def document(title, path, body, brand='products', depth=1, config=None, scripts=(), data=None):
+def document(title, path, body, brand='products', depth=1, config=None, scripts=(), data=None,
+             description=None, image_url=None, noindex=False, initial=None, structured=()):
     prefix = '../' * depth
     config_script = ''
     if config is not None:
-        config_script = '<script>window.CATALOG_CONFIG='+JS(config)+';window.CATALOG_CATEGORIES='+JS([public_category(c) for c in BY_DEPARTMENT[BY_KIND[config['kind']]['department']]['children']] if config.get('kind') in BY_KIND else [])+';</script>'
+        lookup=CATEGORIES if config.get('mode')=='search' else BY_DEPARTMENT[BY_KIND[config['kind']]['department']]['children'] if config.get('kind') in BY_KIND else []
+        config_script = '<script>window.CATALOG_CONFIG='+JS(config)+';window.CATALOG_CATEGORIES='+JS([public_category(c) for c in lookup])+';</script>'
     if data is not None:
         config_script += '<script>window.PORTAL_DATA='+JS(data)+';</script>'
+    if initial is not None:
+        config_script += '<script>window.CATALOG_INITIAL='+JS(initial)+';</script>'
+    description=description or title.split('｜')[0]+'の掲載情報とリンク先を確認できます。'
+    social='<meta property="og:site_name" content="'+{'products':'モノより','deals':'トクサーチ','events':'マチより'}[brand]+'"><meta property="og:locale" content="ja_JP">'
+    social+='<meta property="og:description" content="'+E(description)+'"><meta name="twitter:description" content="'+E(description)+'"><meta name="twitter:title" content="'+E(title)+'">'
+    if image_url and image_url.startswith('https://'):
+        image_url=share_image(image_url)
+        social+='<meta property="og:image" content="'+E(image_url)+'"><meta property="og:image:alt" content="'+E(title.split('｜')[0])+'"><meta name="twitter:card" content="summary_large_image">'
+    else:social+='<meta name="twitter:card" content="summary">'
+    webpage={'@type':'WebPage','@id':BASE+'/'+path,'url':BASE+'/'+path,'name':title,'description':description,'inLanguage':'ja'}
+    schema='<script type="application/ld+json">'+JS({'@context':'https://schema.org','@graph':[webpage]+list(structured)})+'</script>'
+    robots='<meta name="robots" content="noindex,follow">' if noindex else ''
     includes = ''.join(f'<script defer src="{prefix}portal-assets/{script}"></script>' for script in ('commerce.js',)+tuple(scripts))
     return f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{E(title)}</title><meta name="description" content="{E(title)}。写真から商品やお出かけ先を探せます。">
+<title>{E(title)}</title><meta name="description" content="{E(description)}">{robots}
 <link rel="canonical" href="{BASE}/{path}"><meta property="og:title" content="{E(title)}"><meta property="og:url" content="{BASE}/{path}">
-<meta property="og:type" content="website"><meta name="theme-color" content="#ffffff">
+<meta property="og:type" content="website"><meta name="theme-color" content="#ffffff">{social}{schema}
 <link rel="stylesheet" href="{prefix}portal-assets/storefront.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){{if(!['localhost','127.0.0.1','terminal.local'].includes(location.hostname))dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-J5ZDLF30CS');</script>
@@ -68,14 +83,32 @@ def write(relative, body):
     path.write_text(body,encoding='utf-8')
 
 
-def category_cards(rows, prefix=''):
+def category_cards(rows, prefix='', items=(), copies=None):
     cards=[]
     for c in rows:
         is_department='children' in c
         attr='data-department' if is_department else 'data-category'
         icon=c.get('icon') or BY_DEPARTMENT[c['department']]['icon']
-        cards.append('<a class="category-card" href="'+prefix+c['file']+'" '+attr+'="'+c['key']+'"><div class="category-photo"><span aria-hidden="true">'+icon+'</span></div><h2>'+E(c['name'])+'</h2></a>')
+        matches=[x for x in items if x.get('department' if is_department else 'kind')==c['key']]
+        photo=image(matches[0],copies[matches[0]['id']],eager=not cards) if matches else '<span aria-hidden="true">'+icon+'</span>'
+        cards.append('<a class="category-card" href="'+prefix+c['file']+'" '+attr+'="'+c['key']+'"'+('' if matches else ' hidden')+'><div class="category-photo">'+photo+'</div><h2>'+E(c['name'])+'</h2></a>')
     return '<div class="category-grid" id="category-grid">'+''.join(cards)+'</div><p id="directory-status" class="loading" role="status"></p>'
+
+
+def seed(items, copies):
+    keys=('id','title','kind','department','category','source','image','url','price_yen','seller','shop',
+          'approved','affiliate','expires_at','site_registered','material_type','site_url','image_authorized')
+    return {'items':[{k:x[k] for k in keys if k in x} for x in items],
+            'copies':{x['id']:copies[x['id']] for x in items}}
+
+
+def tile_seed(rows, items):
+    found=[]
+    for row in rows:
+        key='department' if 'children' in row else 'kind'
+        item=next((x for x in items if x.get(key)==row['key']),None)
+        if item:found.append(item)
+    return found
 
 
 def search_form(prefix=''):
@@ -111,33 +144,74 @@ def products():
             if item.get(k)!=v:item[k]=v;a8_changed=True
         items.append(item);copies[item['id']]=product_copy(item,edited)
     if a8_changed:write('portal-assets/a8-approved.json',json.dumps(a8,ensure_ascii=False,indent=2)+'\n')
-    body='<div class="page-heading"><h1>カテゴリーから探す</h1><span class="ad-label">PR</span></div>'+search_form()+category_cards(DEPARTMENTS)
-    write('products/index.html',document('カテゴリーから探す｜モノより','products/',body,config={'mode':'directory'},scripts=('catalog.js',)))
+    items=[x for x in items if live(x)]
+    inventory=[]
+    body='<div class="page-heading"><h1>カテゴリーから探す</h1><span class="ad-label">PR</span></div>'+search_form()+category_cards(DEPARTMENTS,items=items,copies=copies)
+    photos=tile_seed(DEPARTMENTS,items)
+    write('products/index.html',document('モノより｜家電・PC・食品をジャンルから探す','products/',body,config={'mode':'directory'},scripts=('catalog.js',),
+        description='家電、PC、ゲーム、カメラ、食品、美容などをジャンル別に紹介。商品写真と短い紹介から、気になる商品と購入先を探せます。',
+        image_url=photos[0].get('image') if photos else None,initial=seed(photos,copies)))
+    inventory.append(inventory_entry('products/',[(x['id'],x.get('image')) for x in photos]))
     for d in DEPARTMENTS:
+        selected=[x for x in items if x['department']==d['key']]
+        photos=tile_seed(d['children'],selected)
         body='<div class="breadcrumbs"><a href="../">カテゴリー</a><span aria-hidden="true">/</span><span>'+d['name']+'</span></div>'
-        body+='<div class="page-heading"><h1>'+d['name']+'</h1><span class="ad-label">PR</span></div>'+search_form('../')+category_cards(d['children'],'../')
-        write('products/'+d['file'],document(d['name']+'｜モノより','products/'+d['file'],body,depth=2,config={'mode':'directory','department':d['key']},scripts=('catalog.js',)))
+        body+='<div class="page-heading"><h1>'+d['name']+'</h1><span class="ad-label">PR</span></div>'+search_form('../')+category_cards(d['children'],'../',selected,copies)
+        write('products/'+d['file'],document(d['name']+'｜モノより','products/'+d['file'],body,depth=2,config={'mode':'directory','department':d['key']},scripts=('catalog.js',),
+            description=d['name']+'の商品を写真から探す。'+'、'.join(c['name'] for c in d['children'][:4])+'などをジャンル別に掲載。',
+            image_url=photos[0].get('image') if photos else None,noindex=not selected,initial=seed(photos,copies),
+            structured=[breadcrumb([('モノより','products/'),(d['name'],'products/'+d['file'])])]))
+        inventory.append(inventory_entry('products/'+d['file'],[(x['id'],x.get('image')) for x in photos],bool(selected)))
         for c in d['children']:
+            rows=[x for x in selected if x['kind']==c['key']]
+            path='products/'+c['file']
             body='<div class="breadcrumbs"><a href="./">カテゴリー</a><span aria-hidden="true">/</span><a href="'+d['file']+'">'+d['name']+'</a><span aria-hidden="true">/</span><span>'+c['name']+'</span></div>'
-            body+='<div class="page-heading"><h1>'+c['name']+'</h1><span class="ad-label">PR</span></div>'+category_links(c['key'],d['children'])+empty_cards()
-            write('products/'+c['file'],document(c['name']+'｜モノより','products/'+c['file'],body,config={'mode':'category','kind':c['key'],'department':d['key']},scripts=('catalog.js',)))
+            body+='<div class="page-heading"><h1>'+c['name']+'</h1><span class="ad-label">PR</span></div>'+category_links(c['key'],d['children'])+cards(rows,copies)
+            schema=[breadcrumb([('モノより','products/'),(d['name'],'products/'+d['file']),(c['name'],path)])]
+            if rows:schema.append({'@type':'ItemList','numberOfItems':len(rows),'itemListElement':[
+                {'@type':'ListItem','position':i+1,'name':copies[x['id']]['name'],'url':BASE+'/products/items/'+x['id']+'.html'} for i,x in enumerate(rows)]})
+            write(path,document(c['name']+'の商品｜モノより',path,body,config={'mode':'category','kind':c['key'],'department':d['key']},scripts=('catalog.js',),
+                description=c['name']+'の商品写真・主な仕様・購入先を掲載。気になる商品を選んで、販売店の価格と条件を確認できます。',
+                image_url=rows[0].get('image') if rows else None,noindex=not rows,initial=seed(rows,copies),structured=schema))
+            inventory.append(inventory_entry(path,[(x['id'],copies[x['id']],x.get('image'),x.get('price_yen'),x.get('seller')) for x in rows],bool(rows)))
     body='<div class="breadcrumbs"><a href="./">カテゴリー</a><span aria-hidden="true">/</span><span>商品検索</span></div><div class="page-heading"><h1>商品を探す</h1><span class="ad-label">PR</span></div>'+search_form()+empty_cards()
-    write('products/search.html',document('商品検索｜モノより','products/search.html',body,config={'mode':'search'},scripts=('catalog.js',)))
+    write('products/search.html',document('商品検索｜モノより','products/search.html',body,config={'mode':'search'},scripts=('catalog.js',),noindex=True))
     subset=[BY_DEPARTMENT[k] for k in ('pc','gaming','mobile')]
-    body='<div class="page-heading"><h1>PC・ゲーム・スマホ</h1></div>'+category_cards(subset)
-    write('products/mobile-battery-monitors.html',document('PC・ゲーム・スマホ｜モノより','products/mobile-battery-monitors.html',body,config={'mode':'directory'},scripts=('catalog.js',)))
+    photos=tile_seed(subset,items)
+    body='<div class="page-heading"><h1>PC・ゲーム・スマホ</h1></div>'+category_cards(subset,items=items,copies=copies)
+    write('products/mobile-battery-monitors.html',document('PC・ゲーム・スマホ｜モノより','products/mobile-battery-monitors.html',body,config={'mode':'directory'},scripts=('catalog.js',),initial=seed(photos,copies)))
+    inventory.append(inventory_entry('products/mobile-battery-monitors.html',[(x['id'],x.get('image')) for x in photos]))
+    active_ids=set()
     for item in items:
         key=item.get('kind');ident=item.get('id','')
         if key not in BY_KIND or not re.fullmatch('[A-Za-z0-9_-]+',ident):continue
         c=BY_KIND[key];d=BY_DEPARTMENT[c['department']];copy=copies[ident]
         title=copy.get('headline') or copy['name']
+        active_ids.add(ident);path='products/items/'+ident+'.html'
         body='<div class="breadcrumbs"><a href="../">カテゴリー</a><span aria-hidden="true">/</span><a href="../'+d['file']+'">'+d['name']+'</a><span aria-hidden="true">/</span><a href="../'+c['file']+'">'+c['name']+'</a></div>'
-        body+='<article id="product-detail" class="product-detail"><div class="detail-photo placeholder" aria-label="商品写真を読み込み中"></div><div class="detail-info"><span class="ad-label">PR</span><h1>'+E(title)+'</h1><p class="loading" role="status">商品を読み込み中…</p></div></article>'
+        body+='<article id="product-detail" class="product-detail">'+detail(item,copy)+'</article>'
         body+='<div class="back-to-category"><a href="../'+c['file']+'">'+c['name']+'をもっと見る →</a></div>'
-        write('products/items/'+ident+'.html',document(title+'｜モノより','products/items/'+ident+'.html',body,depth=2,config={'mode':'product','id':ident,'kind':key,'department':d['key']},scripts=('catalog.js',)))
+        write(path,document((copy.get('seo_title') or copy['name'])+'｜モノより',path,body,depth=2,config={'mode':'product','id':ident,'kind':key,'department':d['key']},scripts=('catalog.js',),
+            description=copy.get('seo_description') or copy['name']+'。'+(copy['description'] or c['name']+'の商品写真と購入先を掲載。'),
+            image_url=item.get('image'),initial=seed([item],copies),
+            structured=[breadcrumb([('モノより','products/'),(d['name'],'products/'+d['file']),(c['name'],'products/'+c['file']),(copy['name'],path)])]))
+        semantic={k:item.get(k) for k in ('id','kind','image','url','price_yen','seller','shop')}
+        inventory.append(inventory_entry(path,{'item':semantic,'copy':copy}))
+    for old in (ROOT/'products/items').glob('*.html'):
+        if old.stem in active_ids:continue
+        match=re.search(r'window.CATALOG_CONFIG=(\{.*?\});',old.read_text())
+        config=json.loads(match.group(1)) if match else {}
+        c=BY_KIND.get(config.get('kind'))
+        target='../'+c['file'] if c else '../'
+        body='<article id="product-detail" class="product-detail"><div class="unavailable-product"><h1>この商品の掲載は終了しました</h1><p>同じジャンルの商品から探せます。</p><a class="buy-button secondary" href="'+target+'">'+(c['name'] if c else '商品一覧')+'を見る</a></div></article>'
+        path='products/items/'+old.name
+        write(path,document('掲載を終了した商品｜モノより',path,body,depth=2,noindex=True,
+            config={'mode':'product','id':old.stem,'kind':config.get('kind'),'department':config.get('department')},scripts=('catalog.js',),initial=seed([],copies)))
+        inventory.append(inventory_entry(path,{'status':'retired','kind':config.get('kind')},False))
     write('portal-assets/product-copy.json',json.dumps(copies,ensure_ascii=False,indent=2)+'\n')
     taxonomy={'departments':[{k:d[k] for k in ('key','name','file')} for d in DEPARTMENTS],'categories':[public_category(c) for c in CATEGORIES]}
     write('portal-assets/catalog-taxonomy.json',json.dumps(taxonomy,ensure_ascii=False,indent=2)+'\n')
+    return inventory
 
 
 def render_listing(data, today):
@@ -168,23 +242,47 @@ def listings():
         body+='<p id="listing-count" class="listing-count" role="status"></p><div id="listing-grid" class="'+('event-list' if key=='events' else 'offer-grid')+'">'+render_listing(d,today)+'</div>'
         if key=='events':
             body+='<section class="stay-section"><div class="page-heading"><h2>宿泊先も探す</h2><span class="ad-label">PR</span></div><p id="stay-status" class="small-text" role="status"></p><div id="event-stays" class="stay-grid"></div></section>'
-        write(key+'/index.html',document(title+'｜'+('トクサーチ' if key=='deals' else 'マチより'),key+'/',body,brand=key,data=d,scripts=('listing.js',)))
+        description=('楽天市場などの公式セール・クーポンを掲載。店舗やジャンルから、開催中のキャンペーンと利用条件を確認できます。' if key=='deals' else '開催日が確認できる地域のイベントを掲載。都道府県・日付・イベントの種類から、お出かけ先と公式案内を探せます。')
+        write(key+'/index.html',document(title+'｜'+('トクサーチ' if key=='deals' else 'マチより'),key+'/',body,brand=key,data=d,scripts=('listing.js',),description=description))
 
 
-def sitemap():
+def sitemap(inventory):
     path=ROOT/'site-sitemap.xml';ns='http://www.sitemaps.org/schemas/sitemap/0.9';ET.register_namespace('',ns)
-    tree=ET.parse(path);root=tree.getroot();existing={x.findtext('{'+ns+'}loc') for x in root}
-    for p in sorted((ROOT/'products').rglob('*.html')):
-        url=BASE+'/'+str(p.relative_to(ROOT))
-        if p.name=='index.html':url=url[:-10]
-        if url not in existing:
-            node=ET.SubElement(root,'{'+ns+'}url');ET.SubElement(node,'{'+ns+'}loc').text=url
-            existing.add(url)
+    tree=ET.parse(path);root=tree.getroot()
+    for node in list(root):
+        url=node.findtext('{'+ns+'}loc') or ''
+        if url.startswith(BASE+'/products/'):root.remove(node)
+    for file in ('deals/index.html','events/index.html','deals/about.html','deals/privacy.html'):
+        url_path=file[:-10] if file.endswith('index.html') else file
+        inventory.append(inventory_entry(url_path,(ROOT/file).read_text()))
+    manifest_path=ROOT/'portal-assets/discovery-manifest.json'
+    previous=json.loads(manifest_path.read_text()) if manifest_path.exists() else {'pages':[]}
+    previous={x['url']:x for x in previous['pages']}
+    today=datetime.now(JST).date().isoformat()
+    existing={x.findtext('{'+ns+'}loc') for x in root}
+    for row in inventory:
+        before=previous.get(row['url'],{})
+        row['lastmod']=before.get('lastmod',today) if before.get('fingerprint')==row['fingerprint'] else today
+        if not row['indexable']:continue
+        if row['url'] not in existing:
+            node=ET.SubElement(root,'{'+ns+'}url');ET.SubElement(node,'{'+ns+'}loc').text=row['url']
+            ET.SubElement(node,'{'+ns+'}lastmod').text=row['lastmod'];existing.add(row['url'])
+    old_content=path.read_bytes()
     tree.write(path,encoding='utf-8',xml_declaration=True)
+    write('portal-assets/discovery-manifest.json',json.dumps({'version':1,'pages':sorted(inventory,key=lambda x:x['url'])},ensure_ascii=False,indent=2)+'\n')
+    if path.read_bytes()!=old_content:
+        index_path=ROOT/'sitemap-index.xml'
+        index_tree=ET.parse(index_path)
+        for entry in index_tree.getroot():
+            if entry.findtext('{'+ns+'}loc')==BASE+'/site-sitemap.xml':
+                stamp=entry.find('{'+ns+'}lastmod')
+                if stamp is None:stamp=ET.SubElement(entry,'{'+ns+'}lastmod')
+                stamp.text=today
+        index_tree.write(index_path,encoding='utf-8',xml_declaration=True)
 
 
 def main():
-    products();listings();sitemap()
+    inventory=products();listings();sitemap(inventory)
     print('Storefronts built: separate categories, photo-first products, compact deals and events.')
 
 if __name__=='__main__':main()

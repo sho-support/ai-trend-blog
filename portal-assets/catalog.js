@@ -6,7 +6,7 @@
   const assetBase=new URL('.',document.currentScript.src);
   const productBase=new URL('../products/',assetBase);
   const esc=C.escape;
-  let feed=[],copies={},lastSignature='',failed=false;
+  let feed=[],copies={},lastSignature='',failed=false,completeFeed=false;
   const activeCategory=document.querySelector('.category-nav a[aria-current]');
   if(activeCategory){
     const nav=activeCategory.parentElement;
@@ -22,7 +22,7 @@
   };
   const live=x=>x?.source==='a8'?C.isA8Live(x):C.isLive(x);
   const inCategory=(x,key)=>x.kind===key;
-  function image(x,cls=''){
+  function image(x,cls='',priority=false){
     if(!x.image||!/^https:\/\//.test(x.image))return '<span class="photo-unavailable">商品写真は販売店で</span>';
     let srcset='';
     try{
@@ -32,7 +32,7 @@
         srcset=' srcset="'+esc(x.image)+' 128w, '+esc(larger.href)+' 600w" sizes="'+(config.mode==='product'?'(max-width:600px) 90vw, 460px':'(max-width:600px) 45vw, 300px')+'"';
       }
     }catch(_){}
-    return '<img class="product-image '+cls+'" src="'+esc(x.image)+'"'+srcset+' alt="'+esc(copyFor(x).name)+'" decoding="async">';
+    return '<img class="product-image '+cls+'" src="'+esc(x.image)+'"'+srcset+' alt="'+esc(copyFor(x).name)+'" width="600" height="600" decoding="async"'+(priority||config.mode==='product'?' fetchpriority="high"':' loading="lazy"')+'>';
   }
   const detailURL=x=>new URL('items/'+encodeURIComponent(x.id)+'.html',productBase).href;
   function render(){
@@ -40,12 +40,12 @@
     const signature=JSON.stringify([rows,copies,failed]);
     if(signature===lastSignature)return;lastSignature=signature;
     if(config.mode==='directory'){
-      document.querySelectorAll('[data-category],[data-department]').forEach(tile=>{
+      document.querySelectorAll('[data-category],[data-department]').forEach((tile,index)=>{
         const selected=rows.filter(x=>tile.dataset.department?x.department===tile.dataset.department:inCategory(x,tile.dataset.category));
         tile.hidden=!selected.length;
         const item=selected.find(x=>x.image);
         const photo=tile.querySelector('.category-photo');
-        if(photo)photo.innerHTML=item?image(item):'<span class="photo-unavailable">'+esc(tile.querySelector('h2').textContent)+'</span>';
+        if(photo)photo.innerHTML=item?image(item,'',index===0):'<span class="photo-unavailable">'+esc(tile.querySelector('h2').textContent)+'</span>';
       });
       const status=document.getElementById('directory-status');
       if(status)status.textContent=rows.length?'':failed?'商品を読み込めませんでした。':'現在掲載できる商品はありません。';
@@ -56,8 +56,9 @@
       const query=config.mode==='search'?new URLSearchParams(location.search).get('q')?.trim()||'':'';
       const input=document.getElementById('product-query');if(input)input.value=query;
       const words=query.toLocaleLowerCase('ja-JP').split(/\s+/).filter(Boolean);
-      const selected=config.mode==='search'?(words.length?rows.filter(x=>words.every(w=>[x.title,copyFor(x).name,x.category].join(' ').toLocaleLowerCase('ja-JP').includes(w))):[]):rows.filter(x=>inCategory(x,config.kind));
+      const selected=config.mode==='search'?(words.length?rows.filter(x=>words.every(w=>[x.title,copyFor(x).name,x.category,categories.find(c=>c.key===x.kind)?.name||''].join(' ').toLocaleLowerCase('ja-JP').includes(w))):[]):rows.filter(x=>inCategory(x,config.kind));
       document.querySelectorAll('.category-nav a').forEach(link=>{
+        if(!completeFeed)return;
         const c=categories.find(c=>link.getAttribute('href')===c.file);
         if(c)link.hidden=!rows.some(x=>inCategory(x,c.key))&&c.key!==config.kind;
       });
@@ -66,10 +67,10 @@
         status.hidden=false;return;
       }
       status.textContent='';status.hidden=true;
-      grid.innerHTML=selected.map(x=>{
+      grid.innerHTML=selected.map((x,index)=>{
         const copy=copyFor(x),url=detailURL(x);
         return '<article class="product-card" data-kind="'+esc(x.kind)+'">'
-          +'<a class="product-photo" href="'+esc(url)+'">'+image(x)+'</a>'
+          +'<a class="product-photo" href="'+esc(url)+'">'+image(x,'',index===0)+'</a>'
           +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
           +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
           +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">¥'+Number(x.price_yen).toLocaleString('ja-JP')+'</p>':'')
@@ -93,8 +94,12 @@
         +'</div>';
     }
   }
+  const initial=window.CATALOG_INITIAL;
+  if(initial&&Array.isArray(initial.items)){
+    feed=initial.items;copies=initial.copies||{};render();
+  }
   Promise.all([get('rakuten-feed.json'),get('product-copy.json').catch(()=>({})),get('a8-approved.json').catch(()=>({items:[]}))])
-    .then(([data,copy,a8])=>{if(!Array.isArray(data.items))throw Error('invalid');feed=[...data.items,...(Array.isArray(a8.items)?a8.items.map(x=>({...x,source:'a8'})):[])];copies=copy&&typeof copy==='object'?copy:{};render();})
+    .then(([data,copy,a8])=>{if(!Array.isArray(data.items))throw Error('invalid');feed=[...data.items,...(Array.isArray(a8.items)?a8.items.map(x=>({...x,source:'a8'})):[])];copies={...(initial?.copies||{}),...(copy&&typeof copy==='object'?copy:{})};completeFeed=true;render();})
     .catch(()=>{failed=true;render();});
   C.observe(render);
   document.addEventListener('click',event=>{

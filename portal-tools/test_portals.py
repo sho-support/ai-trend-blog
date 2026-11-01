@@ -96,9 +96,10 @@ def main():
         check((ROOT/'portal-assets'/name).is_file(),'missing public asset '+name)
     for script in ('catalog.js','listing.js','commerce.js'):
         subprocess.run(['node','--check',str(ROOT/'portal-assets'/script)],check=True)
-    for name in ('build_storefront.py','catalog_taxonomy.py','product_text.py','refresh_rakuten.py','build_guides.py','refresh_portals.py','build_commercial_site.py'):
+    for name in ('build_storefront.py','catalog_taxonomy.py','product_text.py','storefront_seo.py','notify_indexnow.py','refresh_rakuten.py','build_guides.py','refresh_portals.py','build_commercial_site.py'):
         ast.parse((ROOT/'portal-tools'/name).read_text())
     subprocess.run(['node',str(ROOT/'portal-tools/test_commerce.js')],check=True)
+    subprocess.run([sys.executable,str(ROOT/'portal-tools/test_discovery.py')],check=True)
     subprocess.run([sys.executable,str(ROOT/'portal-tools/test_article_quality.py')],check=True)
     print('PASS:',len(DEPARTMENTS),'departments,',len(CATEGORIES),'shelves,',len(ids),'Rakuten products,',len(a8_items),'A8 products, category boundaries and referral safety')
 

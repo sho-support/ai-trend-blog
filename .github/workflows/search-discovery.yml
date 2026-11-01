@@ -1,0 +1,52 @@
+name: Notify Search Engines of Catalogue Changes
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Refresh Portal Listings, Refresh Commerce Product Feed]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-trend-blog-search-discovery
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Restore previously notified content fingerprints
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ runner.temp }}/monoyori-indexnow-state.json
+          key: monoyori-indexnow-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: monoyori-indexnow-
+      - name: Verify public build and notify real changes
+        run: >-
+          python portal-tools/notify_indexnow.py
+          --state "$RUNNER_TEMP/monoyori-indexnow-state.json"
+          --receipt "$RUNNER_TEMP/monoyori-indexnow-receipt.json"
+      - name: Save notified content fingerprints
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ runner.temp }}/monoyori-indexnow-state.json
+          key: monoyori-indexnow-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Save submission receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: monoyori-indexnow-receipt
+          path: ${{ runner.temp }}/monoyori-indexnow-receipt.json
+          if-no-files-found: ignore

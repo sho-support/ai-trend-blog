@@ -108,6 +108,18 @@ python portal-tools/build_commercial_site.py
 
 プレビューは `dist` を削除・作り直した後に再起動が必要になる場合がある。内部QA用ファイルやローカル `.openai/hosting.json` をコミットしない。
 
+## 2026-11-01：検索流入の整備
+
+商品と分類の写真・短い本文・内部リンク・購入リンクを最初のHTMLにも出力。`CATALOG_INITIAL` の既存有効期限を共有し、JavaScript側でも期限切れを停止する。記事を長文化して検索語を詰め込む対応はしない。OGP写真・商品別description・パンくずを整備。未確認のレビューや星、架空の在庫・価格保証は構造化データにも出さない。
+
+古い商品ページは同ジャンルへの入口を残して `noindex,follow` に変更し、商品検索ページとともにサイトマップから除外。`discovery-manifest.json` は公開内容の指紋を記録し、有効期限の更新だけで更新日や通知を水増ししない。
+
+`Notify Search Engines of Catalogue Changes` は公開ビルドと検証ファイルが一致してから、IndexNow対応検索エンジンへ実際の変更を通知する。200は受信、202は受信後のキー確認待ち。どちらも検索登録・順位・流入を証明しない。Google Search Consoleへの送信とは別。通知済みの指紋はActionsのキャッシュ、受信結果はActionsのartifactへ保存する。
+
+SNS投稿文3本は `growth/social-drafts.json` の下書き。Metricoolの選択ブランドにSNSが未接続のため、投稿・予約はしていない。投稿のURLには計測用UTMを付与している。A8掲載確認期限後の投稿は止める。Search Consoleの登録記録には過去の食い違いがあり、現在の所有権・インデックス状況・GA4受信は未確認。GSC Wizardの契約切れをGoogle未登録と読み替えない。
+
+2026-11-01、A8の広告掲載URLはHARIO2件、JOGGO2件、アンリ3件を提出し、各画面で提出完了を確認済み。
+
 ## 計測と未完了
 
 GA4：`G-J5ZDLF30CS`。商品クリックの `portal_outbound_click` に `portal_kind`、`item_id`、`guide_slug`（旧ガイドのみ）、ジャンルを付与。完全な広告URLや計算機入力は送信しない。ローカルプレビューを本番のGA4計測対象から除外。

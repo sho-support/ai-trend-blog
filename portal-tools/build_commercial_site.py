@@ -8,12 +8,13 @@ import html
 import os
 import shutil
 import xml.etree.ElementTree as ET
+import json
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/"dist"
 PORTAL_FOLDERS=("deals","events","products")
-ASSET_FILES=("storefront.css","catalog-taxonomy.json","catalog.js","listing.js","product-copy.json","style.css","editorial.css","app.js","commerce.js","calculator.js","guide.js","travel.js","watch.js","rakuten-feed.json","travel-feed.json","price-history.json","a8-approved.json")
+ASSET_FILES=("storefront.css","catalog-taxonomy.json","catalog.js","listing.js","product-copy.json","discovery-manifest.json","style.css","editorial.css","app.js","commerce.js","calculator.js","guide.js","travel.js","watch.js","rakuten-feed.json","travel-feed.json","price-history.json","a8-approved.json")
 SOURCE_BASE="https://sho-support.github.io/ai-trend-blog"
 target=os.getenv("URL","").rstrip("/")
 if target and not target.startswith("https://"):
@@ -38,6 +39,9 @@ def copy_pages():
             write(relative,body)
     for file in ASSET_FILES:
         shutil.copyfile(ROOT/"portal-assets"/file,DIST/"portal-assets"/file)
+    verification=json.loads((ROOT/'portal-tools/indexnow_config.json').read_text())
+    filename=verification['key']+'.txt'
+    shutil.copyfile(ROOT/filename,DIST/filename)
 
 def make_home():
     title="商品・セール・イベントを探す"
@@ -71,7 +75,7 @@ def make_sitemap():
         if p.name!="index.html":
             urls.append("/deals/"+p.name)
     for p in (DIST/"products").rglob("*.html"):
-        if p.name!="index.html":
+        if p.name!="index.html" and 'content="noindex,follow"' not in p.read_text():
             urls.append("/"+p.relative_to(DIST).as_posix())
     root=ET.Element("urlset",{"xmlns":"http://www.sitemaps.org/schemas/sitemap/0.9"})
     for path in urls:

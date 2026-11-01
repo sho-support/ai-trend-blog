@@ -2,7 +2,7 @@
 import re
 
 def short_title(item):
-    text=item.get('title') or item.get('display_title') or '商品情報'
+    text=(item.get('title') or item.get('display_title') or '商品情報').replace('\\','')
     text=re.sub(r'【[^】]*(?:】|$)|＼[^／]*／|★[^★]*★|≪[^≫]*≫|《[^》]*》|＜[^＞]*＞',' ',text)
     pieces=re.split(r'[|｜]',text)
     text=' '.join(pieces[:2]) if len(pieces)>1 and len(pieces[0].strip())<=12 else pieces[0]
