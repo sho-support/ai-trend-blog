@@ -8013,5 +8013,564 @@
       }
     ],
     "verified_at": "2026-11-01T22:41:08.727701+09:00"
+  },
+  {
+    "category_hint": "お金が得",
+    "query": "ソフトウェア セール 永久ライセンス キャンペーン",
+    "title": "【無料コード配布】VideoProc Converter AIなど人気ソフトを無料配布！2026お盆特集プレゼントキャンペーン開催中 - PR TIMES",
+    "summary": "【無料コード配布】VideoProc Converter AIなど人気ソフトを無料配布！2026お盆特集プレゼントキャンペーン開催中 &nbsp;&nbsp; PR TIMES",
+    "source": "PR TIMES",
+    "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE45Y3BidTJTVWF1anVFVGxaeHpJZHZVcGdRWEZ0OWYybHBlSUxlMUwtOWtRRThWN21LRjk2ZG1NMW5jam8zaHVELTVMUjJhRXMyS3FneTFlam84bjFReXl1ZWNqTXZoa2RQZnc?oc=5",
+    "published": "Thu, 13 Aug 2026 07:00:00 GMT",
+    "category": "お金が得",
+    "score": 75,
+    "urgency": "high",
+    "candidate_title": "有料AIソフト「VideoProc Converter AI」等の無料配布ライセンス獲得手順",
+    "why_paid_value": "数千円〜1万円相当の実用ソフトが無料入手できる期間限定キャンペーン。動画変換やAI画質向上ツールが手に入るため読者利益が明確。",
+    "verification_needed": [
+      "無料配布ライセンスの有効期間（1年限定か永久か）",
+      "今後のアップデート可否",
+      "ライセンスコードのアクティベーション締切日"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-11-02T15:30:48.235886+09:00",
+    "collection_date_jst": "2026-11-02",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "VideoProc Converter AI",
+      "company_name": "Chengdu Digiarty Software, Inc",
+      "search_keywords": [
+        "VideoProc Converter AI",
+        "VideoProc お盆 キャンペーン",
+        "Digiarty Software"
+      ],
+      "likely_official_domains": [
+        "jp.videoproc.com",
+        "videoproc.com",
+        "winxdvd.com",
+        "jp.aiarty.com"
+      ],
+      "official_pages_to_find": [
+        "キャンペーン特設ページ",
+        "製品情報・料金プラン",
+        "ライセンス規約"
+      ]
+    },
+    "verification": {
+      "status": "rejected",
+      "confidence": 95,
+      "verified_claims": [
+        {
+          "claim": "Chengdu Digiarty Software, Inc.が「2026お盆特集プレゼントキャンペーン」を実施し、VideoProc Converter AI等の20日間無料プランライセンスコード配布や永久ライセンスの抽選を行っていた。",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000044.000038257.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "キャンペーン期間は2026年8月3日（月）から8月31日（月）までであり、公式キャンペーン特設ページには「たくさんのご参加ありがとうございました。本キャンペーンは終了しました。」と明記されている。",
+          "source_url": "https://jp.videoproc.com/campaign/festival-present.htm",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [],
+      "contradictions": [
+        "候補の収集日時は2026年11月2日だが、対象キャンペーンの期間は2026年8月3日～8月31日であり、すでに完全に終了している（公式特設ページにも終了表記あり）。",
+        "候補タイトルは「有料AIソフト『VideoProc Converter AI』等の無料配布ライセンス獲得手順」と現在進行形で獲得できるかのように謳っているが、期限切れのため獲得できない。"
+      ],
+      "safe_paid_title": "",
+      "safe_summary": "Digiarty Softwareが2026年8月3日から8月31日まで実施していた「2026お盆特集プレゼントキャンペーン」において、VideoProc Converter AIの20日間無料ライセンスコード配布や永久ライセンス抽選が行われていたが、本キャンペーンはすでに終了している。",
+      "money_value_score": 0,
+      "paid_conversion_score": 0,
+      "time_sensitivity_score": 0,
+      "second_slot_eligible": false,
+      "purchase_deadline": "2026-08-31",
+      "application_deadline": "2026-08-31",
+      "useful_until": "2026-08-31",
+      "evergreen": false,
+      "recommended_action": "reject",
+      "reason": "キャンペーン期間が2026年8月3日～8月31日であり、公式特設ページ（https://jp.videoproc.com/campaign/festival-present.htm）上でも終了したことが明記されている。すでに期限切れで特典を獲得できないためrejected。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://jp.videoproc.com/",
+        "domain": "jp.videoproc.com",
+        "source_type": "official",
+        "title": "yö®zVideoProc(rfIvbN)F®æ_E[hE®æ^æE®æÒWEAI®ææ¿»",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://jp.videoproc.com/campaign/festival-present.htm",
+        "domain": "jp.videoproc.com",
+        "source_type": "official",
+        "title": "yö®zVideoProc 2026¨~Ìv[gLy[bVideoProc Converter AI³¿zz",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://jp.videoproc.com/video-converter/",
+        "domain": "jp.videoproc.com",
+        "source_type": "official",
+        "title": "yö®zVideoProc Converter AI - ©Èèg¦é½@\\®æ\\tg|®æÏ·E^æÈçVideoProc Converter AIÉ¨C¹I",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.winxdvd.com/dvd-ripper-platinum/index-jp.htm",
+        "domain": "winxdvd.com",
+        "source_type": "official",
+        "title": "yö®zWinX DVD Ripper Platinum - DVDbsO\\tgð³¿Å_E[hB»ÝàJ­ª±¢Ä¢éDVDÌRs[\\tgÅ·B",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://jp.aiarty.com/aiarty-video-enhancer/",
+        "domain": "jp.aiarty.com",
+        "source_type": "official",
+        "title": "yö®zAiarty Video EnhanceriAiarty ®ææ¿»j- ÇñÈ®æàæ¿»E4KAbvXP[OE¹ºmCYÅ«éAI",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.winxdvd.com/giveaway/festival-present.htm",
+        "domain": "winxdvd.com",
+        "source_type": "official",
+        "title": "yö®zWinXDVD 2026¨~Ìv[gLy[bWinX DVD Ripper Platinum³¿zz",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://jp.aiarty.com/campaign/festival-present.htm",
+        "domain": "jp.aiarty.com",
+        "source_type": "official",
+        "title": "yö®zAiarty ¨~Ìv[gLy[bAiarty Video Enhancer³¿zz",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000044.000038257.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "【無料コード配布】VideoProc Converter AIなど人気ソフトを無料配布！2026お盆特集プレゼントキャンペーン開催中 | Chengdu Digiarty Software, Incのプレスリリース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.appbank.net/2026/08/14/iphone-news/3077872.php",
+        "domain": "appbank.net",
+        "source_type": "secondary",
+        "title": "「VideoProc Converter AI」など無料配布 Digiarty、「2026お盆特集プレゼントキャンペーン」を開催中 | AppBank",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://gigazine.net/news/20260911-videoproc-converter-ai/",
+        "domain": "gigazine.net",
+        "source_type": "secondary",
+        "title": "簡単に画面録画し不要部分カット＆AI音声ノイズ除去＆ファイルサイズ削減まで全部1本で完結する「VideoProc Converter AI」を使ってみた、GIGAZINE読者限定セールあり - GIGAZINE",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-11-02T15:32:37.399942+09:00"
+  },
+  {
+    "category_hint": "お金を生む",
+    "query": "生成AI 新サービス API 料金 プラン",
+    "title": "国産の生成AI基盤モデル「PLaMo 3.1 Prime」が提供開始 ～Web検索とDeep Researchに対応 - 窓の杜",
+    "summary": "国産の生成AI基盤モデル「PLaMo 3.1 Prime」が提供開始 ～Web検索とDeep Researchに対応 &nbsp;&nbsp; 窓の杜",
+    "source": "窓の杜",
+    "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBiMjdxT1l6ek05dnhucEZQX01kN2RScDVwaUVmdkh4V1dveU45cU5nc2Q0aUdPMk81UGI5ZTJ6T0JnSk9NVkN3cEJHbXFWTzZaNVBRX00yak4xWlUyRmtIdWV4UTlXY1ls?oc=5",
+    "published": "Tue, 27 Oct 2026 23:07:00 GMT",
+    "category": "時間を得する",
+    "score": 78,
+    "urgency": "high",
+    "candidate_title": "国産生成AI「PLaMo 3.1 Prime」提供開始！Deep Research対応による日本語リサーチ自動化",
+    "why_paid_value": "Deep Research機能を備えた国産モデルの登場により、日本特有のビジネス情報収集・市場調査の精度と速度を劇的に向上できる。",
+    "verification_needed": [
+      "無料枠の有無およびAPI提供料金",
+      "Web検索の参照ソース精度と日本語対応レベル",
+      "利用可能なインターフェース（チャットUIまたはAPIのみか）"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-11-02T15:30:48.235886+09:00",
+    "collection_date_jst": "2026-11-02",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "PLaMo 3.1 Prime",
+      "company_name": "株式会社Preferred Networks",
+      "search_keywords": [
+        "PLaMo 3.1 Prime",
+        "Preferred Networks PLaMo",
+        "PLaMo API 料金",
+        "PLaMo Chat"
+      ],
+      "likely_official_domains": [
+        "preferred.jp"
+      ],
+      "official_pages_to_find": [
+        "料金",
+        "PLaMo API 仕様",
+        "PLaMo Chat キャンペーン"
+      ]
+    },
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "Preferred Networksが国産生成AI基盤モデル「PLaMo 3.1 Prime」をリリースし、PLaMo ChatおよびAPI経由で提供を開始した",
+          "source_url": "https://www.preferred.jp/ja/blog/tech/plamo-3-1-prime-release",
+          "source_type": "official"
+        },
+        {
+          "claim": "PLaMo Chat/APIでWeb検索機能およびWeb検索を利用したDeep Research機能が新たに提供された",
+          "source_url": "https://www.preferred.jp/ja/blog/tech/plamo-3-1-prime-release",
+          "source_type": "official"
+        },
+        {
+          "claim": "2026年11月30日までの期間限定で、PLaMo Chatにおいて無料で1日2回Deep Researchを試すことができる",
+          "source_url": "https://www.preferred.jp/ja/blog/tech/plamo-3-1-prime-release",
+          "source_type": "official"
+        },
+        {
+          "claim": "PLaMo 3.1 PrimeにはFreeプランが存在する",
+          "source_url": "https://www.preferred.jp/ja/blog/tech/plamo-3-1-prime-release",
+          "source_type": "official"
+        },
+        {
+          "claim": "PLaMo APIのStandardプラン利用料は100万トークンあたり入力60円・出力250円とされる",
+          "source_url": "https://forest.watch.impress.co.jp/docs/news/2151522.html",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "PLaMo API有料プラン（Standardプラン：入力60円・出力250円/100万トークン）および無料プランの具体的な利用上限・レートリミットの公式ドキュメント上での確認"
+      ],
+      "contradictions": [
+        "候補の「日本特有のビジネス情報収集・市場調査の精度と速度を劇的に向上できる」という主張に対し、公式ベンチマークではWeb検索レポート性能は向上しているものの、Web検索QAやSTEM/Codeでは競合モデルを下回っている項目もあり、一律に精度が劇的向上したとする表現は誇張が含まれる"
+      ],
+      "safe_paid_title": "PFNの国産AI「PLaMo 3.1 Prime」登場、Deep Researchが1日2回無料（2026年11月30日まで）",
+      "safe_summary": "Preferred Networksが国産生成AI「PLaMo 3.1 Prime」の提供を開始。PLaMo ChatおよびAPIでWeb検索や出典付きレポートを作成するDeep Researchに対応した。Freeプランが用意されているほか、PLaMo Chatでは2026年11月30日までの期間限定でDeep Researchが1日2回まで無料で利用可能。",
+      "money_value_score": 70,
+      "paid_conversion_score": 75,
+      "time_sensitivity_score": 85,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "2026-11-30",
+      "useful_until": "2026-11-30",
+      "evergreen": false,
+      "recommended_action": "publish_candidate",
+      "reason": "公式技術ブログにより主要機能（Web検索、Deep Research、Freeプラン）および2026年11月30日までの1日2回無料キャンペーンが確認できた。ただしAPI有料プランの具体的単価は二次情報（窓の杜、ITmedia）でのみ確認できる状態のためpartialとする。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://www.preferred.jp/ja/blog/tech/plamo-3-1-prime-release",
+        "domain": "preferred.jp",
+        "source_type": "official",
+        "title": "PLaMo 3.1 Primeをリリースしました｜株式会社Preferred Networks",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://forest.watch.impress.co.jp/docs/news/2151522.html",
+        "domain": "forest.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "国産の生成AI基盤モデル「PLaMo 3.1 Prime」が提供開始 ～Web検索とDeep Researchに対応 - 窓の杜",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://ai.watch.impress.co.jp/",
+        "domain": "ai.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "AI Watch：AI関連の最新動向や使い方を紹介する総合情報サイト",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.itmedia.co.jp/aiplus/article/2610/28/2000002652/",
+        "domain": "itmedia.co.jp",
+        "source_type": "secondary",
+        "title": "PFNの国産フラグシップモデル「PLaMo 3.1 Prime」発表 オンプレでDeep Research対応 API無料プランも開始（1/2 ページ） - ITmedia AI＋",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-11-02T15:32:37.399942+09:00"
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "Dejam、LPの分析から改善まで「5分」で自動化 CV改善ツールに新機能（日本ネット経済新聞） - Yahoo!ニュース",
+    "summary": "Dejam、LPの分析から改善まで「5分」で自動化 CV改善ツールに新機能（日本ネット経済新聞） &nbsp;&nbsp; Yahoo!ニュース",
+    "source": "Yahoo!ニュース",
+    "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1saldiWlFhanFKLS1wX0o3bkVGZ0JqRDdFTGo2NnYzbkJRVVFZaFBiU0hMamxCemtwVFFrbU5RbWw0Y3RmcTZySTkxUUdYc0tiVDR5OXFVZjZGWlVKOGlob2t0cVFUZnBvdnhMdmJ4MDlET1NDZ21OYTN5eWVjWjQ?oc=5",
+    "published": "Tue, 27 Oct 2026 08:25:00 GMT",
+    "category": "時間を得する",
+    "score": 70,
+    "urgency": "high",
+    "candidate_title": "LP改善を5分で自動化！CVR最適化AIツール「Dejam」の新機能活用法",
+    "why_paid_value": "Web制作やアフィリエイト、自社商品販売を行う層にとって、LPの分析〜改善案出しを5分に短縮できる実用的な時短メリットがある。",
+    "verification_needed": [
+      "新機能の利用可能プラン（無料トライアル枠の有無）",
+      "提案される改善案の精度と実装の容易さ",
+      "対応しているアクセス解析ツールとの連携要件"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-11-02T15:30:48.235886+09:00",
+    "collection_date_jst": "2026-11-02",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "Dejam",
+      "company_name": "LeanGo",
+      "search_keywords": [
+        "Dejam LeanGo",
+        "Dejam Hira AI",
+        "Dejam 料金",
+        "Dejam トライアル"
+      ],
+      "likely_official_domains": [],
+      "official_pages_to_find": [
+        "料金プラン",
+        "機能紹介（Hira AI）",
+        "無料トライアル・ベータ版利用条件"
+      ]
+    },
+    "verification": {
+      "status": "needs_manual",
+      "confidence": 45,
+      "verified_claims": [
+        {
+          "claim": "株式会社LeanGoがマーケティングDX/CVR改善ツール「Dejam」を運営していること",
+          "source_url": "https://prtimes.jp/main/html/rd/p/000000197.000055676.html",
+          "source_type": "primary_release"
+        },
+        {
+          "claim": "Dejamにチャット上の命令で課題抽出・改善案作成・ABテスト配信等を自動化する新機能「Hira AI」が提供開始されたと報じられていること（ベータ版期間中は月20回まで無料利用可能と報道）",
+          "source_url": "https://news.yahoo.co.jp/articles/a64d6925c91013d741c05608be5f99878d871cb8",
+          "source_type": "secondary"
+        }
+      ],
+      "missing_claims": [
+        "「Hira AI」に関する公式一次情報（プレスリリースや公式サイトの機能紹介ページ）",
+        "Dejamの基本利用料金およびベータ版提供終了後の料金・利用条件",
+        "ベータ版の具体的な提供終了期限",
+        "対応しているアクセス解析ツール等の連携要件"
+      ],
+      "contradictions": [],
+      "safe_paid_title": "Dejamの新機能「Hira AI」によるLP改善自動化の報道内容と概要",
+      "safe_summary": "報道によると、LeanGoのCVR改善ツール「Dejam」において、分析からABテスト配信までを自動化する「Hira AI」が提供開始され、ベータ版期間中は月20回まで無料利用可能とされています。ただし、公式の一次情報リリースによるプラン詳細や仕様の確認はまだ取れていません。",
+      "money_value_score": 5,
+      "paid_conversion_score": 5,
+      "time_sensitivity_score": 5,
+      "second_slot_eligible": false,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": false,
+      "recommended_action": "hold",
+      "reason": "新機能「Hira AI」および「5分で自動化」「月20回まで無料」等の核心部分が二次情報（Yahoo!ニュース／日本ネット経済新聞）にしか存在せず、公式発表・一次リリースで確認できないためneeds_manual（保留）と判定します。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000197.000055676.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "DEJAMを運営するLeanGoとグロースハック専門家のand, a株式会社がCVR改善支援事業の成果向上を目的とした業務連携を開始 | 株式会社LeanGoのプレスリリース",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000083.000072443.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "株式会社TeNとLeanGo事業提携を発表｜LandingHubとDejamにより高速表示LPを作成可能に | 株式会社TeNのプレスリリース",
+        "source_confidence": 85
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000243.000055676.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "ホームページでハンドスピナーを回すことに成功 | PRと獲得に強いマーケティングファームならLeanGo | 株式会社LeanGoのプレスリリース",
+        "source_confidence": 9
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000195.000055676.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "DEJAMを運営するLeanGo、広告代理店向けにレンタルLPO局の提供を開始 | LPOリソースを丸っと提供 | 株式会社LeanGoのプレスリリース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000204.000055676.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "LeanGo、大江戸線にてDEJAMの電車広告を掲載開始！ | 株式会社LeanGoのプレスリリース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://prtimes.jp/main/html/rd/p/000000020.000055676.html",
+        "domain": "prtimes.jp",
+        "source_type": "primary_release",
+        "title": "第5回SaaSアクセラレータープログラム「B-SKET」Demo Dayにおいて、B−SKET賞受賞 | 株式会社LeanGoのプレスリリース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://news.yahoo.co.jp/articles/a64d6925c91013d741c05608be5f99878d871cb8",
+        "domain": "news.yahoo.co.jp",
+        "source_type": "secondary",
+        "title": "Dejam、LPの分析から改善まで「5分」で自動化 CV改善ツールに新機能（日本ネット経済新聞） - Yahoo!ニュース",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-11-02T15:32:37.399942+09:00"
+  },
+  {
+    "category_hint": "時間を得する",
+    "query": "AI ツール 自動化 新機能",
+    "title": "Adobe、PremiereとAfter EffectsのAI機能を強化。タイムライン上で動画や音楽を直接生成 - PRONEWS",
+    "summary": "Adobe、PremiereとAfter EffectsのAI機能を強化。タイムライン上で動画や音楽を直接生成 &nbsp;&nbsp; PRONEWS",
+    "source": "PRONEWS",
+    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBxdTdqTGMxbEw5NWNIVDRqZFB6YmRaeEJfeV9hazMwQWFTX09MYmJRNWtweDN6ZjR3QWgzYW9GLWQ4UmpSU1AtZnE0eWZiTFJ0bE1zR3laWDVqR2NFVUJKdg?oc=5",
+    "published": "Tue, 08 Sep 2026 07:00:00 GMT",
+    "category": "時間を得する",
+    "score": 82,
+    "urgency": "high",
+    "candidate_title": "Premiere & After Effects新機能：タイムライン上で動画・音楽を直接AI生成する時短術",
+    "why_paid_value": "外部ツールを行き来せず編集ソフト内でBGMやインサート映像を完結生成できるため、動画クリエイター・副業編集者の制作時間を劇的に短縮する。",
+    "verification_needed": [
+      "ベータ版か正式リリースか",
+      "生成クレジットの消費ルール（追加料金の有無）",
+      "商用利用の可否と権利関係"
+    ],
+    "reject_reason": "",
+    "collected_at": "2026-11-02T15:30:48.235886+09:00",
+    "collection_date_jst": "2026-11-02",
+    "status": "unverified",
+    "product_type": "paid_note_candidate",
+    "entity_info": {
+      "main_entity": "Adobe Premiere Pro",
+      "company_name": "アドビ",
+      "search_keywords": [
+        "Adobe Premiere Pro 生成メディアツール",
+        "Adobe After Effects AIアシスタント",
+        "Adobe Premiere 生成AI 商用利用",
+        "Adobe Firefly 生成クレジット"
+      ],
+      "likely_official_domains": [
+        "adobe.com"
+      ],
+      "official_pages_to_find": [
+        "新機能紹介",
+        "生成クレジット・プラン料金",
+        "商用利用ガイドライン",
+        "ベータ版提供状況"
+      ]
+    },
+    "verification": {
+      "status": "partial",
+      "confidence": 85,
+      "verified_claims": [
+        {
+          "claim": "Adobe Premiereに「生成メディアツール」が導入され、タイムライン上で直接動画や効果音を生成・編集可能になった（Adobe Fireflyのほか、Google Veo、Kling、Runway、Luma等のパートナーモデルを選択可能）",
+          "source_url": "https://blog.adobe.com/jp/publish/2026/09/09/cc-generate-create-directly-in-your-timeline-with-new-ai-powered-innovations-in-premiere-after-effects",
+          "source_type": "official"
+        },
+        {
+          "claim": "サウンドエフェクト生成は商用利用可能なオーディオモデルを採用しており、音楽生成（ベータ版）も同期権を気にせず安全に商用利用可能である",
+          "source_url": "https://blog.adobe.com/jp/publish/2026/09/09/cc-generate-create-directly-in-your-timeline-with-new-ai-powered-innovations-in-premiere-after-effects",
+          "source_type": "official"
+        },
+        {
+          "claim": "「サウンドスケープを生成」および「音楽を生成」、さらに「オーディオを強化」「クロストークを分離」などのAIオーディオツールはパブリックベータ版として提供されている",
+          "source_url": "https://blog.adobe.com/jp/publish/2026/09/09/cc-generate-create-directly-in-your-timeline-with-new-ai-powered-innovations-in-premiere-after-effects",
+          "source_type": "official"
+        },
+        {
+          "claim": "Adobe After EffectsのAIアシスタントはパブリックベータ版として提供されている",
+          "source_url": "https://blog.adobe.com/jp/publish/2026/09/09/cc-generate-create-directly-in-your-timeline-with-new-ai-powered-innovations-in-premiere-after-effects",
+          "source_type": "official"
+        }
+      ],
+      "missing_claims": [
+        "各生成メディア機能や外部パートナーモデル利用時の生成クレジット消費ルールおよび追加料金体系（公式ソース内での詳細記載が不足）"
+      ],
+      "contradictions": [
+        "候補タイトルでは「動画・音楽を直接AI生成」と一括りにされているが、動画や効果音の生成メディアツールが正式導入であるのに対し、音楽生成やサウンドスケープ生成はベータ版提供である"
+      ],
+      "safe_paid_title": "Adobe Premiere & After Effects新機能：タイムライン上のAI生成ツールとベータ版機能の活用ガイド",
+      "safe_summary": "アドビはAdobe Premiereにタイムライン上で直接動画や効果音を生成できる「生成メディアツール」を導入しました。あわせて商用利用可能な音楽生成やサウンドスケープ生成、After EffectsのAIアシスタントなどのパブリックベータ版機能も順次提供されています。",
+      "money_value_score": 70,
+      "paid_conversion_score": 75,
+      "time_sensitivity_score": 70,
+      "second_slot_eligible": true,
+      "purchase_deadline": "",
+      "application_deadline": "",
+      "useful_until": "",
+      "evergreen": true,
+      "recommended_action": "hold",
+      "reason": "Premiereの生成メディアツールや商用利用範囲、After EffectsのAIアシスタント（ベータ版）など主要機能の多くは公式ブログで確認できた。しかし、検証事項である「生成クレジットの消費ルール（追加料金の有無）」について公式ソース内に詳細な規定の記載がなく、重要条件の一部が二次情報止まりであるためpartial（保留）とする。"
+    },
+    "sources_checked": [
+      {
+        "url": "https://blog.adobe.com/jp/publish/2026/09/09/cc-generate-create-directly-in-your-timeline-with-new-ai-powered-innovations-in-premiere-after-effects",
+        "domain": "blog.adobe.com",
+        "source_type": "official",
+        "title": "Adobe PremiereとAdobe After Effectsに、タイムライン上で直接コンテンツを生成・作成できるAI搭載新機能が登場",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://cginterest.com/2026/09/11/adobe-premiere-26-5%E3%81%8C%E3%83%AA%E3%83%AA%E3%83%BC%E3%82%B9%EF%BC%81%E7%94%9F%E6%88%90%E3%83%A1%E3%83%87%E3%82%A3%E3%82%A2%E3%83%84%E3%83%BC%E3%83%AB%E3%82%84paper-edit%E3%81%AA%E3%81%A9%E6%96%B0/",
+        "domain": "cginterest.com",
+        "source_type": "secondary",
+        "title": "Adobe Premiere 26.5がリリース！生成メディアツールやPaper Editなど新機能が追加、ベータ版ではオーディオ機能が強化 | CGinterest",
+        "source_confidence": 95
+      },
+      {
+        "url": "https://jp.pronews.com/news/202609082201780874.html",
+        "domain": "jp.pronews.com",
+        "source_type": "secondary",
+        "title": "Adobe、PremiereとAfter EffectsのAI機能を強化。タイムライン上で動画や音楽を直接生成 - PRONEWS : 動画制作のあらゆる情報が集まるトータルガイド",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.watch.impress.co.jp/docs/news/2139044.html",
+        "domain": "watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "Adobe Premiere、タイムライン上で動画・効果音をAI生成 - Impress Watch",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://news.mynavi.jp/article/20260908-4935750/",
+        "domain": "news.mynavi.jp",
+        "source_type": "secondary",
+        "title": "アドビ、PremiereとAfter EffectsにAI新機能 - タイムライン上で動画や効果音を生成可能に | マイナビニュース",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.businessinsider.jp/article/2609-adobe-premiere-ai-video-generation-features/",
+        "domain": "businessinsider.jp",
+        "source_type": "secondary",
+        "title": "アドビ定番動画編集ソフト「Premiere」で動画も効果音も生成可能に。話者の音源を分離するベータ機能も | Business Insider Japan",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.zaikei.co.jp/article/20260910/869436.html",
+        "domain": "zaikei.co.jp",
+        "source_type": "secondary",
+        "title": "Adobe Premiereã5ã¤ã®çæAIã¢ãã«ãçµ±åâåç»ã»å¹æé³ãã¿ã¤ã ã©ã¤ã³ä¸ã§çæ | è²¡çµæ°è",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://www.cined.com/jp/adobe-after-effects-ai-assistant-enters-public-beta-whole-project-scope-expression-rigs-and-project-cleanup/",
+        "domain": "cined.com",
+        "source_type": "secondary",
+        "title": "Adobe After Effects AIアシスタントがパブリックベータ版に | CineD",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://ai.watch.impress.co.jp/docs/news/2139234.html",
+        "domain": "ai.watch.impress.co.jp",
+        "source_type": "secondary",
+        "title": "「Adobe Premiere」「Adobe After Effects」に新AI機能導入 - AI Watch",
+        "source_confidence": 0
+      },
+      {
+        "url": "https://branc.jp/article/2026/09/09/3089.html",
+        "domain": "branc.jp",
+        "source_type": "secondary",
+        "title": "アドビ、Premiere・After EffectsにAI新機能。タイムライン上で映像・音声を生成可能に | Branc（ブラン）-Brand New Creativity-",
+        "source_confidence": 0
+      }
+    ],
+    "verified_at": "2026-11-02T15:32:37.399942+09:00"
   }
 ]
