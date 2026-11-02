@@ -1,11 +1,16 @@
 # モノより SNS投稿文
 
-HARIOは既存のBuffer経由でX @AITrendBlogJPへ1件公開済み。ミッフィーとJOGGOは未投稿。Metricoolの選択ブランドは引き続き未接続。次の投稿前に掲載継続と購入先を再確認。
+HARIOとミッフィーのPR告知を、既存のBuffer経由でX @AITrendBlogJPへ各1件公開済み。JOGGOは下書き。投稿前に既存の掲載期限と購入先を再確認する。
 
-## miffy（下書き）
+## miffy（公開済み）
 
-【PR】ミッフィーの限定缶に、アンリのフィナンシェ。缶も楽しめる8個入りです。写真と購入先をまとめました。
-https://sho-support.github.io/ai-trend-blog/products/items/a8-henri-miffy-financier-8.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_miffy_202611
+【PR】缶も楽しみたい、ミッフィーのフィナンシェ。
+アンリ・シャルパンティエの8個入り。お届けは11/30まで。
+写真と購入先はこちら。
+https://sho-support.github.io/ai-trend-blog/products/items/a8-henri-miffy-financier-8.html?utm_source=x&utm_medium=social&utm_campaign=monoyori_miffy_20261102
+#ミッフィー
+
+公開先：https://twitter.com/AITrendBlogJP/status/2117143960606945404
 
 ## hario（公開済み）
 

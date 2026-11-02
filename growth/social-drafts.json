@@ -2,11 +2,13 @@
   "posts": [
     {
       "id": "miffy",
-      "status": "draft",
-      "channel": null,
+      "status": "published",
+      "channel": "X @AITrendBlogJP",
       "expires_at": "2026-11-08T21:02:42+09:00",
-      "text": "【PR】ミッフィーの限定缶に、アンリのフィナンシェ。缶も楽しめる8個入りです。写真と購入先をまとめました。\nhttps://sho-support.github.io/ai-trend-blog/products/items/a8-henri-miffy-financier-8.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_miffy_202611",
-      "url": "https://sho-support.github.io/ai-trend-blog/products/items/a8-henri-miffy-financier-8.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_miffy_202611"
+      "text": "【PR】缶も楽しみたい、ミッフィーのフィナンシェ。\nアンリ・シャルパンティエの8個入り。お届けは11/30まで。\n写真と購入先はこちら。\nhttps://sho-support.github.io/ai-trend-blog/products/items/a8-henri-miffy-financier-8.html?utm_source=x&utm_medium=social&utm_campaign=monoyori_miffy_20261102\n#ミッフィー",
+      "url": "https://sho-support.github.io/ai-trend-blog/products/items/a8-henri-miffy-financier-8.html?utm_source=x&utm_medium=social&utm_campaign=monoyori_miffy_20261102",
+      "published_url": "https://twitter.com/AITrendBlogJP/status/2117143960606945404",
+      "published_at": "2026-11-02T06:37:09.705Z"
     },
     {
       "id": "hario",
@@ -27,5 +29,5 @@
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/a8-joggo-jw42104011.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_joggo_202611"
     }
   ],
-  "note": "HARIOは既存のBuffer経由でX @AITrendBlogJPへ1件公開済み。ミッフィーとJOGGOは未投稿。Metricoolの選択ブランドは引き続き未接続。次の投稿前に掲載継続と購入先を再確認。"
+  "note": "HARIOとミッフィーのPR告知を、既存のBuffer経由でX @AITrendBlogJPへ各1件公開済み。JOGGOは下書き。投稿前に既存の掲載期限と購入先を再確認する。"
 }
