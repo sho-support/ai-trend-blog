@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - "portal-tools/refresh_rakuten.py"
+      - "portal-tools/test_feed_selection.py"
       - "portal-tools/catalog_taxonomy.py"
       - "portal-tools/rakuten_genres.json"
       - "portal-tools/product_text.py"
@@ -48,6 +49,9 @@ jobs:
       - name: Skip when credentials are missing
         if: ${{ env.RAKUTEN_APP_ID == '' || env.RAKUTEN_ACCESS_KEY == '' }}
         run: echo "Rakuten API credentials not configured. Skipping without charge."
+
+      - name: Verify stable choices always use fresh API information
+        run: python portal-tools/test_feed_selection.py
 
       - name: Refresh official Rakuten feed
         if: ${{ env.RAKUTEN_APP_ID != '' && env.RAKUTEN_ACCESS_KEY != '' }}

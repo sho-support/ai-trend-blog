@@ -139,6 +139,17 @@ def receipt_for(request, post, outcome):
             'checked_at':datetime.now(timezone.utc).isoformat()}
 
 
+def save_receipt(receipt, target=RECEIPT):
+    campaign = receipt.get('campaign_id', '')
+    if not re.fullmatch(r'monoyori_[a-z0-9_]+', campaign):
+        raise ValueError('Invalid receipt campaign identifier.')
+    archive = target.parent/'x-launch-receipts'/(campaign+'.json')
+    archive.parent.mkdir(parents=True, exist_ok=True)
+    body = json.dumps(receipt, ensure_ascii=False, indent=2)+'\n'
+    archive.write_text(body)
+    target.write_text(body)
+
+
 def launch(request, items, call, previous=None, write=lambda receipt:None, pause=time.sleep):
     validate(request, items)
     org = target_organization(call)
@@ -197,9 +208,11 @@ def main():
     token = os.environ.get('BUFFER_API_KEY')
     if not token:
         raise RuntimeError('The existing Buffer credential is not configured.')
-    previous = json.loads(RECEIPT.read_text()) if RECEIPT.exists() else None
+    archive = ROOT/'growth/x-launch-receipts'/(request['campaign_id']+'.json')
+    prior_path = archive if archive.exists() else RECEIPT
+    previous = json.loads(prior_path.read_text()) if prior_path.exists() else None
     def write(receipt):
-        RECEIPT.write_text(json.dumps(receipt, ensure_ascii=False, indent=2)+'\n')
+        save_receipt(receipt)
     receipt = launch(request, current_items, graphql_client(token), previous, write)
     print(json.dumps(receipt, ensure_ascii=False))
 

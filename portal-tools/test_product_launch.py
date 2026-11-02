@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Exercise notice validation, recipient matching and ambiguous-write handling."""
 import json
+import tempfile
 import unittest
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
 
-from publish_product_launch import CHANNEL_ID, HANDLE, launch, validate
+from publish_product_launch import CHANNEL_ID, HANDLE, launch, validate, save_receipt
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -101,6 +102,22 @@ class ProductLaunch(unittest.TestCase):
         self.assertEqual(result['outcome'],'accepted_only')
         self.assertIsNone(result['external_url'])
         self.assertEqual(api.writes,1)
+
+    def test_next_notice_keeps_the_previous_receipt(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'x-launch-receipt.json'
+            first={'campaign_id':'monoyori_hario_test','post_id':'first','status':'sent'}
+            second={'campaign_id':'monoyori_miffy_test','post_id':'second','status':'sent'}
+            save_receipt(first,path)
+            save_receipt(second,path)
+            self.assertEqual(json.loads((path.parent/'x-launch-receipts/monoyori_hario_test.json').read_text()),first)
+            self.assertEqual(json.loads(path.read_text()),second)
+
+    def test_invalid_receipt_cannot_write_outside_history(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'x-launch-receipt.json'
+            with self.assertRaises(ValueError):save_receipt({'campaign_id':'../bad'},path)
+            self.assertFalse(path.exists())
 
 
 if __name__=='__main__':unittest.main()

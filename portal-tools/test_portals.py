@@ -100,6 +100,8 @@ def main():
         ast.parse((ROOT/'portal-tools'/name).read_text())
     subprocess.run(['node',str(ROOT/'portal-tools/test_commerce.js')],check=True)
     subprocess.run([sys.executable,str(ROOT/'portal-tools/test_discovery.py')],check=True)
+    subprocess.run([sys.executable,str(ROOT/'portal-tools/test_feed_selection.py')],check=True)
+    subprocess.run([sys.executable,str(ROOT/'portal-tools/test_sitemap_writers.py')],check=True)
     subprocess.run([sys.executable,str(ROOT/'portal-tools/test_article_quality.py')],check=True)
     print('PASS:',len(DEPARTMENTS),'departments,',len(CATEGORIES),'shelves,',len(ids),'Rakuten products,',len(a8_items),'A8 products, category boundaries and referral safety')
 

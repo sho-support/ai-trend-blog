@@ -27,6 +27,28 @@ def shorten_title(title):
     return short_title({'title':title})
 
 
+def item_object(value):
+    item = value.get('item', value) if isinstance(value, dict) else {}
+    return item if isinstance(item, dict) else {}
+
+
+def prefer_previous(objects, previous, kind):
+    """Keep existing shelf positions only when the current response contains them.
+
+    This reorders fresh API objects; it never carries forward old product data.
+    Normal eligibility, affiliate, price and duplicate checks still run below.
+    """
+    order = {x['id']:i for i,x in enumerate(previous)
+             if isinstance(x, dict) and x.get('kind') == kind
+             and isinstance(x.get('id'), str) and x.get('source', 'rakuten') == 'rakuten'}
+    def rank(pair):
+        index, value = pair
+        code = str(item_object(value).get('itemCode') or '')
+        ident = 'rakuten-' + code.replace(':', '-')
+        return (0, order[ident]) if code and ident in order else (1, index)
+    return [value for _,value in sorted(enumerate(objects), key=rank)]
+
+
 def main():
     app_id = os.getenv("RAKUTEN_APP_ID", "")
     access_key = os.getenv("RAKUTEN_ACCESS_KEY", "")
@@ -35,6 +57,11 @@ def main():
         print("楽天のAPI設定なし。既存データを変更しません。")
         return 0
     now = datetime.now(JST)
+    try:
+        previous = json.loads(OUT.read_text()).get('items', [])
+        if not isinstance(previous, list): previous = []
+    except (OSError, ValueError, AttributeError):
+        previous = []
     expires_at = (now + timedelta(hours=23)).isoformat()
     result = []
     used_codes = set()
@@ -104,8 +131,8 @@ def main():
                     file=sys.stderr,
                 )
             kept = 0
-            for v in objects:
-                item = v.get("item", v) if isinstance(v, dict) else {}
+            for v in prefer_previous(objects, previous, kind):
+                item = item_object(v)
                 name = str(item.get("itemName") or "").strip()[:500]
                 # A regular purchase guide must not silently recommend donations.
                 if not eligible_title(name, kind):
@@ -212,6 +239,9 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(output, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     print(f"更新: {len(result)}件 (失敗カテゴリ {errors})")
+    previous_ids = {x.get('id') for x in previous if isinstance(x, dict)}
+    retained = sum(x['id'] in previous_ids for x in result)
+    print(f"最新APIで再確認して継続: {retained}件 / 新規: {len(result)-retained}件")
     return 0
 
 if __name__ == "__main__":

@@ -50,7 +50,7 @@ class Discovery(unittest.TestCase):
     def test_search_and_retired_pages_are_not_in_sitemap(self):
         manifest = json.loads((ROOT/'portal-assets/discovery-manifest.json').read_text())
         urls = {x.text for x in ET.parse(ROOT/'site-sitemap.xml').getroot().iter() if x.tag.endswith('}loc')}
-        self.assertNotIn(BASE+'products/search.html',urls)
+        self.assertFalse(BASE+'products/search.html' in urls,'Product search must stay out of the sitemap after every writer runs')
         self.assertEqual(Document((ROOT/'products/search.html').read_text()).meta['robots'],'noindex,follow')
         search=(ROOT/'products/search.html').read_text()
         lookup=json.loads(re.search(r'window.CATALOG_CATEGORIES=(\[.*?\]);',search).group(1))

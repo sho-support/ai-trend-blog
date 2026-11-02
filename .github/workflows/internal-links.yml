@@ -43,6 +43,7 @@ jobs:
           from pathlib import Path
           from xml.etree.ElementTree import Element, SubElement, ElementTree, indent
           from bs4 import BeautifulSoup
+          from sitemap_pages import site_sitemap_pages
 
           SITE_NAME = "AI Trend Blog"
           SITE_BASE_URL = "https://sho-support.github.io/ai-trend-blog"
@@ -641,31 +642,18 @@ jobs:
           urls = [
               f"{SITE_BASE_URL}/",
               f"{SITE_BASE_URL}/archive.html",
-              f"{SITE_BASE_URL}/deals/",
-              f"{SITE_BASE_URL}/deals/price-watch.html",
-              f"{SITE_BASE_URL}/deals/about.html",
-              f"{SITE_BASE_URL}/deals/privacy.html",
-              f"{SITE_BASE_URL}/deals/rakuten-superdeal-guide.html",
-              f"{SITE_BASE_URL}/deals/yahoo-weekly-coupons-202611.html",
-              f"{SITE_BASE_URL}/deals/muji-week-202610.html",
-              f"{SITE_BASE_URL}/events/",
-              f"{SITE_BASE_URL}/products/",
-              f"{SITE_BASE_URL}/products/okashi-matome.html",
-              f"{SITE_BASE_URL}/products/okome-5kg.html",
-              f"{SITE_BASE_URL}/products/mobile-battery-monitors.html",
-              f"{SITE_BASE_URL}/products/nichiyohin-matome.html",
-              f"{SITE_BASE_URL}/products/sneakers.html",
-              f"{SITE_BASE_URL}/products/skincare.html",
-              f"{SITE_BASE_URL}/products/pet-supplies.html",
           ] + [
               f"{SITE_BASE_URL}/category/{c['slug']}.html"
               for c in CATEGORIES
           ]
 
-          for url in urls:
+          entries = {row['url']: row['lastmod'] for row in site_sitemap_pages(SITE_BASE_URL)}
+          entries.update({url: today for url in urls})
+          for url, lastmod in sorted(entries.items()):
               url_el = SubElement(urlset, "url")
               SubElement(url_el, "loc").text = url
-              SubElement(url_el, "lastmod").text = today
+              if lastmod:
+                  SubElement(url_el, "lastmod").text = lastmod
 
           tree = ElementTree(urlset)
           try:

@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 from google import genai
 from gemini_budget_guard import stop_if_monthly_cap_exceeded
 from article_quality import article_quality_errors
+from sitemap_pages import site_sitemap_pages
 
 
 # =========================================================
@@ -670,24 +671,12 @@ def generate_sitemap(history=None):
             "lastmod",
         ).text = today
 
-    # Keep independent shopping/event portals indexed after article refresh.
-    # Only enumerate actual pages to avoid broken or speculative URLs.
-    for section in ("deals", "events", "products"):
-        folder = Path(section)
-        if not folder.exists():
-            continue
-        for portal_html in sorted(folder.rglob("*.html")):
-            public_path = (
-                f"/{section}/" if portal_html.name == "index.html"
-                else "/" + portal_html.as_posix()
-            )
-            page = SubElement(site_urlset, "url")
-            SubElement(page, "loc").text = SITE_BASE_URL + public_path
-            # An unrelated news run must not claim that fixed buying guides
-            # were edited today. Preserve their explicit editorial revision.
-            portal_source = portal_html.read_text(encoding="utf-8")
-            editorial_date = re.search(r'"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})"', portal_source)
-            SubElement(page, "lastmod").text = editorial_date.group(1) if editorial_date else today
+    # Use the same actual-page and noindex checks as the internal-link writer.
+    for entry in site_sitemap_pages(SITE_BASE_URL):
+        page = SubElement(site_urlset, "url")
+        SubElement(page, "loc").text = entry['url']
+        if entry['lastmod']:
+            SubElement(page, "lastmod").text = entry['lastmod']
 
     _write_xml(
         site_urlset,
