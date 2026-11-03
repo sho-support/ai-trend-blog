@@ -2,9 +2,6 @@ name: Publish Reviewed Product Notice
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ["growth/x-launch.json"]
 
 permissions:
   contents: write
@@ -24,20 +21,33 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Check separate product channel readiness
+        id: channel
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          policy = json.loads(Path('growth/channel-policy.json').read_text())
+          enabled = policy['products'].get('enabled') is True
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('enabled=' + str(enabled).lower() + '\n')
+          print('商品紹介用Xの準備完了' if enabled else '商品紹介用Xの接続待ち。AIアカウントへの商品PRは停止中。')
+          PY
       - name: Verify notice safety without calling an external API
         run: python portal-tools/test_product_launch.py
       - name: Publish the one reviewed notice through existing Buffer connection
+        if: steps.channel.outputs.enabled == 'true'
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
         run: python portal-tools/publish_product_launch.py --publish-now
       - name: Preserve the actual result, including uncertain submissions
-        if: always()
+        if: always() && steps.channel.outputs.enabled == 'true'
         run: |
           if test -f growth/x-launch-receipt.json; then
             bash .github/scripts/safe-commit-push.sh 'Record reviewed product notice delivery result'
           fi
       - name: Save delivery receipt
-        if: always()
+        if: always() && steps.channel.outputs.enabled == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: reviewed-product-notice-receipt

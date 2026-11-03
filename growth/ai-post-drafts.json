@@ -1,0 +1,14 @@
+{
+  "status": "draft_not_published",
+  "llm_calls": 0,
+  "posts": [
+    {
+      "handle": "AITrendBlogJP",
+      "text": "お店のSNS文、何を書けばいい？\n料理・価格・時間を入れて3案つくる。コピペで試せるお願い文を用意しました。\n\nhttps://sho-support.github.io/ai-trend-blog/articles/chatgpt-sns-copy.html"
+    },
+    {
+      "handle": "AITrendBlogJP",
+      "text": "商品写真、背景の生活感が気になる。\nChatGPTに写真とお願い文を渡して、白背景の見本をつくる手順を短くまとめました。\n\nhttps://sho-support.github.io/ai-trend-blog/articles/chatgpt-product-photo.html"
+    }
+  ]
+}

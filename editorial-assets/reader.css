@@ -1,0 +1,14 @@
+body main { max-width: 780px; margin: 24px auto; padding: 0 18px; }
+body article { padding: 28px; border-radius: 14px; box-shadow: none; }
+body article h1 { font-size: clamp(23px, 4.8vw, 30px); line-height: 1.5; letter-spacing: -.025em; overflow-wrap: anywhere; }
+body article h2 { margin: 28px 0 12px; font-size: 21px; line-height: 1.5; }
+body article p, body article li { font-size: 16px; line-height: 1.85; }
+body article p { margin: 0 0 16px; }
+body article ul, body article ol { padding-left: 1.4em; }
+body article .source-box { margin-top: 24px; padding: 15px 18px; font-size: 13px; }
+body article .source-box summary { cursor: pointer; font-weight: 700; }
+body article .source-box p { margin-top: 12px; font-size: 13px; }
+body article .notice { margin-top: 16px; font-size: 12px; }
+body article table { width: 100%; font-size: 14px; table-layout: fixed; border-collapse: collapse; }
+body article th, body article td { padding: 8px; overflow-wrap: anywhere; border-bottom: 1px solid #e2e8f0; }
+@media(max-width:600px) { body main { margin: 16px auto; padding: 0 12px; } body article { padding: 22px 18px; } }

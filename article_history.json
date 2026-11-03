@@ -1434,5 +1434,29 @@
     "url": "https://github.blog/news-insights/company-news/github-universe-2026-evolving-every-layer-of-the-stack/",
     "filename": "2026-11-01_220912.html",
     "created_at": "2026-11-01T22:09:12.142348+09:00"
+  },
+  {
+    "filename": "chatgpt-sns-copy.html",
+    "created_at": "2026-11-04T07:35:33.883126+09:00",
+    "title": "お店のSNS文を、AIで3案",
+    "source_title": "OpenAI：ChatGPTの機能",
+    "page_title": "OpenAI：ChatGPTの機能",
+    "source_name": "OpenAI",
+    "url": "https://help.openai.com/en/articles/9260256-chatgpt-capabilities-overview",
+    "editorial_kind": "beginner_guide",
+    "updated_at": "2026-11-04T07:48:17.587271+09:00",
+    "social_copy": "お店のSNS文、何を書けばいい？\n料理・価格・時間を入れて3案つくる。コピペで試せるお願い文を用意しました。"
+  },
+  {
+    "filename": "chatgpt-product-photo.html",
+    "created_at": "2026-11-04T07:35:33.883126+09:00",
+    "title": "商品写真を、AIで白背景に",
+    "source_title": "OpenAI：ChatGPTで画像を作成・編集する",
+    "page_title": "OpenAI：ChatGPTで画像を作成・編集する",
+    "source_name": "OpenAI",
+    "url": "https://help.openai.com/en/articles/11084440-images-in-chatgpt",
+    "editorial_kind": "beginner_guide",
+    "updated_at": "2026-11-04T07:48:17.587271+09:00",
+    "social_copy": "商品写真、背景の生活感が気になる。\nChatGPTに写真とお願い文を渡して、白背景の見本をつくる手順を短くまとめました。"
   }
 ]

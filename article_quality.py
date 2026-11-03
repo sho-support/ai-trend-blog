@@ -49,10 +49,17 @@ def article_quality_errors(body, source_url):
     errors = []
     if article.unsafe: errors.append("実行コード・装飾・フォーム等の不要なHTMLがあります")
     if article.h1 != 1: errors.append("タイトルのh1は1つにしてください")
-    if not 2 <= article.h2 <= 5: errors.append("話題に合ったh2を2〜5個に整理してください")
+    if not 1 <= article.h2 <= 3: errors.append("話題に合ったh2を1〜3個に整理してください")
     text = re.sub(r"\s+", "", "".join(article.parts))
-    if not 600 <= len(text) <= 4500:
-        errors.append("本文の情報量を見直してください（文字数のための水増しは不可）")
+    if not 250 <= len(text) <= 1000:
+        errors.append("本文は250〜1000文字で、使い道と最初の一歩に絞ってください")
+    title = re.search(r'<h1[^>]*>(.*?)</h1>', body, re.S)
+    if title and len(re.sub(r'<[^>]+>|\s', '', title.group(1))) > 42:
+        errors.append("タイトルは42文字以内で、何ができるかを先に書いてください")
+    if any(len(re.sub(r'\s', '', p)) > 160 for p in article.paragraphs):
+        errors.append("長い段落を分け、1段落を160文字以内にしてください")
+    if re.search(r'(誰でも|必ず|確実に|放置で).{0,8}(稼げ|儲か|収益)', text):
+        errors.append("収益を保証する表現を除き、作れるものと必要な作業を示してください")
     if len(article.paragraphs) < 3: errors.append("段落を分けて具体的に説明してください")
     paragraphs = [re.sub(r"\s+", "", p) for p in article.paragraphs if len(p.strip()) >= 40]
     if len(paragraphs) != len(set(paragraphs)): errors.append("同じ段落の繰り返しを除いてください")

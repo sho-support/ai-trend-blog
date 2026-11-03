@@ -1,6 +1,8 @@
 # モノより SNS投稿文
 
-HARIOとミッフィーのPR告知を、既存のBuffer経由でX @AITrendBlogJPへ各1件公開済み。JOGGOは下書き。投稿前に既存の掲載期限と購入先を再確認する。
+2026-11-04以降、商品PRはAI用Xから分離。商品紹介用Xの作成・接続・ASP登録・X用広告リンクの取得まで、新しい商品PRは送信しない。単品投稿は公式ショップへ直接つながる、確認済みのSNS用アフィリエイトリンクを使う。
+
+以下のHARIO・ミッフィーは過去の公開履歴。再投稿用の指示ではない。
 
 ## miffy（公開済み）
 
@@ -21,7 +23,8 @@ https://sho-support.github.io/ai-trend-blog/products/items/a8-hario-xrcn-2-b.htm
 
 公開先：https://twitter.com/AITrendBlogJP/status/2117034789005848579
 
-## joggo（下書き）
+## joggo（別アカウントの準備待ち）
 
 【PR】財布の外側もポケットも、好きな配色に。JOGGOの小銭入れ付き本革二つ折り財布を紹介します。
-https://sho-support.github.io/ai-trend-blog/products/items/a8-joggo-jw42104011.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_joggo_202611
+
+X用広告リンクは未取得。接続先・掲載条件・リンクを確認してから投稿文を確定する。

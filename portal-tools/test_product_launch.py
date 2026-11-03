@@ -6,8 +6,20 @@ import unittest
 from copy import deepcopy
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import patch
 
-from publish_product_launch import CHANNEL_ID, HANDLE, launch, validate, save_receipt
+import publish_product_launch as publisher
+from publish_product_launch import launch as actual_launch, validate as actual_validate, save_receipt
+
+HANDLE='MonoyoriTest'
+CHANNEL_ID='test-product-channel'
+SOCIAL_LINKS=[]
+
+def validate(request,items,now=None):
+    return actual_validate(request,items,now,social_links=SOCIAL_LINKS)
+
+def launch(request,items,call,**kwargs):
+    return actual_launch(request,items,call,social_links=SOCIAL_LINKS,**kwargs)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -36,19 +48,26 @@ class Buffer:
 
     def post(self):
         return {'id':'test-post', 'text':self.request['text'], 'status':self.status,
-                'channelId':CHANNEL_ID, 'externalLink':'https://x.com/AITrendBlogJP/status/123' if self.status=='sent' else None,
+                'channelId':CHANNEL_ID, 'externalLink':'https://x.com/'+HANDLE+'/status/123' if self.status=='sent' else None,
                 'sentAt':'2026-11-02T00:00:00Z' if self.status=='sent' else None}
 
 
 class ProductLaunch(unittest.TestCase):
     def setUp(self):
+        for name,value in [('HANDLE',HANDLE),('CHANNEL_ID',CHANNEL_ID)]:
+            target=patch.object(publisher,name,value);target.start();self.addCleanup(target.stop)
         self.request=json.loads((ROOT/'growth/x-launch.json').read_text())
+        self.request.update(handle=HANDLE,channel_id=CHANNEL_ID,url='https://px.a8.net/svt/test-x-specific-link')
+        self.request['text']='【PR】テスト用の商品紹介。\n'+self.request['url']
         self.item=next(x for x in json.loads((ROOT/'portal-assets/a8-approved.json').read_text())['items']
                        if x['id']==self.request['product_id'])
         # Isolated test data, never written to the actual catalogue or publisher request.
         self.item['expires_at']='2099-01-02T00:00:00Z'
         self.request['expires_at']='2099-01-01T00:00:00Z'
         self.now=datetime(2026,11,2,tzinfo=timezone.utc)
+        SOCIAL_LINKS[:]=[{'product_id':self.item['id'],'handle':HANDLE,'url':self.request['url'],
+                         'provider':'a8','placement':'x','site_registered':True,'program_allowed':True,
+                         'checked_at':'2026-11-01T00:00:00Z','expires_at':'2099-01-02T00:00:00Z'}]
 
     def api(self, **kwargs):
         api=Buffer(**kwargs);api.request=self.request;return api
@@ -81,7 +100,18 @@ class ProductLaunch(unittest.TestCase):
         self.assertEqual(api.writes,1)
         self.assertEqual(receipts[0]['outcome'],'attempt_started')
         self.assertEqual(result['outcome'],'published')
-        self.assertTrue(result['external_url'].startswith('https://x.com/AITrendBlogJP/status/'))
+        self.assertTrue(result['external_url'].startswith('https://x.com/'+HANDLE+'/status/'))
+
+    def test_ai_account_can_never_receive_product_notices(self):
+        with patch.object(publisher,'HANDLE','AITrendBlogJP'), self.assertRaises(ValueError):
+            validate(dict(self.request,handle='AITrendBlogJP'),[self.item],self.now)
+
+    def test_website_link_and_missing_sns_registration_are_rejected(self):
+        SOCIAL_LINKS[0]['site_registered']=False
+        with self.assertRaises(ValueError):validate(self.request,[self.item],self.now)
+        SOCIAL_LINKS[0]['site_registered']=True
+        with self.assertRaises(ValueError):
+            validate(dict(self.request,url='https://sho-support.github.io/ai-trend-blog/products/items/'+self.item['id']+'.html'),[self.item],self.now)
 
     def test_unknown_write_is_never_repeated(self):
         api=self.api(fail_write=True);receipts=[]

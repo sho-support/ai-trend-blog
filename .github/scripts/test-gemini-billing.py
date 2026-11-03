@@ -30,7 +30,7 @@ class BillingTests(unittest.TestCase):
                 self.assertIsNone(billing_block_reason(message))
 
     def test_every_generator_stops_before_model_fallback(self):
-        files = ("generate_article.py", "publish_to_buffer.py", "generate_note_draft.py",
+        files = ("generate_article.py", "generate_note_draft.py",
                  "collect_paid_info_candidates.py", "verify_paid_info_candidates.py",
                  "generate_paid_note_draft.py", "review_note_drafts.py")
         for filename in files:

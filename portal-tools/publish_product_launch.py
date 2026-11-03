@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish one reviewed product notice through the existing TrendBlog Buffer key.
+"""Publish a reviewed product notice only on a separate commerce X channel.
 
 No LLM calls, no new account, no queue changes, no mutation retries. The request
 file is a one-shot instruction; a recorded/ambiguous attempt cannot send again.
@@ -12,15 +12,16 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 from product_text import approved_a8
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://sho-support.github.io/ai-trend-blog'
-HANDLE = 'AITrendBlogJP'
-CHANNEL_ID = '6ace4151778b240e2ff80a2c'
+POLICY = json.loads((ROOT/'growth/channel-policy.json').read_text())
+HANDLE = POLICY['products'].get('handle')
+CHANNEL_ID = POLICY['products'].get('channel_id')
 RECEIPT = ROOT/'growth/x-launch-receipt.json'
 FIELDS = 'id text status dueAt sentAt externalLink channelId'
 
@@ -30,10 +31,12 @@ def read_json(url):
         return json.load(response)
 
 
-def validate(request, items, now=None):
+def validate(request, items, now=None, social_links=None):
     now = now or datetime.now(timezone.utc)
+    if not HANDLE or not CHANNEL_ID or HANDLE.lower() == POLICY['ai']['handle'].lower() or CHANNEL_ID == POLICY['ai']['channel_id']:
+        raise ValueError('Connect a separate product X account before publishing a product notice.')
     if request.get('channel_id') != CHANNEL_ID or request.get('handle') != HANDLE:
-        raise ValueError('The request must name the verified TrendBlog X channel.')
+        raise ValueError('The request must name the verified product X channel.')
     if request.get('publish_now') is not True:
         raise ValueError('This request is not enabled for one immediate notice.')
     campaign = request.get('campaign_id', '')
@@ -47,12 +50,20 @@ def validate(request, items, now=None):
     if deadline.tzinfo is None or not now < deadline <= source_deadline:
         raise ValueError('The notice must expire by the existing product review deadline.')
     url = request.get('url', '')
-    expected = BASE+'/products/items/'+item['id']+'.html'
     parsed = urlsplit(url)
-    if parsed._replace(query='', fragment='').geturl() != expected or parsed.fragment:
-        raise ValueError('The notice may link only to this product on our site.')
-    if parse_qs(parsed.query) != {'utm_source':['x'], 'utm_medium':['social'], 'utm_campaign':[campaign]}:
-        raise ValueError('The campaign link must use the reviewed tracking fields.')
+    if social_links is None:
+        social_links = json.loads((ROOT/'growth/product-social-links.json').read_text())['links']
+    link = next((x for x in social_links if x.get('product_id') == item['id']
+                 and x.get('handle') == HANDLE and x.get('url') == url), None)
+    if (not link or link.get('placement') != 'x' or link.get('site_registered') is not True
+            or link.get('program_allowed') is not True or link.get('provider') != 'a8'
+            or not link.get('checked_at') or parsed.scheme != 'https' or not parsed.hostname
+            or parsed.hostname == 'sho-support.github.io' or parsed.fragment):
+        raise ValueError('Use the exact verified X affiliate link that leads to the official shop.')
+    link_deadline = datetime.fromisoformat(link['expires_at'].replace('Z','+00:00'))
+    checked = datetime.fromisoformat(link['checked_at'].replace('Z','+00:00'))
+    if link_deadline.tzinfo is None or checked.tzinfo is None or not checked <= now < link_deadline or deadline > link_deadline:
+        raise ValueError('The social affiliate link review is no longer current.')
     text = request.get('text', '')
     urls = re.findall(r'https?://\S+', text)
     if not text.startswith('【PR】') or urls != [url]:
@@ -95,9 +106,9 @@ def target_organization(call):
                     or channel.get('isLocked') or link.scheme != 'https'
                     or link.hostname not in ('twitter.com', 'x.com', 'www.twitter.com', 'www.x.com')
                     or link.path.strip('/').lower() != HANDLE.lower()):
-                raise ValueError('The exact TrendBlog channel is not currently available.')
+                raise ValueError('The exact product channel is not currently available.')
             return org['id']
-    raise ValueError('The exact TrendBlog X channel was not found; no fallback channel is allowed.')
+    raise ValueError('The exact product X channel was not found; no fallback channel is allowed.')
 
 
 def find_post(call, org, request):
@@ -150,8 +161,8 @@ def save_receipt(receipt, target=RECEIPT):
     target.write_text(body)
 
 
-def launch(request, items, call, previous=None, write=lambda receipt:None, pause=time.sleep):
-    validate(request, items)
+def launch(request, items, call, previous=None, write=lambda receipt:None, pause=time.sleep, social_links=None):
+    validate(request, items, social_links=social_links)
     org = target_organization(call)
     existing = find_post(call, org, request)
     if existing:
@@ -189,6 +200,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--publish-now', action='store_true')
     args = parser.parse_args()
+    if not POLICY['products'].get('enabled'):
+        print('商品紹介用Xの準備待ち。AIアカウントへの商品PRは送信しません。')
+        return
     request = json.loads((ROOT/'growth/x-launch.json').read_text())
     items = json.loads((ROOT/'portal-assets/a8-approved.json').read_text())['items']
     validate(request, items)

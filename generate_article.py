@@ -375,10 +375,10 @@ def ensure_existing_seo_tags(history):
 
     if INDEX_FILE.exists():
         text = INDEX_FILE.read_text(encoding="utf-8")
-        title = "AI・生成AIの最新情報をわかりやすく解説"
+        title = "はじめてのAI活用 | AI Trend Blog"
         description = (
-            "OpenAI、Google、GitHubなどの公式情報をもとに、"
-            "AI・生成AI・Webサービスの最新情報をわかりやすく解説するAI Trend Blogです。"
+            "ChatGPTでSNS文や商品画像を作ってみよう。初心者がコピーして試せる"
+            "お願い文と、仕事に生かすアイデアを紹介。"
         )
 
         seo_block = build_seo_block(
@@ -1782,9 +1782,10 @@ URL:
 を1つだけ選んでください。
 
 判断基準：
-・新しさ
-・日本の一般ユーザーへの影響
-・実用性
+・初心者が実際に試せる機能であるか
+・SNS投稿、商品画像、動画、資料など作れるものが具体的か
+・仕事の下準備や制作サービスにどう使えるかを説明できるか
+・新しさと実用性
 ・検索される可能性
 ・話題性
 ・読者が知ってよかったと思えるか
@@ -1792,12 +1793,12 @@ URL:
 ・企業PRの言い換えに終わらず、短くても読む価値があるか
 
 優先順位：
-一般ユーザー向け 約70%
-開発者・専門ユーザー向け 約30%
+専門知識のない初心者向け。会社紹介や幹部プロフィールは採用しない。
 
 会社人事、企業PRだけの話題、
 一般ユーザーにほぼ影響しない記事は優先しないでください。
 
+試せる題材がなければ、記事数を増やすために選ばず「0」を返してください。
 回答は候補番号の数字だけにしてください。
 例：
 3
@@ -1819,6 +1820,9 @@ URL:
         if match:
             number = int(match.group())
 
+            if number == 0:
+                return None
+
             if 1 <= number <= len(candidates):
                 return candidates[number - 1]
 
@@ -1828,12 +1832,8 @@ URL:
             e,
         )
 
-    # 候補選定AIが全滅しても、記事生成処理そのものは止めない。
-    # Python側で検証済みの先頭候補を採用する。
-    print(
-        "候補選定は先頭候補へフォールバックします。"
-    )
-    return candidates[0]
+    print("初心者が試せる題材を選べなかったため、今回は記事を増やしません。")
+    return None
 
 
 # =========================================================
@@ -1847,8 +1847,12 @@ def generate_article(candidate, source_text):
 以下に渡す「公式記事本文」だけを事実の根拠として、
 日本の読者向けの記事を書いてください。
 
-読者が知りたい「自分に関係するか」「何が使えるか」「いま何をするか」に答えてください。
-テーマに合わせて見出しと分量を決め、長い前置きや定型の締めを省いてください。
+AIを初めて触る人に「これなら自分も作れそう」と伝えてください。
+発表の網羅ではなく、作れるものを1つ、試し方を1つに絞ります。
+「プロンプト」は「AIへのお願い文」、「API」は「他のソフトからAIを使う仕組み」など、
+専門語は必要な時だけその場で言い換えてください。
+制作の仕事につなげる案は、確認できた機能を使う編集部の活用案として示してください。
+売上実績、受注相場、短時間で稼げるという断定は、根拠がなければ書きません。
 
 【絶対ルール】
 ・公式記事に書かれていない数字・機能・料金を作らない
@@ -1865,12 +1869,11 @@ def generate_article(candidate, source_text):
 ・料金・対象プラン・地域・開始時期は、本文にある範囲だけを具体的に書く
 ・不明点を見出しごとに繰り返さず、判断に必要な制約として一か所にまとめる
 
-最初の1〜2段落で、何の話か・誰に関係するかを具体的に伝える。
-その後は固有の機能・料金条件・使い方など、本文の内容に合うh2を2〜5個選ぶ。
-全記事に同じ見出しを並べない。「まとめ」は必須ではありません。
-1段落は2〜4文を目安にし、比較できる事実がある場合だけ表や箇条書きを使う。
-実際に取り得る行動がある場合は、その手順や確認先で終えてもよい。
-文字数は目標にしない。600〜2200文字程度を目安に、根拠が少ない話は短くする。
+タイトルは42文字以内。何を作れるか・誰の作業が楽になるかを具体的に伝える。
+冒頭は2文以内で、できることを伝える。
+h2は1〜3個。試せる操作を3ステップ以内で書き、必要な料金・制約は一か所にまとめる。
+1段落は1〜2文、160文字以内。企業の背景やニュースの繰り返しで水増ししない。
+全体は400〜700文字程度、最大1000文字。「まとめ」の繰り返しは要らない。
 使ってよいHTMLはh1、h2、h3、p、strong、em、a、ul、ol、liと表の要素だけ。
 h1は1つ。style、script、画像、イベント属性、Markdown、コードフェンスを出力しない。
 本文にリンクを入れる場合は、次の確認済み公式URLだけを使う：{candidate['url']}
@@ -2050,6 +2053,8 @@ content="width=device-width, initial-scale=1.0">
 <meta name="description"
 content="{safe_description}">
 
+<link rel="stylesheet" href="../editorial-assets/reader.css">
+
 <style>
 
 * {{
@@ -2191,13 +2196,8 @@ margin-bottom:20px;
 
 {article_html}
 
-<div class="source-box">
-
-<h2>情報源</h2>
-
-<p>
-この記事は以下の公式ページを確認したうえで作成しています。
-</p>
+<details class="source-box">
+<summary>公式の説明を読む</summary>
 
 <p>
 
@@ -2219,14 +2219,11 @@ rel="noopener noreferrer"
 
 </p>
 
-</div>
+</details>
 
 <div class="notice">
 
-この記事はAIを利用して公式情報を整理しています。
-内容は公開時点の情報に基づきます。
-重要な仕様・料金・提供地域・利用条件などは、
-必ずリンク先の公式情報をご確認ください。
+公式情報をもとに編集。利用条件は公式ページで確認できます。
 
 </div>
 
@@ -2254,6 +2251,7 @@ def update_index(
     title,
     filename,
     candidate,
+    description=None,
 ):
     if not INDEX_FILE.exists():
         print(
@@ -2288,6 +2286,7 @@ def update_index(
     safe_source = html.escape(
         candidate["source_name"]
     )
+    safe_description = html.escape(description or title)
 
     card = f"""
       <article class="article-card">
@@ -2304,8 +2303,7 @@ def update_index(
         </h2>
 
         <p>
-          最新の公式情報をもとに、
-          初心者にもわかりやすく解説しています。
+          {safe_description}
         </p>
 
       </article>
@@ -2316,6 +2314,10 @@ def update_index(
         marker + "\n" + card,
         1,
     )
+    soup = BeautifulSoup(index_html, 'html.parser')
+    for old_card in soup.select('.article-card')[6:]:
+        old_card.decompose()
+    index_html = str(soup)
 
     INDEX_FILE.write_text(
         index_html,
@@ -2596,6 +2598,7 @@ def main():
         title,
         filename,
         candidate,
+        description,
     )
 
     history.append(

@@ -1,0 +1,16 @@
+{
+  "updated_at": "2026-11-04",
+  "ai": {
+    "handle": "AITrendBlogJP",
+    "channel_id": "6ace4151778b240e2ff80a2c",
+    "purpose": "初心者向けAI活用・作例・制作の仕事への活用案"
+  },
+  "products": {
+    "enabled": false,
+    "handle": null,
+    "channel_id": null,
+    "purpose": "モノよりの商品紹介。AI発信とは別のアカウントを使う",
+    "link_mode": "official_shop_via_verified_social_affiliate_link",
+    "status": "商品紹介用Xの接続・ASPへのサイト登録・X用広告リンクの取得待ち"
+  }
+}

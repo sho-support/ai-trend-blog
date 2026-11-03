@@ -22,12 +22,13 @@
     },
     {
       "id": "joggo",
-      "status": "draft",
+      "status": "held_for_separate_product_account",
       "channel": null,
       "expires_at": "2026-11-08T21:02:42+09:00",
-      "text": "【PR】財布の外側もポケットも、好きな配色に。JOGGOの小銭入れ付き本革二つ折り財布を紹介します。\nhttps://sho-support.github.io/ai-trend-blog/products/items/a8-joggo-jw42104011.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_joggo_202611",
-      "url": "https://sho-support.github.io/ai-trend-blog/products/items/a8-joggo-jw42104011.html?utm_source=social&utm_medium=social&utm_campaign=monoyori_joggo_202611"
+      "text": "【PR】財布の外側もポケットも、好きな配色に。JOGGOの小銭入れ付き本革二つ折り財布。",
+      "url": null,
+      "pending": "商品紹介用Xの接続・A8登録・X用広告リンクの取得待ち"
     }
   ],
-  "note": "HARIOとミッフィーのPR告知を、既存のBuffer経由でX @AITrendBlogJPへ各1件公開済み。JOGGOは下書き。投稿前に既存の掲載期限と購入先を再確認する。"
+  "note": "公開済み投稿は履歴として維持。新しい商品PRはAIアカウントへ送信せず、商品用XとSNS用広告リンクの確認完了まで保留。"
 }
