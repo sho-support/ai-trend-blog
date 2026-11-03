@@ -39,7 +39,7 @@ def render(guide, stamp):
 <div class="eyebrow">はじめてのAI活用 · {stamp.replace('-','.')}</div>
 <h1>{title}</h1><p class="lead">{escape(guide['lead'])}</p>{example}{preview}
 <p class="cost">{escape(guide['cost'])}</p>
-<h2>まずは1本つくってみる</h2><ol>{steps}</ol>
+<h2>まずは試してみる</h2><ol>{steps}</ol>
 <div class="prompt-box"><label for="ai-prompt">コピーして使えるお願い文</label>
 <textarea id="ai-prompt" readonly>{escape(guide['prompt'])}</textarea>
 <button type="button" data-copy-prompt="ai-prompt">お願い文をコピー</button><span role="status" aria-live="polite"></span></div>
