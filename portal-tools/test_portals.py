@@ -103,6 +103,7 @@ def main():
     subprocess.run([sys.executable,str(ROOT/'portal-tools/test_feed_selection.py')],check=True)
     subprocess.run([sys.executable,str(ROOT/'portal-tools/test_sitemap_writers.py')],check=True)
     subprocess.run([sys.executable,str(ROOT/'portal-tools/test_article_quality.py')],check=True)
+    subprocess.run([sys.executable,str(ROOT/'portal-tools/test_deal_news.py')],check=True)
     print('PASS:',len(DEPARTMENTS),'departments,',len(CATEGORIES),'shelves,',len(ids),'Rakuten products,',len(a8_items),'A8 products, category boundaries and referral safety')
 
 if __name__=='__main__':main()

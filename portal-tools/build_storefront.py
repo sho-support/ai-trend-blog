@@ -13,6 +13,7 @@ JST = timezone(timedelta(hours=9))
 from catalog_taxonomy import DEPARTMENTS, CATEGORIES, BY_KIND, BY_DEPARTMENT, normalized_kind, public_category, eligible_title
 from product_text import short_title, product_copy, approved_a8
 from storefront_seo import live, image, cards, detail, breadcrumb, inventory_entry, fingerprint, share_image
+from deal_news import selected_deals, render_deals
 E = lambda v: html.escape(str(v), quote=True)
 JS = lambda v: json.dumps(v, ensure_ascii=False, separators=(',',':')).replace('<','\\u003c')
 CREDIT = '''<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
@@ -240,10 +241,25 @@ def listings():
         else:select='<a href="../products/" class="text-link">商品から探す →</a>'
         body='<div class="page-heading"><h1>'+title+'</h1>'+select+'</div>'+filters
         body+='<p id="listing-count" class="listing-count" role="status"></p><div id="listing-grid" class="'+('event-list' if key=='events' else 'offer-grid')+'">'+render_listing(d,today)+'</div>'
+        extra_scripts=('listing.js',)
+        if key=='deals':
+            feed=json.loads((ROOT/'portal-assets/rakuten-feed.json').read_text())
+            history=json.loads((ROOT/'portal-assets/price-history.json').read_text())
+            copies=json.loads((ROOT/'portal-tools/deal-copy.json').read_text())
+            offers=selected_deals(feed,history,copies)
+            checked=datetime.fromisoformat(feed['updated_at'].replace('Z','+00:00')).astimezone(JST)
+            checked_label=f'{checked.month}/{checked.day} {checked:%H:%M}確認'
+            options=''.join('<option value="'+E(x)+'">'+E(x)+'</option>' for x in sorted({x['category'] for x in offers}))
+            body='<div class="page-heading"><h1>お得な商品</h1><a href="../products/" class="text-link">商品ジャンルから探す →</a></div><div class="deal-news-controls"><select id="deal-category" aria-label="商品ジャンル"><option value="all">すべてのジャンル</option>'+options+'</select><p id="deal-news-status" role="status">'+str(len(offers))+'件 · '+E(checked_label)+'</p></div><div class="deal-news-grid" id="deal-news-grid">'+render_deals(offers)+'</div><p class="deal-news-note">過去の金額は当サイトの掲載記録です。価格・送料・色や端子の選択は販売店でご確認ください。</p><details class="deal-campaigns"><summary>ショップ別のセール・クーポン</summary>'+filters+'<p id="listing-count" class="listing-count" role="status"></p><div id="listing-grid" class="offer-grid">'+render_listing(d,today)+'</div></details>'
+            body+='<script>window.DEAL_NEWS_INITIAL='+JS(offers)+';window.DEAL_NEWS_COPY='+JS(copies)+';window.DEAL_NEWS_UPDATED_AT='+JS(feed['updated_at'])+';</script>'
+            title='値下がり・セール情報'
+            extra_scripts=('listing.js','deal-news.js')
         if key=='events':
             body+='<section class="stay-section"><div class="page-heading"><h2>宿泊先も探す</h2><span class="ad-label">PR</span></div><p id="stay-status" class="small-text" role="status"></p><div id="event-stays" class="stay-grid"></div></section>'
-        description=('楽天市場などの公式セール・クーポンを掲載。店舗やジャンルから、開催中のキャンペーンと利用条件を確認できます。' if key=='deals' else '開催日が確認できる地域のイベントを掲載。都道府県・日付・イベントの種類から、お出かけ先と公式案内を探せます。')
-        write(key+'/index.html',document(title+'｜'+('トクサーチ' if key=='deals' else 'マチより'),key+'/',body,brand=key,data=d,scripts=('listing.js',),description=description))
+        description=('値下がりを確認した商品を、写真・価格・短い紹介で掲載。ショップ別のセールやクーポンも探せます。' if key=='deals' else '開催日が確認できる地域のイベントを掲載。都道府県・日付・イベントの種類から、お出かけ先と公式案内を探せます。')
+        page=document(title+'｜'+('トクサーチ' if key=='deals' else 'マチより'),key+'/',body,brand=key,data=d,scripts=extra_scripts,description=description)
+        if key=='deals':page=page.replace('</head>','<link rel="stylesheet" href="../portal-assets/deal-news.css"></head>')
+        write(key+'/index.html',page)
 
 
 def sitemap(inventory):

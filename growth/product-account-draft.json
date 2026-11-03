@@ -1,8 +1,8 @@
 {
   "status": "draft_not_created",
-  "name": "モノより｜気になる買い物メモ",
-  "bio": "お菓子や手土産、暮らしの気になるもの。写真と短い紹介で、公式ショップの購入先を案内します。広告を含む投稿は【PR】と記載します。",
-  "website": "https://sho-support.github.io/ai-trend-blog/products/",
+  "name": "モノより｜セールと買い物メモ",
+  "bio": "PC周辺機器・家電・食品のお得情報。気になる商品を写真と短い紹介で。価格と購入先を案内します。広告を含む投稿は【PR】と記載します。",
+  "website": "https://sho-support.github.io/ai-trend-blog/deals/",
   "handle": null,
   "link_rule": "単品紹介は、登録済みSNS用のアフィリエイトリンクから公式ショップへ。比較記事や複数候補の紹介はモノよりへ。",
   "next_required": ["商品紹介用Xを作成または選択する", "Bufferに接続する", "A8・楽天の掲載先としてXを登録する", "プログラム条件を確認してX用広告リンクを取得する"]

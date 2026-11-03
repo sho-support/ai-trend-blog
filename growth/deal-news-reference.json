@@ -1,0 +1,19 @@
+{
+  "updated_at": "2026-11-04",
+  "reference_url": "https://game.watch.impress.co.jp/docs/news/2153182.html",
+  "reference_role": "ユーザーが希望した、写真・商品名・短い特徴・販売先を示すセール記事の形式",
+  "format": {
+    "headline": "商品名と確認した価格を短く",
+    "body": "商品写真と固有の特徴を1〜2文",
+    "price": "掲載価格・確認時刻。比較する場合は根拠のある過去の価格だけ",
+    "purchase": "提携先の広告リンクから販売ページへ直接",
+    "categories": "商品ジャンルで絞る"
+  },
+  "amazon_regza_candidate": {
+    "status": "held_for_primary_price_and_affiliate_link",
+    "reported_end_date": "2026-11-12",
+    "price_yen": null,
+    "affiliate_url": null,
+    "note": "参照記事のセール期間は確認。現在のAmazon販売価格と、この運営用のAmazon報酬リンクは未確認・未設定。仕様には参照資料間の食い違いがあるため、そのまま転載しない。"
+  }
+}
