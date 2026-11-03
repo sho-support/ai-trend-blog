@@ -3,9 +3,11 @@ name: Daily Note & Paid Info Pipeline
 on:
   workflow_dispatch:
 
-  schedule:
+  # 2026-11-04: Gemini前払い残高切れのため定期生成を一時停止。
+  # 残高の復旧を確認してから、下のscheduleを戻す。手動実行は維持。
+  # schedule:
     # 日本時間 09:30 - 09:00の記事生成後に1日1回だけ実行
-    - cron: "30 0 * * *"
+  #   - cron: "30 0 * * *"
 
 permissions:
   contents: write

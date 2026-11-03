@@ -3,15 +3,17 @@ name: Generate AI Article
 on:
   workflow_dispatch:
 
-  schedule:
+  # 2026-11-04: Gemini前払い残高切れのため定期生成を一時停止。
+  # 残高の復旧を確認してから、下のscheduleを戻す。手動実行は維持。
+  # schedule:
     # 日本時間 09:00
-    - cron: "0 0 * * *"
+  #   - cron: "0 0 * * *"
 
     # 日本時間 15:00
-    - cron: "0 6 * * *"
+  #   - cron: "0 6 * * *"
 
     # 日本時間 21:00
-    - cron: "0 12 * * *"
+  #   - cron: "0 12 * * *"
 
 permissions:
   contents: write
@@ -28,6 +30,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -42,11 +46,15 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python run_generate_with_retry.py
 
+      # SNSの失敗で、生成済み記事まで失われないよう先に保存する。
+      - name: Commit generated articles safely
+        run: bash .github/scripts/safe-commit-push.sh 'Update AI Trend Blog'
+
       - name: Queue X post in Buffer
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
         run: python publish_to_buffer.py
 
-      - name: Commit generated files safely
-        run: bash .github/scripts/safe-commit-push.sh 'Update AI Trend Blog'
+      - name: Commit Buffer receipt safely
+        run: bash .github/scripts/safe-commit-push.sh 'Record queued AI news post'

@@ -1,6 +1,16 @@
 # TrendBlog / 買い物・イベントポータル 引き継ぎ
 
-更新：2026-11-02（日本時間）
+更新：2026-11-04（日本時間）
+
+## 2026-11-04：Actions通知停止・Gemini残高切れへの対応
+
+ユーザーから通知・メール停止の依頼。GitHubアカウント `sho-support` の Settings → Notifications → System → Actions を「Don't notify」に保存し、再読込後も停止状態を確認。Actionsのメール・GitHub内通知に適用。Android端末自体の通知設定を変更したわけではない。
+
+失敗原因はGemini APIのHTTP 402 `Your prepayment credits are depleted`。記事生成 #269（run 41700591359）のX投稿文生成、有料note候補収集（run 41705493799）、日次note生成（run 41593597681）で同じ残高不足を確認。Buffer接続切れや予約上限がこの失敗の原因ではない。追加課金・別モデルへの逃避はしない。
+
+`generate-article.yml`・`daily-note-paid-info.yml`・`paid-note-opportunity.yml` のscheduleをコメントアウトし、残高復旧までLLMを使う定期生成のみ一時停止。元のcronと手動実行は残した。再開は残高復旧の確認後にscheduleを戻す。手動実行でも残高不足なら1モデル目で停止し、外側の再試行もしない。失敗を成功扱いにして隠さない。
+
+記事保存をX予約の前へ移動し、SNS失敗で生成済み記事が未保存になる構成を修正。楽天の商品・宿泊情報更新、ポータルビルド、検索エンジンへの更新通知、公開サイトの配信は継続。
 
 ## 目的と判断基準
 

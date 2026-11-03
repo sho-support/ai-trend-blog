@@ -1,6 +1,7 @@
 import subprocess
 import sys
 import time
+from gemini_budget_guard import billing_block_reason
 
 # 一時的なAPI障害だけを自動再試行するための判定語
 TRANSIENT_MARKERS = (
@@ -26,6 +27,8 @@ WAITS = [0, 30, 90, 180, 300]
 
 def is_transient_error(text: str) -> bool:
     lower = text.lower()
+    if "[gemini-billing-blocked]" in lower or billing_block_reason(text):
+        return False
     return any(marker.lower() in lower for marker in TRANSIENT_MARKERS)
 
 
