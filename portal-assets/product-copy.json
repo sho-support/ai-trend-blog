@@ -345,16 +345,16 @@
     "description": "メモリ8GB・SSD128GB・15.6インチ。",
     "features": []
   },
-  "rakuten-krdirect-10000010": {
-    "name": "14インチワイド液晶 フルHD ノートパソコン office付き…",
-    "headline": "14インチワイド液晶 フルHD ノートパソコン office付き…",
-    "description": "メモリ8GB・SSD256GB・14インチ。",
-    "features": []
-  },
   "rakuten-lenovopc-10005583": {
     "name": "AI PC ノートパソコン 新品 Office付き 可能…",
     "headline": "AI PC ノートパソコン 新品 Office付き 可能…",
     "description": "メモリ16GB・SSD512GB・14インチ。",
+    "features": []
+  },
+  "rakuten-lakshmistore-10000002": {
+    "name": "ノートパソコン パソコン JIS 日本語キーボード…",
+    "headline": "ノートパソコン パソコン JIS 日本語キーボード…",
+    "description": "SSD128GB・15.6インチ・256GB。",
     "features": []
   },
   "rakuten-voltique-10000021": {
@@ -373,18 +373,6 @@
     "name": "デスクトップパソコン 一体型 office付き 新品 おすすめ…",
     "headline": "デスクトップパソコン 一体型 office付き 新品 おすすめ…",
     "description": "メモリ8GB・SSD256GB。",
-    "features": []
-  },
-  "rakuten-jism-14588960": {
-    "name": "ASUS エイスース モバイル液晶ディスプレイ(15.6型/IP…",
-    "headline": "ASUS エイスース モバイル液晶ディスプレイ(15.6型/IP…",
-    "description": "15.6型・IPS。",
-    "features": []
-  },
-  "rakuten-e-zoa-10110004": {
-    "name": "JAPANNEXT ジャパンネクスト27インチ4K液晶ディスプレ…",
-    "headline": "JAPANNEXT ジャパンネクスト27インチ4K液晶ディスプレ…",
-    "description": "27インチ・4K。",
     "features": []
   },
   "rakuten-logicool-10000345": {
@@ -549,12 +537,6 @@
     "description": "",
     "features": []
   },
-  "rakuten-book-19143914": {
-    "name": "Minecraft Nintendo Switch版",
-    "headline": "Minecraft Nintendo Switch版",
-    "description": "",
-    "features": []
-  },
   "rakuten-book-20593593": {
     "name": "Nintendo Switch Sports",
     "headline": "Nintendo Switch Sports",
@@ -564,6 +546,12 @@
   "rakuten-jism-13534533": {
     "name": "任天堂 リングフィット アドベンチャー [HAC-R-AL3PA…",
     "headline": "任天堂 リングフィット アドベンチャー [HAC-R-AL3PA…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-jism-13663749": {
+    "name": "エレクトロニック・アーツ It Takes Two（2人協力プレ…",
+    "headline": "エレクトロニック・アーツ It Takes Two（2人協力プレ…",
     "description": "",
     "features": []
   },
@@ -783,12 +771,6 @@
     "description": "",
     "features": []
   },
-  "rakuten-a-price-10983238": {
-    "name": "TTArtisan 50mm f/1.2C L(S) シルバー…",
-    "headline": "TTArtisan 50mm f/1.2C L(S) シルバー…",
-    "description": "",
-    "features": []
-  },
   "rakuten-loupe-studio-10665642": {
     "name": "LAOWA 7.5mm F2 交換レンズ 一眼レフ MFT マイ…",
     "headline": "LAOWA 7.5mm F2 交換レンズ 一眼レフ MFT マイ…",
@@ -799,6 +781,12 @@
     "name": "Thypoch Simera 75mm f/1.4 ASPH.…",
     "headline": "Thypoch Simera 75mm f/1.4 ASPH.…",
     "description": "",
+    "features": []
+  },
+  "rakuten-auc-stkb-10002962": {
+    "name": "銘匠光学 TTArtisan 50mm f/2 Lマウント（ライ…",
+    "headline": "銘匠光学 TTArtisan 50mm f/2 Lマウント（ライ…",
+    "description": "2L。",
     "features": []
   },
   "rakuten-md-kk-10005536": {
@@ -855,12 +843,6 @@
     "description": "10.1型・メモリ64GB。",
     "features": []
   },
-  "rakuten-auc-kingmobile-10004110": {
-    "name": "iPhone18 Pro ケース 手帳型 本革…",
-    "headline": "iPhone18 Pro ケース 手帳型 本革…",
-    "description": "",
-    "features": []
-  },
   "rakuten-tsukitohana1-10000198": {
     "name": "MagSafe 対応iphone18pro ケース…",
     "headline": "MagSafe 対応iphone18pro ケース…",
@@ -870,6 +852,12 @@
   "rakuten-kamimatsuri-10000570": {
     "name": "iPhone18pro ケースiPhone18promax ケー…",
     "headline": "iPhone18pro ケースiPhone18promax ケー…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-kamimatsuri-10000653": {
+    "name": "iPhone18pro ケース スマホケース ストラップ付き…",
+    "headline": "iPhone18pro ケース スマホケース ストラップ付き…",
     "description": "",
     "features": []
   },
@@ -1077,12 +1065,6 @@
     "description": "",
     "features": []
   },
-  "rakuten-superdeal-10002044": {
-    "name": "メイベリン フィットミー リキッド ファンデーション R",
-    "headline": "メイベリン フィットミー リキッド ファンデーション R",
-    "description": "2本セット。",
-    "features": []
-  },
   "rakuten-kobe-beauty-labo-10002511": {
     "name": "楽天週間1位獲得! ゆうパケット対象商品 リンクフェード…",
     "headline": "楽天週間1位獲得! ゆうパケット対象商品 リンクフェード…",
@@ -1093,6 +1075,12 @@
     "name": "マキアージュ エッセンスリキッド EX(24ml) [リキッドフ…",
     "headline": "マキアージュ エッセンスリキッド EX(24ml) [リキッドフ…",
     "description": "24ml。",
+    "features": []
+  },
+  "rakuten-formalklein-10001456": {
+    "name": "HARIAS ハリアス 公式 クッションファンデ クッションコン…",
+    "headline": "HARIAS ハリアス 公式 クッションファンデ クッションコン…",
+    "description": "",
     "features": []
   },
   "rakuten-irisplaza-r-10170526": {
@@ -1221,10 +1209,10 @@
     "description": "4袋・2袋。",
     "features": []
   },
-  "rakuten-gourmetcoffee-10001806": {
-    "name": "コーヒー豆 コーヒー 2kg 怒涛の珈琲豆 粉 (G500×4)…",
-    "headline": "コーヒー豆 コーヒー 2kg 怒涛の珈琲豆 粉 (G500×4)…",
-    "description": "",
+  "rakuten-blueritual-10000000": {
+    "name": "お得な コーヒー豆 コーヒー粉 香り 2kg/1kg (…",
+    "headline": "お得な コーヒー豆 コーヒー粉 香り 2kg/1kg (…",
+    "description": "4袋・2袋。",
     "features": []
   },
   "rakuten-soukaidrink-10005982": {
@@ -1389,21 +1377,21 @@
     "description": "2個セット。",
     "features": []
   },
-  "rakuten-lively777-10000015": {
-    "name": "ヨガマット ロール式・折りたたみ式 6mm 滑り止め 軽量 両面…",
-    "headline": "ヨガマット ロール式・折りたたみ式 6mm 滑り止め 軽量 両面…",
-    "description": "折りたたみ。",
-    "features": []
-  },
   "rakuten-lively777-10000017": {
     "name": "ヨガマット 厚手 選べる4サイズ トレーニングマット…",
     "headline": "ヨガマット 厚手 選べる4サイズ トレーニングマット…",
     "description": "",
     "features": []
   },
-  "rakuten-mermont-10011034": {
-    "name": "トレーニングマット ヨガマット 厚み 15mm 10mm 幅広…",
-    "headline": "トレーニングマット ヨガマット 厚み 15mm 10mm 幅広…",
+  "rakuten-lively777-10000016": {
+    "name": "トレーニングマット ヨガマット 厚手15mm 10mm…",
+    "headline": "トレーニングマット ヨガマット 厚手15mm 10mm…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-dabada-10000522": {
+    "name": "DABADA（ダバダ） ヨガマット 厚手 10mm 15mm…",
+    "headline": "DABADA（ダバダ） ヨガマット 厚手 10mm 15mm…",
     "description": "",
     "features": []
   },
@@ -1665,15 +1653,15 @@
     "description": "",
     "features": []
   },
-  "rakuten-adidas-10185022": {
-    "name": "アディダス adidas 返品可 ラッピング不可 ライフスタイル…",
-    "headline": "アディダス adidas 返品可 ラッピング不可 ライフスタイル…",
-    "description": "",
-    "features": []
-  },
   "rakuten-onitsukatiger-10000343": {
     "name": "(U) MEXICO 66 Onitsuka Tiger オニツ…",
     "headline": "(U) MEXICO 66 Onitsuka Tiger オニツ…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-onitsukatiger-10000411": {
+    "name": "SERRANO Onitsuka Tiger オニツカタイガー…",
+    "headline": "SERRANO Onitsuka Tiger オニツカタイガー…",
     "description": "",
     "features": []
   },
@@ -1995,22 +1983,22 @@
     "description": "防水。",
     "features": []
   },
-  "rakuten-jackery-japan-10000185": {
-    "name": "Jackery Solar Generator 2000 New…",
-    "headline": "Jackery Solar Generator 2000 New…",
-    "description": "2048Wh。",
-    "features": []
-  },
   "rakuten-jackery-japan-10000033": {
     "name": "Jackery Solar Generator 1000 New…",
     "headline": "Jackery Solar Generator 1000 New…",
     "description": "1070Wh。",
     "features": []
   },
-  "rakuten-jackery-japan-10000161": {
-    "name": "Jackery Solar Generator 2000 New…",
-    "headline": "Jackery Solar Generator 2000 New…",
-    "description": "2048Wh。",
+  "rakuten-anker-10002472": {
+    "name": "Anker Solix C1000 Gen 2 Portable…",
+    "headline": "Anker Solix C1000 Gen 2 Portable…",
+    "description": "1024Wh。",
+    "features": []
+  },
+  "rakuten-anker-10002466": {
+    "name": "Anker Solix C1000 Gen 2 オフホワイト…",
+    "headline": "Anker Solix C1000 Gen 2 オフホワイト…",
+    "description": "1024Wh。",
     "features": []
   }
 }
