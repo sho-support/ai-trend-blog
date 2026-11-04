@@ -3,7 +3,7 @@
   "pages": [
     {
       "url": "https://sho-support.github.io/ai-trend-blog/deals/",
-      "fingerprint": "8993822dd459eaca5eb22e33b1d4941e0775b0a670a404490533797373e91b07",
+      "fingerprint": "5f1e4daa1ce25d32fbbdfb5b3244ca5a54beac6dc02a0c4240c29517c19e516e",
       "indexable": true,
       "lastmod": "2026-11-04"
     },
@@ -99,7 +99,7 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/camera-lenses.html",
-      "fingerprint": "7cd19dcc537f7d7153c56d533aef8f956e6f140fea233b4f9d6b73cdfb5a365c",
+      "fingerprint": "ba781cd81da407aaea00bff26289eab06adf8dd4bab745a03f8503f1fe1c4a4c",
       "indexable": true,
       "lastmod": "2026-11-04"
     },
@@ -123,7 +123,7 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/coffee.html",
-      "fingerprint": "5937485da8839135a5d5d501050162a215d9f457d905e95985cd4818bd65ee99",
+      "fingerprint": "d3ec2e1af42ef8f47b63e24ada9c7761296f794bca3c3beb09574e62ddd18d30",
       "indexable": true,
       "lastmod": "2026-11-04"
     },
@@ -183,9 +183,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/departments/food.html",
-      "fingerprint": "28b6fe342e1b25b12dfffde99b48e4afc7ebad76f2c47c79a9c429d12e32b5c7",
+      "fingerprint": "2743e30912830d150e68e0bfc04f072172d3cab5f410feea272db86cb021a8b8",
       "indexable": true,
-      "lastmod": "2026-11-02"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/departments/gaming.html",
@@ -213,7 +213,7 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/departments/pc.html",
-      "fingerprint": "fc2bdd69ca316c77224b8c99c3de16a3847e6658fa759057fa94db147f4702d4",
+      "fingerprint": "7e47d23c9ec05467d9e50c8f448ab1d7039d7509b82a9a4b8d97c643a7ab2b4c",
       "indexable": true,
       "lastmod": "2026-11-04"
     },
@@ -279,9 +279,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/electric-kettles.html",
-      "fingerprint": "e9466426a008af561fae54236e788b1e718b267f19fc2dbb75756b6eac8f69de",
+      "fingerprint": "17940e9e045f2d873f980efaf99de60fb72b0536b8a5b2b9586dc435c3cc3f16",
       "indexable": true,
-      "lastmod": "2026-11-02"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/figures.html",
@@ -309,9 +309,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/game-consoles.html",
-      "fingerprint": "520707306d727689e5be428b4297a45e7a9be19c87a48c75f11a83cdc860d7db",
+      "fingerprint": "54fabb2c06b4c3de52424ad3646222e94891ad6115c9b1940b9746b3442b7d92",
       "indexable": true,
-      "lastmod": "2026-11-02"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/game-controllers.html",
@@ -783,8 +783,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-auc-stkb-10002715.html",
-      "fingerprint": "53a9e2e441f76c229e9367a039d8b4c9e5c6082579a98dba2cba33e12ab297f2",
-      "indexable": true,
+      "fingerprint": "7649533381b1b7433d46edfe838321c96aab39f7a747500e8f951eb434d2d581",
+      "indexable": false,
       "lastmod": "2026-11-04"
     },
     {
@@ -873,9 +873,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-biccamera-13877996.html",
-      "fingerprint": "ec748543b66ab1417454116b2296952e20357736940e973f10097184f910c407",
+      "fingerprint": "25a939c2087528e7ceae4b5fe983a66b15a0f3fd19a08af2cc5b08b9f244c944",
       "indexable": true,
-      "lastmod": "2026-11-03"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-biccamera-15178608.html",
@@ -1821,8 +1821,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-japannext-10000385.html",
-      "fingerprint": "4e2f02d57857430ca97b3e7e67890fc409041d38003896797b7df745cbf4ee53",
-      "indexable": true,
+      "fingerprint": "1bba2382ce2af57da6370c423b78bac1ebd0f6b67087c1160f9aa50767c47cb8",
+      "indexable": false,
       "lastmod": "2026-11-04"
     },
     {
@@ -1881,8 +1881,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-jism-14558780.html",
-      "fingerprint": "d86cd8870f9857ac648497072f67b2c8561ba12ffce24241fd10a5b06004be99",
-      "indexable": true,
+      "fingerprint": "1bba2382ce2af57da6370c423b78bac1ebd0f6b67087c1160f9aa50767c47cb8",
+      "indexable": false,
       "lastmod": "2026-11-04"
     },
     {
@@ -2846,6 +2846,12 @@
       "lastmod": "2026-11-02"
     },
     {
+      "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-panasonic-store-10001797.html",
+      "fingerprint": "8a7640f3380b34d7d7066c0a50c3f977899e0a4953d151db640b9d8ca9fdaed8",
+      "indexable": true,
+      "lastmod": "2026-11-04"
+    },
+    {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-panasonic-store-10001874.html",
       "fingerprint": "55e4e06e2fe6eef369b1a6e7076e627d44d422ad1c59bc0a40888a2b506f75be",
       "indexable": true,
@@ -3141,9 +3147,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-sawaicoffee-tea-10004043.html",
-      "fingerprint": "461434466fd39cb992d6e3074cee740e0e30ea16611b46138b8a0960b4899d07",
+      "fingerprint": "d38259953aeab1da768fdea44543990961dc0e2942eccf12f17f34b26174d39e",
       "indexable": true,
-      "lastmod": "2026-11-01"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-sawaicoffee-tea-10005330.html",
@@ -3225,9 +3231,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-sokutei-10001714.html",
-      "fingerprint": "93902657910bfcc37f351151e66a08205d6fdb62c9fdaf3748a714c1f373a7b9",
+      "fingerprint": "0c4b9d4ed8d2b0237ca68edd504bcd543087a520634f98744dbe024366a2ec9e",
       "indexable": true,
-      "lastmod": "2026-11-02"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-sosuke-10000619.html",
@@ -3465,9 +3471,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-tiger-online-10003897.html",
-      "fingerprint": "88f0c50e56ca2fd74b8a900f4d193a0579b862bd8921312b42bcbf0ef0f4a274",
+      "fingerprint": "4a0ad3f54bb37f3a4ccff23231214cad36ea9b87798199cf32f649976375bfd0",
       "indexable": true,
-      "lastmod": "2026-11-02"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-tiger-online-10004650.html",
@@ -3537,9 +3543,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-toucher-home-10000543.html",
-      "fingerprint": "d80bf76b4400b3574e7209a6351732f98c2bf7327bfbb33cf2a4eaade942484f",
+      "fingerprint": "4c55b2dbbae774f6644fd613433785bca65a4c41b68505b344181a1bb64b10a5",
       "indexable": true,
-      "lastmod": "2026-11-02"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-tplinkdirect-10001261.html",
@@ -3921,9 +3927,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/mirrorless-cameras.html",
-      "fingerprint": "cd4a8cdaa98ffaa191f0f22d27d42e73cfc904a9dd707be4041daa92049ef900",
+      "fingerprint": "ba71c209c6a1b603696d18db4cf448e68cd315ac3bcbead3a98399fd53fc40ba",
       "indexable": true,
-      "lastmod": "2026-11-03"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/mobile-battery-monitors.html",
@@ -4161,9 +4167,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/towels.html",
-      "fingerprint": "6a61dfde6378c0bb331efc93e40e68d3af68097a3fc775c1a8314fdc6d64ee46",
+      "fingerprint": "8ccd156e183decbd55cbd5a7b3bd7567e97c6bc4128e06713bc22534fcd7d450",
       "indexable": true,
-      "lastmod": "2026-11-02"
+      "lastmod": "2026-11-04"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/treadmills.html",
@@ -4209,8 +4215,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/work-monitor.html",
-      "fingerprint": "5b0e8c33900e792124a73d24afb0081bdc571ee733f126d4563cfb31b34c7e1f",
-      "indexable": true,
+      "fingerprint": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "indexable": false,
       "lastmod": "2026-11-04"
     },
     {
