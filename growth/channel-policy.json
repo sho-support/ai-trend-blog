@@ -6,7 +6,7 @@
     "purpose": "初心者向けAI活用・作例・制作の仕事への活用案"
   },
   "products": {
-    "enabled": false,
+    "enabled": true,
     "handle": "monoyori_sale",
     "channel_id": "6aec855be29c69a1716f545b",
     "buffer_verified_at": "2026-11-05",
@@ -14,7 +14,7 @@
     "a8_site_registered_at": "2026-11-05",
     "purpose": "モノよりの商品紹介。AI発信とは別のアカウントを使う",
     "link_mode": "official_shop_via_verified_social_affiliate_link",
-    "status": "Buffer接続・A8掲載先登録・HARIOのX用リンク確認済み。初回投稿設定・楽天掲載先登録待ち",
+    "status": "HARIOのX専用リンク・公式写真を確認済み。新しい確認済み投稿1件を送信。楽天SNS登録は未完了。",
     "a8_x_link_verified_at": "2026-11-05"
   }
 }

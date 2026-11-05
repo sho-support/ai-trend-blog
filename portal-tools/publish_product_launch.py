@@ -23,7 +23,29 @@ POLICY = json.loads((ROOT/'growth/channel-policy.json').read_text())
 HANDLE = POLICY['products'].get('handle')
 CHANNEL_ID = POLICY['products'].get('channel_id')
 RECEIPT = ROOT/'growth/x-launch-receipt.json'
-FIELDS = 'id text status dueAt sentAt externalLink channelId'
+FIELDS = 'id text status dueAt sentAt externalLink channelId assets { id mimeType }'
+
+
+def reviewed_image(request, item):
+    url = request.get('image_url')
+    if not url:
+        if request.get('require_image') is True:
+            raise ValueError('This product notice requires its reviewed product photograph.')
+        return None
+    parsed = urlsplit(url)
+    alt = request.get('image_alt_text', '')
+    if (item.get('image_authorized') is not True or url != item.get('image')
+            or parsed.scheme != 'https' or not parsed.hostname or parsed.fragment
+            or not isinstance(alt, str) or not alt.strip() or len(alt) > 1000):
+        raise ValueError('Use the exact authorized product image and a short image description.')
+    return {'image': {'url': url, 'metadata': {'altText': alt}}}
+
+
+def image_confirmed(request, post):
+    return not request.get('image_url') or any(
+        str(asset.get('mimeType', '')).startswith('image/')
+        for asset in ((post or {}).get('assets') or [])
+    )
 
 
 def read_json(url):
@@ -45,6 +67,7 @@ def validate(request, items, now=None, social_links=None):
     item = next((x for x in items if x.get('id') == request.get('product_id')), None)
     if not item or not approved_a8(item, now):
         raise ValueError('The advertised product is no longer approved and current.')
+    reviewed_image(request, item)
     deadline = datetime.fromisoformat(request['expires_at'].replace('Z', '+00:00'))
     source_deadline = datetime.fromisoformat(item['expires_at'].replace('Z', '+00:00'))
     if deadline.tzinfo is None or not now < deadline <= source_deadline:
@@ -147,6 +170,9 @@ def receipt_for(request, post, outcome):
             'status':post.get('status') if post else 'submission_unknown',
             'outcome':outcome, 'external_url':link,
             'sent_at':post.get('sentAt') if post else None,
+            'image_url':request.get('image_url'),
+            'image_confirmed':image_confirmed(request, post),
+            'asset_count':len((post or {}).get('assets') or []),
             'checked_at':datetime.now(timezone.utc).isoformat()}
 
 
@@ -162,20 +188,23 @@ def save_receipt(receipt, target=RECEIPT):
 
 
 def launch(request, items, call, previous=None, write=lambda receipt:None, pause=time.sleep, social_links=None):
-    validate(request, items, social_links=social_links)
+    item = validate(request, items, social_links=social_links)
     org = target_organization(call)
     existing = find_post(call, org, request)
     if existing:
-        receipt = receipt_for(request, existing, 'existing_notice')
+        receipt = receipt_for(request, existing, 'existing_notice' if image_confirmed(request, existing) else 'image_unconfirmed')
         write(receipt)
+        if not image_confirmed(request, existing):
+            raise RuntimeError('The existing notice has no confirmed product image. Check it in Buffer; do not post again.')
         return receipt
     if previous and previous.get('campaign_id') == request['campaign_id']:
         raise RuntimeError('An earlier attempt is recorded. Reconcile it in Buffer instead of posting again.')
     # Persist the claim before making the only write request, even if its response is lost.
     write(receipt_for(request, None, 'attempt_started'))
+    asset = reviewed_image(request, item)
     variables = {'input':{'text':request['text'], 'channelId':CHANNEL_ID,
                  'schedulingType':'automatic', 'mode':'shareNow', 'aiAssisted':True,
-                 'assets':[], 'needsApproval':False}}
+                 'assets':[asset] if asset else [], 'needsApproval':False}}
     result = call('mutation($input:CreatePostInput!) { createPost(input:$input) '
                   '{ ... on PostActionSuccess { post { '+FIELDS+' } } ... on MutationError { message } } }', variables)
     action = result.get('createPost', {})
@@ -185,14 +214,19 @@ def launch(request, items, call, previous=None, write=lambda receipt:None, pause
     receipt = receipt_for(request, post, 'accepted')
     write(receipt)
     for _ in range(4):
-        if post.get('status') == 'sent' and post.get('externalLink'):
+        if post.get('status') == 'sent' and post.get('externalLink') and image_confirmed(request, post):
             break
         pause(8)
         current = find_post(call, org, request)
         if current:
             post = current
-    receipt = receipt_for(request, post, 'published' if post.get('status') == 'sent' else 'accepted_only')
+    outcome = 'published' if post.get('status') == 'sent' else 'accepted_only'
+    if not image_confirmed(request, post):
+        outcome = 'image_unconfirmed'
+    receipt = receipt_for(request, post, outcome)
     write(receipt)
+    if outcome == 'image_unconfirmed':
+        raise RuntimeError('Buffer has not confirmed the product image. Check the recorded post; do not post again.')
     return receipt
 
 

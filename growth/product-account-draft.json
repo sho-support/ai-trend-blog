@@ -1,5 +1,5 @@
 {
-  "status": "buffer_connected_hario_x_link_ready",
+  "status": "first_reviewed_image_post_prepared",
   "name": "モノより｜セールと買い物メモ",
   "bio": "PC・家電・食品のお得情報を、写真と短い紹介で。気になる商品の価格と購入先を案内します。広告を含む投稿には【PR】を表示。",
   "website": "https://sho-support.github.io/ai-trend-blog/deals/",
@@ -15,7 +15,7 @@
   },
   "link_rule": "単品紹介は、登録済みSNS用のアフィリエイトリンクから公式ショップへ。比較記事や複数候補の紹介はモノよりへ。",
   "next_required": [
-    "初回の商品投稿を作成し、商品用チャンネルとの照合・写真と本文の表示を確認する",
+    "初回投稿の送信結果と写真・本文・購入先を確認する",
     "楽天の掲載先としてXを登録し、SNS用広告リンクを取得する"
   ]
 }

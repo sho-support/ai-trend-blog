@@ -25,8 +25,9 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 class Buffer:
-    def __init__(self, existing=False, status='sent', fail_write=False, locked=False):
+    def __init__(self, existing=False, status='sent', fail_write=False, locked=False, missing_image=False):
         self.existing=existing; self.status=status; self.fail_write=fail_write; self.locked=locked; self.writes=0
+        self.missing_image=missing_image
 
     def call(self, query, variables=None):
         if 'organizations' in query:
@@ -42,14 +43,19 @@ class Buffer:
             if self.fail_write:raise RuntimeError('Simulated unknown response')
             assert variables['input']['channelId']==CHANNEL_ID
             assert variables['input']['mode']=='shareNow'
-            assert variables['input']['assets']==[]
+            expected=([{'image':{'url':self.request['image_url'],
+                       'metadata':{'altText':self.request['image_alt_text']}}}]
+                      if self.request.get('image_url') else [])
+            assert variables['input']['assets']==expected
             return {'createPost':{'post':self.post()}}
         raise AssertionError('Unexpected API request')
 
     def post(self):
         return {'id':'test-post', 'text':self.request['text'], 'status':self.status,
                 'channelId':CHANNEL_ID, 'externalLink':'https://x.com/'+HANDLE+'/status/123' if self.status=='sent' else None,
-                'sentAt':'2026-11-02T00:00:00Z' if self.status=='sent' else None}
+                'sentAt':'2026-11-02T00:00:00Z' if self.status=='sent' else None,
+                'assets':[{'id':'test-image','mimeType':'image/jpeg'}]
+                         if self.request.get('image_url') and not self.missing_image else []}
 
 
 class ProductLaunch(unittest.TestCase):
@@ -57,6 +63,8 @@ class ProductLaunch(unittest.TestCase):
         for name,value in [('HANDLE',HANDLE),('CHANNEL_ID',CHANNEL_ID)]:
             target=patch.object(publisher,name,value);target.start();self.addCleanup(target.stop)
         self.request=json.loads((ROOT/'growth/x-launch.json').read_text())
+        for key in ('image_url','image_alt_text','require_image'):
+            self.request.pop(key,None)
         self.request.update(handle=HANDLE,channel_id=CHANNEL_ID,url='https://px.a8.net/svt/test-x-specific-link')
         self.request['text']='【PR】テスト用の商品紹介。\n'+self.request['url']
         self.item=next(x for x in json.loads((ROOT/'portal-assets/a8-approved.json').read_text())['items']
@@ -101,6 +109,40 @@ class ProductLaunch(unittest.TestCase):
         self.assertEqual(receipts[0]['outcome'],'attempt_started')
         self.assertEqual(result['outcome'],'published')
         self.assertTrue(result['external_url'].startswith('https://x.com/'+HANDLE+'/status/'))
+
+    def with_image(self):
+        self.request.update(image_url=self.item['image'], image_alt_text='商品の写真', require_image=True)
+
+    def test_authorized_product_image_is_attached_once(self):
+        self.with_image();api=self.api()
+        result=launch(self.request,[self.item],api.call,pause=lambda _:None)
+        self.assertEqual(api.writes,1)
+        self.assertEqual(result['outcome'],'published')
+        self.assertTrue(result['image_confirmed'])
+        self.assertEqual(result['asset_count'],1)
+
+    def test_unreviewed_or_unauthorized_image_is_rejected_before_sending(self):
+        self.with_image()
+        variants=[(dict(self.request,image_url='https://example.com/other.jpg'),self.item),
+                  (self.request,dict(self.item,image_authorized=False)),
+                  (dict(self.request,image_alt_text=''),self.item)]
+        for request,item in variants:
+            api=self.api()
+            with self.subTest(request=request),self.assertRaises(ValueError):
+                launch(request,[item],api.call,pause=lambda _:None)
+            self.assertEqual(api.writes,0)
+
+    def test_required_image_cannot_be_omitted(self):
+        self.request['require_image']=True
+        with self.assertRaises(ValueError):validate(self.request,[self.item],self.now)
+
+    def test_missing_image_confirmation_is_recorded_without_a_second_write(self):
+        self.with_image();api=self.api(missing_image=True);receipts=[]
+        with self.assertRaises(RuntimeError):
+            launch(self.request,[self.item],api.call,write=receipts.append,pause=lambda _:None)
+        self.assertEqual(api.writes,1)
+        self.assertEqual(receipts[-1]['outcome'],'image_unconfirmed')
+        self.assertFalse(receipts[-1]['image_confirmed'])
 
     def test_ai_account_can_never_receive_product_notices(self):
         with patch.object(publisher,'HANDLE','AITrendBlogJP'), self.assertRaises(ValueError):
