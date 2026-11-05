@@ -1,5 +1,5 @@
 {
-  "status": "first_reviewed_image_post_prepared",
+  "status": "first_image_post_published",
   "name": "モノより｜セールと買い物メモ",
   "bio": "PC・家電・食品のお得情報を、写真と短い紹介で。気になる商品の価格と購入先を案内します。広告を含む投稿には【PR】を表示。",
   "website": "https://sho-support.github.io/ai-trend-blog/deals/",
@@ -15,7 +15,11 @@
   },
   "link_rule": "単品紹介は、登録済みSNS用のアフィリエイトリンクから公式ショップへ。比較記事や複数候補の紹介はモノよりへ。",
   "next_required": [
-    "初回投稿の送信結果と写真・本文・購入先を確認する",
-    "楽天の掲載先としてXを登録し、SNS用広告リンクを取得する"
-  ]
+    "楽天の掲載先としてXを登録し、SNS用広告リンクを取得する",
+    "次の商品候補の価格・写真・掲載条件を確認する",
+    "XのクリックとASPの成果を確認し、投稿する商品を絞る"
+  ],
+  "first_post_url": "https://x.com/monoyori_sale/status/2118350528241414391",
+  "first_post_published_at": "2026-11-05T14:31:37.874Z",
+  "first_post_a8_url_submitted_at": "2026-11-05T23:35:53+09:00"
 }
