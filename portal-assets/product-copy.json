@@ -375,16 +375,16 @@
     "description": "メモリ8GB・SSD256GB。",
     "features": []
   },
-  "rakuten-japannext-10000385": {
-    "name": "JAPANNEXT 27インチ IPS BLACKパネル搭載…",
-    "headline": "JAPANNEXT 27インチ IPS BLACKパネル搭載…",
-    "description": "27インチ・IPS・4K。",
+  "rakuten-jism-14557694": {
+    "name": "センチュリー CENTURY 液晶ディスプレイ(10.1型/IP…",
+    "headline": "センチュリー CENTURY 液晶ディスプレイ(10.1型/IP…",
+    "description": "10.1型・60Hz・IPS。",
     "features": []
   },
-  "rakuten-jism-14558780": {
-    "name": "EIZO エイゾー 液晶ディスプレイ(24.1型/IPS/WUX…",
-    "headline": "EIZO エイゾー 液晶ディスプレイ(24.1型/IPS/WUX…",
-    "description": "24.1型・60Hz・IPS。",
+  "rakuten-jism-14557552": {
+    "name": "Philips フィリップス 液晶ディスプレイ(23.8型/IP…",
+    "headline": "Philips フィリップス 液晶ディスプレイ(23.8型/IP…",
+    "description": "23.8型・75Hz・IPS。",
     "features": []
   },
   "rakuten-logicool-10000345": {
@@ -507,9 +507,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-sokutei-10001714": {
-    "name": "訳アリ品 Nintendo Switch ニンテンドースイッチ…",
-    "headline": "訳アリ品 Nintendo Switch ニンテンドースイッチ…",
+  "rakuten-dtc-13146629": {
+    "name": "ソニー・インタラクティブエンタテインメント…",
+    "headline": "ソニー・インタラクティブエンタテインメント…",
     "description": "",
     "features": []
   },
@@ -646,8 +646,8 @@
     "features": []
   },
   "rakuten-nanobig-10000898": {
-    "name": "2026新モデル 掃除機 コードレス掃除機 Orage史上 超高…",
-    "headline": "2026新モデル 掃除機 コードレス掃除機 Orage史上 超高…",
+    "name": "2027新モデル 掃除機 コードレス掃除機 Orage史上 超高…",
+    "headline": "2027新モデル 掃除機 コードレス掃除機 Orage史上 超高…",
     "description": "コードレス。",
     "features": []
   },
@@ -783,22 +783,22 @@
     "description": "",
     "features": []
   },
-  "rakuten-a-price-10983238": {
-    "name": "TTArtisan 50mm f/1.2C L(S) シルバー…",
-    "headline": "TTArtisan 50mm f/1.2C L(S) シルバー…",
-    "description": "",
-    "features": []
-  },
-  "rakuten-loupe-studio-11158231": {
-    "name": "LAOWA 4mm F2.8 Fisheye 交換レンズ 一眼レ…",
-    "headline": "LAOWA 4mm F2.8 Fisheye 交換レンズ 一眼レ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-auc-stkb-10002715": {
     "name": "LIGHT LENS LAB M 35mm f/2 ライカMマウ…",
     "headline": "LIGHT LENS LAB M 35mm f/2 ライカMマウ…",
     "description": "8枚。",
+    "features": []
+  },
+  "rakuten-panasonic-store-10001797": {
+    "name": "パナソニック デジタル一眼カメラ用交換レンズ ルミックス Sシリ…",
+    "headline": "パナソニック デジタル一眼カメラ用交換レンズ ルミックス Sシリ…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-loupe-studio-10665642": {
+    "name": "LAOWA 7.5mm F2 交換レンズ 一眼レフ MFT マイ…",
+    "headline": "LAOWA 7.5mm F2 交換レンズ 一眼レフ MFT マイ…",
+    "description": "",
     "features": []
   },
   "rakuten-md-kk-10005536": {
@@ -832,8 +832,8 @@
     "features": []
   },
   "rakuten-lala-assoc-10008771": {
-    "name": "FOSSiBOT S2 スマートフォン SIMフリー スマホ 本…",
-    "headline": "FOSSiBOT S2 スマートフォン SIMフリー スマホ 本…",
+    "name": "最大100%Pバック FOSSiBOT S2 スマートフォン…",
+    "headline": "最大100%Pバック FOSSiBOT S2 スマートフォン…",
     "description": "8GB・256GB・5000mAh。",
     "features": []
   },
@@ -849,16 +849,10 @@
     "description": "10.1型・メモリ64GB。",
     "features": []
   },
-  "rakuten-biccamera-15178608": {
-    "name": "NEC エヌイーシー Androidタブレット LAVIE…",
-    "headline": "NEC エヌイーシー Androidタブレット LAVIE…",
-    "description": "10.1型・64GB。",
-    "features": []
-  },
-  "rakuten-tsukitohana1-10000198": {
-    "name": "MagSafe 対応iphone18pro ケース…",
-    "headline": "MagSafe 対応iphone18pro ケース…",
-    "description": "",
+  "rakuten-keitai-god-10021768": {
+    "name": "未開封品 2025年モデル iPad 11インチ Wi-Fi…",
+    "headline": "未開封品 2025年モデル iPad 11インチ Wi-Fi…",
+    "description": "11インチ・128GB。",
     "features": []
   },
   "rakuten-kamimatsuri-10000653": {
@@ -867,9 +861,15 @@
     "description": "",
     "features": []
   },
-  "rakuten-hello-brillo-10000073": {
-    "name": "iphone17 ケース iphone16 ケース iPhone…",
-    "headline": "iphone17 ケース iphone16 ケース iPhone…",
+  "rakuten-kintsu-pluss-10293999": {
+    "name": "ELEVIDE スマホケース 手帳型 全機種対応…",
+    "headline": "ELEVIDE スマホケース 手帳型 全機種対応…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-keitai-10801623": {
+    "name": "公式iFace iPhone14 ケース iPhoneSE…",
+    "headline": "公式iFace iPhone14 ケース iPhoneSE…",
     "description": "",
     "features": []
   },
@@ -903,10 +903,10 @@
     "description": "bluetooth・防水。",
     "features": []
   },
-  "rakuten-anker-10000348": {
-    "name": "Anker Soundcore ポータブル Bluetooth5…",
-    "headline": "Anker Soundcore ポータブル Bluetooth5…",
-    "description": "防水。",
+  "rakuten-anker-10002132": {
+    "name": "Anker Soundcore Select 4 Go…",
+    "headline": "Anker Soundcore Select 4 Go…",
+    "description": "bluetooth・防水。",
     "features": []
   },
   "rakuten-milink-inc-10000203": {
@@ -1077,22 +1077,22 @@
     "description": "",
     "features": []
   },
-  "rakuten-kobe-beauty-labo-10002511": {
-    "name": "楽天週間1位獲得! ゆうパケット対象商品 リンクフェード…",
-    "headline": "楽天週間1位獲得! ゆうパケット対象商品 リンクフェード…",
-    "description": "",
-    "features": []
-  },
   "rakuten-d-ray-10000001": {
     "name": "ファンデーション カバー力 崩れにくい パウダー 毛穴レス 陶器…",
     "headline": "ファンデーション カバー力 崩れにくい パウダー 毛穴レス 陶器…",
     "description": "",
     "features": []
   },
-  "rakuten-superdeal-10002044": {
-    "name": "メイベリン フィットミー リキッド ファンデーション R",
-    "headline": "メイベリン フィットミー リキッド ファンデーション R",
-    "description": "2本セット。",
+  "rakuten-rakuten24-11273698": {
+    "name": "プリマヴィスタ ブライトチャージ パウダーファンデーション(9g…",
+    "headline": "プリマヴィスタ ブライトチャージ パウダーファンデーション(9g…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-shuuemura-10000021": {
+    "name": "アンリミテッド ラスティング フルイド リキッド ファンデーショ…",
+    "headline": "アンリミテッド ラスティング フルイド リキッド ファンデーショ…",
+    "description": "",
     "features": []
   },
   "rakuten-irisplaza-r-10170526": {
@@ -1215,16 +1215,16 @@
     "description": "4袋・2袋。",
     "features": []
   },
-  "rakuten-drink-partner-10000374": {
-    "name": "コカ・コーラ ジョージア コーヒー 深み焙煎贅沢ブレンド 甘さひ…",
-    "headline": "コカ・コーラ ジョージア コーヒー 深み焙煎贅沢ブレンド 甘さひ…",
-    "description": "950ml・12本入り。",
-    "features": []
-  },
   "rakuten-hokkkaido-10001027": {
     "name": "コカ・コーラ コーヒー ジョージア 缶コーヒー 選べる よりどり…",
     "headline": "コカ・コーラ コーヒー ジョージア 缶コーヒー 選べる よりどり…",
     "description": "30本入り。",
+    "features": []
+  },
+  "rakuten-kkonlinestore-10000001": {
+    "name": "コーヒー 珈琲 コーヒー豆 コーヒー粉 豆のまま 1kg 2kg…",
+    "headline": "コーヒー 珈琲 コーヒー豆 コーヒー粉 豆のまま 1kg 2kg…",
+    "description": "",
     "features": []
   },
   "rakuten-soukaidrink-10005982": {
@@ -1239,10 +1239,10 @@
     "description": "5個・個包装。",
     "features": []
   },
-  "rakuten-hanwha-10001861": {
-    "name": "JAF TEA CLASSIC GOLD COLLECTION…",
-    "headline": "JAF TEA CLASSIC GOLD COLLECTION…",
-    "description": "40包。",
+  "rakuten-giftland-showa-10000073": {
+    "name": "紅茶 ティーバッグ 福袋 選べる90包 jaftea セイロンフ…",
+    "headline": "紅茶 ティーバッグ 福袋 選べる90包 jaftea セイロンフ…",
+    "description": "90包・個包装。",
     "features": []
   },
   "rakuten-netbaby-10015402": {
@@ -1276,8 +1276,8 @@
     "features": []
   },
   "rakuten-jellyjellyshop-10000060": {
-    "name": "ボードゲームガチャ 2人 ~ 14人 6歳～ 人気作品がランダム…",
-    "headline": "ボードゲームガチャ 2人 ~ 14人 6歳～ 人気作品がランダム…",
+    "name": "今だけ ！ ボードゲームガチャ 2人 ~ 14人 6歳～ 人気作…",
+    "headline": "今だけ ！ ボードゲームガチャ 2人 ~ 14人 6歳～ 人気作…",
     "description": "",
     "features": []
   },
@@ -1558,8 +1558,8 @@
     "features": []
   },
   "rakuten-mono-land-miyabi-1-10000340": {
-    "name": "本日 ！ リュック リュックサック バックパック レディース メ…",
-    "headline": "本日 ！ リュック リュックサック バックパック レディース メ…",
+    "name": "本日1500円OFF！ リュック リュックサック バックパック…",
+    "headline": "本日1500円OFF！ リュック リュックサック バックパック…",
     "description": "",
     "features": []
   },
@@ -1581,9 +1581,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-style-on-bag-10001692": {
-    "name": "ショルダーバッグ レディース 斜めがけバッグ 軽量 あおりポケッ…",
-    "headline": "ショルダーバッグ レディース 斜めがけバッグ 軽量 あおりポケッ…",
+  "rakuten-tsukitohana1-10000210": {
+    "name": "レディース 巾着バッグ 3wayバッグ ミニウォーターバッグ 手…",
+    "headline": "レディース 巾着バッグ 3wayバッグ ミニウォーターバッグ 手…",
     "description": "",
     "features": []
   },
@@ -1665,15 +1665,15 @@
     "description": "",
     "features": []
   },
-  "rakuten-onitsukatiger-10000343": {
-    "name": "(U) MEXICO 66 Onitsuka Tiger オニツ…",
-    "headline": "(U) MEXICO 66 Onitsuka Tiger オニツ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-vanilla-vague-10522129": {
     "name": "スニーカー メンズ レディース ドイツの撥水・防汚の技術 靴 シ…",
     "headline": "スニーカー メンズ レディース ドイツの撥水・防汚の技術 靴 シ…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-puma-10037817": {
+    "name": "『 11/4 20:00〜11/6 1:59』 プーマ PUMA…",
+    "headline": "『 11/4 20:00〜11/6 1:59』 プーマ PUMA…",
     "description": "",
     "features": []
   },
@@ -1762,8 +1762,8 @@
     "features": []
   },
   "rakuten-luminous-club-10008851": {
-    "name": "5日まで チェア 姿勢 姿勢矯正 コンパクト 腰痛 疲れない バ…",
-    "headline": "5日まで チェア 姿勢 姿勢矯正 コンパクト 腰痛 疲れない バ…",
+    "name": "チェア 姿勢 姿勢矯正 コンパクト 腰痛 疲れない バランスチェ…",
+    "headline": "チェア 姿勢 姿勢矯正 コンパクト 腰痛 疲れない バランスチェ…",
     "description": "",
     "features": []
   },
@@ -1978,8 +1978,8 @@
     "features": []
   },
   "rakuten-aideall-10000055": {
-    "name": "ledランタン ソーラーランタン USB 充電式 ランタン 高輝…",
-    "headline": "ledランタン ソーラーランタン USB 充電式 ランタン 高輝…",
+    "name": "限定クーポンで2450円 ledランタン ソーラーランタン…",
+    "headline": "限定クーポンで2450円 ledランタン ソーラーランタン…",
     "description": "5000mAh・防水。",
     "features": []
   },
