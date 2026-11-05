@@ -1,10 +1,11 @@
 """Short product news from verified, still-current first-party price records."""
 import html
 import re
-from datetime import datetime, timezone, timedelta
+from datetime import date, datetime, timezone
 
 from storefront_seo import live, share_image
 from product_text import short_title
+from track_prices import observed_drop
 
 
 def selected_deals(feed, history, copies, now=None):
@@ -14,20 +15,18 @@ def selected_deals(feed, history, copies, now=None):
         if item.get('source')!='rakuten' or not live(item,now):continue
         day=item.get('verified','')
         if not isinstance(day,str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}',day):continue
-        try:datetime.strptime(day,'%Y-%m-%d')
+        try:observation_day=date.fromisoformat(day)
         except (TypeError,ValueError):continue
-        low_day=(datetime.strptime(day,'%Y-%m-%d')-timedelta(days=30)).date().isoformat()
-        records=[r for r in history.get('items',{}).get(item['id'],[])
-                 if isinstance(r,dict) and isinstance(r.get('date'),str)
-                 and low_day<=r['date']<day and type(r.get('price')) in (int,float) and r['price']>0]
-        if len({r['date'] for r in records})<3:continue
-        previous=min(r['price'] for r in records)
+        records=history.get('items',{}).get(item['id'],[])
         deal=item.get('verified_deal') or {}
-        if (item['price_yen']>=previous or deal.get('previous_observed_low_yen')!=previous
-                or deal.get('current_yen')!=item['price_yen']):continue
+        observed=observed_drop(records,observation_day,item['price_yen'])
+        if (not observed or deal.get('previous_observed_low_yen')!=observed['previous_observed_low_yen']
+                or deal.get('current_yen')!=observed['current_yen']
+                or deal.get('first_observed_date',day)!=observed['first_observed_date']
+                or datetime.fromisoformat(observed['expires_at'])<=now):continue
         copy=copies.get(item['id'],{'name':short_title(item),'description':''})
-        rows.append(dict(item,news_copy=copy,previous_price=previous,
-                         previous_date=max(r['date'] for r in records if r['price']==previous)))
+        rows.append(dict(item,news_copy=copy,previous_price=observed['previous_observed_low_yen'],
+                         previous_date=observed['previous_date'],news_expires_at=observed['expires_at']))
     rows.sort(key=lambda x:(x['price_yen']/x['previous_price'],x['id']))
     return rows[:12]
 
@@ -35,13 +34,14 @@ def selected_deals(feed, history, copies, now=None):
 def render_deals(rows):
     escape=lambda x:html.escape(str(x),quote=True)
     out=[]
-    for item in rows:
+    for index,item in enumerate(rows):
         copy=item['news_copy'];name=copy['name'];identity=escape(item['id']);url=escape(item['url'])
         attrs=f' href="{url}" data-deal-buy="{identity}" target="_blank" rel="noopener noreferrer sponsored"'
-        photo=(f'<img src="{escape(share_image(item["image"]))}" alt="{escape(name)}" width="600" height="600" decoding="async" loading="lazy">'
+        priority='fetchpriority="high"' if index==0 else 'loading="lazy"'
+        photo=(f'<img src="{escape(share_image(item["image"]))}" alt="{escape(name)}" width="600" height="600" decoding="async" {priority}>'
                if item.get('image','').startswith('https://') else '<span>商品写真は販売店で</span>')
         out.append(f'<article class="deal-news-card"><a class="deal-news-photo"{attrs}>{photo}</a><div class="deal-news-body">'
-                   f'<span class="ad-label">PR · 楽天市場</span><h2><a{attrs}>{escape(name)}、<span class="price-token">{item["price_yen"]:,}円〜</span></a></h2>'
+                   f'<span class="ad-label">PR · 楽天市場</span><h2><a{attrs}>{escape(name)} <span class="price-token">{item["price_yen"]:,}円〜</span></a></h2>'
                    f'<p class="deal-news-intro">{escape(copy.get("description",""))}</p>'
                    f'<p class="deal-news-before">{escape(item["previous_date"][5:].replace("-","/"))}記録：{item["previous_price"]:,}円</p>'
                    f'<a class="buy-button"{attrs}>楽天市場で見る ↗</a></div></article>')

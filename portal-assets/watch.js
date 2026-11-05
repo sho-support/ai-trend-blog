@@ -7,18 +7,19 @@ if(!root||!status||!cat||!sort||!C)return;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const yen=v=>Number(v).toLocaleString('ja-JP');
 let rows=[];
+const activeDeal=item=>item.verified_deal?.expires_at&&!C.isFresh(item.verified_deal)?null:item.verified_deal;
 function render(){
  const current=cat.value;
  let list=rows.filter(x=>C.isLive(x)&&(current==='all'||x.category===current));
  if(sort.value==='cheap')list.sort((a,b)=>a.price_yen-b.price_yen);
  else if(sort.value==='expensive')list.sort((a,b)=>b.price_yen-a.price_yen);
- else list.sort((a,b)=>(b.verified_deal?.drop_percent||0)-(a.verified_deal?.drop_percent||0));
- const trueDrops=list.filter(x=>!!x.verified_deal).length;
+ else list.sort((a,b)=>(activeDeal(b)?.drop_percent||0)-(activeDeal(a)?.drop_percent||0));
+ const trueDrops=list.filter(activeDeal).length;
  status.textContent='掲載可能 '+list.length+'件・当サイトで確認できた値下がり '+trueDrops+'件｜確認できない値下がりは表示しません。';
  if(!list.length){root.innerHTML='<div class="empty">該当する商品情報がありません。次回の自動更新後に確認してください。</div>';return}
  root.innerHTML=list.map(x=>{
   const tracked=x._tracked||0;
-  const deal=x.verified_deal;
+  const deal=activeDeal(x);
   const label=deal ? '当サイト観測価格 '+yen(deal.previous_observed_low_yen)+'円 → '+yen(x.price_yen)+'円（'+deal.drop_percent+'%低下）'
    :tracked<4 ? '価格を記録中｜比較には過去3日以上の記録が必要':'観測価格の値下がり判定なし';
   return '<article class="watch-card"><div><span class="tag highlight">'+esc(x.category)+'</span><h3>'+esc(x.display_title||x.title)+'</h3><p>'+esc(x.seller||'楽天市場出店ショップ')+'</p></div>'

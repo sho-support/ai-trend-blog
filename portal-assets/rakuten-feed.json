@@ -529,7 +529,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/pixiogaming/cabinet/px248wave/px248wave.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-05",
+        "previous_observed_low_yen": 26980,
+        "previous_date": "2026-11-04",
+        "current_yen": 18500,
+        "drop_percent": 31.4,
+        "comparison_days": 5,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-08T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-fpdvision-10000029",
@@ -727,7 +738,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/logicool/cabinet//prd/g_hs/g335bk/g335bk_r.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-05",
+        "previous_observed_low_yen": 7400,
+        "previous_date": "2026-11-04",
+        "current_yen": 5480,
+        "drop_percent": 25.9,
+        "comparison_days": 5,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-08T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-logicool-10000479",
@@ -749,7 +771,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/logicool/cabinet/prd/g_hs/g-phs-003d/g-phs-003d_s.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-05",
+        "previous_observed_low_yen": 14150,
+        "previous_date": "2026-11-04",
+        "current_yen": 9880,
+        "drop_percent": 30.2,
+        "comparison_days": 5,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-08T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-logicool-10000325",
@@ -771,7 +804,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/logicool/cabinet/prd/g_hs/g-phs-003/g-phs-003_01_r.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-05",
+        "previous_observed_low_yen": 14900,
+        "previous_date": "2026-11-04",
+        "current_yen": 11090,
+        "drop_percent": 25.6,
+        "comparison_days": 4,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-08T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-book-20593593",
@@ -1588,11 +1632,14 @@
       "label": "PR｜楽天公式API",
       "verified_deal": {
         "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-06",
         "previous_observed_low_yen": 71280,
+        "previous_date": "2026-11-01",
         "current_yen": 66000,
         "drop_percent": 7.4,
         "comparison_days": 6,
-        "observation_window_days": 30
+        "observation_window_days": 30,
+        "expires_at": "2026-11-09T00:00:00+09:00"
       }
     },
     {
@@ -2011,7 +2058,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/anker/cabinet/deal/202611m1/a1645_sale.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-04",
+        "previous_observed_low_yen": 3990,
+        "previous_date": "2026-11-03",
+        "current_yen": 2890,
+        "drop_percent": 27.6,
+        "comparison_days": 4,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-07T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-gracevally-10000033",
@@ -2121,7 +2179,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/anker/cabinet/deal/202611m1/a3105_sale.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-04",
+        "previous_observed_low_yen": 5990,
+        "previous_date": "2026-11-03",
+        "current_yen": 4193,
+        "drop_percent": 30.0,
+        "comparison_days": 4,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-07T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-marshall-official-10000019",
@@ -2319,7 +2388,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/jblstore/cabinet/event/2611m_thumb/th_sb580_2611m.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-05",
+        "previous_observed_low_yen": 43890,
+        "previous_date": "2026-11-04",
+        "current_yen": 29700,
+        "drop_percent": 32.3,
+        "comparison_days": 5,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-08T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-philips-avs-10000039",
@@ -3375,7 +3455,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/lifedrinkcompany/cabinet/08451052/14108283/peach48_1104.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-05",
+        "previous_observed_low_yen": 2550,
+        "previous_date": "2026-11-04",
+        "current_yen": 2370,
+        "drop_percent": 7.1,
+        "comparison_days": 5,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-08T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-lifedrinkcompany-10000004",
@@ -5553,7 +5644,18 @@
       "expires_at": "2026-11-07T01:17:18.058589+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/irisplaza-r/cabinet/12113165/imgrc0119867837.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "verified_deal": {
+        "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-05",
+        "previous_observed_low_yen": 2680,
+        "previous_date": "2026-11-04",
+        "current_yen": 2480,
+        "drop_percent": 7.5,
+        "comparison_days": 5,
+        "observation_window_days": 30,
+        "expires_at": "2026-11-08T00:00:00+09:00"
+      }
     },
     {
       "id": "rakuten-hikarie-zakka-10000019",
@@ -6370,11 +6472,14 @@
       "label": "PR｜楽天公式API",
       "verified_deal": {
         "source": "当サイト観測の楽天API価格",
+        "first_observed_date": "2026-11-06",
         "previous_observed_low_yen": 2799,
+        "previous_date": "2026-11-05",
         "current_yen": 2379,
         "drop_percent": 15.0,
         "comparison_days": 6,
-        "observation_window_days": 30
+        "observation_window_days": 30,
+        "expires_at": "2026-11-09T00:00:00+09:00"
       }
     },
     {

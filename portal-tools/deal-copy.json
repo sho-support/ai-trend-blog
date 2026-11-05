@@ -10,5 +10,41 @@
   "rakuten-anker-10001561": {
     "name": "Anker Nano Power Bank",
     "description": "コネクター内蔵の小型バッテリー。対応端子は購入先で確認できます。"
+  },
+  "rakuten-logicool-10000417": {
+    "name": "ロジクール G335 有線ヘッドセット",
+    "description": "3.5mm接続。マイクを上げるとミュートできます。"
+  },
+  "rakuten-jblstore-10000189": {
+    "name": "JBL Cinema SB580",
+    "description": "テレビ用サウンドバー。ワイヤレスサブウーファー付き。"
+  },
+  "rakuten-lifedrinkcompany-10000022": {
+    "name": "OZA SODA 強炭酸水 48本",
+    "description": "1本500ml。プレーンやレモンを選べます。"
+  },
+  "rakuten-pixiogaming-10000116": {
+    "name": "Pixio WAVE 23.8型",
+    "description": "フルHDのゲーミングモニター。機種と色を選べます。"
+  },
+  "rakuten-logicool-10000479": {
+    "name": "ロジクール G PRO X（G-PHS-003da）",
+    "description": "取り外し式マイク付きの有線ヘッドセット。"
+  },
+  "rakuten-logicool-10000325": {
+    "name": "ロジクール G PRO X（G-PHS-003）",
+    "description": "3.5mmとUSB接続に対応した有線ヘッドセット。"
+  },
+  "rakuten-youplan-10323556": {
+    "name": "Insta360 X3 ブラック",
+    "description": "360度の映像を撮れるアクションカメラ。"
+  },
+  "rakuten-irisplaza-r-10152150": {
+    "name": "アイリスオーヤマ LEDシーリングライト",
+    "description": "6畳・8畳・12畳用。部屋の広さに合わせて選べます。"
+  },
+  "rakuten-lepro-10000143": {
+    "name": "Lepro 乾電池式LEDランタン",
+    "description": "最大1500ルーメン。単一電池3本で点灯します。"
   }
 }
