@@ -1,4 +1,23 @@
 {
-  "links": [],
-  "note": "A8の掲載先はモノよりX（003）として登録済み。X用リンクはSNS・note用タブでXを選び、コピーした実URLとプログラム条件を確認してから追加する。現在はコピーしたURLを取得できていないため空。Webサイト用リンクの転用や通常URLへの差し替えはしない。"
+  "links": [
+    {
+      "product_id": "a8-hario-xrcn-2-b",
+      "handle": "monoyori_sale",
+      "url": "https://r.8to.jp/FAdpaRhdtNnV",
+      "provider": "a8",
+      "placement": "x",
+      "site_id": "003",
+      "site_registered": true,
+      "program_allowed": true,
+      "material_type": "free_link",
+      "checked_at": "2026-11-05T14:16:19.341748+00:00",
+      "expires_at": "2026-11-08T21:02:42.066200+09:00",
+      "expiry_basis": "editorial_review_due",
+      "destination_url": "https://shop.hariocorp.co.jp/products/xrcn-2-b",
+      "redirect_verified": true,
+      "redirect_sns": "x",
+      "retrieval_method": "a8_sns_note_x_copy"
+    }
+  ],
+  "note": "HARIOのX用リンクを、掲載先003・SNS・note用タブのXから取得済み。公式の商品ページへの遷移とa8sns=xを確認。その他の商品のX用リンクは未取得。Webサイト用リンクは転用しない。"
 }
