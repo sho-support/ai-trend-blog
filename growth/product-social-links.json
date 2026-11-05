@@ -46,7 +46,38 @@
       "image_builder_item_id": "10000417",
       "image_dimensions": "400x400",
       "image_manipulated": false
+    },
+    {
+      "product_id": "rakuten-jblstore-10000189",
+      "handle": "monoyori_sale",
+      "url": "https://a.r10.to/hXmYE8",
+      "provider": "rakuten",
+      "placement": "x",
+      "site_id": "1",
+      "site_url": "https://x.com/monoyori_sale",
+      "site_registered": true,
+      "program_allowed": true,
+      "retrieval_method": "rakuten_affiliate_link_builder",
+      "link_type": "short_url",
+      "price_navi": false,
+      "measurement_id": "monoyorix",
+      "checked_at": "2026-11-05T22:58:13.595900+00:00",
+      "expires_at": "2026-11-06T01:58:13.595900+00:00",
+      "expiry_basis": "editorial_review_due",
+      "destination_url": "https://item.rakuten.co.jp/jblstore/sb-580/",
+      "redirect_verified": true,
+      "redirect_checked_url": "https://item.rakuten.co.jp/jblstore/sb-580/?scid=af_pc_etc&sc2id=af_101_0_0",
+      "merchant_checked_url": "https://item.rakuten.co.jp/jblstore/sb-580/?variantId=JBLSB580BLKJN",
+      "reviewed_sku": "JBLSB580BLKJN",
+      "reviewed_price_yen": 29700,
+      "review_note": "公式販売ページでブラック選択後の29,700円と配送予定を確認。発行した短縮リンクの遷移確認を1回実施。",
+      "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/jblstore/cabinet/08084253/sb-580/sb-580_wb.jpg?_ex=400x400",
+      "image_authorized": true,
+      "image_source": "rakuten_affiliate_link_builder",
+      "image_builder_item_id": "10000189",
+      "image_dimensions": "400x400",
+      "image_manipulated": false
     }
   ],
-  "note": "HARIOはA8の掲載先003・X用リンク。G335は登録済みモノよりX向けに楽天リンク作成画面から取得。写真は同画面の白背景400×400。Webサイト用API画像のSNS許可を推測しない。"
+  "note": "HARIOはA8の掲載先003・X用リンク。G335とJBLは楽天の商品リンク作成画面の短縮URL・白背景写真を使用。JBL以降の対象リンクではモノよりX用の計測IDを設定する。"
 }

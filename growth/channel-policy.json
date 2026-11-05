@@ -14,10 +14,13 @@
     "a8_site_registered_at": "2026-11-05",
     "purpose": "モノよりの商品紹介。AI発信とは別のアカウントを使う",
     "link_mode": "official_shop_via_verified_social_affiliate_link",
-    "status": "モノよりXのA8・楽天掲載先登録とBuffer接続を確認済み。HARIO公開済み。G335の写真・短文・公式直リンク1件を確認し送信準備済み。",
+    "status": "楽天にモノよりXとTrendBlog本体を登録し、X用計測IDを設定。HARIOとG335の写真付き投稿は公開済み。JBLの確認済み告知1件を送信準備済み。",
     "a8_x_link_verified_at": "2026-11-05",
     "rakuten_sns_status": "registered",
     "rakuten_site_id": "1",
-    "rakuten_sns_registered_at": "2026-11-06"
+    "rakuten_sns_registered_at": "2026-11-06",
+    "rakuten_web_site_id": "2",
+    "rakuten_web_registered_at": "2026-11-06",
+    "rakuten_measurement_id": "monoyorix"
   }
 }

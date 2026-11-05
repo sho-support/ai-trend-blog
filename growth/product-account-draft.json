@@ -15,9 +15,9 @@
   },
   "link_rule": "単品紹介は、登録済みSNS用のアフィリエイトリンクから公式ショップへ。比較記事や複数候補の紹介はモノよりへ。",
   "next_required": [
-    "G335の確認済み写真・短文・公式直リンク1件を送信し、実際の公開結果を確認する",
-    "JBL・OZA SODA候補は対象SKU・現在価格・在庫・送料・SNS用素材を個別に再確認する",
-    "X・ASPのクリックと成果を確認して商品を絞る。自己確認クリックを顧客反応と混同しない"
+    "JBLの計測ID付き投稿を公開し、写真とリンクを確認する",
+    "OZA SODAは対象フレーバー・現在価格・在庫・送料・SNS用素材を確認する",
+    "楽天・A8のクリックと成果を見て次の紹介商品を選ぶ"
   ],
   "first_post_url": "https://x.com/monoyori_sale/status/2118350528241414391",
   "first_post_published_at": "2026-11-05T14:31:37.874Z",
@@ -25,5 +25,11 @@
   "product_deal_drafts": "growth/product-deal-drafts.json",
   "rakuten_sns_status": "registered",
   "rakuten_site_id": "1",
-  "rakuten_sns_registered_at": "2026-11-06"
+  "rakuten_sns_registered_at": "2026-11-06",
+  "rakuten_web_site_id": "2",
+  "rakuten_web_registered_at": "2026-11-06",
+  "rakuten_measurement_id": "monoyorix",
+  "rakuten_web_site_url": "https://sho-support.github.io/ai-trend-blog/",
+  "g335_post_url": "https://x.com/monoyori_sale/status/2118371943728468116",
+  "g335_post_verified_at": "2026-11-06"
 }

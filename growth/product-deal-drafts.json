@@ -1,7 +1,7 @@
 {
   "updated_at": "2026-11-06",
   "handle": "monoyori_sale",
-  "status": "one_candidate_reviewed",
+  "status": "two_candidates_reviewed",
   "publish_now": false,
   "feed_snapshot_at": "2026-11-05T10:24:24.046929+09:00",
   "note": "未送信の編集用下書き。フィードの価格を将来の投稿へ持ち越さず、取得後も再確認する。自動予約には投入しない。",
@@ -22,9 +22,10 @@
       "affiliate_url": "https://a.r10.to/hPuUdX",
       "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/logicool/cabinet/white/g335bk.jpg?_ex=400x400",
       "blocking_checks": [],
-      "status": "reviewed_for_one_notice",
+      "status": "published",
       "merchant_checked_at": "2026-11-05T15:55:38.566002+00:00",
-      "reviewed_sku": "G335BK"
+      "reviewed_sku": "G335BK",
+      "post_url": "https://x.com/monoyori_sale/status/2118371943728468116"
     },
     {
       "product_id": "rakuten-jblstore-10000189",
@@ -33,20 +34,19 @@
       "provider": "rakuten",
       "publish_now": false,
       "price_yen": 29700,
-      "price_verified_date": "2026-11-05",
-      "price_basis": "楽天公式APIの取得時価格。購入画面のSKU別価格・送料は未確認。",
-      "expires_at": "2026-11-06T09:24:24.046929+09:00",
+      "price_verified_date": "2026-11-06",
+      "price_basis": "11/6の楽天APIと、同日公式販売ページで選択したブラックの価格29,700円が一致。",
+      "expires_at": "2026-11-06T01:58:13.595900+00:00",
       "destination_url": "https://item.rakuten.co.jp/jblstore/sb-580/",
-      "body_without_link": "【PR】JBL Cinema SB580が29,700円〜。\nテレビの音をサウンドバーで。Dolby Atmos対応、サブウーファー付き。\n楽天市場・JBL公式ストア\n（11月5日確認／送料は商品ページで）",
-      "weighted_length_with_one_link": 186,
-      "affiliate_url": null,
-      "image_url": null,
-      "blocking_checks": [
-        "X利用サイト登録",
-        "対象SKU・価格・在庫・送料の再確認",
-        "リンク作成画面から短縮URLとSNS用画像を取得",
-        "遷移先と画像の目視確認"
-      ]
+      "body_without_link": "【PR】JBLのサウンドバー Cinema SB580、29,700円。\nDolby Atmos対応。ワイヤレスのサブウーファーもセット。\n楽天市場・JBL公式ストア（税込／11月6日確認）",
+      "weighted_length_with_one_link": 171,
+      "affiliate_url": "https://a.r10.to/hXmYE8",
+      "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/jblstore/cabinet/08084253/sb-580/sb-580_wb.jpg?_ex=400x400",
+      "blocking_checks": [],
+      "status": "reviewed_for_one_notice",
+      "measurement_id": "monoyorix",
+      "merchant_checked_at": "2026-11-05T22:58:13.595900+00:00",
+      "reviewed_sku": "JBLSB580BLKJN"
     },
     {
       "product_id": "rakuten-lifedrinkcompany-10000022",
