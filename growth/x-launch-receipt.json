@@ -1,12 +1,15 @@
 {
-  "campaign_id": "monoyori_miffy_20261102",
-  "channel_handle": "AITrendBlogJP",
-  "product_id": "a8-henri-miffy-financier-8",
-  "landing_url": "https://sho-support.github.io/ai-trend-blog/products/items/a8-henri-miffy-financier-8.html?utm_source=x&utm_medium=social&utm_campaign=monoyori_miffy_20261102",
-  "post_id": "6ae82f951a965d64fbf2e567",
+  "campaign_id": "monoyori_hario_x_20261105",
+  "channel_handle": "monoyori_sale",
+  "product_id": "a8-hario-xrcn-2-b",
+  "landing_url": "https://r.8to.jp/FAdpaRhdtNnV",
+  "post_id": "6aec934801e9d82de81e9a72",
   "status": "sent",
   "outcome": "published",
-  "external_url": "https://twitter.com/AITrendBlogJP/status/2117143960606945404",
-  "sent_at": "2026-11-02T06:37:09.705Z",
-  "checked_at": "2026-11-02T06:37:10.334707+00:00"
+  "external_url": "https://twitter.com/monoyori_sale/status/2118350528241414391",
+  "sent_at": "2026-11-05T14:31:37.874Z",
+  "image_url": "https://shop.hariocorp.co.jp/cdn/shop/products/XRCN-2-B_540x.jpg?v=1753785970",
+  "image_confirmed": true,
+  "asset_count": 1,
+  "checked_at": "2026-11-05T14:31:38.689499+00:00"
 }
