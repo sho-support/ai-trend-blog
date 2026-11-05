@@ -293,3 +293,7 @@ Metricoolの未接続は、他のSNS連携がないことを意味しない。�
 G335の短縮リンクを正規の商品リンク作成画面で取得し、価格ナビOFF・直接の公式ストア遷移を確認。SNS用写真は同画面で選択した白背景400×400をそのまま使用する。公式販売ページでブラック（G335BK、variantId=354）を選択し5,480円を確認した。11/5 APIの同額記録と照合し、投稿本文の確認日はフィード基準の11/5を維持。送料無料の表示には一部地域の例外があるため、一律の送料無料と訴求しない。自分で行ったリンク確認を顧客クリックや売上と混同しない。
 
 `growth/x-launch.json` はG335の写真付き告知1件へ更新し、前回のHARIOリクエストは `growth/x-launch-requests/` に保存。送信の実際の成否は実行後の `growth/x-launch-receipts/monoyori_g335_x_20261106.json` と公開先を確認すること。JBL・OZA SODAは未送信。楽天のリンク発行自体の有効期限と、投稿前に見直すための3時間の内部確認期限は別物。
+
+楽天の利用サイトにTrendBlog本体（ https://sho-support.github.io/ai-trend-blog/ ）をサイト2として追加した。モノよりXはサイト1。Xからの成果を区別する計測ID `monoyorix` を登録した。
+
+G335は公開画面で写真と短縮リンクを確認した。公開URLは https://x.com/monoyori_sale/status/2118371943728468116 。JBL Cinema SB580は公式ストアでブラックの29,700円と配送予定を確認し、計測ID付きの短縮URLと公式リンク作成画面の白背景写真を使用。7時58分に公開され、写真とリンクを実画面で確認した。公開URLは https://x.com/monoyori_sale/status/2118478184698065169 。実行記録は https://github.com/sho-support/ai-trend-blog/actions/runs/42125949975 。OZA SODAは未送信の候補。

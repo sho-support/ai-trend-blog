@@ -1,10 +1,10 @@
 {
   "updated_at": "2026-11-06",
   "handle": "monoyori_sale",
-  "status": "two_candidates_reviewed",
+  "status": "two_published_one_draft",
   "publish_now": false,
   "feed_snapshot_at": "2026-11-05T10:24:24.046929+09:00",
-  "note": "未送信の編集用下書き。フィードの価格を将来の投稿へ持ち越さず、取得後も再確認する。自動予約には投入しない。",
+  "note": "G335とJBLは公開済み。OZA SODAは確認前の下書き。送信時の対象商品と価格を再確認する。",
   "candidates": [
     {
       "product_id": "rakuten-logicool-10000417",
@@ -43,10 +43,12 @@
       "affiliate_url": "https://a.r10.to/hXmYE8",
       "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/jblstore/cabinet/08084253/sb-580/sb-580_wb.jpg?_ex=400x400",
       "blocking_checks": [],
-      "status": "reviewed_for_one_notice",
+      "status": "published",
       "measurement_id": "monoyorix",
       "merchant_checked_at": "2026-11-05T22:58:13.595900+00:00",
-      "reviewed_sku": "JBLSB580BLKJN"
+      "reviewed_sku": "JBLSB580BLKJN",
+      "post_url": "https://x.com/monoyori_sale/status/2118478184698065169",
+      "sent_at": "2026-11-05T22:58:53.534Z"
     },
     {
       "product_id": "rakuten-lifedrinkcompany-10000022",

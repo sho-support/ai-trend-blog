@@ -1,5 +1,5 @@
 {
-  "status": "first_image_post_published",
+  "status": "three_product_posts_published",
   "name": "モノより｜セールと買い物メモ",
   "bio": "PC・家電・食品のお得情報を、写真と短い紹介で。気になる商品の価格と購入先を案内します。広告を含む投稿には【PR】を表示。",
   "website": "https://sho-support.github.io/ai-trend-blog/deals/",
@@ -15,9 +15,8 @@
   },
   "link_rule": "単品紹介は、登録済みSNS用のアフィリエイトリンクから公式ショップへ。比較記事や複数候補の紹介はモノよりへ。",
   "next_required": [
-    "JBLの計測ID付き投稿を公開し、写真とリンクを確認する",
-    "OZA SODAは対象フレーバー・現在価格・在庫・送料・SNS用素材を確認する",
-    "楽天・A8のクリックと成果を見て次の紹介商品を選ぶ"
+    "次の候補は、対象フレーバー・価格・在庫・送料・SNS用素材を確かめてから送信する",
+    "楽天の計測ID monoyorix とA8の成果で投稿の反応を確認する"
   ],
   "first_post_url": "https://x.com/monoyori_sale/status/2118350528241414391",
   "first_post_published_at": "2026-11-05T14:31:37.874Z",
@@ -31,5 +30,8 @@
   "rakuten_measurement_id": "monoyorix",
   "rakuten_web_site_url": "https://sho-support.github.io/ai-trend-blog/",
   "g335_post_url": "https://x.com/monoyori_sale/status/2118371943728468116",
-  "g335_post_verified_at": "2026-11-06"
+  "g335_post_verified_at": "2026-11-06",
+  "jbl_post_url": "https://x.com/monoyori_sale/status/2118478184698065169",
+  "jbl_post_published_at": "2026-11-05T22:58:53.534Z",
+  "jbl_post_verified_at": "2026-11-06"
 }
