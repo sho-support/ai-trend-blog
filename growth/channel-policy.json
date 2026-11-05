@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-04",
+  "updated_at": "2026-11-05",
   "ai": {
     "handle": "AITrendBlogJP",
     "channel_id": "6ace4151778b240e2ff80a2c",
@@ -7,10 +7,10 @@
   },
   "products": {
     "enabled": false,
-    "handle": null,
+    "handle": "monoyori_sale",
     "channel_id": null,
     "purpose": "モノよりの商品紹介。AI発信とは別のアカウントを使う",
     "link_mode": "official_shop_via_verified_social_affiliate_link",
-    "status": "商品紹介用Xの接続・ASPへのサイト登録・X用広告リンクの取得待ち"
+    "status": "Xプロフィール設定済み。Buffer接続・ASPへの掲載先登録・X用広告リンクの取得待ち"
   }
 }

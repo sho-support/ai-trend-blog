@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="500" viewBox="0 0 1500 500">
+  <title>モノより</title>
+  <rect width="1500" height="500" fill="#f8f9f6"/>
+  <path d="M0 0H530L30 500H0Z" fill="#eef1e9"/>
+  <path d="M1175 -135 1560 250 1175 635 790 250Z" fill="#e8eed7"/>
+  <path d="M1175 70 1355 250 1175 430 995 250Z" fill="none" stroke="#344b37" stroke-width="13" stroke-linejoin="round"/>
+  <path d="M1175 184 1241 250 1175 316 1109 250Z" fill="#344b37"/>
+  <rect y="482" width="1500" height="18" fill="#344b37"/>
+</svg>
