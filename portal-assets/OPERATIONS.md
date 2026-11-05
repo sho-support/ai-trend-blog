@@ -275,3 +275,13 @@ Metricoolの未接続は、他のSNS連携がないことを意味しない。�
 ミッフィーのPR投稿は実行41401036955で `status:sent` / `outcome:published` を確認。公開URL：https://twitter.com/AITrendBlogJP/status/2117143960606945404 。HARIOと合わせて2件が公開済み。JOGGOは未投稿。売上の発生・成果承認は未確認。
 
 本番の更新実行41401036958は成功。最新APIで293件を取得し、そのうち287件が継続、6件が新規。取得失敗カテゴリは0。ポータル再生成41401037016と公開41401301508も成功。掲載数・継続数は売上や検索流入を示す指標ではない。
+
+## 2026-11-05：商品Xの分離と楽天向け準備
+
+商品紹介は `@monoyori_sale` に分離し、Buffer接続とA8掲載先003の登録を確認。初回はHARIOのレンジご飯釜を公式写真・短文・X用の正規広告リンクで公開した。公開URL： https://x.com/monoyori_sale/status/2118350528241414391 。A8へ掲載URLも提出済み。クリック・注文・成果承認は未確認。
+
+`publish_product_launch.py` はA8に加え楽天のフィードにも対応。楽天は登録したXプロフィール、公式リンク作成画面で取得した短縮URL、価格ナビOFFの単品遷移先、同画面のSNS用画像を確認した記録が必要。Webサイト用API画像の利用許可をSNS用に流用しない。投稿の価格・確認日が最新の公開フィードと食い違う場合はBuffer送信前に停止する。既存の重複防止・不明な送信の再試行禁止・写真添付の確認を維持。25件のローカルテストが合格。本番の楽天送信は未実施。
+
+`growth/product-deal-drafts.json` にG335、JBL Cinema SB580、OZA SODAの3件を保存。価格は11月5日のAPIスナップショットであり、対象SKU・在庫・送料・SNS用素材は再確認が必要。`publish_now:false` の編集用下書きで、予約投稿には入れていない。Pixioは同一ページに複数機種があるため型番別の価格を確認するまで保留。`growth/x-launch.json` は変更せず、既存のHARIOを再送しない。
+
+楽天の利用サイト登録はログイン未完了で停止中。登録完了や短縮URL・SNS用画像の取得を済んだものとして扱わない。参照： https://affiliate.rakuten.co.jp/guides/link/ 、 https://affiliate.rakuten.co.jp/know-how/susumeru/ 。新規課金・有料契約・通知の再有効化は行っていない。

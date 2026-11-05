@@ -12,10 +12,11 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import parse_qs, urlsplit
 from urllib.request import Request, urlopen
 
 from product_text import approved_a8
+from storefront_seo import live
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://sho-support.github.io/ai-trend-blog'
@@ -26,19 +27,63 @@ RECEIPT = ROOT/'growth/x-launch-receipt.json'
 FIELDS = 'id text status dueAt sentAt externalLink channelId assets { id mimeType }'
 
 
-def reviewed_image(request, item):
+def registered_link(request, item, social_links=None):
+    if social_links is None:
+        social_links = json.loads((ROOT/'growth/product-social-links.json').read_text())['links']
+    return next((x for x in social_links if x.get('product_id') == item['id']
+                 and x.get('handle') == HANDLE and x.get('url') == request.get('url')), None)
+
+
+def reviewed_image(request, item, social_link=None):
     url = request.get('image_url')
     if not url:
-        if request.get('require_image') is True:
+        if request.get('require_image') is True or item.get('source') == 'rakuten':
             raise ValueError('This product notice requires its reviewed product photograph.')
         return None
     parsed = urlsplit(url)
     alt = request.get('image_alt_text', '')
-    if (item.get('image_authorized') is not True or url != item.get('image')
-            or parsed.scheme != 'https' or not parsed.hostname or parsed.fragment
+    # Permission to display an API image on our website is not SNS image permission.
+    material = social_link if item.get('source') == 'rakuten' else item
+    expected = material.get('image_url') if item.get('source') == 'rakuten' and material else (material or {}).get('image')
+    if (not material or material.get('image_authorized') is not True or url != expected
+            or (item.get('source') == 'rakuten' and material.get('image_source') != 'rakuten_affiliate_link_builder')
+            or parsed.scheme != 'https' or not parsed.hostname or parsed.fragment or parsed.username or parsed.password
             or not isinstance(alt, str) or not alt.strip() or len(alt) > 1000):
         raise ValueError('Use the exact authorized product image and a short image description.')
     return {'image': {'url': url, 'metadata': {'altText': alt}}}
+
+
+def validate_rakuten_notice(request, item, link):
+    destination = parse_qs(urlsplit(item['url']).query).get('pc', [])
+    target = urlsplit(link.get('destination_url', ''))
+    if (urlsplit(request['url']).hostname != 'a.r10.to'
+            or link.get('retrieval_method') != 'rakuten_affiliate_link_builder'
+            or link.get('link_type') != 'short_url' or link.get('price_navi') is not False
+            or link.get('site_url') != 'https://x.com/'+HANDLE
+            or link.get('redirect_verified') is not True or len(destination) != 1
+            or link.get('destination_url') != destination[0]
+            or target.scheme != 'https' or target.hostname != 'item.rakuten.co.jp'
+            or target.username or target.password or target.fragment):
+        raise ValueError('Register this X profile and obtain its exact Rakuten product link from the link builder.')
+    price = request.get('price_yen')
+    day = request.get('price_verified_date', '')
+    try:
+        date = datetime.strptime(day, '%Y-%m-%d')
+    except (TypeError, ValueError):
+        raise ValueError('A reviewed Rakuten price date is required.') from None
+    text = request.get('text', '')
+    if (type(price) is not int or price != item.get('price_yen') or day != item.get('verified')
+            or f'{price:,}円' not in text or f'{date.month}月{date.day}日確認' not in text
+            or '楽天市場' not in text):
+        raise ValueError('The Rakuten price or date changed; review the copy before sending.')
+
+
+def catalog_path(product_id):
+    if isinstance(product_id, str):
+        for prefix, name in (('a8-', 'a8-approved.json'), ('rakuten-', 'rakuten-feed.json')):
+            if product_id.startswith(prefix):
+                return 'portal-assets/'+name
+    raise ValueError('Unknown product catalogue; no fallback is allowed.')
 
 
 def image_confirmed(request, post):
@@ -65,28 +110,28 @@ def validate(request, items, now=None, social_links=None):
     if not re.fullmatch(r'monoyori_[a-z0-9_]+', campaign):
         raise ValueError('Invalid campaign identifier.')
     item = next((x for x in items if x.get('id') == request.get('product_id')), None)
-    if not item or not approved_a8(item, now):
+    if (not item or item.get('source') not in ('a8', 'rakuten')
+            or not (approved_a8(item, now) if item.get('source') == 'a8' else live(item, now))):
         raise ValueError('The advertised product is no longer approved and current.')
-    reviewed_image(request, item)
     deadline = datetime.fromisoformat(request['expires_at'].replace('Z', '+00:00'))
     source_deadline = datetime.fromisoformat(item['expires_at'].replace('Z', '+00:00'))
     if deadline.tzinfo is None or not now < deadline <= source_deadline:
         raise ValueError('The notice must expire by the existing product review deadline.')
     url = request.get('url', '')
     parsed = urlsplit(url)
-    if social_links is None:
-        social_links = json.loads((ROOT/'growth/product-social-links.json').read_text())['links']
-    link = next((x for x in social_links if x.get('product_id') == item['id']
-                 and x.get('handle') == HANDLE and x.get('url') == url), None)
+    link = registered_link(request, item, social_links)
     if (not link or link.get('placement') != 'x' or link.get('site_registered') is not True
-            or link.get('program_allowed') is not True or link.get('provider') != 'a8'
+            or link.get('program_allowed') is not True or link.get('provider') != item.get('source')
             or not link.get('checked_at') or parsed.scheme != 'https' or not parsed.hostname
-            or parsed.hostname == 'sho-support.github.io' or parsed.fragment):
+            or parsed.hostname == 'sho-support.github.io' or parsed.fragment or parsed.username or parsed.password):
         raise ValueError('Use the exact verified X affiliate link that leads to the official shop.')
     link_deadline = datetime.fromisoformat(link['expires_at'].replace('Z','+00:00'))
     checked = datetime.fromisoformat(link['checked_at'].replace('Z','+00:00'))
     if link_deadline.tzinfo is None or checked.tzinfo is None or not checked <= now < link_deadline or deadline > link_deadline:
         raise ValueError('The social affiliate link review is no longer current.')
+    if item['source'] == 'rakuten':
+        validate_rakuten_notice(request, item, link)
+    reviewed_image(request, item, link)
     text = request.get('text', '')
     urls = re.findall(r'https?://\S+', text)
     if not text.startswith('【PR】') or urls != [url]:
@@ -201,7 +246,7 @@ def launch(request, items, call, previous=None, write=lambda receipt:None, pause
         raise RuntimeError('An earlier attempt is recorded. Reconcile it in Buffer instead of posting again.')
     # Persist the claim before making the only write request, even if its response is lost.
     write(receipt_for(request, None, 'attempt_started'))
-    asset = reviewed_image(request, item)
+    asset = reviewed_image(request, item, registered_link(request, item, social_links))
     variables = {'input':{'text':request['text'], 'channelId':CHANNEL_ID,
                  'schedulingType':'automatic', 'mode':'shareNow', 'aiAssisted':True,
                  'assets':[asset] if asset else [], 'needsApproval':False}}
@@ -238,13 +283,14 @@ def main():
         print('商品紹介用Xの準備待ち。AIアカウントへの商品PRは送信しません。')
         return
     request = json.loads((ROOT/'growth/x-launch.json').read_text())
-    items = json.loads((ROOT/'portal-assets/a8-approved.json').read_text())['items']
+    path = catalog_path(request.get('product_id'))
+    items = json.loads((ROOT/path).read_text())['items']
     validate(request, items)
     if not args.publish_now:
         print(json.dumps({'mode':'validation_only', 'handle':HANDLE, 'text':request['text']}, ensure_ascii=False))
         return
     # Recheck the actual public advertisement before writing to Buffer.
-    current_items = read_json(BASE+'/portal-assets/a8-approved.json')['items']
+    current_items = read_json(BASE+'/'+path)['items']
     current = validate(request, current_items)
     local = validate(request, items)
     if current['url'] != local['url']:

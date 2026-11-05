@@ -62,16 +62,17 @@ class ProductLaunch(unittest.TestCase):
     def setUp(self):
         for name,value in [('HANDLE',HANDLE),('CHANNEL_ID',CHANNEL_ID)]:
             target=patch.object(publisher,name,value);target.start();self.addCleanup(target.stop)
-        self.request=json.loads((ROOT/'growth/x-launch.json').read_text())
-        for key in ('image_url','image_alt_text','require_image'):
-            self.request.pop(key,None)
-        self.request.update(handle=HANDLE,channel_id=CHANNEL_ID,url='https://px.a8.net/svt/test-x-specific-link')
+        # Fixtures stay independent of whichever real product is reviewed next.
+        self.request={'campaign_id':'monoyori_test','created_at':'2026-11-01T00:00:00Z',
+                      'product_id':'a8-test-product','publish_now':True,'handle':HANDLE,
+                      'channel_id':CHANNEL_ID,'url':'https://px.a8.net/svt/test-x-specific-link',
+                      'expires_at':'2099-01-01T00:00:00Z'}
         self.request['text']='【PR】テスト用の商品紹介。\n'+self.request['url']
-        self.item=next(x for x in json.loads((ROOT/'portal-assets/a8-approved.json').read_text())['items']
-                       if x['id']==self.request['product_id'])
-        # Isolated test data, never written to the actual catalogue or publisher request.
-        self.item['expires_at']='2099-01-02T00:00:00Z'
-        self.request['expires_at']='2099-01-01T00:00:00Z'
+        self.item={'id':'a8-test-product','source':'a8','title':'テスト商品','kind':'kitchen',
+                   'url':'https://px.a8.net/svt/test-catalog-link','site_url':publisher.BASE+'/products/',
+                   'approved':True,'affiliate':True,'site_registered':True,'material_type':'free_link',
+                   'price_yen':1980,'expires_at':'2099-01-02T00:00:00Z',
+                   'image':'https://example.com/test-product.jpg','image_authorized':True}
         self.now=datetime(2026,11,2,tzinfo=timezone.utc)
         SOCIAL_LINKS[:]=[{'product_id':self.item['id'],'handle':HANDLE,'url':self.request['url'],
                          'provider':'a8','placement':'x','site_registered':True,'program_allowed':True,
@@ -190,6 +191,93 @@ class ProductLaunch(unittest.TestCase):
             path=Path(directory)/'x-launch-receipt.json'
             with self.assertRaises(ValueError):save_receipt({'campaign_id':'../bad'},path)
             self.assertFalse(path.exists())
+
+
+class RakutenLaunch(unittest.TestCase):
+    api = ProductLaunch.api
+
+    def setUp(self):
+        ProductLaunch.setUp(self)
+        self.item.update(id='rakuten-testshop-1', source='rakuten', price_yen=5480,
+                         verified='2026-11-02', image='https://image.rakuten.co.jp/testshop/api-image.jpg',
+                         url='https://hb.afl.rakuten.co.jp/hgc/test/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Ftestshop%2Fproduct%2F')
+        self.request.update(product_id=self.item['id'], url='https://a.r10.to/test-only',
+                            price_yen=5480, price_verified_date='2026-11-02', require_image=True,
+                            image_url='https://image.rakuten.co.jp/testshop/link-builder-image.jpg',
+                            image_alt_text='テスト用商品の写真')
+        self.request['text']='【PR】テスト商品、5,480円〜（11月2日確認）。楽天市場で見る\n'+self.request['url']
+        SOCIAL_LINKS[0].update(product_id=self.item['id'], url=self.request['url'], provider='rakuten',
+                               site_url='https://x.com/'+HANDLE, link_type='short_url', price_navi=False,
+                               retrieval_method='rakuten_affiliate_link_builder', redirect_verified=True,
+                               destination_url='https://item.rakuten.co.jp/testshop/product/',
+                               image_url=self.request['image_url'], image_authorized=True,
+                               image_source='rakuten_affiliate_link_builder')
+
+    def test_reviewed_rakuten_photo_and_direct_link_publish_once(self):
+        api=self.api()
+        result=launch(self.request,[self.item],api.call,pause=lambda _:None)
+        self.assertEqual(api.writes,1)
+        self.assertEqual(result['outcome'],'published')
+        self.assertTrue(result['image_confirmed'])
+
+    def test_changed_price_or_price_date_stops_before_buffer(self):
+        for patch in ({'price_yen':6000},{'price_verified_date':'2026-11-01'},
+                      {'price_verified_date':'bad-date'},{'text':'【PR】価格未確認。楽天市場\n'+self.request['url']}):
+            api=self.api()
+            with self.subTest(patch=patch),self.assertRaises(ValueError):
+                launch(dict(self.request,**patch),[self.item],api.call,pause=lambda _:None)
+            self.assertEqual(api.writes,0)
+
+    def test_website_api_image_permission_does_not_allow_sns_reuse(self):
+        self.item['image_authorized']=True
+        for patch in ({'image_authorized':False},{'image_source':'rakuten_api'}):
+            with self.subTest(patch=patch),self.assertRaises(ValueError):
+                actual_validate(self.request,[self.item],self.now,
+                                social_links=[dict(SOCIAL_LINKS[0],**patch)])
+        with self.assertRaises(ValueError):
+            validate(dict(self.request,image_url=self.item['image']),[self.item],self.now)
+
+    def test_rakuten_photo_is_required_even_without_request_flag(self):
+        request=dict(self.request);request.pop('image_url');request.pop('require_image')
+        with self.assertRaises(ValueError):validate(request,[self.item],self.now)
+
+    def test_wrong_sns_profile_destination_or_link_type_is_rejected(self):
+        for patch in ({'site_url':'https://x.com/OtherAccount'},{'site_registered':False},
+                      {'destination_url':'https://item.rakuten.co.jp/other/product/'},
+                      {'redirect_verified':False},{'price_navi':True},{'link_type':'web_api'},
+                      {'retrieval_method':'rakuten_api'},{'provider':'a8'}):
+            with self.subTest(patch=patch),self.assertRaises(ValueError):
+                actual_validate(self.request,[self.item],self.now,
+                                social_links=[dict(SOCIAL_LINKS[0],**patch)])
+
+    def test_expired_or_unapproved_rakuten_offer_is_rejected(self):
+        for patch in ({'expires_at':'2000-01-01T00:00:00Z'},{'approved':False},
+                      {'affiliate':False},{'source':'unknown'}):
+            with self.subTest(patch=patch),self.assertRaises(ValueError):
+                validate(self.request,[dict(self.item,**patch)],self.now)
+
+    def test_mislabeled_store_and_external_shortener_are_rejected(self):
+        with self.assertRaises(ValueError):
+            validate(dict(self.request,text=self.request['text'].replace('楽天市場','公式')),[self.item],self.now)
+        request=dict(self.request,url='https://bit.ly/test-only')
+        request['text']=self.request['text'].replace(self.request['url'],request['url'])
+        with self.assertRaises(ValueError):
+            actual_validate(request,[self.item],self.now,
+                            social_links=[dict(SOCIAL_LINKS[0],url=request['url'])])
+
+    def test_actual_publish_preflight_reads_rakuten_and_rejects_new_price(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);(root/'growth').mkdir();(root/'portal-assets').mkdir()
+            for path,value in [('growth/x-launch.json',self.request),
+                               ('growth/product-social-links.json',{'links':SOCIAL_LINKS}),
+                               ('portal-assets/rakuten-feed.json',{'items':[self.item]})]:
+                (root/path).write_text(json.dumps(value))
+            changed=dict(self.item,price_yen=6000)
+            with patch.object(publisher,'ROOT',root),patch.object(publisher,'read_json',return_value={'items':[changed]}) as read, \
+                    patch.object(publisher,'graphql_client') as buffer,patch('sys.argv',['publisher','--publish-now']):
+                with self.assertRaises(ValueError):publisher.main()
+            read.assert_called_once_with(publisher.BASE+'/portal-assets/rakuten-feed.json')
+            buffer.assert_not_called()
 
 
 if __name__=='__main__':unittest.main()

@@ -14,7 +14,8 @@
     "a8_site_registered_at": "2026-11-05",
     "purpose": "モノよりの商品紹介。AI発信とは別のアカウントを使う",
     "link_mode": "official_shop_via_verified_social_affiliate_link",
-    "status": "写真付きの初回投稿を公開し、A8へ掲載URLを提出済み。次の商品投稿・楽天SNS登録の準備中。",
-    "a8_x_link_verified_at": "2026-11-05"
+    "status": "写真付きの初回投稿を公開し、A8へ掲載URLを提出済み。楽天の短文下書き3件・投稿検査を準備済み。楽天SNS登録と素材取得は認証待ち。",
+    "a8_x_link_verified_at": "2026-11-05",
+    "rakuten_sns_status": "authentication_required"
   }
 }

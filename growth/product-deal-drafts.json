@@ -1,0 +1,90 @@
+{
+  "updated_at": "2026-11-05",
+  "handle": "monoyori_sale",
+  "status": "awaiting_rakuten_sns_registration_and_materials",
+  "publish_now": false,
+  "feed_snapshot_at": "2026-11-05T10:24:24.046929+09:00",
+  "note": "未送信の編集用下書き。フィードの価格を将来の投稿へ持ち越さず、取得後も再確認する。自動予約には投入しない。",
+  "candidates": [
+    {
+      "product_id": "rakuten-logicool-10000417",
+      "name": "Logicool G335",
+      "category": "ゲーム・ゲーミングヘッドセット",
+      "provider": "rakuten",
+      "publish_now": false,
+      "price_yen": 5480,
+      "price_verified_date": "2026-11-05",
+      "price_basis": "楽天公式APIの取得時価格。購入画面のSKU別価格・送料は未確認。",
+      "expires_at": "2026-11-06T09:24:24.046929+09:00",
+      "destination_url": "https://item.rakuten.co.jp/logicool/g335bk/",
+      "body_without_link": "【PR】Logicool G335が5,480円〜。\n3.5mm接続の有線ヘッドセット。マイクを上げるとミュートに。\n楽天市場・ロジクール公式ストア\n（11月5日確認／送料は商品ページで）",
+      "weighted_length_with_one_link": 181,
+      "affiliate_url": null,
+      "image_url": null,
+      "blocking_checks": [
+        "X利用サイト登録",
+        "対象SKU・価格・在庫・送料の再確認",
+        "リンク作成画面から短縮URLとSNS用画像を取得",
+        "遷移先と画像の目視確認"
+      ]
+    },
+    {
+      "product_id": "rakuten-jblstore-10000189",
+      "name": "JBL Cinema SB580",
+      "category": "オーディオ・サウンドバー",
+      "provider": "rakuten",
+      "publish_now": false,
+      "price_yen": 29700,
+      "price_verified_date": "2026-11-05",
+      "price_basis": "楽天公式APIの取得時価格。購入画面のSKU別価格・送料は未確認。",
+      "expires_at": "2026-11-06T09:24:24.046929+09:00",
+      "destination_url": "https://item.rakuten.co.jp/jblstore/sb-580/",
+      "body_without_link": "【PR】JBL Cinema SB580が29,700円〜。\nテレビの音をサウンドバーで。Dolby Atmos対応、サブウーファー付き。\n楽天市場・JBL公式ストア\n（11月5日確認／送料は商品ページで）",
+      "weighted_length_with_one_link": 186,
+      "affiliate_url": null,
+      "image_url": null,
+      "blocking_checks": [
+        "X利用サイト登録",
+        "対象SKU・価格・在庫・送料の再確認",
+        "リンク作成画面から短縮URLとSNS用画像を取得",
+        "遷移先と画像の目視確認"
+      ]
+    },
+    {
+      "product_id": "rakuten-lifedrinkcompany-10000022",
+      "name": "OZA SODA 500ml×48本",
+      "category": "食品・飲料",
+      "provider": "rakuten",
+      "publish_now": false,
+      "price_yen": 2370,
+      "price_verified_date": "2026-11-05",
+      "price_basis": "楽天公式APIの取得時価格。購入画面のSKU別価格・送料は未確認。",
+      "expires_at": "2026-11-06T09:24:24.046929+09:00",
+      "destination_url": "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/",
+      "body_without_link": "【PR】OZA SODAの炭酸水、500ml×48本が2,370円〜。\n無糖の強炭酸。プレーンやレモンなどから選べます。\n楽天市場・LIFEDRINK直営店\n（11月5日確認／送料は商品ページで）",
+      "weighted_length_with_one_link": 182,
+      "affiliate_url": null,
+      "image_url": null,
+      "blocking_checks": [
+        "X利用サイト登録",
+        "対象SKU・価格・在庫・送料の再確認",
+        "リンク作成画面から短縮URLとSNS用画像を取得",
+        "遷移先と画像の目視確認"
+      ]
+    }
+  ],
+  "on_hold": [
+    {
+      "product_id": "rakuten-pixiogaming-10000116",
+      "name": "Pixio PX248WAVE / PX249WAVE",
+      "reason": "同一ページに複数モデル・色・リフレッシュレートが混在。18,500円の対象SKUを確定するまで投稿しない。"
+    }
+  ],
+  "sources": [
+    "https://affiliate.rakuten.co.jp/guides/link/",
+    "https://affiliate.rakuten.co.jp/know-how/susumeru/",
+    "https://item.rakuten.co.jp/logicool/g335bk/",
+    "https://item.rakuten.co.jp/jblstore/sb-580/",
+    "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/"
+  ]
+}
