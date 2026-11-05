@@ -1,16 +1,18 @@
 {
-  "campaign_id": "monoyori_hario_x_20261105",
+  "campaign_id": "monoyori_g335_x_20261106",
   "channel_id": "6aec855be29c69a1716f545b",
   "handle": "monoyori_sale",
-  "product_id": "a8-hario-xrcn-2-b",
+  "product_id": "rakuten-logicool-10000417",
   "publish_now": true,
-  "created_at": "2026-11-05T14:29:30.984685+00:00",
-  "expires_at": "2026-11-06T02:29:30.984685+00:00",
-  "merchant_checked_url": "https://shop.hariocorp.co.jp/products/xrcn-2-b",
-  "merchant_checked_at": "2026-11-05T14:16:19.341748+00:00",
-  "url": "https://r.8to.jp/FAdpaRhdtNnV",
-  "text": "【PR】1〜2合だけ炊きたい日に。\nHARIOのガラスのレンジご飯釜。電子レンジで炊けて、食洗機にも対応。\n1,980円（税込・送料別／11月5日確認）\n公式ショップはこちら↓\nhttps://r.8to.jp/FAdpaRhdtNnV",
+  "created_at": "2026-11-05T15:55:38.566002+00:00",
+  "expires_at": "2026-11-05T18:55:38.566002+00:00",
+  "merchant_checked_url": "https://item.rakuten.co.jp/logicool/g335bk/?scid=af_pc_etc&sc2id=af_101_0_0&variantId=354",
+  "merchant_checked_at": "2026-11-05T15:55:38.566002+00:00",
+  "price_yen": 5480,
+  "price_verified_date": "2026-11-05",
+  "url": "https://a.r10.to/hPuUdX",
+  "text": "【PR】Logicool G335、5,480円。\nPC・PS5・Switchに使える有線ヘッドセット。マイクを上げるとミュートに。\n楽天市場・ロジクール公式ストア\n（税込／11月5日確認。送料はリンク先で）\nhttps://a.r10.to/hPuUdX",
   "require_image": true,
-  "image_url": "https://shop.hariocorp.co.jp/cdn/shop/products/XRCN-2-B_540x.jpg?v=1753785970",
-  "image_alt_text": "HARIOのガラスのレンジご飯釜。黒いフタと取っ手、透明なガラス本体。"
+  "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/logicool/cabinet/white/g335bk.jpg?_ex=400x400",
+  "image_alt_text": "Logicool G335のブラック。紫と青のヘッドバンド、黒いイヤーパッド、ブームマイクを備えた有線ヘッドセット。"
 }

@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-05",
+  "updated_at": "2026-11-06",
   "handle": "monoyori_sale",
-  "status": "awaiting_rakuten_sns_registration_and_materials",
+  "status": "one_candidate_reviewed",
   "publish_now": false,
   "feed_snapshot_at": "2026-11-05T10:24:24.046929+09:00",
   "note": "未送信の編集用下書き。フィードの価格を将来の投稿へ持ち越さず、取得後も再確認する。自動予約には投入しない。",
@@ -14,19 +14,17 @@
       "publish_now": false,
       "price_yen": 5480,
       "price_verified_date": "2026-11-05",
-      "price_basis": "楽天公式APIの取得時価格。購入画面のSKU別価格・送料は未確認。",
-      "expires_at": "2026-11-06T09:24:24.046929+09:00",
+      "price_basis": "11/5の楽天APIスナップショットと、11/6の公式販売ページのブラック選択時の価格5,480円が一致。",
+      "expires_at": "2026-11-05T18:55:38.566002+00:00",
       "destination_url": "https://item.rakuten.co.jp/logicool/g335bk/",
       "body_without_link": "【PR】Logicool G335が5,480円〜。\n3.5mm接続の有線ヘッドセット。マイクを上げるとミュートに。\n楽天市場・ロジクール公式ストア\n（11月5日確認／送料は商品ページで）",
       "weighted_length_with_one_link": 181,
-      "affiliate_url": null,
-      "image_url": null,
-      "blocking_checks": [
-        "X利用サイト登録",
-        "対象SKU・価格・在庫・送料の再確認",
-        "リンク作成画面から短縮URLとSNS用画像を取得",
-        "遷移先と画像の目視確認"
-      ]
+      "affiliate_url": "https://a.r10.to/hPuUdX",
+      "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/logicool/cabinet/white/g335bk.jpg?_ex=400x400",
+      "blocking_checks": [],
+      "status": "reviewed_for_one_notice",
+      "merchant_checked_at": "2026-11-05T15:55:38.566002+00:00",
+      "reviewed_sku": "G335BK"
     },
     {
       "product_id": "rakuten-jblstore-10000189",

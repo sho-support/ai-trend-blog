@@ -17,7 +17,36 @@
       "redirect_verified": true,
       "redirect_sns": "x",
       "retrieval_method": "a8_sns_note_x_copy"
+    },
+    {
+      "product_id": "rakuten-logicool-10000417",
+      "handle": "monoyori_sale",
+      "url": "https://a.r10.to/hPuUdX",
+      "provider": "rakuten",
+      "placement": "x",
+      "site_id": "1",
+      "site_url": "https://x.com/monoyori_sale",
+      "site_registered": true,
+      "program_allowed": true,
+      "retrieval_method": "rakuten_affiliate_link_builder",
+      "link_type": "short_url",
+      "price_navi": false,
+      "checked_at": "2026-11-05T15:55:38.566002+00:00",
+      "expires_at": "2026-11-05T18:55:38.566002+00:00",
+      "expiry_basis": "editorial_review_due",
+      "destination_url": "https://item.rakuten.co.jp/logicool/g335bk/",
+      "redirect_verified": true,
+      "redirect_checked_url": "https://item.rakuten.co.jp/logicool/g335bk/?scid=af_pc_etc&sc2id=af_101_0_0&variantId=354",
+      "reviewed_sku": "G335BK",
+      "reviewed_price_yen": 5480,
+      "review_note": "ブラックの選択と5,480円の表示を公式販売ページで確認。リンクの運用確認を1回実施。自己確認を顧客流入として評価しない。",
+      "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/logicool/cabinet/white/g335bk.jpg?_ex=400x400",
+      "image_authorized": true,
+      "image_source": "rakuten_affiliate_link_builder",
+      "image_builder_item_id": "10000417",
+      "image_dimensions": "400x400",
+      "image_manipulated": false
     }
   ],
-  "note": "HARIOのX用リンクを、掲載先003・SNS・note用タブのXから取得済み。公式の商品ページへの遷移とa8sns=xを確認。その他の商品のX用リンクは未取得。Webサイト用リンクは転用しない。"
+  "note": "HARIOはA8の掲載先003・X用リンク。G335は登録済みモノよりX向けに楽天リンク作成画面から取得。写真は同画面の白背景400×400。Webサイト用API画像のSNS許可を推測しない。"
 }

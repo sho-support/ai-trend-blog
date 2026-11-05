@@ -15,13 +15,15 @@
   },
   "link_rule": "単品紹介は、登録済みSNS用のアフィリエイトリンクから公式ショップへ。比較記事や複数候補の紹介はモノよりへ。",
   "next_required": [
-    "楽天へログインし、利用サイトとしてモノよりXを登録する",
-    "3件の候補から対象SKU・価格・在庫・送料を確認し、公式リンク作成画面の短縮URLとSNS用画像を取得する",
-    "確認済みの1件だけを送信し、Xの公開状態とASPのクリック・成果を確認する"
+    "G335の確認済み写真・短文・公式直リンク1件を送信し、実際の公開結果を確認する",
+    "JBL・OZA SODA候補は対象SKU・現在価格・在庫・送料・SNS用素材を個別に再確認する",
+    "X・ASPのクリックと成果を確認して商品を絞る。自己確認クリックを顧客反応と混同しない"
   ],
   "first_post_url": "https://x.com/monoyori_sale/status/2118350528241414391",
   "first_post_published_at": "2026-11-05T14:31:37.874Z",
   "first_post_a8_url_submitted_at": "2026-11-05T23:35:53+09:00",
   "product_deal_drafts": "growth/product-deal-drafts.json",
-  "rakuten_sns_status": "authentication_required"
+  "rakuten_sns_status": "registered",
+  "rakuten_site_id": "1",
+  "rakuten_sns_registered_at": "2026-11-06"
 }
