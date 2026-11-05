@@ -1,5 +1,5 @@
 {
-  "status": "buffer_connected_affiliate_pending",
+  "status": "buffer_connected_a8_registered_social_links_pending",
   "name": "モノより｜セールと買い物メモ",
   "bio": "PC・家電・食品のお得情報を、写真と短い紹介で。気になる商品の価格と購入先を案内します。広告を含む投稿には【PR】を表示。",
   "website": "https://sho-support.github.io/ai-trend-blog/deals/",
@@ -7,10 +7,12 @@
   "profile_url": "https://x.com/monoyori_sale",
   "profile_verified_at": "2026-11-05",
   "buffer_verified_at": "2026-11-05",
+  "a8_site_id": "003",
+  "a8_site_registered_at": "2026-11-05",
   "profile_assets": {
     "avatar": "growth/brand-assets/monoyori-avatar.png",
     "banner": "growth/brand-assets/monoyori-banner.png"
   },
   "link_rule": "単品紹介は、登録済みSNS用のアフィリエイトリンクから公式ショップへ。比較記事や複数候補の紹介はモノよりへ。",
-  "next_required": ["A8・楽天の掲載先としてXを登録する", "プログラム条件を確認してX用広告リンクを取得する"]
+  "next_required": ["A8のSNS・note用タブからX用広告リンクを取得して確認する", "楽天の掲載先としてXを登録し、SNS用広告リンクを取得する"]
 }

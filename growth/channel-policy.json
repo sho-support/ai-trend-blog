@@ -10,8 +10,10 @@
     "handle": "monoyori_sale",
     "channel_id": "6aec855be29c69a1716f545b",
     "buffer_verified_at": "2026-11-05",
+    "a8_site_id": "003",
+    "a8_site_registered_at": "2026-11-05",
     "purpose": "モノよりの商品紹介。AI発信とは別のアカウントを使う",
     "link_mode": "official_shop_via_verified_social_affiliate_link",
-    "status": "Buffer接続済み。ASPへの掲載先登録・X用広告リンクの取得待ち"
+    "status": "Buffer接続・A8掲載先登録済み。X用広告リンク取得・楽天掲載先登録待ち"
   }
 }
