@@ -8,9 +8,10 @@
   "products": {
     "enabled": false,
     "handle": "monoyori_sale",
-    "channel_id": null,
+    "channel_id": "6aec855be29c69a1716f545b",
+    "buffer_verified_at": "2026-11-05",
     "purpose": "モノよりの商品紹介。AI発信とは別のアカウントを使う",
     "link_mode": "official_shop_via_verified_social_affiliate_link",
-    "status": "Xプロフィール設定済み。Buffer接続・ASPへの掲載先登録・X用広告リンクの取得待ち"
+    "status": "Buffer接続済み。ASPへの掲載先登録・X用広告リンクの取得待ち"
   }
 }

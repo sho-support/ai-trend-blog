@@ -31,7 +31,7 @@ jobs:
           enabled = policy['products'].get('enabled') is True
           with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
               output.write('enabled=' + str(enabled).lower() + '\n')
-          print('商品紹介用Xの準備完了' if enabled else '商品紹介用Xの接続待ち。AIアカウントへの商品PRは停止中。')
+          print('商品紹介用Xの準備完了' if enabled else policy['products'].get('status', '商品紹介用Xの準備待ち。'))
           PY
       - name: Verify notice safety without calling an external API
         run: python portal-tools/test_product_launch.py

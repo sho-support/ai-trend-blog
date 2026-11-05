@@ -2,6 +2,21 @@
 
 更新：2026-11-05（日本時間）
 
+## 2026-11-05：商品紹介用Xを既存Bufferへ接続
+
+ユーザー提供のBuffer画面で、既存のAI用 `AITrendBlogJP` と商品用 `monoyori_sale` が別チャンネルとして表示され、「2/3 channels connected」になったことを確認。商品用のチャンネルIDは `6aec855be29c69a1716f545b`、画面のタイムゾーンはTokyo。接続完了後の投稿目標設定画面まで進んでおり、商品用のキューは0件。認証画面のURLやトークンは保存しない。
+
+確認した商品用チャンネルIDを `growth/channel-policy.json` へ反映。`product-account-draft.json` は `buffer_connected_affiliate_pending` に更新。ブラウザーでの接続確認と、Buffer APIでの接続照合は別であり、今回はユーザーの画面で確認した記録。実際に投稿するときは既存の `target_organization` がID・Xの公開プロフィールURL・接続状態を照合する。
+
+ASPへのSNS掲載先登録、プログラムごとのX掲載条件確認、SNS向け広告リンクの取得は未完了。`products.enabled` は `false` のままで、商品投稿の公開・予約は行っていない。投稿目標を選ぶだけで商品収集・広告リンク発行・自動投稿が開始されるわけではない。旧 `growth/x-launch.json` は過去のAIアカウントへの投稿記録であり、そのまま再実行しない。
+
+次は https://x.com/monoyori_sale をA8・楽天の掲載先へ登録する。A8は「SNS・note用」→「X」の実リンクを取得し、掲載先登録・個別プログラム条件・確認日時を `growth/product-social-links.json` へ記録する。Webサイト用の広告リンクをそのまま転用しない。
+
+確認した一次情報：
+- https://support.a8.net/a8/as/faq/2010/02/twitter.html
+- https://support.a8.net/a8/as/faq/2026/post_2971.html
+- https://affiliate.rakuten.co.jp/guides/link/
+
 ## 2026-11-05：商品紹介用Xのプロフィールを設定
 
 商品紹介用X `@monoyori_sale` を、ログイン済みのプロフィールリンクで確認。公開先は https://x.com/monoyori_sale 。表示名「モノより｜セールと買い物メモ」、短い紹介文、`/deals/` へのリンク、サイトの色・マークを使ったアイコンとヘッダーを保存し、公開画面で確認した。画像の元データとPNGは `growth/brand-assets/`。
