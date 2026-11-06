@@ -1,15 +1,15 @@
 {
-  "campaign_id": "monoyori_jbl_sb580_x_20261106",
+  "campaign_id": "monoyori_oza_soda_x_20261106",
   "channel_handle": "monoyori_sale",
-  "product_id": "rakuten-jblstore-10000189",
-  "landing_url": "https://a.r10.to/hXmYE8",
-  "post_id": "6aed0a2c265cb90551e1569f",
+  "product_id": "rakuten-lifedrinkcompany-10000022",
+  "landing_url": "https://a.r10.to/hFUWKM",
+  "post_id": "6aed227807f945cca9302b26",
   "status": "sent",
   "outcome": "published",
-  "external_url": "https://twitter.com/monoyori_sale/status/2118478184698065169",
-  "sent_at": "2026-11-05T22:58:53.534Z",
-  "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/jblstore/cabinet/08084253/sb-580/sb-580_wb.jpg?_ex=400x400",
+  "external_url": "https://twitter.com/monoyori_sale/status/2118504277136003340",
+  "sent_at": "2026-11-06T00:42:34.464Z",
+  "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/lifedrinkcompany/cabinet/08451052/14108283/peach48_1104.jpg?_ex=400x400",
   "image_confirmed": true,
   "asset_count": 1,
-  "checked_at": "2026-11-05T22:58:54.347628+00:00"
+  "checked_at": "2026-11-06T00:42:35.503775+00:00"
 }
