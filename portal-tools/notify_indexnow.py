@@ -38,10 +38,27 @@ def changes(pages, known):
 
 
 def get(url):
-    with urlopen(Request(url, headers=HEADERS), timeout=25) as response:
+    with urlopen(Request(url, headers=HEADERS), timeout=10) as response:
         if response.status != 200:
             raise ValueError('Public resource is not available')
         return response.read()
+
+
+def wait_for_public_build(config, manifest):
+    # Catalogue workflows finish before Pages can serve the corresponding build.
+    deadline = time.monotonic() + 180
+    while time.monotonic() < deadline:
+        try:
+            remote = json.loads(get(BASE+'portal-assets/discovery-manifest.json'))
+            if (remote == manifest and get(config['keyLocation']).decode().strip() == config['key']
+                    and b'window.CATALOG_INITIAL=' in get(BASE+'products/')):
+                return
+        except (HTTPError, URLError, TimeoutError, ValueError):
+            pass
+        remaining = deadline - time.monotonic()
+        if remaining > 0:
+            time.sleep(min(5, remaining))
+    raise SystemExit('Public verification file or catalogue build is not ready; no notification sent')
 
 
 def main():
@@ -56,20 +73,7 @@ def main():
     state = json.loads(args.state.read_text()) if args.state.exists() else {}
     manifest = json.loads((ROOT/'portal-assets/discovery-manifest.json').read_text())
     if not args.dry_run:
-        # Pages deployment can finish after the catalogue workflow. Wait for the
-        # exact public build rather than sending URLs that are not live yet.
-        for attempt in range(12):
-            try:
-                key_ok = get(config['keyLocation']).decode().strip() == config['key']
-                remote = json.loads(get(BASE+'portal-assets/discovery-manifest.json'))
-                html_ready=b'window.CATALOG_INITIAL=' in get(BASE+'products/')
-                if key_ok and remote == manifest and html_ready:
-                    break
-            except (HTTPError, URLError, TimeoutError, ValueError):
-                pass
-            if attempt == 11:
-                raise SystemExit('Public verification file or catalogue build is not ready; no notification sent')
-            time.sleep(5)
+        wait_for_public_build(config, manifest)
     pending = changes(manifest['pages'], state)
     receipt = {'submitted_urls': 0, 'http_statuses': [], 'indexed_urls': None,
                'key_validation_pending': False, 'dry_run': args.dry_run}

@@ -9,10 +9,11 @@ from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
+from unittest.mock import patch
 
 from storefront_seo import live, fingerprint
 from catalog_taxonomy import BY_KIND
-from notify_indexnow import changes, owned_url
+from notify_indexnow import changes, owned_url, wait_for_public_build
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = 'https://sho-support.github.io/ai-trend-blog/'
@@ -97,6 +98,37 @@ class Discovery(unittest.TestCase):
                     'https://sho-support.github.io/other/',BASE+'../other/',BASE+'%2e%2e/other/']:
             self.assertFalse(owned_url(bad))
             with self.assertRaises(ValueError): changes([dict(row,url=bad)],{})
+
+    def test_notification_waits_for_a_delayed_pages_deploy(self):
+        manifest = {'pages': [{'url': BASE+'products/', 'fingerprint': 'current'}]}
+        config = {'keyLocation': BASE+'example.txt', 'key': 'example'}
+        elapsed = 0
+
+        def advance(seconds):
+            nonlocal elapsed
+            elapsed += seconds
+
+        def public_resource(url):
+            if url.endswith('discovery-manifest.json'):
+                return json.dumps(manifest if elapsed >= 90 else {'pages': []}).encode()
+            self.assertGreaterEqual(elapsed, 90)
+            return b'example' if url == config['keyLocation'] else b'window.CATALOG_INITIAL='
+
+        with patch('notify_indexnow.get', side_effect=public_resource), \
+             patch('notify_indexnow.time.monotonic', side_effect=lambda: elapsed), \
+             patch('notify_indexnow.time.sleep', side_effect=advance):
+            wait_for_public_build(config, manifest)
+        self.assertEqual(elapsed, 90)
+
+    def test_notification_times_out_if_deploy_never_matches(self):
+        config = {'keyLocation': BASE+'example.txt', 'key': 'example'}
+        with patch('notify_indexnow.get', return_value=b'{"pages":[]}') as fetch, \
+             patch('notify_indexnow.time.monotonic', side_effect=(0, 0, 181, 181)), \
+             patch('notify_indexnow.time.sleep') as sleep:
+            with self.assertRaisesRegex(SystemExit, 'no notification sent'):
+                wait_for_public_build(config, {'pages': [{'url': BASE+'products/'}]})
+        fetch.assert_called_once_with(BASE+'portal-assets/discovery-manifest.json')
+        sleep.assert_not_called()
 
     def test_html_seed_uses_the_existing_expiration_without_renewing_it(self):
         item = deepcopy(json.loads((ROOT/'portal-assets/a8-approved.json').read_text())['items'][0])
