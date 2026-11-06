@@ -26,25 +26,25 @@
       },
       {
         "id": "r-fashion",
-        "title": "楽天スーパーDEAL｜ファッションの高還元商品",
+        "title": "楽天スーパーDEAL｜レディースファッション",
         "category": "ファッション",
         "shop": "楽天市場",
         "icon": "👕",
-        "description": "レディース・メンズの衣類、靴、バッグなどのポイント還元対象品を公式のジャンル検索で探せます。",
+        "description": "レディースファッションのポイント還元対象品を探せます。",
         "label": "ポイント還元特集",
-        "url": "https://event.rakuten.co.jp/superdeal/",
-        "verified": "2026-10-30"
+        "url": "https://search.rakuten.co.jp/search/mall/-/100371/?f=13&l-id=Event_PC_RSD_top_leftnavi_genre",
+        "verified": "2026-11-06"
       },
       {
         "id": "r-appliances",
-        "title": "楽天スーパーDEAL｜家電・デジタル用品",
+        "title": "楽天スーパーDEAL｜家電のポイント還元",
         "category": "家電・デジタル",
         "shop": "楽天市場",
         "icon": "💻",
-        "description": "テレビ・パソコン・家電の還元対象を確認。還元ポイントを値引き額と混同しないよう注意。",
+        "description": "掃除機やキッチン家電などのポイント還元対象品を探せます。",
         "label": "ポイント還元特集",
-        "url": "https://event.rakuten.co.jp/superdeal/",
-        "verified": "2026-10-30"
+        "url": "https://search.rakuten.co.jp/search/mall/-/562637/?f=13&l-id=Event_PC_RSD_top_leftnavi_genre",
+        "verified": "2026-11-06"
       },
       {
         "id": "y-guide",
@@ -67,8 +67,8 @@
         "label": "最大10%OFF（条件あり）",
         "start": "2026-11-04",
         "end": "2026-11-10",
-        "url": "https://shopping.yahoo.co.jp/promotion/campaign/guide/",
-        "verified": "2026-10-30"
+        "url": "https://shopping.yahoo.co.jp/promotion/coupon/cate_coupon",
+        "verified": "2026-11-06"
       },
       {
         "id": "y-food",
@@ -111,14 +111,14 @@
       },
       {
         "id": "q-main",
-        "title": "Qoo10｜タイムセール・今日の特価",
+        "title": "Qoo10｜タイムセール",
         "category": "美容・コスメ",
         "shop": "Qoo10",
         "icon": "💄",
-        "description": "コスメ・衣類・生活雑貨などを公式サイトの「タイムセール」「今日の特価」から探せます。",
+        "description": "コスメ・衣類・生活雑貨などのタイムセール一覧。",
         "label": "公式タイムセールへ",
-        "url": "https://www.qoo10.jp/",
-        "verified": "2026-10-30"
+        "url": "https://www.qoo10.jp/gmkt.inc/Deal/TimeSale.aspx",
+        "verified": "2026-11-06"
       },
       {
         "id": "yod",
@@ -133,14 +133,14 @@
       },
       {
         "id": "amazon",
-        "title": "Amazon｜タイムセールをチェック",
+        "title": "Amazon｜セール・クーポンの探し方",
         "category": "総合",
         "shop": "Amazon",
         "icon": "📦",
-        "description": "期間限定価格やクーポンの有無をAmazon公式で直接確認。実売価格・在庫・対象条件は変動します。",
-        "label": "商品を検索",
-        "url": "https://www.amazon.co.jp/",
-        "verified": "2026-10-30"
+        "description": "タイムセールやクーポンの探し方をAmazon公式が案内。",
+        "label": "Amazon公式ガイド",
+        "url": "https://www.aboutamazon.jp/news/guide/how-to-get-the-best-deals-on-amazon-using-outlet-and-coupons-etc",
+        "verified": "2026-11-06"
       },
       {
         "id": "muji-week",
