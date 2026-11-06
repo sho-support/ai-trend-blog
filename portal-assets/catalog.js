@@ -6,6 +6,11 @@
   const assetBase=new URL('.',document.currentScript.src);
   const productBase=new URL('../products/',assetBase);
   const esc=C.escape;
+  const query=config.mode==='search'?new URLSearchParams(location.search).get('q')?.trim()||'':'';
+  const searchKey=value=>String(value??'').normalize('NFKC').toLowerCase().replace(/[\s\p{Dash_Punctuation}×・]+/gu,'');
+  const words=query.normalize('NFKC').split(/[\s・]+/).map(searchKey).filter(Boolean);
+  const queryInput=document.getElementById('product-query');
+  if(config.mode==='search'&&queryInput)queryInput.value=query;
   let feed=[],copies={},lastSignature='',failed=false,completeFeed=false;
   const viewedItems=new Set();
   const activeCategory=document.querySelector('.category-nav a[aria-current]');
@@ -23,6 +28,10 @@
   };
   const live=x=>x?.source==='a8'?C.isA8Live(x):C.isLive(x);
   const inCategory=(x,key)=>x.kind===key;
+  const priceText=(item,copy)=>{
+    const amount=Number(item.price_yen).toLocaleString('ja-JP');
+    return copy.price_from===true?amount+'円〜':'¥'+amount;
+  };
   function image(x,cls='',priority=false){
     if(!x.image||!/^https:\/\//.test(x.image))return '<span class="photo-unavailable">商品写真は販売店で</span>';
     let srcset='';
@@ -47,7 +56,7 @@
   }
   function render(){
     const rows=feed.filter(live);
-    const signature=JSON.stringify([rows,copies,failed]);
+    const signature=JSON.stringify([rows,copies,failed,completeFeed]);
     if(signature===lastSignature)return;lastSignature=signature;
     if(config.mode==='directory'){
       document.querySelectorAll('[data-category],[data-department]').forEach((tile,index)=>{
@@ -63,17 +72,21 @@
     }
     if(config.mode==='category'||config.mode==='search'){
       const grid=document.getElementById('catalog-grid'),status=document.getElementById('catalog-status');
-      const query=config.mode==='search'?new URLSearchParams(location.search).get('q')?.trim()||'':'';
-      const input=document.getElementById('product-query');if(input)input.value=query;
-      const words=query.toLocaleLowerCase('ja-JP').split(/\s+/).filter(Boolean);
-      const selected=config.mode==='search'?(words.length?rows.filter(x=>words.every(w=>[x.title,copyFor(x).name,x.category,categories.find(c=>c.key===x.kind)?.name||''].join(' ').toLocaleLowerCase('ja-JP').includes(w))):[]):rows.filter(x=>inCategory(x,config.kind));
+      if(config.mode==='search'&&!completeFeed&&!failed)return;
+      const selected=config.mode==='search'?rows.filter(x=>{
+        const genre=categories.find(c=>c.key===x.kind)?.name;
+        const keys=[x.title,copyFor(x).name,x.category,genre,x.seller||x.shop].map(searchKey);
+        return words.length>0&&words.every(word=>keys.some(key=>key.includes(word)));
+      }):rows.filter(x=>inCategory(x,config.kind));
       document.querySelectorAll('.category-nav a').forEach(link=>{
         if(!completeFeed)return;
         const c=categories.find(c=>link.getAttribute('href')===c.file);
         if(c)link.hidden=!rows.some(x=>inCategory(x,c.key))&&c.key!==config.kind;
       });
       if(!selected.length){
-        grid.innerHTML='';status.textContent=config.mode==='search'?(query?'条件に合う商品はありません。':'商品名やジャンルを入力してください。'):failed?'商品を読み込めませんでした。しばらくしてからお試しください。':'現在掲載できる商品はありません。';
+        grid.innerHTML='';
+        status.textContent=failed?'商品を読み込めませんでした。しばらくしてからお試しください。':
+          config.mode==='search'?(words.length?'条件に合う商品はありません。':'商品名やジャンルを入力してください。'):'現在掲載できる商品はありません。';
         status.hidden=false;return;
       }
       status.textContent='';status.hidden=true;
@@ -83,7 +96,7 @@
           +'<a class="product-photo" href="'+esc(url)+'">'+image(x,'',index===0)+'</a>'
           +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
           +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
-          +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">¥'+Number(x.price_yen).toLocaleString('ja-JP')+'</p>':'')
+          +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">'+priceText(x,copy)+'</p>':'')
           +'<a class="product-open product-buy" href="'+esc(x.url)+'" data-buy="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored" aria-label="'+esc(copy.name)+'を'+(x.source==='a8'?'公式ショップ':'楽天市場')+'で見る">'+(x.source==='a8'?'公式ショップで見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a></div></div></article>';
       }).join('');
       return;
@@ -98,7 +111,7 @@
       root.innerHTML='<div class="detail-photo">'+image(item)+'</div><div class="detail-info"><span class="ad-label">PR</span>'
         +'<h1>'+esc(copy.headline||copy.name)+'</h1>'
         +(copy.description?'<p class="detail-intro">'+esc(copy.description)+'</p>':'')
-        +(item.price_yen!=null?'<p class="detail-price">¥'+Number(item.price_yen).toLocaleString('ja-JP')+'</p>':'')
+        +(item.price_yen!=null?'<p class="detail-price">'+priceText(item,copy)+'</p>':'')
         +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">'+esc(item.source==='a8'?'公式ショップで価格を見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a>'
         +'<p class="seller">'+esc(item.seller||(item.source==='a8'?item.shop||'公式ショップ':'楽天市場'))+'</p>'
         +'</div>';

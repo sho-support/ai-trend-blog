@@ -1,10 +1,10 @@
 {
   "updated_at": "2026-11-06",
   "handle": "monoyori_sale",
-  "status": "two_published_one_prepared_draft",
+  "status": "two_published_one_reviewed",
   "publish_now": false,
   "feed_snapshot_at": "2026-11-05T10:24:24.046929+09:00",
-  "note": "G335とJBLは公開済み。OZA SODAはX用の計測付きリンクと商品写真を取得済み。送信前に対象フレーバーの販売条件を確認する。",
+  "note": "G335とJBLは公開済み。OZA SODAはラベルレス48本の2,370円と配送予定を確認し、写真と計測付きリンクを投稿用に確認済み。",
   "candidates": [
     {
       "product_id": "rakuten-logicool-10000417",
@@ -58,17 +58,15 @@
       "publish_now": false,
       "price_yen": 2370,
       "price_verified_date": "2026-11-06",
-      "price_basis": "11月6日の楽天公式APIと販売ページの最低掲載価格が2,370円。プレーン×2は選択でき、選択後の配送予定とフレーバー別の確定価格は未確認。",
-      "expires_at": "2026-11-06T11:37:28.090264+09:00",
+      "price_basis": "楽天APIの最低掲載価格と、48本・プレーン（ラベルレス）×2選択時の2,370円が一致。通常のプレーンは2,450円。",
+      "expires_at": "2026-11-06T03:41:01.492129+00:00",
       "destination_url": "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/",
-      "body_without_link": "【PR】OZA SODAの強炭酸水、500ml×48本が2,370円〜。\nプレーンやレモンを選べます。\n楽天市場・LIFEDRINK直営店（11月6日確認／一部地域は送料別）",
-      "weighted_length_with_one_link": 161,
+      "body_without_link": "【PR】OZA SODAのラベルレス強炭酸、48本で2,370円。\n500mlのプレーン。楽天で「48本」→「プレーン（ラベルレス）×2」を選択。\n楽天市場・LIFEDRINK直営店（11月6日確認／一部地域は送料別）",
+      "weighted_length_with_one_link": 202,
       "affiliate_url": "https://a.r10.to/hFUWKM",
-      "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/lifedrinkcompany/cabinet/item-soda/ozasoda/oza-pl-pl-48.jpg?_ex=400x400",
-      "blocking_checks": [
-        "投稿直前に対象フレーバーの価格・在庫・配送条件を確認する"
-      ],
-      "status": "prepared_needs_final_availability_check",
+      "image_url": "https://thumbnail.image.rakuten.co.jp/@0_mall/lifedrinkcompany/cabinet/08451052/14108283/peach48_1104.jpg?_ex=400x400",
+      "blocking_checks": [],
+      "status": "reviewed_for_publication",
       "feed_snapshot_at": "2026-11-06T08:29:36.410240+09:00",
       "measurement_id": "monoyorix",
       "link_checked_at": "2026-11-06T08:37:28.090264+09:00",
@@ -78,8 +76,11 @@
       "redirect_checked_url": "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/?scid=af_pc_etc&sc2id=af_101_0_0",
       "image_source": "rakuten_affiliate_link_builder",
       "image_dimensions": "400x400",
-      "image_alt": "OZA SODA プレーンの500mlボトル",
-      "image_manipulated": false
+      "image_alt": "OZA SODA 500ml×48本の販売画像。ラベルレスを含む複数のボトルとセール価格の案内。",
+      "image_manipulated": false,
+      "merchant_checked_at": "2026-11-06T00:41:01.492129+00:00",
+      "merchant_checked_url": "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/?variantId=239",
+      "reviewed_variant_id": "239"
     }
   ],
   "on_hold": [

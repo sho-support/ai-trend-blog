@@ -47,12 +47,17 @@ def image(item, copy, eager=False, large=False):
             + (' fetchpriority="high"' if eager else ' loading="lazy"') + '>')
 
 
+def price_text(price, copy):
+    amount = format(price, ',')
+    return amount + '円〜' if copy.get('price_from') is True else '¥' + amount
+
+
 def cards(items, copies):
     rows = []
     for i, item in enumerate(items):
         copy = copies[item['id']]
         url = 'items/' + item['id'] + '.html'
-        price = ('<p class="product-price">¥' + format(item['price_yen'], ',') + '</p>'
+        price = ('<p class="product-price">' + price_text(item['price_yen'], copy) + '</p>'
                  if item.get('price_yen') is not None else '')
         rows.append('<article class="product-card" data-kind="' + esc(item['kind']) + '">'
                     + '<a class="product-photo" href="' + url + '">' + image(item, copy, eager=i == 0) + '</a>'
@@ -70,7 +75,7 @@ def cards(items, copies):
 
 
 def detail(item, copy):
-    price = ('<p class="detail-price">¥' + format(item['price_yen'], ',') + '</p>'
+    price = ('<p class="detail-price">' + price_text(item['price_yen'], copy) + '</p>'
              if item.get('price_yen') is not None else '')
     shop = item.get('seller') or item.get('shop') or '楽天市場'
     button = '公式ショップで価格を見る' if item.get('source') == 'a8' else '楽天市場で見る'

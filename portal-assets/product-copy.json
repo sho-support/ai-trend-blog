@@ -1,4 +1,17 @@
 {
+  "rakuten-logicool-10000417": {
+    "name": "ロジクール G335 有線ヘッドセット",
+    "headline": "ロジクール G335 有線ヘッドセット",
+    "description": "3.5mm接続。マイクを上げるとミュートできます。",
+    "features": []
+  },
+  "rakuten-lifedrinkcompany-10000022": {
+    "name": "OZA SODA 強炭酸水 500ml×48本",
+    "headline": "OZA SODA 強炭酸水 500ml×48本",
+    "description": "プレーンやレモンを選べる無糖の強炭酸。価格は味によって異なります。",
+    "features": [],
+    "price_from": true
+  },
   "rakuten-yokumoku-10000435": {
     "name": "ヨックモック サンク デリス",
     "headline": "5種類を楽しめる、ヨックモックの焼き菓子40個",
@@ -535,12 +548,6 @@
     "name": "Nintendo Switch Pro用 コントローラー ワイヤ…",
     "headline": "Nintendo Switch Pro用 コントローラー ワイヤ…",
     "description": "600mAh。",
-    "features": []
-  },
-  "rakuten-logicool-10000417": {
-    "name": "Logicool G ゲーミングヘッドセット G335 有線 2…",
-    "headline": "Logicool G ゲーミングヘッドセット G335 有線 2…",
-    "description": "",
     "features": []
   },
   "rakuten-logicool-10000479": {
@@ -1195,12 +1202,6 @@
     "name": "フルーツ ギフト 果物 詰め合わせ お誕生日 お供え お祝い 御…",
     "headline": "フルーツ ギフト 果物 詰め合わせ お誕生日 お供え お祝い 御…",
     "description": "10個入り。",
-    "features": []
-  },
-  "rakuten-lifedrinkcompany-10000022": {
-    "name": "炭酸水 500ml 48本 (24本×2ケース) 一部地域除く…",
-    "headline": "炭酸水 500ml 48本 (24本×2ケース) 一部地域除く…",
-    "description": "500ml・48本・24本。",
     "features": []
   },
   "rakuten-lifedrinkcompany-10000004": {
