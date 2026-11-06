@@ -17,8 +17,8 @@ on:
       - "portal-tools/test_commerce.js"
       - ".github/workflows/commerce-rakuten.yml"
   schedule:
-    # 06:00 and 18:00 JST; renew before the 23-hour display expiry. No Gemini calls.
-    - cron: "0 9,21 * * *"
+    # 06:17 and 18:17 JST, away from the start-of-hour scheduler load.
+    - cron: "17 9,21 * * *"
 
 permissions:
   contents: write
