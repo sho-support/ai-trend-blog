@@ -3,7 +3,7 @@
   "pages": [
     {
       "url": "https://sho-support.github.io/ai-trend-blog/deals/",
-      "fingerprint": "a4f680d0a349708278e7631cd6993d34901bc07719a3edbf6795ea0f6d7a2c47",
+      "fingerprint": "26bbad9e0d6a4620cb11ec7c42c19120aa2f952a8e71eb3c343682e5d5d51de4",
       "indexable": true,
       "lastmod": "2026-11-06"
     },
@@ -39,9 +39,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/air-conditioners.html",
-      "fingerprint": "da851197c8e122612e3001ec95f30f4d83ddc2ab6bc9589452c50f39cd00ae8f",
+      "fingerprint": "a9d2e840de017d104087016d3ebf5ec590daa04f0133ae850ceb5a8520fcabbb",
       "indexable": true,
-      "lastmod": "2026-11-02"
+      "lastmod": "2026-11-06"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/air-purifiers.html",
@@ -99,7 +99,7 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/camera-lenses.html",
-      "fingerprint": "62706c008525373ab15586a5b08684e201029c93bf6695930b9621ec61a07e17",
+      "fingerprint": "c6699331fcf60154b537af6bfaa5f56054a3945d02e7d83f5a5cc8498c941450",
       "indexable": true,
       "lastmod": "2026-11-06"
     },
@@ -213,7 +213,7 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/departments/pc.html",
-      "fingerprint": "a6ba2f2e1f22f832ce40f1729851028fd863e8cf8b414f2a9a58c765d3fb24cf",
+      "fingerprint": "1196cee60f09bfc00f1a006961991f4773a0b2e7a268241a8217e36b59d3db09",
       "indexable": true,
       "lastmod": "2026-11-06"
     },
@@ -441,8 +441,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-a-price-10983238.html",
-      "fingerprint": "7649533381b1b7433d46edfe838321c96aab39f7a747500e8f951eb434d2d581",
-      "indexable": false,
+      "fingerprint": "b9c7eba3ed1820de232b46d2888dd08461b49da89f6c2a86db6eeab52424b15d",
+      "indexable": true,
       "lastmod": "2026-11-06"
     },
     {
@@ -459,9 +459,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-a-price-11174225.html",
-      "fingerprint": "3b9176db241547569ece5b27b1d1f51720d4ccee3e08aea2e0c4566b97360acd",
-      "indexable": true,
-      "lastmod": "2026-11-02"
+      "fingerprint": "04e9b355445176ef3fdb0e1765ab16973c51f7596d3bec376b3919bd0f73be35",
+      "indexable": false,
+      "lastmod": "2026-11-06"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-a-price-11181644.html",
@@ -471,8 +471,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-a-price-11289324.html",
-      "fingerprint": "fc2e7899319aaac725966eaa03eeab579d78b855c16a168be5ad8eb4e23d4837",
-      "indexable": true,
+      "fingerprint": "1bba2382ce2af57da6370c423b78bac1ebd0f6b67087c1160f9aa50767c47cb8",
+      "indexable": false,
       "lastmod": "2026-11-06"
     },
     {
@@ -1202,6 +1202,12 @@
       "lastmod": "2026-11-01"
     },
     {
+      "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-deandeluca-10000832.html",
+      "fingerprint": "c97df7a08471411e31c88bdfab29acd33084c647d39a3a5483678a19e7045792",
+      "indexable": true,
+      "lastmod": "2026-11-06"
+    },
+    {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-denchiya-bekkan-10258951.html",
       "fingerprint": "7d464fdcb94945f9f11dbb58e591b51a188cee9b989939b99cbae022e9d437e5",
       "indexable": false,
@@ -1299,8 +1305,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-e-zoa-10110004.html",
-      "fingerprint": "e687ffa24979e3d87c8bfefc92302eeeaf8294e2d0553141d3d10fd7964854b2",
-      "indexable": true,
+      "fingerprint": "1bba2382ce2af57da6370c423b78bac1ebd0f6b67087c1160f9aa50767c47cb8",
+      "indexable": false,
       "lastmod": "2026-11-06"
     },
     {
@@ -1875,8 +1881,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-japannext-10000385.html",
-      "fingerprint": "1bba2382ce2af57da6370c423b78bac1ebd0f6b67087c1160f9aa50767c47cb8",
-      "indexable": false,
+      "fingerprint": "8420e3c0c4503e1ed9def4b9cc0180fe5fe306529ae740dd04f34bf9579b56f0",
+      "indexable": true,
       "lastmod": "2026-11-06"
     },
     {
@@ -1935,14 +1941,14 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-jism-14558780.html",
-      "fingerprint": "1bba2382ce2af57da6370c423b78bac1ebd0f6b67087c1160f9aa50767c47cb8",
-      "indexable": false,
+      "fingerprint": "d86cd8870f9857ac648497072f67b2c8561ba12ffce24241fd10a5b06004be99",
+      "indexable": true,
       "lastmod": "2026-11-06"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-jism-14588960.html",
-      "fingerprint": "2aef6436e8ef31f86cc94ae16b94661ed07058b7ea8375865c13dc3c8eb7254d",
-      "indexable": true,
+      "fingerprint": "1bba2382ce2af57da6370c423b78bac1ebd0f6b67087c1160f9aa50767c47cb8",
+      "indexable": false,
       "lastmod": "2026-11-06"
     },
     {
@@ -3003,9 +3009,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-premoa-11150935.html",
-      "fingerprint": "04e9b355445176ef3fdb0e1765ab16973c51f7596d3bec376b3919bd0f73be35",
-      "indexable": false,
-      "lastmod": "2026-11-02"
+      "fingerprint": "54d114e78c6375447b82345986fdca53541f2f35b3e3d93c9cd170feb53624af",
+      "indexable": true,
+      "lastmod": "2026-11-06"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-puma-10037817.html",
@@ -3123,8 +3129,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-rakuten24-11281032.html",
-      "fingerprint": "71d09a107643eafc11ca87ffce31b310a32274fb3b10aa383bdaa2ed9272efdc",
-      "indexable": true,
+      "fingerprint": "2bacc835b65dfe8e6849383eaa2cc150b11513174196eeca3b4a31ad3941a4bc",
+      "indexable": false,
       "lastmod": "2026-11-06"
     },
     {
@@ -3789,8 +3795,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-vitopal-10000613.html",
-      "fingerprint": "9873f102f2bbc59c003a3f296aea8cf3f335d29bdbdc0a3e15cc439f50da0666",
-      "indexable": true,
+      "fingerprint": "7649533381b1b7433d46edfe838321c96aab39f7a747500e8f951eb434d2d581",
+      "indexable": false,
       "lastmod": "2026-11-06"
     },
     {
@@ -4275,7 +4281,7 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/tableware.html",
-      "fingerprint": "177c9ac8e1efee29fc4e2a874438ce15a757514771e7e12da612ba3b7106484d",
+      "fingerprint": "15da6971480d520d72c7dad70253dcff8ba857ec1a378f1f83dd9b65042c5cb5",
       "indexable": true,
       "lastmod": "2026-11-06"
     },
@@ -4353,7 +4359,7 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/work-monitor.html",
-      "fingerprint": "f851e981a17c7bfc4cc74e507b87fbfe981e9094d682bd2491ee74bfeb3ea1d7",
+      "fingerprint": "a45a7e4ce9e5e0994a9f6508c1a9332c2e3261ab3abc68a20f84fe49c9b17cef",
       "indexable": true,
       "lastmod": "2026-11-06"
     },
