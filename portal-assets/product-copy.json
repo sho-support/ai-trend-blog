@@ -388,10 +388,10 @@
     "description": "メモリ8GB・SSD256GB。",
     "features": []
   },
-  "rakuten-jism-14580402": {
-    "name": "JAPANNEXT ジャパンネクスト サイネージ液晶ディスプレイ…",
-    "headline": "JAPANNEXT ジャパンネクスト サイネージ液晶ディスプレイ…",
-    "description": "43型・60Hz・IPS。",
+  "rakuten-jism-14558357": {
+    "name": "JAPANNEXT ジャパンネクスト 液晶ディスプレイ(24型/…",
+    "headline": "JAPANNEXT ジャパンネクスト 液晶ディスプレイ(24型/…",
+    "description": "24型・75Hz・IPS。",
     "features": []
   },
   "rakuten-logicool-10000345": {
@@ -718,16 +718,16 @@
     "description": "0.8L・800mL。",
     "features": []
   },
-  "rakuten-mpowjapan-10000907": {
-    "name": "電気ケトル EPEIOS エペイオス コーヒーケトル 0.9L",
-    "headline": "電気ケトル EPEIOS エペイオス コーヒーケトル 0.9L",
-    "description": "0.9L。",
-    "features": []
-  },
   "rakuten-myhomeshop-10000326": {
     "name": "電気ケトル 電気ケトル 1.0L 7段階温度調節 ボデーデジタル…",
     "headline": "電気ケトル 電気ケトル 1.0L 7段階温度調節 ボデーデジタル…",
     "description": "1.0L。",
+    "features": []
+  },
+  "rakuten-e-kurashi-10037463": {
+    "name": "電気ケトル 温度調節 ケトル グースネック 0.8L 1200W…",
+    "headline": "電気ケトル 温度調節 ケトル グースネック 0.8L 1200W…",
+    "description": "0.8L。",
     "features": []
   },
   "rakuten-biccamera-13877996": {
@@ -748,12 +748,6 @@
     "description": "",
     "features": []
   },
-  "rakuten-homeshop-10345776": {
-    "name": "キヤノン デジタルカメラ IXY650M シルバー 小型 コンパ…",
-    "headline": "キヤノン デジタルカメラ IXY650M シルバー 小型 コンパ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-d-shop1one-10241008": {
     "name": "コダック カメラ デジタルカメラ 乾電池式 4倍光学ズーム…",
     "headline": "コダック カメラ デジタルカメラ 乾電池式 4倍光学ズーム…",
@@ -763,6 +757,12 @@
   "rakuten-laflife-10000321": {
     "name": "Kodak PIXPRO FZ55 ブラック レッド コダック…",
     "headline": "Kodak PIXPRO FZ55 ブラック レッド コダック…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-biccamera-13823187": {
+    "name": "Kodak コダック コンパクトデジタルカメラ KODAK…",
+    "headline": "Kodak コダック コンパクトデジタルカメラ KODAK…",
     "description": "",
     "features": []
   },
@@ -784,22 +784,22 @@
     "description": "",
     "features": []
   },
-  "rakuten-loupe-studio-10665642": {
-    "name": "LAOWA 7.5mm F2 交換レンズ 一眼レフ MFT マイ…",
-    "headline": "LAOWA 7.5mm F2 交換レンズ 一眼レフ MFT マイ…",
-    "description": "",
-    "features": []
-  },
-  "rakuten-auc-stkb-10006878": {
-    "name": "Thypoch Simera 75mm f/1.4 ASPH.…",
-    "headline": "Thypoch Simera 75mm f/1.4 ASPH.…",
-    "description": "",
-    "features": []
-  },
   "rakuten-auc-stkb-10002962": {
     "name": "銘匠光学 TTArtisan 50mm f/2 Lマウント（ライ…",
     "headline": "銘匠光学 TTArtisan 50mm f/2 Lマウント（ライ…",
     "description": "2L。",
+    "features": []
+  },
+  "rakuten-vitopal-10001020": {
+    "name": "TTArtisan AF 40mm F2 単焦点レンズ フルサイ…",
+    "headline": "TTArtisan AF 40mm F2 単焦点レンズ フルサイ…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-a-price-11229127": {
+    "name": "SG-image SG AF55mm F1.8 Z (ニコンZマ…",
+    "headline": "SG-image SG AF55mm F1.8 Z (ニコンZマ…",
+    "description": "",
     "features": []
   },
   "rakuten-md-kk-10005536": {
@@ -862,15 +862,15 @@
     "description": "",
     "features": []
   },
-  "rakuten-kintsu-pluss-10293999": {
-    "name": "ELEVIDE スマホケース 手帳型 全機種対応…",
-    "headline": "ELEVIDE スマホケース 手帳型 全機種対応…",
-    "description": "",
-    "features": []
-  },
   "rakuten-keitai-10801623": {
     "name": "公式iFace iPhone14 ケース iPhoneSE…",
     "headline": "公式iFace iPhone14 ケース iPhoneSE…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-justral-10000310": {
+    "name": "iphone18Pro 18promax ケース ショルダー付き…",
+    "headline": "iphone18Pro 18promax ケース ショルダー付き…",
     "description": "",
     "features": []
   },
@@ -1084,16 +1084,16 @@
     "description": "",
     "features": []
   },
-  "rakuten-rakuten24-11273698": {
-    "name": "プリマヴィスタ ブライトチャージ パウダーファンデーション(9g…",
-    "headline": "プリマヴィスタ ブライトチャージ パウダーファンデーション(9g…",
-    "description": "",
-    "features": []
-  },
   "rakuten-shuuemura-10000021": {
     "name": "アンリミテッド ラスティング フルイド リキッド ファンデーショ…",
     "headline": "アンリミテッド ラスティング フルイド リキッド ファンデーショ…",
     "description": "",
+    "features": []
+  },
+  "rakuten-rakuten24-11285302": {
+    "name": "マキアージュ エッセンスリキッド EX(24ml) [リキッドフ…",
+    "headline": "マキアージュ エッセンスリキッド EX(24ml) [リキッドフ…",
+    "description": "24ml。",
     "features": []
   },
   "rakuten-irisplaza-r-10170526": {
@@ -1312,12 +1312,6 @@
     "description": "",
     "features": []
   },
-  "rakuten-kitwell-official-10000026": {
-    "name": "Kitwell 公式ストア キットウェル 正規品 マグビルド カ…",
-    "headline": "Kitwell 公式ストア キットウェル 正規品 マグビルド カ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-kitwell-official-10000012": {
     "name": "Kitwell 公式ストア キットウェル 正規品 マグビルド カ…",
     "headline": "Kitwell 公式ストア キットウェル 正規品 マグビルド カ…",
@@ -1327,6 +1321,12 @@
   "rakuten-luckybabygoods-10001548": {
     "name": "知育玩具 MODU モデュ Dreamer Set ドリーマーセ…",
     "headline": "知育玩具 MODU モデュ Dreamer Set ドリーマーセ…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-edute-10000193": {
+    "name": "お買い物マラソン 木のおもちゃ 知育玩具 スロープトイ TREE…",
+    "headline": "お買い物マラソン 木のおもちゃ 知育玩具 スロープトイ TREE…",
     "description": "",
     "features": []
   },
@@ -1558,9 +1558,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-nike-official-10002504": {
-    "name": "ナイキ ブラジリア トレーニングバックパック (ミディアム)…",
-    "headline": "ナイキ ブラジリア トレーニングバックパック (ミディアム)…",
+  "rakuten-stylife-13741544": {
+    "name": "BEAMS BOY ARC'TERYX / MANTIS…",
+    "headline": "BEAMS BOY ARC'TERYX / MANTIS…",
     "description": "",
     "features": []
   },
@@ -1693,6 +1693,12 @@
   "rakuten-cookware-carote-10000114": {
     "name": "CAROTE カローテ フライパン セット 18点 鍋セット…",
     "headline": "CAROTE カローテ フライパン セット 18点 鍋セット…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-kai-10008595": {
+    "name": "フライパン 貝印 軽いフライパン 20cm 26cm…",
+    "headline": "フライパン 貝印 軽いフライパン 20cm 26cm…",
     "description": "",
     "features": []
   },
@@ -1876,9 +1882,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-net-ryohin-10285595": {
-    "name": "INUMESHI バリュー 15kg ブリーダーパック 成犬・高…",
-    "headline": "INUMESHI バリュー 15kg ブリーダーパック 成犬・高…",
+  "rakuten-chanet-10486217": {
+    "name": "ドッグフード サイエンスダイエット アダルト 1歳〜6歳 小粒…",
+    "headline": "ドッグフード サイエンスダイエット アダルト 1歳〜6歳 小粒…",
     "description": "",
     "features": []
   },
