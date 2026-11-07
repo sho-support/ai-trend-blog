@@ -52,7 +52,9 @@ check(C.isA8Live(a8,now),true,'registered and approved A8 free link is usable');
 for(const patch of [{approved:false},{site_registered:false},{site_url:'https://www.youtube.com/channel/test'},{material_type:'banner'},{image:'https://example.test/photo.jpg',image_authorized:false},{url:'https://px.a8.net.attacker.example/'},{expires_at:'2020-01-01T00:00:00+09:00'}])check(C.isA8Live({...a8,...patch},now),false,'reject unapproved or wrong-site A8 material');
 
 async function catalogLifecycle() {
-  async function fixture(mode,query='',offline=false) {
+  async function fixture(mode,query='',{
+    rakutenOffline=false,a8Offline=false,a8Items=[],initialItems=[{...product,kind:'power-bank'}],
+  }={}) {
     let clock = now;
     class Clock extends Date {static now() {return clock;}}
     const node = () => ({innerHTML:'', textContent:'', hidden:false});
@@ -60,15 +62,15 @@ async function catalogLifecycle() {
     const nodes={'catalog-grid':grid,'catalog-status':status,'product-detail':detail,'product-query':input};
     const context={Date:Clock,URL,URLSearchParams,Intl,console,HTMLImageElement:class {},
       CATALOG_CONFIG:{mode,kind:'power-bank',id:'battery'},CATALOG_CATEGORIES:[{key:'power-bank',file:'mobile-battery.html'}],
-      CATALOG_INITIAL:mode==='search'?undefined:{items:[{...product,kind:'power-bank'}],copies:{}},
+      CATALOG_INITIAL:mode==='search'?undefined:{items:initialItems,copies:{}},
       document:{currentScript:{src:'https://example.test/portal-assets/catalog.js'},getElementById:id=>nodes[id],querySelector:()=>null,querySelectorAll:()=>[],addEventListener:(type,callback)=>{listeners[type]=callback;},hidden:false},
       location:{href:'https://example.test/products/items/battery.html',pathname:'/products/items/battery.html',search:'?q='+encodeURIComponent(query)},
       addEventListener(){},setInterval:callback=>{timers.push(callback);return timers.length;},clearInterval(){},
       gtag:(...args)=>events.push(args),
       fetch:async url=>{
         if(String(url).endsWith('product-copy.json'))return {ok:true,json:async()=>({soda:{name:'OZA SODA 48本',price_from:true}})};
-        if(String(url).endsWith('a8-approved.json'))return {ok:true,json:async()=>({items:[]})};
-        return {ok:!offline,json:async()=>({items:[
+        if(String(url).endsWith('a8-approved.json'))return {ok:!a8Offline,json:async()=>({items:a8Items})};
+        return {ok:!rakutenOffline,json:async()=>({items:[
           {...product,kind:'power-bank',title:product.title+'【公式店 ポイント10倍 ギフト 送料無料】',display_title:product.title+'【公式店 ポイント10倍 ギフト 送料'},
           {...product,id:'monitor',kind:'monitor',title:'4K モニター'},
           {...product,id:'headset',kind:'gaming-headsets',title:'Logicool G335 ヘッドセット',seller:'ロジクール 公式ストア'},
@@ -127,8 +129,14 @@ async function catalogLifecycle() {
   check(soda.grid.innerHTML.includes('2,370円〜'),true,'a listing with several prices shows its price as a starting amount');
   const missing=await fixture('search','unavailable-model');
   check(missing.status.textContent,'条件に合う商品はありません。','report no results only after a successful load');
-  const unavailable=await fixture('search','Ｇ３３５',true);
+  const unavailable=await fixture('search','Ｇ３３５',{rakutenOffline:true});
   check(unavailable.status.textContent,'商品を読み込めませんでした。しばらくしてからお試しください。','distinguish a failed feed from an empty search');
+  const a8Only=await fixture('search','テスト商品',{rakutenOffline:true,a8Items:[a8]});
+  check(a8Only.grid.innerHTML.includes('data-buy="a8-test"'),true,'a Rakuten outage leaves the confirmed A8 search result and shop link available');
+  const rakutenOnly=await fixture('search','Ｇ３３５',{a8Offline:true});
+  check(rakutenOnly.grid.innerHTML.includes('data-buy="headset"'),true,'an A8 outage leaves Rakuten search results available');
+  const unconfirmedA8=await fixture('category','',{rakutenOffline:true,a8Offline:true,initialItems:[{...a8,kind:'power-bank'}]});
+  check(unconfirmedA8.grid.innerHTML,'','a missing approval list removes A8 links from the initial HTML');
 }
 
 catalogLifecycle().then(()=>console.log('PASS:',checks,'commerce and storefront regressions'))

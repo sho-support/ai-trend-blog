@@ -19,6 +19,10 @@
     nav.scrollLeft=activeCategory.getBoundingClientRect().left-nav.getBoundingClientRect().left-(nav.clientWidth-activeCategory.clientWidth)/2;
   }
   const get=url=>fetch(new URL(url,assetBase),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('unavailable');return r.json()});
+  const getItems=file=>get(file).then(data=>{
+    if(!Array.isArray(data?.items))throw Error('invalid product feed');
+    return data.items;
+  });
   const copyFor=x=>{
     if(copies[x.id])return copies[x.id];
     const title=String(x.title||x.display_title||'商品')
@@ -122,9 +126,17 @@
   if(initial&&Array.isArray(initial.items)){
     feed=initial.items;copies=initial.copies||{};render();
   }
-  Promise.all([get('rakuten-feed.json'),get('product-copy.json').catch(()=>({})),get('a8-approved.json').catch(()=>({items:[]}))])
-    .then(([data,copy,a8])=>{if(!Array.isArray(data.items))throw Error('invalid');feed=[...data.items,...(Array.isArray(a8.items)?a8.items.map(x=>({...x,source:'a8'})):[])];copies={...(initial?.copies||{}),...(copy&&typeof copy==='object'?copy:{})};completeFeed=true;render();})
-    .catch(()=>{failed=true;render();});
+  Promise.allSettled([getItems('rakuten-feed.json'),getItems('a8-approved.json'),get('product-copy.json')])
+    .then(([rakuten,a8,copy])=>{
+      const rakutenItems=rakuten.status==='fulfilled'?rakuten.value:feed.filter(x=>x?.source!=='a8');
+      // The current approval list must load before retaining any A8 offers.
+      const a8Items=a8.status==='fulfilled'?a8.value.map(x=>({...x,source:'a8'})):[];
+      feed=[...rakutenItems,...a8Items];
+      if(copy.status==='fulfilled'&&copy.value&&typeof copy.value==='object')copies={...copies,...copy.value};
+      failed=rakuten.status==='rejected'||a8.status==='rejected';
+      completeFeed=!failed;
+      render();
+    });
   C.observe(render);
   document.addEventListener('click',event=>{
     const link=event.target.closest('a[data-buy]');if(!link)return;
