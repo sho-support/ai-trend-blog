@@ -388,10 +388,10 @@
     "description": "メモリ8GB・SSD256GB。",
     "features": []
   },
-  "rakuten-jism-14558357": {
-    "name": "JAPANNEXT ジャパンネクスト 液晶ディスプレイ(24型/…",
-    "headline": "JAPANNEXT ジャパンネクスト 液晶ディスプレイ(24型/…",
-    "description": "24型・75Hz・IPS。",
+  "rakuten-jism-14580402": {
+    "name": "JAPANNEXT ジャパンネクスト サイネージ液晶ディスプレイ…",
+    "headline": "JAPANNEXT ジャパンネクスト サイネージ液晶ディスプレイ…",
+    "description": "43型・60Hz・IPS。",
     "features": []
   },
   "rakuten-logicool-10000345": {
@@ -784,21 +784,21 @@
     "description": "",
     "features": []
   },
-  "rakuten-auc-stkb-10002962": {
-    "name": "銘匠光学 TTArtisan 50mm f/2 Lマウント（ライ…",
-    "headline": "銘匠光学 TTArtisan 50mm f/2 Lマウント（ライ…",
-    "description": "2L。",
-    "features": []
-  },
-  "rakuten-vitopal-10001020": {
-    "name": "TTArtisan AF 40mm F2 単焦点レンズ フルサイ…",
-    "headline": "TTArtisan AF 40mm F2 単焦点レンズ フルサイ…",
+  "rakuten-panasonic-store-10001797": {
+    "name": "パナソニック デジタル一眼カメラ用交換レンズ ルミックス Sシリ…",
+    "headline": "パナソニック デジタル一眼カメラ用交換レンズ ルミックス Sシリ…",
     "description": "",
     "features": []
   },
-  "rakuten-a-price-11229127": {
-    "name": "SG-image SG AF55mm F1.8 Z (ニコンZマ…",
-    "headline": "SG-image SG AF55mm F1.8 Z (ニコンZマ…",
+  "rakuten-auc-stkb-10002426": {
+    "name": "中一光学 SPEEDMASTER 85mm F1.2 ニコン Z…",
+    "headline": "中一光学 SPEEDMASTER 85mm F1.2 ニコン Z…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-loupe-studio-10665642": {
+    "name": "LAOWA 7.5mm F2 交換レンズ 一眼レフ MFT マイ…",
+    "headline": "LAOWA 7.5mm F2 交換レンズ 一眼レフ MFT マイ…",
     "description": "",
     "features": []
   },
@@ -988,15 +988,15 @@
     "description": "",
     "features": []
   },
-  "rakuten-panasonic-store-10000005": {
-    "name": "パナソニック 2025年度モデル ヘアードライヤー ナノケア…",
-    "headline": "パナソニック 2025年度モデル ヘアードライヤー ナノケア…",
-    "description": "",
-    "features": []
-  },
   "rakuten-mikirona-10000085": {
     "name": "ドライヤー 速乾 大風量 2億マイナスイオン 軽量 静音 1年保…",
     "headline": "ドライヤー 速乾 大風量 2億マイナスイオン 軽量 静音 1年保…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-kobe-beauty-labo-10001795": {
+    "name": "サロニア 1年保証付 30日間全額返金保証 速乾 大風量 プレゼ…",
+    "headline": "サロニア 1年保証付 30日間全額返金保証 速乾 大風量 プレゼ…",
     "description": "",
     "features": []
   },
@@ -1553,8 +1553,8 @@
     "features": []
   },
   "rakuten-mono-land-miyabi-1-10000340": {
-    "name": "本日 ！ リュック リュックサック バックパック レディース メ…",
-    "headline": "本日 ！ リュック リュックサック バックパック レディース メ…",
+    "name": "土日限定1500円OFF！ リュック リュックサック バックパッ…",
+    "headline": "土日限定1500円OFF！ リュック リュックサック バックパッ…",
     "description": "",
     "features": []
   },
@@ -1660,15 +1660,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-vanilla-vague-10522129": {
-    "name": "スニーカー メンズ レディース ドイツの撥水・防汚の技術 靴 シ…",
-    "headline": "スニーカー メンズ レディース ドイツの撥水・防汚の技術 靴 シ…",
-    "description": "",
-    "features": []
-  },
-  "rakuten-puma-10037817": {
-    "name": "『 11/4 20:00〜11/11 1:59』 プーマ…",
-    "headline": "『 11/4 20:00〜11/11 1:59』 プーマ…",
+  "rakuten-adidas-10185022": {
+    "name": "アディダス adidas 返品可 ラッピング不可 ライフスタイル…",
+    "headline": "アディダス adidas 返品可 ラッピング不可 ライフスタイル…",
     "description": "",
     "features": []
   },
@@ -1876,15 +1870,15 @@
     "description": "",
     "features": []
   },
-  "rakuten-net-ryohin-10294905": {
-    "name": "INUMESHI フィースト 1歳以上 大型犬用 15kg ブリ…",
-    "headline": "INUMESHI フィースト 1歳以上 大型犬用 15kg ブリ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-chanet-10486217": {
     "name": "ドッグフード サイエンスダイエット アダルト 1歳〜6歳 小粒…",
     "headline": "ドッグフード サイエンスダイエット アダルト 1歳〜6歳 小粒…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-chanet-10486232": {
+    "name": "ドッグフード サイエンスダイエット 大型犬用 アダルト ライト…",
+    "headline": "ドッグフード サイエンスダイエット 大型犬用 アダルト ライト…",
     "description": "",
     "features": []
   },
@@ -1918,9 +1912,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-auc-r-style-10000367": {
-    "name": "ドーム型 ペットベッド 犬 猫 ベッド 冬 おしゃれ ハウス 暖…",
-    "headline": "ドーム型 ペットベッド 犬 猫 ベッド 冬 おしゃれ ハウス 暖…",
+  "rakuten-emoor-nedogko-10000047": {
+    "name": "犬 ペット ベッド ペットベッド 犬用ベッド 犬用 ベット 3D…",
+    "headline": "犬 ペット ベッド ペットベッド 犬用ベッド 犬用 ベット 3D…",
     "description": "",
     "features": []
   },
@@ -1984,16 +1978,16 @@
     "description": "5000mAh・防水。",
     "features": []
   },
-  "rakuten-lepro-10000143": {
-    "name": "LEDランタン 防災用 電池式 防災停電対策 キャンプ…",
-    "headline": "LEDランタン 防災用 電池式 防災停電対策 キャンプ…",
-    "description": "防水。",
-    "features": []
-  },
   "rakuten-vanilla-vague-10522240": {
     "name": "最強の2,000ルーメン！ランタン 電池式 LEDランタン…",
     "headline": "最強の2,000ルーメン！ランタン 電池式 LEDランタン…",
     "description": "",
+    "features": []
+  },
+  "rakuten-waqoutdoor-10000099": {
+    "name": "WAQ LEDランタン 2 充電式 おしゃれ モバイルバッテリー…",
+    "headline": "WAQ LEDランタン 2 充電式 おしゃれ モバイルバッテリー…",
+    "description": "13400mAh。",
     "features": []
   },
   "rakuten-jackery-japan-10000033": {
