@@ -364,10 +364,10 @@
     "description": "メモリ16GB・SSD512GB・14インチ。",
     "features": []
   },
-  "rakuten-e-fellows5-10058167": {
-    "name": "おまかせPC ノートパソコン Lenovo V15 Gen5…",
-    "headline": "おまかせPC ノートパソコン Lenovo V15 Gen5…",
-    "description": "メモリ16GB・SSD256GB・15.6インチ。",
+  "rakuten-krdirect-10000010": {
+    "name": "14インチワイド液晶 フルHD ノートパソコン office付き…",
+    "headline": "14インチワイド液晶 フルHD ノートパソコン office付き…",
+    "description": "メモリ8GB・SSD256GB・14インチ。",
     "features": []
   },
   "rakuten-voltique-10000021": {
@@ -388,22 +388,16 @@
     "description": "メモリ8GB・SSD256GB。",
     "features": []
   },
-  "rakuten-jism-14588960": {
-    "name": "ASUS エイスース モバイル液晶ディスプレイ(15.6型/IP…",
-    "headline": "ASUS エイスース モバイル液晶ディスプレイ(15.6型/IP…",
-    "description": "15.6型・IPS。",
+  "rakuten-jism-14557694": {
+    "name": "センチュリー CENTURY 液晶ディスプレイ(10.1型/IP…",
+    "headline": "センチュリー CENTURY 液晶ディスプレイ(10.1型/IP…",
+    "description": "10.1型・60Hz・IPS。",
     "features": []
   },
-  "rakuten-e-zoa-10110004": {
-    "name": "JAPANNEXT ジャパンネクスト27インチ4K液晶ディスプレ…",
-    "headline": "JAPANNEXT ジャパンネクスト27インチ4K液晶ディスプレ…",
-    "description": "27インチ・4K。",
-    "features": []
-  },
-  "rakuten-a-price-11289324": {
-    "name": "JAPANNEXT JN-IPS32F-HSPC6 [32型ワイ…",
-    "headline": "JAPANNEXT JN-IPS32F-HSPC6 [32型ワイ…",
-    "description": "32型。",
+  "rakuten-jism-14557552": {
+    "name": "Philips フィリップス 液晶ディスプレイ(23.8型/IP…",
+    "headline": "Philips フィリップス 液晶ディスプレイ(23.8型/IP…",
+    "description": "23.8型・75Hz・IPS。",
     "features": []
   },
   "rakuten-logicool-10000345": {
@@ -449,8 +443,8 @@
     "features": []
   },
   "rakuten-d-shop1one-10239877": {
-    "name": "バッファロー 無線LANルーター Wi-Fi6対応…",
-    "headline": "バッファロー 無線LANルーター Wi-Fi6対応…",
+    "name": "最大3000円CP＋ ！！11/10 バッファロー 無線LANル…",
+    "headline": "最大3000円CP＋ ！！11/10 バッファロー 無線LANル…",
     "description": "",
     "features": []
   },
@@ -767,8 +761,8 @@
     "features": []
   },
   "rakuten-d-shop1one-10241008": {
-    "name": "コダック カメラ デジタルカメラ 乾電池式 4倍光学ズーム…",
-    "headline": "コダック カメラ デジタルカメラ 乾電池式 4倍光学ズーム…",
+    "name": "最大3000円CP＋ ！！11/10 コダック カメラ デジタル…",
+    "headline": "最大3000円CP＋ ！！11/10 コダック カメラ デジタル…",
     "description": "",
     "features": []
   },
@@ -802,22 +796,22 @@
     "description": "",
     "features": []
   },
-  "rakuten-vitopal-10000613": {
-    "name": "TTArtisan 35mm F0.95 単焦点レンズ 大口径…",
-    "headline": "TTArtisan 35mm F0.95 単焦点レンズ 大口径…",
-    "description": "",
-    "features": []
-  },
-  "rakuten-panasonic-store-10001277": {
-    "name": "パナソニック デジタル一眼カメラ用交換レンズ ルミックス Gシリ…",
-    "headline": "パナソニック デジタル一眼カメラ用交換レンズ ルミックス Gシリ…",
-    "description": "4K。",
-    "features": []
-  },
   "rakuten-auc-stkb-10002715": {
     "name": "LIGHT LENS LAB M 35mm f/2 ライカMマウ…",
     "headline": "LIGHT LENS LAB M 35mm f/2 ライカMマウ…",
     "description": "8枚。",
+    "features": []
+  },
+  "rakuten-auc-stkb-10002962": {
+    "name": "銘匠光学 TTArtisan 50mm f/2 Lマウント（ライ…",
+    "headline": "銘匠光学 TTArtisan 50mm f/2 Lマウント（ライ…",
+    "description": "2L。",
+    "features": []
+  },
+  "rakuten-vitopal-10001020": {
+    "name": "TTArtisan AF 40mm F2 単焦点レンズ フルサイ…",
+    "headline": "TTArtisan AF 40mm F2 単焦点レンズ フルサイ…",
+    "description": "",
     "features": []
   },
   "rakuten-md-kk-10005536": {
@@ -880,15 +874,15 @@
     "description": "",
     "features": []
   },
-  "rakuten-keitai-10801623": {
-    "name": "公式iFace iPhone14 ケース iPhoneSE…",
-    "headline": "公式iFace iPhone14 ケース iPhoneSE…",
-    "description": "",
-    "features": []
-  },
   "rakuten-amicoco-10000003": {
     "name": "スマホケース 手帳型 全機種対応 本革 ケース…",
     "headline": "スマホケース 手帳型 全機種対応 本革 ケース…",
+    "description": "",
+    "features": []
+  },
+  "rakuten-kintsu-10676437": {
+    "name": "公式 Elegante キルティング iPhone18 Pro…",
+    "headline": "公式 Elegante キルティング iPhone18 Pro…",
     "description": "",
     "features": []
   },
@@ -1102,16 +1096,16 @@
     "description": "",
     "features": []
   },
-  "rakuten-shuuemura-10000021": {
-    "name": "アンリミテッド ラスティング フルイド リキッド ファンデーショ…",
-    "headline": "アンリミテッド ラスティング フルイド リキッド ファンデーショ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-rakuten24-11285302": {
     "name": "マキアージュ エッセンスリキッド EX(24ml) [リキッドフ…",
     "headline": "マキアージュ エッセンスリキッド EX(24ml) [リキッドフ…",
     "description": "24ml。",
+    "features": []
+  },
+  "rakuten-rakuten24-11273698": {
+    "name": "プリマヴィスタ ブライトチャージ パウダーファンデーション(9g…",
+    "headline": "プリマヴィスタ ブライトチャージ パウダーファンデーション(9g…",
+    "description": "",
     "features": []
   },
   "rakuten-irisplaza-r-10170526": {
@@ -1252,10 +1246,10 @@
     "description": "5個・個包装。",
     "features": []
   },
-  "rakuten-giftland-showa-10000073": {
-    "name": "紅茶 ティーバッグ 福袋 選べる90包 jaftea セイロンフ…",
-    "headline": "紅茶 ティーバッグ 福袋 選べる90包 jaftea セイロンフ…",
-    "description": "90包・個包装。",
+  "rakuten-hanwha-10001756": {
+    "name": "はちみつ紅茶 ハチミツティー 2箱 50包 25袋入り2箱セット…",
+    "headline": "はちみつ紅茶 ハチミツティー 2箱 50包 25袋入り2箱セット…",
+    "description": "50包・25袋入り。",
     "features": []
   },
   "rakuten-netbaby-10015402": {
@@ -1570,16 +1564,16 @@
     "description": "容量45L・17インチ・防水。",
     "features": []
   },
-  "rakuten-mono-land-miyabi-1-10000340": {
-    "name": "土日限定1500円OFF！ リュック リュックサック バックパッ…",
-    "headline": "土日限定1500円OFF！ リュック リュックサック バックパッ…",
-    "description": "",
-    "features": []
-  },
   "rakuten-mtm777-10000256": {
     "name": "リュック バックパック リュックサック レディース メンズ 通学…",
     "headline": "リュック バックパック リュックサック レディース メンズ 通学…",
     "description": "防水。",
+    "features": []
+  },
+  "rakuten-kamimatsuri-10000692": {
+    "name": "リュック ビジネス リュック 通勤 リュック レディース カバン…",
+    "headline": "リュック ビジネス リュック 通勤 リュック レディース カバン…",
+    "description": "14インチ・15.6インチ・防水。",
     "features": []
   },
   "rakuten-showatsusho-10000534": {
@@ -1894,9 +1888,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-chanet-10486232": {
-    "name": "ドッグフード サイエンスダイエット 大型犬用 アダルト ライト…",
-    "headline": "ドッグフード サイエンスダイエット 大型犬用 アダルト ライト…",
+  "rakuten-nyanzaq-10100396": {
+    "name": "ニュートロ シュプレモ 超小型犬〜小型犬用 体重管理用 3kg…",
+    "headline": "ニュートロ シュプレモ 超小型犬〜小型犬用 体重管理用 3kg…",
     "description": "",
     "features": []
   },
@@ -1930,9 +1924,9 @@
     "description": "",
     "features": []
   },
-  "rakuten-emoor-nedogko-10000047": {
-    "name": "犬 ペット ベッド ペットベッド 犬用ベッド 犬用 ベット 3D…",
-    "headline": "犬 ペット ベッド ペットベッド 犬用ベッド 犬用 ベット 3D…",
+  "rakuten-guryfocxhome-10000021": {
+    "name": "犬 ベッド 冬 猫 ベッド 冬用 小型犬 中型犬 大型犬 ベッド…",
+    "headline": "犬 ベッド 冬 猫 ベッド 冬用 小型犬 中型犬 大型犬 ベッド…",
     "description": "",
     "features": []
   },
@@ -1973,8 +1967,8 @@
     "features": []
   },
   "rakuten-alpen-10251506": {
-    "name": "最大 コールマン インフィニティチェア ベージュ…",
-    "headline": "最大 コールマン インフィニティチェア ベージュ…",
+    "name": "抽選で最大100％Pバック コールマン インフィニティチェア ベ…",
+    "headline": "抽選で最大100％Pバック コールマン インフィニティチェア ベ…",
     "description": "折りたたみ。",
     "features": []
   },
