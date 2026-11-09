@@ -3,7 +3,7 @@
   "pages": [
     {
       "url": "https://sho-support.github.io/ai-trend-blog/deals/",
-      "fingerprint": "cfada7f5dd785af4895ad2b7830dcff20dd46deb70e09177fd9c32b28a1937b2",
+      "fingerprint": "3e967df0ca39c513e9771868000fa699dfd02345f41e0f894f10ca0af1d6fda3",
       "indexable": true,
       "lastmod": "2026-11-09"
     },
@@ -99,7 +99,7 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/camera-lenses.html",
-      "fingerprint": "7cbb0857befde67b1df26637efe0463e0c1deac2d8dce93103689db429bea2f5",
+      "fingerprint": "84f6cc416f65b4806f3fa223760c2f02333945509d6fbcf4adf4df169e2823c6",
       "indexable": true,
       "lastmod": "2026-11-09"
     },
@@ -807,9 +807,9 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-auc-stkb-10002715.html",
-      "fingerprint": "7649533381b1b7433d46edfe838321c96aab39f7a747500e8f951eb434d2d581",
-      "indexable": false,
-      "lastmod": "2026-11-08"
+      "fingerprint": "53a9e2e441f76c229e9367a039d8b4c9e5c6082579a98dba2cba33e12ab297f2",
+      "indexable": true,
+      "lastmod": "2026-11-09"
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-auc-stkb-10002962.html",
@@ -3033,8 +3033,8 @@
     },
     {
       "url": "https://sho-support.github.io/ai-trend-blog/products/items/rakuten-panasonic-store-10000718.html",
-      "fingerprint": "db27c9478ecc816ee749b3b2b1cf5ef8e8162655c01e58d989b9383b5be5001f",
-      "indexable": true,
+      "fingerprint": "7649533381b1b7433d46edfe838321c96aab39f7a747500e8f951eb434d2d581",
+      "indexable": false,
       "lastmod": "2026-11-09"
     },
     {
