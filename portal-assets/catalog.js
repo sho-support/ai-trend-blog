@@ -36,19 +36,30 @@
     const amount=Number(item.price_yen).toLocaleString('ja-JP');
     return copy.price_from===true?amount+'円〜':'¥'+amount;
   };
-  function image(x,cls='',priority=false){
+  function image(x,priority=false,large=false){
     if(!x.image||!/^https:\/\//.test(x.image))return '<span class="photo-unavailable">商品写真は販売店で</span>';
     let srcset='';
     try{
       const larger=new URL(x.image);
       if(larger.hostname==='thumbnail.image.rakuten.co.jp'&&larger.searchParams.has('_ex')){
         larger.searchParams.set('_ex','600x600');
-        srcset=' srcset="'+esc(x.image)+' 128w, '+esc(larger.href)+' 600w" sizes="'+(config.mode==='product'?'(max-width:600px) 90vw, 460px':'(max-width:600px) 45vw, 300px')+'"';
+        srcset=' srcset="'+esc(x.image)+' 128w, '+esc(larger.href)+' 600w" sizes="'+(large?'(max-width:600px) 90vw, 460px':'(max-width:600px) 45vw, 300px')+'"';
       }
     }catch(_){}
-    return '<img class="product-image '+cls+'" src="'+esc(x.image)+'"'+srcset+' alt="'+esc(copyFor(x).name)+'" width="600" height="600" decoding="async"'+(priority||config.mode==='product'?' fetchpriority="high"':' loading="lazy"')+'>';
+    return '<img class="product-image" src="'+esc(x.image)+'"'+srcset+' alt="'+esc(copyFor(x).name)+'" width="600" height="600" decoding="async"'+(priority?' fetchpriority="high"':' loading="lazy"')+'>';
   }
   const detailURL=x=>new URL('items/'+encodeURIComponent(x.id)+'.html',productBase).href;
+  function productCards(items){
+    return items.map((x,index)=>{
+      const copy=copyFor(x),url=detailURL(x);
+      return '<article class="product-card" data-kind="'+esc(x.kind)+'">'
+        +'<a class="product-photo" href="'+esc(url)+'">'+image(x,index===0)+'</a>'
+        +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
+        +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
+        +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">'+priceText(x,copy)+'</p>':'')
+        +'<a class="product-open product-buy" href="'+esc(x.url)+'" data-buy="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored" aria-label="'+esc(copy.name)+'を'+(x.source==='a8'?'公式ショップ':'楽天市場')+'で見る">'+(x.source==='a8'?'公式ショップで見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a></div></div></article>';
+    }).join('');
+  }
   function trackView(item,copy){
     if(viewedItems.has(item.id)||typeof window.gtag!=='function')return;
     try{
@@ -68,7 +79,7 @@
         tile.hidden=!selected.length;
         const item=selected.find(x=>x.image);
         const photo=tile.querySelector('.category-photo');
-        if(photo)photo.innerHTML=item?image(item,'',index===0):'<span class="photo-unavailable">'+esc(tile.querySelector('h2').textContent)+'</span>';
+        if(photo)photo.innerHTML=item?image(item,index===0):'<span class="photo-unavailable">'+esc(tile.querySelector('h2').textContent)+'</span>';
       });
       const status=document.getElementById('directory-status');
       if(status)status.textContent=rows.length?'':failed?'商品を読み込めませんでした。':'現在掲載できる商品はありません。';
@@ -94,25 +105,22 @@
         status.hidden=false;return;
       }
       status.textContent='';status.hidden=true;
-      grid.innerHTML=selected.map((x,index)=>{
-        const copy=copyFor(x),url=detailURL(x);
-        return '<article class="product-card" data-kind="'+esc(x.kind)+'">'
-          +'<a class="product-photo" href="'+esc(url)+'">'+image(x,'',index===0)+'</a>'
-          +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
-          +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
-          +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">'+priceText(x,copy)+'</p>':'')
-          +'<a class="product-open product-buy" href="'+esc(x.url)+'" data-buy="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored" aria-label="'+esc(copy.name)+'を'+(x.source==='a8'?'公式ショップ':'楽天市場')+'で見る">'+(x.source==='a8'?'公式ショップで見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a></div></div></article>';
-      }).join('');
+      grid.innerHTML=productCards(selected);
       return;
     }
     if(config.mode==='product'){
       const root=document.getElementById('product-detail');
       const item=rows.find(x=>x.id===config.id&&inCategory(x,config.kind));
       if(!item){
-        root.innerHTML='<div class="unavailable-product"><h1>現在の商品情報を表示できません</h1><p>同じジャンルの商品から探せます。</p><a class="buy-button secondary" href="'+new URL(categories.find(c=>c.key===config.kind)?.file||'./',productBase).href+'">商品一覧へ</a></div>';return;
+        const related=rows.filter(x=>inCategory(x,config.kind)).slice(0,3);
+        const categoryURL=new URL(categories.find(c=>c.key===config.kind)?.file||'./',productBase);
+        root.innerHTML='<div class="unavailable-product"><h1>現在、この商品の掲載はありません</h1>'
+          +(related.length?'<p>同じジャンルの商品 <span class="ad-label">PR</span></p><div class="product-grid">'+productCards(related)+'</div>':'')
+          +'<p><a class="buy-button secondary" href="'+esc(categoryURL.href)+'">商品一覧へ</a></p></div>';
+        return;
       }
       const copy=copyFor(item);
-      root.innerHTML='<div class="detail-photo">'+image(item)+'</div><div class="detail-info"><span class="ad-label">PR</span>'
+      root.innerHTML='<div class="detail-photo">'+image(item,true,true)+'</div><div class="detail-info"><span class="ad-label">PR</span>'
         +'<h1>'+esc(copy.headline||copy.name)+'</h1>'
         +(copy.description?'<p class="detail-intro">'+esc(copy.description)+'</p>':'')
         +(item.price_yen!=null?'<p class="detail-price">'+priceText(item,copy)+'</p>':'')
@@ -143,7 +151,8 @@
     const item=feed.find(x=>x.id===link.dataset.buy);
     if(!live(item)){event.preventDefault();render();return;}
     link.dataset.itemId=item.id;
-    C.track(link,{portal_kind:'product',category:item.kind,source:item.source||'rakuten',placement:config.mode==='product'?'detail':'list'});
+    const placement=config.mode==='product'?(item.id===config.id?'detail':'related'):'list';
+    C.track(link,{portal_kind:'product',category:item.kind,source:item.source||'rakuten',placement});
   });
   document.addEventListener('error',event=>{
     if(event.target instanceof HTMLImageElement&&event.target.classList.contains('product-image')){

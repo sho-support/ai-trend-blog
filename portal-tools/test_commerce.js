@@ -53,7 +53,7 @@ for(const patch of [{approved:false},{site_registered:false},{site_url:'https://
 
 async function catalogLifecycle() {
   async function fixture(mode,query='',{
-    rakutenOffline=false,a8Offline=false,a8Items=[],initialItems=[{...product,kind:'power-bank'}],
+    rakutenOffline=false,a8Offline=false,a8Items=[],initialItems=[{...product,kind:'power-bank'}],itemId='battery',
   }={}) {
     let clock = now;
     class Clock extends Date {static now() {return clock;}}
@@ -61,7 +61,7 @@ async function catalogLifecycle() {
     const grid=node(),status=node(),detail=node(),input=node(),timers=[],events=[],listeners={};
     const nodes={'catalog-grid':grid,'catalog-status':status,'product-detail':detail,'product-query':input};
     const context={Date:Clock,URL,URLSearchParams,Intl,console,HTMLImageElement:class {},
-      CATALOG_CONFIG:{mode,kind:'power-bank',id:'battery'},CATALOG_CATEGORIES:[{key:'power-bank',file:'mobile-battery.html'}],
+      CATALOG_CONFIG:{mode,kind:'power-bank',id:itemId},CATALOG_CATEGORIES:[{key:'power-bank',file:'mobile-battery.html'}],
       CATALOG_INITIAL:mode==='search'?undefined:{items:initialItems,copies:{}},
       document:{currentScript:{src:'https://example.test/portal-assets/catalog.js'},getElementById:id=>nodes[id],querySelector:()=>null,querySelectorAll:()=>[],addEventListener:(type,callback)=>{listeners[type]=callback;},hidden:false},
       location:{href:'https://example.test/products/items/battery.html',pathname:'/products/items/battery.html',search:'?q='+encodeURIComponent(query)},
@@ -119,6 +119,16 @@ async function catalogLifecycle() {
   check(blocked,true,'expired purchase action is blocked immediately');
   check(detail.detail.innerHTML.includes('data-buy'),false,'expired product is removed');
   check(detail.events.filter(x=>x[1]==='view_item').length,1,'expiry and repeated renders do not inflate views');
+
+  const retired=await fixture('product','',{
+    itemId:'retired-a8',initialItems:[],a8Items:[{...a8,id:'retired-a8',kind:'power-bank',expires_at:'2020-01-01T00:00:00Z'}],
+  });
+  check(retired.detail.innerHTML.match(/data-buy="[^"]+"/g),['data-buy="battery"'],'a retired detail offers only eligible products in its own genre');
+  check(retired.detail.innerHTML.includes('class="ad-label">PR'),true,'replacement offers disclose advertising next to the products');
+  retired.listeners.click({target:{closest:()=>listLink},preventDefault(){throw Error('fresh alternative purchase blocked');}});
+  check(retired.events[0][2].placement,'related','replacement purchase links are distinguishable from detail clicks');
+  retired.expire();retired.timers[0]();
+  check(retired.detail.innerHTML.includes('data-buy'),false,'replacement offers also disappear on expiry');
 
   for(const [query,id] of [['ロジクール　Ｇ３３５','headset'],['ＧＰＨＳ－００３','pro-x'],['５００ｍｌ×４８本','soda'],['ﾓﾆﾀｰ','monitor']]){
     const search=await fixture('search',query);
