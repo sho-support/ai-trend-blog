@@ -14,7 +14,12 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/"dist"
 PORTAL_FOLDERS=("deals","events","products")
-ASSET_FILES=("storefront.css","catalog-taxonomy.json","catalog.js","listing.js","product-copy.json","discovery-manifest.json","style.css","editorial.css","app.js","commerce.js","calculator.js","guide.js","travel.js","watch.js","rakuten-feed.json","travel-feed.json","price-history.json","a8-approved.json")
+ASSET_FILES=(
+    "storefront.css","catalog-taxonomy.json","catalog.js","listing.js","deal-news.css","deal-news.js",
+    "product-copy.json","discovery-manifest.json","style.css","editorial.css","app.js","commerce.js",
+    "calculator.js","guide.js","travel.js","watch.js","rakuten-feed.json","travel-feed.json",
+    "price-history.json","a8-approved.json",
+)
 SOURCE_BASE="https://sho-support.github.io/ai-trend-blog"
 target=os.getenv("URL","").rstrip("/")
 if target and not target.startswith("https://"):
