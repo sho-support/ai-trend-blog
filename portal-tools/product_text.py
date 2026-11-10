@@ -1,4 +1,4 @@
-"""Short product names and literal specifications; no generated reviews."""
+"""Short product names and reviewed copy; no inferred specifications or reviews."""
 import re
 
 def short_title(item):
@@ -23,17 +23,11 @@ def short_title(item):
 
 def product_copy(item,edited):
     if item['id'] in edited:return edited[item['id']]
-    title=item.get('title','')
-    patterns=[r'(?:耐荷重|全伸高|最大高|内容量|容量|重量)\s*\d+(?:\.\d+)?\s*(?:kg|g|cm|mm|mL|ml|L)',r'(?:メモリ|RAM|SSD|HDD|ストレージ)\s*\d+(?:\.\d+)?\s*(?:GB|TB)',r'(?<![A-Za-z0-9])\d+(?:\.\d+)?\s*(?:インチ|畳|GB|TB|mAh|Wh|mL|ml|L)(?![A-Za-z])',r'(?<![A-Za-z0-9])\d+\s*(?:枚|個|袋|食|本|包)(?:入り|入|セット)?',r'(?<![A-Za-z0-9])\d{2,3}\s*Hz',r'(?<![A-Za-z0-9])(?:4K|8K|USB-C|Type-C|Bluetooth|IPS|有機EL|MiniLED)(?![A-Za-z0-9])',r'個包装|無洗米|精米|防水|詰め替え|コードレス|折りたたみ']
-    if item.get('kind') in ('televisions','monitor','gaming-monitor','laptops','tablets'):
-        patterns.insert(0,r'(?<![A-Za-z0-9])\d+(?:\.\d+)?\s*型')
-    facts=[]
-    for pattern in patterns:
-        for m in re.findall(pattern,title,re.I):
-            fact=re.sub(r'\s+','',m)
-            if not any(fact in existing for existing in facts):facts.append(fact)
-    desc='・'.join(facts[:3])
-    return {'name':short_title(item),'headline':short_title(item),'description':desc+'。' if desc else '', 'features':[]}
+    # Marketplace titles combine model codes, limited-edition counts and specs
+    # from several variants. They do not establish the specs of the priced SKU.
+    # Keep unreviewed listings photo/name/price only until copy is verified.
+    name=short_title(item)
+    return {'name':name,'headline':name,'description':'','features':[]}
 
 
 def approved_a8(item, now=None):

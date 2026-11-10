@@ -59,9 +59,12 @@ def main():
         check('id="catalog-grid"' in body,c['key']+' missing product grid')
         check('calculator.js' not in body,c['key']+' unwanted calculator')
     check('Nintendo Switch 2' in short_title({'title':'任天堂｜Nintendo Nintendo Switch 2 ゲーム機本体'}),'manufacturer separator hides product identity')
-    spec=product_copy({'id':'test-tripod','kind':'tripods','title':'Gitzo GT5543LS 三脚5型 耐荷重42kg 全伸高156cm'}, {})['description']
-    check('5543L' not in spec and '5型' not in spec,'model code must not become a capacity or screen size')
-    check('耐荷重42kg' in spec and '全伸高156cm' in spec,'specifications need their product context')
+    watch={'id':'test-watch','kind':'wristwatches','title':'限定150本 シチズン カンパノラ NZ0000-58L'}
+    check(not product_copy(watch,{})['description'],'model suffixes and edition counts must not become product specifications')
+    laptop={'id':'test-laptop','kind':'laptops','title':'ノートパソコン メモリ8GB~32GB SSD128GB~1TB'}
+    check(not product_copy(laptop,{})['description'],'a multi-variant title must not choose specifications for the displayed price')
+    reviewed={'name':'シチズン カンパノラ NZ0000-58L','headline':'シチズン カンパノラ NZ0000-58L','description':'機械式の腕時計。','features':[]}
+    check(product_copy(watch,{watch['id']:reviewed})==reviewed,'reviewed product copy must survive a feed rebuild')
     feed=json.loads((ROOT/'portal-assets/rakuten-feed.json').read_text())
     copies=json.loads((ROOT/'portal-assets/product-copy.json').read_text())
     keys={c['key'] for c in CATEGORIES};ids=set()
