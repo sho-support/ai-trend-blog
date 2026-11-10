@@ -14,9 +14,11 @@ def short_title(item):
     if not text:text=re.sub(r'[【】＼／★]','',item.get('title','商品情報'))
     if len(text)>32:
         short=text[:32].rstrip()
-        if re.search(r'[A-Za-z0-9]$',short) and re.match(r'[A-Za-z0-9]',text[32:]):
-            space=short.rfind(' ')
-            if space>=18:short=short[:space]
+        # A Japanese marketing word cut in half is no more useful than half a
+        # model number. End on a whole title segment when one is available.
+        space=short.rfind(' ')
+        if space>=18:
+            return short[:space].rstrip()
         return short+'…'
     return text
 

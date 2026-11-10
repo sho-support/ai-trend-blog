@@ -59,6 +59,7 @@ def main():
         check('id="catalog-grid"' in body,c['key']+' missing product grid')
         check('calculator.js' not in body,c['key']+' unwanted calculator')
     check('Nintendo Switch 2' in short_title({'title':'任天堂｜Nintendo Nintendo Switch 2 ゲーム機本体'}),'manufacturer separator hides product identity')
+    check(short_title({'title':'限定150本 シチズン カンパノラ NZ0000-58L 高級ブランド 国産 メンズ腕時計'})=='限定150本 シチズン カンパノラ NZ0000-58L','a short product name must preserve its complete model and omit the clipped marketing word')
     watch={'id':'test-watch','kind':'wristwatches','title':'限定150本 シチズン カンパノラ NZ0000-58L'}
     check(not product_copy(watch,{})['description'],'model suffixes and edition counts must not become product specifications')
     laptop={'id':'test-laptop','kind':'laptops','title':'ノートパソコン メモリ8GB~32GB SSD128GB~1TB'}
