@@ -14,6 +14,7 @@ from catalog_taxonomy import DEPARTMENTS, CATEGORIES, BY_KIND, BY_DEPARTMENT, no
 from product_text import short_title, product_copy, approved_a8
 from storefront_seo import live, image, cards, detail, breadcrumb, inventory_entry, fingerprint, share_image
 from deal_news import selected_deals, render_deals
+from black_friday import build_pages as black_friday_pages, entry_link as black_friday_entry
 E = lambda v: html.escape(str(v), quote=True)
 JS = lambda v: json.dumps(v, ensure_ascii=False, separators=(',',':')).replace('<','\\u003c')
 CREDIT = '''<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
@@ -251,6 +252,7 @@ def listings():
             checked_label=f'{checked.month}/{checked.day} {checked:%H:%M}確認'
             options=''.join('<option value="'+E(x)+'">'+E(x)+'</option>' for x in sorted({x['category'] for x in offers}))
             body='<div class="page-heading"><h1>お得な商品</h1><a href="../products/" class="text-link">商品ジャンルから探す →</a></div><div class="deal-news-controls"><select id="deal-category" aria-label="商品ジャンル"><option value="all">すべてのジャンル</option>'+options+'</select><p id="deal-news-status" role="status">'+str(len(offers))+'件 · '+E(checked_label)+'</p></div><div class="deal-news-grid" id="deal-news-grid">'+render_deals(offers)+'</div><p class="deal-news-note">過去の金額は当サイトの掲載記録です。価格・送料・色や端子の選択は販売店でご確認ください。</p><details class="deal-campaigns"><summary>ショップ別のセール・クーポン</summary>'+filters+'<p id="listing-count" class="listing-count" role="status"></p><div id="listing-grid" class="offer-grid">'+render_listing(d,today)+'</div></details>'
+            body=black_friday_entry()+body
             body+='<script>window.DEAL_NEWS_INITIAL='+JS(offers)+';window.DEAL_NEWS_COPY='+JS(copies)+';window.DEAL_NEWS_UPDATED_AT='+JS(feed['updated_at'])+';</script>'
             title='値下がり・セール情報'
             extra_scripts=('listing.js','deal-news.js')
@@ -258,16 +260,17 @@ def listings():
             body+='<section class="stay-section"><div class="page-heading"><h2>宿泊先も探す</h2><span class="ad-label">PR</span></div><p id="stay-status" class="small-text" role="status"></p><div id="event-stays" class="stay-grid"></div></section>'
         description=('値下がりを確認した商品を、写真・価格・短い紹介で掲載。ショップ別のセールやクーポンも探せます。' if key=='deals' else '開催日が確認できる地域のイベントを掲載。都道府県・日付・イベントの種類から、お出かけ先と公式案内を探せます。')
         page=document(title+'｜'+('トクサーチ' if key=='deals' else 'マチより'),key+'/',body,brand=key,data=d,scripts=extra_scripts,description=description)
-        if key=='deals':page=page.replace('</head>','<link rel="stylesheet" href="../portal-assets/deal-news.css"></head>')
+        if key=='deals':page=page.replace('</head>','<link rel="stylesheet" href="../portal-assets/deal-news.css"><link rel="stylesheet" href="../portal-assets/black-friday.css"></head>')
         write(key+'/index.html',page)
 
 
 def sitemap(inventory):
     path=ROOT/'site-sitemap.xml';ns='http://www.sitemaps.org/schemas/sitemap/0.9';ET.register_namespace('',ns)
     tree=ET.parse(path);root=tree.getroot()
+    regenerated={row['url'] for row in inventory}
     for node in list(root):
         url=node.findtext('{'+ns+'}loc') or ''
-        if url.startswith(BASE+'/products/'):root.remove(node)
+        if url.startswith(BASE+'/products/') or url in regenerated:root.remove(node)
     for file in ('deals/index.html','events/index.html','deals/about.html','deals/privacy.html'):
         url_path=file[:-10] if file.endswith('index.html') else file
         inventory.append(inventory_entry(url_path,(ROOT/file).read_text()))
@@ -298,7 +301,9 @@ def sitemap(inventory):
 
 
 def main():
-    inventory=products();listings();sitemap(inventory)
+    inventory=products();listings()
+    inventory.extend(black_friday_pages(document,category_cards,seed,tile_seed))
+    sitemap(inventory)
     print('Storefronts built: separate categories, photo-first products, compact deals and events.')
 
 if __name__=='__main__':main()

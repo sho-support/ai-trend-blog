@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/"dist"
 PORTAL_FOLDERS=("deals","events","products")
 ASSET_FILES=(
-    "storefront.css","catalog-taxonomy.json","catalog.js","listing.js","deal-news.css","deal-news.js",
+    "storefront.css","catalog-taxonomy.json","catalog.js","listing.js","deal-news.css","deal-news.js","black-friday.css",
     "product-copy.json","discovery-manifest.json","style.css","editorial.css","app.js","commerce.js",
     "calculator.js","guide.js","travel.js","watch.js","rakuten-feed.json","travel-feed.json",
     "price-history.json","a8-approved.json",
@@ -77,7 +77,7 @@ def make_home():
 def make_sitemap():
     urls=["/","/deals/","/events/","/products/"]
     for p in (DIST/"deals").glob("*.html"):
-        if p.name!="index.html":
+        if p.name!="index.html" and 'content="noindex,follow"' not in p.read_text():
             urls.append("/deals/"+p.name)
     for p in (DIST/"products").rglob("*.html"):
         if p.name!="index.html" and 'content="noindex,follow"' not in p.read_text():
