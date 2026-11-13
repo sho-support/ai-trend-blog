@@ -9,6 +9,7 @@
   const query=config.mode==='search'?new URLSearchParams(location.search).get('q')?.trim()||'':'';
   const searchKey=value=>String(value??'').normalize('NFKC').toLowerCase().replace(/[\s\p{Dash_Punctuation}×・]+/gu,'');
   const words=query.normalize('NFKC').split(/[\s・]+/).map(searchKey).filter(Boolean);
+  const queryKinds=new Set(categories.filter(c=>query&&searchKey(c.name)===searchKey(query)).map(c=>c.key));
   const queryInput=document.getElementById('product-query');
   if(config.mode==='search'&&queryInput)queryInput.value=query;
   let feed=[],copies={},lastSignature='',failed=false,completeFeed=false;
@@ -89,6 +90,7 @@
       const grid=document.getElementById('catalog-grid'),status=document.getElementById('catalog-status');
       if(config.mode==='search'&&!completeFeed&&!failed)return;
       const selected=config.mode==='search'?rows.filter(x=>{
+        if(queryKinds.size)return queryKinds.has(x.kind);
         const genre=categories.find(c=>c.key===x.kind)?.name;
         const keys=[x.title,copyFor(x).name,x.category,genre,x.seller||x.shop].map(searchKey);
         return words.length>0&&words.every(word=>keys.some(key=>key.includes(word)));
