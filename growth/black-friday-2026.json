@@ -1,14 +1,21 @@
 {
-  "updated_at": "2026-11-11",
+  "updated_at": "2026-11-14",
   "publish_now": false,
   "release_status": "hold_for_commercial_host_and_media_registration",
   "pages": [
     "deals/black-friday-2026.html",
     "deals/amazon-black-friday-2026.html",
+    "deals/rakuten-black-friday-2026.html",
     "deals/ecoflow-black-friday-2026.html"
   ],
   "revenue_route": "楽天で、対象SKU・実売価格・条件を確認した商品から紹介する。既存の同ジャンル掲載と価格履歴を使う。新しい公開先は楽天のサイト登録も確認する。",
-  "product_priorities": ["gaming-monitor", "speakers", "snacks", "laundry-detergent", "portable-power"],
+  "product_priorities": [
+    "gaming-monitor",
+    "speakers",
+    "snacks",
+    "laundry-detergent",
+    "portable-power"
+  ],
   "product_publish_requirements": [
     "公式販売ページでブラックフライデー対象商品と対象SKUを確認",
     "掲載価格と同じモデル・色・容量・個数を確認",
@@ -26,8 +33,16 @@
     "ecoflow_direct": "direct_shop_program_approval_not_verified"
   },
   "next_official_reviews": [
-    {"date": "2026-11-16", "subject": "EcoFlow公式の対象SKU・価格、Yahoo!ショッピングの目玉商品発表", "automated": false},
-    {"date": "2026-11-19", "subject": "Amazon本体の開催日・対象商品・価格の発表", "automated": false}
+    {
+      "date": "2026-11-16",
+      "subject": "EcoFlow公式の対象SKU・価格、Yahoo!ショッピングの目玉商品発表",
+      "automated": false
+    },
+    {
+      "date": "2026-11-19",
+      "subject": "Amazon本体の開催日・対象商品・価格の発表",
+      "automated": false
+    }
   ],
   "social": {
     "handle": "monoyori_sale",

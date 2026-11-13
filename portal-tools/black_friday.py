@@ -38,7 +38,7 @@ def checked_data(root=ROOT):
         # A marketplace/API link is not approval for a direct-shop/SNS campaign.
         if row.get('affiliate_url'):
             raise ValueError('Campaign affiliate material has not been approved')
-        for key in ('starts_at', 'ends_at'):
+        for key in ('entry_starts_at', 'starts_at', 'ends_at'):
             if row.get(key) and datetime.fromisoformat(row[key]).tzinfo is None:
                 raise ValueError('Campaign dates require a timezone')
         if row.get('starts_at') and row.get('ends_at') and datetime.fromisoformat(row['starts_at']) >= datetime.fromisoformat(row['ends_at']):
@@ -105,7 +105,7 @@ def build_pages(document, category_cards, seed, tile_seed, root=ROOT, now=None):
         config = {'mode':'directory'}
     body += '<p class="bf-back"><a href="./">お得情報の一覧へ →</a></p>'
     save(HUB, 'ブラックフライデー2026｜発表された開催日をチェック', body,
-         '2026年ブラックフライデーの公式発表を短く整理。Amazonは11月19日に詳細発表予定、Yahoo!ショッピングは11月22日から。楽天は日程確認中。',
+         '2026年ブラックフライデーの開催情報。楽天は11月19日20時、Yahoo!ショッピングは11月22日から。Amazonは11月19日に詳細発表予定。',
          scripts=scripts, initial=initial, config=config)
 
     for row in data['campaigns']:

@@ -17,6 +17,8 @@ on:
       - "portal-tools/black_friday.py"
       - "portal-tools/black-friday-2026.json"
       - "portal-tools/test_black_friday.py"
+      - "portal-tools/build_commercial_site.py"
+      - "portal-tools/test_commercial_site.py"
       - "portal-assets/black-friday.css"
       - "portal-tools/test_deal_news.py"
       - "portal-assets/deal-news.js"

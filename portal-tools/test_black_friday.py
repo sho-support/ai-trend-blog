@@ -11,7 +11,7 @@ from build_storefront import document, category_cards, seed, tile_seed
 
 
 class BlackFriday(unittest.TestCase):
-    def render(self, data=None, now='2026-11-11T12:00:00+09:00'):
+    def render(self, data=None, now='2026-11-14T12:00:00+09:00'):
         self.scratch=tempfile.TemporaryDirectory()
         self.addCleanup(self.scratch.cleanup)
         root=Path(self.scratch.name)
@@ -32,7 +32,20 @@ class BlackFriday(unittest.TestCase):
         self.assertNotIn('11月27日',news)
         self.assertNotIn('11月24日',news)
         self.assertNotIn('tag=',news)
-        self.assertEqual(len(rows),3)
+        self.assertEqual(len(rows),4)
+
+    def test_rakuten_entry_and_eligible_purchase_windows_are_distinct(self):
+        data=checked_data()
+        row=next(row for row in data['campaigns'] if row['id']=='rakuten')
+        self.assertEqual(row['entry_starts_at'],'2026-11-12T10:00:00+09:00')
+        self.assertEqual(row['starts_at'],'2026-11-19T20:00:00+09:00')
+        self.assertEqual(row['ends_at'],'2026-11-25T02:00:00+09:00')
+        root,_=self.render(data)
+        article=(root/'deals/rakuten-black-friday-2026.html').read_text()
+        self.assertIn('事前エントリーは、すでに受付中',article)
+        self.assertIn('11月19日20時から25日1時59分',article)
+        self.assertIn('7,000ポイント',article)
+        self.assertNotIn('楽天は日程確認中',(root/HUB).read_text())
 
     def test_campaigns_are_first_party_news_without_unapproved_affiliate_material(self):
         data=checked_data()
