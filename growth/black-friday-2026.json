@@ -1,0 +1,54 @@
+{
+  "updated_at": "2026-11-14",
+  "publish_now": false,
+  "release_status": "hold_for_commercial_host_and_media_registration",
+  "pages": [
+    "deals/black-friday-2026.html",
+    "deals/amazon-black-friday-2026.html",
+    "deals/rakuten-black-friday-2026.html",
+    "deals/ecoflow-black-friday-2026.html"
+  ],
+  "revenue_route": "楽天で、対象SKU・実売価格・条件を確認した商品から紹介する。既存の同ジャンル掲載と価格履歴を使う。新しい公開先は楽天のサイト登録も確認する。",
+  "product_priorities": [
+    "gaming-monitor",
+    "speakers",
+    "snacks",
+    "laundry-detergent",
+    "portable-power"
+  ],
+  "product_publish_requirements": [
+    "公式販売ページでブラックフライデー対象商品と対象SKUを確認",
+    "掲載価格と同じモデル・色・容量・個数を確認",
+    "クーポン、会員条件、送料、終了時刻を確認",
+    "楽天の新しい公開先登録、またはA8の媒体・プログラム・素材条件を確認",
+    "通常価格や最安値・割引率を推測しない。比較額は同一SKUの確認済み記録に限定",
+    "Amazon店・メーカー公式・楽天店のキャンペーンを混同しない",
+    "商品写真・短い商品説明・価格・広告リンクを先頭に置く。商品ジャンルを混ぜない"
+  ],
+  "affiliate_status": {
+    "rakuten": "existing_registered_media_only",
+    "a8": "program_and_material_recheck_requires_login",
+    "amazon": "associate_approval_and_tracking_id_not_verified",
+    "yahoo": "affiliate_program_and_tracking_link_not_verified",
+    "ecoflow_direct": "direct_shop_program_approval_not_verified"
+  },
+  "next_official_reviews": [
+    {
+      "date": "2026-11-16",
+      "subject": "EcoFlow公式の対象SKU・価格、Yahoo!ショッピングの目玉商品発表",
+      "automated": false
+    },
+    {
+      "date": "2026-11-19",
+      "subject": "Amazon本体の開催日・対象商品・価格の発表",
+      "automated": false
+    }
+  ],
+  "social": {
+    "handle": "monoyori_sale",
+    "publish_now": false,
+    "link_mode": "verified_social_affiliate_link_direct_to_merchant",
+    "template": "【PR】{商品名}が{確認価格}円。\n{商品固有の特徴を1文}\n{販売店}（{確認日時}確認）\n{確認済みのSNS用広告リンク}",
+    "note": "価格・対象SKU・広告リンクを確認するまで予約投稿しない。AI用アカウントには混ぜない。"
+  }
+}
