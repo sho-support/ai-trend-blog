@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Photo-first storefronts. Editorial copy stays short; no invented reviews."""
 import html
+import hashlib
 import json
 import re
 import xml.etree.ElementTree as ET
@@ -177,7 +178,8 @@ def products():
                 image_url=rows[0].get('image') if rows else None,noindex=not rows,initial=seed(rows,copies),structured=schema))
             inventory.append(inventory_entry(path,[(x['id'],copies[x['id']],x.get('image'),x.get('price_yen'),x.get('seller')) for x in rows],bool(rows)))
     body='<div class="breadcrumbs"><a href="./">カテゴリー</a><span aria-hidden="true">/</span><span>商品検索</span></div><div class="page-heading"><h1>商品を探す</h1><span class="ad-label">PR</span></div>'+search_form()+empty_cards()
-    write('products/search.html',document('商品検索｜モノより','products/search.html',body,config={'mode':'search'},scripts=('catalog.js',),noindex=True))
+    search_script='catalog.js?v='+hashlib.sha256((ROOT/'portal-assets/catalog.js').read_bytes()).hexdigest()[:12]
+    write('products/search.html',document('商品検索｜モノより','products/search.html',body,config={'mode':'search'},scripts=(search_script,),noindex=True))
     subset=[BY_DEPARTMENT[k] for k in ('pc','gaming','mobile')]
     photos=tile_seed(subset,items)
     body='<div class="page-heading"><h1>PC・ゲーム・スマホ</h1></div>'+category_cards(subset,items=items,copies=copies)
