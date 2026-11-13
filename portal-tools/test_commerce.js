@@ -61,7 +61,7 @@ async function catalogLifecycle() {
     const grid=node(),status=node(),detail=node(),input=node(),timers=[],events=[],listeners={};
     const nodes={'catalog-grid':grid,'catalog-status':status,'product-detail':detail,'product-query':input};
     const context={Date:Clock,URL,URLSearchParams,Intl,console,HTMLImageElement:class {},
-      CATALOG_CONFIG:{mode,kind:'power-bank',id:itemId},CATALOG_CATEGORIES:[{key:'power-bank',file:'mobile-battery.html'}],
+      CATALOG_CONFIG:{mode,kind:'power-bank',id:itemId},CATALOG_CATEGORIES:[{key:'power-bank',file:'mobile-battery.html',name:'モバイルバッテリー'},{key:'monitor',file:'work-monitor.html',name:'PCモニター'},{key:'speakers',file:'speakers.html',name:'スピーカー'}],
       CATALOG_INITIAL:mode==='search'?undefined:{items:initialItems,copies:{}},
       document:{currentScript:{src:'https://example.test/portal-assets/catalog.js'},getElementById:id=>nodes[id],querySelector:()=>null,querySelectorAll:()=>[],addEventListener:(type,callback)=>{listeners[type]=callback;},hidden:false},
       location:{href:'https://example.test/products/items/battery.html',pathname:'/products/items/battery.html',search:'?q='+encodeURIComponent(query)},
@@ -72,7 +72,8 @@ async function catalogLifecycle() {
         if(String(url).endsWith('a8-approved.json'))return {ok:!a8Offline,json:async()=>({items:a8Items})};
         return {ok:!rakutenOffline,json:async()=>({items:[
           {...product,kind:'power-bank',title:product.title+'【公式店 ポイント10倍 ギフト 送料無料】',display_title:product.title+'【公式店 ポイント10倍 ギフト 送料'},
-          {...product,id:'monitor',kind:'monitor',title:'4K モニター'},
+          {...product,id:'monitor',kind:'monitor',title:'4K モニター スピーカー内蔵'},
+          {...product,id:'speaker',kind:'speakers',title:'Marshall ACTON III'},
           {...product,id:'headset',kind:'gaming-headsets',title:'Logicool G335 ヘッドセット',seller:'ロジクール 公式ストア'},
           {...product,id:'pro-x',kind:'gaming-headsets',title:'Logicool G PRO X G-PHS-003'},
           {...product,id:'soda',kind:'water',title:'炭酸水 500ml 48本 OZA SODA',price_yen:2370},
@@ -136,6 +137,8 @@ async function catalogLifecycle() {
     check(search.input.value,query,'keep the original input visible');
   }
   const soda=await fixture('search','OZA SODA');
+  const speakers=await fixture('search','スピーカー');
+  check(speakers.grid.innerHTML.match(/data-buy="[^"]+"/g),['data-buy="speaker"'],'a genre search finds that genre even without the word in the title and excludes monitors with built-in speakers');
   check(soda.grid.innerHTML.includes('2,370円〜'),true,'a listing with several prices shows its price as a starting amount');
   const missing=await fixture('search','unavailable-model');
   check(missing.status.textContent,'条件に合う商品はありません。','report no results only after a successful load');
