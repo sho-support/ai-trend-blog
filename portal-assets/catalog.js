@@ -85,24 +85,17 @@
       document.querySelectorAll('[data-category],[data-department]').forEach((tile,index)=>{
         const selected=rows.filter(x=>tile.dataset.department?x.department===tile.dataset.department:inCategory(x,tile.dataset.category));
         tile.hidden=!selected.length;
-        const item=selected.find(x=>x.image);
+        const item=selected.find(x=>x.id==='rakuten-yokumoku-10000435')||selected.find(x=>x.image);
         const photo=tile.querySelector('.category-photo');
         if(photo)photo.innerHTML=item?image(item,index===0):'<span class="photo-unavailable">'+esc(tile.querySelector('h2').textContent)+'</span>';
       });
-      const curated=document.getElementById('editorial-picks-grid');
-      if(curated){
-        const ids=['rakuten-lifedrinkcompany-10000022','rakuten-yokumoku-10000435','rakuten-anker-10001908'];
-        const chosen=[...rows.filter(x=>ids.includes(x.id)),...rows.filter(x=>!ids.includes(x.id))].slice(0,10);
-        curated.innerHTML=productCards(chosen);
-        const shelf=document.querySelector('.editorial-picks');if(shelf)shelf.hidden=!chosen.length;
-      }
       try{
         const recent=JSON.parse(localStorage.getItem('monoyori.recent-kind')||'null');
         let related=document.getElementById('recent-shopping');
-        if(recent&&Date.now()-recent.at<30*86400000){
-          if(!related){related=document.createElement('section');related.id='recent-shopping';curated?.closest('section').after(related);}
+        if(recent&&Date.now()-recent.at>=0&&Date.now()-recent.at<30*86400000){
+          if(!related){related=document.createElement('section');related.id='recent-shopping';document.getElementById('departments')?.before(related);}
           const candidates=rows.filter(x=>x.kind===recent.kind).slice(0,10);
-          related.innerHTML=candidates.length?'<h2>最近見たジャンルの商品</h2><p>このブラウザーでの閲覧から表示しています。</p><button type="button" id="clear-recent">閲覧情報を消す</button><div class="product-grid">'+productCards(candidates)+'</div>':'';
+          related.innerHTML=candidates.length?'<h2>前回気になったジャンルから</h2><p>このブラウザーでの閲覧から表示しています。</p><button type="button" id="clear-recent">閲覧情報を消す</button><div class="product-grid">'+productCards(candidates)+'</div>':'';
           related.querySelector('#clear-recent')?.addEventListener('click',()=>{localStorage.removeItem('monoyori.recent-kind');related.remove();});
         }
       }catch(_){}

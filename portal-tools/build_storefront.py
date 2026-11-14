@@ -93,7 +93,8 @@ def category_cards(rows, prefix='', items=(), copies=None):
         attr='data-department' if is_department else 'data-category'
         icon=c.get('icon') or BY_DEPARTMENT[c['department']]['icon']
         matches=[x for x in items if x.get('department' if is_department else 'kind')==c['key']]
-        photo=image(matches[0],copies[matches[0]['id']],eager=not cards) if matches else '<span aria-hidden="true">'+icon+'</span>'
+        preferred=next((x for x in matches if x['id']=='rakuten-yokumoku-10000435'),matches[0] if matches else None)
+        photo=image(preferred,copies[preferred['id']],eager=not cards) if matches else '<span aria-hidden="true">'+icon+'</span>'
         cards.append('<a class="category-card" href="'+prefix+c['file']+'" '+attr+'="'+c['key']+'"'+('' if matches else ' hidden')+'><div class="category-photo">'+photo+'</div><h2>'+E(c['name'])+'</h2></a>')
     return '<div class="category-grid" id="category-grid">'+''.join(cards)+'</div><p id="directory-status" class="loading" role="status"></p>'
 
@@ -150,11 +151,12 @@ def products():
     items=[x for x in items if live(x)]
     inventory=[]
     body='<div class="page-heading"><h2>カテゴリーから探す</h2><span class="ad-label">PR</span></div>'+search_form()+category_cards(DEPARTMENTS,items=items,copies=copies)
-    picks=sorted(items,key=lambda x:x['id'] not in ('rakuten-lifedrinkcompany-10000022','rakuten-yokumoku-10000435','rakuten-anker-10001908'))[:10]
-    hero_photo=image(picks[0],copies[picks[0]['id']],eager=True,large=True) if picks else ''
-    hero='<section class="editorial-hero"><div><p class="eyebrow">MONOYORI / BUY BETTER</p><h1>買う前の「気になる」を、<br>選ぶ理由に。</h1><p>商品の特徴も、気をつけたいことも。<br>自分に合う買い物を、ここから。</p><div class="hero-actions"><a class="buy-button" href="#departments">ジャンルから探す ↓</a><a class="text-link" href="../deals/">お得情報を見る ↗</a></div></div><div class="hero-product">'+hero_photo+'<span>暮らしの定番を、じっくり選ぶ。</span></div></section>'
-    picks_html='<section class="editorial-picks"><div class="section-heading"><div><p class="eyebrow">SHOPPING NOTES</p><h2>まずは、気になる商品から</h2></div><span class="ad-label">PR</span></div><p class="section-intro">食品・お菓子・モバイル用品。写真から商品を探せます。</p>'+cards(picks,copies).replace('catalog-grid','editorial-picks-grid').replace('catalog-status','editorial-picks-status')+'</section>' if picks else ''
-    body=hero+picks_html+'<section id="departments">'+body+'</section>'
+    priority=['food','home','daily','appliances','mobile','beauty','gaming','bags']
+    departments=sorted(DEPARTMENTS,key=lambda d:priority.index(d['key']) if d['key'] in priority else len(priority))
+    body='<section class="shopping-start"><p class="eyebrow">MONOYORI / SHOP BY INTEREST</p><h1>気になるジャンルから、いい買い物へ。</h1><p>おやつ・手土産、暮らしの道具、毎日の便利グッズ。写真から探して、買う前の疑問を確かめよう。</p>'+search_form()+'</section><section id="departments"><div class="section-heading"><h2>今日は何を探しますか？</h2><span class="ad-label">PR</span></div>'+category_cards(departments,items=items,copies=copies)+'</section>'
+    from product_stories import story_index
+    body+=story_index(items,copies)
+    picks=[]
     photos=tile_seed(DEPARTMENTS,items)
     write('products/index.html',document('モノより｜家電・PC・食品をジャンルから探す','products/',body,config={'mode':'directory'},scripts=('catalog.js',),
         description='家電、PC、ゲーム、カメラ、食品、美容などをジャンル別に紹介。商品写真と短い紹介から、気になる商品と購入先を探せます。',
@@ -199,6 +201,11 @@ def products():
         active_ids.add(ident);path='products/items/'+ident+'.html'
         body='<div class="breadcrumbs"><a href="../">カテゴリー</a><span aria-hidden="true">/</span><a href="../'+d['file']+'">'+d['name']+'</a><span aria-hidden="true">/</span><a href="../'+c['file']+'">'+c['name']+'</a></div>'
         body+='<article id="product-detail" class="product-detail">'+detail(item,copy)+'</article>'
+        if ident=='rakuten-anker-10001908':
+            body+='<aside class="safety-note"><h2>購入前・使用前の確認</h2><p>A1257の一部製品にはメーカーの回収案内があります。対象かどうかはシリアル番号での確認が必要です。現在販売されている全製品が対象とは限りません。</p><a href="https://www.ankerjapan.com/pages/202506-support" target="_blank" rel="noopener noreferrer">Anker公式の回収対象確認へ →</a></aside>'
+        from product_stories import STORIES
+        story=next((x for x in STORIES if x['id']==ident),None)
+        if story:body+='<p class="story-detail-link"><a href="../stories/'+story['slug']+'.html">商品紹介記事を読む：'+E(story['title'])+' →</a></p>'
         body+=buying_guide(ident,item)
         body+='<div class="back-to-category"><a href="../'+c['file']+'">'+c['name']+'をもっと見る →</a></div>'
         write(path,document((copy.get('seo_title') or copy['name'])+'｜モノより',path,body,depth=2,config={'mode':'product','id':ident,'kind':key,'department':d['key']},scripts=('catalog.js',),
@@ -221,6 +228,8 @@ def products():
     write('portal-assets/product-copy.json',json.dumps(copies,ensure_ascii=False,indent=2)+'\n')
     taxonomy={'departments':[{k:d[k] for k in ('key','name','file')} for d in DEPARTMENTS],'categories':[public_category(c) for c in CATEGORIES]}
     write('portal-assets/catalog-taxonomy.json',json.dumps(taxonomy,ensure_ascii=False,indent=2)+'\n')
+    from product_stories import build_stories
+    inventory+=build_stories(items,copies,document,write)
     return inventory
 
 
