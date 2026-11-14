@@ -12,7 +12,7 @@
   const shortDate=t=>t?String(Number(t.slice(5,7)))+'/'+String(Number(t.slice(8,10))):'';
   const dates=x=>shortDate(x.start)+(x.end&&x.end!==x.start?' – '+shortDate(x.end):'');
   let hotels=[],lastMarkup='';
-  const photo=(x,alt)=>/^https:\/\//.test(x.image||'')&&x.image_authorized===true?'<figure class="listing-photo"><img src="'+esc(x.image)+'" alt="'+esc(alt)+'" loading="lazy" decoding="async">'+(x.image_credit?'<figcaption>'+esc(x.image_credit)+'</figcaption>':'')+'</figure>':'';
+  const photo=(x,alt)=>/^https:\/\//.test(x.image||'')&&x.image_authorized===true?'<figure class="listing-photo"><img src="'+esc(x.image)+'" alt="'+esc(alt)+'" loading="lazy" decoding="async">'+(x.image_credit?'<figcaption>'+esc(x.image_credit)+(x.image_source?' <a target="_blank" rel="noopener noreferrer" href="'+esc(x.image_source)+'">写真出典</a>':'')+(x.image_license?' <a target="_blank" rel="noopener noreferrer" href="'+esc(x.image_license)+'">利用許諾</a>':'')+'</figcaption>':'')+'</figure>':'';
   const mapLink=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
 
   filters.classList.toggle('events',D.kind==='events');

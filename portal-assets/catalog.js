@@ -82,6 +82,13 @@
         const photo=tile.querySelector('.category-photo');
         if(photo)photo.innerHTML=item?image(item,index===0):'<span class="photo-unavailable">'+esc(tile.querySelector('h2').textContent)+'</span>';
       });
+      const curated=document.getElementById('editorial-picks-grid');
+      if(curated){
+        const ids=['rakuten-lifedrinkcompany-10000022','rakuten-yokumoku-10000435','rakuten-anker-10001908'];
+        const chosen=rows.filter(x=>ids.includes(x.id));
+        curated.innerHTML=productCards(chosen);
+        const shelf=document.querySelector('.editorial-picks');if(shelf)shelf.hidden=!chosen.length;
+      }
       const status=document.getElementById('directory-status');
       if(status)status.textContent=rows.length?'':failed?'商品を読み込めませんでした。':'現在掲載できる商品はありません。';
       return;

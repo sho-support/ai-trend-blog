@@ -15,7 +15,7 @@ from catalog_taxonomy import DEPARTMENTS, CATEGORIES, BY_KIND, BY_DEPARTMENT, no
 from product_text import short_title, product_copy, approved_a8
 from storefront_seo import live, image, cards, detail, breadcrumb, inventory_entry, fingerprint, share_image
 from buying_guides import buying_guide
-from deal_news import selected_deals, render_deals
+from deal_news import selected_deals, render_deals, point_offers, render_points
 E = lambda v: html.escape(str(v), quote=True)
 JS = lambda v: json.dumps(v, ensure_ascii=False, separators=(',',':')).replace('<','\\u003c')
 CREDIT = '''<!-- Rakuten Web Services Attribution Snippet FROM HERE -->
@@ -149,11 +149,16 @@ def products():
     if a8_changed:write('portal-assets/a8-approved.json',json.dumps(a8,ensure_ascii=False,indent=2)+'\n')
     items=[x for x in items if live(x)]
     inventory=[]
-    body='<div class="page-heading"><h1>カテゴリーから探す</h1><span class="ad-label">PR</span></div>'+search_form()+category_cards(DEPARTMENTS,items=items,copies=copies)
+    body='<div class="page-heading"><h2>カテゴリーから探す</h2><span class="ad-label">PR</span></div>'+search_form()+category_cards(DEPARTMENTS,items=items,copies=copies)
+    picks=[x for x in items if x['id'] in ('rakuten-lifedrinkcompany-10000022','rakuten-yokumoku-10000435','rakuten-anker-10001908')][:3]
+    hero_photo=image(picks[0],copies[picks[0]['id']],eager=True,large=True) if picks else ''
+    hero='<section class="editorial-hero"><div><p class="eyebrow">MONOYORI / BUY BETTER</p><h1>買う前の「気になる」を、<br>選ぶ理由に。</h1><p>商品の特徴も、気をつけたいことも。<br>自分に合う買い物を、ここから。</p><div class="hero-actions"><a class="buy-button" href="#departments">ジャンルから探す ↓</a><a class="text-link" href="../deals/">お得情報を見る ↗</a></div></div><div class="hero-product">'+hero_photo+'<span>暮らしの定番を、じっくり選ぶ。</span></div></section>'
+    picks_html='<section class="editorial-picks"><div class="section-heading"><div><p class="eyebrow">SHOPPING NOTES</p><h2>まずは、気になる商品から</h2></div><span class="ad-label">PR</span></div><p class="section-intro">食品・お菓子・モバイル用品。写真から商品を探せます。</p>'+cards(picks,copies).replace('catalog-grid','editorial-picks-grid').replace('catalog-status','editorial-picks-status')+'</section>' if picks else ''
+    body=hero+picks_html+'<section id="departments">'+body+'</section>'
     photos=tile_seed(DEPARTMENTS,items)
     write('products/index.html',document('モノより｜家電・PC・食品をジャンルから探す','products/',body,config={'mode':'directory'},scripts=('catalog.js',),
         description='家電、PC、ゲーム、カメラ、食品、美容などをジャンル別に紹介。商品写真と短い紹介から、気になる商品と購入先を探せます。',
-        image_url=photos[0].get('image') if photos else None,initial=seed(photos,copies)))
+        image_url=photos[0].get('image') if photos else None,initial=seed(list({x['id']:x for x in photos+picks}.values()),copies)))
     inventory.append(inventory_entry('products/',[(x['id'],x.get('image')) for x in photos]))
     for d in DEPARTMENTS:
         selected=[x for x in items if x['department']==d['key']]
@@ -201,7 +206,7 @@ def products():
             image_url=item.get('image'),initial=seed([item],copies),
             structured=[breadcrumb([('モノより','products/'),(d['name'],'products/'+d['file']),(c['name'],'products/'+c['file']),(copy['name'],path)])]))
         semantic={k:item.get(k) for k in ('id','kind','image','url','price_yen','seller','shop')}
-        inventory.append(inventory_entry(path,{'item':semantic,'copy':copy}))
+        inventory.append(inventory_entry(path,dict({'item':semantic,'copy':copy},**({'guide':buying_guide(ident,item)} if buying_guide(ident,item) else {}))))
     for old in (ROOT/'products/items').glob('*.html'):
         if old.stem in active_ids:continue
         match=re.search(r'window.CATALOG_CONFIG=(\{.*?\});',old.read_text())
@@ -227,7 +232,10 @@ def render_listing(data, today):
             start=x.get('start','');end=x.get('end','')
             date=start[5:].replace('-','/')+(' – '+end[5:].replace('-','/') if end and end!=start else '')
             place='・'.join(filter(None,[x.get('prefecture'),x.get('place')]))
-            cards.append('<article class="event-card"><div class="event-date">'+E(date)+'</div><div><span class="event-category">'+E(x['category'])+'</span><h2><a href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">'+E(x['title'])+'</a></h2><p class="event-place">'+E(place)+'</p><p class="event-description">'+E(x.get('description',''))+'</p></div><a class="text-link" href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">詳細 →</a></article>')
+            media=''
+            if x.get('image_authorized') and x.get('image','').startswith('https://'):
+                media='<figure class="listing-photo"><img src="'+E(x['image'])+'" alt="'+E(x['title'])+'の会場参考写真" loading="lazy"><figcaption>'+E(x.get('image_credit',''))+' <a href="'+E(x.get('image_source',''))+'">写真出典</a> <a href="'+E(x.get('image_license',''))+'">利用許諾</a></figcaption></figure>'
+            cards.append('<article class="event-card">'+media+'<div class="event-date">'+E(date)+'</div><div><span class="event-category">'+E(x['category'])+'</span><h2><a href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">'+E(x['title'])+'</a></h2><p class="event-place">'+E(place)+'</p><p class="event-description">'+E(x.get('description',''))+'</p></div><a class="text-link" href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">詳細 →</a></article>')
         else:
             cards.append('<article class="offer-card"><span class="store-name">'+E(x.get('shop',''))+'</span><h2><a href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">'+E(x['title'])+'</a></h2><p class="offer-label">'+E(x.get('label',''))+'</p><a class="text-link" href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">公式サイトへ →</a></article>')
     return ''.join(cards)
@@ -254,11 +262,16 @@ def listings():
             checked=datetime.fromisoformat(feed['updated_at'].replace('Z','+00:00')).astimezone(JST)
             checked_label=f'{checked.month}/{checked.day} {checked:%H:%M}確認'
             options=''.join('<option value="'+E(x)+'">'+E(x)+'</option>' for x in sorted({x['category'] for x in offers}))
-            body='<div class="page-heading"><h1>お得な商品</h1><a href="../products/" class="text-link">商品ジャンルから探す →</a></div><div class="deal-news-controls"><select id="deal-category" aria-label="商品ジャンル"><option value="all">すべてのジャンル</option>'+options+'</select><p id="deal-news-status" role="status">'+str(len(offers))+'件 · '+E(checked_label)+'</p></div><div class="deal-news-grid" id="deal-news-grid">'+render_deals(offers)+'</div><p class="deal-news-note">過去の金額は当サイトの掲載記録です。価格・送料・色や端子の選択は販売店でご確認ください。</p><details class="deal-campaigns"><summary>ショップ別のセール・クーポン</summary>'+filters+'<p id="listing-count" class="listing-count" role="status"></p><div id="listing-grid" class="offer-grid">'+render_listing(d,today)+'</div></details>'
+            body='<div class="page-heading"><h1>お得な商品</h1><a href="../products/" class="text-link">商品ジャンルから探す →</a></div><div class="deal-news-controls"><select id="deal-category" aria-label="商品ジャンル"><option value="all">すべてのジャンル</option>'+options+'</select><p id="deal-news-status" role="status">'+str(len(offers))+'件 · '+E(checked_label)+'</p></div><div class="deal-news-grid" id="deal-news-grid">'+render_deals(offers)+'</div><p class="deal-news-note">過去の金額は当サイトの掲載記録です。価格・送料・色や端子の選択は販売店でご確認ください。</p><section class="deal-campaigns"><h2>公式キャンペーン・クーポン</h2><p class="section-intro">こちらは公式案内への通常リンクです。このリンク自体の広告報酬は確認できていません。</p>'+filters+'<p id="listing-count" class="listing-count" role="status"></p><div id="listing-grid" class="offer-grid">'+render_listing(d,today)+'</div></section>'
+            point_rows=point_offers(feed,copies)
+            body+='<section class="points-section"><div class="section-heading"><div><p class="eyebrow">POINT OFFERS</p><h2>ポイント倍率から探す</h2></div><span class="ad-label">PR</span></div><p class="section-intro">値下がりがない日も、ポイント条件を比較。倍率は取得時点の情報です。</p><div class="deal-news-grid" id="point-offers">'+render_points(point_rows)+'</div></section>'
+            body+='<script>window.POINT_OFFERS_INITIAL='+JS(point_rows)+';</script>'
             body+='<script>window.DEAL_NEWS_INITIAL='+JS(offers)+';window.DEAL_NEWS_COPY='+JS(copies)+';window.DEAL_NEWS_UPDATED_AT='+JS(feed['updated_at'])+';</script>'
-            title='値下がり・セール情報'
-            extra_scripts=('listing.js','deal-news.js')
+            body='<section class="listing-hero deals-hero"><p class="eyebrow">TOKUSEARCH / SMART SHOPPING</p><h2>お得は、条件まで見て選ぶ。</h2><p>値下がりの記録とポイント情報を分けて紹介。気になる商品の購入条件を比べられます。</p><a class="text-link" href="#point-offers">ポイント情報を見る ↓</a></section>'+body
+            title='値下がり・ポイント・セール情報'
+            extra_scripts=('listing.js','deal-news.js','point-offers.js')
         if key=='events':
+            body='<section class="listing-hero"><p class="eyebrow">MACHIYORI / GO SOMEWHERE</p><h2>次の休日に、行きたい場所。</h2><p>季節の景色、街の催し。開催日と場所を確かめて、お出かけを計画しよう。</p></section>'+body
             body+='<section class="stay-section"><div class="page-heading"><h2>宿泊先も探す</h2><span class="ad-label">PR</span></div><p id="stay-status" class="small-text" role="status"></p><div id="event-stays" class="stay-grid"></div></section>'
         description=('値下がりを確認した商品を、写真・価格・短い紹介で掲載。ショップ別のセールやクーポンも探せます。' if key=='deals' else '開催日が確認できる地域のイベントを掲載。都道府県・日付・イベントの種類から、お出かけ先と公式案内を探せます。')
         page=document(title+'｜'+('トクサーチ' if key=='deals' else 'マチより'),key+'/',body,brand=key,data=d,scripts=extra_scripts,description=description)
