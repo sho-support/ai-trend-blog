@@ -52,6 +52,20 @@ def price_text(price, copy):
     return amount + '円〜' if copy.get('price_from') is True else '¥' + amount
 
 
+def rating(item):
+    score=item.get('review_average');count=item.get('review_count')
+    if item.get('source')!='rakuten' or not isinstance(score,(int,float)) or not 0<score<=5 or not isinstance(count,int) or count<=0:
+        return ''
+    return '<p class="review-summary"><span aria-hidden="true">★</span> '+format(score,'.2f')+' <small>/ 5・楽天市場 '+format(count,',')+'件</small></p><p class="review-date">'+esc(item.get('rating_verified') or item.get('verified',''))+'取得・販売ページ全体の評価</p>'
+
+
+def card_notes(copy):
+    lines=[]
+    if copy.get('card_reason'):lines.append('<p class="card-reason"><span>選ぶ理由</span>'+esc(copy['card_reason'])+'</p>')
+    if copy.get('card_caution'):lines.append('<p class="card-caution"><span>確認したい点</span>'+esc(copy['card_caution'])+'</p>')
+    return ''.join(lines)
+
+
 def cards(items, copies):
     rows = []
     for i, item in enumerate(items):
@@ -63,6 +77,8 @@ def cards(items, copies):
                     + '<a class="product-photo" href="' + url + '">' + image(item, copy, eager=i == 0) + '</a>'
                     + '<div class="product-card-body"><h2><a href="' + url + '">' + esc(copy['name']) + '</a></h2>'
                     + ('<p class="product-intro">' + esc(copy['description']) + '</p>' if copy['description'] else '')
+                    + rating(item)+card_notes(copy)
+                    + '<a class="guide-link" href="'+url+'">特徴・購入前の確認点を読む →</a>'
                     + '<div class="product-card-bottom">' + price
                     + '<a class="product-open product-buy" href="' + esc(item['url'])
                     + '" data-buy="' + esc(item['id']) + '" target="_blank" rel="noopener noreferrer sponsored" aria-label="'

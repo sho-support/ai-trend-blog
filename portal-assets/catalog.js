@@ -50,6 +50,11 @@
     return '<img class="product-image" src="'+esc(x.image)+'"'+srcset+' alt="'+esc(copyFor(x).name)+'" width="600" height="600" decoding="async"'+(priority?' fetchpriority="high"':' loading="lazy"')+'>';
   }
   const detailURL=x=>new URL('items/'+encodeURIComponent(x.id)+'.html',productBase).href;
+  function rating(x){
+    return x.source==='rakuten'&&typeof x.review_average==='number'&&x.review_average>0&&x.review_average<=5&&Number.isInteger(x.review_count)&&x.review_count>0
+      ?'<p class="review-summary"><span aria-hidden="true">★</span> '+x.review_average.toFixed(2)+' <small>/ 5・楽天市場 '+x.review_count.toLocaleString('ja-JP')+'件</small></p><p class="review-date">'+esc(x.rating_verified||x.verified||'')+'取得・販売ページ全体の評価</p>':'';
+  }
+  function cardNotes(copy){return (copy.card_reason?'<p class="card-reason"><span>選ぶ理由</span>'+esc(copy.card_reason)+'</p>':'')+(copy.card_caution?'<p class="card-caution"><span>確認したい点</span>'+esc(copy.card_caution)+'</p>':'');}
   function productCards(items){
     return items.map((x,index)=>{
       const copy=copyFor(x),url=detailURL(x);
@@ -57,6 +62,7 @@
         +'<a class="product-photo" href="'+esc(url)+'">'+image(x,index===0)+'</a>'
         +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
         +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
+        +rating(x)+cardNotes(copy)+'<a class="guide-link" href="'+esc(url)+'">特徴・購入前の確認点を読む →</a>'
         +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">'+priceText(x,copy)+'</p>':'')
         +'<a class="product-open product-buy" href="'+esc(x.url)+'" data-buy="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored" aria-label="'+esc(copy.name)+'を'+(x.source==='a8'?'公式ショップ':'楽天市場')+'で見る">'+(x.source==='a8'?'公式ショップで見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a></div></div></article>';
     }).join('');

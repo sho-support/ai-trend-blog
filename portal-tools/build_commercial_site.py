@@ -90,6 +90,8 @@ def make_sitemap():
     write(Path("robots.txt"),"User-agent: *\nAllow: /\nSitemap: "+BASE+"/sitemap.xml\n")
 
 def main():
+    from build_storefront import main as build_storefront
+    build_storefront()
     if DIST.exists():
         shutil.rmtree(DIST)
     (DIST/"portal-assets").mkdir(parents=True)

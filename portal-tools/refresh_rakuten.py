@@ -187,6 +187,7 @@ def main():
                     "point_rate": point_rate if isinstance(point_rate,(int,float)) else None,
                     "point_start": item.get("pointRateStartTime"),
                     "point_end": item.get("pointRateEndTime"),
+                    "review_average": item.get("reviewAverage") if isinstance(item.get("reviewAverage"),(int,float)) and 0<=item.get("reviewAverage")<=5 else None,
                     "review_count": item.get("reviewCount") if isinstance(item.get("reviewCount"), int) else None,
                     "description": text,
                     "url": link,

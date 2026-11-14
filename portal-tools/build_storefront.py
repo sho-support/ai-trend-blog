@@ -100,7 +100,7 @@ def category_cards(rows, prefix='', items=(), copies=None):
 
 def seed(items, copies):
     keys=('id','title','kind','department','category','source','image','url','price_yen','seller','shop',
-          'approved','affiliate','expires_at','site_registered','material_type','site_url','image_authorized')
+          'review_average','review_count','rating_verified','verified','approved','affiliate','expires_at','site_registered','material_type','site_url','image_authorized')
     return {'items':[{k:x[k] for k in keys if k in x} for x in items],
             'copies':{x['id']:copies[x['id']] for x in items}}
 
@@ -205,7 +205,7 @@ def products():
             description=copy.get('seo_description') or copy['name']+'。'+(copy['description'] or c['name']+'の商品写真と購入先を掲載。'),
             image_url=item.get('image'),initial=seed([item],copies),
             structured=[breadcrumb([('モノより','products/'),(d['name'],'products/'+d['file']),(c['name'],'products/'+c['file']),(copy['name'],path)])]))
-        semantic={k:item.get(k) for k in ('id','kind','image','url','price_yen','seller','shop')}
+        semantic={k:item.get(k) for k in ('id','kind','image','url','price_yen','seller','shop','review_average','review_count','rating_verified')}
         inventory.append(inventory_entry(path,dict({'item':semantic,'copy':copy},**({'guide':buying_guide(ident,item)} if buying_guide(ident,item) else {}))))
     for old in (ROOT/'products/items').glob('*.html'):
         if old.stem in active_ids:continue
