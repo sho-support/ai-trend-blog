@@ -14,6 +14,7 @@ JST = timezone(timedelta(hours=9))
 from catalog_taxonomy import DEPARTMENTS, CATEGORIES, BY_KIND, BY_DEPARTMENT, normalized_kind, public_category, eligible_title
 from product_text import short_title, product_copy, approved_a8
 from storefront_seo import live, image, cards, detail, breadcrumb, inventory_entry, fingerprint, share_image
+from buying_guides import buying_guide
 from deal_news import selected_deals, render_deals
 E = lambda v: html.escape(str(v), quote=True)
 JS = lambda v: json.dumps(v, ensure_ascii=False, separators=(',',':')).replace('<','\\u003c')
@@ -193,6 +194,7 @@ def products():
         active_ids.add(ident);path='products/items/'+ident+'.html'
         body='<div class="breadcrumbs"><a href="../">カテゴリー</a><span aria-hidden="true">/</span><a href="../'+d['file']+'">'+d['name']+'</a><span aria-hidden="true">/</span><a href="../'+c['file']+'">'+c['name']+'</a></div>'
         body+='<article id="product-detail" class="product-detail">'+detail(item,copy)+'</article>'
+        body+=buying_guide(ident,item)
         body+='<div class="back-to-category"><a href="../'+c['file']+'">'+c['name']+'をもっと見る →</a></div>'
         write(path,document((copy.get('seo_title') or copy['name'])+'｜モノより',path,body,depth=2,config={'mode':'product','id':ident,'kind':key,'department':d['key']},scripts=('catalog.js',),
             description=copy.get('seo_description') or copy['name']+'。'+(copy['description'] or c['name']+'の商品写真と購入先を掲載。'),
@@ -225,7 +227,7 @@ def render_listing(data, today):
             start=x.get('start','');end=x.get('end','')
             date=start[5:].replace('-','/')+(' – '+end[5:].replace('-','/') if end and end!=start else '')
             place='・'.join(filter(None,[x.get('prefecture'),x.get('place')]))
-            cards.append('<article class="event-card"><div class="event-date">'+E(date)+'</div><div><span class="event-category">'+E(x['category'])+'</span><h2><a href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">'+E(x['title'])+'</a></h2><p class="event-place">'+E(place)+'</p></div><a class="text-link" href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">詳細 →</a></article>')
+            cards.append('<article class="event-card"><div class="event-date">'+E(date)+'</div><div><span class="event-category">'+E(x['category'])+'</span><h2><a href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">'+E(x['title'])+'</a></h2><p class="event-place">'+E(place)+'</p><p class="event-description">'+E(x.get('description',''))+'</p></div><a class="text-link" href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">詳細 →</a></article>')
         else:
             cards.append('<article class="offer-card"><span class="store-name">'+E(x.get('shop',''))+'</span><h2><a href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">'+E(x['title'])+'</a></h2><p class="offer-label">'+E(x.get('label',''))+'</p><a class="text-link" href="'+E(x['url'])+'" target="_blank" rel="noopener noreferrer">公式サイトへ →</a></article>')
     return ''.join(cards)

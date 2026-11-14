@@ -107,6 +107,10 @@ def main():
                     "name": name[:90],
                     "address": (str(hotel.get("address1") or "") + str(hotel.get("address2") or ""))[:100],
                     "url": url,
+                    "image": hotel.get("hotelImageUrl") or hotel.get("hotelThumbnailUrl") or "",
+                    "description": str(hotel.get("hotelSpecial") or "")[:400],
+                    "access": str(hotel.get("access") or "")[:400],
+                    "parking": str(hotel.get("parkingInformation") or "")[:300],
                     "affiliate": True,
                     "expires_at": (now + timedelta(hours=23)).isoformat(),
                 })
