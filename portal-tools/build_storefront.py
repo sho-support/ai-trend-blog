@@ -95,7 +95,9 @@ def category_cards(rows, prefix='', items=(), copies=None):
         matches=[x for x in items if x.get('department' if is_department else 'kind')==c['key']]
         preferred=next((x for x in matches if x['id']=='rakuten-yokumoku-10000435'),matches[0] if matches else None)
         photo=image(preferred,copies[preferred['id']],eager=not cards) if matches else '<span aria-hidden="true">'+icon+'</span>'
-        cards.append('<a class="category-card" href="'+prefix+c['file']+'" '+attr+'="'+c['key']+'"'+('' if matches else ' hidden')+'><div class="category-photo">'+photo+'</div><h2>'+E(c['name'])+'</h2></a>')
+        contexts={'food':'おやつ・手土産を探す','home':'暮らしを整える道具','daily':'日々の買い足し・まとめ買い','appliances':'家事とくつろぎの時間に','mobile':'外出・持ち歩きを便利に','beauty':'毎日の身だしなみに','gaming':'遊びの時間を楽しむ','bags':'通勤・旅行の持ち物に'}
+        context='<p class="category-context">'+E(contexts.get(c['key'],''))+'</p>' if is_department and c['key'] in contexts else ''
+        cards.append('<a class="category-card" href="'+prefix+c['file']+'" '+attr+'="'+c['key']+'"'+('' if matches else ' hidden')+'><div class="category-photo">'+photo+'</div><h2>'+E(c['name'])+'</h2>'+context+'</a>')
     return '<div class="category-grid" id="category-grid">'+''.join(cards)+'</div><p id="directory-status" class="loading" role="status"></p>'
 
 
@@ -110,7 +112,8 @@ def tile_seed(rows, items):
     found=[]
     for row in rows:
         key='department' if 'children' in row else 'kind'
-        item=next((x for x in items if x.get(key)==row['key']),None)
+        matches=[x for x in items if x.get(key)==row['key']]
+        item=next((x for x in matches if x['id']=='rakuten-yokumoku-10000435'),matches[0] if matches else None)
         if item:found.append(item)
     return found
 
