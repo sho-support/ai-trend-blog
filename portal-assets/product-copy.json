@@ -10,7 +10,9 @@
     "headline": "OZA SODA 強炭酸水 500ml×48本",
     "description": "プレーンやレモンを選べる無糖の強炭酸。価格は味によって異なります。",
     "features": [],
-    "price_from": true
+    "price_from": true,
+    "card_reason": "500mlを48本。日常のストック用に。",
+    "card_caution": "味・ラベル・送料と保管場所を確認。"
   },
   "rakuten-yokumoku-10000435": {
     "name": "ヨックモック サンク デリス",
@@ -20,7 +22,9 @@
       "5種類・40個入り",
       "個包装",
       "焼き菓子の詰め合わせ"
-    ]
+    ],
+    "card_reason": "個包装の焼き菓子5種類・40個。",
+    "card_caution": "季節ごとの内訳とアレルギー表示を確認。"
   },
   "rakuten-nichokiti-10000134": {
     "name": "お菓子の詰め合わせ セットA",
@@ -79,7 +83,9 @@
       "10,000mAh",
       "最大22.5W出力",
       "USB-Cケーブル付属"
-    ]
+    ],
+    "card_reason": "残量表示とUSB-Cケーブル付き。",
+    "card_caution": "出力と手持ち端末の対応を確認。"
   },
   "rakuten-anker-10001561": {
     "name": "Anker Nano Power Bank 5,000mAh",

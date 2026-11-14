@@ -46,3 +46,31 @@ def render_deals(rows):
                    f'<p class="deal-news-before">{escape(item["previous_date"][5:].replace("-","/"))}記録：{item["previous_price"]:,}円</p>'
                    f'<a class="buy-button"{attrs}>楽天市場で見る ↗</a></div></article>')
     return ''.join(out) or '<p class="empty-results">現在、値下がりを確認できる商品はありません。</p>'
+
+
+def point_offers(feed, copies, now=None):
+    """API-observed multipliers, explicitly not price reductions or net prices."""
+    now=now or datetime.now(timezone.utc)
+    out=[]
+    for item in feed.get('items',[]):
+        if item.get('source')!='rakuten' or not live(item,now):continue
+        rate=item.get('point_rate')
+        if rate is None:
+            match=re.search(r'API掲載ポイント倍率: ([0-9.]+)倍',item.get('description',''))
+            if match:rate=float(match.group(1))
+        if not isinstance(rate,(int,float)) or rate<=1:continue
+        end=item.get('point_end')
+        if end:
+            try:
+                if datetime.fromisoformat(str(end).replace('Z','+00:00')).astimezone(timezone.utc)<=now:continue
+            except (TypeError,ValueError):continue
+        out.append(dict(item,point_rate=rate,news_copy=copies.get(item['id'],{'name':short_title(item),'description':''})))
+    return sorted(out,key=lambda x:(-x['point_rate'],x['id']))[:12]
+
+
+def render_points(rows):
+    out=[]
+    for x in rows:
+        name=x['news_copy']['name'];e=lambda v:html.escape(str(v),quote=True)
+        out.append('<article class="deal-news-card"><a class="deal-news-photo" href="'+e(x['url'])+'" target="_blank" rel="noopener noreferrer sponsored" data-point-buy="'+e(x['id'])+'"><img src="'+e(share_image(x['image']))+'" alt="'+e(name)+'" loading="lazy" width="600" height="600"></a><div class="deal-news-body"><span class="offer-pill">API取得時 '+format(x['point_rate'],'g')+'倍</span><span class="ad-label"> PR</span><h3>'+e(name)+'</h3><p class="point-price">'+format(x['price_yen'],',')+'円〜</p><p class="small-text">'+e(x.get('verified',''))+'取得。対象期間・会員条件・付与上限を購入先で確認。現金値引きではありません。</p><a class="buy-button" href="'+e(x['url'])+'" target="_blank" rel="noopener noreferrer sponsored" data-point-buy="'+e(x['id'])+'">対象条件を楽天市場で確認 ↗</a></div></article>')
+    return ''.join(out) or '<p class="empty-results">ポイント倍率付きの商品情報は現在更新待ちです。下の公式キャンペーンからも探せます。</p>'

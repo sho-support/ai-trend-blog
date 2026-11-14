@@ -299,7 +299,12 @@
         "description": "丸の内仲通りを彩るイルミネーション。詳細は主催者・イベント案内で確認。",
         "start": "2026-11-12",
         "end": "2027-02-14",
-        "url": "https://www.enjoytokyo.jp/event/379087/"
+        "url": "https://www.enjoytokyo.jp/event/379087/",
+        "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Marunouchi_Illumination_2022_%2852646959150%29.jpg/960px-Marunouchi_Illumination_2022_%2852646959150%29.jpg",
+        "image_authorized": true,
+        "image_credit": "過去開催時（2022年）の参考写真。2026年の装飾とは異なる場合があります。写真：Dick Thomas Johnson／CC BY 2.0／縮小表示・写真内容の改変なし",
+        "image_source": "https://commons.wikimedia.org/wiki/File:Marunouchi_Illumination_2022_(52646959150).jpg",
+        "image_license": "https://creativecommons.org/licenses/by/2.0/"
       },
       {
         "id": "os1",

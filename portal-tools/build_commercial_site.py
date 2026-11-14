@@ -15,7 +15,7 @@ ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/"dist"
 PORTAL_FOLDERS=("deals","events","products")
 ASSET_FILES=(
-    "storefront.css","catalog-taxonomy.json","catalog.js","listing.js","deal-news.css","deal-news.js",
+    "storefront.css","point-offers.js","catalog-taxonomy.json","catalog.js","listing.js","deal-news.css","deal-news.js",
     "product-copy.json","discovery-manifest.json","style.css","editorial.css","app.js","commerce.js",
     "calculator.js","guide.js","travel.js","watch.js","rakuten-feed.json","travel-feed.json",
     "price-history.json","a8-approved.json",
@@ -90,6 +90,8 @@ def make_sitemap():
     write(Path("robots.txt"),"User-agent: *\nAllow: /\nSitemap: "+BASE+"/sitemap.xml\n")
 
 def main():
+    from build_storefront import main as build_storefront
+    build_storefront()
     if DIST.exists():
         shutil.rmtree(DIST)
     (DIST/"portal-assets").mkdir(parents=True)

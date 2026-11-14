@@ -12,6 +12,9 @@
   const shortDate=t=>t?String(Number(t.slice(5,7)))+'/'+String(Number(t.slice(8,10))):'';
   const dates=x=>shortDate(x.start)+(x.end&&x.end!==x.start?' – '+shortDate(x.end):'');
   let hotels=[],lastMarkup='';
+  const photo=(x,alt)=>/^https:\/\//.test(x.image||'')&&x.image_authorized===true?'<figure class="listing-photo"><img src="'+esc(x.image)+'" alt="'+esc(alt)+'" loading="lazy" decoding="async">'+(x.image_credit?'<figcaption>'+esc(x.image_credit)+(x.image_source?' <a target="_blank" rel="noopener noreferrer" href="'+esc(x.image_source)+'">写真出典</a>':'')+(x.image_license?' <a target="_blank" rel="noopener noreferrer" href="'+esc(x.image_license)+'">利用許諾</a>':'')+'</figcaption>':'')+'</figure>':'';
+  const mapLink=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+
   filters.classList.toggle('events',D.kind==='events');
   filters.innerHTML='<input id="listing-query" type="search" placeholder="'+(D.kind==='events'?'イベント名で探す':'ショップ・キーワードで探す')+'" aria-label="キーワード検索">'+
    (D.kind==='events'?'<select id="region" aria-label="地方"><option value="すべて">全国</option>'+options(Object.keys(regions))+'</select><select id="pref" aria-label="都道府県"><option value="すべて">都道府県</option>'+options(prefs)+'</select><select id="when" aria-label="開催日"><option value="any">開催日</option><option value="weekend">今週末</option><option value="next7">7日以内</option><option value="month">今月</option><option value="nextmonth">来月</option></select>'
@@ -31,7 +34,7 @@
     }
     count.textContent=rows.length+'件';
     const markup=rows.length?rows.map(x=>D.kind==='events'?
-      '<article class="event-card"><div class="event-date">'+esc(dates(x))+'</div><div><span class="event-category">'+esc(x.category)+'</span><h2><a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">'+esc(x.title)+'</a></h2><p class="event-place">'+esc([x.prefecture,x.place].filter(Boolean).join('・'))+'</p></div><a class="text-link" href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">詳細 →</a></article>'
+      '<article class="event-card">'+photo(x,x.title)+'<div class="event-date">'+esc(dates(x))+'</div><div><span class="event-category">'+esc(x.category)+'</span><h2><a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">'+esc(x.title)+'</a></h2><p class="event-place">'+esc([x.prefecture,x.place].filter(Boolean).join('・'))+'</p><p class="event-description">'+esc(x.description||'')+'</p><a class="text-link" target="_blank" rel="noopener noreferrer" href="'+esc(mapLink([x.prefecture,x.place].filter(Boolean).join(' ')))+'">会場の地図を見る ↗</a></div><a class="text-link" href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">詳細 →</a></article>'
       :'<article class="offer-card"><span class="store-name">'+esc(x.shop||'')+'</span><h2><a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">'+esc(x.title)+'</a></h2><p class="offer-label">'+esc(x.label||'')+'</p>'+(x.start?'<p class="offer-dates">'+(x.start>day?'開催予定 · ':'')+esc(dates(x))+'</p>':'')+'<a class="text-link" href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">公式サイトへ →</a></article>'
     ).join(''):'<p class="empty-results">条件に合う情報がありません。条件を変えてお探しください。</p>';
     if(markup!==lastMarkup){grid.innerHTML=markup;lastMarkup=markup;}
@@ -41,15 +44,25 @@
     const root=document.getElementById('event-stays'),status=document.getElementById('stay-status');if(!root)return;
     const selected=hotels.filter(x=>C.isFresh(x)&&(state.pref!=='すべて'?x.prefecture===state.pref:state.region==='すべて'||(regions[state.region]||[]).includes(x.prefecture)));
     const rows=state.pref==='すべて'?selected.filter((x,i)=>selected.findIndex(y=>y.city===x.city)===i).slice(0,6):selected.slice(0,6);
-    status.textContent=rows.length?'料金・空室は楽天トラベルで確認できます。':'この地域の宿泊候補は現在ありません。';
-    const markup=rows.map(x=>'<article class="stay-card"><span class="event-category">'+esc(x.city)+'</span><h3>'+esc(x.name)+'</h3><a class="text-link" href="'+esc(x.url)+'" data-hotel="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored">宿泊プランを見る ↗</a></article>').join('');
+    status.textContent=rows.length?'地域から探す宿泊候補です。会場の近隣順ではありません。宿泊日・料金・空室は楽天トラベルで確認してください。':'この地域の宿泊候補は現在ありません。';
+    const markup=rows.map(x=>'<article class="stay-card">'+photo({...x,image_authorized:true},x.name+'の施設写真（楽天トラベル提供）')+'<span class="event-category">'+esc(x.city)+'</span><h3>'+esc(x.name)+'</h3><p>'+esc(x.description||'')+'</p><p>'+esc(x.address||'')+'</p>'+(x.access?'<p>アクセス：'+esc(x.access)+'</p>':'')+(x.parking?'<p>駐車場：'+esc(x.parking)+'</p>':'')+'<a class="text-link" href="'+esc(mapLink(x.name+' '+(x.address||'')))+'" target="_blank" rel="noopener noreferrer">所在地を地図で確認 ↗</a><a class="text-link" href="'+esc(x.url)+'" data-hotel="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored">宿泊プランを見る ↗</a></article>').join('');
     if(root.innerHTML!==markup)root.innerHTML=markup;
   }
   document.getElementById('listing-query').addEventListener('input',e=>{state.term=e.target.value.trim().toLowerCase();render();});
   chips.addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(!b)return;state.category=b.dataset.category;chips.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));render();});
   if(D.kind==='events'){
-    document.getElementById('region').addEventListener('change',e=>{state.region=e.target.value;state.pref='すべて';document.getElementById('pref').innerHTML='<option value="すべて">都道府県</option>'+options(regions[state.region]||prefs);render();});
-    document.getElementById('pref').addEventListener('change',e=>{state.pref=e.target.value;render();});
+    const saveRegion=()=>{try{localStorage.setItem('machiyori.region.v1',JSON.stringify({region:state.region,pref:state.pref}));}catch(_){}};
+    try{
+      const saved=JSON.parse(localStorage.getItem('machiyori.region.v1')||'null');
+      if(saved&&(saved.region==='すべて'||Object.hasOwn(regions,saved.region))){
+        state.region=saved.region;state.pref=(regions[state.region]||prefs).includes(saved.pref)?saved.pref:'すべて';
+        document.getElementById('region').value=state.region;
+        document.getElementById('pref').innerHTML='<option value="すべて">都道府県</option>'+options(regions[state.region]||prefs);
+        document.getElementById('pref').value=state.pref;
+      }
+    }catch(_){}
+    document.getElementById('region').addEventListener('change',e=>{state.region=e.target.value;state.pref='すべて';document.getElementById('pref').innerHTML='<option value="すべて">都道府県</option>'+options(regions[state.region]||prefs);saveRegion();render();});
+    document.getElementById('pref').addEventListener('change',e=>{state.pref=e.target.value;saveRegion();render();});
     document.getElementById('when').addEventListener('change',e=>{state.when=e.target.value;render();});
     const base=new URL('.',document.currentScript.src);
     fetch(new URL('travel-feed.json',base),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{hotels=Array.isArray(data.items)?data.items.filter(x=>x.affiliate&&x.name&&C.isFresh(x)&&C.isRakutenURL(x.url)):[];renderStays();}).catch(()=>renderStays());

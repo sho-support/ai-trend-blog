@@ -50,6 +50,12 @@
     return '<img class="product-image" src="'+esc(x.image)+'"'+srcset+' alt="'+esc(copyFor(x).name)+'" width="600" height="600" decoding="async"'+(priority?' fetchpriority="high"':' loading="lazy"')+'>';
   }
   const detailURL=x=>new URL('items/'+encodeURIComponent(x.id)+'.html',productBase).href;
+  function rating(x){
+    return x.source==='rakuten'&&typeof x.review_average==='number'&&x.review_average>0&&x.review_average<=5&&Number.isInteger(x.review_count)&&x.review_count>0
+      ?'<p class="review-summary"><span aria-hidden="true">★</span> '+x.review_average.toFixed(2)+' <small>/ 5・楽天市場 '+x.review_count.toLocaleString('ja-JP')+'件</small></p><p class="review-date">'+esc(x.rating_verified||x.verified||'')+'取得・販売ページ全体の評価</p>':'';
+  }
+  const unitPrice=x=>x.id==='rakuten-lifedrinkcompany-10000022'&&Number.isFinite(x.price_yen)?'<p class="unit-price">約'+(x.price_yen/48).toFixed(2)+'円〜 / 本（48本・送料別）</p>':'';
+  function cardNotes(copy){return (copy.card_reason?'<p class="card-reason"><span>選ぶ理由</span>'+esc(copy.card_reason)+'</p>':'')+(copy.card_caution?'<p class="card-caution"><span>確認したい点</span>'+esc(copy.card_caution)+'</p>':'');}
   function productCards(items){
     return items.map((x,index)=>{
       const copy=copyFor(x),url=detailURL(x);
@@ -57,7 +63,8 @@
         +'<a class="product-photo" href="'+esc(url)+'">'+image(x,index===0)+'</a>'
         +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
         +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
-        +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">'+priceText(x,copy)+'</p>':'')
+        +rating(x)+cardNotes(copy)+'<a class="guide-link" href="'+esc(url)+'">特徴・購入前の確認点を読む →</a>'
+        +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">'+priceText(x,copy)+'</p>'+unitPrice(x):'')
         +'<a class="product-open product-buy" href="'+esc(x.url)+'" data-buy="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored" aria-label="'+esc(copy.name)+'を'+(x.source==='a8'?'公式ショップ':'楽天市場')+'で見る">'+(x.source==='a8'?'公式ショップで見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a></div></div></article>';
     }).join('');
   }
@@ -82,6 +89,23 @@
         const photo=tile.querySelector('.category-photo');
         if(photo)photo.innerHTML=item?image(item,index===0):'<span class="photo-unavailable">'+esc(tile.querySelector('h2').textContent)+'</span>';
       });
+      const curated=document.getElementById('editorial-picks-grid');
+      if(curated){
+        const ids=['rakuten-lifedrinkcompany-10000022','rakuten-yokumoku-10000435','rakuten-anker-10001908'];
+        const chosen=[...rows.filter(x=>ids.includes(x.id)),...rows.filter(x=>!ids.includes(x.id))].slice(0,10);
+        curated.innerHTML=productCards(chosen);
+        const shelf=document.querySelector('.editorial-picks');if(shelf)shelf.hidden=!chosen.length;
+      }
+      try{
+        const recent=JSON.parse(localStorage.getItem('monoyori.recent-kind')||'null');
+        let related=document.getElementById('recent-shopping');
+        if(recent&&Date.now()-recent.at<30*86400000){
+          if(!related){related=document.createElement('section');related.id='recent-shopping';curated?.closest('section').after(related);}
+          const candidates=rows.filter(x=>x.kind===recent.kind).slice(0,10);
+          related.innerHTML=candidates.length?'<h2>最近見たジャンルの商品</h2><p>このブラウザーでの閲覧から表示しています。</p><button type="button" id="clear-recent">閲覧情報を消す</button><div class="product-grid">'+productCards(candidates)+'</div>':'';
+          related.querySelector('#clear-recent')?.addEventListener('click',()=>{localStorage.removeItem('monoyori.recent-kind');related.remove();});
+        }
+      }catch(_){}
       const status=document.getElementById('directory-status');
       if(status)status.textContent=rows.length?'':failed?'商品を読み込めませんでした。':'現在掲載できる商品はありません。';
       return;
@@ -125,11 +149,17 @@
       root.innerHTML='<div class="detail-photo">'+image(item,true,true)+'</div><div class="detail-info"><span class="ad-label">PR</span>'
         +'<h1>'+esc(copy.headline||copy.name)+'</h1>'
         +(copy.description?'<p class="detail-intro">'+esc(copy.description)+'</p>':'')
-        +(item.price_yen!=null?'<p class="detail-price">'+priceText(item,copy)+'</p>':'')
+        +(item.price_yen!=null?'<p class="detail-price">'+priceText(item,copy)+'</p>'+unitPrice(item):'')
         +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">'+esc(item.source==='a8'?'公式ショップで価格を見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a>'
         +'<p class="seller">'+esc(item.seller||(item.source==='a8'?item.shop||'公式ショップ':'楽天市場'))+'</p>'
         +'</div>';
       trackView(item,copy);
+      const relatedKinds={bedding:['home-storage','lighting'], 'home-storage':['bedding','lighting'], lighting:['bedding','home-storage']};
+      try{localStorage.setItem('monoyori.recent-kind',JSON.stringify({kind:item.kind,at:Date.now()}));}catch(_){}
+      let related=document.getElementById('related-shopping');
+      if(!related){related=document.createElement('section');related.id='related-shopping';root.after(related);}
+      const candidates=rows.filter(x=>x.id!==item.id&&(x.kind===item.kind||(relatedKinds[item.kind]||[]).includes(x.kind))).slice(0,10);
+      related.innerHTML=candidates.length?'<h2>この商品と一緒に比較したい候補</h2><div class="product-grid">'+productCards(candidates)+'</div>':'';
     }
   }
   const initial=window.CATALOG_INITIAL;
