@@ -63,4 +63,14 @@ body{letter-spacing:.02em;background:radial-gradient(ellipse at 90% 0,#eeeee0 0,
 
 .story-cover .product-image{width:100%;height:300px;max-height:320px;object-fit:contain}.story-detail-link,.safety-note{background:#fff;padding:18px;border:1px solid var(--line);border-radius:12px;margin-top:20px}.safety-note p{margin:10px 0}.shopping-start+.category-grid{margin-top:12px}
 
-.category-context{font-size:12px;color:var(--muted);padding:0 15px 14px;margin-top:-6px}
+
+
+/* Category copy is one shared block; no negative margins between text rows. */
+.category-grid{align-items:stretch}
+.category-card{display:flex;flex-direction:column;height:100%}
+.category-card .category-photo{flex:none}
+.category-card .category-copy{padding:14px 15px;background:#f0f3ea;flex:1;display:flex;flex-direction:column;gap:6px}
+.category-card .category-copy h2{display:block;min-height:0;margin:0;padding:0;background:none;text-align:left;font-size:15px;line-height:1.5;overflow-wrap:anywhere}
+.category-card .department-copy h2{min-height:3em}
+.category-card .category-context{margin:0;padding:0;font-size:12px;line-height:1.7;color:var(--muted);min-height:3.4em;overflow-wrap:anywhere}
+@media(max-width:600px){.category-card .category-copy{padding:11px 10px;gap:5px}.category-card .category-copy h2{font-size:13px}.category-card .category-context{font-size:11px}}

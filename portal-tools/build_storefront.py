@@ -95,9 +95,10 @@ def category_cards(rows, prefix='', items=(), copies=None):
         matches=[x for x in items if x.get('department' if is_department else 'kind')==c['key']]
         preferred=next((x for x in matches if x['id']=='rakuten-yokumoku-10000435'),matches[0] if matches else None)
         photo=image(preferred,copies[preferred['id']],eager=not cards) if matches else '<span aria-hidden="true">'+icon+'</span>'
-        contexts={'food':'おやつ・手土産を探す','home':'暮らしを整える道具','daily':'日々の買い足し・まとめ買い','appliances':'家事とくつろぎの時間に','mobile':'外出・持ち歩きを便利に','beauty':'毎日の身だしなみに','gaming':'遊びの時間を楽しむ','bags':'通勤・旅行の持ち物に'}
-        context='<p class="category-context">'+E(contexts.get(c['key'],''))+'</p>' if is_department and c['key'] in contexts else ''
-        cards.append('<a class="category-card" href="'+prefix+c['file']+'" '+attr+'="'+c['key']+'"'+('' if matches else ' hidden')+'><div class="category-photo">'+photo+'</div><h2>'+E(c['name'])+'</h2>'+context+'</a>')
+        contexts={'food':'おやつ・手土産を探す','home':'暮らしを整える道具','daily':'日々の買い足し・まとめ買い','appliances':'家事とくつろぎの時間に','mobile':'外出・持ち歩きを便利に','beauty':'毎日の身だしなみに','gaming':'遊びの時間を楽しむ','bags':'通勤・旅行の持ち物に','pc':'仕事・学びの環境づくり','cameras':'写真・動画を楽しむ','audio':'音楽と映像をいい音で','toys':'遊び・趣味の時間に','watches':'毎日に合う一本を探す','fitness':'運動・体づくりの道具','stationery':'書く・働くを快適に','fashion':'服と靴を選ぶ','pets':'ペットとの暮らしに','outdoors':'外遊び・備えの道具'}
+        context='<p class="category-context">'+E(contexts[c['key']])+'</p>' if is_department else ''
+        copy_class='category-copy department-copy' if is_department else 'category-copy'
+        cards.append('<a class="category-card" href="'+prefix+c['file']+'" '+attr+'="'+c['key']+'"'+('' if matches else ' hidden')+'><div class="category-photo">'+photo+'</div><div class="'+copy_class+'"><h2>'+E(c['name'])+'</h2>'+context+'</div></a>')
     return '<div class="category-grid" id="category-grid">'+''.join(cards)+'</div><p id="directory-status" class="loading" role="status"></p>'
 
 
