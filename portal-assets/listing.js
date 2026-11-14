@@ -51,8 +51,18 @@
   document.getElementById('listing-query').addEventListener('input',e=>{state.term=e.target.value.trim().toLowerCase();render();});
   chips.addEventListener('click',e=>{const b=e.target.closest('[data-category]');if(!b)return;state.category=b.dataset.category;chips.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));render();});
   if(D.kind==='events'){
-    document.getElementById('region').addEventListener('change',e=>{state.region=e.target.value;state.pref='すべて';document.getElementById('pref').innerHTML='<option value="すべて">都道府県</option>'+options(regions[state.region]||prefs);render();});
-    document.getElementById('pref').addEventListener('change',e=>{state.pref=e.target.value;render();});
+    const saveRegion=()=>{try{localStorage.setItem('machiyori.region.v1',JSON.stringify({region:state.region,pref:state.pref}));}catch(_){}};
+    try{
+      const saved=JSON.parse(localStorage.getItem('machiyori.region.v1')||'null');
+      if(saved&&(saved.region==='すべて'||Object.hasOwn(regions,saved.region))){
+        state.region=saved.region;state.pref=(regions[state.region]||prefs).includes(saved.pref)?saved.pref:'すべて';
+        document.getElementById('region').value=state.region;
+        document.getElementById('pref').innerHTML='<option value="すべて">都道府県</option>'+options(regions[state.region]||prefs);
+        document.getElementById('pref').value=state.pref;
+      }
+    }catch(_){}
+    document.getElementById('region').addEventListener('change',e=>{state.region=e.target.value;state.pref='すべて';document.getElementById('pref').innerHTML='<option value="すべて">都道府県</option>'+options(regions[state.region]||prefs);saveRegion();render();});
+    document.getElementById('pref').addEventListener('change',e=>{state.pref=e.target.value;saveRegion();render();});
     document.getElementById('when').addEventListener('change',e=>{state.when=e.target.value;render();});
     const base=new URL('.',document.currentScript.src);
     fetch(new URL('travel-feed.json',base),{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{hotels=Array.isArray(data.items)?data.items.filter(x=>x.affiliate&&x.name&&C.isFresh(x)&&C.isRakutenURL(x.url)):[];renderStays();}).catch(()=>renderStays());

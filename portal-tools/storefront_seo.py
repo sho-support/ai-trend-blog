@@ -52,6 +52,12 @@ def price_text(price, copy):
     return amount + '円〜' if copy.get('price_from') is True else '¥' + amount
 
 
+def unit_price(item):
+    if item.get('id')=='rakuten-lifedrinkcompany-10000022' and isinstance(item.get('price_yen'),(int,float)):
+        return '<p class="unit-price">約'+format(item['price_yen']/48,'.2f')+'円〜 / 本（48本・送料別）</p>'
+    return ''
+
+
 def rating(item):
     score=item.get('review_average');count=item.get('review_count')
     if item.get('source')!='rakuten' or not isinstance(score,(int,float)) or not 0<score<=5 or not isinstance(count,int) or count<=0:
@@ -71,7 +77,7 @@ def cards(items, copies):
     for i, item in enumerate(items):
         copy = copies[item['id']]
         url = 'items/' + item['id'] + '.html'
-        price = ('<p class="product-price">' + price_text(item['price_yen'], copy) + '</p>'
+        price = ('<p class="product-price">' + price_text(item['price_yen'], copy) + '</p>' + unit_price(item)
                  if item.get('price_yen') is not None else '')
         rows.append('<article class="product-card" data-kind="' + esc(item['kind']) + '">'
                     + '<a class="product-photo" href="' + url + '">' + image(item, copy, eager=i == 0) + '</a>'
@@ -91,7 +97,7 @@ def cards(items, copies):
 
 
 def detail(item, copy):
-    price = ('<p class="detail-price">' + price_text(item['price_yen'], copy) + '</p>'
+    price = ('<p class="detail-price">' + price_text(item['price_yen'], copy) + '</p>' + unit_price(item)
              if item.get('price_yen') is not None else '')
     shop = item.get('seller') or item.get('shop') or '楽天市場'
     button = '公式ショップで価格を見る' if item.get('source') == 'a8' else '楽天市場で見る'

@@ -16,3 +16,22 @@
 :is(a,button,input,summary,select):focus-visible{outline:3px solid #406b8f;outline-offset:3px}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media(max-width:700px){.editorial{padding:27px 23px;border-radius:18px}.article-meta{gap:7px 12px;font-size:11px}.editorial h1{font-size:27px}.editorial p{font-size:14px}.article-answer{padding:17px}.article-answer p{font-size:15px}.guide-calculator{padding:18px 13px}.calculator-fields{gap:10px}.calculator-fields fieldset{padding:11px}.calculator-totals strong{font-size:18px}.guide-list .section-head{align-items:flex-start;flex-direction:column;gap:12px}.guide-list .section-head h2{font-size:23px}.guide-list .tile-top{min-height:125px}}
 @media(max-width:420px){.calculator-fields{grid-template-columns:1fr}.editorial{padding:25px 18px}.editorial h1{font-size:25px}.shell{padding-left:15px;padding-right:15px}.topbar{height:auto;min-height:77px;flex-wrap:wrap;padding-top:12px;padding-bottom:10px;gap:10px}.topnav{gap:12px}.topnav a{font-size:11px;padding:0}.calculator-totals{grid-template-columns:1fr}.article-actions{align-items:stretch;flex-direction:column}.article-actions>a{text-align:center}.guide-list .tile-foot{align-items:flex-start}}
+
+/* Compact shopping shelves: keep the comparison details on item pages. */
+.product-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.product-card .product-photo{height:160px;padding:12px;aspect-ratio:auto}
+.product-card .product-image{height:100%;width:100%;object-fit:contain}
+.product-card .product-card-body{padding:14px;gap:6px}
+.product-card h2{font-size:15px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-card .product-intro,.product-card .card-caution,.product-card .review-date{display:none}
+.product-card .card-reason{font-size:12px;padding:7px;margin:4px 0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-card .card-reason span{display:none}
+.product-card .review-summary{font-size:16px;margin:5px 0}.product-card .review-summary small{display:block;font-size:10px}
+.product-card .guide-link,.product-card .product-open{font-size:12px}
+.product-card .product-card-bottom{margin-top:auto;padding-top:8px}.product-card .product-price{font-size:20px;margin:6px 0}
+.unit-price{font-size:12px;color:#36533d;margin:4px 0}
+.editorial-hero{min-height:0;padding:28px;gap:24px}.editorial-hero h1{font-size:32px}.hero-product{max-height:210px}.hero-product img{max-height:180px}
+.offer-card{padding:18px}.offer-card h2{font-size:18px}.offer-grid{gap:12px}
+.event-card .listing-photo img{height:200px;width:100%;object-fit:cover}
+@media(max-width:1100px){.product-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:760px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-card .product-photo{height:140px}.product-card .product-card-body{padding:10px}.editorial-hero h1{font-size:25px}}

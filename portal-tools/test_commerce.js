@@ -57,13 +57,13 @@ async function catalogLifecycle() {
   }={}) {
     let clock = now;
     class Clock extends Date {static now() {return clock;}}
-    const node = () => ({innerHTML:'', textContent:'', hidden:false});
+    const node = () => ({innerHTML:'', textContent:'', hidden:false,after(){}});
     const grid=node(),status=node(),detail=node(),input=node(),timers=[],events=[],listeners={};
     const nodes={'catalog-grid':grid,'catalog-status':status,'product-detail':detail,'product-query':input};
     const context={Date:Clock,URL,URLSearchParams,Intl,console,HTMLImageElement:class {},
       CATALOG_CONFIG:{mode,kind:'power-bank',id:itemId},CATALOG_CATEGORIES:[{key:'power-bank',file:'mobile-battery.html',name:'モバイルバッテリー'},{key:'monitor',file:'work-monitor.html',name:'PCモニター'},{key:'speakers',file:'speakers.html',name:'スピーカー'}],
       CATALOG_INITIAL:mode==='search'?undefined:{items:initialItems,copies:{}},
-      document:{currentScript:{src:'https://example.test/portal-assets/catalog.js'},getElementById:id=>nodes[id],querySelector:()=>null,querySelectorAll:()=>[],addEventListener:(type,callback)=>{listeners[type]=callback;},hidden:false},
+      document:{createElement:()=>node(),currentScript:{src:'https://example.test/portal-assets/catalog.js'},getElementById:id=>nodes[id],querySelector:()=>null,querySelectorAll:()=>[],addEventListener:(type,callback)=>{listeners[type]=callback;},hidden:false},
       location:{href:'https://example.test/products/items/battery.html',pathname:'/products/items/battery.html',search:'?q='+encodeURIComponent(query)},
       addEventListener(){},setInterval:callback=>{timers.push(callback);return timers.length;},clearInterval(){},
       gtag:(...args)=>events.push(args),

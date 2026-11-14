@@ -251,12 +251,7 @@
         "description": "秋保エリアの光の演出。施設ごとに開催日程が異なる可能性があるため公式詳細を確認。",
         "start": "2026-10-24",
         "end": "2026-11-15",
-        "url": "https://www.sentabi.jp/events/208",
-        "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/211028_Rairaikyo_Sendai_Miyagi_pref_Japan05s3.jpg/960px-211028_Rairaikyo_Sendai_Miyagi_pref_Japan05s3.jpg",
-        "image_authorized": true,
-        "image_credit": "会場周辺・磊々峡の昼景（2021年）。2026年のライトアップ写真ではありません。写真：663highland／CC BY-SA 4.0／縮小表示・写真内容の改変なし",
-        "image_source": "https://commons.wikimedia.org/wiki/File:211028_Rairaikyo_Sendai_Miyagi_pref_Japan05s3.jpg",
-        "image_license": "https://creativecommons.org/licenses/by-sa/4.0/"
+        "url": "https://www.sentabi.jp/events/208"
       },
       {
         "id": "my4",
@@ -381,12 +376,7 @@
         "description": "秋保の散策路で紅葉と光を楽しむ企画。会場詳細は仙台観光公式で確認。",
         "start": "2026-10-24",
         "end": "2026-11-15",
-        "url": "https://www.sentabi.jp/?post_type=event",
-        "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/211028_Rairaikyo_Sendai_Miyagi_pref_Japan05s3.jpg/960px-211028_Rairaikyo_Sendai_Miyagi_pref_Japan05s3.jpg",
-        "image_authorized": true,
-        "image_credit": "会場周辺・磊々峡の昼景（2021年）。2026年のライトアップ写真ではありません。写真：663highland／CC BY-SA 4.0／縮小表示・写真内容の改変なし",
-        "image_source": "https://commons.wikimedia.org/wiki/File:211028_Rairaikyo_Sendai_Miyagi_pref_Japan05s3.jpg",
-        "image_license": "https://creativecommons.org/licenses/by-sa/4.0/"
+        "url": "https://www.sentabi.jp/?post_type=event"
       },
       {
         "id": "ao-hirosaki-autumn2026",
