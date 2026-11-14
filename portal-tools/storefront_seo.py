@@ -1,4 +1,5 @@
 """Render real catalogue content in HTML and maintain a crawlable URL inventory."""
+from decimal import Decimal, ROUND_HALF_UP
 import hashlib
 import html
 import json
@@ -54,7 +55,7 @@ def price_text(price, copy):
 
 def unit_price(item):
     if item.get('id')=='rakuten-lifedrinkcompany-10000022' and isinstance(item.get('price_yen'),(int,float)):
-        return '<p class="unit-price">約'+format(item['price_yen']/48,'.2f')+'円〜 / 本（48本・送料別）</p>'
+        return '<p class="unit-price">約'+str((Decimal(str(item['price_yen']))/48).quantize(Decimal('0.01'),rounding=ROUND_HALF_UP))+'円〜 / 本（48本・送料別）</p>'
     return ''
 
 
