@@ -1,0 +1,38 @@
+name: Publish Monoyori comparison article photo
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/monoyori-story-launch.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: monoyori-reviewed-story-launch
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Publish the reviewed article once to the existing product X channel
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python portal-tools/publish_story_launch.py
+      - name: Preserve the actual attempt even when delivery is uncertain
+        if: always()
+        run: |
+          if test -f growth/story-launch-receipt.json; then
+            bash .github/scripts/safe-commit-push.sh 'Record Monoyori article photo delivery result'
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monoyori-story-launch-receipt
+          path: growth/story-launch-receipt.json
+          if-no-files-found: ignore
