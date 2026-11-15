@@ -6,6 +6,7 @@ Optional: RAKUTEN_AFFILIATE_ID. No token values enter the public output.
 Offers are NOT labeled discounted or cheapest; prices are snapshots.
 """
 import json
+import math
 import re
 import os
 import sys
@@ -22,6 +23,16 @@ JST = timezone(timedelta(hours=9))
 from catalog_taxonomy import CATEGORIES, BY_DEPARTMENT, eligible_title
 from product_text import short_title
 SEARCHES=CATEGORIES
+PER_SHELF_LIMIT=12
+API_CANDIDATES=30
+
+def review_average(value):
+    """Normalize a real API number, including decimal strings; never infer it."""
+    if type(value) not in (int,float,str):return None
+    if isinstance(value,str) and (len(value)>16 or not re.fullmatch(r'\d+(?:\.\d+)?',value)):
+        return None
+    number=float(value)
+    return number if math.isfinite(number) and 0<number<=5 else None
 
 def shorten_title(title):
     return short_title({'title':title})
@@ -77,7 +88,7 @@ def main():
             "keyword": query,
             "format": "json",
             "formatVersion": 2,
-            "hits": 15,
+            "hits": API_CANDIDATES,
             "page": 1,
             "NGKeyword": "ふるさと納税",
             "availability": 1,
@@ -187,7 +198,7 @@ def main():
                     "point_rate": point_rate if isinstance(point_rate,(int,float)) else None,
                     "point_start": item.get("pointRateStartTime"),
                     "point_end": item.get("pointRateEndTime"),
-                    "review_average": item.get("reviewAverage") if isinstance(item.get("reviewAverage"),(int,float)) and 0<=item.get("reviewAverage")<=5 else None,
+                    "review_average": review_average(item.get("reviewAverage")),
                     "review_count": item.get("reviewCount") if isinstance(item.get("reviewCount"), int) else None,
                     "description": text,
                     "url": link,
@@ -200,7 +211,7 @@ def main():
                 })
                 used_codes.add(code)
                 kept += 1
-                if kept >= 3:
+                if kept >= PER_SHELF_LIMIT:
                     break
             coverage.append({'kind':kind,'name':shelf['name'],'count':kept,'status':'ok' if kept else 'empty'})
             print(f"候補: {cat} / {shelf['name']} API={len(objects)}件 掲載={kept}件")

@@ -63,7 +63,19 @@ class Selection(unittest.TestCase):
         self.assertEqual(current['url'],self.objects[6]['affiliateUrl'])
         self.assertEqual(current['image'],self.objects[6]['mediumImageUrls'][0])
         self.assertNotEqual(current['expires_at'],self.previous[0]['expires_at'])
-        self.assertEqual(len(feed['items']),3)
+        self.assertEqual(len(feed['items']),8)
+
+    def test_expanded_shelf_stops_at_twelve_fresh_items(self):
+        objects=[dict(self.objects[0],itemCode='shop:'+str(i),itemName='24インチ IPS モニター '+str(i)) for i in range(30)]
+        result,feed=self.run_refresh(objects)
+        self.assertEqual(result,0)
+        self.assertEqual(len(feed['items']),12)
+        self.assertEqual(len({x['id'] for x in feed['items']}),12)
+
+    def test_real_decimal_review_strings_are_not_discarded(self):
+        for value in ('4.73',4.73):self.assertEqual(refresh.review_average(value),4.73)
+        for value in (None,True,'NaN',float('inf'),'excellent','5.1',-1):
+            self.assertIsNone(refresh.review_average(value))
 
     def test_preferred_item_still_must_pass_price_and_genre_checks(self):
         for patch in [{'itemPrice':0},{'itemName':'モニターアーム'}]:
