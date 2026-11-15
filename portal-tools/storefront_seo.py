@@ -60,10 +60,19 @@ def unit_price(item):
 
 
 def rating(item):
+    if item.get('source')!='rakuten':return ''
     score=item.get('review_average');count=item.get('review_count')
-    if item.get('source')!='rakuten' or not isinstance(score,(int,float)) or not 0<score<=5 or not isinstance(count,int) or count<=0:
-        return ''
-    return '<p class="review-summary"><span aria-hidden="true">★</span> '+format(score,'.2f')+' <small>/ 5・楽天市場 '+format(count,',')+'件</small></p><p class="review-date">'+esc(item.get('rating_verified') or item.get('verified',''))+'取得・販売ページ全体の評価</p>'
+    valid_count=type(count) is int and count>=0
+    if type(score) in (int,float) and 0<score<=5 and valid_count and count>0:
+        return '<p class="review-summary"><span aria-hidden="true">★</span> '+format(score,'.2f')+' <small>/ 5・楽天市場 '+format(count,',')+'件</small></p><p class="review-date">'+esc(item.get('rating_verified') or item.get('verified',''))+'確認・販売ページ全体の評価</p>'
+    if valid_count and count>0:
+        return '<p class="review-count-only">楽天市場の口コミ '+format(count,',')+'件 <small>平均点は未取得</small></p>'
+    return '<p class="review-unverified">'+('楽天市場の口コミは0件（取得時）' if valid_count else '口コミ情報は未確認')+'</p>'
+
+
+def review_highlights(copy):
+    if not copy.get('review_positive'):return ''
+    return '<div class="review-highlights"><p class="review-good"><span>口コミの良い点</span>'+esc(copy['review_positive'])+'</p><p class="review-watch"><span>気になる声</span>'+esc(copy.get('review_caution',''))+'</p></div>'
 
 
 def card_notes(copy):
@@ -84,8 +93,8 @@ def cards(items, copies):
                     + '<a class="product-photo" href="' + url + '">' + image(item, copy, eager=i == 0) + '</a>'
                     + '<div class="product-card-body"><h2><a href="' + url + '">' + esc(copy['name']) + '</a></h2>'
                     + ('<p class="product-intro">' + esc(copy['description']) + '</p>' if copy['description'] else '')
-                    + rating(item)+card_notes(copy)
-                    + '<a class="guide-link" href="'+url+'">特徴・購入前の確認点を読む →</a>'
+                    + rating(item)+review_highlights(copy)+card_notes(copy)
+                    + '<a class="guide-link" href="'+url+'">'+('口コミ・選ぶ違いを読む →' if copy.get('review_positive') else '特徴・購入前の確認点を読む →')+'</a>'
                     + '<div class="product-card-bottom">' + price
                     + '<a class="product-open product-buy" href="' + esc(item['url'])
                     + '" data-buy="' + esc(item['id']) + '" target="_blank" rel="noopener noreferrer sponsored" aria-label="'
@@ -106,7 +115,7 @@ def detail(item, copy):
             + '<div class="detail-info"><span class="ad-label">PR</span><h1>'
             + esc(copy.get('headline') or copy['name']) + '</h1>'
             + ('<p class="detail-intro">' + esc(copy['description']) + '</p>' if copy['description'] else '')
-            + price + '<a class="buy-button" href="' + esc(item['url']) + '" data-buy="' + esc(item['id'])
+            + rating(item) + price + '<a class="buy-button" href="' + esc(item['url']) + '" data-buy="' + esc(item['id'])
             + '" target="_blank" rel="noopener noreferrer sponsored">' + button
             + ' <span aria-hidden="true">↗</span></a><p class="seller">' + esc(shop) + '</p></div>')
 

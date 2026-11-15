@@ -357,5 +357,41 @@
     "headline": "CAROTE Ice フライパン・鍋",
     "description": "取っ手が外せるベージュのフライパン・鍋。IH・ガス火対応。",
     "features": []
+  },
+  "rakuten-h2brothers-10000452": {
+    "name": "ONE STEP 可変式ダンベル（24kg系）",
+    "description": "ダイヤル式で重量を変更するタイプ。色・個数の選択で価格を確認。",
+    "card_reason": "ダイヤル式で重量変更・専用台座付き。",
+    "card_caution": "色・個数・重量調整の操作感を確認。",
+    "review_positive": "置き場所を取りにくい、重さを変えられて便利という投稿。",
+    "review_caution": "重量を変えづらい場合や、色による価格差を指摘する投稿も。",
+    "features": [],
+    "price_from": true,
+    "review_checked": "2026-11-15",
+    "review_scope": "楽天の購入者投稿の一例。選択肢・時期で仕様が異なる場合があります。"
+  },
+  "rakuten-motions-10000002": {
+    "name": "Motions 可変式ダンベル（24／40kg系）",
+    "description": "ダイヤル式・グリップ回転式、単品・2個から選ぶ販売ページ。",
+    "card_reason": "重量変更の方式・重量・個数を選べる。",
+    "card_caution": "掲載価格が希望する方式・個数か確認。",
+    "review_positive": "重量変更の速さや、グリップの握りやすさを評価する投稿。",
+    "review_caution": "台座へ戻す際の収まりや、手への負担を指摘する投稿も。",
+    "features": [],
+    "price_from": true,
+    "review_checked": "2026-11-15",
+    "review_scope": "楽天の購入者投稿の一例。選択肢・時期で仕様が異なる場合があります。"
+  },
+  "rakuten-super-sports-10000012": {
+    "name": "IROTEC アイアンダンベル30kg×2個",
+    "description": "プレートを付け替えるスクリュー式。シャフトを含め合計60kg。",
+    "card_reason": "プレートを組み替えて重さを調整できる。",
+    "card_caution": "交換の手間・留め具・床の保護を確認。",
+    "review_positive": "日常の筋トレでの使いやすさや、造りを評価する投稿。",
+    "review_caution": "プレート交換の手間や、接触部分の塗装剥がれを指摘する投稿も。",
+    "features": [],
+    "price_from": true,
+    "review_checked": "2026-11-15",
+    "review_scope": "楽天の購入者投稿の一例。選択肢・時期で仕様が異なる場合があります。"
   }
 }

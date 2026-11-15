@@ -51,9 +51,14 @@
   }
   const detailURL=x=>new URL('items/'+encodeURIComponent(x.id)+'.html',productBase).href;
   function rating(x){
-    return x.source==='rakuten'&&typeof x.review_average==='number'&&x.review_average>0&&x.review_average<=5&&Number.isInteger(x.review_count)&&x.review_count>0
-      ?'<p class="review-summary"><span aria-hidden="true">★</span> '+x.review_average.toFixed(2)+' <small>/ 5・楽天市場 '+x.review_count.toLocaleString('ja-JP')+'件</small></p><p class="review-date">'+esc(x.rating_verified||x.verified||'')+'取得・販売ページ全体の評価</p>':'';
+    if(x.source!=='rakuten')return '';
+    const validCount=Number.isInteger(x.review_count)&&x.review_count>=0;
+    if(typeof x.review_average==='number'&&x.review_average>0&&x.review_average<=5&&validCount&&x.review_count>0)
+      return '<p class="review-summary"><span aria-hidden="true">★</span> '+x.review_average.toFixed(2)+' <small>/ 5・楽天市場 '+x.review_count.toLocaleString('ja-JP')+'件</small></p><p class="review-date">'+esc(x.rating_verified||x.verified||'')+'確認・販売ページ全体の評価</p>';
+    if(validCount&&x.review_count>0)return '<p class="review-count-only">楽天市場の口コミ '+x.review_count.toLocaleString('ja-JP')+'件 <small>平均点は未取得</small></p>';
+    return '<p class="review-unverified">'+(validCount?'楽天市場の口コミは0件（取得時）':'口コミ情報は未確認')+'</p>';
   }
+  function reviewHighlights(copy){return copy.review_positive?'<div class="review-highlights"><p class="review-good"><span>口コミの良い点</span>'+esc(copy.review_positive)+'</p><p class="review-watch"><span>気になる声</span>'+esc(copy.review_caution||'')+'</p></div>':'';}
   const unitPrice=x=>x.id==='rakuten-lifedrinkcompany-10000022'&&Number.isFinite(x.price_yen)?'<p class="unit-price">約'+(x.price_yen/48).toFixed(2)+'円〜 / 本（48本・送料別）</p>':'';
   function cardNotes(copy){return (copy.card_reason?'<p class="card-reason"><span>選ぶ理由</span>'+esc(copy.card_reason)+'</p>':'')+(copy.card_caution?'<p class="card-caution"><span>確認したい点</span>'+esc(copy.card_caution)+'</p>':'');}
   function productCards(items){
@@ -63,7 +68,7 @@
         +'<a class="product-photo" href="'+esc(url)+'">'+image(x,index===0)+'</a>'
         +'<div class="product-card-body"><h2><a href="'+esc(url)+'">'+esc(copy.name)+'</a></h2>'
         +(copy.description?'<p class="product-intro">'+esc(copy.description)+'</p>':'')
-        +rating(x)+cardNotes(copy)+'<a class="guide-link" href="'+esc(url)+'">特徴・購入前の確認点を読む →</a>'
+        +rating(x)+reviewHighlights(copy)+cardNotes(copy)+'<a class="guide-link" href="'+esc(url)+'">'+(copy.review_positive?'口コミ・選ぶ違いを読む →':'特徴・購入前の確認点を読む →')+'</a>'
         +'<div class="product-card-bottom">'+(x.price_yen!=null?'<p class="product-price">'+priceText(x,copy)+'</p>'+unitPrice(x):'')
         +'<a class="product-open product-buy" href="'+esc(x.url)+'" data-buy="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored" aria-label="'+esc(copy.name)+'を'+(x.source==='a8'?'公式ショップ':'楽天市場')+'で見る">'+(x.source==='a8'?'公式ショップで見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a></div></div></article>';
     }).join('');
@@ -142,7 +147,7 @@
       root.innerHTML='<div class="detail-photo">'+image(item,true,true)+'</div><div class="detail-info"><span class="ad-label">PR</span>'
         +'<h1>'+esc(copy.headline||copy.name)+'</h1>'
         +(copy.description?'<p class="detail-intro">'+esc(copy.description)+'</p>':'')
-        +(item.price_yen!=null?'<p class="detail-price">'+priceText(item,copy)+'</p>'+unitPrice(item):'')
+        +rating(item)+(item.price_yen!=null?'<p class="detail-price">'+priceText(item,copy)+'</p>'+unitPrice(item):'')
         +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">'+esc(item.source==='a8'?'公式ショップで価格を見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a>'
         +'<p class="seller">'+esc(item.seller||(item.source==='a8'?item.shop||'公式ショップ':'楽天市場'))+'</p>'
         +'</div>';

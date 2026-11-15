@@ -74,3 +74,6 @@ body{letter-spacing:.02em;background:radial-gradient(ellipse at 90% 0,#eeeee0 0,
 .category-card .department-copy h2{min-height:3em}
 .category-card .category-context{margin:0;padding:0;font-size:12px;line-height:1.7;color:var(--muted);min-height:3.4em;overflow-wrap:anywhere}
 @media(max-width:600px){.category-card .category-copy{padding:11px 10px;gap:5px}.category-card .category-copy h2{font-size:13px}.category-card .category-context{font-size:11px}}
+
+.review-count-only,.review-unverified{font-size:11px;line-height:1.6;color:var(--muted);margin:5px 0}.review-count-only small{display:block;font-size:10px}.product-card .review-date{display:block;font-size:9px;line-height:1.5;margin:0 0 4px}
+.review-highlights{display:grid;gap:7px;margin:6px 0;font-size:11px;line-height:1.6}.review-highlights p{margin:0;padding:7px 8px;border-radius:6px;background:#edf3e8}.review-highlights .review-watch{background:#f7f1e8}.review-highlights span{display:block;font-weight:700;font-size:10px}.product-card:has(.review-highlights) .card-reason{display:none}.product-card:has(.review-highlights) .guide-link{display:block;margin:4px 0;font-size:11px}.detail-info .review-summary{margin-top:12px}
