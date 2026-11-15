@@ -32,6 +32,7 @@ def main():
     for path in root.rglob('*.html'):
         text=path.read_text()
         # Workers redirects .html to its extensionless canonical route.
+        text=re.sub(re.escape(ORIGIN)+r'(/[^"\s<>]*?)/index\.html',ORIGIN+r'\1/',text)
         text=re.sub(re.escape(ORIGIN)+r'(/[^"\s<>]*?)\.html',ORIGIN+r'\1',text)
         path.write_text(text)
     sitemap=root/'sitemap.xml'
