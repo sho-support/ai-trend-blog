@@ -96,6 +96,8 @@ def main():
         shutil.rmtree(DIST)
     (DIST/"portal-assets").mkdir(parents=True)
     copy_pages()
+    # Keep the owner-provided Google verification file in every deployment.
+    shutil.copyfile(ROOT/"googlef88713eb67c8713b.html",DIST/"googlef88713eb67c8713b.html")
     make_home()
     make_sitemap()
     write(Path("_headers"),"/portal-assets/*.json\n  Cache-Control: public, max-age=300\n")
