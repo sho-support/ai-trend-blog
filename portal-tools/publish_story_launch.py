@@ -22,10 +22,11 @@ def main():
         raise SystemExit('The exact photograph must be verified in the official link builder')
     if datetime.fromisoformat(request['expires_at'])<=datetime.now(timezone.utc):
         raise SystemExit('Reviewed notice expired')
-    with urlopen(expected,timeout=30) as r:
-        body=r.read().decode()
-        if r.status!=200 or 'review-mode.js' in body or 'data-buy=' not in body or '4商品の口コミ' not in body:
-            raise SystemExit('The actual article and purchase route must be live first')
+    proof=json.loads(Path(os.environ['STORY_PUBLIC_PROOF']).read_text())
+    age=time.time()-proof.get('checked_at',0)
+    body=proof.get('html','')
+    if proof.get('url')!=expected or proof.get('status')!=200 or not 0<=age<300 or 'review-mode.js' in body or 'data-buy=' not in body or '4商品の口コミ' not in body:
+        raise SystemExit('The actual article and purchase route must be freshly verified by the public browser')
     # History is checked before the only mutation. A persisted ambiguous claim
     # must be reconciled, never automatically repeated.
     call=graphql_client(os.environ['BUFFER_API_KEY'])
