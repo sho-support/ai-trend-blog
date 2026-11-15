@@ -1,5 +1,7 @@
 """Source-based shopping articles; no fabricated tasting or hands-on reviews."""
 from html import escape as e
+from urllib.parse import urlencode
+import os
 from storefront_seo import cards, image, inventory_entry, live
 
 STORIES=[
@@ -15,6 +17,14 @@ STORIES=[
  ('好きな味とラベルの有無を選ぶ','販売店ではプレーンやフレーバー、ラベルレスなどの選択肢を案内しています。選んだ組み合わせで価格や在庫が異なる可能性があります。当サイトで飲み比べはしていないため、炭酸の強さやおいしさの実体験としては紹介しません。初めてなら少量で味を確かめてから箱買いする方法もあります。')],sources=[('メーカー直営・楽天市場店の48本商品','https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/'),('メーカー直営・プレーンの原材料説明（24本商品）','https://lifedrink.jp/Form/Product/ProductDetail.aspx?pid=OZASODA-plain-500&shop=0')])
 ]
 
+STORIES.append(dict(slug='adjustable-dumbbells-how-to-choose',id='rakuten-h2brothers-10000452',published='2026-11-16',checked='2026年11月16日',title='可変式ダンベルは何で選ぶ？ 4商品の口コミと重量変更の違い',intro='安い順だけでは選びにくい可変式ダンベル。交換方法、セット重量、収納場所を軸に、掲載4商品の購入者の声を整理します。',sections=[
+ ('最初に「片手の重さ」と「個数」を揃える','24kgという数字だけでは、1個か2個か、セット合計かを区別できません。同じ販売ページで軽いセットと重いセットを選べる商品もあります。以下の価格は選択肢を含む販売ページの下限です。必要な重量と個数を選んだ注文金額で比較してください。'),
+ ('ONE STEP：省スペースと切り替えを重視する候補','確認した購入者投稿には、置き場所を取りにくい、重さを変えられて便利という声があります。一方で、重量変更のしにくさや色ごとの価格差への言及もありました。便利という感想だけで決めず、台座の置き場所と重量変更の操作を確認すると比較できます。'),
+ ('Motions：方式とグリップまで比べたい候補','ダイヤル式とグリップ回転式、24kgと40kg、単品と2個の選択肢があります。重量変更や握りやすさを評価する投稿がある一方、台座への戻しにくさや手への負担に言及した投稿もあります。異なる方式の口コミを同じ型番の評価とは扱わず、自分が選ぶ選択肢の投稿を見ましょう。'),
+ ('IROTEC：プレートの構造と最大重量で比べる候補','公式販売ページはシャフトを含む30kg×2個、合計60kgの構成を案内しています。普段の筋トレでの使いやすさや造りを評価する声がある一方、プレート交換の手間と接触部分の塗装への指摘があります。種目ごとに頻繁に重量を変える場合は、交換にかかる作業も検討材料です。'),
+ ('SHIMI：価格と収納場所を一緒に考える候補','プレートの中身はセメント、外側はポリエチレンという販売店表示です。価格と重量を変えられる点を評価する投稿に加え、外した重りの置き場所が必要という声もあります。使うときの大きさだけでなく、使わないプレートをどこに置くかまで考えて選びます。'),
+ ('口コミ点数をそのまま順位にしない','点数は販売ページ全体の平均で、異なる重量・個数・方式の投稿が混在することがあります。今回は個別の購入者投稿を要約しており、良い声・気になる声の頻度を全件集計したものではありません。当サイトによる実機使用や耐久試験も行っていません。')],sources=[('ONE STEP販売ページ・購入者投稿','https://item.rakuten.co.jp/h2brothers/danberu-48kg/'),('Motions販売ページ・購入者投稿','https://item.rakuten.co.jp/motions/md242/'),('IROTEC公式販売ページ','https://item.rakuten.co.jp/super-sports/10000012/'),('SHIMI販売ページ・購入者投稿','https://item.rakuten.co.jp/shimi-store/hs201808082/')]))
+
 def story_index(items,copies,prefix='stories/'):
     by_id={x['id']:x for x in items if live(x)}
     out=[]
@@ -26,14 +36,20 @@ def story_index(items,copies,prefix='stories/'):
 
 def build_stories(items,copies,document,write):
     by_id={x['id']:x for x in items if live(x)};inventory=[]
+    hub='products/stories/index.html'
+    write(hub,document('商品紹介ブログ・買う前の比較ガイド｜モノより',hub,'<h1>商品紹介ブログ・比較ガイド</h1>'+story_index(items,copies,prefix=''),depth=2,description='お菓子の手土産、炭酸水の1本単価、可変式ダンベルの口コミ。買う前に比較したい条件を写真付きで紹介します。'))
+    inventory.append(inventory_entry(hub,STORIES))
     for s in STORIES:
         x=by_id.get(s['id']);path='products/stories/'+s['slug']+'.html'
         cover=image(x,copies[x['id']],eager=True,large=True) if x else ''
-        body='<article class="product-story"><p><a href="../">モノより</a> / 商品紹介ブログ</p><p class="eyebrow">SHOPPING JOURNAL · PR</p><h1>'+e(s['title'])+'</h1><p>'+e(s['intro'])+'</p><p class="small-text">2026年11月15日公開／商品情報確認：2026年11月14日。実食・実機使用レビューではありません。</p><div class="story-cover">'+cover+'</div>'
+        body='<article class="product-story"><p><a href="../">モノより</a> / 商品紹介ブログ</p><p class="eyebrow">SHOPPING JOURNAL · PR</p><h1>'+e(s['title'])+'</h1><p>'+e(s['intro'])+'</p><p class="small-text">'+e(s.get('published','2026-11-15'))+'公開／商品情報確認：'+e(s.get('checked','2026年11月14日'))+'。実食・実機使用レビューではありません。</p><div class="story-cover">'+cover+'</div>'
         body+=''.join('<section><h2>'+e(h)+'</h2><p>'+e(p)+'</p></section>' for h,p in s['sections'])
+        share_url=os.getenv('URL','https://sho-support.github.io/ai-trend-blog').rstrip('/')+'/'+path.removesuffix('.html')+'?utm_source=x&utm_medium=social&utm_campaign=reader_share'
+        body+='<p><a class="text-link" data-story-share href="https://twitter.com/intent/tweet?'+e(urlencode({'text':s['title'],'url':share_url}),quote=True)+'" target="_blank" rel="noopener noreferrer">この記事をXでシェア ↗</a> · <a href="./">商品紹介ブログ一覧</a></p>'
         body+='<section><h2>確認した情報源</h2><ul>'+''.join('<li><a href="'+e(u,quote=True)+'" target="_blank" rel="noopener noreferrer">'+e(t)+'</a></li>' for t,u in s['sources'])+'</ul></section>'
         # A live product block supplies the exact seller link and the standard expiry guard.
+        body+='<p><a href="../dumbbells.html">4商品の写真・口コミ・価格を比較する →</a></p>' if s['slug']=='adjustable-dumbbells-how-to-choose' else ''
         body+='<section><h2>掲載商品の価格・販売条件</h2>'+ (cards([x],copies).replace('href="items/','href="../items/') if x else '<p>現在、販売情報を確認できません。最新情報は公式の商品ページでご確認ください。</p>')+'</section><p><a href="../">ジャンルからほかの商品を探す →</a></p></article>'
-        write(path,document(s['title']+'｜モノより',path,body,depth=2,description=s['intro'],image_url=x.get('image') if x else None,config={'mode':'category','kind':x['kind']} if x else None,scripts=('catalog.js',) if x else (),initial={'items':[x],'copies':copies} if x else None,structured=[{'@type':'BlogPosting','headline':s['title'],'datePublished':'2026-11-15','author':{'@type':'Organization','name':'モノより'}}]))
+        write(path,document(s['title']+'｜モノより',path,body,depth=2,description=s['intro'],image_url=x.get('image') if x else None,config={'mode':'category','kind':x['kind']} if x else None,scripts=('catalog.js',) if x else (),initial={'items':[x],'copies':copies} if x else None,structured=[{'@type':'BlogPosting','headline':s['title'],'datePublished':s.get('published','2026-11-15'),'author':{'@type':'Organization','name':'モノより'}}]))
         inventory.append(inventory_entry(path,s))
     return inventory

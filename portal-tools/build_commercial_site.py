@@ -75,7 +75,7 @@ def make_home():
     write(Path("index.html"),content)
 
 def make_sitemap():
-    urls=["/","/deals/","/events/","/products/"]
+    urls=["/","/deals/","/events/","/products/","/products/stories/"]
     for p in (DIST/"deals").glob("*.html"):
         if p.name!="index.html":
             urls.append("/deals/"+p.name)

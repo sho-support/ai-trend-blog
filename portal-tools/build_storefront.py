@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Photo-first storefronts. Editorial copy stays short; no invented reviews."""
 import html
+import os
 import hashlib
 import json
 import re
@@ -145,7 +146,7 @@ def products():
     items=list(feed.get('items',[]))
     a8=json.loads((ROOT/'portal-assets/a8-approved.json').read_text())
     a8_changed=False
-    for item in a8.get('items',[]):
+    for item in (a8.get('items',[]) if not os.getenv('URL') else []):
         if not approved_a8(item) or item.get('kind') not in BY_KIND:continue
         d=BY_DEPARTMENT[BY_KIND[item['kind']]['department']]
         for k,v in {'source':'a8','department':d['key'],'category':d['name']}.items():
@@ -159,7 +160,7 @@ def products():
     departments=sorted(DEPARTMENTS,key=lambda d:priority.index(d['key']) if d['key'] in priority else len(priority))
     body='<section class="shopping-start"><p class="eyebrow">MONOYORI / SHOP BY INTEREST</p><h1>気になるジャンルから、いい買い物へ。</h1><p>おやつ・手土産、暮らしの道具、毎日の便利グッズ。写真から探して、買う前の疑問を確かめよう。</p>'+search_form()+'</section><section id="departments"><div class="section-heading"><h2>今日は何を探しますか？</h2><span class="ad-label">PR</span></div>'+category_cards(departments,items=items,copies=copies)+'</section>'
     from product_stories import story_index
-    body+=story_index(items,copies)
+    body+='<p><a class="text-link" href="stories/">商品紹介ブログ・比較ガイド一覧 →</a></p>'+story_index(items,copies)
     picks=[]
     photos=tile_seed(DEPARTMENTS,items)
     write('products/index.html',document('モノより｜家電・PC・食品をジャンルから探す','products/',body,config={'mode':'directory'},scripts=('catalog.js',),
