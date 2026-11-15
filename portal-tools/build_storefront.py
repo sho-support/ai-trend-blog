@@ -61,7 +61,7 @@ def document(title, path, body, brand='products', depth=1, config=None, scripts=
 <meta property="og:type" content="website"><meta name="theme-color" content="#ffffff">{social}{schema}
 <link rel="stylesheet" href="{prefix}portal-assets/storefront.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J5ZDLF30CS"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){{if(!['localhost','127.0.0.1','terminal.local'].includes(location.hostname))dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-J5ZDLF30CS');</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{if(!['localhost','127.0.0.1','terminal.local'].includes(location.hostname)&&!new URLSearchParams(location.search).has('qa'))dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-J5ZDLF30CS');</script>
 </head><body><a class="skip-link" href="#main">本文へ</a>{header(brand,depth)}
 <main id="main" class="page">{body}</main>
 <footer class="site-footer"><div><a href="{prefix}deals/about.html">運営・広告方針</a><a href="{prefix}deals/privacy.html">プライバシー</a></div>

@@ -49,7 +49,7 @@ def build_stories(items,copies,document,write):
         body+='<section><h2>確認した情報源</h2><ul>'+''.join('<li><a href="'+e(u,quote=True)+'" target="_blank" rel="noopener noreferrer">'+e(t)+'</a></li>' for t,u in s['sources'])+'</ul></section>'
         # A live product block supplies the exact seller link and the standard expiry guard.
         body+='<p><a href="../dumbbells.html">4商品の写真・口コミ・価格を比較する →</a></p>' if s['slug']=='adjustable-dumbbells-how-to-choose' else ''
-        body+='<section><h2>掲載商品の価格・販売条件</h2>'+ (cards([x],copies).replace('href="items/','href="../items/') if x else '<p>現在、販売情報を確認できません。最新情報は公式の商品ページでご確認ください。</p>')+'</section><p><a href="../">ジャンルからほかの商品を探す →</a></p></article>'
+        body+='<section><h2>掲載商品の価格・販売条件</h2>'+ (cards([v for v in by_id.values() if v.get('kind')=='dumbbells'] if s['slug']=='adjustable-dumbbells-how-to-choose' else [x],copies).replace('href="items/','href="../items/') if x else '<p>現在、販売情報を確認できません。最新情報は公式の商品ページでご確認ください。</p>')+'</section><p><a href="../">ジャンルからほかの商品を探す →</a></p></article>'
         write(path,document(s['title']+'｜モノより',path,body,depth=2,description=s['intro'],image_url=x.get('image') if x else None,config={'mode':'category','kind':x['kind']} if x else None,scripts=('catalog.js',) if x else (),initial={'items':[x],'copies':copies} if x else None,structured=[{'@type':'BlogPosting','headline':s['title'],'datePublished':s.get('published','2026-11-15'),'author':{'@type':'Organization','name':'モノより'}}]))
         inventory.append(inventory_entry(path,s))
     return inventory
