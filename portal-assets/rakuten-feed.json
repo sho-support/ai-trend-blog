@@ -4110,7 +4110,10 @@
       "expires_at": "2026-11-17T00:20:14.980266+09:00",
       "affiliate": true,
       "image": "https://thumbnail.image.rakuten.co.jp/@0_mall/shimi-store/cabinet/dumbbell/hs201808082_curt.jpg?_ex=128x128",
-      "label": "PR｜楽天公式API"
+      "label": "PR｜楽天公式API",
+      "review_average": 4.53,
+      "rating_verified": "2026-11-16",
+      "rating_source_url": "https://item.rakuten.co.jp/shimi-store/hs201808082/"
     },
     {
       "id": "rakuten-lively777-10000017",

@@ -393,5 +393,14 @@
     "price_from": true,
     "review_checked": "2026-11-15",
     "review_scope": "楽天の購入者投稿の一例。選択肢・時期で仕様が異なる場合があります。"
+  },
+  "rakuten-shimi-store-10000002": {
+    "name": "SHIMI 可変式ダンベル（重量選択式）",
+    "description": "プレート付け替え式。重量の異なるセットから選ぶ販売ページ。",
+    "features": [],
+    "price_from": true,
+    "review_positive": "価格と重量を変えられる点を評価する投稿。",
+    "review_caution": "外した重りの置き場所が必要という投稿も。",
+    "review_checked": "2026-11-16"
   }
 }
