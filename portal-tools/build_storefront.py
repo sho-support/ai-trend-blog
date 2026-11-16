@@ -182,6 +182,8 @@ def products():
             path='products/'+c['file']
             body='<div class="breadcrumbs"><a href="./">カテゴリー</a><span aria-hidden="true">/</span><a href="'+d['file']+'">'+d['name']+'</a><span aria-hidden="true">/</span><span>'+c['name']+'</span></div>'
             body+='<div class="page-heading"><h1>'+c['name']+'</h1><span class="ad-label">PR</span></div>'+category_links(c['key'],d['children'])+cards(rows,copies)
+            if c['key']=='tents':
+                body+='<p class="story-detail-link"><a href="stories/tent-first-buying-guide.html">買う前に読む：日よけと宿泊用の違い・人数・設営の比較ガイド →</a></p>'
             schema=[breadcrumb([('モノより','products/'),(d['name'],'products/'+d['file']),(c['name'],path)])]
             if rows:schema.append({'@type':'ItemList','numberOfItems':len(rows),'itemListElement':[
                 {'@type':'ListItem','position':i+1,'name':copies[x['id']]['name'],'url':BASE+'/products/items/'+x['id']+'.html'} for i,x in enumerate(rows)]})

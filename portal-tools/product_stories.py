@@ -25,6 +25,14 @@ STORIES.append(dict(slug='adjustable-dumbbells-how-to-choose',id='rakuten-h2brot
  ('SHIMI：価格と収納場所を一緒に考える候補','プレートの中身はセメント、外側はポリエチレンという販売店表示です。価格と重量を変えられる点を評価する投稿に加え、外した重りの置き場所が必要という声もあります。使うときの大きさだけでなく、使わないプレートをどこに置くかまで考えて選びます。'),
  ('口コミ点数をそのまま順位にしない','点数は販売ページ全体の平均で、異なる重量・個数・方式の投稿が混在することがあります。今回は個別の購入者投稿を要約しており、良い声・気になる声の頻度を全件集計したものではありません。当サイトによる実機使用や耐久試験も行っていません。')],sources=[('ONE STEP販売ページ・購入者投稿','https://item.rakuten.co.jp/h2brothers/danberu-48kg/'),('Motions販売ページ・購入者投稿','https://item.rakuten.co.jp/motions/md242/'),('IROTEC公式販売ページ','https://item.rakuten.co.jp/super-sports/10000012/'),('SHIMI販売ページ・購入者投稿','https://item.rakuten.co.jp/shimi-store/hs201808082/')]))
 
+STORIES.append(dict(slug='tent-first-buying-guide',id='rakuten-naturehike-direct-10000108',published='2026-11-16',checked='2026年11月16日',title='初心者のテント選び｜日よけと宿泊用の違い・人数・設営を確認',intro='安さと星の数だけで決める前に、泊まるのか、何人で使うのかを整理。サンシェードやタープと宿泊用テントを見分けるための比較ガイドです。',sections=[
+ ('まず「泊まる」と「日中だけ使う」を分ける','商品一覧には、宿泊用テントだけでなく、日よけ向けのポップアップテントや屋根型のタープテントも含まれます。「テント」という商品名やフルクローズの表示だけで宿泊向けとは判断できません。日帰りの休憩なら日よけ、キャンプ泊ならメーカーが案内する使用目的・構造・設営方法を確認して候補を絞ります。これは商品の用途を混同しないための編集上の整理です。'),
+ ('何人用を買う？ 定員だけでなく寝る場所を測る','コールマン公式は、寝袋のサイズと人数に対して必要な空間があるかという視点を案内しています。そこで、手持ちのマットの幅×人数、荷物を置く場所、出入口までの動線を、候補のインナー寸法と照らし合わせます。人数を機械的に足すより、実際に横になる面積を確かめる方法です。'),
+ ('広さと設営の負担を一緒に比べる','同じ人数向けでも、寝室だけの構成と、リビングまで備えた構成では使い方が変わります。泊まり方を決めたうえで、取扱説明書や設営動画を見て、必要な人数・手順・撤収方法を確認しましょう。広いから一律に良いとは言えません。自宅の保管場所と、車に積む収納時サイズも比較欄に書き出します。ここは購入前の編集上のチェック項目です。'),
+ ('本体価格以外に何が必要？','コールマンの初心者向け案内では、寝室づくりの道具としてテントのほか、マットや寝袋なども挙げています。本体が安くても手持ちの道具を使えない場合があります。付属品を調べ、別売品の要否をメーカー案内で確認し、必要な購入品の合計額を予算と比べましょう。初めてならレンタルを試し、必要な道具を絞る方法もあります。'),
+ ('口コミは「自分と同じ使い方」の投稿から読む','星の平均が高くても、運動会の日よけで使った感想と、キャンプで泊まった感想は同じ条件ではありません。選んだ型・サイズ・利用人数をまず確認し、設営、収納、使った季節に触れた投稿を見ます。当サイトの一覧に表示する点数は販売ページ全体の評価です。耐久性や雨天性能を当サイトが実測した数値ではありません。'),
+ ('購入前に埋めたい6つの比較欄','①日帰りか宿泊か ②人数とマットの寸法 ③インナーと設置時の寸法 ④収納寸法・重量 ⑤設営手順と付属品 ⑥必要品を含む総額。この6点を候補ごとに埋め、分からない欄は販売店やメーカーに確認します。下のリンク先には日よけ用も混在するため、用途を確認して比較してください。')],sources=[('コールマン公式：スタイル・サイズからのテント選び','https://ec.coleman.co.jp/sc/howtocamp_tent.html'),('コールマン公式：初心者向けのキャンプ道具選び','https://www.coleman.co.jp/special/campsupport/step03/')]))
+
 def story_index(items,copies,prefix='stories/'):
     by_id={x['id']:x for x in items if live(x)}
     out=[]
@@ -47,6 +55,8 @@ def build_stories(items,copies,document,write):
         share_url=os.getenv('URL','https://sho-support.github.io/ai-trend-blog').rstrip('/')+'/'+path.removesuffix('.html')+'?utm_source=x&utm_medium=social&utm_campaign=reader_share'
         body+='<p><a class="text-link" data-story-share href="https://twitter.com/intent/tweet?'+e(urlencode({'text':s['title'],'url':share_url}),quote=True)+'" target="_blank" rel="noopener noreferrer">この記事をXでシェア ↗</a> · <a href="./">商品紹介ブログ一覧</a></p>'
         body+='<section><h2>確認した情報源</h2><ul>'+''.join('<li><a href="'+e(u,quote=True)+'" target="_blank" rel="noopener noreferrer">'+e(t)+'</a></li>' for t,u in s['sources'])+'</ul></section>'
+        if s['slug']=='tent-first-buying-guide':
+            body+='<p class="story-detail-link"><a href="../tents.html">テント・日よけの写真、口コミ点数、価格を比較する →</a></p>'
         # A live product block supplies the exact seller link and the standard expiry guard.
         body+='<p><a href="../dumbbells.html">4商品の写真・口コミ・価格を比較する →</a></p>' if s['slug']=='adjustable-dumbbells-how-to-choose' else ''
         body+='<section><h2>掲載商品の価格・販売条件</h2>'+ (cards([v for v in by_id.values() if v.get('kind')=='dumbbells'] if s['slug']=='adjustable-dumbbells-how-to-choose' else [x],copies).replace('href="items/','href="../items/') if x else '<p>現在、販売情報を確認できません。最新情報は公式の商品ページでご確認ください。</p>')+'</section><p><a href="../">ジャンルからほかの商品を探す →</a></p></article>'
