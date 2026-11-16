@@ -47,8 +47,10 @@
 - Metricool brand7401771はSNS接続なしとの応答を確認。Pinterestは未接続・未投稿。接続先 https://app.metricool.com/brands/connections?blogId=7401771 。ユーザーに接続を依頼済みとして扱い、毎日の同じ依頼はしない。既存Pinterestアカウント/ボードが接続され正しいモノより用途と確認できたらこの原稿を使い、公開済みツールを検証後に初回投稿。アカウント新規登録/規約同意/架空ボードIDはしない。
 - 接続後は火木土の配信作業にPinterestも含める。X本文をそのまま複製せず、独自の縦長画像と用途別タイトル/説明を作りUTM流入を区別する。同じPin大量反復は禁止。投稿先未接続を投稿成功扱いしない。
 
-## 接続経路の訂正（2026-11-16、上記Metricool案内より優先）
-- 既存Buffer APIを実行して確認: growth/buffer-connection-check.json。モノよりX本人性確認成功、同じorganizationの接続2件、Pinterest0件。登録歴そのものは不明。
-- Metricoolの新規登録・接続は不要。既存Bufferを優先する。公式接続入口 https://publish.buffer.com/settings/channels 。Pinterestを本人のアカウントで接続し、正しいボードを確認する。新規費用や無料トライアル開始はしない。
-- 初回Pinterest素材は従来の growth/pinterest-launch.json / growth/social-assets/unit-price-pinterest.png を活用。ただしmanifest中のbrand_id7401771はMetricool用参考値で投稿先に使わない。接続後に実在するBuffer channel_idとboard_idを取得し、新しいBuffer用manifestを作る。IDを推測しない。
-- 単価比較ツールのSNSプレビューと保存用画像は上記縦長PNGに統一。比較ツールの正常性と検索通知を継続維持。
+## 最新のPinterest運用経路（2026-11-16、前のMetricool案より優先）
+- API読取確認: growth/buffer-connection-check.json。既存Buffer接続2件、Pinterest0件。登録歴そのものは不明。
+- Metricool新規登録不要。既存Bufferを優先し、本人が https://publish.buffer.com/settings/channels でPinterestを接続。正しいアカウント/ボード確認後に配信。新規費用/トライアルなし。
+- 初回単価比較素材: growth/pinterest-launch.json と growth/social-assets/unit-price-pinterest.png。manifest内のMetricool brand_idはBuffer宛先に使わず、実在Buffer channel_id/board_idを取得した専用manifestへ移す。
+- 手土産紹介の追加原稿/縦長画像: growth/pinterest-buffer-queue.json と growth/social-assets/gift-check-pinterest.png。未投稿。接続後、重複/鮮度を確認して配信する。
+- 公開ツール /products/tools/unit-price のSNSプレビューと保存用画像は縦長図解へ更新済み。2026-11-16公開workflow43884270698成功。
+- 接続未完了の同じ依頼を毎日繰り返さない。
