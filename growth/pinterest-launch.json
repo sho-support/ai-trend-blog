@@ -1,0 +1,20 @@
+{
+  "campaign_id": "monoyori_pinterest_unit_price_20261116",
+  "status": "prepared_connection_required",
+  "network": "pinterest",
+  "brand_id": "7401771",
+  "board_id": null,
+  "title": "箱買いは本当に安い？送料込みの1本・1個単価を比較",
+  "description": "[PR] 飲料・お菓子・日用品のまとめ買いに。商品代、送料、使える値引きと個数を入力して2つの候補を比較できる無料ツールです。図の金額は計算例で、現在の販売価格ではありません。同じ容量・品質の候補で比べてください。",
+  "image_url": "https://raw.githubusercontent.com/sho-support/ai-trend-blog/main/growth/social-assets/unit-price-pinterest.png",
+  "image_source": "monoyori_original_editorial",
+  "image_authorized": true,
+  "alt_text": "送料込み単価の計算例。24個1440円は1個60円、48個2640円は1個55円。現在の販売価格ではありません。",
+  "destination_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price?utm_source=pinterest&utm_medium=social&utm_campaign=unit_price_20261116",
+  "publish_requires": [
+    "connected verified Pinterest account and board",
+    "public destination HTTP200 and working calculator",
+    "no earlier matching campaign receipt",
+    "image asset and publication receipt verified"
+  ]
+}

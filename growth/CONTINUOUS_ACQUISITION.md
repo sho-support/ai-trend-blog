@@ -40,3 +40,9 @@
 - 2026-11-16: ダンベル記事。growth/story-launch-receipt.json。https://x.com/monoyori_sale/status/2122018958630900092
 - 2026-11-16: 炭酸水記事・自作単価図。growth/water-launch-receipt.json。https://x.com/monoyori_sale/status/2122264267973861606
 両方の同日再送は禁止。
+
+## 2026-11-16 追加: Pinterestと比較ツール
+- 単価比較ツール /products/tools/unit-price。商品代+送料-適用可能値引き、個数、同条件比較。商品一覧と全紹介記事からリンク。Pinterest保存ボタン付き。
+- Pinterest用オリジナル縦長図解と初回投稿原稿: growth/pinterest-launch.json、growth/social-assets/unit-price-pinterest.png。
+- Metricool brand7401771はSNS接続なしとの応答を確認。Pinterestは未接続・未投稿。接続先 https://app.metricool.com/brands/connections?blogId=7401771 。ユーザーに接続を依頼済みとして扱い、毎日の同じ依頼はしない。既存Pinterestアカウント/ボードが接続され正しいモノより用途と確認できたらこの原稿を使い、公開済みツールを検証後に初回投稿。アカウント新規登録/規約同意/架空ボードIDはしない。
+- 接続後は火木土の配信作業にPinterestも含める。X本文をそのまま複製せず、独自の縦長画像と用途別タイトル/説明を作りUTM流入を区別する。同じPin大量反復は禁止。投稿先未接続を投稿成功扱いしない。
