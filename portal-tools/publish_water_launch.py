@@ -1,0 +1,51 @@
+"""One reviewed photo post to the existing Monoyori X account, no write retry."""
+import json
+import os
+import time
+from pathlib import Path
+from datetime import datetime,timezone
+from urllib.request import urlopen
+from publish_product_launch import graphql_client,target_organization,find_post,FIELDS,CHANNEL_ID
+
+ROOT=Path(__file__).resolve().parents[1]
+OUT=ROOT/'growth/water-launch-receipt.json'
+
+def save(value):
+    OUT.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n')
+
+def main():
+    request=json.loads((ROOT/'growth/water-launch.json').read_text())
+    expected='https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/sparkling-water-case-cost'
+    if request['article_url']!=expected or request['channel_id']!=CHANNEL_ID or '[PR]' not in request['text']:
+        raise SystemExit('Unexpected destination or missing disclosure')
+    if request['image_source']!='monoyori_original_editorial' or request['image_url']!='https://raw.githubusercontent.com/sho-support/ai-trend-blog/main/growth/social-assets/water-unit-cost.png' or request['image_authorized'] is not True:
+        raise SystemExit('Use only the original editorial comparison graphic')
+    if datetime.fromisoformat(request['expires_at'])<=datetime.now(timezone.utc):
+        raise SystemExit('Reviewed notice expired')
+    proof=json.loads(Path(os.environ['STORY_PUBLIC_PROOF']).read_text())
+    age=time.time()-proof.get('checked_at',0)
+    body=proof.get('html','')
+    if proof.get('url')!=expected or proof.get('status')!=200 or not 0<=age<300 or 'review-mode.js' in body or 'data-buy=' not in body or 'まずは1本あたりで比較する' not in body:
+        raise SystemExit('The actual article and purchase route must be freshly verified by the public browser')
+    # History is checked before the only mutation. A persisted ambiguous claim
+    # must be reconciled, never automatically repeated.
+    call=graphql_client(os.environ['BUFFER_API_KEY'])
+    org=target_organization(call)
+    prior=find_post(call,org,{'url':request['article_url'],'created_at':request['created_at']})
+    if prior:
+        save({'campaign_id':request['campaign_id'],'outcome':'existing','post':prior});print(json.dumps(prior));return
+    if OUT.exists():raise SystemExit('Earlier attempt recorded; reconcile before retrying')
+    save({'campaign_id':request['campaign_id'],'outcome':'attempt_started'})
+    payload={'input':{'text':request['text'],'channelId':CHANNEL_ID,'schedulingType':'automatic','mode':'shareNow','aiAssisted':True,'assets':[{'image':{'url':request['image_url'],'metadata':{'altText':'炭酸水の送料込み単価の計算例。24本1440円は1本60円、48本2640円は1本55円。現在の販売価格ではありません。'}}}],'needsApproval':False}}
+    result=call('mutation($input:CreatePostInput!) { createPost(input:$input) { ... on PostActionSuccess { post { '+FIELDS+' } } ... on MutationError { message } } }',payload)
+    post=result.get('createPost',{}).get('post')
+    if not post or post.get('channelId')!=CHANNEL_ID:raise SystemExit('Post creation not confirmed; do not retry automatically')
+    save({'campaign_id':request['campaign_id'],'outcome':'accepted','post':post})
+    for _ in range(4):
+        if post.get('status')=='sent' and post.get('externalLink') and post.get('assets'):break
+        time.sleep(8)
+        post=find_post(call,org,{'url':request['article_url'],'created_at':request['created_at']}) or post
+    receipt={'campaign_id':request['campaign_id'],'outcome':'published' if post.get('status')=='sent' and post.get('externalLink') and post.get('assets') else 'accepted_only','post':post}
+    save(receipt);print(json.dumps(receipt,ensure_ascii=False))
+
+if __name__=='__main__':main()
