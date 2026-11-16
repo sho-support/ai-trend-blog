@@ -159,6 +159,7 @@ def products():
     priority=['food','home','daily','appliances','mobile','beauty','gaming','bags']
     departments=sorted(DEPARTMENTS,key=lambda d:priority.index(d['key']) if d['key'] in priority else len(priority))
     body='<section class="shopping-start"><p class="eyebrow">MONOYORI / SHOP BY INTEREST</p><h1>気になるジャンルから、いい買い物へ。</h1><p>おやつ・手土産、暮らしの道具、毎日の便利グッズ。写真から探して、買う前の疑問を確かめよう。</p>'+search_form()+'</section><section id="departments"><div class="section-heading"><h2>今日は何を探しますか？</h2><span class="ad-label">PR</span></div>'+category_cards(departments,items=items,copies=copies)+'</section>'
+    body+='<p class="story-detail-link"><a href="tools/unit-price.html">送料込みで比べる：1本・1個あたりの単価計算ツール →</a></p>'
     from product_stories import story_index
     body+='<p><a class="text-link" href="stories/">商品紹介ブログ・比較ガイド一覧 →</a></p>'+story_index(items,copies)
     picks=[]
@@ -237,6 +238,8 @@ def products():
     write('portal-assets/catalog-taxonomy.json',json.dumps(taxonomy,ensure_ascii=False,indent=2)+'\n')
     from product_stories import build_stories
     inventory+=build_stories(items,copies,document,write)
+    from unit_price_tool import build_unit_tool
+    inventory+=build_unit_tool(document,write)
     return inventory
 
 
