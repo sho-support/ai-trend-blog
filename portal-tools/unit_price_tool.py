@@ -25,7 +25,7 @@ BODY = r'''
 <div class="unit-result" id="result-b"></div></section>
 </div><p class="unit-verdict" id="unit-verdict" role="status" aria-live="polite"></p>
 <div class="unit-actions"><button type="reset">計算例に戻す</button>
-<a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fsho-monoyori-review.zodiac-suu.workers.dev%2Fproducts%2Ftools%2Funit-price&amp;media=https%3A%2F%2Fraw.githubusercontent.com%2Fsho-support%2Fai-trend-blog%2Fmain%2Fgrowth%2Fsocial-assets%2Fwater-unit-cost.png&amp;description=%E9%80%81%E6%96%99%E8%BE%BC%E3%81%BF%E5%8D%98%E4%BE%A1%E3%82%92%E6%AF%94%E8%BC%83%EF%BD%9C%E3%83%A2%E3%83%8E%E3%82%88%E3%82%8A" target="_blank" rel="noopener noreferrer">Pinterestに計算ツールを保存 ↗</a></div>
+<a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fsho-monoyori-review.zodiac-suu.workers.dev%2Fproducts%2Ftools%2Funit-price&amp;media=https%3A%2F%2Fraw.githubusercontent.com%2Fsho-support%2Fai-trend-blog%2Fmain%2Fgrowth%2Fsocial-assets%2Funit-price-pinterest.png&amp;description=%E9%80%81%E6%96%99%E8%BE%BC%E3%81%BF%E5%8D%98%E4%BE%A1%E3%82%92%E6%AF%94%E8%BC%83%EF%BD%9C%E3%83%A2%E3%83%8E%E3%82%88%E3%82%8A" target="_blank" rel="noopener noreferrer">Pinterestに計算ツールを保存 ↗</a></div>
 </form>
 <noscript><p>入力して比較するにはJavaScriptを有効にしてください。計算式：商品代＋送料−適用できる値引き。その総額を本数・個数で割ります。</p></noscript>
 <details open><summary>同じ条件で比べるための確認点</summary><ul><li>500mlと1Lなど容量の違う商品は、1本単価だけでは比較できません。同じ容量に揃えてください。</li><li>セット数ではなく、実際の合計本数・個数を入力してください。</li><li>クーポンは対象商品・最低購入額・利用上限を確認し、使えるものだけ入力します。</li><li>ポイントは付与条件や期限があるため、支払総額から自動で差し引きません。</li><li>小数点以下2桁の表示は四捨五入。比較は丸める前の値を使います。</li></ul></details>
@@ -44,5 +44,5 @@ form.addEventListener('submit',e=>e.preventDefault());form.addEventListener('inp
 '''
 def build_unit_tool(document,write):
     path='products/tools/unit-price.html'
-    write(path,document('送料込み単価比較｜1本・1個あたりの価格計算｜モノより',path,BODY,depth=2,description='商品代・送料・クーポン・本数を入力して支払総額と1本・1個単価を無料で比較。炭酸水や日用品のまとめ買いに。'))
+    write(path,document('送料込み単価比較｜1本・1個あたりの価格計算｜モノより',path,BODY,depth=2,description='商品代・送料・クーポン・本数を入力して支払総額と1本・1個単価を無料で比較。炭酸水や日用品のまとめ買いに。',image_url='https://raw.githubusercontent.com/sho-support/ai-trend-blog/main/growth/social-assets/unit-price-pinterest.png'))
     return [inventory_entry(path,BODY)]
