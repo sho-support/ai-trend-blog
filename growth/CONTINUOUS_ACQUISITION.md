@@ -46,3 +46,9 @@
 - Pinterest用オリジナル縦長図解と初回投稿原稿: growth/pinterest-launch.json、growth/social-assets/unit-price-pinterest.png。
 - Metricool brand7401771はSNS接続なしとの応答を確認。Pinterestは未接続・未投稿。接続先 https://app.metricool.com/brands/connections?blogId=7401771 。ユーザーに接続を依頼済みとして扱い、毎日の同じ依頼はしない。既存Pinterestアカウント/ボードが接続され正しいモノより用途と確認できたらこの原稿を使い、公開済みツールを検証後に初回投稿。アカウント新規登録/規約同意/架空ボードIDはしない。
 - 接続後は火木土の配信作業にPinterestも含める。X本文をそのまま複製せず、独自の縦長画像と用途別タイトル/説明を作りUTM流入を区別する。同じPin大量反復は禁止。投稿先未接続を投稿成功扱いしない。
+
+## 接続経路の訂正（2026-11-16、上記Metricool案内より優先）
+- 既存Buffer APIを実行して確認: growth/buffer-connection-check.json。モノよりX本人性確認成功、同じorganizationの接続2件、Pinterest0件。登録歴そのものは不明。
+- Metricoolの新規登録・接続は不要。既存Bufferを優先する。公式接続入口 https://publish.buffer.com/settings/channels 。Pinterestを本人のアカウントで接続し、正しいボードを確認する。新規費用や無料トライアル開始はしない。
+- 初回Pinterest素材は従来の growth/pinterest-launch.json / growth/social-assets/unit-price-pinterest.png を活用。ただしmanifest中のbrand_id7401771はMetricool用参考値で投稿先に使わない。接続後に実在するBuffer channel_idとboard_idを取得し、新しいBuffer用manifestを作る。IDを推測しない。
+- 単価比較ツールのSNSプレビューと保存用画像は上記縦長PNGに統一。比較ツールの正常性と検索通知を継続維持。
