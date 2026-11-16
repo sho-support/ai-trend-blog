@@ -1,0 +1,24 @@
+{
+  "status": "prepared_connection_required",
+  "provider": "buffer",
+  "channel_id": null,
+  "board_id": null,
+  "source_checked": "2026-11-16",
+  "posts": [
+    {
+      "campaign_id": "monoyori_pinterest_gift_check_20261116",
+      "title": "職場に配るお菓子｜人数・個包装・配送の3チェック",
+      "text": "[PR] お菓子の手土産を選ぶ前に、人数と個数、個包装と種類の内訳、配送日を確認。ヨックモックの詰め合わせを例に、買う前に比べたい条件をまとめました。実食レビューではありません。",
+      "image_url": "https://raw.githubusercontent.com/sho-support/ai-trend-blog/main/growth/social-assets/gift-check-pinterest.png",
+      "image_source": "monoyori_original_editorial",
+      "destination_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/yokumoku-delices-gift?utm_source=pinterest&utm_medium=social&utm_campaign=gift_check_20261116",
+      "alt_text": "職場に配るお菓子の確認点。人数と個数、個包装と内訳、配送と持ち運びの3項目。"
+    }
+  ],
+  "publish_requirements": [
+    "verified connected Monoyori Pinterest channel and real board id",
+    "fresh public article and image verification",
+    "receipt and history deduplication",
+    "one send and publication confirmation"
+  ]
+}
