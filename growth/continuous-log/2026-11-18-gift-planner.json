@@ -1,0 +1,17 @@
+{
+  "date": "2026-11-18",
+  "work": "Added reusable gift quantity and per-person budget planner",
+  "url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/gift-quantity",
+  "linked_from": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/yokumoku-delices-gift",
+  "source_commit": "d47aedbf808162d809dad3d9a7ad86a55615a2ef",
+  "deployment_run": 44129603727,
+  "verified": [
+    "25 people times 2 treats from 40-piece boxes => 2 boxes and 30 spare pieces",
+    "Zero people rejected",
+    "Existing unit cost boundary regressions passed",
+    "Public HTTP200 canonical and crawling checks passed"
+  ],
+  "distribution": "No X post attempted in this change; reconcile last actual channel post and 24h guard before promotion. Pinterest remains connection dependent.",
+  "metrics": "Traffic and confirmed commissions not measured in this change.",
+  "next": "Use this tool in original gift-shopping editorial and later social promotion; preserve truthful sourcing and avoid thin duplicated product pages."
+}
