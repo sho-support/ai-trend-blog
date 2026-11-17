@@ -1,0 +1,67 @@
+{
+  "date_jst": "2026-11-18",
+  "outcome": "substantive_existing_article_improvement",
+  "source_commit": "293818f656e8418ee75224c2cbaab628790fae5e",
+  "article_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/sparkling-water-case-cost",
+  "changes": [
+    "Added shelf-life and consumption-rate comparison: 48 days at one bottle/day versus 96 days at one bottle/every two days; seller dispatch guarantee is at least 60 days remaining, not six months after arrival.",
+    "Added source-dated, explicitly partial buyer-review summary about label disposal and mixer use; no invented tasting or frequency claims.",
+    "Added seller FAQ-based delivery/receipt planning; replaced inaccessible manufacturer detail source with accessible official seller FAQ."
+  ],
+  "primary_sources": [
+    {
+      "url": "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/",
+      "checked": "2026-11-18"
+    },
+    {
+      "url": "https://www.rakuten.ne.jp/gold/lifedrinkcompany/faq.html",
+      "checked": "2026-11-18"
+    }
+  ],
+  "new_articles": 0,
+  "improved_articles": 1,
+  "feed_refresh": {
+    "run": 44148966441,
+    "conclusion": "success"
+  },
+  "first_deployment": {
+    "run": 44195548748,
+    "conclusion": "success"
+  },
+  "dedicated_article_qa": {
+    "run": 44195638647,
+    "status": "completed",
+    "conclusion": "success",
+    "checked_at": "2026-11-18T08:13:20+09:00",
+    "article_http": 200,
+    "canonical_correct": true,
+    "widths": [
+      390,
+      1440
+    ],
+    "cover_loaded": true,
+    "purchase_links": 12,
+    "no_horizontal_overflow": true,
+    "calculator_boundaries": "passed; shipping/coupons/zero/empty/equality and gift quantity regressions",
+    "notes": "QA traffic excluded with ?qa=1; acceptance is not proof of new readers."
+  },
+  "distribution": {
+    "new_x_posts": 0,
+    "last_sent_at": "2026-11-17T12:38:04.739Z",
+    "last_post": "https://twitter.com/monoyori_sale/status/2122670605971394793",
+    "reason": "Wednesday editorial run and latest confirmed channel post remains less than 24 hours old. No API mutation attempted.",
+    "pinterest": "Last verified report has no Pinterest channel; no connection request repeated."
+  },
+  "measurement": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null,
+    "note": "Not obtained; QA visits and IndexNow acceptance are not acquisition results."
+  },
+  "next": [
+    "Thursday distribution: prioritize unpublished tent guide after fresh public/Buffer-history/receipt reconciliation; enforce 24h and maximum one daily post.",
+    "Continue substantive food/gift/everyday-item research rather than thin article volume."
+  ],
+  "notification": "none"
+}
