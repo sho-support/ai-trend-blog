@@ -58,6 +58,8 @@ def build_stories(items,copies,document,write):
         if s['slug']=='tent-first-buying-guide':
             body+='<p class="story-detail-link"><a href="../tents.html">テント・日よけの写真、口コミ点数、価格を比較する →</a></p>'
         body+='<p class="story-detail-link"><a href="../tools/unit-price.html">送料・値引き込みの1個単価を計算して比較する →</a></p>'
+        if s['slug']=='yokumoku-delices-gift':
+            body+='<p class="story-detail-link"><a href="../tools/gift-quantity.html">何箱必要？人数・個数・送料込み予算を計算する →</a></p>'
         # A live product block supplies the exact seller link and the standard expiry guard.
         body+='<p><a href="../dumbbells.html">4商品の写真・口コミ・価格を比較する →</a></p>' if s['slug']=='adjustable-dumbbells-how-to-choose' else ''
         body+='<section><h2>掲載商品の価格・販売条件</h2>'+ (cards([v for v in by_id.values() if v.get('kind')=='dumbbells'] if s['slug']=='adjustable-dumbbells-how-to-choose' else [x],copies).replace('href="items/','href="../items/') if x else '<p>現在、販売情報を確認できません。最新情報は公式の商品ページでご確認ください。</p>')+'</section><p><a href="../">ジャンルからほかの商品を探す →</a></p></article>'

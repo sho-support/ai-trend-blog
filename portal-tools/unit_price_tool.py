@@ -42,7 +42,30 @@ function draw(){const a=option('a'),b=option('b');for(const [prefix,v] of [['a',
 form.addEventListener('submit',e=>e.preventDefault());form.addEventListener('input',draw);form.addEventListener('reset',()=>setTimeout(draw,0));draw();})();
 </script>
 '''
-def build_unit_tool(document,write):
+def build_original_unit_tool(document,write):
     path='products/tools/unit-price.html'
     write(path,document('送料込み単価比較｜1本・1個あたりの価格計算｜モノより',path,BODY,depth=2,description='商品代・送料・クーポン・本数を入力して支払総額と1本・1個単価を無料で比較。炭酸水や日用品のまとめ買いに。',image_url='https://raw.githubusercontent.com/sho-support/ai-trend-blog/main/growth/social-assets/unit-price-pinterest.png'))
     return [inventory_entry(path,BODY)]
+
+GIFT_BODY = r'''
+<article class="unit-tool"><p class="eyebrow">MONOYORI / GIFT PLANNER</p><h1>配るお菓子は何箱必要？人数・個数・予算の計算</h1>
+<p>職場への差し入れや退職の挨拶に。人数、1人に渡す個数、1箱の個数から必要な箱数と余りを計算します。初期値は計算例で、特定商品の価格ではありません。</p>
+<form id="gift-form" class="unit-option">
+<label>渡す人数<input id="people" type="number" min="1" max="10000" step="1" required value="20"></label>
+<label>1人に渡す個数<input id="each" type="number" min="1" max="1000" step="1" required value="2"></label>
+<label>予備の個数<input id="spare" type="number" min="0" max="10000" step="1" required value="0"></label>
+<label>1箱に入っている個数<input id="pack" type="number" min="1" max="100000" step="1" required value="40"></label>
+<label>1箱の価格（税込・円）<input id="price" type="number" min="0" max="10000000" step="1" required value="4000"></label>
+<label>注文全体の送料（税込・円）<input id="shipping" type="number" min="0" max="10000000" step="1" required value="0"></label>
+<p id="gift-result" role="status" aria-live="polite" class="unit-result"></p><button type="reset">計算例に戻す</button></form>
+<h2>箱数が決まったら、次の条件を確認</h2><ul><li>個包装でも、種類ごとの数量は均等とは限りません。同じ種類を全員に渡したい場合は内訳で確認。</li><li>箱全体ではなく、分けたあとの個包装に必要な表示があるか確認。</li><li>到着日、賞味期限、保管方法、手提げ袋の有無も購入条件に含める。</li><li>送料は箱ごとではなく注文全体の確定額を入力。複数箱で送料が変わる場合は注文画面で確認。</li></ul>
+<h2>計算式と例</h2><p>必要個数＝人数×1人分＋予備。必要箱数＝必要個数÷1箱の個数を切り上げ。例えば25人に2個ずつ、40個入りなら2箱で、予備指定なしの場合30個余ります。この計算は味や品質の順位付けではありません。</p>
+<p><a href="../stories/yokumoku-delices-gift">個包装のお菓子を選ぶ：詰め合わせの確認ポイント →</a></p><p><a href="unit-price">送料・クーポン込みの単価を2候補で比較 →</a></p><p><a href="../">写真と口コミから商品を探す →</a></p></article>
+<script>(()=>{const ids=['people','each','spare','pack','price','shipping'],form=document.getElementById('gift-form'),out=document.getElementById('gift-result');function draw(){const inputs=ids.map(id=>document.getElementById(id));if(inputs.some(x=>x.value.trim()===''||!x.validity.valid)){out.textContent='入力を確認してください。人数・1人分・箱の個数は1以上です。';return;}const [p,e,s,n,c,f]=inputs.map(x=>Number(x.value)),needed=p*e+s,boxes=Math.ceil(needed/n),total=boxes*c+f;out.textContent='必要 '+boxes.toLocaleString('ja-JP')+'箱 / 合計 '+(boxes*n).toLocaleString('ja-JP')+'個 / 配布と指定予備を除く余り '+(boxes*n-needed).toLocaleString('ja-JP')+'個 / 支払総額 '+total.toLocaleString('ja-JP')+'円 / 1人あたり '+(total/p).toFixed(2)+'円';}form.addEventListener('input',draw);form.addEventListener('submit',e=>e.preventDefault());form.addEventListener('reset',()=>setTimeout(draw,0));draw();})();</script>
+'''
+def build_unit_tool(document,write):
+    rows=build_original_unit_tool(document,write)
+    path='products/tools/gift-quantity.html'
+    style=BODY[BODY.index('<style>'):BODY.index('</style>')+8]
+    write(path,document('配るお菓子の必要箱数・人数・予算計算｜モノより',path,style+GIFT_BODY,depth=2,description='差し入れや手土産のお菓子は何箱必要？人数と個数から箱数、余り、送料込み総額、1人予算を無料計算。'))
+    return rows+[inventory_entry(path,GIFT_BODY)]
