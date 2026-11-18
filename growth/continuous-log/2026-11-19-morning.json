@@ -1,0 +1,59 @@
+{
+  "date_jst": "2026-11-19",
+  "session": "morning",
+  "outcome": "published_first_tent_guide_introduction",
+  "completed": [
+    "Read continuous acquisition instructions, current pinned source, Pinterest launch manifest, dated logs and previous sent receipts.",
+    "Confirmed product-feed refresh and public deployment succeeded; did not replace pinned source with main templates.",
+    "Created and visually inspected an original 1200x900 tent-selection diagram; no merchant photo or generated product photograph used.",
+    "Fresh Chromium public verification passed at 390px/1440px: article HTTP200, canonical, loaded cover, purchase links, relevant text and no horizontal overflow. Original SNS image HTTP200 image/png verified.",
+    "Unit-price default 55.00 and zero quantity rejection checked before distribution.",
+    "Queried complete live Buffer sent-history using status sent and dueAt date range; reconciled latest durable receipt, enforced 24h, JST one-per-day and 14-day URL restrictions.",
+    "Persisted attempt_started to GitHub before the only post mutation; actual delivery confirmed sent, externalLink and image/png."
+  ],
+  "source_ref": "293818f656e8418ee75224c2cbaab628790fae5e",
+  "health": {
+    "feed_refresh_run": 44365186465,
+    "public_deployment_run": 44371588055,
+    "conclusion": "success"
+  },
+  "campaign_manifest": "growth/tent-launch-20261119.json",
+  "receipt": "growth/tent-launch-20261119-receipt.json",
+  "workflow_run": 44417955542,
+  "article_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/tent-first-buying-guide",
+  "post": {
+    "id": "6afe319ea588bd6687a3cf0b",
+    "text": "[PR] そのテント、泊まる用？\n日よけと宿泊用を分け、人数・マットの寸法・必要品込みの総額を確認。\n初心者向けの購入判断ガイド↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/tent-first-buying-guide?utm_source=x&utm_medium=social&utm_campaign=tent_20261119\n#テント #キャンプ",
+    "status": "sent",
+    "dueAt": "2026-11-18T23:15:42.925Z",
+    "sentAt": "2026-11-18T23:15:44.002Z",
+    "externalLink": "https://twitter.com/monoyori_sale/status/2123193465060176249",
+    "channelId": "6aec855be29c69a1716f545b",
+    "assets": [
+      {
+        "id": null,
+        "mimeType": "image/png"
+      }
+    ]
+  },
+  "new_articles": 0,
+  "new_x_posts": 1,
+  "pinterest": {
+    "status": "not_posted",
+    "reason": "Latest verified connection report remains Pinterest0; no verified connected account/board, no repeated connection request."
+  },
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null,
+    "note": "No new acquisition or revenue measurement obtained. QA and publication are not traffic gains."
+  },
+  "unresolved": [],
+  "next": [
+    "Evening: no additional X post today; preserve receipt and reconcile delivery instead of resending.",
+    "Friday: research food/gift/everyday convenience buyer questions using at least two primary sources, or substantively improve existing article.",
+    "Sunday: compare only actually acquired traffic/conversion/commission measurements."
+  ],
+  "notification": "none"
+}
