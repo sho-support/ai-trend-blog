@@ -28,8 +28,8 @@ jobs:
           python - <<'PY'
           import os,json
           from pathlib import Path
-          from datetime import datetime,timezone
-          from publish_product_launch import graphql_client,target_organization
+          from datetime import datetime,timezone,timedelta
+          from publish_product_launch import graphql_client,target_organization,FIELDS,CHANNEL_ID
           call=graphql_client(os.environ['BUFFER_API_KEY'])
           org=target_organization(call)
           data=call('query($id:OrganizationId!) { channels(input:{organizationId:$id}) { service isDisconnected isLocked } }',{'id':org})
@@ -37,7 +37,17 @@ jobs:
           pins=[x for x in channels if x.get('service')=='pinterest']
           report={'checked_at':datetime.now(timezone.utc).isoformat(),'method':'existing_buffer_api_read_only','product_x_identity_verified':True,'total_channels':len(channels),'pinterest_channels':len(pins),'pinterest_available':any(not x.get('isDisconnected') and not x.get('isLocked') for x in pins),'account_registration_history':'unknown','mutation_performed':False}
           Path('growth/buffer-connection-check.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\\n'.replace('\\n','\n'))
-          print(json.dumps(report))
+          now=datetime.now(timezone.utc)
+          recent=call('query($input:PostsInput!) { posts(first:50,input:$input) { edges { node { '+FIELDS+' } } pageInfo { hasNextPage } } }',{'input':{'organizationId':org,'filter':{'channelIds':[CHANNEL_ID],'startDate':(now-timedelta(days=15)).isoformat()},'sort':[{'field':'createdAt','direction':'desc'}]}})
+          result=recent.get('posts',{})
+          posts=[e['node'] for e in result.get('edges',[])]
+          if any(p.get('channelId')!=CHANNEL_ID for p in posts):raise SystemExit('Unexpected channel in filtered history')
+          sent=[p for p in posts if p.get('status')=='sent' and p.get('sentAt')]
+          latest=max(sent,key=lambda p:p['sentAt']) if sent else None
+          elapsed=(now-datetime.fromisoformat(latest['sentAt'].replace('Z','+00:00'))).total_seconds() if latest else None
+          history={'checked_at':now.isoformat(),'channel_id':CHANNEL_ID,'method':'buffer_api_read_only','mutation_performed':False,'window_days':15,'complete':not result.get('pageInfo',{}).get('hasNextPage',True),'last_sent_at':latest.get('sentAt') if latest else None,'hours_since_last_sent':round(elapsed/3600,3) if elapsed is not None else None,'cooldown_active':elapsed<86400 if elapsed is not None else None,'posts':[{'id':p['id'],'status':p.get('status'),'sent_at':p.get('sentAt'),'external_link':p.get('externalLink'),'text':p.get('text'),'image_assets':len(p.get('assets') or [])} for p in posts]}
+          Path('growth/buffer-post-history.json').write_text(json.dumps(history,ensure_ascii=False,indent=2)+'\n')
+          print(json.dumps({'connection':report,'history_complete':history['complete'],'last_sent_at':history['last_sent_at'],'cooldown_active':history['cooldown_active']}))
           PY
       - name: Preserve connection check
         run: bash .github/scripts/safe-commit-push.sh 'Record read-only Buffer Pinterest availability'
