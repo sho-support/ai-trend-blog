@@ -38,14 +38,24 @@ jobs:
           report={'checked_at':datetime.now(timezone.utc).isoformat(),'method':'existing_buffer_api_read_only','product_x_identity_verified':True,'total_channels':len(channels),'pinterest_channels':len(pins),'pinterest_available':any(not x.get('isDisconnected') and not x.get('isLocked') for x in pins),'account_registration_history':'unknown','mutation_performed':False}
           Path('growth/buffer-connection-check.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\\n'.replace('\\n','\n'))
           now=datetime.now(timezone.utc)
-          recent=call('query($input:PostsInput!) { posts(first:50,input:$input) { edges { node { '+FIELDS+' } } pageInfo { hasNextPage } } }',{'input':{'organizationId':org,'filter':{'status':['sent'],'channelIds':[CHANNEL_ID],'startDate':(now-timedelta(days=15)).isoformat()},'sort':[{'field':'createdAt','direction':'desc'}]}})
+          recent=call('query($input:PostsInput!) { posts(first:50,input:$input) { edges { node { '+FIELDS+' } } pageInfo { hasNextPage } } }',{'input':{'organizationId':org,'filter':{'status':['sent'],'channelIds':[CHANNEL_ID],'dueAt':{'start':(now-timedelta(days=15)).isoformat()}},'sort':[{'field':'dueAt','direction':'desc'}]}})
           result=recent.get('posts',{})
           posts=[e['node'] for e in result.get('edges',[])]
           if any(p.get('channelId')!=CHANNEL_ID for p in posts):raise SystemExit('Unexpected channel in filtered history')
           sent=[p for p in posts if p.get('status')=='sent' and p.get('sentAt')]
           latest=max(sent,key=lambda p:p['sentAt']) if sent else None
           elapsed=(now-datetime.fromisoformat(latest['sentAt'].replace('Z','+00:00'))).total_seconds() if latest else None
-          history={'checked_at':now.isoformat(),'channel_id':CHANNEL_ID,'method':'buffer_api_read_only','mutation_performed':False,'window_days':15,'complete':not result.get('pageInfo',{}).get('hasNextPage',True),'last_sent_at':latest.get('sentAt') if latest else None,'hours_since_last_sent':round(elapsed/3600,3) if elapsed is not None else None,'cooldown_active':elapsed<86400 if elapsed is not None else None,'posts':[{'id':p['id'],'status':p.get('status'),'sent_at':p.get('sentAt'),'external_link':p.get('externalLink'),'text':p.get('text'),'image_assets':len(p.get('assets') or [])} for p in posts]}
+          receipts=[]
+          for path in (ROOT for ROOT in Path('growth').glob('*receipt*.json')):
+              try:
+                  receipt=json.loads(path.read_text());post=receipt.get('post') or {}
+                  if post.get('channelId')==CHANNEL_ID and post.get('status')=='sent' and post.get('sentAt'):receipts.append(post)
+              except (ValueError,OSError):pass
+          known=max(receipts,key=lambda p:p['sentAt']) if receipts else None
+          reconciled=not known or any(p['id']==known['id'] for p in sent)
+          effective=max(sent+receipts,key=lambda p:p['sentAt']) if sent+receipts else None
+          effective_elapsed=(now-datetime.fromisoformat(effective['sentAt'].replace('Z','+00:00'))).total_seconds() if effective else None
+          history={'checked_at':now.isoformat(),'channel_id':CHANNEL_ID,'method':'buffer_api_read_only','mutation_performed':False,'window_days':15,'complete':not result.get('pageInfo',{}).get('hasNextPage',True) and reconciled,'receipt_reconciled':reconciled,'effective_last_sent_at':effective.get('sentAt') if effective else None,'effective_cooldown_active':effective_elapsed<86400 if effective_elapsed is not None else None,'dispatch_blocked':not reconciled or effective_elapsed is None or effective_elapsed<86400,'last_sent_at':latest.get('sentAt') if latest else None,'hours_since_last_sent':round(elapsed/3600,3) if elapsed is not None else None,'cooldown_active':elapsed<86400 if elapsed is not None else None,'posts':[{'id':p['id'],'status':p.get('status'),'sent_at':p.get('sentAt'),'external_link':p.get('externalLink'),'text':p.get('text'),'image_assets':len(p.get('assets') or [])} for p in posts]}
           Path('growth/buffer-post-history.json').write_text(json.dumps(history,ensure_ascii=False,indent=2)+'\n')
           print(json.dumps({'connection':report,'history_complete':history['complete'],'last_sent_at':history['last_sent_at'],'cooldown_active':history['cooldown_active']}))
           PY
