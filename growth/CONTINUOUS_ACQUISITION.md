@@ -54,3 +54,8 @@
 - 手土産紹介の追加原稿/縦長画像: growth/pinterest-buffer-queue.json と growth/social-assets/gift-check-pinterest.png。未投稿。接続後、重複/鮮度を確認して配信する。
 - 公開ツール /products/tools/unit-price のSNSプレビューと保存用画像は縦長図解へ更新済み。2026-11-16公開workflow43884270698成功。
 - 接続未完了の同じ依頼を毎日繰り返さない。
+
+## 2026-11-18 投稿履歴の再照合
+- 読み取り専用チェックは growth/buffer-post-history.json に保存。送信済み取得は公式APIの status:[sent] と dueAt.start の組み合わせを使用。startDateだけの旧クエリでは既知の送信済み投稿が空配列となったため、空配列を「投稿なし」と判断しない。
+- complete / receipt_reconciled を確認し、最新receiptとAPIが一致しない場合は送信せず照合。effective_last_sent_at はAPIと既存receiptの最新を採用。過去receiptは削除しない。
+- 2026-11-18 20:06 JSTの照合で最新投稿は11月17日21:38 JST、直近24h制限内。Pinterestは引き続き0接続。これは当日全体の禁止ではなく照合時点の判定。

@@ -1,0 +1,116 @@
+{
+  "date_jst": "2026-11-18",
+  "session": "evening",
+  "checked_at_utc": "2026-11-18 11:07:09 UTC",
+  "outcome": "publication_health_verified_and_buffer_history_reconciliation_repaired",
+  "source_ref": "293818f656e8418ee75224c2cbaab628790fae5e",
+  "feed_refresh": {
+    "run": 44226493396,
+    "conclusion": "success"
+  },
+  "public_deployment": {
+    "run": 44229417027,
+    "conclusion": "success",
+    "checks": [
+      "unit-price and gift calculator boundary checks",
+      "public routes, canonical and purchase links",
+      "PC/mobile rendering"
+    ],
+    "note": "Existing deployment QA from today; no fresh browser test claimed in this evening run."
+  },
+  "editorial": "Morning's substantive two-source water article improvement retained. No duplicate article added.",
+  "completed": [
+    "Extended existing read-only Buffer check to save actual product channel sent-history and reconcile durable receipts.",
+    "Corrected history query to explicit sent status and dueAt date range; initial startDate query omitted known sent posts. Fixed query reconciled latest gift receipt and retrieved seven sent product-channel posts.",
+    "Added fail-closed dispatch metadata when history is incomplete, receipt missing from API or 24h cooldown active."
+  ],
+  "buffer_check_run": 44291540394,
+  "history": {
+    "checked_at": "2026-11-18T11:06:21.011962+00:00",
+    "channel_id": "6aec855be29c69a1716f545b",
+    "method": "buffer_api_read_only",
+    "mutation_performed": false,
+    "window_days": 15,
+    "complete": true,
+    "receipt_reconciled": true,
+    "effective_last_sent_at": "2026-11-17T12:38:04.739Z",
+    "effective_cooldown_active": true,
+    "dispatch_blocked": true,
+    "last_sent_at": "2026-11-17T12:38:04.739Z",
+    "hours_since_last_sent": 22.471,
+    "cooldown_active": true,
+    "posts": [
+      {
+        "id": "6afc4aabb7c36a6dabfc4ffc",
+        "status": "sent",
+        "sent_at": "2026-11-17T12:38:04.739Z",
+        "external_link": "https://x.com/2118159508677799936/status/2122670605971394793",
+        "text": "[PR] 職場に配るお菓子、箱の値段だけで選んでいませんか？\n人数と個数・個包装の内訳・配送日を確認。\nヨックモックの詰め合わせを例に、買う前の条件を整理しました↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/yokumoku-delices-gift?utm_source=x&utm_medium=social&utm_campaign=gift_20261117\n#手土産",
+        "image_assets": 1
+      },
+      {
+        "id": "6afad03c60a910801c8451a4",
+        "status": "sent",
+        "sent_at": "2026-11-16T09:43:26.365Z",
+        "external_link": "https://x.com/2118159508677799936/status/2122264267973861606",
+        "text": "[PR] 炭酸水は「送料込み÷本数」で比較。\n24本1,440円→1本60円\n48本2,640円→1本55円\n※金額は計算例。\nOZA SODAの箱買い前に、単価・置き場所・味を確認↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/sparkling-water-case-cost?utm_source=x&utm_medium=social&utm_campaign=water_guide_20261116\n#炭酸水",
+        "image_assets": 1
+      },
+      {
+        "id": "6af9ebc6e5a113497a015786",
+        "status": "sent",
+        "sent_at": "2026-11-15T17:28:39.820Z",
+        "external_link": "https://x.com/2118159508677799936/status/2122018958630900092",
+        "text": "[PR] 可変式ダンベル、安い順だけで選んでいませんか？\n重量・個数・交換方式と、4商品の口コミを整理しました。\n比較記事↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/adjustable-dumbbells-how-to-choose?utm_source=x&utm_medium=social&utm_campaign=dumbbell_20261116\n写真のONE STEPを楽天市場で確認↓\nhttps://a.r10.to/hRUojj\n#ダンベル #宅トレ",
+        "image_assets": 1
+      },
+      {
+        "id": "6aed227807f945cca9302b26",
+        "status": "sent",
+        "sent_at": "2026-11-06T00:42:34.464Z",
+        "external_link": "https://x.com/2118159508677799936/status/2118504277136003340",
+        "text": "【PR】OZA SODAのラベルレス強炭酸、48本で2,370円。\n500mlのプレーン。楽天で「48本」→「プレーン（ラベルレス）×2」を選択。\n楽天市場・LIFEDRINK直営店（11月6日確認／一部地域は送料別）\nhttps://a.r10.to/hFUWKM",
+        "image_assets": 1
+      },
+      {
+        "id": "6aed0a2c265cb90551e1569f",
+        "status": "sent",
+        "sent_at": "2026-11-05T22:58:53.534Z",
+        "external_link": "https://x.com/2118159508677799936/status/2118478184698065169",
+        "text": "【PR】JBLのサウンドバー Cinema SB580、29,700円。\nDolby Atmos対応。ワイヤレスのサブウーファーもセット。\n楽天市場・JBL公式ストア（税込／11月6日確認）\nhttps://a.r10.to/hXmYE8",
+        "image_assets": 1
+      },
+      {
+        "id": "6aeca7399b4d9c55762fc5f1",
+        "status": "sent",
+        "sent_at": "2026-11-05T15:56:43.736Z",
+        "external_link": "https://x.com/2118159508677799936/status/2118371943728468116",
+        "text": "【PR】Logicool G335、5,480円。\nPC・PS5・Switchに使える有線ヘッドセット。マイクを上げるとミュートに。\n楽天市場・ロジクール公式ストア\n（税込／11月5日確認。送料はリンク先で）\nhttps://a.r10.to/hPuUdX",
+        "image_assets": 1
+      },
+      {
+        "id": "6aec934801e9d82de81e9a72",
+        "status": "sent",
+        "sent_at": "2026-11-05T14:31:37.874Z",
+        "external_link": "https://x.com/2118159508677799936/status/2118350528241414391",
+        "text": "【PR】1〜2合だけ炊きたい日に。\nHARIOのガラスのレンジご飯釜。電子レンジで炊けて、食洗機にも対応。\n1,980円（税込・送料別／11月5日確認）\n公式ショップはこちら↓\nhttps://r.8to.jp/FAdpaRhdtNnV",
+        "image_assets": 1
+      }
+    ]
+  },
+  "distribution": {
+    "new_posts": 0,
+    "reason": "Latest actual API-confirmed post at 2026-11-17T12:38:04.739Z; only 22.47h elapsed at evening check, so 24h restriction still applies. No send attempted.",
+    "earliest_24h_release_jst": "2026-11-18T21:38:04.739+09:00",
+    "next_distribution": "Thursday execution: fresh API reconciliation and public proof before any new post."
+  },
+  "pinterest": "Fresh API check still finds zero Pinterest channels; no new connection request.",
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null
+  },
+  "unresolved": [],
+  "notification": "none"
+}
