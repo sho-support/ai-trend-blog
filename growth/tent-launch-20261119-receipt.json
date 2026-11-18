@@ -1,5 +1,19 @@
 {
   "campaign_id": "monoyori_tent_20261119",
-  "outcome": "attempt_started",
-  "started_at": "2026-11-18T23:15:41.161013+00:00"
+  "outcome": "published",
+  "post": {
+    "id": "6afe319ea588bd6687a3cf0b",
+    "text": "[PR] そのテント、泊まる用？\n日よけと宿泊用を分け、人数・マットの寸法・必要品込みの総額を確認。\n初心者向けの購入判断ガイド↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/tent-first-buying-guide?utm_source=x&utm_medium=social&utm_campaign=tent_20261119\n#テント #キャンプ",
+    "status": "sent",
+    "dueAt": "2026-11-18T23:15:42.925Z",
+    "sentAt": "2026-11-18T23:15:44.002Z",
+    "externalLink": "https://twitter.com/monoyori_sale/status/2123193465060176249",
+    "channelId": "6aec855be29c69a1716f545b",
+    "assets": [
+      {
+        "id": null,
+        "mimeType": "image/png"
+      }
+    ]
+  }
 }
