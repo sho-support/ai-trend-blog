@@ -1,0 +1,62 @@
+name: Publish tent guide once with original comparison diagram
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/monoyori-tent-launch-20261119.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: monoyori-reviewed-story-launch
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify the real public article with Chromium before any post
+        run: |
+          npm install --prefix /tmp/story-browser --no-save --package-lock=false --ignore-scripts playwright@1.56.1
+          /tmp/story-browser/node_modules/.bin/playwright install --with-deps chromium
+          NODE_PATH=/tmp/story-browser/node_modules node <<'JS'
+          const {chromium}=require('playwright');const fs=require('fs');
+          (async()=>{const browser=await chromium.launch();try{
+            const page=await browser.newPage();const base='https://sho-monoyori-review.zodiac-suu.workers.dev';
+            await page.goto(base+'/products/tools/unit-price?qa=1');if(!(await page.locator('#result-b').innerText()).includes('55.00'))throw Error('Calculator failed');
+            await page.locator('#b-count').fill('0');if(!(await page.locator('#unit-verdict').innerText()).includes('入力が揃う'))throw Error('Zero count not rejected');
+            const url=base+'/products/stories/tent-first-buying-guide';
+            for(const width of [390,1440]){await page.setViewportSize({width,height:1000});const response=await page.goto(url+'?qa=1');await page.waitForLoadState('networkidle');
+              const v=await page.evaluate(()=>({canonical:document.querySelector('link[rel="canonical"]')?.href,photo:[...document.querySelectorAll('.story-cover img')].some(x=>x.complete&&x.naturalWidth>0),buy:document.querySelectorAll('[data-buy]').length,overflow:document.documentElement.scrollWidth>innerWidth,text:document.querySelector('.product-story')?.innerText||'',blocked:!!document.querySelector('script[src*="review-mode"]')}));
+              if(response.status()!==200||v.canonical!==url||!v.photo||!v.buy||v.overflow||v.blocked||!v.text.includes('泊まる')||!v.text.includes('別売'))throw Error('Public article not ready');
+            }
+            const img=await page.goto('https://raw.githubusercontent.com/sho-support/ai-trend-blog/main/growth/social-assets/tent-check-20261119.png');
+            if(img.status()!==200||!img.headers()['content-type'].includes('image/png'))throw Error('Campaign image unavailable');
+            fs.writeFileSync('/tmp/story-proof.json',JSON.stringify({url,status:200,passed:true,checked_at:Date.now()/1000}));
+          }finally{await browser.close();}})().catch(e=>{console.error(e);process.exit(1)});
+          JS
+      - name: Publish the reviewed article once to the existing product X channel
+        env:
+          STORY_PUBLIC_PROOF: /tmp/story-proof.json
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python portal-tools/publish_tent_launch_20261119.py
+      - name: Preserve the actual attempt even when delivery is uncertain
+        if: always()
+        run: |
+          if test -f growth/tent-launch-20261119-receipt.json; then
+            bash .github/scripts/safe-commit-push.sh 'Record Monoyori article photo delivery result'
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: monoyori-tent-launch-20261119-receipt
+          path: growth/tent-launch-20261119-receipt.json
+          if-no-files-found: ignore
