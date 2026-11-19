@@ -1,18 +1,27 @@
 {
-  "checked_at": "2026-11-18T11:06:21.011962+00:00",
+  "checked_at": "2026-11-19T10:57:21.128942+00:00",
   "channel_id": "6aec855be29c69a1716f545b",
   "method": "buffer_api_read_only",
   "mutation_performed": false,
   "window_days": 15,
   "complete": true,
   "receipt_reconciled": true,
-  "effective_last_sent_at": "2026-11-17T12:38:04.739Z",
+  "effective_last_sent_at": "2026-11-18T23:15:44.002Z",
   "effective_cooldown_active": true,
+  "posted_today_jst": true,
   "dispatch_blocked": true,
-  "last_sent_at": "2026-11-17T12:38:04.739Z",
-  "hours_since_last_sent": 22.471,
+  "last_sent_at": "2026-11-18T23:15:44.002Z",
+  "hours_since_last_sent": 11.694,
   "cooldown_active": true,
   "posts": [
+    {
+      "id": "6afe319ea588bd6687a3cf0b",
+      "status": "sent",
+      "sent_at": "2026-11-18T23:15:44.002Z",
+      "external_link": "https://x.com/2118159508677799936/status/2123193465060176249",
+      "text": "[PR] そのテント、泊まる用？\n日よけと宿泊用を分け、人数・マットの寸法・必要品込みの総額を確認。\n初心者向けの購入判断ガイド↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/tent-first-buying-guide?utm_source=x&utm_medium=social&utm_campaign=tent_20261119\n#テント #キャンプ",
+      "image_assets": 1
+    },
     {
       "id": "6afc4aabb7c36a6dabfc4ffc",
       "status": "sent",
