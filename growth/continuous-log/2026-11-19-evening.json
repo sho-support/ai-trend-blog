@@ -1,0 +1,70 @@
+{
+  "date_jst": "2026-11-19",
+  "session": "evening",
+  "outcome": "sent_post_reconciled_no_second_post",
+  "completed": [
+    "Read current policy and Pinterest manifest, retained hosting pin 293818f656e8418ee75224c2cbaab628790fae5e.",
+    "Confirmed current product-feed refresh and isolated public deployment successful.",
+    "Ran existing Buffer read-only connection/history check and reconciled morning tent post with durable receipt; sent status, external link and one image asset confirmed.",
+    "Extended read-only dispatch report with explicit JST posted-today flag. Retained one-post-per-day and 24-hour restrictions."
+  ],
+  "health": {
+    "feed": [
+      {
+        "id": 44445095589,
+        "name": "Refresh Commerce Product Feed",
+        "conclusion": "success",
+        "status": "completed",
+        "created": "2026-11-19T02:32:43Z"
+      }
+    ],
+    "deployment": {
+      "id": 44447706015,
+      "name": "Publish live Monoyori portal",
+      "conclusion": "success",
+      "status": "completed",
+      "created": "2026-11-19T02:54:49Z"
+    },
+    "note": "Calculator, canonical/purchase-route and PC/mobile rendering verification passed in today's deployment; this evening did not perform another browser test."
+  },
+  "buffer": {
+    "run": 44510350995,
+    "checked_at": "2026-11-19T10:57:21.128942+00:00",
+    "complete": true,
+    "receipt_reconciled": true,
+    "latest_post": {
+      "id": "6afe319ea588bd6687a3cf0b",
+      "status": "sent",
+      "sent_at": "2026-11-18T23:15:44.002Z",
+      "external_link": "https://x.com/2118159508677799936/status/2123193465060176249",
+      "text": "[PR] そのテント、泊まる用？\n日よけと宿泊用を分け、人数・マットの寸法・必要品込みの総額を確認。\n初心者向けの購入判断ガイド↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/tent-first-buying-guide?utm_source=x&utm_medium=social&utm_campaign=tent_20261119\n#テント #キャンプ",
+      "image_assets": 1
+    },
+    "posted_today_jst": true,
+    "dispatch_blocked": true
+  },
+  "new_x_posts": 0,
+  "pinterest": {
+    "checked_at": "2026-11-19T10:57:21.128672+00:00",
+    "method": "existing_buffer_api_read_only",
+    "product_x_identity_verified": true,
+    "total_channels": 2,
+    "pinterest_channels": 0,
+    "pinterest_available": false,
+    "account_registration_history": "unknown",
+    "mutation_performed": false
+  },
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null
+  },
+  "unresolved": [],
+  "next": [
+    "Friday: prioritize a substantive food/gift/everyday-convenience buying guide backed by two primary sources, or improve an existing article.",
+    "Keep the morning tent campaign receipt; no retry or duplicate introduction.",
+    "Sunday: compare actual retrieved measurements separately from QA and publication counts."
+  ],
+  "notification": "none"
+}
