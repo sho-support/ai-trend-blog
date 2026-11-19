@@ -1,0 +1,105 @@
+{
+  "date_jst": "2026-11-20",
+  "session": "morning",
+  "outcome": "substantive_gift_article_improvement_published",
+  "new_articles": 0,
+  "improved_articles": 1,
+  "article_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/yokumoku-delices-gift",
+  "source_commit": "281876a02cebfcac1a7d33e164fbc52ff34d7f46",
+  "deployment_run": 44634775186,
+  "changes": [
+    "Expanded existing guide rather than producing a duplicate page: 25-piece/40-piece quantity, unit cost and 20-person comparison table.",
+    "Added exact 40-piece assortment and explained why 20 people cannot all receive one Cigare from one box containing six.",
+    "Clarified Rakuten seller versus brand-store shipping differences; their shipping conditions cannot be interchanged.",
+    "Added remaining shelf-life and paid paper-bag conditions, source-dated partial buyer-review summary, gift quantity calculator and related water article links.",
+    "Updated title/intro to answer concrete quantity and delivery questions; no fabricated tasting, discounts or review-frequency claims."
+  ],
+  "primary_sources": [
+    {
+      "url": "https://item.rakuten.co.jp/yokumoku/1010011309010/",
+      "checked": "2026-11-20"
+    },
+    {
+      "url": "https://yokumoku.co.jp/products/1010011309110",
+      "checked": "2026-11-20"
+    },
+    {
+      "url": "https://yokumoku.co.jp/products/1010011309100",
+      "checked": "2026-11-20"
+    }
+  ],
+  "arithmetic": {
+    "needed": 40,
+    "box25": {
+      "price": 2700,
+      "unit": 108,
+      "boxes": 2,
+      "total": 5400,
+      "spare": 10
+    },
+    "box40": {
+      "price": 3672,
+      "unit": 91.8,
+      "boxes": 1,
+      "total": 3672,
+      "spare": 0
+    },
+    "excludes": "shipping, bags and discounts; item composition differs"
+  },
+  "verification": {
+    "python_compile": "pass",
+    "local_comparison_rows_and_responsive_overflow": "pass",
+    "public_article": [
+      {
+        "gift_guide": true,
+        "width": 390,
+        "rows": 2,
+        "photo": true,
+        "buy": 12,
+        "tool": true,
+        "overflow": false
+      },
+      {
+        "gift_guide": true,
+        "width": 1440,
+        "rows": 2,
+        "photo": true,
+        "buy": 12,
+        "tool": true,
+        "overflow": false
+      },
+      {
+        "path": "/products/stories/yokumoku-delices-gift",
+        "status": 200,
+        "canonical": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/yokumoku-delices-gift",
+        "blocked": false,
+        "noindex": false,
+        "analytics": true,
+        "overflow": false
+      }
+    ],
+    "existing_calculator_boundaries": "pass",
+    "deployment": "success"
+  },
+  "feed_refresh": {
+    "run": 44585777987,
+    "conclusion": "success"
+  },
+  "distribution": {
+    "new_x_posts": 0,
+    "reason": "Friday editorial run; previous day tent campaign retained with sent/image receipt. No repeat introduction inside 14 days.",
+    "last_post": "https://twitter.com/monoyori_sale/status/2123193465060176249",
+    "pinterest": "No verified connected channel/board; no post attempted and no repeated connection request."
+  },
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null
+  },
+  "next": [
+    "Saturday: prioritize the unintroduced unit-price or gift-quantity tool with its own useful comparison graphic and new URL; fresh public proof and Buffer history before any send.",
+    "Sunday: compare actually retrieved acquisition and commission data separately; unknown is not zero."
+  ],
+  "notification": "none"
+}
