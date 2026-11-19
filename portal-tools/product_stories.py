@@ -5,11 +5,16 @@ import os
 from storefront_seo import cards, image, inventory_entry, live
 
 STORIES=[
- dict(slug='yokumoku-delices-gift',id='rakuten-yokumoku-10000435',title='配りやすいお菓子を探すなら。ヨックモック「サンク デリス」の選び方',intro='5種類40個の詰め合わせ。職場への差し入れや手土産で、人数・個包装・配送条件をどう見るか整理しました。',sections=[
+ dict(slug='yokumoku-delices-gift',checked='2026年11月20日（個数・内訳・配送条件・購入者投稿を再確認）',updated='2026-11-20',id='rakuten-yokumoku-10000435',title='ヨックモック サンク デリスは何人分？25個・40個と送料の比較',intro='20人に2個ずつなら何箱必要？40個入りの内訳、25個入りとの数量比較、販売店ごとの送料条件を整理。個数だけでは決めにくい手土産の購入判断ガイドです。',sections=[
  ('同じお菓子を配るか、選ぶ楽しさを贈るか','公式販売ページで確認した商品は、シガールと秋冬向けの4種類を組み合わせた40個入り。1種類を全員に同じ数ずつ渡したい用途と、箱から好きな種類を選んでもらう用途では、選ぶポイントが変わります。後者なら複数の味や形がある詰め合わせを検討できます。これは商品の構成から考えた編集上の提案です。'),
  ('40個は何人分？','単純計算では20人なら1人2個、10人なら1人4個です。ただし種類ごとの数量は均等とは限りません。40人に1個ずつ配る場合も、全員が同じ種類を選べるとは限らないので、人数だけでなく箱の内訳まで確認すると選びやすくなります。'),
+ ('全員に同じ種類を配れるとは限らない','公式40個入りの内訳は、シガール6本、ビエ オゥ ショコラオレ12枚、ビエ オザマンド ショコラ10枚、プラン リュンヌ6枚、バトー ドゥ マカダミア6枚です。例えば20人へシガールを1本ずつ配る用途には、40個入り1箱では足りません。箱の総数と、渡したい種類の数を別々に確認します。'),
+ ('25個と40個、単価だけでなく必要箱数で比べる','11月20日に公式サイトで確認した商品代は25個入り2,700円、40個入り3,672円でした。20人に2個ずつなら必要数は40個。25個入りは2箱で50個、40個入りは1箱で40個になります。下表はこの条件だけを揃えた計算で、送料・袋代・値引きは含めません。種類ごとの構成も異なるため、同じお菓子の重さや味を揃えた比較ではありません。'),
+ ('販売店が変わると送料無料の条件も変わる','楽天市場店の40個入りには北海道・九州・沖縄への配送を送料無料対象外とする表示があります。一方、ブランド公式オンラインショップの40個入りには全国送料無料の表示を確認しました。同じブランドでも販売経路の条件を混同せず、購入する店のカートで総額を確認します。公式サイトの送料案内を楽天の注文に当てはめないでください。'),
+ ('贈る日から逆算して賞味期限を確認する','公式オンラインショップは発送日から40日以上の賞味期限がある商品を案内しています。受取日から40日を保証する表示ではありません。しばらく保管してから渡す場合は、到着後の表示と渡す予定日を照合します。公式サイトでは紙の手提げ袋は有料、クリアの袋は無料との案内もあるため、必要な袋の種類と枚数を注文時に確認しましょう。'),
+ ('購入者の声は用途が近いものを読む','11月20日に楽天の商品ページで確認した11月17日付の投稿には手土産として渡した反応を評価する声が、11月15日付には季節の詰め合わせを選んだ声がありました。表示された一部投稿の要約で、全件の傾向を集計したものではありません。味の評価は投稿者の感想です。点数は別サイズや季節仕様を含む販売ページ全体の評価である可能性があり、当サイトの試食点数ではありません。'),
  ('価格だけでなく届け先まで見る','この販売ページでは北海道・九州・沖縄を送料無料の対象外とする案内があります。商品名の「送料無料」だけで判断せず、配送先を選んだあとの注文合計、到着予定日、包装・のし・手提げ袋の対応を確認しましょう。季節や販売単位が異なる商品との取り違えにも注意が必要です。'),
- ('食べる人への確認も贈り物の一部','公式表示には卵、小麦、乳成分、大豆、アーモンド、マカダミアナッツが含まれています。アレルギーがある人へ渡す場合は、現行商品の原材料表示を確認してください。当サイトでの試食は行っていません。味の好みや「誰にでも喜ばれる」といった評価は断定しません。')],sources=[('公式・楽天市場店の商品説明と配送条件','https://item.rakuten.co.jp/yokumoku/1010011309010/'),('ヨックモック公式の商品一覧','https://yokumoku.co.jp/collections/all')]),
+ ('食べる人への確認も贈り物の一部','公式表示には卵、小麦、乳成分、大豆、アーモンド、マカダミアナッツが含まれています。アレルギーがある人へ渡す場合は、現行商品の原材料表示を確認してください。当サイトでの試食は行っていません。味の好みや「誰にでも喜ばれる」といった評価は断定しません。')],sources=[('公式・楽天市場店の商品説明と配送条件','https://item.rakuten.co.jp/yokumoku/1010011309010/'),('ブランド公式：40個入りの内訳・期限・送料','https://yokumoku.co.jp/products/1010011309110'),('ブランド公式：25個入りの商品代と内訳','https://yokumoku.co.jp/products/1010011309100')]),
  dict(slug='sparkling-water-case-cost',checked='2026年11月18日（配送・期限・購入者投稿を再確認）',id='rakuten-lifedrinkcompany-10000022',title='炭酸水48本、安さはどう比べる？ OZA SODAの箱買い前チェック',intro='1本単価、送料、置き場所。毎日飲む炭酸水だからこそ、箱の価格だけで決めない比較方法を紹介します。',sections=[
  ('まずは1本あたりで比較する','掲載する販売ページは500ml×48本。商品代が2,550円なら1本約53.13円です。この例は11月14日に取得した商品代だけの計算で、現在価格を保証するものではありません。24本商品と比較するときは、いずれも送料込みの支払総額を本数で割ると条件が揃います。'),
  ('クーポンとポイントを一緒に引かない','複数購入が条件のクーポンは1箱だけでは使えないことがあります。ポイントも付与上限、対象者、有効期限などの条件があります。まず送料と適用できるクーポンを含めた支払額を確認し、ポイントは別の情報として比較しましょう。'),
@@ -55,6 +60,8 @@ def build_stories(items,copies,document,write):
         cover=image(x,copies[x['id']],eager=True,large=True) if x else ''
         body='<article class="product-story"><p><a href="../">モノより</a> / 商品紹介ブログ</p><p class="eyebrow">SHOPPING JOURNAL · PR</p><h1>'+e(s['title'])+'</h1><p>'+e(s['intro'])+'</p><p class="small-text">'+e(s.get('published','2026-11-15'))+'公開／商品情報確認：'+e(s.get('checked','2026年11月14日'))+'。実食・実機使用レビューではありません。</p><div class="story-cover">'+cover+'</div>'
         body+=''.join('<section><h2>'+e(h)+'</h2><p>'+e(p)+'</p></section>' for h,p in s['sections'])
+        if s['slug']=='yokumoku-delices-gift':
+            body+='<section><h2>20人へ2個ずつ配るときの計算例</h2><p class="small-text">公式サイトの商品代を2026年11月20日に確認。送料・袋代・値引きは含めません。現在価格は購入先で再確認してください。</p><div style="max-width:100%;overflow-x:auto"><table><caption>必要40個を、同じサイズの箱だけで揃える場合</caption><thead><tr><th scope="col">箱</th><th scope="col">商品代</th><th scope="col">1個単価</th><th scope="col">必要箱数</th><th scope="col">商品代合計</th><th scope="col">余り</th></tr></thead><tbody><tr><th scope="row">25個入り</th><td>2,700円</td><td>108.00円</td><td>2箱</td><td>5,400円</td><td>10個</td></tr><tr><th scope="row">40個入り</th><td>3,672円</td><td>91.80円</td><td>1箱</td><td>3,672円</td><td>0個</td></tr></tbody></table></div><p>必要数が変われば箱数と余りも変わります。以下の人数計算で、自分の条件を入力して比較できます。</p></section>'
         share_url=os.getenv('URL','https://sho-support.github.io/ai-trend-blog').rstrip('/')+'/'+path.removesuffix('.html')+'?utm_source=x&utm_medium=social&utm_campaign=reader_share'
         body+='<p><a class="text-link" data-story-share href="https://twitter.com/intent/tweet?'+e(urlencode({'text':s['title'],'url':share_url}),quote=True)+'" target="_blank" rel="noopener noreferrer">この記事をXでシェア ↗</a> · <a href="./">商品紹介ブログ一覧</a></p>'
         body+='<section><h2>確認した情報源</h2><ul>'+''.join('<li><a href="'+e(u,quote=True)+'" target="_blank" rel="noopener noreferrer">'+e(t)+'</a></li>' for t,u in s['sources'])+'</ul></section>'
@@ -62,7 +69,7 @@ def build_stories(items,copies,document,write):
             body+='<p class="story-detail-link"><a href="../tents.html">テント・日よけの写真、口コミ点数、価格を比較する →</a></p>'
         body+='<p class="story-detail-link"><a href="../tools/unit-price.html">送料・値引き込みの1個単価を計算して比較する →</a></p>'
         if s['slug']=='yokumoku-delices-gift':
-            body+='<p class="story-detail-link"><a href="../tools/gift-quantity.html">何箱必要？人数・個数・送料込み予算を計算する →</a></p>'
+            body+='<p class="story-detail-link"><a href="../tools/gift-quantity.html">何箱必要？人数・個数・送料込み予算を計算する →</a></p><p><a href="sparkling-water-case-cost.html">関連記事：飲料の箱買いも、送料込み単価と使い切る量で比べる →</a></p>'
         # A live product block supplies the exact seller link and the standard expiry guard.
         body+='<p><a href="../dumbbells.html">4商品の写真・口コミ・価格を比較する →</a></p>' if s['slug']=='adjustable-dumbbells-how-to-choose' else ''
         body+='<section><h2>掲載商品の価格・販売条件</h2>'+ (cards([v for v in by_id.values() if v.get('kind')=='dumbbells'] if s['slug']=='adjustable-dumbbells-how-to-choose' else [x],copies).replace('href="items/','href="../items/') if x else '<p>現在、販売情報を確認できません。最新情報は公式の商品ページでご確認ください。</p>')+'</section><p><a href="../">ジャンルからほかの商品を探す →</a></p></article>'
