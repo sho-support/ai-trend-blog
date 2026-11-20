@@ -1,0 +1,38 @@
+{
+  "date_jst": "2026-11-20",
+  "session": "evening",
+  "outcome": "preserved_verified_editorial_release_and_prepared_distinct_tool_campaign",
+  "source_ref": "281876a02cebfcac1a7d33e164fbc52ff34d7f46",
+  "editorial": "Today's substantive gift guide update already publicly verified; no duplicate page added.",
+  "health": {
+    "feed": {
+      "id": 44659770394,
+      "name": "Refresh Commerce Product Feed",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "public_release_run": 44634775186,
+    "public_release": "success",
+    "checks": "Unit-price boundaries, PC/mobile photos/layout, canonical and purchase routes passed in morning release. No new browser check claimed this evening.",
+    "latest_run_listing": "Recent hosting run collection contained no matching live workflow within requested page; successful exact release run checked directly."
+  },
+  "distribution": {
+    "new_posts": 0,
+    "last_confirmed_receipt": "growth/tent-launch-20261119-receipt.json",
+    "last_history_checked_at": "2026-11-19T10:57:21.128942+00:00",
+    "note": "Friday editorial day. No send or resend attempted. Fresh API history required at Saturday dispatch."
+  },
+  "prepared": "growth/unit-tool-launch-20261121.json",
+  "pinterest": "Still no verified connected account and real board in available evidence; not posted, no repeated request.",
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null
+  },
+  "next": [
+    "Saturday: validate draft image and live tool, reconcile actual Buffer history, then one permitted introduction.",
+    "Sunday: obtain measurable traffic/merchant-click/commission evidence where accessible; missing remains unknown."
+  ],
+  "notification": "none"
+}

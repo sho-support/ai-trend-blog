@@ -1,0 +1,18 @@
+{
+  "campaign_id": "monoyori_unit_tool_20261121",
+  "status": "prepared_not_sent",
+  "article_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price",
+  "channel_id": "6aec855be29c69a1716f545b",
+  "image_url": "https://raw.githubusercontent.com/sho-support/ai-trend-blog/main/growth/social-assets/unit-price-pinterest.png",
+  "image_authorized": true,
+  "image_source": "monoyori_original_editorial",
+  "image_alt_text": "送料込み単価の計算例。24個1440円は1個60円、48個2640円は1個55円。現在の販売価格ではありません。",
+  "text": "[PR] 箱買い、送料を足しても安い？\n商品代・送料・使える値引き・個数を入力して、2候補の1個単価を比較できます。\n飲料や日用品を同じ容量・条件で比べるときに↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price?utm_source=x&utm_medium=social&utm_campaign=unit_tool_20261121\n※図の金額は計算例です。",
+  "publish_requires": [
+    "Fresh actual Buffer full sent-history and receipt reconciliation",
+    "No post in preceding24h or same JST day; URL14day rule",
+    "Fresh public calculator boundary tests and article/purchase links",
+    "One-shot publisher with durable attempt_started and sent/externalLink/image receipt"
+  ],
+  "publish_now": false
+}
