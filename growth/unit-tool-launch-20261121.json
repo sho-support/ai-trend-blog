@@ -1,6 +1,6 @@
 {
   "campaign_id": "monoyori_unit_tool_20261121",
-  "status": "prepared_not_sent",
+  "status": "reviewed_for_one_shot",
   "article_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price",
   "channel_id": "6aec855be29c69a1716f545b",
   "image_url": "https://raw.githubusercontent.com/sho-support/ai-trend-blog/main/growth/social-assets/unit-price-pinterest.png",
@@ -14,5 +14,6 @@
     "Fresh public calculator boundary tests and article/purchase links",
     "One-shot publisher with durable attempt_started and sent/externalLink/image receipt"
   ],
-  "publish_now": false
+  "publish_now": true,
+  "expires_at": "2026-11-21T14:59:59+00:00"
 }
