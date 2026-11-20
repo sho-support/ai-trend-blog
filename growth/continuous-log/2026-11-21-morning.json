@@ -1,0 +1,75 @@
+{
+  "date_jst": "2026-11-21",
+  "session": "morning",
+  "outcome": "unit_price_tool_introduction_published",
+  "source_ref": "281876a02cebfcac1a7d33e164fbc52ff34d7f46",
+  "completed": [
+    "Read current policy, Pinterest manifest, prior logs and campaign draft; retained exact live-source pin.",
+    "Checked feed/public deployment workflow health.",
+    "Visually inspected original unit comparison diagram; clearly labeled example prices and no merchant-photo rights assumed.",
+    "Fresh Chromium checks passed at 390px and 1440px: HTTP200, exact canonical, no horizontal overflow, initial 55.00, shipping reversal, applicable discount and zero-count rejection.",
+    "Verified public article photo/purchase route and campaign image HTTP200 before post.",
+    "Reconciled full actual Buffer sent-history with durable receipts; enforced 24h, one per JST day and 14day URL guards.",
+    "Persisted attempt_started to GitHub before the single send; sent/externalLink/image confirmed."
+  ],
+  "health": {
+    "feed": {
+      "id": 44786471912,
+      "name": "Refresh Commerce Product Feed",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "live": {
+      "id": 44790946065,
+      "name": "Publish live Monoyori portal",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
+  "campaign": "growth/unit-tool-launch-20261121.json",
+  "receipt": "growth/unit-tool-launch-20261121-receipt.json",
+  "workflow_run": 44834180493,
+  "post": {
+    "id": "6b00d2699ffbc8503ce10728",
+    "text": "[PR] 箱買い、送料を足しても安い？\n商品代・送料・使える値引き・個数を入力して、2候補の1個単価を比較できます。\n飲料や日用品を同じ容量・条件で比べるときに↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price?utm_source=x&utm_medium=social&utm_campaign=unit_tool_20261121\n※図の金額は計算例です。",
+    "status": "sent",
+    "dueAt": "2026-11-20T23:06:18.001Z",
+    "sentAt": "2026-11-20T23:06:19.026Z",
+    "externalLink": "https://twitter.com/monoyori_sale/status/2123915870942482777",
+    "channelId": "6aec855be29c69a1716f545b",
+    "assets": [
+      {
+        "id": null,
+        "mimeType": "image/png"
+      }
+    ]
+  },
+  "new_x_posts": 1,
+  "new_articles": 0,
+  "pinterest": {
+    "posted": false,
+    "last_verified": {
+      "checked_at": "2026-11-19T10:57:21.128672+00:00",
+      "method": "existing_buffer_api_read_only",
+      "product_x_identity_verified": true,
+      "total_channels": 2,
+      "pinterest_channels": 0,
+      "pinterest_available": false,
+      "account_registration_history": "unknown",
+      "mutation_performed": false
+    },
+    "note": "No verified Pinterest account/board connection; no repeated connection request."
+  },
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null
+  },
+  "unresolved": [],
+  "next": [
+    "Evening: reconcile this receipt and do not send another post today.",
+    "Sunday: distinguish actual search/visit/merchant-click/commission measurements; unavailable data stays unknown."
+  ],
+  "notification": "none"
+}
