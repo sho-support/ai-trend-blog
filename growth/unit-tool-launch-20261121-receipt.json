@@ -1,5 +1,19 @@
 {
   "campaign_id": "monoyori_unit_tool_20261121",
-  "outcome": "attempt_started",
-  "started_at": "2026-11-20T23:06:15.983902+00:00"
+  "outcome": "published",
+  "post": {
+    "id": "6b00d2699ffbc8503ce10728",
+    "text": "[PR] 箱買い、送料を足しても安い？\n商品代・送料・使える値引き・個数を入力して、2候補の1個単価を比較できます。\n飲料や日用品を同じ容量・条件で比べるときに↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price?utm_source=x&utm_medium=social&utm_campaign=unit_tool_20261121\n※図の金額は計算例です。",
+    "status": "sent",
+    "dueAt": "2026-11-20T23:06:18.001Z",
+    "sentAt": "2026-11-20T23:06:19.026Z",
+    "externalLink": "https://twitter.com/monoyori_sale/status/2123915870942482777",
+    "channelId": "6aec855be29c69a1716f545b",
+    "assets": [
+      {
+        "id": null,
+        "mimeType": "image/png"
+      }
+    ]
+  }
 }
