@@ -1,19 +1,28 @@
 {
-  "checked_at": "2026-11-19T10:57:21.128942+00:00",
+  "checked_at": "2026-11-21T10:57:07.742245+00:00",
   "channel_id": "6aec855be29c69a1716f545b",
   "method": "buffer_api_read_only",
   "mutation_performed": false,
   "window_days": 15,
   "complete": true,
   "receipt_reconciled": true,
-  "effective_last_sent_at": "2026-11-18T23:15:44.002Z",
+  "known_receipt_count": 5,
+  "effective_last_sent_at": "2026-11-20T23:06:19.026Z",
   "effective_cooldown_active": true,
   "posted_today_jst": true,
   "dispatch_blocked": true,
-  "last_sent_at": "2026-11-18T23:15:44.002Z",
-  "hours_since_last_sent": 11.694,
+  "last_sent_at": "2026-11-20T23:06:19.026Z",
+  "hours_since_last_sent": 11.847,
   "cooldown_active": true,
   "posts": [
+    {
+      "id": "6b00d2699ffbc8503ce10728",
+      "status": "sent",
+      "sent_at": "2026-11-20T23:06:19.026Z",
+      "external_link": "https://x.com/2118159508677799936/status/2123915870942482777",
+      "text": "[PR] 箱買い、送料を足しても安い？\n商品代・送料・使える値引き・個数を入力して、2候補の1個単価を比較できます。\n飲料や日用品を同じ容量・条件で比べるときに↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price?utm_source=x&utm_medium=social&utm_campaign=unit_tool_20261121\n※図の金額は計算例です。",
+      "image_assets": 1
+    },
     {
       "id": "6afe319ea588bd6687a3cf0b",
       "status": "sent",
@@ -44,38 +53,6 @@
       "sent_at": "2026-11-15T17:28:39.820Z",
       "external_link": "https://x.com/2118159508677799936/status/2122018958630900092",
       "text": "[PR] 可変式ダンベル、安い順だけで選んでいませんか？\n重量・個数・交換方式と、4商品の口コミを整理しました。\n比較記事↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/adjustable-dumbbells-how-to-choose?utm_source=x&utm_medium=social&utm_campaign=dumbbell_20261116\n写真のONE STEPを楽天市場で確認↓\nhttps://a.r10.to/hRUojj\n#ダンベル #宅トレ",
-      "image_assets": 1
-    },
-    {
-      "id": "6aed227807f945cca9302b26",
-      "status": "sent",
-      "sent_at": "2026-11-06T00:42:34.464Z",
-      "external_link": "https://x.com/2118159508677799936/status/2118504277136003340",
-      "text": "【PR】OZA SODAのラベルレス強炭酸、48本で2,370円。\n500mlのプレーン。楽天で「48本」→「プレーン（ラベルレス）×2」を選択。\n楽天市場・LIFEDRINK直営店（11月6日確認／一部地域は送料別）\nhttps://a.r10.to/hFUWKM",
-      "image_assets": 1
-    },
-    {
-      "id": "6aed0a2c265cb90551e1569f",
-      "status": "sent",
-      "sent_at": "2026-11-05T22:58:53.534Z",
-      "external_link": "https://x.com/2118159508677799936/status/2118478184698065169",
-      "text": "【PR】JBLのサウンドバー Cinema SB580、29,700円。\nDolby Atmos対応。ワイヤレスのサブウーファーもセット。\n楽天市場・JBL公式ストア（税込／11月6日確認）\nhttps://a.r10.to/hXmYE8",
-      "image_assets": 1
-    },
-    {
-      "id": "6aeca7399b4d9c55762fc5f1",
-      "status": "sent",
-      "sent_at": "2026-11-05T15:56:43.736Z",
-      "external_link": "https://x.com/2118159508677799936/status/2118371943728468116",
-      "text": "【PR】Logicool G335、5,480円。\nPC・PS5・Switchに使える有線ヘッドセット。マイクを上げるとミュートに。\n楽天市場・ロジクール公式ストア\n（税込／11月5日確認。送料はリンク先で）\nhttps://a.r10.to/hPuUdX",
-      "image_assets": 1
-    },
-    {
-      "id": "6aec934801e9d82de81e9a72",
-      "status": "sent",
-      "sent_at": "2026-11-05T14:31:37.874Z",
-      "external_link": "https://x.com/2118159508677799936/status/2118350528241414391",
-      "text": "【PR】1〜2合だけ炊きたい日に。\nHARIOのガラスのレンジご飯釜。電子レンジで炊けて、食洗機にも対応。\n1,980円（税込・送料別／11月5日確認）\n公式ショップはこちら↓\nhttps://r.8to.jp/FAdpaRhdtNnV",
       "image_assets": 1
     }
   ]
