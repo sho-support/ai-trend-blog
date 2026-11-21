@@ -1,0 +1,76 @@
+{
+  "date_jst": "2026-11-22",
+  "session": "morning_weekly",
+  "period_jst": [
+    "2026-11-16",
+    "2026-11-22"
+  ],
+  "policy_read": true,
+  "pinterest_manifest_read": true,
+  "metrics": {
+    "search_clicks": {
+      "value": null,
+      "status": "unavailable",
+      "attempt": "GSC Wizard list_sites returned payment_required; no subscription purchased"
+    },
+    "visits": {
+      "value": null,
+      "status": "not_acquired"
+    },
+    "merchant_clicks": {
+      "value": null,
+      "status": "not_acquired"
+    },
+    "confirmed_affiliate_commission": {
+      "value": null,
+      "status": "not_acquired"
+    },
+    "comparison": "Cannot infer growth or conversion; unknown is not zero; QA visits and indexing notifications excluded"
+  },
+  "weekly_delivery": {
+    "sent_x_posts": 5,
+    "evidence": "growth/buffer-post-history.json checked_at 2026-11-21T10:57:07.742245Z; all 5 sent with image assets; not a fresh Sunday API read",
+    "latest_receipt": "growth/unit-tool-launch-20261121-receipt.json",
+    "latest_url": "https://twitter.com/monoyori_sale/status/2123915870942482777",
+    "article_inventory": 4,
+    "new_articles_this_execution": 0,
+    "new_posts_this_execution": 0
+  },
+  "health": {
+    "feed_run": 44926363239,
+    "feed_conclusion": "success",
+    "previous_live_run": 44927992066,
+    "previous_live_conclusion": "success"
+  },
+  "improvements": [
+    "Reader X-share intent now includes [PR] while retaining UTM",
+    "BlogPosting dateModified uses recorded editorial updated date where supplied; gift article exposes 2026-11-20"
+  ],
+  "source_commit": "d371adeda04e6a444d0eb634234b9f22c57fe699",
+  "source_pin_preserved_lineage": true,
+  "validation": {
+    "python_compile": "passed",
+    "rendered_builder_harness": "4 PR/UTM share links and gift dateModified passed; 5 generated pages",
+    "public_workflow": "success: HTTP200/canonical/purchase flow, cover images, 390/1440 layouts and calculator boundary checks"
+  },
+  "pinterest": {
+    "latest_known_checked_at": "2026-11-21T10:57:07.742012Z",
+    "connected_channels": 0,
+    "posted": false,
+    "repeat_connection_request": false
+  },
+  "unresolved": [
+    "Search/visit/merchant-click/confirmed-reward metrics unavailable; no increase claimed",
+    "Seasonal-news editorial policy saved Nov21 but seasonal article not yet published"
+  ],
+  "next_actions": [
+    "Next editorial session: source-based seasonal introduction leading to practical purchase guidance, at least two primary sources; no invented first snow",
+    "Next distribution day: prioritize genuinely new unpublished-to-SNS article, reconcile actual Buffer history before any send",
+    "Acquire actual metrics through an available existing authorized route without paid GSC subscription or repeated authentication request"
+  ],
+  "deployment": {
+    "id": 44960129911,
+    "status": "completed",
+    "conclusion": "success"
+  }
+}
