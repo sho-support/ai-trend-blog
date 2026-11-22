@@ -1,0 +1,42 @@
+{
+  "date_jst": "2026-11-22",
+  "session": "evening",
+  "policy_and_pinterest_manifest_read": true,
+  "morning_weekly_report_already_delivered": true,
+  "source_pin": "d371adeda04e6a444d0eb634234b9f22c57fe699",
+  "feed": {
+    "id": 44970684172,
+    "name": "Refresh Commerce Product Feed",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "deployment": {
+    "id": 44973462872,
+    "name": "Publish live Monoyori portal",
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "validation": "Fresh evening deployment succeeded including public HTTP200/canonical/purchase paths, PC/mobile and unit-price boundary checks in existing workflow. No separate fresh manual browser inspection.",
+  "post_history": {
+    "source": "growth/buffer-post-history.json",
+    "checked_at": "2026-11-21T10:57:07.742245+00:00",
+    "latest_receipt": "growth/unit-tool-launch-20261121-receipt.json",
+    "fresh_buffer_api_read": false,
+    "new_send": false,
+    "reason": "Sunday review; no authorized distribution-day send required. Existing history retained; stale cooldown flags not interpreted as current."
+  },
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null,
+    "reason": "Morning read attempt payment_required; no repeated paid-service attempt or subscription. No new measured acquisition evidence."
+  },
+  "changes_this_session": [],
+  "unresolved": [
+    "Actual acquisition and commission data unavailable",
+    "Seasonal-news article still pending source-based editorial session"
+  ],
+  "next_action": "Monday editorial: verify two primary sources and publish useful seasonal purchase guidance with original or authorized imagery; preserve pinned-source lineage.",
+  "notification": "Weekly report already sent this morning; no duplicate summary."
+}
