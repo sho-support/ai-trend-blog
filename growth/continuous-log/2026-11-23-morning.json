@@ -1,0 +1,59 @@
+{
+  "date_jst": "2026-11-23",
+  "session": "morning",
+  "outcome": "published_substantive_seasonal_gift_article_improvement",
+  "policy_read": true,
+  "pinterest_manifest_read": true,
+  "article_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/yokumoku-delices-gift",
+  "new_articles": 0,
+  "existing_articles_improved": 1,
+  "source_commit": "0acfbcdd4806df9ae22ef165d8cad27c6c2bf685",
+  "changes": [
+    "Added dated Christmas-season buying introduction, verified both boxes cannot use Christmas wrapping paper at brand store",
+    "Added 12 people x2=24, one 25-piece box leaves1;20x2=40 matches40-piece box",
+    "Reconfirmed official prices 2700/3672; distinguished original table/review dates",
+    "Added order checklist for gifting date/delivery estimate/bags; unknown Christmas shipping deadline expressly disclosed"
+  ],
+  "primary_sources": [
+    {
+      "url": "https://yokumoku.co.jp/products/1010011309110",
+      "checked": "2026-11-23"
+    },
+    {
+      "url": "https://yokumoku.co.jp/products/1010011309100",
+      "checked": "2026-11-23"
+    }
+  ],
+  "health": {
+    "feed_run": 45047703982,
+    "feed_conclusion": "success",
+    "deployment_run": 45081311265,
+    "deployment_conclusion": "success"
+  },
+  "verification": {
+    "before_publication": "Existing workflow build/tests/calculator boundaries and local PC/mobile checks passed",
+    "after_publication": "HTTP200 canonical, photo/purchase/tool link and 390/1440 widths passed; new checks assert seasonal wrapping/12-person example/unknown shipping deadline",
+    "manual_browser": false,
+    "unit_price_boundaries": "passed in deployment workflow"
+  },
+  "social": {
+    "new_posts": 0,
+    "reason": "Monday editorial day; no resend",
+    "history_file": "growth/buffer-post-history.json",
+    "history_checked_at": "2026-11-21T10:57:07.742245Z",
+    "fresh_api_read": false,
+    "latest_receipt": "growth/unit-tool-launch-20261121-receipt.json",
+    "pinterest": "No verified connected account/board; not posted; no repeated connection request"
+  },
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null
+  },
+  "unresolved": [
+    "Actual traffic/commission not acquired",
+    "No new standalone article this run; improved existing article rather than duplicate gift page"
+  ],
+  "next": "Tuesday: prefer a genuinely unintroduced published article/tool; fresh Buffer history required before send. Gift URL cannot be reintroduced before14 days since Nov17; this refresh does not bypass restriction."
+}
