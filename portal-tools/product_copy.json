@@ -402,5 +402,14 @@
     "review_positive": "価格と重量を変えられる点を評価する投稿。",
     "review_caution": "外した重りの置き場所が必要という投稿も。",
     "review_checked": "2026-11-16"
+  },
+  "rakuten-friend-gift-10011115": {
+    "name": "ひととえ キュートセレクション",
+    "headline": "色とりどりのケーキとクッキーを、一箱で",
+    "description": "スティックケーキとプチクッキーの詰め合わせ。11個・23個・26個入りなどから選べます。",
+    "price_from": true,
+    "card_reason": "ケーキもクッキーも楽しめる、種類のある手土産。",
+    "card_caution": "箱の入数・味の内訳・送料を選択後に確認。",
+    "features": []
   }
 }
