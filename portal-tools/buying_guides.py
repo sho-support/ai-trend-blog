@@ -60,10 +60,10 @@ GUIDES['rakuten-yokumoku-10000435'] = {
 def buying_guide(ident, item):
     g=GUIDES.get(ident)
     if not g:return ''
-    out='<section class="buying-guide" aria-label="購入判断ガイド"><p class="guide-source">調査日：'+e(g.get('checked','2026年11月14日'))+'｜当サイトでの実機使用・測定は行っていません。</p><h2>'+e(g['title'])+'</h2><p class="guide-verdict">'+e(g['verdict'])+'</p>'
+    out='<section class="buying-guide" aria-label="購入判断ガイド"><p class="guide-source">調査日：'+e(g.get('checked','2026年11月14日'))+'｜'+e(g.get('experience_note','当サイトでの実機使用・測定は行っていません。'))+'</p><h2>'+e(g['title'])+'</h2><p class="guide-verdict">'+e(g['verdict'])+'</p>'
     out+=''.join('<h3>'+e(h)+'</h3><p>'+e(t)+'</p>' for h,t in g['sections'])
     out+='<h3>調査した情報源</h3><ul>'+''.join('<li><a target="_blank" rel="noopener noreferrer" href="'+e(u,quote=True)+'">'+e(n)+'</a></li>' for n,u in g['sources'])+'</ul>'
-    out+='<a class="buy-button" data-buy="'+e(ident,quote=True)+'" target="_blank" rel="noopener noreferrer sponsored" href="'+e(item['url'],quote=True)+'">楽天市場で対象モデル・価格・保証を確認 ↗</a></section>'
+    out+='<a class="buy-button" data-buy="'+e(ident,quote=True)+'" target="_blank" rel="noopener noreferrer sponsored" href="'+e(item['url'],quote=True)+'">'+e(g.get('cta','楽天市場で対象モデル・価格・保証を確認 ↗'))+'</a></section>'
     return out
 
 GUIDES.update({
@@ -105,6 +105,8 @@ GUIDES['rakuten-shimi-store-10000002']={
 
 GUIDES['rakuten-friend-gift-10011115']={
  'checked':'2026年11月24日',
+ 'experience_note':'当サイトでは実食していません。',
+ 'cta':'楽天市場で箱の種類・価格・配送日を確認 ↗',
  'title':'ひととえ：色とりどりのケーキとクッキーを、一箱で楽しむ手土産',
  'verdict':'フルーツ系や抹茶、ブラウニーなど、見た目も味も違うお菓子を選んでもらいたい集まりの候補です。同じ味を全員に配りたい用途では、味ごとの個数も確認して選びましょう。',
  'sections':[
