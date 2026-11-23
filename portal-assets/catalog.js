@@ -98,8 +98,8 @@
         const recent=JSON.parse(localStorage.getItem('monoyori.recent-kind')||'null');
         let related=document.getElementById('recent-shopping');
         if(recent&&Date.now()-recent.at>=0&&Date.now()-recent.at<30*86400000){
-          if(!related){related=document.createElement('section');related.id='recent-shopping';document.getElementById('departments')?.before(related);}
-          const candidates=rows.filter(x=>x.kind===recent.kind).slice(0,10);
+          if(!related){related=document.createElement('section');related.id='recent-shopping';document.getElementById('departments')?.after(related);}
+          const candidates=rows.filter(x=>x.kind===recent.kind).slice(0,5);
           related.innerHTML=candidates.length?'<h2>前回気になったジャンルから</h2><p>このブラウザーでの閲覧から表示しています。</p><button type="button" id="clear-recent">閲覧情報を消す</button><div class="product-grid">'+productCards(candidates)+'</div>':'';
           related.querySelector('#clear-recent')?.addEventListener('click',()=>{localStorage.removeItem('monoyori.recent-kind');related.remove();});
         }
@@ -108,10 +108,10 @@
       if(status)status.textContent=rows.length?'':failed?'商品を読み込めませんでした。':'現在掲載できる商品はありません。';
       return;
     }
-    if(config.mode==='category'||config.mode==='search'){
+    if(config.mode==='category'||config.mode==='search'||config.mode==='story'){
       const grid=document.getElementById('catalog-grid'),status=document.getElementById('catalog-status');
       if(config.mode==='search'&&!completeFeed&&!failed)return;
-      const selected=config.mode==='search'?rows.filter(x=>{
+      const selected=config.mode==='story'?rows.filter(x=>(config.ids||[]).includes(x.id)):config.mode==='search'?rows.filter(x=>{
         if(queryKinds.size)return queryKinds.has(x.kind);
         const genre=categories.find(c=>c.key===x.kind)?.name;
         const keys=[x.title,copyFor(x).name,x.category,genre,x.seller||x.shop].map(searchKey);
@@ -155,8 +155,8 @@
       const relatedKinds={bedding:['home-storage','lighting'], 'home-storage':['bedding','lighting'], lighting:['bedding','home-storage']};
       try{localStorage.setItem('monoyori.recent-kind',JSON.stringify({kind:item.kind,at:Date.now()}));}catch(_){}
       let related=document.getElementById('related-shopping');
-      if(!related){related=document.createElement('section');related.id='related-shopping';root.after(related);}
-      const candidates=rows.filter(x=>x.id!==item.id&&(x.kind===item.kind||(relatedKinds[item.kind]||[]).includes(x.kind))).slice(0,10);
+      if(!related){related=document.createElement('section');related.id='related-shopping';root.parentElement.append(related);}
+      const candidates=rows.filter(x=>x.id!==item.id&&(x.kind===item.kind||(relatedKinds[item.kind]||[]).includes(x.kind))).slice(0,4);
       related.innerHTML=candidates.length?'<h2>この商品と一緒に比較したい候補</h2><div class="product-grid">'+productCards(candidates)+'</div>':'';
     }
   }

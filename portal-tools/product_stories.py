@@ -2,7 +2,7 @@
 from html import escape as e
 from urllib.parse import urlencode
 import os
-from storefront_seo import cards, image, inventory_entry, live
+from storefront_seo import cards, image, inventory_entry, live, price_text
 
 STORIES=[
  dict(slug='yokumoku-delices-gift',checked='2026年11月23日（公式25個・40個の価格と包装を確認。購入者投稿は11月20日確認）',updated='2026-11-23',id='rakuten-yokumoku-10000435',title='ヨックモック サンク デリスは何人分？25個・40個と送料の比較',intro='20人に2個ずつなら何箱必要？40個入りの内訳、25個入りとの数量比較、販売店ごとの送料条件を整理。個数だけでは決めにくい手土産の購入判断ガイドです。',sections=[
@@ -44,6 +44,13 @@ STORIES.append(dict(slug='tent-first-buying-guide',id='rakuten-naturehike-direct
  ('口コミは「自分と同じ使い方」の投稿から読む','星の平均が高くても、運動会の日よけで使った感想と、キャンプで泊まった感想は同じ条件ではありません。選んだ型・サイズ・利用人数をまず確認し、設営、収納、使った季節に触れた投稿を見ます。当サイトの一覧に表示する点数は販売ページ全体の評価です。耐久性や雨天性能を当サイトが実測した数値ではありません。'),
  ('購入前に埋めたい6つの比較欄','①日帰りか宿泊か ②人数とマットの寸法 ③インナーと設置時の寸法 ④収納寸法・重量 ⑤設営手順と付属品 ⑥必要品を含む総額。この6点を候補ごとに埋め、分からない欄は販売店やメーカーに確認します。下のリンク先には日よけ用も混在するため、用途を確認して比較してください。')],sources=[('コールマン公式：スタイル・サイズからのテント選び','https://ec.coleman.co.jp/sc/howtocamp_tent.html'),('コールマン公式：初心者向けのキャンプ道具選び','https://www.coleman.co.jp/special/campsupport/step03/')]))
 
+SHOPPER_SUMMARIES = {
+ 'yokumoku-delices-gift': ('シガールと秋冬のクッキー、5種類を選べる40個入り', '個包装なので、職場で一つずつ配る手土産に。20人なら2個ずつの数量です。', '同じ種類を全員に配る用途には、種類別の個数確認が必要です。'),
+ 'sparkling-water-case-cost': ('500mlを48本。毎日使う炭酸水を箱でストック', 'プレーンやフレーバー、ラベルレスの選択肢があります。飲む頻度と置き場所が合う人向けのまとめ買い候補です。', '選ぶ味・仕様で価格が変わる場合があります。送料込みの単価で比較。'),
+ 'adjustable-dumbbells-how-to-choose': ('重さを変えて使う、可変式ダンベル', '複数の重さを使い分けたい人へ。掲載候補の交換方式・収納・購入者の声を比較します。', '価格は重量と個数の選択で変わります。24kgが1個か2個かを確認。'),
+ 'tent-first-buying-guide': ('泊まるための広さと設営を比べる', '寝る人数とマットの寸法から、宿泊用テントの候補を絞るガイドです。', '日よけ・タープと宿泊用は別用途。一覧には両方が含まれます。')
+}
+
 def story_index(items,copies,prefix='stories/'):
     by_id={x['id']:x for x in items if live(x)}
     out=[]
@@ -62,6 +69,9 @@ def build_stories(items,copies,document,write):
         x=by_id.get(s['id']);path='products/stories/'+s['slug']+'.html'
         cover=image(x,copies[x['id']],eager=True,large=True) if x else ''
         body='<article class="product-story"><p><a href="../">モノより</a> / 商品紹介ブログ</p><p class="eyebrow">SHOPPING JOURNAL · PR</p><h1>'+e(s['title'])+'</h1><p>'+e(s['intro'])+'</p><p class="small-text">'+e(s.get('published','2026-11-15'))+'公開／商品情報確認：'+e(s.get('checked','2026年11月14日'))+'。実食・実機使用レビューではありません。</p><div class="story-cover">'+cover+'</div>'
+        if x:
+            lead,benefit,caution=SHOPPER_SUMMARIES[s['slug']]
+            body+='<section class="story-purchase" aria-label="紹介商品のポイント"><h2>'+e(lead)+'</h2><p>'+e(benefit)+'</p><p class="detail-price">'+e(price_text(x['price_yen'],copies[x['id']]))+'</p><a class="buy-button" href="'+e(x['url'],quote=True)+'" data-buy="'+e(x['id'],quote=True)+'" target="_blank" rel="noopener noreferrer sponsored">楽天市場でこの商品の価格・在庫を見る ↗</a><p class="small-text">'+e(caution)+' 価格は取得時点。送料と選択条件は購入先で確認。</p></section>'
         body+=''.join('<section><h2>'+e(h)+'</h2><p>'+e(p)+'</p></section>' for h,p in s['sections'])
         if s['slug']=='yokumoku-delices-gift':
             body+='<section><h2>20人へ2個ずつ配るときの計算例</h2><p class="small-text">公式サイトの商品代を2026年11月20日に確認。送料・袋代・値引きは含めません。現在価格は購入先で再確認してください。</p><div style="max-width:100%;overflow-x:auto"><table><caption>必要40個を、同じサイズの箱だけで揃える場合</caption><thead><tr><th scope="col">箱</th><th scope="col">商品代</th><th scope="col">1個単価</th><th scope="col">必要箱数</th><th scope="col">商品代合計</th><th scope="col">余り</th></tr></thead><tbody><tr><th scope="row">25個入り</th><td>2,700円</td><td>108.00円</td><td>2箱</td><td>5,400円</td><td>10個</td></tr><tr><th scope="row">40個入り</th><td>3,672円</td><td>91.80円</td><td>1箱</td><td>3,672円</td><td>0個</td></tr></tbody></table></div><p>必要数が変われば箱数と余りも変わります。以下の人数計算で、自分の条件を入力して比較できます。</p></section>'
@@ -76,6 +86,6 @@ def build_stories(items,copies,document,write):
         # A live product block supplies the exact seller link and the standard expiry guard.
         body+='<p><a href="../dumbbells.html">4商品の写真・口コミ・価格を比較する →</a></p>' if s['slug']=='adjustable-dumbbells-how-to-choose' else ''
         body+='<section><h2>掲載商品の価格・販売条件</h2>'+ (cards([v for v in by_id.values() if v.get('kind')=='dumbbells'] if s['slug']=='adjustable-dumbbells-how-to-choose' else [x],copies).replace('href="items/','href="../items/') if x else '<p>現在、販売情報を確認できません。最新情報は公式の商品ページでご確認ください。</p>')+'</section><p><a href="../">ジャンルからほかの商品を探す →</a></p></article>'
-        write(path,document(s['title']+'｜モノより',path,body,depth=2,description=s['intro'],image_url=x.get('image') if x else None,config={'mode':'category','kind':x['kind']} if x else None,scripts=('catalog.js',) if x else (),initial={'items':[x],'copies':copies} if x else None,structured=[{'@type':'BlogPosting','headline':s['title'],'datePublished':s.get('published','2026-11-15'),'dateModified':s.get('updated',s.get('published','2026-11-15')),'author':{'@type':'Organization','name':'モノより'}}]))
+        write(path,document(s['title']+'｜モノより',path,body,depth=2,description=s['intro'],image_url=x.get('image') if x else None,config={'mode':'story','kind':x['kind'],'ids':[v['id'] for v in by_id.values() if v.get('kind')=='dumbbells'] if s['slug']=='adjustable-dumbbells-how-to-choose' else [x['id']]} if x else None,scripts=('catalog.js',) if x else (),initial={'items':[x],'copies':copies} if x else None,structured=[{'@type':'BlogPosting','headline':s['title'],'datePublished':s.get('published','2026-11-15'),'dateModified':s.get('updated',s.get('published','2026-11-15')),'author':{'@type':'Organization','name':'モノより'}}]))
         inventory.append(inventory_entry(path,s))
     return inventory

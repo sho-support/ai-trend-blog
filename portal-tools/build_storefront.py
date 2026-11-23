@@ -162,7 +162,10 @@ def products():
     body+='<p class="story-detail-link"><a href="tools/unit-price.html">送料込みで比べる：1本・1個あたりの単価計算ツール →</a></p>'
     from product_stories import story_index
     body+='<p><a class="text-link" href="stories/">商品紹介ブログ・比較ガイド一覧 →</a></p>'+story_index(items,copies)
-    picks=[]
+    picks=[x for ident in ('rakuten-yokumoku-10000435','rakuten-lifedrinkcompany-10000022') for x in items if x['id']==ident]
+    if picks:
+        feature='<section class="shopper-picks"><p class="eyebrow">PR / 食品と飲料</p><h2>配るお菓子と、毎日の飲み物</h2><p>個包装の焼き菓子40個入りと、500mlの炭酸水48本。写真・価格から選んで、詳しい特徴を確認できます。</p>'+cards(picks,copies)+'</section>'
+        body=body.replace('<section id="departments">',feature+'<section id="departments">')
     photos=tile_seed(DEPARTMENTS,items)
     write('products/index.html',document('モノより｜家電・PC・食品をジャンルから探す','products/',body,config={'mode':'directory'},scripts=('catalog.js',),
         description='家電、PC、ゲーム、カメラ、食品、美容などをジャンル別に紹介。商品写真と短い紹介から、気になる商品と購入先を探せます。',
