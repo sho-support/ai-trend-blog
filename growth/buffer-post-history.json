@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-21T10:57:07.742245+00:00",
+  "checked_at": "2026-11-23T10:57:03.750424+00:00",
   "channel_id": "6aec855be29c69a1716f545b",
   "method": "buffer_api_read_only",
   "mutation_performed": false,
@@ -8,12 +8,12 @@
   "receipt_reconciled": true,
   "known_receipt_count": 5,
   "effective_last_sent_at": "2026-11-20T23:06:19.026Z",
-  "effective_cooldown_active": true,
-  "posted_today_jst": true,
-  "dispatch_blocked": true,
+  "effective_cooldown_active": false,
+  "posted_today_jst": false,
+  "dispatch_blocked": false,
   "last_sent_at": "2026-11-20T23:06:19.026Z",
-  "hours_since_last_sent": 11.847,
-  "cooldown_active": true,
+  "hours_since_last_sent": 59.846,
+  "cooldown_active": false,
   "posts": [
     {
       "id": "6b00d2699ffbc8503ce10728",
