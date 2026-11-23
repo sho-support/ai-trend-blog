@@ -1,0 +1,48 @@
+{
+  "date_jst": "2026-11-24",
+  "session": "user_requested_full_shopper_audit",
+  "audit": "growth/audits/2026-11-24-shopper-audit.md",
+  "source_commit": "16df52e1778a73f2613a4537f4a8bb183089d288",
+  "deploy_run": 45283334924,
+  "changes": [
+    "All4 articles show product-specific appeal/live price/affiliate CTA immediately after cover",
+    "Article catalog now restricts exact IDs instead of category-wide replacement",
+    "Product details show existing product-specific reasons and review highlights",
+    "Related shelf moved after explanation; limited4",
+    "Homepage starts with actual photo/price/purchase product proposals; history moved below categories limited5",
+    "Persistent editorial policy forbids generic text diagrams as substitute for product-photo sales campaigns"
+  ],
+  "manual_browser": {
+    "before": [
+      "homepage",
+      "gift article",
+      "gift item",
+      "deals",
+      "events"
+    ],
+    "after": [
+      "gift item reasons and comparison shelf after guide",
+      "gift article early3672yen affiliate offer and only own item",
+      "homepage actual gift/water photos and49.38yen per bottle"
+    ],
+    "desktop": true,
+    "mobile": "Automated deployment390/1440 checks; no separate manual mobile viewport"
+  },
+  "social": {
+    "new_posts": 0,
+    "latest_post_not_deleted": true,
+    "sales_photo_gap_acknowledged": true
+  },
+  "metrics": {
+    "confirmed_commission": null,
+    "traffic": null
+  },
+  "remaining": [
+    "SNS authorized product-photo sourcing not completed; no new product-photo campaign published",
+    "Events6/7 without photo and no stay candidates",
+    "Deals same-purpose total-cost comparison and fixed campaign revalidation",
+    "Semantic related-product matching incomplete",
+    "Actual conversion/commission data unavailable; no increase claimed"
+  ],
+  "quality_evaluation": "Previous technically successful delivery was not adequate product sales creative. Current repair improves purchase access; buying intent/conversion gains not proven."
+}
