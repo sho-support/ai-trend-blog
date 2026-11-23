@@ -68,7 +68,9 @@
         "start": "2026-11-04",
         "end": "2026-11-10",
         "url": "https://shopping.yahoo.co.jp/promotion/coupon/cate_coupon",
-        "verified": "2026-11-06"
+        "verified": "2026-11-06",
+        "archived": true,
+        "archive_reason": "2026-11-24: current campaign dates and discount not reverified; keep record, exclude from live listing"
       },
       {
         "id": "y-food",
@@ -81,7 +83,9 @@
         "start": "2026-11-11",
         "end": "2026-11-17",
         "url": "https://shopping.yahoo.co.jp/promotion/campaign/guide/",
-        "verified": "2026-10-30"
+        "verified": "2026-10-30",
+        "archived": true,
+        "archive_reason": "2026-11-24: current campaign dates and discount not reverified; keep record, exclude from live listing"
       },
       {
         "id": "y-fashion",
@@ -94,7 +98,9 @@
         "start": "2026-11-18",
         "end": "2026-11-24",
         "url": "https://shopping.yahoo.co.jp/promotion/campaign/guide/",
-        "verified": "2026-10-30"
+        "verified": "2026-10-30",
+        "archived": true,
+        "archive_reason": "2026-11-24: current campaign dates and discount not reverified; keep record, exclude from live listing"
       },
       {
         "id": "y-tech",
@@ -107,7 +113,9 @@
         "start": "2026-11-25",
         "end": "2026-12-02",
         "url": "https://shopping.yahoo.co.jp/promotion/campaign/guide/",
-        "verified": "2026-10-30"
+        "verified": "2026-10-30",
+        "archived": true,
+        "archive_reason": "2026-11-24: current campaign dates and discount not reverified; keep record, exclude from live listing"
       },
       {
         "id": "q-main",
@@ -153,7 +161,9 @@
         "start": "2026-10-23",
         "end": "2026-11-03",
         "url": "https://www.muji.com/jp/ja/special-feature/ryohinweek/",
-        "verified": "2026-10-30"
+        "verified": "2026-10-30",
+        "archived": true,
+        "archive_reason": "2026-11-24: current campaign dates and discount not reverified; keep record, exclude from live listing"
       },
       {
         "id": "muji-sales",

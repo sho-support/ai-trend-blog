@@ -249,7 +249,7 @@ def products():
 def render_listing(data, today):
     cards=[]
     for x in data['items']:
-        if x.get('end') and x['end']<today:continue
+        if x.get('archived') or (x.get('end') and x['end']<today):continue
         if data['kind']=='events':
             start=x.get('start','');end=x.get('end','')
             date=start[5:].replace('-','/')+(' – '+end[5:].replace('-','/') if end and end!=start else '')
