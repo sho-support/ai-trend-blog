@@ -1,7 +1,7 @@
 {
   "date_jst": "2026-11-24",
   "task": "shopper-wide remediation and real-product-photo sales execution",
-  "source_ref": "a5571b9626a38b0e20e4cd5d1cd07a09171f4cb4",
+  "source_ref": "d83360ca02bc2346f3871198699be55417a6df7c",
   "completed": [
     "Gift recommendations restricted to comparable gift IDs",
     "Deduplicate identical point-offer name/shop/price/rate before shelf cap, server and client",
@@ -9,15 +9,34 @@
     "Archive 5 dated unverified campaign claims instead of promoting unsupported future discounts",
     "Add two-primary-source Hitotoe product-specific buying guide and concise listing copy",
     "Acquire actual Rakuten affiliate builder product photograph and generated short link; inspect image visually",
-    "Prepare dedicated once-only Nov26 photo campaign with immutable manifest and send-attempt receipt safeguards"
+    "Prepare dedicated once-only Nov26 photo campaign with immutable manifest and send-attempt receipt safeguards",
+    "Attribute individual Yahoo product review, preserve source/date and distinguish separate seller service claims"
   ],
   "tests": [
     "JS syntax and Python compilation passed",
-    "Point-offer behavior: duplicates do not crowd out distinct products; expired excluded; distinct prices retained"
+    "Point-offer behavior: duplicates do not crowd out distinct products; expired excluded; distinct prices retained",
+    "Hosting complete deployment suite passed, including PC/mobile portal rendering, canonical/HTTP200 and calculator input boundaries",
+    "Dedicated photo campaign public preflight passed at widths390/1440; no send before campaign window"
   ],
   "publication": {
-    "source_ref": "a5571b9626a38b0e20e4cd5d1cd07a09171f4cb4",
-    "status": "workflow_pending_verification"
+    "source_ref": "d83360ca02bc2346f3871198699be55417a6df7c",
+    "workflow_run": 45286569432,
+    "status": "success",
+    "public_product": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115",
+    "browser_verified": {
+      "photo": true,
+      "purchase_button": true,
+      "canonical": true,
+      "review_with_date": true,
+      "source_links": 3,
+      "food_specific_cta": true,
+      "desktop_overflow": false
+    },
+    "offers_verified": {
+      "unique_shelf_products": 12,
+      "official_campaign_cards": 11,
+      "unsupported_future_discount_removed": true
+    }
   },
   "x": {
     "last_existing_sent_at": "2026-11-23T22:38:23.304Z",
@@ -25,7 +44,9 @@
     "reason": "1/day and 24h guard",
     "next_not_before": "2026-11-25T23:45:00+00:00",
     "manifest": "growth/hitotoe-photo-launch-20261126.json",
-    "outcome": "prepared_not_sent"
+    "outcome": "prepared_not_sent",
+    "preflight_run": 45286041284,
+    "schedule_jst": "2026-11-26 08:45"
   },
   "evidence_urls": [
     "https://item.rakuten.co.jp/friend-gift/10011115/",
@@ -36,5 +57,10 @@
     "Site-attributed visits, merchant click conversions and confirmed commission not obtained",
     "Pinterest requires verified existing account/board connection; no repeated request",
     "Scheduled X send still requires live guard and actual sent/externalLink/image receipt; not counted as published"
+  ],
+  "next_actions": [
+    "At scheduled photo send, recheck actual Buffer history, daily/24h/14d guards and current public destination; persist attempt then verify sent/externalLink/image",
+    "Resolve authorized event photographs and independently verify event information; do not fabricate imagery",
+    "Compare site-attributed merchant clicks and confirmed sales when actually accessible"
   ]
 }
