@@ -65,7 +65,15 @@ def point_offers(feed, copies, now=None):
                 if datetime.fromisoformat(str(end).replace('Z','+00:00')).astimezone(timezone.utc)<=now:continue
             except (TypeError,ValueError):continue
         out.append(dict(item,point_rate=rate,news_copy=copies.get(item['id'],{'name':short_title(item),'description':''})))
-    return sorted(out,key=lambda x:(-x['point_rate'],x['id']))[:12]
+    # Colour variants with identical displayed product, shop, price and multiplier
+    # must not occupy the whole shelf. Distinct prices remain comparable.
+    unique=[]
+    seen=set()
+    for x in sorted(out,key=lambda x:(-x['point_rate'],x['id'])):
+        key=(re.sub(r'\\s+','',x['news_copy']['name']),x.get('seller') or x.get('shop',''),x['price_yen'],x['point_rate'])
+        if key in seen:continue
+        seen.add(key);unique.append(x)
+    return unique[:12]
 
 
 def render_points(rows):

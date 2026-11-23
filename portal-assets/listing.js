@@ -44,6 +44,7 @@
     const root=document.getElementById('event-stays'),status=document.getElementById('stay-status');if(!root)return;
     const selected=hotels.filter(x=>C.isFresh(x)&&(state.pref!=='すべて'?x.prefecture===state.pref:state.region==='すべて'||(regions[state.region]||[]).includes(x.prefecture)));
     const rows=state.pref==='すべて'?selected.filter((x,i)=>selected.findIndex(y=>y.city===x.city)===i).slice(0,6):selected.slice(0,6);
+    root.closest('.stay-section').hidden=!rows.length;
     status.textContent=rows.length?'地域から探す宿泊候補です。会場の近隣順ではありません。宿泊日・料金・空室は楽天トラベルで確認してください。':'この地域の宿泊候補は現在ありません。';
     const markup=rows.map(x=>'<article class="stay-card">'+photo({...x,image_authorized:true},x.name+'の施設写真（楽天トラベル提供）')+'<span class="event-category">'+esc(x.city)+'</span><h3>'+esc(x.name)+'</h3><p>'+esc(x.description||'')+'</p><p>'+esc(x.address||'')+'</p>'+(x.access?'<p>アクセス：'+esc(x.access)+'</p>':'')+(x.parking?'<p>駐車場：'+esc(x.parking)+'</p>':'')+'<a class="text-link" href="'+esc(mapLink(x.name+' '+(x.address||'')))+'" target="_blank" rel="noopener noreferrer">所在地を地図で確認 ↗</a><a class="text-link" href="'+esc(x.url)+'" data-hotel="'+esc(x.id)+'" target="_blank" rel="noopener noreferrer sponsored">宿泊プランを見る ↗</a></article>').join('');
     if(root.innerHTML!==markup)root.innerHTML=markup;

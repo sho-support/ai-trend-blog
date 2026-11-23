@@ -156,7 +156,9 @@
       try{localStorage.setItem('monoyori.recent-kind',JSON.stringify({kind:item.kind,at:Date.now()}));}catch(_){}
       let related=document.getElementById('related-shopping');
       if(!related){related=document.createElement('section');related.id='related-shopping';root.parentElement.append(related);}
-      const candidates=rows.filter(x=>x.id!==item.id&&(x.kind===item.kind||(relatedKinds[item.kind]||[]).includes(x.kind))).slice(0,4);
+      const giftIds=new Set(['rakuten-yokumoku-10000435','rakuten-friend-gift-10011115','rakuten-kihachi-10000007','rakuten-okashi-10000317']);
+      const comparable=x=>giftIds.has(item.id)?giftIds.has(x.id):x.kind===item.kind||(relatedKinds[item.kind]||[]).includes(x.kind);
+      const candidates=rows.filter(x=>x.id!==item.id&&comparable(x)).slice(0,4);
       related.innerHTML=candidates.length?'<h2>この商品と一緒に比較したい候補</h2><div class="product-grid">'+productCards(candidates)+'</div>':'';
     }
   }
