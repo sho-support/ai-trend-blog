@@ -1,0 +1,32 @@
+{
+  "date_jst": "2026-11-24",
+  "session": "user_requested_sales_execution",
+  "outcome": "published",
+  "campaign": "growth/gift-planner-launch-20261124.json",
+  "receipt": "growth/gift-planner-launch-20261124-receipt.json",
+  "post": {
+    "id": "6b04c05e58d65b8ef8d3d761",
+    "text": "[PR] 職場や集まりに配るお菓子、何箱買えば足りる？\n人数・1人分の個数・箱の入数から、必要箱数と余りを計算できます。\nヨックモックの25個・40個入り比較、包装の注意点、楽天の購入先も確認できます↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/gift-quantity?utm_source=x&utm_medium=social&utm_campaign=gift_planner_20261124\n※画像は購入前のチェック図です。",
+    "status": "sent",
+    "dueAt": "2026-11-23T22:38:22.229Z",
+    "sentAt": "2026-11-23T22:38:23.304Z",
+    "externalLink": "https://twitter.com/monoyori_sale/status/2124996006253044056",
+    "channelId": "6aec855be29c69a1716f545b",
+    "assets": [
+      {
+        "id": null,
+        "mimeType": "image/png"
+      }
+    ]
+  },
+  "workflow_run": 45281101691,
+  "validation": "Chromium HTTP200/canonical/390+1440 layout; gift quantities25x2 in40=2boxes30spare; invalid0rejected; link to product guide; guide photo/purchase path/seasonal content and original PNG passed before send. Publisher queried paginated actual Buffer history, reconciled receipts and enforced 24h/day/14day restrictions; attempt saved before mutation.",
+  "original_image": "growth/social-assets/gift-check-pinterest.png",
+  "product_path": "gift-quantity -> yokumoku-delices-gift -> Rakuten affiliate seller link",
+  "new_fees": false,
+  "room_posted": false,
+  "instagram_posted": false,
+  "confirmed_commission": null,
+  "unresolved": "Actual sales/commission report not acquired; never label unknown as zero. ROOM/Instagram not connected or posted.",
+  "next": "Obtain current product offers and authorized social image evidence for direct product campaigns; measure actual merchant clicks/rewards; no additional X post today."
+}
