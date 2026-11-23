@@ -1,5 +1,19 @@
 {
   "campaign_id": "monoyori_gift_planner_20261124",
-  "outcome": "attempt_started",
-  "started_at": "2026-11-23T22:38:20.414359+00:00"
+  "outcome": "published",
+  "post": {
+    "id": "6b04c05e58d65b8ef8d3d761",
+    "text": "[PR] 職場や集まりに配るお菓子、何箱買えば足りる？\n人数・1人分の個数・箱の入数から、必要箱数と余りを計算できます。\nヨックモックの25個・40個入り比較、包装の注意点、楽天の購入先も確認できます↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/gift-quantity?utm_source=x&utm_medium=social&utm_campaign=gift_planner_20261124\n※画像は購入前のチェック図です。",
+    "status": "sent",
+    "dueAt": "2026-11-23T22:38:22.229Z",
+    "sentAt": "2026-11-23T22:38:23.304Z",
+    "externalLink": "https://twitter.com/monoyori_sale/status/2124996006253044056",
+    "channelId": "6aec855be29c69a1716f545b",
+    "assets": [
+      {
+        "id": null,
+        "mimeType": "image/png"
+      }
+    ]
+  }
 }
