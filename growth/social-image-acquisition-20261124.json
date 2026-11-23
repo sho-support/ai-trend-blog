@@ -1,0 +1,29 @@
+{
+  "checked_date_jst": "2026-11-24",
+  "status": "official_route_verified_asset_not_yet_acquired",
+  "sources": [
+    "https://affiliate.rakuten.co.jp/know-how/susumeru/",
+    "https://affiliate.faq.rakuten.net/detail/000009908",
+    "https://affiliate.rakuten.co.jp/guides/link/custom/"
+  ],
+  "findings": [
+    "For Rakuten Ichiba, official affiliate link-builder images can be downloaded and used together with affiliate links with clear Rakuten destination",
+    "Do not download arbitrary shop/API images and treat these as link-builder approved assets",
+    "No text over the product image or cropping; permitted resizing/outside decoration only under stated conditions",
+    "Official link builder offers multiple store images when available; prefer product-visible photo without promotional clutter"
+  ],
+  "acquisition_requirements": [
+    "Actual link-builder source page and product identity",
+    "Exact downloaded image URL/file and acquisition date",
+    "Actual Rakuten affiliate URL, not fabricated or altered",
+    "Visual review of photo and readable product-specific benefit",
+    "Fresh item price/quantity/shipping terms",
+    "Campaign manifest references this evidence; no daily-limit bypass"
+  ],
+  "candidate": {
+    "product_id": "rakuten-yokumoku-10000435",
+    "source_product_url": "https://item.rakuten.co.jp/yokumoku/1010011309010/",
+    "status": "needs_actual_link_builder_asset; current article URL repeat restriction applies"
+  },
+  "publication_authorized_by_this_document": false
+}

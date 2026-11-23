@@ -1,0 +1,43 @@
+{
+  "date_jst": "2026-11-24",
+  "session": "scheduled_morning_after_user_audit",
+  "policy_read": true,
+  "pinterest_manifest_read": true,
+  "source_pin": "16df52e1778a73f2613a4537f4a8bb183089d288",
+  "feed": [
+    {
+      "id": 45268361126,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "deployment": [
+    {
+      "id": 45283334924,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "verification": "Latest successful deployment includes calculator boundaries, article own-product-only assertion, early purchase CTA, HTTP200/canonical/photos and390/1440 layouts. Not another manual browser session.",
+  "new_posts": 0,
+  "new_articles": 0,
+  "post_limit": {
+    "receipt": "growth/gift-planner-launch-20261124-receipt.json",
+    "sent_at": "2026-11-23T22:38:23.304Z",
+    "same_jst_day": true,
+    "reason": "Daily maximum already reached; receipt preserved. Fresh API read unnecessary for a no-send decision and not claimed."
+  },
+  "completed": [
+    "Read full shopper-audit record; preserved fixes and source lineage",
+    "Verified three official sources and saved concrete approved photo-acquisition requirements"
+  ],
+  "photo_asset_acquired": false,
+  "pinterest_posted": false,
+  "metrics": {
+    "search_clicks": null,
+    "visits": null,
+    "merchant_clicks": null,
+    "confirmed_commission": null
+  },
+  "next": "Acquire a real official affiliate-builder product photo before next sales creative; no generic-diagram substitution. No additional X post Nov24 even if24hours pass."
+}
