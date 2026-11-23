@@ -115,7 +115,7 @@ def detail(item, copy):
             + '<div class="detail-info"><span class="ad-label">PR</span><h1>'
             + esc(copy.get('headline') or copy['name']) + '</h1>'
             + ('<p class="detail-intro">' + esc(copy['description']) + '</p>' if copy['description'] else '')
-            + rating(item) + price + '<a class="buy-button" href="' + esc(item['url']) + '" data-buy="' + esc(item['id'])
+            + review_highlights(copy) + card_notes(copy) + rating(item) + price + '<a class="buy-button" href="' + esc(item['url']) + '" data-buy="' + esc(item['id'])
             + '" target="_blank" rel="noopener noreferrer sponsored">' + button
             + ' <span aria-hidden="true">↗</span></a><p class="seller">' + esc(shop) + '</p></div>')
 

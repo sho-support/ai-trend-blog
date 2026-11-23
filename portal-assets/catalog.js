@@ -147,7 +147,7 @@
       root.innerHTML='<div class="detail-photo">'+image(item,true,true)+'</div><div class="detail-info"><span class="ad-label">PR</span>'
         +'<h1>'+esc(copy.headline||copy.name)+'</h1>'
         +(copy.description?'<p class="detail-intro">'+esc(copy.description)+'</p>':'')
-        +rating(item)+(item.price_yen!=null?'<p class="detail-price">'+priceText(item,copy)+'</p>'+unitPrice(item):'')
+        +reviewHighlights(copy)+cardNotes(copy)+rating(item)+(item.price_yen!=null?'<p class="detail-price">'+priceText(item,copy)+'</p>'+unitPrice(item):'')
         +'<a class="buy-button" href="'+esc(item.url)+'" data-buy="'+esc(item.id)+'" target="_blank" rel="noopener noreferrer sponsored">'+esc(item.source==='a8'?'公式ショップで価格を見る':'楽天市場で見る')+' <span aria-hidden="true">↗</span></a>'
         +'<p class="seller">'+esc(item.seller||(item.source==='a8'?item.shop||'公式ショップ':'楽天市場'))+'</p>'
         +'</div>';
