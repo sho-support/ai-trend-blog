@@ -1,0 +1,78 @@
+{
+  "date_jst": "2026-11-25",
+  "run": "morning_content_update",
+  "article_action": "substantial_improvement",
+  "source_ref": "ab03fe894782213798b507b9c8d82b833ae15fc2",
+  "article": {
+    "title": "OZA SODA 48本はいくらなら買い？ 1本単価・味・送料・置き場所を確認",
+    "url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/sparkling-water-case-cost",
+    "product": "OZA SODA 500ml×48本",
+    "purchase_url": "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/",
+    "improvements": [
+      "Separated a short-lived 2,370-yen offer ending 2026-11-25 10:59 from reusable price guidance; did not present it as the normal price",
+      "Added exact per-bottle example 2,370/48=49.38 yen while requiring final order total by flavor, shipping destination and usable coupon",
+      "Added official plain-water ingredients and flavor/aroma distinction",
+      "Added 24L/about 24kg storage and handling guidance from manufacturer warnings",
+      "Compared 60-day minimum shipped shelf life with 48- and 96-day consumption examples",
+      "Added good and cautionary product-experience reviews with variant and date, without treating them as site testing or all-review trend",
+      "Added 48-bottle delivery, post-order date-change/leave-at-door and Okinawa per-case shipping cautions",
+      "Kept product photograph, related unit-price tool and Rakuten purchase path"
+    ],
+    "sources": [
+      "https://www.ld-company.com/products/detail/oza-1.html",
+      "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/",
+      "https://www.rakuten.co.jp/lifedrinkcompany/info2.html",
+      "https://shopping.yahoo.co.jp/review/item/list?page_key=zaosoda-500-48&store_id=lifedrinkcompany"
+    ]
+  },
+  "workflows": {
+    "commerce_feed": {
+      "run": 45477597255,
+      "status": "success"
+    },
+    "hosting_initial": {
+      "run": 45505734091,
+      "status": "failure_after_deploy",
+      "reason": "stale assertion expected the previous review date"
+    },
+    "hosting_fix": "Updated the assertion to the new attributed 2026-10-09 review date",
+    "hosting_final": {
+      "run": 45506023195,
+      "status": "success",
+      "url": "https://github.com/sho-support/sho-support.github.io/actions/runs/45506023195"
+    },
+    "checks": [
+      "HTTP 200",
+      "canonical exact",
+      "analytics present",
+      "product image loaded",
+      "purchase links present",
+      "mobile and desktop no overflow",
+      "unit calculator boundaries",
+      "search notification"
+    ]
+  },
+  "social": {
+    "x_sent_today": false,
+    "reason": "Wednesday content day; no unrequested second campaign. The next prepared actual-product-photo campaign remains guarded for 2026-11-26 08:45 JST.",
+    "pinterest": "0 connected Pinterest channels; not sent and no repeated connection request"
+  },
+  "measured_results": {
+    "search_clicks": "not_obtained",
+    "visits": "not_obtained",
+    "merchant_clicks": "not_obtained",
+    "confirmed_commission": "not_obtained",
+    "note": "QA page views are not counted as acquisition"
+  },
+  "unresolved": [
+    "External response and confirmed sales are not yet attributable from available data",
+    "Pinterest still lacks a verified Buffer channel and real board",
+    "Event photography remains outside today's monetization-first content update"
+  ],
+  "next_actions": [
+    "Before 2026-11-26 product-photo post, recheck Buffer history, receipts, 24-hour/day and 14-day URL guards",
+    "Verify status=sent, externalLink and image after any actual X mutation",
+    "Continue product-specific image-first posts; do not replace product imagery with generic checklist graphics"
+  ],
+  "confidence_percent": 98
+}
