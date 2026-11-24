@@ -1,0 +1,56 @@
+{
+  "date_jst": "2026-11-24",
+  "run": "evening_reconciliation",
+  "checked_at_jst": "2026-11-24 19:55",
+  "authoritative_source": {
+    "repository": "sho-support/ai-trend-blog",
+    "pinned_ref": "d83360ca02bc2346f3871198699be55417a6df7c",
+    "hosting_workflow": "sho-support/sho-support.github.io main:.github/workflows/monoyori-live.yml",
+    "latest_hosting_run": 45335274753,
+    "latest_hosting_result": "success"
+  },
+  "completed": [
+    "Re-read continuous acquisition policy, Pinterest launch state, Buffer connection state, existing X receipt, and future campaign manifest",
+    "Confirmed live Hitotoe page has the actual product photograph, exact canonical, purchase paths, dated attributed review, three research sources, and no horizontal overflow",
+    "Confirmed live unit-price calculator initial example: 1,440/24=60.00 and 2,640/48=55.00, with related article links and no overflow",
+    "Confirmed latest Rakuten feed workflow, portal refresh, search notification, internal-link workflow, and hosting workflow completed successfully",
+    "Confirmed no Hitotoe delivery receipt exists before the campaign window"
+  ],
+  "x": {
+    "sent_today": 1,
+    "existing_receipt": "growth/gift-planner-launch-20261124-receipt.json",
+    "sent_at_jst": "2026-11-24 07:38",
+    "additional_send": false,
+    "reason": "The existing post is only about 12 hours old and the daily maximum is already reached. A second send would violate both safeguards.",
+    "next_campaign": "growth/hitotoe-photo-launch-20261126.json",
+    "next_campaign_state": "prepared_not_sent",
+    "scheduled_jst": "2026-11-26 08:45"
+  },
+  "pinterest": {
+    "latest_read_only_check": "2026-11-23T10:57:03.750152+00:00",
+    "pinterest_channels": 0,
+    "status": "not_connected_not_sent",
+    "repeated_user_request": false
+  },
+  "live_checks": {
+    "product_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115",
+    "unit_tool_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price",
+    "product_image_loaded": true,
+    "product_purchase_links_present": true,
+    "canonical_exact": true,
+    "product_overflow": false,
+    "unit_calculation_correct": true,
+    "unit_tool_overflow": false
+  },
+  "unresolved": [
+    "Site-attributed visits, retailer click conversions, and confirmed reward remain unavailable; not treated as zero",
+    "Pinterest has no verified existing channel or board",
+    "Six event entries still require authorized relevant images and independent event verification"
+  ],
+  "next_actions": [
+    "On 2026-11-26, reconcile Buffer history and all receipts again before any mutation; if safeguards pass, send the Hitotoe post with the actual authorized product photograph and verify status=sent, externalLink, and image",
+    "Continue product-specific purchase guidance; do not substitute generic text graphics for product photographs",
+    "Repair event imagery only when relevant authorized assets and current source facts are available"
+  ],
+  "confidence_percent": 98
+}
