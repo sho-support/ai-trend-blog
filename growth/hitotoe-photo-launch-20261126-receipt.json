@@ -1,5 +1,19 @@
 {
   "campaign_id": "monoyori_hitotoe_photo_20261126",
-  "outcome": "attempt_started",
-  "started_at": "2026-11-25T23:03:39.755629+00:00"
+  "outcome": "published",
+  "post": {
+    "id": "6b07694f9f6dda31cca420d1",
+    "text": "[PR] 手土産に、ケーキとクッキーを一箱で。\nひととえ「キュートセレクション」11個入は、5種のケーキ各1個＋クッキー6個。色とりどりの個包装を選べる集まり向け。\n楽天で箱・送料を確認↓\nhttps://a.r10.to/hgv4V2\n内訳・口コミの注意↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115?utm_source=x&utm_medium=social&utm_campaign=hitotoe_photo_20261126",
+    "status": "sent",
+    "dueAt": "2026-11-25T23:03:44.014Z",
+    "sentAt": "2026-11-25T23:03:46.063Z",
+    "externalLink": "https://twitter.com/monoyori_sale/status/2125727168806183172",
+    "channelId": "6aec855be29c69a1716f545b",
+    "assets": [
+      {
+        "id": null,
+        "mimeType": "image/jpeg"
+      }
+    ]
+  }
 }
