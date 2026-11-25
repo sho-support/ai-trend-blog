@@ -1,4 +1,4 @@
-"""One-shot original tent guide campaign; fail closed and persist claim before send."""
+"""One-shot Hitotoe product-photo campaign; fail closed and persist claim before send."""
 import json,os,time,subprocess
 from pathlib import Path
 from datetime import datetime,timezone,timedelta
@@ -23,6 +23,7 @@ def main():
     expected='https://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115'
     if r['article_url']!=expected or r['channel_id']!=CHANNEL_ID or not r['text'].startswith('[PR]'):raise SystemExit('Unexpected campaign')
     if r['image_source']!='rakuten_affiliate_item_link_builder' or r['image_authorized'] is not True or r['image_url']!='https://thumbnail.image.rakuten.co.jp/@0_mall/friend-gift/cabinet/renewal/re2024/cute_main.jpg?_ex=400x400':raise SystemExit('Unexpected image')
+    if r['affiliate_url']!='https://a.r10.to/hgv4V2' or r['affiliate_url'] not in r['text'] or expected not in r['text']:raise SystemExit('Missing verified sales or article path')
     now=datetime.now(timezone.utc)
     if now<datetime.fromisoformat(r['not_before']):
         print('Prepared only; campaign not_before has not arrived');return
