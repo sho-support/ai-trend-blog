@@ -1,0 +1,117 @@
+{
+  "date_jst": "2026-11-26",
+  "run": "thursday_product_photo_social_delivery",
+  "authoritative_source_ref": "5412d37492c30e7e9fac34cff1883573f1cb9f69",
+  "article_limit": {
+    "new_articles_today": 0,
+    "reason": "Thursday is a distribution day; no new article was added."
+  },
+  "live_feed_and_publish": {
+    "commerce_feed": {
+      "run": 45683081775,
+      "status": "success",
+      "created_at": "2026-11-25T19:13:41Z",
+      "url": "https://github.com/sho-support/ai-trend-blog/actions/runs/45683081775"
+    },
+    "search_notification": {
+      "run": 45683550369,
+      "status": "success",
+      "created_at": "2026-11-25T19:16:29Z",
+      "url": "https://github.com/sho-support/ai-trend-blog/actions/runs/45683550369"
+    },
+    "internal_links": {
+      "run": 45708224951,
+      "status": "success",
+      "created_at": "2026-11-25T21:52:05Z",
+      "url": "https://github.com/sho-support/ai-trend-blog/actions/runs/45708224951"
+    },
+    "live_hosting": {
+      "run": 45687965721,
+      "status": "success",
+      "completed_at": "2026-11-25T19:45:08Z",
+      "pinned_ref": "5412d37492c30e7e9fac34cff1883573f1cb9f69",
+      "url": "https://github.com/sho-support/sho-support.github.io/actions/runs/45687965721"
+    }
+  },
+  "x_delivery": {
+    "campaign_id": "monoyori_hitotoe_photo_20261126",
+    "article_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115",
+    "affiliate_url": "https://a.r10.to/hgv4V2",
+    "merchant_url": "https://item.rakuten.co.jp/friend-gift/10011115/",
+    "public_post": "https://x.com/monoyori_sale/status/2125727168806183172",
+    "post_status": "sent",
+    "sent_at_utc": "2026-11-25T23:03:46.063Z",
+    "sent_at_jst": "2026-11-26T08:03:46.063+09:00",
+    "image": {
+      "kind": "actual_product_photo",
+      "mime_type": "image/jpeg",
+      "alt_text_visible": true,
+      "source": "Rakuten affiliate item-link builder",
+      "authorized": true
+    },
+    "receipt": "https://github.com/sho-support/ai-trend-blog/blob/main/growth/hitotoe-photo-launch-20261126-receipt.json",
+    "safeguards": {
+      "previous_monoyori_post_sent_at_utc": "2026-11-23T22:38:23.304Z",
+      "more_than_24h": true,
+      "jst_daily_limit_passed": true,
+      "repeated_url_within_14d": false,
+      "receipt_absent_before_attempt": true,
+      "attempt_started_persisted_before_buffer_mutation": true,
+      "status_sent_confirmed": true,
+      "external_link_confirmed": true,
+      "image_asset_confirmed": true
+    }
+  },
+  "preflight_fix": {
+    "failed_run": 45717752176,
+    "outcome": "failed before mutation; sending step was skipped and no receipt was created",
+    "cause": "The price ceiling and shipping-included assertions were evaluated against #product-detail instead of the separate buying guide section.",
+    "fix": "Moved those two assertions to the buying-guide text scope while retaining canonical, photo, purchase-link, mobile/desktop overflow and current lower-price checks.",
+    "successful_run": 45718201449,
+    "successful_run_url": "https://github.com/sho-support/ai-trend-blog/actions/runs/45718201449"
+  },
+  "public_verification": {
+    "product_page": {
+      "http_status": 200,
+      "canonical_exact": true,
+      "photo_loaded": true,
+      "affiliate_purchase_link_count": 1,
+      "displayed_price": "1,650円〜",
+      "guide_price_range": "1,650円〜3,810円",
+      "shipping_included_language": true,
+      "desktop_mobile_overflow": false
+    },
+    "x_post": {
+      "publicly_visible": true,
+      "pr_label": true,
+      "direct_affiliate_link": true,
+      "utm_article_link": true,
+      "actual_product_photo_visible": true,
+      "alt_text_visible": true
+    }
+  },
+  "unit_price_tool": {
+    "maintained": true,
+    "verification": "Latest successful live hosting workflow retained unit-price calculator boundary tests.",
+    "url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/tools/unit-price"
+  },
+  "pinterest": "Read-only connection record remains at 0 Pinterest channels; no post and no repeated connection request.",
+  "measured_results": {
+    "search_clicks": "not_obtained",
+    "visits": "not_obtained",
+    "merchant_clicks": "not_obtained",
+    "confirmed_commission": "not_obtained",
+    "note": "Public QA views and this delivery confirmation are not counted as acquisition or sales."
+  },
+  "sources": [
+    "https://item.rakuten.co.jp/friend-gift/10011115/",
+    "https://www.nakajimataishodo-shop.jp/c/yakigashi/csb-10",
+    "https://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115",
+    "https://x.com/monoyori_sale/status/2125727168806183172"
+  ],
+  "unresolved": [
+    "Actual external clicks and confirmed commission remain unavailable until measured.",
+    "Pinterest has no verified Buffer Pinterest channel or real board."
+  ],
+  "confidence_percent": 99
+}
