@@ -1,0 +1,43 @@
+{
+  "date_jst": "2026-11-27",
+  "run": "morning_content_improvement",
+  "source_ref": "84ee3d2bce6641749ecd2aff289044e2d93ae045",
+  "article_action": "Substantially improved existing OZA SODA story; new articles 0.",
+  "url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/stories/sparkling-water-case-cost",
+  "changes": [
+    "Removed expired Nov25 limited-price lead.",
+    "Added 24-vs-48 total-cost threshold and explicitly hypothetical unit-price example.",
+    "Added Nov26 same-merchant review about label-free bottles and heavy-item delivery, checked Nov27.",
+    "Updated verification date while retaining accurate older verification dates for delivery and other-store reviews."
+  ],
+  "sources": [
+    "https://item.rakuten.co.jp/lifedrinkcompany/zaosoda-500-48/",
+    "https://www.ld-company.com/products/detail/oza-1.html"
+  ],
+  "verification": {
+    "local_tests": 8,
+    "live_workflow": 45908013982,
+    "live_workflow_status": "success",
+    "http200": true,
+    "photo_and_purchase_paths": "Verified by successful PC/mobile live checks",
+    "calculator_boundaries": "Passed live workflow",
+    "canonical": "Verified by live workflow"
+  },
+  "feed": {
+    "run": 45880120346,
+    "status": "success"
+  },
+  "distribution": {
+    "sent_today": 0,
+    "reason": "Friday content day; latest known receipt Nov26 08:03 JST. No mutation requested today."
+  },
+  "pinterest": "No verified Buffer Pinterest destination; no send and no repeated request.",
+  "metrics": {
+    "search_clicks": "not_obtained",
+    "visits": "not_obtained",
+    "merchant_clicks": "not_obtained",
+    "confirmed_commission": "not_obtained"
+  },
+  "next_action": "Next distribution day choose an eligible specific product with authorized photo; check live Buffer history and receipts before any send.",
+  "confidence_percent": 99
+}
