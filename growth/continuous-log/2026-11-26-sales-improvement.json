@@ -1,0 +1,55 @@
+{
+  "date_jst": "2026-11-26",
+  "run": "sales_conversion_improvement",
+  "source_ref": "4e23a3afc7ccac5b821959b5ee1d838adea5e5d6",
+  "changes": [
+    "Added verified 11/23/26/36-piece box comparison: cakes 5/7/12/16, cookies 6/16/14/20.",
+    "Added purchase CTA immediately below comparison.",
+    "Replaced old other-shop review highlight with current same-merchant 2026-11-21 individual review; linked actual review page.",
+    "Added manufacturer allergy information and source; no personal tasting claim."
+  ],
+  "sources": [
+    "https://item.rakuten.co.jp/friend-gift/10011115/",
+    "https://www.nakajimataishodo-shop.jp/c/yakigashi/csb-10",
+    "https://review.rakuten.co.jp/item/1/264951_10011115/1.1/"
+  ],
+  "published_url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115",
+  "deployment": {
+    "run": 45733167987,
+    "status": "success",
+    "url": "https://github.com/sho-support/sho-support.github.io/actions/runs/45733167987"
+  },
+  "verification": {
+    "http_200": true,
+    "canonical_exact": true,
+    "comparison_rows": 4,
+    "guide_purchase_links": 2,
+    "photo_loaded": true,
+    "widths_checked": [
+      320,
+      390,
+      1440
+    ],
+    "horizontal_overflow": false,
+    "existing_live_suite": "passed",
+    "local_promotion_tests": 3,
+    "local_rating_tests": 5
+  },
+  "x": {
+    "additional_posts": 0,
+    "reason": "One post was already sent today at 08:03 JST; daily maximum enforced.",
+    "existing_post": "https://x.com/monoyori_sale/status/2125727168806183172"
+  },
+  "measured_results": {
+    "search_clicks": "not_obtained",
+    "visits": "not_obtained",
+    "merchant_clicks": "not_obtained",
+    "confirmed_commission": "not_obtained"
+  },
+  "unresolved": [
+    "Cannot infer sales uplift from publication or QA.",
+    "Pinterest remains unverified/unconnected; no repeated request."
+  ],
+  "next_action": "Compare measured merchant clicks and confirmed revenue when available; prioritize the next specific product with authorized photograph and verified purchase conditions.",
+  "confidence_percent": 99
+}
