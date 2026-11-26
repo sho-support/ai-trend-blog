@@ -61,6 +61,11 @@ def buying_guide(ident, item):
     g=GUIDES.get(ident)
     if not g:return ''
     out='<section class="buying-guide" aria-label="購入判断ガイド"><p class="guide-source">調査日：'+e(g.get('checked','2026年11月14日'))+'｜'+e(g.get('experience_note','当サイトでの実機使用・測定は行っていません。'))+'</p><h2>'+e(g['title'])+'</h2><p class="guide-verdict">'+e(g['verdict'])+'</p>'
+    if g.get('comparison'):
+        out+='<h3>箱の大きさを選ぶ</h3><table><thead><tr>'+''.join('<th scope="col">'+e(x)+'</th>' for x in g['comparison']['headers'])+'</tr></thead><tbody>'
+        out+=''.join('<tr>'+''.join('<td>'+e(x)+'</td>' for x in row)+'</tr>' for row in g['comparison']['rows'])+'</tbody></table>'
+        out+='<p>'+e(g['comparison']['note'])+'</p>'
+        out+='<a class="buy-button" data-buy="'+e(ident,quote=True)+'" target="_blank" rel="noopener noreferrer sponsored" href="'+e(item['url'],quote=True)+'">楽天市場で選んだ箱の価格・到着日を見る ↗</a>'
     out+=''.join('<h3>'+e(h)+'</h3><p>'+e(t)+'</p>' for h,t in g['sections'])
     out+='<h3>調査した情報源</h3><ul>'+''.join('<li><a target="_blank" rel="noopener noreferrer" href="'+e(u,quote=True)+'">'+e(n)+'</a></li>' for n,u in g['sources'])+'</ul>'
     out+='<a class="buy-button" data-buy="'+e(ident,quote=True)+'" target="_blank" rel="noopener noreferrer sponsored" href="'+e(item['url'],quote=True)+'">'+e(g.get('cta','楽天市場で対象モデル・価格・保証を確認 ↗'))+'</a></section>'
@@ -104,18 +109,23 @@ GUIDES['rakuten-shimi-store-10000002']={
 }
 
 GUIDES['rakuten-friend-gift-10011115']={
- 'checked':'2026年11月25日',
+ 'checked':'2026年11月26日',
  'experience_note':'当サイトでは実食していません。',
  'cta':'楽天市場で箱の種類・価格・配送日を確認 ↗',
  'title':'ひととえ：色とりどりのケーキとクッキーを、一箱で楽しむ手土産',
  'verdict':'フルーツ系や抹茶、ブラウニーなど、見た目も味も違うお菓子を選んでもらいたい集まりの候補です。同じ味を全員に配りたい用途では、味ごとの個数も確認して選びましょう。',
+ 'comparison':{
+ 'headers':['箱の入数','ケーキ','クッキー'],
+ 'rows':[['11個入り','5個（5種類を各1個）','6個'],['23個入り','7個','16個'],['26個入り','12個','14個'],['36個入り','16個','20個']],
+ 'note':'販売店掲載の内訳を集計。例えば6人にケーキを1個ずつ渡すなら、11個入りのケーキ5個では足りません。ケーキの数を重視するなら23個・26個入りも候補です。味ごとの数は異なります。表示の下限価格を全サイズ共通の価格とは扱わず、箱を選択して総額を確認してください。'},
  'sections':[
  ('この商品の魅力','メーカー公式が案内するのは、スティックケーキと小さなクッキーの組み合わせ。販売店の11個入りにはオレンジ、ミックスベリー、キャラメルアップル、抹茶ショコラ、ブラウニーのケーキ各1個と、クッキー6個が入ります。焼き菓子の種類を一箱で選べる点が購入判断の軸になります。'),
  ('人数で選ぶなら','この販売ページには11個・23個・26個入りなどの選択肢があります。11個入りはケーキ5個とクッキー6個で、全員に同じ組み合わせを配る箱ではありません。人数だけでなく「一人にケーキも渡すか」を決めてから内訳を見てください。'),
  ('価格と配送の注意','2026年11月25日に販売ページは1,650円〜3,810円・送料無料と表示し、商品説明にも「こちらは個別送り用の送料込み商品」とあります。箱の種類で価格が変わるため、下限価格をすべての箱の価格とは扱いません。また販売店の一般送料案内は、沖縄県・その他離島に別条件を設けています。種類と届け先を選択した注文総額、到着予定を確認してください。'),
- ('別販売店の購入者レビューで分かること','Yahoo!ショッピングのアンドギフト・11号のレビュー欄では、2024年3月28日の投稿がスティックケーキの見栄えと味を評価しています。個人の感想で、当サイトの実食結果ではありません。同欄には他ストアのレビューを含むとの表示もあります。2026年9月30日の投稿にはのしの名入れへの指摘がありますが、包装・配送・名入れは販売店の対応なので、今回紹介する楽天Lumiereの実績とは扱っていません。')],
+ ('今回の販売店で確認した購入者の声','2026年11月26日にLumiereの商品ページで確認した11月21日の投稿には、友人宅への菓子折りに選び、相手に喜ばれたという感想があります。贈答先の反応についての個人の投稿で、当サイトの実食評価ではありません。ページ全体の点数には異なる箱の投稿が含まれるため、希望する入数と用途に近いレビューを購入先で確認してください。'),
+ ('食品として確認したい点','メーカー公式の11号は、くるみ・小麦・卵・乳・アーモンド・オレンジ・大豆・りんごをアレルギー物質として表示しています。贈る相手の条件を確かめ、注文する箱の最新表示を確認してください。メーカー直販は常温保存・常温配送と案内していますが、賞味期限の残り日数や配送日は今回の販売店の条件で確認します。')],
  'sources':[
- ('中島大祥堂公式：キュートセレクション','https://www.nakajimataishodo-shop.jp/c/hitotoe/hitotoe-yakigashi/csb'),
+ ('中島大祥堂公式：11号の内容・アレルギー表示','https://www.nakajimataishodo-shop.jp/c/yakigashi/csb-10'),
  ('販売店Lumiere：箱ごとの内訳と配送条件','https://item.rakuten.co.jp/friend-gift/10011115/'),
- ('Yahoo!ショッピング：別販売店の11号レビュー欄（2026年11月24日確認）','https://shopping.yahoo.co.jp/review/item/list?page_key=ndo-csa-10&store_id=and-gift')]
+ ('楽天市場：今回の販売店の購入者レビュー','https://review.rakuten.co.jp/item/1/264951_10011115/1.1/')]
 }
