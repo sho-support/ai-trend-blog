@@ -1,0 +1,44 @@
+{
+  "date_jst": "2026-11-26",
+  "run": "evening_followup",
+  "source_ref": "4e23a3afc7ccac5b821959b5ee1d838adea5e5d6",
+  "feed": {
+    "run": 45749570490,
+    "status": "success"
+  },
+  "live_publish": {
+    "run": 45751869440,
+    "status": "success",
+    "url": "https://github.com/sho-support/sho-support.github.io/actions/runs/45751869440"
+  },
+  "checks": {
+    "hitotoe_http200": true,
+    "box_comparison_present": true,
+    "current_review_present": true,
+    "purchase_links": 3,
+    "product_photo_url_present": true,
+    "unit_price_http200": true,
+    "unit_price_canonical_correct": true,
+    "unit_calculation": "Latest successful live workflow retains calculator tests; not independently executed again in evening."
+  },
+  "distribution": {
+    "additional_posts": 0,
+    "reason": "Nov26 08:03 JST sent receipt exists; daily cap and 24h guard prohibit additional delivery.",
+    "receipt": "growth/hitotoe-photo-launch-20261126-receipt.json",
+    "post": "https://x.com/monoyori_sale/status/2125727168806183172"
+  },
+  "pinterest": "No verified channel/board established; no publication or repeated connection request.",
+  "scope": "Unrelated customer-hosting workflow failure observed in repository listing; not investigated or modified because outside Monoyori scope.",
+  "measured_results": {
+    "search_clicks": "not_obtained",
+    "visits": "not_obtained",
+    "merchant_clicks": "not_obtained",
+    "confirmed_commission": "not_obtained"
+  },
+  "next_action": "Friday: research a specific food/household product using two primary sources; add at most one quality article or materially improve an existing article. Preserve actual product photos and clear purchase conditions.",
+  "sources": [
+    "https://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115",
+    "https://github.com/sho-support/ai-trend-blog/blob/main/growth/hitotoe-photo-launch-20261126-receipt.json"
+  ],
+  "confidence_percent": 99
+}
