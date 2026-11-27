@@ -1,0 +1,59 @@
+{
+  "date_jst": "2026-11-28",
+  "run": "morning_product_photo_distribution",
+  "source_ref": "84ee3d2bce6641749ecd2aff289044e2d93ae045",
+  "product": "Logicool G335",
+  "sources": [
+    "https://item.rakuten.co.jp/logicool/g335bk/",
+    "https://github.com/sho-support/ai-trend-blog/blob/main/growth/product-social-links.json"
+  ],
+  "action": "Published concrete product photograph, 240g wired connection and flip-mute benefits, direct affiliate purchase link and UTM product page. No unverified current price or sale claim.",
+  "campaign": "growth/g335-photo-launch-20261128.json",
+  "receipt": "growth/g335-photo-launch-20261128-receipt.json",
+  "result": {
+    "campaign_id": "monoyori_g335_photo_20261128",
+    "outcome": "published",
+    "post": {
+      "id": "6b0a0b3a70e80ae8f1b12b2f",
+      "text": "[PR] 充電を気にせずゲーム通話したい人へ。\nロジクールG335は3.5mm有線・240g（ケーブル込み）。マイクを上げるだけでミュートでき、イヤーカップで音量調整も。\n接続端子と色ごとの価格を確認↓\nhttps://a.r10.to/hPuUdX\n写真・購入条件↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-logicool-10000417?utm_source=x&utm_medium=social&utm_campaign=g335_photo_20261128",
+      "status": "sent",
+      "dueAt": "2026-11-27T22:59:06.119Z",
+      "sentAt": "2026-11-27T22:59:07.140Z",
+      "externalLink": "https://twitter.com/monoyori_sale/status/2126450774813065339",
+      "channelId": "6aec855be29c69a1716f545b",
+      "assets": [
+        {
+          "id": null,
+          "mimeType": "image/jpeg"
+        }
+      ]
+    }
+  },
+  "workflow": {
+    "id": 46079799865,
+    "status": "success",
+    "checks": "HTTP200 exact canonical loaded product photo purchase link and no overflow at390/1440; image HTTP200; fresh Buffer sent-history plus receipt reconciliation; 24h/day/14d guards; attempt_started committed before send."
+  },
+  "feed": {
+    "id": 46053089032,
+    "status": "success"
+  },
+  "hosting": {
+    "id": 46055848598,
+    "status": "success",
+    "unit_calculator": "Existing boundary tests passed"
+  },
+  "pinterest": "No verified Pinterest channel/board; no send and no repeat connection request.",
+  "new_articles": 0,
+  "metrics": {
+    "search_clicks": "not_obtained",
+    "visits": "not_obtained",
+    "merchant_clicks": "not_obtained",
+    "confirmed_commission": "not_obtained"
+  },
+  "unresolved": [
+    "API sent/externalLink/image confirms distribution, not sales.",
+    "Hitotoe manual snapshot expires Nov29 20:00 JST; reverify or durable catalog handling needed before expiry."
+  ],
+  "confidence_percent": 99
+}
