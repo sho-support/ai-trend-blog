@@ -1,5 +1,19 @@
 {
   "campaign_id": "monoyori_g335_photo_20261128",
-  "outcome": "attempt_started",
-  "started_at": "2026-11-27T22:59:03.112427+00:00"
+  "outcome": "published",
+  "post": {
+    "id": "6b0a0b3a70e80ae8f1b12b2f",
+    "text": "[PR] 充電を気にせずゲーム通話したい人へ。\nロジクールG335は3.5mm有線・240g（ケーブル込み）。マイクを上げるだけでミュートでき、イヤーカップで音量調整も。\n接続端子と色ごとの価格を確認↓\nhttps://a.r10.to/hPuUdX\n写真・購入条件↓\nhttps://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-logicool-10000417?utm_source=x&utm_medium=social&utm_campaign=g335_photo_20261128",
+    "status": "sent",
+    "dueAt": "2026-11-27T22:59:06.119Z",
+    "sentAt": "2026-11-27T22:59:07.140Z",
+    "externalLink": "https://twitter.com/monoyori_sale/status/2126450774813065339",
+    "channelId": "6aec855be29c69a1716f545b",
+    "assets": [
+      {
+        "id": null,
+        "mimeType": "image/jpeg"
+      }
+    ]
+  }
 }
