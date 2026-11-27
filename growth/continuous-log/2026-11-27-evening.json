@@ -1,0 +1,33 @@
+{
+  "date_jst": "2026-11-27",
+  "run": "evening_repair",
+  "source_ref": "84ee3d2bce6641749ecd2aff289044e2d93ae045",
+  "incident": {
+    "failed_run": 45936862760,
+    "landing_page_404": true,
+    "cause": "API feed dropped Hitotoe; previous snapshot expired Nov27 03:13 JST.",
+    "fix": "Rechecked merchant and restored explicit merchant snapshot expiring Nov29 20:00 JST; no automatic expiry extension. Reference price retained as historical API snapshot.",
+    "repaired_run": 45986456492,
+    "status": "success"
+  },
+  "url": "https://sho-monoyori-review.zodiac-suu.workers.dev/products/items/rakuten-friend-gift-10011115",
+  "verification": {
+    "http200": true,
+    "comparison_restored": true,
+    "photo": true,
+    "purchase_links": 3,
+    "PC_mobile": "live workflow passed",
+    "unit_calculator": "boundary suite passed"
+  },
+  "feed_run": 45935316202,
+  "content_today": "Morning substantial water article improvement retained; no new article tonight.",
+  "social": "No Friday send; previous Hitotoe receipt preserved.",
+  "pinterest": "No verified destination; not sent.",
+  "metrics": "Search clicks, visits, merchant clicks and confirmed commission not obtained.",
+  "next_action": "Before Nov29 expiry, use existing product-feed retrieval to retain explicitly promoted item or reverify its merchant snapshot. Do not blindly extend expiry.",
+  "sources": [
+    "https://item.rakuten.co.jp/friend-gift/10011115/",
+    "https://github.com/sho-support/sho-support.github.io/actions/runs/45986456492"
+  ],
+  "confidence_percent": 99
+}
