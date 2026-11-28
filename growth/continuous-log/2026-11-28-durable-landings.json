@@ -1,0 +1,19 @@
+{
+  "date_jst": "2026-11-28",
+  "source_ref": "29eca72ea9e0fe25781ed409b53431e78ca42f13",
+  "action": "Preserve editorial product URLs for all product_copy IDs even absent from source HTML or current rotating API feed; neutral availability message; omit stale prices/ratings/affiliate purchase offer; link to category, stories, unit tool; noindex fallback.",
+  "tests": [
+    "API-absent Hitotoe retained as HTML with no data-buy and no catalog.js overwrite",
+    "8 existing Python checks passed",
+    "Live deployment desktop/mobile suite passed"
+  ],
+  "deployment": {
+    "id": 46111704604,
+    "status": "success",
+    "url": "https://github.com/sho-support/sho-support.github.io/actions/runs/46111704604"
+  },
+  "active_hitotoe": "Current live offer remained present with 3 purchase links after deployment.",
+  "measurement": "Actual merchant click receipts and commissions not obtained; GSC Wizard payment-required. Do not infer revenue.",
+  "remaining": "Analytics/report access remains unavailable; content research and single daily social delivery continue under existing limits.",
+  "confidence_percent": 99
+}
