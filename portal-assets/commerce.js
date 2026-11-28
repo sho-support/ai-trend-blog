@@ -87,7 +87,7 @@
       root.gtag('event', 'portal_outbound_click', {
         ...details, destination_host: u.hostname,
         // Send identifiers, never the full referral URL, search text or form input.
-        item_id: link.dataset.itemId || '',
+        item_id: link.dataset.buy || link.dataset.itemId || details.item_id || '',
         guide_slug: root.location.pathname.split('/').pop().replace(/\.html$/, ''),
         transport_type: 'beacon',
       });
