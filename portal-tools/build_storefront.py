@@ -225,16 +225,20 @@ def products():
             structured=[breadcrumb([('モノより','products/'),(d['name'],'products/'+d['file']),(c['name'],'products/'+c['file']),(copy['name'],path)])]))
         semantic={k:item.get(k) for k in ('id','kind','image','url','price_yen','seller','shop','review_average','review_count','rating_verified')}
         inventory.append(inventory_entry(path,dict({'item':semantic,'copy':copy},**({'guide':buying_guide(ident,item)} if buying_guide(ident,item) else {}))))
-    for old in (ROOT/'products/items').glob('*.html'):
-        if old.stem in active_ids:continue
-        match=re.search(r'window.CATALOG_CONFIG=(\{.*?\});',old.read_text())
+    # Keep editorial product URLs even when a rotating API result drops the item.
+    archived={p.stem:p for p in (ROOT/'products/items').glob('*.html')}
+    for ident in set(archived)|set(edited):
+        if ident in active_ids or not re.fullmatch('[A-Za-z0-9_-]+',ident):continue
+        old=archived.get(ident)
+        match=re.search(r'window.CATALOG_CONFIG=(\{.*?\});',old.read_text()) if old else None
         config=json.loads(match.group(1)) if match else {}
         c=BY_KIND.get(config.get('kind'))
         target='../'+c['file'] if c else '../'
         body='<article id="product-detail" class="product-detail"><div class="unavailable-product"><h1>この商品の掲載は終了しました</h1><p>同じジャンルの商品から探せます。</p><a class="buy-button secondary" href="'+target+'">'+(c['name'] if c else '商品一覧')+'を見る</a></div></article>'
-        path='products/items/'+old.name
-        write(path,document('掲載を終了した商品｜モノより',path,body,depth=2,noindex=True,
-            config={'mode':'product','id':old.stem,'kind':config.get('kind'),'department':config.get('department')},scripts=('catalog.js',),initial=seed([],copies)))
+        name=copies.get(ident,{}).get('name','掲載商品')
+        body='<article class="unavailable-product"><h1>'+E(name)+'</h1><p>現在の価格・在庫を確認できません。販売終了を意味するものではありません。</p><p>古い価格や口コミ点数は表示していません。最新の商品一覧で購入候補を確認できます。</p><a class="buy-button secondary" href="'+target+'">'+(c['name'] if c else '商品一覧')+'から購入候補を探す →</a><p><a href="../stories/">商品紹介記事・比較ガイドを読む →</a></p><p><a href="../tools/unit-price.html">送料込みの単価を比較する →</a></p></article>'
+        path='products/items/'+ident+'.html'
+        write(path,document(name+'｜販売情報の確認｜モノより',path,body,depth=2,noindex=True))
         inventory.append(inventory_entry(path,{'status':'retired','kind':config.get('kind')},False))
     write('portal-assets/product-copy.json',json.dumps(copies,ensure_ascii=False,indent=2)+'\n')
     taxonomy={'departments':[{k:d[k] for k in ('key','name','file')} for d in DEPARTMENTS],'categories':[public_category(c) for c in CATEGORIES]}
