@@ -141,6 +141,22 @@ def main():
                     "検索総件数=", payload.get("count") if isinstance(payload.get("count"), int) else "未提供",
                     file=sys.stderr,
                 )
+            # Promoted landing pages must not disappear merely because keyword rankings change.
+            # Fetch the exact item afresh; never renew a stale local offer.
+            if kind == 'snacks':
+                time.sleep(1.1)
+                direct_params = {k:v for k,v in params.items() if k not in ('keyword','minPrice','genreId','NGKeyword')}
+                direct_params['itemCode'] = 'friend-gift:10011115'
+                direct_req = Request(ENDPOINT + '?' + urlencode(direct_params), headers=dict(req.headers))
+                try:
+                    with urlopen(direct_req, timeout=15) as direct_response:
+                        direct_payload = json.load(direct_response)
+                    direct_objects = direct_payload.get('items', direct_payload.get('Items', []))
+                    if isinstance(direct_objects, list):
+                        verified = [v for v in direct_objects if item_object(v).get('itemCode') == 'friend-gift:10011115']
+                        objects = verified + objects
+                except (OSError, ValueError, TypeError, AttributeError):
+                    print('Promoted gift API lookup unavailable; no stale offer renewed', file=sys.stderr)
             kept = 0
             for v in prefer_previous(objects, previous, kind):
                 item = item_object(v)
