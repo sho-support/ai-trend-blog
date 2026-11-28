@@ -1,0 +1,32 @@
+{
+  "date_jst": "2026-11-28",
+  "source_ref": "8bffd9700e5ec8273930967e29b9511d4601b8ed",
+  "changes": [
+    "Fixed portal_outbound_click item_id: actual buttons use data-buy, previously read data-item-id and sent blank.",
+    "Added exact itemCode fresh API lookup for friend-gift:10011115 and priority within snacks shelf. No stale offer renewal."
+  ],
+  "verification": {
+    "analytics_mock_tests": "3 ID sources passed; referral URL excluded",
+    "public_js": "correct expression confirmed",
+    "live_publish": {
+      "run": 46102220655,
+      "status": "success"
+    },
+    "feed": {
+      "run": 46102329801,
+      "status": "success"
+    }
+  },
+  "measurement_blocker": "GSC Wizard payment_required confirmed. No subscription purchased or repeated authentication request. Actual clicks and commission remain unknown.",
+  "social": "G335 sent today; no additional send.",
+  "remaining": [
+    "Exact API item presence must be checked in resulting feed; merchant may not return an active eligible item.",
+    "Need accessible existing GA4/affiliate reports to measure received clicks and confirmed revenue.",
+    "Expired offer metadata must not cause promoted editorial URLs to become404; permanent fallback remains to implement."
+  ],
+  "sources": [
+    "https://github.com/sho-support/sho-support.github.io/actions/runs/46102220655",
+    "https://github.com/sho-support/ai-trend-blog/actions/runs/46102329801"
+  ],
+  "confidence_percent": 99
+}
