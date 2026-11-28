@@ -55,6 +55,8 @@ def prefer_previous(objects, previous, kind):
     def rank(pair):
         index, value = pair
         code = str(item_object(value).get('itemCode') or '')
+        if kind == 'snacks' and code == 'friend-gift:10011115':
+            return (-1, index)
         ident = 'rakuten-' + code.replace(':', '-')
         return (0, order[ident]) if code and ident in order else (1, index)
     return [value for _,value in sorted(enumerate(objects), key=rank)]
