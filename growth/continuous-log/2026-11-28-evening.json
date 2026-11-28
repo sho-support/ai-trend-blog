@@ -1,0 +1,32 @@
+{
+  "date_jst": "2026-11-28",
+  "run": "evening_continuity_check",
+  "source_ref": "29eca72ea9e0fe25781ed409b53431e78ca42f13",
+  "latest_live_run": 46111704604,
+  "live_status": "success",
+  "distribution": {
+    "sent_today": 1,
+    "additional_sent": 0,
+    "receipt": "growth/g335-photo-launch-20261128-receipt.json",
+    "reason": "Daily maximum already reached; no send attempted."
+  },
+  "checks": [
+    "G335 live page HTTP200 and purchase links present",
+    "Published merchant-click item identity correction retained",
+    "Durable landing-page implementation and tests inherited from today's completed deployment",
+    "Calculator boundary tests passed latest live workflow; no duplicate testing"
+  ],
+  "pinterest": "No verified Pinterest destination; no repeated request.",
+  "metrics": {
+    "clicks": "not_obtained",
+    "visits": "not_obtained",
+    "merchant_clicks": "not_obtained",
+    "commission": "not_obtained"
+  },
+  "next_action": "Sunday: report obtained metrics separately from missing data; verify exact-item API refresh remains effective before temporary merchant snapshot expiry.",
+  "sources": [
+    "https://twitter.com/monoyori_sale/status/2126450774813065339",
+    "https://github.com/sho-support/sho-support.github.io/actions/runs/46111704604"
+  ],
+  "confidence_percent": 99
+}
